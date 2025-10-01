@@ -57,22 +57,20 @@ const FourthSection = () => {
     "#F1F1F1",
   ]);
 
-  // Precompute card transforms at top level (no hooks inside map)
-  const yTransforms = cards.map((_, i) =>
-    useTransform(scrollYProgress, [i * segment, i * segment + segment / 2, (i + 1) * segment], ["100%", "0%", "-100%"])
-  );
-
-  const opacityTransforms = cards.map((_, i) =>
-    useTransform(
+  // Precompute card transforms **at top level**
+  const cardTransforms = cards.map((_, i) => ({
+    y: useTransform(scrollYProgress, [i * segment, i * segment + segment / 2, (i + 1) * segment], ["100%", "0%", "-100%"]),
+    opacity: useTransform(
       scrollYProgress,
       [i * segment, i * segment + segment / 6, (i + 1) * segment - segment / 6, (i + 1) * segment],
       [0, 1, 1, 0]
-    )
-  );
-
-  const rotateTransforms = cards.map((_, i) =>
-    useTransform(scrollYProgress, [i * segment, i * segment + segment / 2, (i + 1) * segment], i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5])
-  );
+    ),
+    rotate: useTransform(
+      scrollYProgress,
+      [i * segment, i * segment + segment / 2, (i + 1) * segment],
+      i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5]
+    ),
+  }));
 
   return (
     <section className="container relative w-full">
@@ -97,7 +95,7 @@ const FourthSection = () => {
           {cards.map((card, i) => (
             <motion.div
               key={i}
-              style={{ y: yTransforms[i], opacity: opacityTransforms[i], rotate: rotateTransforms[i] }}
+              style={cardTransforms[i]}
               className={`absolute top-1/2 -translate-y-1/2 ${i % 2 === 0 ? "left-0" : "right-0"} z-10 px-2`}
             >
               <div
