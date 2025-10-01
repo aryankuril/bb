@@ -1,0 +1,118 @@
+"use client";
+import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+
+const WorkflowSection: React.FC = () => {
+  const workflowSteps = [
+    { title: "Discovery & Research", description: "We dig deep into your business, audience, and competitors to uncover insights that set the foundation.", tags: ["Understand your business", "audience", "market"] },
+    { title: "Strategy Development", description: "Crafting a clear roadmap that defines your positioning, voice, and brand promise.", tags: ["Define positioning", "voice", "brand personality"] },
+    { title: "Identity Design", description: "Bringing your brand to life with logos, colors, typography, and a distinct visual language.", tags: ["Craft logos", "colors", "visual language"] },
+    { title: "Market Analysis", description: "Analyzing competitors and industry trends to identify key opportunities.", tags: ["Competitor analysis", "insights", "growth"] },
+    { title: "Brand Voice", description: "Shaping your communication style to match your audience and market needs.", tags: ["Tone of voice", "messaging", "brand promise"] },
+    { title: "Visual Storytelling", description: "Designing a consistent system of visuals that represents your brand story.", tags: ["Graphics", "identity", "branding"] },
+    { title: "Campaign Design", description: "Creating campaigns that strengthen your presence and resonate with customers.", tags: ["Campaigns", "ads", "marketing"] },
+    // { title: "Implementation", description: "Rolling out the strategy across all digital and physical touchpoints.", tags: ["Execution", "delivery", "consistency"] },
+    // { title: "Growth Monitoring", description: "Tracking results and iterating strategies for long-term growth.", tags: ["Analytics", "KPIs", "improvement"] },
+  ];
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect screen size
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Track vertical scroll progress
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Different transforms for mobile vs desktop
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isMobile ? ["40%", "-40%"] : ["29%", "-28%"]
+  );
+
+  const trainX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    isMobile ? ["0%", "140%"] : ["0%", "233%"]
+  );
+
+  return (
+    <section ref={containerRef} className="relative h-[400vh] container ">
+      {/* Sticky wrapper keeps everything (title + train + cards) fixed */}
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
+        
+        {/* Title stays fixed now */}
+        <div className="text-center lg:mb-5 px-4">
+          <h2 className="miso-font text-3xl sm:text-5xl md:text-6xl lg:text-[80px] leading-tight text-[#1D1D1D]">
+            Branding workflow
+          </h2>
+        </div>
+
+        {/* Train + Track */}
+        <div className="relative w-full flex flex-col">
+          <motion.div
+            style={{ x: trainX }}
+            className="relative w-[250px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[20px] sm:h-[50px] z-20 lg:mt-0 mt-5"
+          >
+            <img
+              src="/images/train.png"
+              alt="train"
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
+
+          <div className="w-full h-[3px] sm:h-[4px] bg-[#FAB31E] z-10 rounded-full" />
+        </div>
+
+        {/* Horizontal cards */}
+        <motion.div
+          style={{ x }}
+          className="flex gap-4 sm:gap-8 md:gap-8 px-4 sm:px-10 md:px-20 mt-3"
+        >
+          {workflowSteps.map((step, index) => (
+            <div
+              key={index}
+              className="bg-black rounded-[20px] sm:rounded-[30px] p-4 sm:p-6 md:p-8 relative 
+              w-[250px] sm:w-[350px] md:w-[400px] lg:w-[450px] 
+              h-[380px] sm:h-[450px] md:h-[500px] lg:h-[550px] flex-shrink-0"
+            >
+              <div className="absolute right-0 top-0 w-4 sm:w-6 md:w-7 h-full bg-[#FAB31E] rounded-r-[20px] sm:rounded-r-[30px]" />
+
+              <div className="space-y-4 sm:space-y-6 md:space-y-8">
+                <div className="border-b border-[#FAB31E] pb-4 sm:pb-6 md:pb-8">
+                  <h3 className="miso-font text-xl sm:text-3xl md:text-4xl lg:text-[50px] text-white">
+                    {step.title}
+                  </h3>
+                </div>
+                <p className="text-sm sm:text-base md:text-lg lg:text-2xl text-white">
+                  {step.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {step.tags.map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className="bg-[#FAB31E] text-black text-[10px] sm:text-xs md:text-sm leading-[22px] sm:leading-[26px] md:leading-[30px] px-3 sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default WorkflowSection;
