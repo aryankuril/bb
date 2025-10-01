@@ -32,11 +32,12 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-[1300px] font-miso text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[35px] sm:leading-tight md:leading-tight lg:leading-[90px] text-[#1D1D1D] tracking-tight sm:tracking-normal md:tracking-[-1px] capitalize">
-          Turning JK Diamonds' Digital Touch points Into a{" "}
-          <span className="text-[#FAB31E]">Seamless Experience</span> That{" "}
-          <span className="text-[#FAB31E]">Attracts</span> and{" "}
-          <span className="text-[#FAB31E]">Retains Students</span>
-        </h1>
+  Turning JK Diamonds&apos; Digital Touch points Into a{" "}
+  <span className="text-[#FAB31E]">Seamless Experience</span> That{" "}
+  <span className="text-[#FAB31E]">Attracts</span> and{" "}
+  <span className="text-[#FAB31E]">Retains Students</span>
+</h1>
+
       </div>
 
       {/* Spacer */}

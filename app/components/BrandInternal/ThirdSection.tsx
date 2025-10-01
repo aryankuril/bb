@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -21,7 +22,6 @@ const timelineData = [
   },
 ];
 
-// Exit animations: alternating left-bottom / right-bottom
 const exitVariants = [
   { rotate: -15, x: -200, y: 200, scale: 0.9, opacity: 0, zIndex: 20 },
   { rotate: 15, x: 200, y: 200, scale: 0.9, opacity: 0, zIndex: 20 },
@@ -29,6 +29,24 @@ const exitVariants = [
 
 const ThirdSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // Create refs and animation controls for each timeline item
+  const refs = useRef<(HTMLDivElement | null)[]>([]);
+  const controls = useRef(timelineData.map(() => useAnimation())).current;
+
+  // Hook to track which item is in view
+  const inViews = timelineData.map((_, i) => useInView({ threshold: 0.7, triggerOnce: false }));
+
+  useEffect(() => {
+    inViews.forEach(([ref, inView], i) => {
+      if (inView) {
+        controls[i].start({ opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } });
+        setTimeout(() => setActiveIndex(i), 150);
+      } else {
+        controls[i].start({ opacity: 0, y: 40 });
+      }
+    });
+  }, [inViews, controls]);
 
   return (
     <section className="container py-16 min-h-[150vh]">
@@ -40,50 +58,27 @@ const ThirdSection = () => {
         {/* Timeline text */}
         <div className="p-10 space-y-1 relative z-10">
           {timelineData.map((item, index) => {
-            const controls = useAnimation();
-            const [ref, inView] = useInView({ threshold: 0.7, triggerOnce: false });
-
-            useEffect(() => {
-              if (inView) {
-                // Animate text: fade in from bottom
-                controls.start({
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.8, ease: "easeOut" },
-                });
-
-                // Change image slightly after text animation starts
-                setTimeout(() => {
-                  setActiveIndex(index);
-                }, 150); // small delay to sync text first
-              } else {
-                controls.start({ opacity: 0, y: 40 });
-              }
-            }, [inView, index]);
-
+            const [ref, inView] = inViews[index];
             return (
               <motion.div
                 key={index}
                 ref={ref}
                 initial={{ opacity: 0, y: 40 }}
-                animate={controls}
+                animate={controls[index]}
                 className="space-y-2 text-white"
               >
-               <h3 className=" w-[900px] /* full width */ text-[#FFF] /* color: #FFF */ font-[Miso] /* custom font-family (make sure it's loaded) */ text-[28px] sm:text-[34px] md:text-[40px] /* responsive font-size */ font-[700] /* font-weight: 700 (bold) */ leading-[60px] /* line-height: 60px */ tracking-[-1.2px] /* letter-spacing: -1.2px  ">
+                <h3 className="w-[900px] text-[#FFF] font-[Miso] text-[28px] sm:text-[34px] md:text-[40px] font-[700] leading-[60px] tracking-[-1.2px]">
                   <span className="text-[#FAB31E] mr-4">●</span> {item.week}
                 </h3>
-                <p className="text-[#FFF] font-[400] text-[20px] leading-[40px] ml-8">
-                  {item.desc}
-                </p>
+                <p className="text-[#FFF] font-[400] text-[20px] leading-[40px] ml-8">{item.desc}</p>
               </motion.div>
             );
           })}
         </div>
 
         {/* Sticky image container */}
-        <div className="lg:sticky lg:top-20 flex items-center justify-end p-0 ">
+        <div className="lg:sticky lg:top-20 flex items-center justify-end p-0">
           <div className="relative w-full h-full flex items-center justify-end overflow-hidden">
-            
             <AnimatePresence>
               <motion.img
                 key={timelineData[activeIndex].img}
@@ -96,17 +91,16 @@ const ThirdSection = () => {
                 exit={exitVariants[activeIndex % 2]}
                 transition={{ duration: 0.7, ease: "easeInOut" }}
                 onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-  const target = e.currentTarget;
-  target.onerror = null;
-  target.src = "...";
-}}
-
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "...";
+                }}
               />
             </AnimatePresence>
-            {/* Yellow stripe */}
           </div>
         </div>
-            <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E] rounded-tr-[20px] rounded-br-[20px]" />
+
+        {/* Yellow stripe */}
+        <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E] rounded-tr-[20px] rounded-br-[20px]" />
       </div>
     </section>
   );
