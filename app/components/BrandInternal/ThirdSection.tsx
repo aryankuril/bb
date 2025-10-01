@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -30,12 +30,9 @@ const exitVariants = [
 const ThirdSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Create refs and animation controls for each timeline item
-  const refs = useRef<(HTMLDivElement | null)[]>([]);
-  const controls = useRef(timelineData.map(() => useAnimation())).current;
-
-  // Hook to track which item is in view
-  const inViews = timelineData.map((_, i) => useInView({ threshold: 0.7, triggerOnce: false }));
+  // Hooks at top level
+  const controls = timelineData.map(() => useAnimation());
+  const inViews = timelineData.map(() => useInView({ threshold: 0.7, triggerOnce: false }));
 
   useEffect(() => {
     inViews.forEach(([ref, inView], i) => {
@@ -58,7 +55,7 @@ const ThirdSection = () => {
         {/* Timeline text */}
         <div className="p-10 space-y-1 relative z-10">
           {timelineData.map((item, index) => {
-            const [ref, inView] = inViews[index];
+            const [ref] = inViews[index]; // get ref from top-level useInView
             return (
               <motion.div
                 key={index}

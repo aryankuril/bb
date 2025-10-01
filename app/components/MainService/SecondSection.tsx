@@ -10,26 +10,10 @@ interface Card {
 }
 
 const cards: Card[] = [
-  {
-    title: "Branding Workflow",
-    subtitle: "We dig deep into your business, audience and competitors.",
-    image: "/images/section1-img1.png",
-  },
-  {
-    title: "Creative Direction",
-    subtitle: "Design-first approach to build memorable products.",
-    image: "/images/section1-img2.png",
-  },
-  {
-    title: "Strategy & Research",
-    subtitle: "Market research to inform design & growth.",
-    image: "/images/section1-img3.png",
-  },
-  {
-    title: "Product Design",
-    subtitle: "From concept to pixel-perfect interfaces.",
-    image: "/images/section1-img4.png",
-  },
+  { title: "Branding Workflow", subtitle: "We dig deep into your business, audience and competitors.", image: "/images/section1-img1.png" },
+  { title: "Creative Direction", subtitle: "Design-first approach to build memorable products.", image: "/images/section1-img2.png" },
+  { title: "Strategy & Research", subtitle: "Market research to inform design & growth.", image: "/images/section1-img3.png" },
+  { title: "Product Design", subtitle: "From concept to pixel-perfect interfaces.", image: "/images/section1-img4.png" },
 ];
 
 export default function SecondSection() {
@@ -41,25 +25,15 @@ export default function SecondSection() {
 
   const segment = 1 / cards.length;
 
-  // Top-level transforms
-  const serviceColor = useTransform(
-    scrollYProgress,
-    [0, 0.05, 0.95, 1],
-    ["#1D1D1D", "#F1F1F1", "#F1F1F1", "#F1F1F1"]
-  );
+  // Top-level transform for heading color
+  const serviceColor = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], ["#1D1D1D", "#F1F1F1", "#F1F1F1", "#F1F1F1"]);
 
-  // Precompute transforms for each card
-  const yTransforms = cards.map((_, i) =>
-    useTransform(scrollYProgress, [i * segment, i * segment + segment / 2, (i + 1) * segment], ["100%", "0%", "-100%"])
-  );
-
-  const opacityTransforms = cards.map((_, i) =>
-    useTransform(scrollYProgress, [i * segment, i * segment + segment / 6, (i + 1) * segment - segment / 6, (i + 1) * segment], [0, 1, 1, 0])
-  );
-
-  const rotateTransforms = cards.map((_, i) =>
-    useTransform(scrollYProgress, [i * segment, i * segment + segment / 2, (i + 1) * segment], i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5])
-  );
+  // Precompute card transforms at top-level
+  const cardTransforms = cards.map((_, i) => ({
+    y: useTransform(scrollYProgress, [i * segment, i * segment + segment / 2, (i + 1) * segment], ["100%", "0%", "-100%"]),
+    opacity: useTransform(scrollYProgress, [i * segment, i * segment + segment / 6, (i + 1) * segment - segment / 6, (i + 1) * segment], [0, 1, 1, 0]),
+    rotate: useTransform(scrollYProgress, [i * segment, i * segment + segment / 2, (i + 1) * segment], i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5]),
+  }));
 
   return (
     <section className="container relative w-full">
@@ -82,11 +56,7 @@ export default function SecondSection() {
             return (
               <motion.div
                 key={i}
-                style={{
-                  y: yTransforms[i],
-                  opacity: opacityTransforms[i],
-                  rotate: rotateTransforms[i],
-                }}
+                style={cardTransforms[i]}
                 className={`absolute top-1/2 -translate-y-1/2 ${positionClass} z-10 px-2`}
               >
                 <div

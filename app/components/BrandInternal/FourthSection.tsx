@@ -32,8 +32,6 @@ const cards: Card[] = [
   },
 ];
 
-
-
 const FourthSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -42,10 +40,10 @@ const FourthSection = () => {
   });
 
   const segment = 1 / cards.length;
-
   const startRange = segment * 0.1;
   const endRange = 1 - segment * 0.1;
 
+  // Top-level transforms for heading
   const serviceColor = useTransform(
     scrollYProgress,
     [0, startRange, endRange, 1],
@@ -59,17 +57,22 @@ const FourthSection = () => {
     "#F1F1F1",
   ]);
 
-  // Precompute y, opacity, rotate transforms for each card
-  const cardTransforms = cards.map((_, i) => {
-    const start = i * segment;
-    const end = start + segment;
+  // Precompute card transforms at top level (no hooks inside map)
+  const yTransforms = cards.map((_, i) =>
+    useTransform(scrollYProgress, [i * segment, i * segment + segment / 2, (i + 1) * segment], ["100%", "0%", "-100%"])
+  );
 
-    return {
-      y: useTransform(scrollYProgress, [start, start + segment / 2, end], ["100%", "0%", "-100%"]),
-      opacity: useTransform(scrollYProgress, [start, start + segment / 6, end - segment / 6, end], [0, 1, 1, 0]),
-      rotate: useTransform(scrollYProgress, [start, start + segment / 2, end], i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5]),
-    };
-  });
+  const opacityTransforms = cards.map((_, i) =>
+    useTransform(
+      scrollYProgress,
+      [i * segment, i * segment + segment / 6, (i + 1) * segment - segment / 6, (i + 1) * segment],
+      [0, 1, 1, 0]
+    )
+  );
+
+  const rotateTransforms = cards.map((_, i) =>
+    useTransform(scrollYProgress, [i * segment, i * segment + segment / 2, (i + 1) * segment], i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5])
+  );
 
   return (
     <section className="container relative w-full">
@@ -94,7 +97,7 @@ const FourthSection = () => {
           {cards.map((card, i) => (
             <motion.div
               key={i}
-              style={cardTransforms[i]}
+              style={{ y: yTransforms[i], opacity: opacityTransforms[i], rotate: rotateTransforms[i] }}
               className={`absolute top-1/2 -translate-y-1/2 ${i % 2 === 0 ? "left-0" : "right-0"} z-10 px-2`}
             >
               <div
@@ -121,4 +124,4 @@ const FourthSection = () => {
   );
 };
 
-export default FourthSection
+export default FourthSection;
