@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import Firstsection from '../components/BrandInternal/Firstsection'
 import SecondSection from '@/app/components/BrandInternal/SecondSection'
 import ThirdSection from '../components/BrandInternal/ThirdSection'
-import FourthSection from '../components/BrandInternal/FourthSection'
+// import FourthSection from '../components/BrandInternal/FourthSection'
 import SeventhSection from '../components/Service/SeventhSection'
 import Footer from '../components/Footer'
 
@@ -14,7 +14,7 @@ const Index = () => {
       <Firstsection/>
       <SecondSection />
       <ThirdSection />
-      <FourthSection />
+      {/* <FourthSection /> */}
       <SeventhSection />
       <Footer />
       

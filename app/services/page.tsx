@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/Header'
 import Firstsection from '../components/MainService/Firstsection'
-import SecondSection from '../components/MainService/SecondSection'
+// import SecondSection from '../components/MainService/SecondSection'
 import SeventhSection from '../components/Service/SeventhSection'
 import Footer from '../components/Footer'
 
@@ -10,7 +10,7 @@ const page = () => {
     <div>
         <Header />
         <Firstsection />
-        <SecondSection />
+        {/* <SecondSection /> */}
         <SeventhSection />
         <Footer />
     </div>
