@@ -47,31 +47,38 @@ export default function SecondSection() {
     ["#1D1D1D", "#F1F1F1", "#F1F1F1", "#F1F1F1"]
   );
 
-  // Precompute transforms for each card at the top level
-  const yTransforms = [
-    useTransform(scrollYProgress, [0, segment / 2, segment], ["100%", "0%", "-100%"]),
-    useTransform(scrollYProgress, [segment, segment + segment / 2, segment * 2], ["100%", "0%", "-100%"]),
-    useTransform(scrollYProgress, [segment * 2, segment * 2 + segment / 2, segment * 3], ["100%", "0%", "-100%"]),
-    useTransform(scrollYProgress, [segment * 3, segment * 3 + segment / 2, 1], ["100%", "0%", "-100%"]),
-  ];
+  // Move all transforms out of the loop
+  const yTransforms = cards.map((_, i) =>
+    useTransform(
+      scrollYProgress,
+      [i * segment, i * segment + segment / 2, (i + 1) * segment],
+      ["100%", "0%", "-100%"]
+    )
+  );
 
-  const opacityTransforms = [
-    useTransform(scrollYProgress, [0, segment / 6, segment - segment / 6, segment], [0, 1, 1, 0]),
-    useTransform(scrollYProgress, [segment, segment + segment / 6, segment * 2 - segment / 6, segment * 2], [0, 1, 1, 0]),
-    useTransform(scrollYProgress, [segment * 2, segment * 2 + segment / 6, segment * 3 - segment / 6, segment * 3], [0, 1, 1, 0]),
-    useTransform(scrollYProgress, [segment * 3, segment * 3 + segment / 6, 1 - segment / 6, 1], [0, 1, 1, 0]),
-  ];
+  const opacityTransforms = cards.map((_, i) =>
+    useTransform(
+      scrollYProgress,
+      [
+        i * segment,
+        i * segment + segment / 6,
+        (i + 1) * segment - segment / 6,
+        (i + 1) * segment,
+      ],
+      [0, 1, 1, 0]
+    )
+  );
 
-  const rotateTransforms = [
-    useTransform(scrollYProgress, [0, segment / 2, segment], [5, 0, -5]),
-    useTransform(scrollYProgress, [segment, segment + segment / 2, segment * 2], [-5, 0, 5]),
-    useTransform(scrollYProgress, [segment * 2, segment * 2 + segment / 2, segment * 3], [5, 0, -5]),
-    useTransform(scrollYProgress, [segment * 3, segment * 3 + segment / 2, 1], [-5, 0, 5]),
-  ];
+  const rotateTransforms = cards.map((_, i) =>
+    useTransform(
+      scrollYProgress,
+      [i * segment, i * segment + segment / 2, (i + 1) * segment],
+      i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5]
+    )
+  );
 
   return (
     <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
-      {/* ✅ Static Text */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center pointer-events-none z-0 px-2">
         <motion.h1
           style={{ color: serviceColor }}
@@ -84,11 +91,11 @@ export default function SecondSection() {
         </motion.h1>
       </div>
 
-      {/* ✅ Scrollable Cards */}
       <div ref={containerRef} className="relative h-[400vh] z-10">
         <div className="sticky top-0 h-screen overflow-hidden">
           {cards.map((card, i) => {
             const positionClass = i % 2 === 0 ? "left-0" : "right-0";
+
             return (
               <motion.div
                 key={i}
