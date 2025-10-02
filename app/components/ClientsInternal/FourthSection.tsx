@@ -1,7 +1,6 @@
- "use client";
-
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+"use client";
+import React, { useRef, useState, useEffect } from "react";
+import { useScroll } from "framer-motion";
 
 interface Card {
   title: string;
@@ -32,10 +31,6 @@ const cards: Card[] = [
   },
 ];
 
-
-
-// ...existing code...
-
 const FourthSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -43,96 +38,91 @@ const FourthSection = () => {
     offset: ["start start", "end end"],
   });
 
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => setProgress(v));
+  }, [scrollYProgress]);
+
   const segment = 1 / cards.length;
 
-  // ✅ heading color turns grey while cards are visible
-  const startRange = segment * 0.1;
-  const endRange = 1 - segment * 0.1;
-  const serviceColor = useTransform(
-    scrollYProgress,
-    [0, startRange, endRange, 1],
-    ["#1D1D1D", "#F1F1F1", "#F1F1F1", "#F1F1F1"]
-  );
+  // Manual color interpolation based on scroll progress
+  const getColor = (start: number, end: number, fromColor: string, toColor: string) => {
+    if (progress < start) return fromColor;
+    if (progress > end) return toColor;
 
-  const spanColor = useTransform(
-    scrollYProgress,
-    [0, startRange, endRange, 1],
-    ["#FAB31E", "#F1F1F1", "#F1F1F1", "#F1F1F1"]
-  );
+    const localProgress = (progress - start) / (end - start);
 
-  // Move useTransform hooks outside the map
-  const yTransforms = cards.map((_, i) => {
-    const start = i * segment;
-    const end = start + segment;
-    return useTransform(
-      scrollYProgress,
-      [start, start + segment / 2, end],
-      ["100%", "0%", "-100%"]
-    );
-  });
+    // simple interpolation for HEX colors (assumes colors like "#RRGGBB")
+    const hexToRgb = (hex: string) => hex.match(/\w\w/g)!.map((x) => parseInt(x, 16));
+    const rgbToHex = (r: number, g: number, b: number) =>
+      `#${[r, g, b].map((x) => x.toString(16).padStart(2, "0")).join("")}`;
 
-  const opacityTransforms = cards.map((_, i) => {
-    const start = i * segment;
-    const end = start + segment;
-    return useTransform(
-      scrollYProgress,
-      [start, start + segment / 6, end - segment / 6, end],
-      [0, 1, 1, 0]
-    );
-  });
+    const [r1, g1, b1] = hexToRgb(fromColor);
+    const [r2, g2, b2] = hexToRgb(toColor);
 
-  const rotateTransforms = cards.map((_, i) => {
-    const start = i * segment;
-    const end = start + segment;
-    return useTransform(
-      scrollYProgress,
-      [start, start + segment / 2, end],
-      i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5]
-    );
-  });
+    const r = Math.round(r1 + (r2 - r1) * localProgress);
+    const g = Math.round(g1 + (g2 - g1) * localProgress);
+    const b = Math.round(b1 + (b2 - b1) * localProgress);
+
+    return rgbToHex(r, g, b);
+  };
+
+  // Example color ranges
+  const serviceColor = getColor(0, 1, "#1D1D1D", "#F1F1F1");
+  const spanColor = getColor(0, 1, "#FAB31E", "#F1F1F1");
 
   return (
     <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
-      {/* ✅ Static Text */}
+      {/* Sticky Title */}
       <div className="sticky top-0 h-screen flex items-center justify-center px-2">
-        <motion.h1
+        <h1
           style={{ color: serviceColor }}
           className="text-center font-[Miso] font-normal select-none 
                    leading-[1.3] tracking-[-1px] 
                    text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[54px]"
         >
           Our Strategy Didn’t Follow Trends, It Created Impact{" "}
-          <motion.span style={{ color: spanColor }}>Transforming</motion.span> The Brand’s{" "}
-          <motion.span style={{ color: spanColor }}>Presence</motion.span> And{" "}
-          <motion.span style={{ color: spanColor }}>Turning</motion.span> Every{" "}
-          <motion.span style={{ color: spanColor }}>Interaction</motion.span> Into{" "}
-          <motion.span style={{ color: spanColor }}>Measurable Results</motion.span>
-        </motion.h1>
+          <span style={{ color: spanColor }}>Transforming</span> The Brand’s{" "}
+          <span style={{ color: spanColor }}>Presence</span> And{" "}
+          <span style={{ color: spanColor }}>Turning</span> Every{" "}
+          <span style={{ color: spanColor }}>Interaction</span> Into{" "}
+          <span style={{ color: spanColor }}>Measurable Results</span>
+        </h1>
       </div>
-      {/* ✅ Scrollable Cards */}
+
+      {/* Scrollable Cards */}
       <div ref={containerRef} className="relative h-[400vh] z-10">
         <div className="sticky top-0 h-screen overflow-hidden">
           {cards.map((card, i) => {
-            const positionClass = i % 2 === 0 ? "left-0" : "right-0";
+            const start = i * segment;
+            const end = start + segment;
+
+            const visible = progress >= start && progress <= end;
+            const localProgress = Math.min(Math.max((progress - start) / segment, 0), 1);
+
+            const y = 100 - localProgress * 200;
+            const rotate = i % 2 === 0 ? (1 - localProgress) * 5 : (localProgress - 1) * 5;
+
             return (
-              <motion.div
+              <div
                 key={i}
+                className={`absolute top-1/2 -translate-y-1/2 ${
+                  i % 2 === 0 ? "left-0" : "right-0"
+                } z-10 px-2`}
                 style={{
-                  y: yTransforms[i],
-                  opacity: opacityTransforms[i],
-                  rotate: rotateTransforms[i],
+                  transform: `translateY(${y}%) rotate(${rotate}deg)`,
+                  opacity: visible ? 1 : 0,
+                  transition: "transform 0.3s linear, opacity 0.3s linear",
                 }}
-                className={`absolute top-1/2 -translate-y-1/2 ${positionClass} z-10 px-2`}
               >
                 <div
-                  className="
-                    flex flex-col justify-end
+                  className="flex flex-col justify-end
                     p-4 sm:p-6 md:p-10
                     h-[300px] sm:h-[440px] md:h-[528px]
                     w-[70vw] sm:w-[420px] md:w-[480px]
                     rounded-[20px]
-                    border-[5px] border-black
-                  "
+                    border-[5px] border-black"
                   style={{
                     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
                     backgroundSize: "cover",
@@ -140,35 +130,14 @@ const FourthSection = () => {
                     backgroundRepeat: "no-repeat",
                   }}
                 >
-                  <h3
-                    className="
-                      text-[#FAB31E]
-                      font-[Miso]
-                      font-normal
-                      capitalize
-                      leading-[1.2]
-                      tracking-[-1px]
-                      text-[28px] sm:text-[36px] md:text-[60px]
-                    "
-                  >
+                  <h3 className="text-[#FAB31E] font-[Miso] font-normal capitalize leading-[1.2] tracking-[-1px] text-[28px] sm:text-[36px] md:text-[60px]">
                     {card.title}
                   </h3>
-
-                  <p
-                    className="
-                      mt-2
-                      text-white
-                      font-[Poppins]
-                      font-normal
-                      leading-normal
-                      tracking-[-0.72px]
-                      text-[16px] sm:text-[20px] md:text-[24px]
-                    "
-                  >
+                  <p className="mt-2 text-white font-[Poppins] font-normal leading-normal tracking-[-0.72px] text-[16px] sm:text-[20px] md:text-[24px]">
                     {card.subtitle}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

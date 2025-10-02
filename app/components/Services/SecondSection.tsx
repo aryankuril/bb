@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll } from "framer-motion";
+import { useScroll } from "framer-motion";
 
 interface Card {
   title: string;
@@ -38,7 +38,6 @@ export default function SecondSection() {
     offset: ["start start", "end end"],
   });
 
-  // 👇 store live scroll progress in state
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -70,20 +69,14 @@ export default function SecondSection() {
             const start = i * segment;
             const end = start + segment;
 
-            // check visibility of each card
             const visible = progress >= start && progress <= end;
             const localProgress = Math.min(
               Math.max((progress - start) / segment, 0),
               1
             );
 
-            const y = 100 - localProgress * 200; // moves from bottom → center → top
-            const opacity =
-              localProgress < 0.2
-                ? localProgress * 5
-                : localProgress > 0.8
-                ? (1 - localProgress) * 5
-                : 1;
+            // only slide + rotate, no fade
+            const y = 100 - localProgress * 200;
             const rotate =
               i % 2 === 0 ? (1 - localProgress) * 5 : (localProgress - 1) * 5;
 
@@ -95,7 +88,7 @@ export default function SecondSection() {
                 } z-10 px-2`}
                 style={{
                   transform: `translateY(${y}%) rotate(${rotate}deg)`,
-                  opacity: visible ? opacity : 0,
+                  opacity: visible ? 1 : 0, // 👈 no fading in/out, just snap
                   transition: "transform 0.3s linear, opacity 0.3s linear",
                 }}
               >
