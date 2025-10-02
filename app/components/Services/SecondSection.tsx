@@ -1,7 +1,6 @@
 "use client";
-
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 
 interface Card {
   title: string;
@@ -41,69 +40,49 @@ export default function SecondSection() {
 
   const segment = 1 / cards.length;
 
-  const serviceColor = useTransform(
-    scrollYProgress,
-    [0, 0.05, 0.95, 1],
-    ["#1D1D1D", "#F1F1F1", "#F1F1F1", "#F1F1F1"]
-  );
-
-  // Move all transforms out of the loop
-  const yTransforms = cards.map((_, i) =>
-    useTransform(
-      scrollYProgress,
-      [i * segment, i * segment + segment / 2, (i + 1) * segment],
-      ["100%", "0%", "-100%"]
-    )
-  );
-
-  const opacityTransforms = cards.map((_, i) =>
-    useTransform(
-      scrollYProgress,
-      [
-        i * segment,
-        i * segment + segment / 6,
-        (i + 1) * segment - segment / 6,
-        (i + 1) * segment,
-      ],
-      [0, 1, 1, 0]
-    )
-  );
-
-  const rotateTransforms = cards.map((_, i) =>
-    useTransform(
-      scrollYProgress,
-      [i * segment, i * segment + segment / 2, (i + 1) * segment],
-      i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5]
-    )
-  );
-
   return (
     <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
+      {/* ✅ Static Text */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center pointer-events-none z-0 px-2">
         <motion.h1
-          style={{ color: serviceColor }}
+          style={{
+            color: useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [
+              "#1D1D1D",
+              "#F1F1F1",
+              "#F1F1F1",
+              "#F1F1F1",
+            ]),
+          }}
           className="
             text-center font-[Miso] font-normal capitalize select-none leading-[1.2]  
-            tracking-[-4px] text-[80px] sm:text-[140px] md:text-[200px] lg:text-[260px]  xl:text-[300px]
+            tracking-[-4px] text-[80px] sm:text-[140px] md:text-[200px] lg:text-[260px] xl:text-[300px]
           "
         >
           Services
         </motion.h1>
       </div>
 
+      {/* ✅ Scrollable Cards */}
       <div ref={containerRef} className="relative h-[400vh] z-10">
         <div className="sticky top-0 h-screen overflow-hidden">
           {cards.map((card, i) => {
+            const start = i * segment;
+            const end = start + segment;
             const positionClass = i % 2 === 0 ? "left-0" : "right-0";
+
+            // ✅ useTransform here (NOT scrollYProgress.to)
+            const y = useTransform(scrollYProgress, [start, start + segment / 2, end], ["100%", "0%", "-100%"]);
+            const opacity = useTransform(scrollYProgress, [start, start + segment / 6, end - segment / 6, end], [0, 1, 1, 0]);
+            const rotate = useTransform(
+              scrollYProgress,
+              [start, start + segment / 2, end],
+              i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5]
+            );
 
             return (
               <motion.div
                 key={i}
-                style={{
-                  y: yTransforms[i],
-                  opacity: opacityTransforms[i],
-                  rotate: rotateTransforms[i],
-                }}
+                style={{ y, opacity, rotate }}
                 className={`absolute top-1/2 -translate-y-1/2 ${positionClass} z-10 px-2`}
               >
                 <div
@@ -135,7 +114,6 @@ export default function SecondSection() {
                   >
                     {card.title}
                   </h3>
-
                   <p
                     className="
                       mt-2
