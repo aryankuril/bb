@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface Card {
   title: string;
@@ -40,6 +40,22 @@ export default function SecondSection() {
 
   const segment = 1 / cards.length;
 
+  // ✅ Precompute transforms here
+  const transforms = cards.map((_, i) => {
+    const start = i * segment;
+    const end = start + segment;
+
+    const y = useTransform(scrollYProgress, [start, start + segment / 2, end], ["100%", "0%", "-100%"]);
+    const opacity = useTransform(scrollYProgress, [start, start + segment / 6, end - segment / 6, end], [0, 1, 1, 0]);
+    const rotate = useTransform(
+      scrollYProgress,
+      [start, start + segment / 2, end],
+      i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5]
+    );
+
+    return { y, opacity, rotate };
+  });
+
   return (
     <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
       {/* ✅ Static Text */}
@@ -66,18 +82,8 @@ export default function SecondSection() {
       <div ref={containerRef} className="relative h-[400vh] z-10">
         <div className="sticky top-0 h-screen overflow-hidden">
           {cards.map((card, i) => {
-            const start = i * segment;
-            const end = start + segment;
+            const { y, opacity, rotate } = transforms[i];
             const positionClass = i % 2 === 0 ? "left-0" : "right-0";
-
-            // ✅ useTransform here (NOT scrollYProgress.to)
-            const y = useTransform(scrollYProgress, [start, start + segment / 2, end], ["100%", "0%", "-100%"]);
-            const opacity = useTransform(scrollYProgress, [start, start + segment / 6, end - segment / 6, end], [0, 1, 1, 0]);
-            const rotate = useTransform(
-              scrollYProgress,
-              [start, start + segment / 2, end],
-              i % 2 === 0 ? [5, 0, -5] : [-5, 0, 5]
-            );
 
             return (
               <motion.div
