@@ -2,12 +2,12 @@
 import Navbar from "./components/Navbar";
 import Firstsection from "./components/HomePage/Firstsection";
 import SecondSection from "./components/HomePage/SecondSection";
-import StudioSection from "./components/HomePage/StudioSection"
+// import StudioSection from "./components/HomePage/StudioSection"
 import ThirdSection from "./components/HomePage/ThirdSection";
 import WorkCard from "./components/HomePage/WorkCard";
 import PerformanceROI from "./components/HomePage/PerformanceROI"
 import BombAISection from "./components/HomePage/BombAISection";
-import RubberSection from "./components/HomePage/RubberSection";
+// import RubberSection from "./components/HomePage/RubberSection";
 import CardCarousel from "./components/HomePage/CardCarousel";
 import SixthSection from "./components/ServicesInternal/SixthSection";
 import SeventhSection from "./components/ServicesInternal/SeventhSection";
@@ -21,10 +21,10 @@ export default function Home() {
       <SecondSection/>
       <ThirdSection/>
       <WorkCard />
-      <StudioSection/>
+      {/* <StudioSection/> */}
       <PerformanceROI/>
       <BombAISection/>
-      <RubberSection/>
+      {/* <RubberSection/> */}
       <CardCarousel/>
       <SixthSection/>
       <SeventhSection/>
