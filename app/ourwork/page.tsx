@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../components/Header'
-import Firstsection from '../components/BrandPage/Firstsection'
-import SecondSection from '../components/BrandPage/SecondSection'
-import SeventhSection from '../components/Service/SeventhSection'
+import Firstsection from '../components/OurWork/Firstsection'
+import SecondSection from '../components/OurWork/SecondSection'
+import SeventhSection from '../components/ServicesInternal/SeventhSection'
 import Footer from '../components/Footer'
 
 const Index = () => {

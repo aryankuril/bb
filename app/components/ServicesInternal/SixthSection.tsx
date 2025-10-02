@@ -44,7 +44,7 @@ const SixthSection = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
   }
   return (
-  <div className=" max-w-[960px] mx-auto mt-15 font-poppins relative">
+  <div className=" max-w-[960px] mx-auto mt-15 font-poppins relative ">
       {/* Carousel viewport */}
       <div className="overflow-hidden w-full">
   <div

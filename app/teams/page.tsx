@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import Firstsection from '@/app/components/Teams/Firstsection'
 import SecondSection from '@/app/components/Teams/SecondSection'
 import ThirdSection from '@/app/components/Teams/ThirdSection'
-import SeventhSection from '../components/Service/SeventhSection'
+import SeventhSection from '../components/ServicesInternal/SeventhSection'
 import Footer from '../components/Footer'
 
 

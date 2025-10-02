@@ -76,7 +76,7 @@ const SecondSection = () => {
     const [value, setValue] = useState("");
       const [active, setActive] = useState<string | null>(null);
   return (
-    <section className="container py-10 md:py-20">
+    <section className="container py-10 sm:py-15 lg:py-20">
       <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 ">
         
         {/* Left Side Image */}
@@ -180,7 +180,7 @@ const SecondSection = () => {
               onClick={() => setActive(service.name)}
               className={`
                 flex  gap-5 px-3 py-3 rounded-[10px] border 
-                w-full  transition cursor-pointer
+                w-full  transition cursor-pointer font-['Poppins']
                 ${isActive 
                   ? "bg-[#FAB31E] text-black border-[#FAB31E]" 
                   : "border-[#FAB31E] text-white"}

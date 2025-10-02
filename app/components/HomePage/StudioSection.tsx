@@ -98,14 +98,14 @@ export default function LightCameraAction() {
   }, []);
 
   return (
-    <div className="w-full text-[var(--color-primary)] container">
+    <div className="w-full text-[var(--color-primary)]  container py-10 sm:py-15 lg:py-20">
       {/* Pinned sequence wrapper */}
       <section ref={rootRef} className="relative w-full min-h-[100svh] flex items-center justify-center overflow-hidden">
         {/* Centered container for headline + frame */}
           {/* 1) Headline */}
           <h1
             ref={headlineRef}
-            className="select-none relative -z-10 lg:text-[80px] text-[20px] "
+            className="select-none relative -z-10 lg:text-[80px] text-[20px] font-[miso]"
           >
             <span data-word className="inline-block">Light.</span>{" "}
             <span data-word className="inline-block">Camera.</span>{" "}

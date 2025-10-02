@@ -56,11 +56,11 @@ export default function SecondSection() {
         <motion.h1
           style={{ color: serviceColor }}
           className="
-            text-center font-[miso] font-normal capitalize select-none leading-[1.2]  
+            text-center font-[Miso] font-normal capitalize select-none leading-[1.2]  
             tracking-[-4px] text-[80px] sm:text-[140px] md:text-[200px] lg:text-[260px]  xl:text-[300px]
           "
         >
-         Clients
+          Services
         </motion.h1>
       </div>
 

@@ -5,7 +5,7 @@ import React from "react";
 
 const SeventhSection = () => {
   return (
-<section className="container sm:py-10 md:py-12">
+<section className="container py-10 sm:py-15 lg:py-20">
   <div className="bg-[#1D1D1D] rounded-[20px] relative overflow-hidden">
     <div className="relative z-10 flex items-center justify-center py-10 sm:py-12 md:py-16">
       <div className="text-center space-y-6 sm:space-y-8">
@@ -30,9 +30,9 @@ const SeventhSection = () => {
 
         {/* Contact Info */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 
-                        text-[14px] sm:text-[16px] md:text-[18px] 
+                        text-[12px] sm:text-[16px] md:text-[18px] 
                         leading-[24px] sm:leading-[28px] md:leading-[33px] 
-                        tracking-[0.2px] text-white">
+                        tracking-[0.2px] text-white font-['Poppins'] ">
           <span>hello@bombayblokes.com</span>
           <span >|</span>
           <span>+91 99875 58189</span>

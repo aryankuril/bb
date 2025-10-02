@@ -64,7 +64,7 @@ const SecondSection = () => {
   }, []);
 
   return (
-    <section className="  relative mb-[150px] mt-50 container">
+    <section className="  relative container py-10 sm:py-15 lg:py-20">
 
       <div className="lg:px-30 px-2" >
       <div className="text-center mb-12">
@@ -86,7 +86,7 @@ const SecondSection = () => {
 
       {/* ✅ Desktop connection line */}
       <svg
-        className="hidden lg:block absolute lg:left-[285px] top-[200px] w-[900px] h-[1667px] z-0 pointer-events-none"
+        className="hidden lg:block absolute lg:left-[285px] top-[250px] w-[900px] h-[1667px] z-0 pointer-events-none"
         viewBox="0 0 709 1781"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -142,18 +142,30 @@ const SecondSection = () => {
                     </svg>
                   </div>
                   <div>
-                    <div className="font-miso lg:text-[120px] text-[40px] text-[#FAB31E]">
-                      {achievement.number}
-                    </div>
-                    <div className="lg:space-y-8 space-y-2">
-                      <h3 className="font-miso font-bold text-[30px] sm:text-[50px] md:text-[60px] text-white text-left">
-                        {achievement.title}
-                      </h3>
-                      <p className="text-white text-[15px] sm:text-xl md:text-[24px] max-w-[400px] text-left">
-                        {achievement.description}
-                      </p>
-                    </div>
-                  </div>
+  {/* Number */}
+  <div className="font-miso text-[40px] sm:text-[60px] md:text-[80px] lg:text-[120px] 
+                  leading-[48px] sm:leading-[70px] md:leading-[90px] lg:leading-[120px] 
+                  text-[#FAB31E]">
+    {achievement.number}
+  </div>
+
+  {/* Title & Description */}
+  <div className="space-y-2 sm:space-y-4 md:space-y-6 lg:space-y-8">
+    <h3 className="font-miso font-bold 
+                   text-[24px] sm:text-[36px] md:text-[50px] lg:text-[60px] 
+                   leading-[28px] sm:leading-[44px] md:leading-[60px] lg:leading-[70px] 
+                   text-white text-left">
+      {achievement.title}
+    </h3>
+    <p className="text-white 
+                  text-[14px] sm:text-[18px] md:text-[20px] lg:text-[24px] 
+                  leading-[20px] sm:leading-[28px] md:leading-[32px] lg:leading-[36px] 
+                  max-w-[300px] sm:max-w-[400px] text-left">
+      {achievement.description}
+    </p>
+  </div>
+</div>
+
                 </div>
               </div>
             </div>

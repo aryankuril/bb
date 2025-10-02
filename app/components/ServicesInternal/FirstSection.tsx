@@ -23,7 +23,7 @@ const FirstSection = () => {
 
   return (
     
-<section className="w-full container py-12 flex flex-col md:flex-row items-center justify-between gap-10">
+<section className="w-full container py-10 sm:py-15 lg:py-20 flex flex-col md:flex-row items-center justify-between gap-10">
   {/* Left Side - Text */}
   <div className="flex-1 text-center md:text-left">
     <h1 className="text-[32px] sm:text-[48px] md:text-[80px] lg:text-[100px] xl:text-[120px] leading-[1.05] lg:leading-[0.8] font-normal text-[#1D1D1D] tracking-tight capitalize w-full max-w-[650px] font-[Miso] mx-auto md:mx-0 lg:mt-10">
@@ -35,7 +35,7 @@ const FirstSection = () => {
     </p>
 
     <div className="mt-6 lg:mt-10">
-      <Button href="#" text="BOOK FREE AUDIT " className="lg:mt-10" />
+      <Button href="#" text="BOOK FREE AUDIT " className="lg:mt-10 font-['Poppins']" />
     </div>
   </div>
 
@@ -58,7 +58,7 @@ const FirstSection = () => {
   </div>
 
   {/* Label box (outside card, overlapping) */}
-  <div className="absolute top-4 lg:-left-25 left-4 z-30 bg-[#FAB31E] rounded-[20px_20px_0px_20px] px-3 sm:px-5 py-1 sm:py-2 shadow-md">
+  <div className=" font-['Poppins'] absolute top-4 lg:-left-25 left-4 z-30 bg-[#FAB31E] rounded-[20px_20px_0px_20px] px-3 sm:px-5 py-1 sm:py-2 shadow-md">
     <span className="text-black text-xs sm:text-sm leading-[20px] sm:leading-[30px] tracking-[-0.36px] whitespace-nowrap">
       Innovation, the street-smart style
     </span>

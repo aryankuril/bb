@@ -40,9 +40,9 @@ const SecondSection = () => {
   }
 
   return (
-    <section className="container py-12 sm:py-16 md:py-24">
+    <section className="container py-10 sm:py-15 lg:py-20">
       {/* Title */}
-      <h1 className="text-black font-[Miso] font-bold leading-[1.2]
+      <h1 className="text-black font-[miso] font-bold leading-[1.2]
         text-[30px] sm:text-[30px] md:text-[40px] lg:text-[60px] xl:text-[80px] mr-4">
         Category
       </h1>
@@ -73,12 +73,12 @@ const SecondSection = () => {
           [4, 5, [3, 2]],
         ].map(([i1, i2, span], idx) => (
           <div key={idx} className="grid grid-cols-1 md:grid-cols-5 gap-6">
-            <div className={`col-span-1 md:col-span-${(span as number[])[0]} relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden`}>
+            <div className={`col-span-1 md:col-span-${(span as number[])[0]} relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] font-[miso] overflow-hidden`}>
               <img src={processSteps[i1 as number].image} alt={processSteps[i1 as number].title}
                 className="absolute inset-0 w-full h-full object-cover z-0" />
               <CardText number={processSteps[i1 as number].number} title={processSteps[i1 as number].title} />
             </div>
-            <div className={`col-span-1 md:col-span-${(span as number[])[1]} relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden`}>
+            <div className={`col-span-1 md:col-span-${(span as number[])[1]} relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] font-[miso] overflow-hidden`}>
               <img src={processSteps[i2 as number].image} alt={processSteps[i2 as number].title}
                 className="absolute inset-0 w-full h-full object-cover z-0" />
               <CardText number={processSteps[i2 as number].number} title={processSteps[i2 as number].title} />

@@ -46,13 +46,13 @@ const WorkflowSection: React.FC = () => {
   );
 
   return (
-    <section ref={containerRef} className="relative h-[400vh] container ">
+    <section ref={containerRef} className="relative h-[400vh] container py-10 sm:py-15 lg:py-20 ">
       {/* Sticky wrapper keeps everything (title + train + cards) fixed */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
         
         {/* Title stays fixed now */}
         <div className="text-center lg:mb-5 px-4">
-          <h2 className="miso-font text-3xl sm:text-5xl md:text-6xl lg:text-[80px] leading-tight text-[#1D1D1D]">
+          <h2 className="font-[miso] text-3xl sm:text-5xl md:text-6xl lg:text-[80px] leading-tight text-[#1D1D1D]">
             Branding workflow
           </h2>
         </div>
@@ -89,18 +89,18 @@ const WorkflowSection: React.FC = () => {
 
               <div className="space-y-4 sm:space-y-6 md:space-y-8">
                 <div className="border-b border-[#FAB31E] pb-4 sm:pb-6 md:pb-8">
-                  <h3 className="miso-font text-xl sm:text-3xl md:text-4xl lg:text-[50px] text-white">
+                  <h3 className="font-[miso] text-xl sm:text-3xl md:text-4xl lg:text-[50px] text-white">
                     {step.title}
                   </h3>
                 </div>
-                <p className="text-sm sm:text-base md:text-lg lg:text-2xl text-white">
+                <p className=" font-['Poppins'] text-sm sm:text-base md:text-lg lg:text-2xl text-white">
                   {step.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {step.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className="bg-[#FAB31E] text-black text-[10px] sm:text-xs md:text-sm leading-[22px] sm:leading-[26px] md:leading-[30px] px-3 sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
+                      className=" font-['Poppins'] bg-[#FAB31E] text-black text-[10px] sm:text-xs md:text-sm leading-[22px] sm:leading-[26px] md:leading-[30px] px-3 sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
                     >
                       {tag}
                     </span>

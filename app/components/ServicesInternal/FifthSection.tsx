@@ -65,7 +65,8 @@ const cardsData = [
   },
 ];
 
-export default function StackingCards() {
+
+const FifthSection = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
@@ -144,7 +145,6 @@ export default function StackingCards() {
 
     return () => ctx.revert();
   }, []);
-
   return (
     <section ref={sectionRef} className="relative w-full  container py-10 sm:py-15 lg:py-20">
 
@@ -235,4 +235,6 @@ export default function StackingCards() {
       </div>
     </section>
   );
-}
+};
+
+export default FifthSection;

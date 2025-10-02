@@ -233,7 +233,7 @@ const ThirdSection :React.FC = () => {
     { img: "/images/man4.png", video: "/video/cardvideo-1.mp4", tag: "More About Vision" },
   ];
   return (
-    <section className="py-16 container mx-auto">
+    <section className="container py-10 sm:py-15 lg:py-20 mx-auto">
       <div className="text-center">
         <h2 className="text-[#1D1D1D] font-[Miso] text-[40px] sm:text-[60px] md:text-[70px] lg:text-[80px]
                        font-normal leading-[44px] sm:leading-[64px] md:leading-[74px] lg:leading-[82px]

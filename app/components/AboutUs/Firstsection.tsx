@@ -23,7 +23,7 @@ const FirstSection = () => {
 
   return (
     
-<section className="w-full container py-12 flex flex-col md:flex-row items-center justify-between gap-10">
+<section className="w-full container py-10 sm:py-15 lg:py-20 flex flex-col md:flex-row items-center justify-between gap-10">
   {/* Left Side - Text */}
   <div className="flex-1 text-center md:text-left">
     <h1 className="text-[32px] sm:text-[48px] md:text-[80px] lg:text-[100px] xl:text-[120px] leading-[1.05] lg:leading-[1] font-normal text-[#1D1D1D] tracking-tight capitalize w-full max-w-[650px] font-[Miso] mx-auto md:mx-0 ">

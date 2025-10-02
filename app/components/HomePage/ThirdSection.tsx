@@ -12,7 +12,6 @@ const images = [
   "/images/react-logo.svg",
 ];
 
-
 export default function ThirdSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const imgRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -27,7 +26,6 @@ export default function ThirdSection() {
       const currentIndex = activeIndexRef.current;
       const nextIndex = (currentIndex + 1) % images.length;
 
-      // Animate out current image
       if (imgRefs.current[currentIndex]) {
         gsap.to(imgRefs.current[currentIndex], {
           opacity: 0,
@@ -37,7 +35,6 @@ export default function ThirdSection() {
         });
       }
 
-      // Animate in next image
       if (imgRefs.current[nextIndex]) {
         gsap.fromTo(
           imgRefs.current[nextIndex],
@@ -50,28 +47,32 @@ export default function ThirdSection() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []); // Only run once on mount
+  }, []);
 
   return (
     <section
-      className=" container h-[100vh] relative w-full py-20 bg-cover bg-center text-center"
-      style={{ backgroundImage: "url(/images/tech-we-use-bg.png)"}}
+      className="container h-screen relative w-full bg-cover bg-center"
+      style={{ backgroundImage: "url(/images/tech-we-use-bg.png)" }}
     >
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-      <h1 className="text-[#1D1D1D] text-center font-[Miso] font-normal capitalize
-  text-[40px] leading-[44px] tracking-[-1.2px]       /* base - mobile */
-  sm:text-[50px] sm:leading-[54px] sm:tracking-[-1.5px]
-  md:text-[60px] md:leading-[64px] md:tracking-[-1.8px]
-  lg:text-[72px] lg:leading-[76px] lg:tracking-[-2px]
-  xl:text-[80px] xl:leading-[87px] xl:tracking-[-2.4px]">
+      {/* Center wrapper */}
+      <div className="flex items-center justify-center h-full  px-6">
+        <h1
+          className="text-[#1D1D1D] text-center font-[Miso] font-normal capitalize
+          text-[40px] leading-[44px] tracking-[-1.2px]
+          sm:text-[50px] sm:leading-[54px] sm:tracking-[-1.5px]
+          md:text-[60px] md:leading-[64px] md:tracking-[-1.8px]
+          lg:text-[72px] lg:leading-[76px] lg:tracking-[-2px]
+          xl:text-[80px] xl:leading-[87px] xl:tracking-[-2.4px] lg:w-[900px] w-full "
+        >
           The <span className="text-[var(--color-highlight)]">Stack</span> That
           Powers Innovation, Performance,
-          {/* Rotating Icon */}
           <span className="inline-block align-middle mx-2 relative w-10 h-10">
             {images.map((img, i) => (
               <div
                 key={i}
-                ref={el => { imgRefs.current[i] = el; }}
+                ref={(el) => {
+                  imgRefs.current[i] = el;
+                }}
                 className={`absolute inset-0 flex items-center justify-center ${
                   i === activeIndex ? "opacity-100" : "opacity-0"
                 }`}
@@ -87,13 +88,10 @@ export default function ThirdSection() {
             ))}
           </span>
           And Growth{" "}
-          <span className="text-[var(--color-highlight)]">Across</span>{" "}
-          Every <span className="text-[var(--color-highlight)]">Project</span>
+          <span className="text-[var(--color-highlight)]">Across</span> Every{" "}
+          <span className="text-[var(--color-highlight)]">Project</span>
         </h1>
       </div>
-
-      {/* Optional overlay for readability */}
-      {/* <div className="absolute inset-0 bg-black/10"></div> */}
     </section>
   );
 }

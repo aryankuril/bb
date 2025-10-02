@@ -1,9 +1,4 @@
 
-
-
-
-
-
 "use client";
 import React, { useEffect, useRef } from "react";
 
@@ -77,10 +72,18 @@ useEffect(() => {
 
 
   return (
-    <section id="achievement-section" className="container relative mb-[150px] mt-30">
+    <section id="achievement-section" className="container py-10 sm:py-15 lg:py-20 relative mb-[150px] mt-30">
       <div className=" lg:px-30 px-5">
       <div className="text-center mb-12">
-        <h2 className="font-miso text-[80px] leading-[82px] tracking-[-2.4px] text-black">
+        <h2   className="
+    font-miso
+    text-[32px] leading-[38px] tracking-[-0.5px]      /* 📱 base (mobile) */
+    sm:text-[40px] sm:leading-[44px] sm:tracking-[-1px] /* small tablets */
+    md:text-[56px] md:leading-[60px] md:tracking-[-1.5px] /* tablets */
+    lg:text-[72px] lg:leading-[76px] lg:tracking-[-2px]   /* laptops */
+    xl:text-[80px] xl:leading-[82px] xl:tracking-[-2.4px] /* large desktops */
+    text-black text-center
+  ">
            BB Team<span className="text-[#FAB31E]"> BTS</span> 
         </h2>
       </div>
@@ -146,7 +149,7 @@ useEffect(() => {
 
   {/* Caption / Description */}
   <div className="px-1 py-4 bg-none">
-    <p className="lg:text-[18px] text-[10px] text-[#000] font-medium">
+    <p className="lg:text-[18px] text-[10px] text-[#000] font-medium font-['Poppins']">
       We’re A Mixed Crew Of Strategists, Designers, Coders And Dreamers Who Turn Brands
     </p>
   </div>

@@ -122,7 +122,7 @@ const SecondSection = () => {
      )
   };
   return (
-  <section className="container mx-auto py-8 px-4 md:py-20">
+  <section className="mx-auto container py-10 sm:py-15 lg:py-20">
   <h2
     className="
       text-[#1D1D1D]
@@ -148,7 +148,7 @@ const SecondSection = () => {
           text-center
           font-[Miso]
           font-[400]
-          text-[24px] sm:text-[28px] md:text-[36px]
+          text-[24px] sm:text-[28px] md:text-[40px]
           tracking-[-1.2px] md:tracking-[-2.4px]
           capitalize
           mb-6 md:mb-10
@@ -167,7 +167,7 @@ const SecondSection = () => {
         setIsFlipped(false);
       }
     }}
-    className={`text-left text-[18px] sm:text-[20px] md:text-[24px] px-3 py-2 sm:px-4 sm:py-3 rounded-[6px] border transition-all duration-200
+    className={`text-left font-['Poppins'] text-[18px] sm:text-[20px] md:text-[24px] px-3 py-2 sm:px-4 sm:py-3 rounded-[6px] border transition-all duration-200
       ${
         activeJob.title === job.title
           ? "bg-[#FAB31E] text-[#1D1D1D] border-[#FAB31E]"
@@ -188,7 +188,7 @@ const SecondSection = () => {
     text-center
     font-[Miso]
     font-[400]
-    text-[24px] sm:text-[28px] md:text-[36px]
+    text-[24px] sm:text-[28px] md:text-[40px]
     tracking-[-1.2px] md:tracking-[-2.4px]
     capitalize
     mb-6 md:mb-12

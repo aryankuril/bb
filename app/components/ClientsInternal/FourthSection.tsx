@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -32,38 +32,50 @@ const cards: Card[] = [
   },
 ];
 
-export default function SecondSection() {
+
+
+const FourthSection = () => {
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const segment = 1 / cards.length;
+const segment = 1 / cards.length;
 
+// ✅ heading color turns grey while cards are visible
+const startRange = segment * 0.1;
+const endRange   = 1 - segment * 0.1;
+const serviceColor = useTransform(
+  scrollYProgress,
+  [0, startRange, endRange, 1],
+  ["#1D1D1D", "#F1F1F1", "#F1F1F1", "#F1F1F1"] 
+);
 
-    const serviceColor = useTransform(
-    scrollYProgress,
-    [0, 0.05, 0.95, 1],
-    ["#1D1D1D", "#F1F1F1", "#F1F1F1", "#F1F1F1"] 
-  );
-
-
+const spanColor = useTransform(scrollYProgress,
+  [0, startRange, endRange, 1],
+  ["#FAB31E", "#F1F1F1", "#F1F1F1", "#F1F1F1"]
+);
+    
   return (
-  <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
+     <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
   {/* ✅ Static Text */}
-  <div className="sticky top-0 h-screen flex flex-col items-center justify-center pointer-events-none z-0 px-2">
-        <motion.h1
-          style={{ color: serviceColor }}
-          className="
-            text-center font-[miso] font-normal capitalize select-none leading-[1.2]  
-            tracking-[-4px] text-[80px] sm:text-[140px] md:text-[200px] lg:text-[260px]  xl:text-[300px]
-          "
-        >
-         Clients
-        </motion.h1>
-      </div>
-
+<div className="sticky top-0 h-screen flex items-center justify-center px-2">
+      <motion.h1
+        style={{ color: serviceColor }}
+        className="text-center font-[Miso] font-normal select-none 
+                   leading-[1.3] tracking-[-1px] 
+                   text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[54px]"
+      >
+        Our Strategy Didn’t Follow Trends, It Created Impact{" "}
+<motion.span style={{ color: spanColor }}>Transforming</motion.span> The Brand’s{" "}
+<motion.span style={{ color: spanColor }}>Presence</motion.span> And{" "}
+<motion.span style={{ color: spanColor }}>Turning</motion.span> Every{" "}
+<motion.span style={{ color: spanColor }}>Interaction</motion.span> Into{" "}
+<motion.span style={{ color: spanColor }}>Measurable Results</motion.span>
+      </motion.h1>
+    </div>
   {/* ✅ Scrollable Cards */}
   <div ref={containerRef} className="relative h-[400vh] z-10">
     <div className="sticky top-0 h-screen overflow-hidden">
@@ -147,6 +159,7 @@ export default function SecondSection() {
     </div>
   </div>
 </section>
-
-  );
+  )
 }
+
+export default FourthSection

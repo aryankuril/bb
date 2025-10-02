@@ -28,7 +28,7 @@ const Firstsection = () => {
   }, [controls, spacerControls, inView]);
 
   return (
-    <section className="container py-5 md:py-16 lg:py-10 ">
+    <section className="container py-10 sm:py-15 lg:py-20 ">
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-[1300px] font-miso text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[35px] sm:leading-tight md:leading-tight lg:leading-[90px] text-[#1D1D1D] tracking-tight sm:tracking-normal md:tracking-[-1px] capitalize">
@@ -65,7 +65,7 @@ const Firstsection = () => {
 
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
-        <p className="text-[#1D1D1D] font-poppins text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed sm:leading-relaxed md:leading-relaxed tracking-tight sm:tracking-normal capitalize">
+        <p className="text-[#1D1D1D] font-['Poppins'] text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed sm:leading-relaxed md:leading-relaxed tracking-tight sm:tracking-normal capitalize">
           At JK Diamonds, we blend timeless craftsmanship with modern expertise
           to redefine the art of diamond education. As a premier institute for
           diamond, gem, and jewelry courses, JK Diamonds empowers aspiring

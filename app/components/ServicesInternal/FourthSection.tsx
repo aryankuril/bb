@@ -64,7 +64,7 @@ const FourthSection = () => {
   }, []);
 
   return (
-    <div className="text-center font-[Mulish] text-[#191919] py-[30vw] space-y-6">
+    <div className="text-center font-[miso] text-[#191919] py-[30vw] space-y-6 ">
       {textBlock1.map((line, index) =>
         line === '' ? (
           <br key={`b1-${index}`} />

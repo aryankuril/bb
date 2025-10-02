@@ -34,7 +34,7 @@ useEffect(() => {
 
 
   return (
-    <section className="container py-10 px-4 md:px-0">
+    <section className="container py-10 sm:py-15 lg:py-20">
       <h2 className="text-[30px] md:text-[80px] leading-[30px] md:leading-[80px] font-[400]
                      tracking-[-1.2px] md:tracking-[-2.4px] text-[#1D1D1D]
                      capitalize font-[Miso] text-center md:text-left">

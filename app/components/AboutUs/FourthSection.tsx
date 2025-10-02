@@ -68,7 +68,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className="group w-[260px] md:w-[350px] relative rounded-2xl overflow-hidden
+      className=" group w-[260px] md:w-[350px] relative rounded-2xl overflow-hidden
                  transform transition-all duration-500
                  md:hover:z-50 md:hover:-translate-y-2 md:hover:scale-105"
       onMouseEnter={handleMouseEnter}
@@ -182,7 +182,7 @@ const MobileSlider: React.FC<{ cards: { img: string; video: string }[] }> = ({
   };
 
   return (
-    <div ref={sectionRef} className="md:hidden">
+    <div ref={sectionRef} className="md:hidden container py-10 sm:py-15 lg:py-20">
       {/* Pagination buttons */}
       <div className="flex justify-center mb-4">
         {cards.map((card, index) => (
@@ -207,19 +207,23 @@ const MobileSlider: React.FC<{ cards: { img: string; video: string }[] }> = ({
 
       {/* Slider */}
       <div
-        ref={sliderRef}
-        className="overflow-x-auto flex space-x-20 snap-x snap-mandatory px-6 scrollbar-none"
-      >
-        {cards.map((card, i) => (
-          <div key={i} className="card-item flex-shrink-0 w-[70%] snap-center">
-            <Card
-              imgSrc={card.img}
-              videoSrc={card.video}
-              isActive={sectionInView && activeIndex === i}
-            />
-          </div>
-        ))}
-      </div>
+  ref={sliderRef}
+  className="overflow-x-auto flex space-x-20 snap-x snap-mandatory px-6 scrollbar-none"
+>
+  {cards.map((card, i) => (
+    <div
+      key={i}
+      className="card-item flex-shrink-0 w-[100%] snap-center"
+    >
+      <Card
+        imgSrc={card.img}
+        videoSrc={card.video}
+        isActive={sectionInView && activeIndex === i}
+      />
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../components/Header'
 import Firstsection from '../components/Clients/Firstsection'
-// import SecondSection from '../components/Clients/SecondSection'
-import SeventhSection from '../components/Service/SeventhSection'
+import SecondSection from '../components/Clients/SecondSection'
+import SeventhSection from '../components/ServicesInternal/SeventhSection'
 import Footer from '../components/Footer'
 
 const Index = () => {
@@ -10,7 +10,7 @@ const Index = () => {
     <div>
         <Header />
         <Firstsection />
-        {/* <SecondSection /> */}
+        <SecondSection />
         <SeventhSection />
         <Footer />
     </div>

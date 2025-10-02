@@ -65,7 +65,7 @@ const Button: React.FC<ButtonProps> = ({ text, href, onClick }) => {
     >
       {/* Background animation */}
       <div
-        className={`absolute top-1/2 -translate-y-1/2 bg-[#FAB31E] rounded-full transition-all duration-500 ease-in-out h-12`}
+        className={`font-['Poppins'] absolute top-1/2 -translate-y-1/2 bg-[#FAB31E] rounded-full transition-all duration-500 ease-in-out h-12`}
         style={{
           width: hovered ? textWidth : 48,
           left: -5,
@@ -76,7 +76,7 @@ const Button: React.FC<ButtonProps> = ({ text, href, onClick }) => {
       {href ? (
         <Link href={href}>{content}</Link>
       ) : (
-        <button onClick={onClick} className="relative z-10">
+        <button onClick={onClick} className="relative z-10 font-['Poppins'] ">
           {content}
         </button>
       )}

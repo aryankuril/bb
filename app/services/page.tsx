@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../components/Header'
-import Firstsection from '../components/MainService/Firstsection'
-// import SecondSection from '../components/MainService/SecondSection'
-import SeventhSection from '../components/Service/SeventhSection'
+import Firstsection from '../components/Services/Firstsection'
+import SecondSection from '../components/Services/SecondSection'
+import SeventhSection from '../components/ServicesInternal/SeventhSection'
 import Footer from '../components/Footer'
 
 const page = () => {
@@ -10,7 +10,7 @@ const page = () => {
     <div>
         <Header />
         <Firstsection />
-        {/* <SecondSection /> */}
+        <SecondSection />
         <SeventhSection />
         <Footer />
     </div>

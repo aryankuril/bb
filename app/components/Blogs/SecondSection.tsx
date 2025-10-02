@@ -77,30 +77,31 @@ const SecondSection = () => {
   };
 
   return (
-    <section className="w-full container py-12">
+    <section className="w-full container py-10 sm:py-15 lg:py-20">
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-3 mb-8">
-        {categories.map((cat, i) => (
-          <button
-            key={i}
-            onClick={() => {
-              setSelectedCategory(cat);
-              setVisibleCount(isMobile ? 4 : 8);
-            }}
-            className={`px-4 py-2 border rounded-full text-sm cursor-pointer ${
-              selectedCategory === cat ? "bg-black text-white" : "bg-transparent"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+<div className="flex gap-3 mb-8 overflow-x-auto scrollbar-hide flex-nowrap">
+  {categories.map((cat, i) => (
+    <button
+      key={i}
+      onClick={() => {
+        setSelectedCategory(cat);
+        setVisibleCount(isMobile ? 4 : 8);
+      }}
+      className={`px-4 py-2 border font-['Poppins'] rounded-full text-sm cursor-pointer shrink-0 hover:bg-black hover:text-white ${
+        selectedCategory === cat ? "bg-black text-white" : "bg-transparent"
+      }`}
+    >
+      {cat}
+    </button>
+  ))}
+</div>
+
 
       {/* Title & CTA */}
       <div className="flex flex-col md:flex-row">
         <div className="flex-1 flex-col justify-between items-start mb-10">
           <h1
-            className="text-black font-[Miso] font-normal capitalize 
+            className="text-black font-[miso] font-normal capitalize 
             text-[40px] leading-[36px] tracking-[-0.5px] 
             sm:text-[40px] sm:leading-[48px] sm:tracking-[-1px] 
             md:text-[56px] md:leading-[64px] md:tracking-[-1.5px] 
@@ -131,7 +132,7 @@ const SecondSection = () => {
               <button
                 key={index}
                 onClick={() => setCurrent(index)}
-                className={`w-6 h-6 border rounded-full flex items-center justify-center text-xs cursor-pointer 
+                className={`w-6 h-6 font-['Poppins'] border rounded-full flex items-center justify-center text-xs cursor-pointer 
                   ${current === index ? "bg-yellow-400 text-black" : "bg-white text-gray-600"}`}
               >
                 {index + 1}
@@ -146,7 +147,7 @@ const SecondSection = () => {
         {visibleBlogs.map((blog) => (
           <div key={blog.id} className="flex flex-col ">
             <div className="lg:w-[320px] w-full h-[291px] bg-gray-200 rounded-[30px]"></div>
-            <p className="px-1 text-[24px] font-[Miso] font-normal leading-normal tracking-[-0.72px] capitalize text-black">
+            <p className="px-1 text-[24px] font-[miso] font-normal leading-normal tracking-[-0.72px] capitalize text-black">
               {blog.title}
             </p>
             <p className="px-1 text-[18px] font-[Poppins] font-normal leading-normal tracking-[-0.54px] capitalize text-[#898989]">
@@ -167,7 +168,7 @@ const SecondSection = () => {
         <div className="flex justify-center mt-10">
           <button
             onClick={handleLoadMore}
-            className="border px-6 py-2 rounded-full text-sm cursor-pointer hover:bg-black hover:text-white"
+            className="border font-['Poppins'] px-6 py-2 rounded-full text-sm cursor-pointer hover:bg-black hover:text-white"
           >
             LOAD MORE
           </button>
