@@ -419,17 +419,50 @@ export default function DesktopNav() {
           {/* content */}
           <div className="relative z-10 grid h-full grid-cols-2 gap-10 px-12 py-12 text-sm">
             <ul ref={leftCol} className="space-y-6 text-center px-5">
-              <li className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">Home</li>
-              <li  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">Services</li>
-              <li  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">Clients</li>
-              <li  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">Contact</li>
-            </ul>
-            <ul ref={rightCol} className="space-y-6 text-center">
-              <li  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">About</li>
-              <li  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">Work</li>
-              <li  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">Team</li>
-              <li  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">Careers</li>
-            </ul>
+  <li>
+    <Link href="/" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
+      Home
+    </Link>
+  </li>
+  <li>
+    <Link href="/services" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
+      Services
+    </Link>
+  </li>
+  <li>
+    <Link href="/clients" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
+      Clients
+    </Link>
+  </li>
+  <li>
+    <Link href="/contactus" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
+      Contact
+    </Link>
+  </li>
+</ul>
+
+<ul ref={rightCol} className="space-y-6 text-center">
+  <li>
+    <Link href="/aboutus" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
+      About
+    </Link>
+  </li>
+  <li>
+    <Link href="/clients" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
+      Work
+    </Link>
+  </li>
+  <li>
+    <Link href="/teams" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
+      Team
+    </Link>
+  </li>
+  <li>
+    <Link href="/career" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
+      Careers
+    </Link>
+  </li>
+</ul>
  
             <div
               ref={bottomRow}
