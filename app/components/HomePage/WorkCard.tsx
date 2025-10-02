@@ -61,7 +61,7 @@ const cardsData = [
     tags: ["Brand", "Marketing", "Design"],
     content:
       "Visually rich microsites built for conversion and campaign storytelling.",
-    image: "/images/section1-img4.pngg",
+    image: "/images/section1-img4.png",
   },
 ];
 

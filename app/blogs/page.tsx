@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 import Firstsection from '../components/Blogs/Firstsection'
 import SecondSection from '../components/Blogs/SecondSection'
 import SeventhSection from '../components/ServicesInternal/SeventhSection'
@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 const page = () => {
   return (
     <div>
-        <Header/>
+        <Navbar/>
         <Firstsection/>
         <SecondSection/>
         <SeventhSection/>
