@@ -13,6 +13,7 @@ import SixthSection from "./components/ServicesInternal/SixthSection";
 import SeventhSection from "./components/ServicesInternal/SeventhSection";
 import Footer from "./components/Footer";
 
+// 
 export default function Home() {
   return (
     <div>
