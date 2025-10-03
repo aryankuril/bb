@@ -1,5 +1,5 @@
 import React from 'react'
-// import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar'
 import Firstsection from '@/app/components/Career/Firstsection'
 import SecondSection from '../components/Career/SecondSection'
 import ThirdSection from '../components/Career/ThirdSection'
@@ -10,7 +10,7 @@ import Footer from '../components/Footer'
 const Index = () => {
   return (
     <div>
-        {/* <Navbar /> */}
+        <Navbar />
         <Firstsection/>
         <SecondSection/>
         <ThirdSection/>
