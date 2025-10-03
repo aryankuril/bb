@@ -1,27 +1,180 @@
 
+@import url("https://fonts.googleapis.com/css2?family=Miso:wght@300;400;700&family=Poppins:wght@400;700&display=swap");
 @import "tailwindcss";
-@tailwind utilities;
-
-/* Import local fonts */
-@font-face {
-  font-family: "Miso";
-  src: url("/fonts/miso-regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
 
 :root {
- --color-primary: #1D1D1D;
-  --color-highlight: #FAB31E;
-  --color-secondary: #FDFDFD;
+  --font-miso: "Miso", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-bold-miso: "Miso", sans-serif;
+  --font-regular-miso: "Miso", sans-serif;
+
+  /* Headings - Desktop */
+  --h1-size: 120px;
+  --h2-size: 80px;
+  --h3-size: 60px;
+  --h4-size: 40px;
+  --h5-size: 24px;
+  --h6-size: 18px;
+
+  /* Body - Desktop */
+  --body1-size: 36px;
+  --body2-size: 16px;
+  --body3-size: 18px;
+  --body4-size: 14px;
+
+  /* Specials */
+  --stats-size: 200px;
+  --numbering-size: 120px;
+
+  /* Colors */
+  --color-primary: #1d1d1d;
+  --color-highlight: #fab31e;
+  --color-secondary: #fdfdfd;
 }
+
+body {
+  font-family: var(--font-poppins);
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.text-highlight {
+  color: var(--color-highlight);
+}
+
+/* ===========================
+   HEADINGS (Desktop Defaults)
+   =========================== */
+h1 {
+  font-family: var(--font-bold-miso);
+  font-size: var(--h1-size);
+  line-height: 1.5em;
+}
+
+h2 {
+  font-family: var(--font-regular-miso);
+  font-size: var(--h2-size);
+  line-height: 1.5em;
+}
+
+h3 {
+  font-family: var(--font-regular-miso);
+  font-size: var(--h3-size);
+  line-height: 1.5em;
+}
+
+h4 {
+  font-family: var(--font-regular-miso);
+  font-size: var(--h4-size);
+  line-height: 1.5em;
+}
+
+h5 {
+  font-family: var(--font-regular-miso);
+  font-size: var(--h5-size);
+  line-height: 1.5em;
+}
+
+h6 {
+  font-family: var(--font-regular-miso);
+  font-size: var(--h6-size);
+  line-height: 1.5em;
+}
+
+/* ===========================
+   BODY TEXT
+   =========================== */
+.body1 {
+  font-family: var(--font-poppins);
+  font-size: var(--body1-size);
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+.body2 {
+  font-family: var(--font-poppins);
+  font-size: var(--body2-size);
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+.body3 {
+  font-family: var(--font-poppins);
+  font-size: var(--body3-size);
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+.body4 {
+  font-family: var(--font-poppins);
+  font-size: var(--body4-size);
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+/* ===========================
+   SPECIAL NUMBERS
+   =========================== */
+.stats-number {
+  font-family: var(--font-regular-miso);
+  font-size: var(--stats-size);
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+.numbering {
+  font-family: var(--font-regular-miso);
+  font-size: var(--numbering-size);
+  font-weight: 400;
+  line-height: 1.5em;
+}
+
+/* ===========================
+   RESPONSIVE: Mobile & Tablet
+   =========================== */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 60px;
+  }
+  h2 {
+    font-size: 40px;
+  }
+  h3 {
+    font-size: 30px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+
+  .body1 {
+    font-size: 20px;
+  }
+  .body2 {
+    font-size: 16px;
+  }
+  .body3 {
+    font-size: 16px;
+  }
+  .body4 {
+    font-size: 14px;
+  }
+
+  .stats-number {
+    font-size: 120px;
+  }
+
+  .numbering {
+    font-size: 50px;
+  }
+
+}
+
 
 @theme inline {
   --color-background: var(--background);
