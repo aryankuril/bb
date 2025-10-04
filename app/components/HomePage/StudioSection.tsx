@@ -153,20 +153,20 @@ export default function LightCameraAction() {
   }, []);
  
   return (
-    <div className="w-full text-[#1D1D1D] py-10 sm:py-15 lg:py-20">
+    <div className="w-full black-text py-10 sm:py-15 lg:py-20">
       <section
         ref={rootRef}
-        className="relative w-full min-h-[100svh] flex items-center justify-center overflow-hidden"
+        className="relative w-full min-h-[100svh] flex items-center justify-center "
       >
         {/* Headline */}
-        <h1
+        <h2
           ref={headlineRef}
-          className="select-none relative -z-10 text-center flex flex-col md:flex-row gap-2 lg:text-[80px] text-[20px] font-[miso]"
+          className="select-none relative -z-10 text-center flex flex-col md:flex-row gap-2"
         >
           <span data-word className="inline-block">Light.</span>{" "}
           <span data-word className="inline-block">Camera.</span>{" "}
           <span data-word className="inline-block">Action</span>
-        </h1>
+        </h2>
         
  
         {/* Video container with Mux Player */}

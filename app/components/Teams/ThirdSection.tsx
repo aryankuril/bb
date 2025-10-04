@@ -31,10 +31,10 @@ const ThirdSection = () => {
     <section className="container py-10 sm:py-15 lg:py-20 ">
       {/* Headline */}
 <div className="flex justify-center items-center mb-8 md:mb-12 w-full">
-  <h1 className="max-w-[1100px] text-center font-miso text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] leading-[35px] sm:leading-tight md:leading-tight lg:leading-[90px] text-[#1D1D1D] tracking-tight sm:tracking-normal md:tracking-[-1px] capitalize">
+  <h2 className="max-w-[1100px] text-center black-text">
     Watch How We Cook Up Digital Magic {" "}
-    <span className="text-[#FAB31E]">(No Secret Sauce Hidden)</span>
-  </h1>
+    <span className="text-highlight">(No Secret Sauce Hidden)</span>
+  </h2>
 </div>
 
 

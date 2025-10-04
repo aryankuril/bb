@@ -52,7 +52,7 @@ const WorkflowSection: React.FC = () => {
         
         {/* Title stays fixed now */}
         <div className="text-center lg:mb-5 px-4">
-          <h2 className="font-[miso] text-3xl sm:text-5xl md:text-6xl lg:text-[80px] leading-tight text-[#1D1D1D]">
+          <h2 className="black-text">
             Branding workflow
           </h2>
         </div>
@@ -70,7 +70,7 @@ const WorkflowSection: React.FC = () => {
             />
           </motion.div>
 
-          <div className="w-full h-[3px] sm:h-[4px] bg-[#FAB31E] z-10 rounded-full" />
+          <div className="w-full h-[3px] sm:h-[4px] bg-[var(--color-highlight)] z-10 rounded-full" />
         </div>
 
         {/* Horizontal cards */}
@@ -85,22 +85,22 @@ const WorkflowSection: React.FC = () => {
               w-[250px] sm:w-[350px] md:w-[400px] lg:w-[450px] 
               h-[380px] sm:h-[450px] md:h-[500px] lg:h-[550px] flex-shrink-0"
             >
-              <div className="absolute right-0 top-0 w-4 sm:w-6 md:w-7 h-full bg-[#FAB31E] rounded-r-[20px] sm:rounded-r-[30px]" />
+              <div className="absolute right-0 top-0 w-4 sm:w-6 md:w-7 h-full bg-[var(--color-highlight)] rounded-r-[20px] sm:rounded-r-[30px]" />
 
               <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                <div className="border-b border-[#FAB31E] pb-4 sm:pb-6 md:pb-8">
-                  <h3 className="font-[miso] text-xl sm:text-3xl md:text-4xl lg:text-[50px] text-white">
+                <div className="border-b border-[var(--color-highlight)] pb-4 sm:pb-6 md:pb-8">
+                  <h3 className="white-text">
                     {step.title}
                   </h3>
                 </div>
-                <p className=" font-['Poppins'] text-sm sm:text-base md:text-lg lg:text-2xl text-white">
+                <p className=" white-text body2">
                   {step.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {step.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className=" font-['Poppins'] bg-[#FAB31E] text-black text-[10px] sm:text-xs md:text-sm leading-[22px] sm:leading-[26px] md:leading-[30px] px-3 sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
+                      className=" bg-[var(--color-highlight)] black-text body3 px-3 sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
                     >
                       {tag}
                     </span>

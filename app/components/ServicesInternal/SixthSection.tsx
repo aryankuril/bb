@@ -60,19 +60,14 @@ const SixthSection = () => {
       >
         <div className="w-[95%] px-4 py-6 sm:py-8 lg:py-12 relative flex flex-col items-center text-center">
           {/* Testimonial text */}
-          <div className="text-[#1D1D1D] font-['Poppins'] 
-                          text-[18px] sm:text-[22px] md:text-[28px] lg:text-[36px] 
-                          font-normal leading-relaxed tracking-[-0.5px] sm:tracking-[-0.8px] lg:tracking-[-1.08px] 
-                          capitalize mb-6 sm:mb-8 lg:mb-10">
+          <div className="body1 mb-6 sm:mb-8 lg:mb-10 text-black">
             {text}
           </div>
 
           {/* Author */}
           <div className="flex items-center gap-3 justify-center">
             <div className="text-center">
-              <p className="text-[#1D1D1D] text-center font-[Poppins] 
-                             text-[14px] sm:text-[16px] md:text-[18px] 
-                             font-normal leading-normal tracking-[-0.54px] capitalize">
+              <p className="body3 black-text">
                 {name}
               </p>
             </div>

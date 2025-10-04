@@ -56,15 +56,10 @@ export default function ThirdSection() {
     >
       {/* Center wrapper */}
       <div className="flex items-center justify-center h-full  px-6">
-        <h1
-          className="text-[#1D1D1D] text-center font-[Miso] font-normal capitalize
-          text-[40px] leading-[44px] tracking-[-1.2px]
-          sm:text-[50px] sm:leading-[54px] sm:tracking-[-1.5px]
-          md:text-[60px] md:leading-[64px] md:tracking-[-1.8px]
-          lg:text-[72px] lg:leading-[76px] lg:tracking-[-2px]
-          xl:text-[80px] xl:leading-[87px] xl:tracking-[-2.4px] lg:w-[900px] w-full "
+        <h2
+          className="black-text text-center lg:w-[900px] w-full "
         >
-          The <span className="text-[var(--color-highlight)]">Stack</span> That
+          The <span className="text-highlight">Stack</span> That
           Powers Innovation, Performance,
           <span className="inline-block align-middle mx-2 relative w-10 h-10">
             {images.map((img, i) => (
@@ -88,9 +83,9 @@ export default function ThirdSection() {
             ))}
           </span>
           And Growth{" "}
-          <span className="text-[var(--color-highlight)]">Across</span> Every{" "}
-          <span className="text-[var(--color-highlight)]">Project</span>
-        </h1>
+          <span className="text-highlight">Across</span> Every{" "}
+          <span className="text-highlight">Project</span>
+        </h2>
       </div>
     </section>
   );

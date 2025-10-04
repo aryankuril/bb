@@ -68,18 +68,8 @@ const SecondSection = () => {
 
       <div className="lg:px-30 px-2" >
       <div className="text-center mb-12">
-<h2
-  className="
-    font-miso
-    text-[32px] leading-[38px] tracking-[-0.5px]      /* 📱 base (mobile) */
-    sm:text-[40px] sm:leading-[44px] sm:tracking-[-1px] /* small tablets */
-    md:text-[56px] md:leading-[60px] md:tracking-[-1.5px] /* tablets */
-    lg:text-[72px] lg:leading-[76px] lg:tracking-[-2px]   /* laptops */
-    xl:text-[80px] xl:leading-[82px] xl:tracking-[-2.4px] /* large desktops */
-    text-black text-center
-  "
->
-  How we <span className="text-[#FAB31E]">achieve</span> it
+<h2 className="black-text text-center">
+  How we <span className="text-highlight">achieve</span> it
 </h2>
 
       </div>
@@ -134,32 +124,26 @@ const SecondSection = () => {
               } mt-20 lg:mt-0`}
             >
               <div className={`relative transform overflow-hidden ${tilt}`}>
-                <div className="relative lg:w-[450px] w-[250px] lg:h-[550px] h-[300px] bg-[#1D1D1D] overflow-hidden rounded-[30px] lg:p-8 p-6 flex flex-col justify-center items-center shadow-lg">
-                  <div className="absolute inset-y-0 right-0 w-[18px] bg-[#FAB31E] rounded-r-[30px] overflow-hidden" />
-                  <div className="absolute top-8 w-5 lg:w-12 lg:h-12 h-5 rounded-full bg-white flex items-center justify-center">
+                <div className="relative lg:w-[450px] w-[250px] lg:h-[550px] h-[300px] bg-[var(--color-primary)] overflow-hidden rounded-[30px] lg:p-8 p-6 flex flex-col justify-center items-center shadow-lg">
+                  <div className="absolute inset-y-0 right-0 w-[18px] bg-[var(--color-highlight)] rounded-r-[30px] overflow-hidden" />
+                  <div className="absolute top-8 w-5 lg:w-12 lg:h-12 h-5 rounded-full bg-[var(--color-secondary)] flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 31 30" fill="none">
                       <circle cx="15.3" cy="15" r="15" fill="#FAB31E" />
                     </svg>
                   </div>
                   <div>
   {/* Number */}
-  <div className="font-miso text-[40px] sm:text-[60px] md:text-[80px] lg:text-[120px] 
-                  leading-[48px] sm:leading-[70px] md:leading-[90px] lg:leading-[120px] 
-                  text-[#FAB31E]">
+  <div className="text-highlight numbering">
     {achievement.number}
   </div>
 
   {/* Title & Description */}
   <div className="space-y-2 sm:space-y-4 md:space-y-6 lg:space-y-8">
-    <h3 className="font-miso font-bold 
-                   text-[24px] sm:text-[36px] md:text-[50px] lg:text-[60px] 
-                   leading-[28px] sm:leading-[44px] md:leading-[60px] lg:leading-[70px] 
-                   text-white text-left">
+    <h3 className="white-text text-left">
       {achievement.title}
     </h3>
-    <p className="text-white 
-                  text-[14px] sm:text-[18px] md:text-[20px] lg:text-[24px] 
-                  leading-[20px] sm:leading-[28px] md:leading-[32px] lg:leading-[36px] 
+    <p className="white-text
+                  body2
                   max-w-[300px] sm:max-w-[400px] text-left">
       {achievement.description}
     </p>

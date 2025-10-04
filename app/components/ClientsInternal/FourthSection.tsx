@@ -76,11 +76,9 @@ const FourthSection = () => {
     <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
       {/* Sticky Title */}
       <div className="sticky top-0 h-screen flex items-center justify-center px-2">
-        <h1
+        <div
           style={{ color: serviceColor }}
-          className="text-center font-[Miso] font-normal select-none 
-                   leading-[1.3] tracking-[-1px] 
-                   text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[54px]"
+          className="text-center single-title select-none"
         >
           Our Strategy Didn’t Follow Trends, It Created Impact{" "}
           <span style={{ color: spanColor }}>Transforming</span> The Brand’s{" "}
@@ -88,7 +86,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span>
-        </h1>
+        </div>
       </div>
 
       {/* Scrollable Cards */}
@@ -122,7 +120,7 @@ const FourthSection = () => {
                     h-[300px] sm:h-[440px] md:h-[528px]
                     w-[70vw] sm:w-[420px] md:w-[480px]
                     rounded-[20px]
-                    border-[5px] border-black"
+                    border-[5px] border-[var(--color-pirmary)]"
                   style={{
                     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
                     backgroundSize: "cover",
@@ -130,10 +128,10 @@ const FourthSection = () => {
                     backgroundRepeat: "no-repeat",
                   }}
                 >
-                  <h3 className="text-[#FAB31E] font-[Miso] font-normal capitalize leading-[1.2] tracking-[-1px] text-[28px] sm:text-[36px] md:text-[60px]">
+                  <h3 className="text-highlight ">
                     {card.title}
                   </h3>
-                  <p className="mt-2 text-white font-[Poppins] font-normal leading-normal tracking-[-0.72px] text-[16px] sm:text-[20px] md:text-[24px]">
+                  <p className="body2 white-text">
                     {card.subtitle}
                   </p>
                 </div>

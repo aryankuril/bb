@@ -50,16 +50,15 @@ export default function SecondSection() {
     <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
       {/* Sticky Title */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center pointer-events-none z-0 px-2">
-        <h1
+        <div
           style={{
             color: progress < 0.05 ? "#1D1D1D" : "#F1F1F1",
             transition: "color 0.3s linear",
           }}
-          className="text-center font-[Miso] font-normal capitalize select-none leading-[1.2]  
-            tracking-[-4px] text-[80px] sm:text-[140px] md:text-[200px] lg:text-[260px] xl:text-[300px]"
+          className="text-center single-title  select-none"
         >
           Services
-        </h1>
+        </div>
       </div>
 
       {/* Scrollable Cards */}
@@ -98,7 +97,7 @@ export default function SecondSection() {
                     h-[300px] sm:h-[440px] md:h-[528px]
                     w-[70vw] sm:w-[420px] md:w-[480px]
                     rounded-[20px]
-                    border-[5px] border-black"
+                    border-[5px] border-[var(--color-primary)]"
                   style={{
                     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
                     backgroundSize: "cover",
@@ -106,10 +105,10 @@ export default function SecondSection() {
                     backgroundRepeat: "no-repeat",
                   }}
                 >
-                  <h3 className="text-[#FAB31E] font-[Miso] font-normal capitalize leading-[1.2] tracking-[-1px] text-[28px] sm:text-[36px] md:text-[60px]">
+                  <h3 className="text-highlight">
                     {card.title}
                   </h3>
-                  <p className="mt-2 text-white font-[Poppins] font-normal leading-normal tracking-[-0.72px] text-[16px] sm:text-[20px] md:text-[24px]">
+                  <p className="mt-2 white-text body2">
                     {card.subtitle}
                   </p>
                 </div>

@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import FirstSection from "../components/ServicesInternal/FirstSection";
 import SecondSection from "../components/ServicesInternal/SecondSection";
 import ThirdSection from "../components/ServicesInternal/ThirdSection";
@@ -11,7 +11,7 @@ import Footer from "../components/Footer";
 const Index = () => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <FirstSection />
       <SecondSection />
       <ThirdSection />

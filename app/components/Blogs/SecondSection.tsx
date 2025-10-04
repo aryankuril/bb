@@ -87,8 +87,8 @@ const SecondSection = () => {
         setSelectedCategory(cat);
         setVisibleCount(isMobile ? 4 : 8);
       }}
-      className={`px-4 py-2 border font-['Poppins'] rounded-full text-sm cursor-pointer shrink-0 hover:bg-black hover:text-white ${
-        selectedCategory === cat ? "bg-black text-white" : "bg-transparent"
+      className={`px-4 py-2 border body3 rounded-full cursor-pointer shrink-0 hover:bg-[var(--color-primary)] hover:text-[var(--color-secondary)] ${
+        selectedCategory === cat ? "bg-[var(--color-primary)] text-[var(--color-secondary)]" : "bg-transparent"
       }`}
     >
       {cat}
@@ -100,16 +100,11 @@ const SecondSection = () => {
       {/* Title & CTA */}
       <div className="flex flex-col md:flex-row">
         <div className="flex-1 flex-col justify-between items-start mb-10">
-          <h1
-            className="text-black font-[miso] font-normal capitalize 
-            text-[40px] leading-[36px] tracking-[-0.5px] 
-            sm:text-[40px] sm:leading-[48px] sm:tracking-[-1px] 
-            md:text-[56px] md:leading-[64px] md:tracking-[-1.5px] 
-            lg:text-[72px] lg:leading-[76px] lg:tracking-[-2px] 
-            xl:text-[80px] xl:leading-[80px] xl:tracking-[-2.4px]"
+          <div
+            className="black-text single-title"
           >
             {sliderData[current].title}
-          </h1>
+          </div>
           <div className="mt-6 lg:mt-10">
             <Button href="#" text="EXPLORE OUR WORK " className="lg:mt-10" />
           </div>
@@ -145,17 +140,17 @@ const SecondSection = () => {
       {/* Blogs Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {visibleBlogs.map((blog) => (
-          <div key={blog.id} className="flex flex-col ">
+          <div key={blog.id} className="flex flex-col gap-2">
             <div className="lg:w-[320px] w-full h-[291px] bg-gray-200 rounded-[30px]"></div>
-            <p className="px-1 text-[24px] font-[miso] font-normal leading-normal tracking-[-0.72px] capitalize text-black">
+            <h5 className="px-1 black-text">
               {blog.title}
-            </p>
-            <p className="px-1 text-[18px] font-[Poppins] font-normal leading-normal tracking-[-0.54px] capitalize text-[#898989]">
+            </h5>
+            <p className="px-1 grey-text body4">
               {blog.date} – 3min Read
             </p>
             <a
               href="#"
-              className="px-1 text-[18px] font-[Poppins] font-normal leading-[42px] tracking-[-0.54px] capitalize text-[#1D1D1D] underline"
+              className="px-1 body3 black-text underline"
             >
               Read More
             </a>
@@ -168,7 +163,7 @@ const SecondSection = () => {
         <div className="flex justify-center mt-10">
           <button
             onClick={handleLoadMore}
-            className="border font-['Poppins'] px-6 py-2 rounded-full text-sm cursor-pointer hover:bg-black hover:text-white"
+            className="border px-6 py-2 rounded-full text-sm cursor-pointer hover:bg-[var(--color-primary)] hover:text-[var(--color-secondary)]"
           >
             LOAD MORE
           </button>

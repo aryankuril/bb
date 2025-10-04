@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({ text, href, onClick }) => {
 
   const content = (
     <div
-      className="relative z-10 px-4 py-2 h-12 flex items-center justify-center font-poppins text-[18px] font-normal uppercase leading-normal"
+      className="relative z-10 px-4 py-2 h-12 flex items-center justify-center uppercase body3"
     >
       <span ref={textRef} className="flex">
         {chars.map((char, idx) => (
@@ -65,7 +65,7 @@ const Button: React.FC<ButtonProps> = ({ text, href, onClick }) => {
     >
       {/* Background animation */}
       <div
-        className={`font-['Poppins'] absolute top-1/2 -translate-y-1/2 bg-[#FAB31E] rounded-full transition-all duration-500 ease-in-out h-12`}
+        className={`body3 absolute top-1/2 -translate-y-1/2 bg-[var(--color-highlight)] rounded-full transition-all duration-500 ease-in-out h-12`}
         style={{
           width: hovered ? textWidth : 48,
           left: -5,
@@ -76,7 +76,7 @@ const Button: React.FC<ButtonProps> = ({ text, href, onClick }) => {
       {href ? (
         <Link href={href}>{content}</Link>
       ) : (
-        <button onClick={onClick} className="relative z-10 font-['Poppins'] ">
+        <button onClick={onClick} className="relative z-10 body3 ">
           {content}
         </button>
       )}

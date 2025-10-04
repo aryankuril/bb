@@ -19,8 +19,8 @@ const RubberSection = () => {
       className="w-full lg:h-[100vh] h-full relative overflow-hidden py-10 sm:py-15 lg:py-20"
     >
       {/* Heading */}
-      <h2 className="text-[#1D1D1D] font-[miso] text-center capitalize mb-3 text-[30px] leading-[32px] sm:text-[40px] sm:leading-[44px] md:text-[50px] md:leading-[56px] lg:text-[60px] lg:leading-[64px] xl:text-[60px] xl:leading-[60px]">
-        <span className="text-[#FAB31E]">BB Culture</span> = Bold Ideas. Real Impact. Human At Heart.
+      <h2 className="mb-3 text-center">
+        <span className="text-highlight">BB Culture</span> = Bold Ideas. Real Impact. Human At Heart.
       </h2>
 
       {/* Cards */}

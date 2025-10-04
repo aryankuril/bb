@@ -31,17 +31,13 @@ const Firstsection = () => {
           <div className="flex-1">
             <h1
               className="
-                font-[Miso]
-                text-[32px] sm:text-[48px] md:text-[64px] lg:text-[96px] xl:text-[120px]
-                leading-[38px] sm:leading-[54px] md:leading-[72px] lg:leading-[100px] xl:leading-[120px]
-                font-normal tracking-[-1px] sm:tracking-[-2px] md:tracking-[-3px]
-                capitalize text-[#1D1D1D] max-w-full lg:max-w-[1020px]
+                black-text max-w-full lg:max-w-[1020px]
               "
             >
               Your one-stop station for 
-              <span className="text-[#FAB31E]"> ideas </span> {" "} ,
-              <span className="text-[#FAB31E]"> insights </span> {" "} , and
-              <span className="text-[#FAB31E]"> inspiration </span>
+              <span className="text-highlight"> Ideas </span> {" "} ,
+              <span className="text-highlight"> Insights </span> {" "} , and
+              <span className="text-highlight"> Inspiration </span>
 
             </h1>
           </div>

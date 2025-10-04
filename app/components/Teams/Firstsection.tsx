@@ -35,13 +35,11 @@ useEffect(() => {
 
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
-      <h2 className="text-[30px] md:text-[80px] leading-[30px] md:leading-[80px] font-[400]
-                     tracking-[-1.2px] md:tracking-[-2.4px] text-[#1D1D1D]
-                     capitalize font-[Miso] text-center md:text-left">
+      <h1 className="black-text text-center md:text-left">
         The Squad That Turns{" "}
-        <span className="text-[#FAB31E]">What If</span>’ Into <br />
-        ‘<span className="text-[#FAB31E]">What’s Next.</span>’
-      </h2>
+        <span className="text-highlight">What If</span>’ Into <br />
+        ‘<span className="text-highlight">What’s Next.</span>’
+      </h1>
 
       <div className="mt-10 flex justify-center items-center">
         <div className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-[250px] lg:w-[1295px] lg:h-[650px] lg:rounded-[30px] rounded-[20px]  overflow-hidden bg-amber-50">

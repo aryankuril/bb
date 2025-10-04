@@ -24,22 +24,18 @@ const Firstsection = () => {
       ref={ref}
       className="relative  mx-auto overflow-hidden container py-10 sm:py-15 lg:py-20 "
     >
-      <div className="border-b-2 border-yellow-400">
+      <div className="border-b-2 border-[var(--color-highlight)]">
         <div className="flex flex-col lg:flex-row items-start relative">
           
           {/* Heading */}
           <div className="flex-1">
             <h1
               className="
-                font-[Miso]
-                text-[32px] sm:text-[48px] md:text-[64px] lg:text-[96px] xl:text-[120px]
-                leading-[38px] sm:leading-[54px] md:leading-[72px] lg:leading-[100px] xl:leading-[120px]
-                font-normal tracking-[-1px] sm:tracking-[-2px] md:tracking-[-3px]
-                capitalize text-[#FAB31E] max-w-full lg:max-w-[1020px]
+                text-highlight max-w-full lg:max-w-[1020px]
               "
             >
               Transforming Creative Brands Into{" "}
-              <span className="text-[#1D1D1D]">Digital Success Stories</span>
+              <span className="black-text">Digital Success Stories</span>
             </h1>
           </div>
 

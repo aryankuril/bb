@@ -26,12 +26,12 @@ const FirstSection = () => {
 <section className="w-full container py-10 sm:py-15 lg:py-20 flex flex-col md:flex-row items-center justify-between gap-10">
   {/* Left Side - Text */}
   <div className="flex-1 text-center md:text-left">
-    <h1 className="text-[32px] sm:text-[48px] md:text-[80px] lg:text-[100px] xl:text-[120px] leading-[1.05] lg:leading-[1] font-normal text-[#1D1D1D] tracking-tight capitalize w-full max-w-[650px] font-[Miso] mx-auto md:mx-0 ">
-      We <span className="text-[#FAB31E]">Build Digital Stories</span> That People Remember
+    <h1 className="black-text w-full max-w-[650px] mx-auto md:mx-0 ">
+      We <span className="text-highlight">Build Digital Stories</span> That People Remember
 
     </h1>
 
-    <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl w-full max-w-[1000px] leading-relaxed font-normal text-[#1D1D1D] tracking-normal capitalize font-[Poppins] mx-auto md:mx-0 mt-4 break-words">
+    <p className="body2 w-full max-w-[1000px] black-text mx-auto md:mx-0 mt-4 break-words">
       From Strategy To Storytelling, Identity To Impact, We Craft Everything Your Brand Needs To Stand Out And Grow.
     </p>
 

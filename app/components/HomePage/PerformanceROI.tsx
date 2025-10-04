@@ -67,13 +67,7 @@ export default function PerformanceROI() {
           <div className="md:col-span-2 flex justify-center md:justify-start items-center">
             <span
               ref={counterRef}
-              className="tracking-tight font-normal font-miso"
-              style={{
-                color: "#FAB31E",
-                fontSize: "clamp(5rem, 18vw, 14rem)",
-                lineHeight: "0.9",
-                fontWeight: 400,
-              }}
+              className="stats-number text-highlight"
             >
               0%
             </span>
@@ -84,17 +78,16 @@ export default function PerformanceROI() {
             <h2
               id="roi-heading"
               ref={titleRef}
-              className="text-[#1D1D1D] font-[miso]  capitalize mb-3 text-[30px] leading-[32px] sm:text-[40px] sm:leading-[44px] md:text-[50px] md:leading-[56px] lg:text-[60px] lg:leading-[64px] xl:text-[60px] xl:leading-[60px]"
-
+              className="font-secondary mb-2"
             >
               Of Performance Marketing Budgets Don’t Deliver ROI.
             </h2>
             <p
               ref={subCopyRef}
-              className="text-[#1D1D1D] font-[Poppins] font-normal capitalize max-w-xl text-[16px] leading-[20px] tracking-[-0.5px] sm:text-[18px] sm:leading-[22px] md:text-[20px] md:leading-[24px] lg:text-[22px] lg:leading-[28px] xl:text-[24px] xl:leading-[30px]"
+              className="font-secondary body2 max-w-xl "
             >
               Most ad spend is wasted on poor targeting, weak creatives, and
-              missed optimization — only <span className="font-medium">20%</span> drives real growth.
+              missed optimization only 20% drives real growth.
             </p>
           </div>
         </div>

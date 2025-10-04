@@ -17,22 +17,14 @@ const SeventhSection = () => {
         />
 
         {/* Animated Heading */}
-        <h2 className="text-center font-[Miso] 
-                       text-[32px] sm:text-[48px] md:text-[64px] lg:text-[80px] 
-                       not-italic font-normal 
-                       leading-[38px] sm:leading-[52px] md:leading-[64px] lg:leading-[74px] 
-                       tracking-[-1px] sm:tracking-[-1.6px] md:tracking-[-2px] lg:tracking-[-2.4px] 
-                       capitalize flex flex-wrap justify-center gap-2 sm:gap-3">
+        <h4 className="text-center  flex flex-wrap justify-center gap-2 sm:gap-3">
           <span className="animated-word">Connect.</span>
           <span className="animated-word">Collaborate.</span>
           <span className="animated-word">Grow.</span>
-        </h2>
+        </h4>
 
         {/* Contact Info */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 
-                        text-[12px] sm:text-[16px] md:text-[18px] 
-                        leading-[24px] sm:leading-[28px] md:leading-[33px] 
-                        tracking-[0.2px] text-white font-['Poppins'] ">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 body3 white-text ">
           <span>hello@bombayblokes.com</span>
           <span >|</span>
           <span>+91 99875 58189</span>

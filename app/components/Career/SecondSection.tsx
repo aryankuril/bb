@@ -125,32 +125,20 @@ const SecondSection = () => {
   <section className="mx-auto container py-10 sm:py-15 lg:py-20">
   <h2
     className="
-      text-[#1D1D1D]
-      text-center
-      font-[Miso]
-      font-[400]
-      text-[40px] md:text-[80px]
-      leading-[48px] md:leading-[80px]
-      tracking-[-1.2px] md:tracking-[-2.4px]
-      capitalize
+      text-center black-text
       mb-8 md:mb-10
     "
   >
-    This Train’s Departing: <span className="text-[#FAB31E]">Open Roles</span>
+    This Train’s Departing: <span className="text-highlight">Open Roles</span>
   </h2>
 
-  <div className="bg-[#1D1D1D] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
+  <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
     {/* LEFT – Job List */}
     <div className="p-4 md:p-6 flex flex-col gap-4">
       <h2
         className="
-          text-[#FFF]
+          white-text
           text-center
-          font-[Miso]
-          font-[400]
-          text-[24px] sm:text-[28px] md:text-[40px]
-          tracking-[-1.2px] md:tracking-[-2.4px]
-          capitalize
           mb-6 md:mb-10
         "
       >
@@ -167,12 +155,12 @@ const SecondSection = () => {
         setIsFlipped(false);
       }
     }}
-    className={`text-left font-['Poppins'] text-[18px] sm:text-[20px] md:text-[24px] px-3 py-2 sm:px-4 sm:py-3 rounded-[6px] border transition-all duration-200
-      ${
-        activeJob.title === job.title
-          ? "bg-[#FAB31E] text-[#1D1D1D] border-[#FAB31E]"
-          : "border-[#FAB31E] text-[#FAB31E] hover:bg-[#FAB31E]/10"
-      }`}
+    className={`text-left body2 px-3 py-2 sm:px-4 sm:py-3 rounded-[6px] border transition-all duration-200
+  ${
+    activeJob.title === job.title
+      ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
+      : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+  }`}
   >
     {job.title}
   </button>
@@ -181,16 +169,11 @@ const SecondSection = () => {
     </div>
 
     {/* RIGHT – Details */}
-    <div className="p-3 md:p-6 text-white flex flex-col relative">
+    <div className="p-3 md:p-6 white-text flex flex-col relative">
 <h2
   className="
-    text-[#FFF]
+    white-text
     text-center
-    font-[Miso]
-    font-[400]
-    text-[24px] sm:text-[28px] md:text-[40px]
-    tracking-[-1.2px] md:tracking-[-2.4px]
-    capitalize
     mb-6 md:mb-12
   "
 >
@@ -206,8 +189,8 @@ const SecondSection = () => {
           }`}
         >
           {/* FRONT */}
-          <div className="absolute inset-0 backface-hidden border border-[#FAB31E] rounded-[30px] px-4 sm:px-5 py-12 sm:py-20 flex flex-col justify-between">
-            <div className="whitespace-pre-line leading-normal text-[#FFF] font-[Poppins] text-[14px] sm:text-[16px] md:text-[18px] font-[400] tracking-[-0.5px] md:tracking-[-0.72px] capitalize pr-1 sm:pr-2">
+          <div className="absolute inset-0 backface-hidden border border-[var(--color-highlight)] rounded-[30px] px-4 sm:px-5 py-12 sm:py-20 flex flex-col justify-between">
+            <div className="whitespace-pre-line  white-text body2 pr-1 sm:pr-2">
               {activeJob.details}
             </div>
 <div className="mt-4 sm:mt-6 lg:mt-10 flex justify-center"> 
@@ -221,17 +204,17 @@ const SecondSection = () => {
           </div>
 
           {/* BACK – Ticket Form */}
-          <div className="absolute inset-0 backface-hidden rotate-y-180 border border-[#FAB31E] rounded-[30px] px-4 sm:px-6 py-8 sm:py-10 ">
-            <form className="flex flex-col gap-4 text-white">
+          <div className="absolute inset-0 backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[30px] px-4 sm:px-6 py-8 sm:py-10 ">
+            <form className="flex flex-col gap-4 white-text">
     {/* Ticket Name */}
     <div>
 <label
-  className="block mb-1 text-[#FFF] font-[Poppins] text-[18px] font-normal leading-normal tracking-[-0.72px] capitalize"
+  className="block mb-1 white-text capitalize body2"
 >
   Your Ticket Name
 </label>
 
-      <div className="flex items-center border-b border-[#FAB31E] pb-2">
+      <div className="flex items-center border-b border-[var(--color-highlight)] pb-2">
   <span className="mr-2">{svgs.ticketName}</span>
         <input
           type="text"
@@ -245,10 +228,10 @@ const SecondSection = () => {
 
     {/* Email */}
     <div>
-      <label className="block mb-1 text-[#FFF] font-[Poppins] text-[18px] font-normal leading-normal tracking-[-0.72px] capitalize">
+      <label className="block mb-1 white-text capitalize body2">
         Where Should We Mail Your Platform Details?
       </label>
-      <div className="flex items-center border-b border-[#FAB31E] pb-2">
+      <div className="flex items-center border-b border-[var(--color-highlight)] pb-2">
 <span className="mr-2">{svgs.email}</span>
         <input
           type="email"
@@ -262,8 +245,8 @@ const SecondSection = () => {
 
     {/* Phone */}
     <div>
-      <label className="block mb-1 text-[#FFF] font-[Poppins] text-[18px] font-normal leading-normal tracking-[-0.72px] capitalize">Your Local Train Hotline</label>
-      <div className="flex items-center border-b border-[#FAB31E] pb-2">
+      <label className="block mb-1 white-text capitalize body2">Your Local Train Hotline</label>
+      <div className="flex items-center border-b border-[var(--color-highlight)] pb-2">
                  <span className="mr-2">{svgs.phone}</span>
         <input
           type="tel"
@@ -277,8 +260,8 @@ const SecondSection = () => {
 
     {/* CV Upload */}
     <div>
-      <label className="block mb-1 text-[#FFF] font-[Poppins] text-[18px] font-normal leading-normal tracking-[-0.72px] capitalize">Show Your Travel Card (CV)</label>
-      <div className="flex items-center border-b border-[#FAB31E] pb-2">
+      <label className="block mb-1 white-text capitalize body2">Show Your Travel Card (CV)</label>
+      <div className="flex items-center border-b border-[var(--color-highlight)] pb-2">
  <span className="mr-2">{svgs.cv}</span>
         <input
           type="file"
@@ -289,52 +272,66 @@ const SecondSection = () => {
 
     {/* Availability */}
     <div>
-      <label className="block mb-1 text-[#FFF] font-[Poppins] text-[18px] font-normal leading-normal tracking-[-0.72px] capitalize">
+      <label className="block mb-1 white-text capitalize body2">
         When Will You Board The Train?
       </label>
  <div className="grid grid-cols-2 gap-3">
       {/* Immediate */}
-      <button
-        type="button"
-        onClick={() => setSelected("immediate")}
-        className={`flex items-center  gap-2 rounded-md py-2 px-4 text-sm font-medium transition
-          border border-[#FAB31E]
-          ${
-            selected === "immediate"
-              ? "bg-[#FAB31E] text-black"
-              : "bg-transparent text-[#ABABAB] hover:bg-[#FAB31E]/10"
-          }`}
-      >
-        {/* 🔹 Your SVG for Immediate */}
-<span  className={selected === "immediate" ? "text-black" : "text-[#ABABAB]"}>{svgs.immediately}</span>
+      {/* Immediate */}
+<button
+  type="button"
+  onClick={() => setSelected("immediate")}
+  className={`flex items-center gap-2 rounded-md py-2 px-4 text-sm font-medium transition
+    border border-[var(--color-highlight)]
+    ${
+      selected === "immediate"
+        ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
+        : "bg-transparent text-[var(--color-text-muted)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+    }`}
+>
+  <span
+    className={
+      selected === "immediate"
+        ? "text-[var(--color-primary)]"
+        : "text-[var(--color-text-muted)]"
+    }
+  >
+    {svgs.immediately}
+  </span>
+  Immediate
+</button>
 
-        Immediate
-      </button>
+{/* 0–2 Months */}
+<button
+  type="button"
+  onClick={() => setSelected("0-2")}
+  className={`flex items-center gap-2 rounded-md py-2 px-4 body2 transition
+    border border-[var(--color-highlight)]
+    ${
+      selected === "0-2"
+        ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
+        : "bg-transparent text-[var(--color-text-muted)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+    }`}
+>
+  <span
+    className={
+      selected === "0-2"
+        ? "text-[var(--color-primary)]"
+        : "text-[var(--color-text-muted)]"
+    }
+  >
+    {svgs.Months}
+  </span>
+  0–2 Months
+</button>
 
-      {/* 0–2 Months */}
-      <button
-        type="button"
-        onClick={() => setSelected("0-2")}
-        className={`flex items-center  gap-2 rounded-md py-2 px-4 text-sm font-medium transition
-          border border-[#FAB31E]
-          ${
-            selected === "0-2"
-              ? "bg-[#FAB31E] text-black"
-              : "bg-transparent text-[#ABABAB] hover:bg-[#FAB31E]/10"
-          }`}
-      >
-        {/* 🔹 Your SVG for 0–2 Months */}
-<span  className={selected === "0-2" ? "text-black" : "text-[#ABABAB]"}>{svgs.Months}</span>
-
-        0–2 Months
-      </button>
     </div>
     </div>
 
     {/* Portfolio */}
     <div>
-      <label className="block mb-1 text-[#FFF] font-[Poppins] text-[18px] font-normal leading-normal tracking-[-0.72px] capitalize">Show Your Window View Work</label>
-      <div className="flex items-center border-b border-[#FAB31E] pb-2">
+      <label className="block mb-1 white-text capitalize body2">Show Your Window View Work</label>
+      <div className="flex items-center border-b border-[var(--color-highlight)] pb-2">
 <span className="mr-2">{svgs.portfolio}</span>
         <input
           type="url"
@@ -348,10 +345,10 @@ const SecondSection = () => {
 
     {/* Message */}
     <div>
-      <label className="block mb-1 text-[#FFF] font-[Poppins] text-[18px] font-normal leading-normal tracking-[-0.72px] capitalize">
+      <label className="block mb-1 white-text capitalize body2">
         Convince Us Like A TT Checking Tickets
       </label>
-      <div className="flex items-start border-b border-[#FAB31E] ">
+      <div className="flex items-start border-b border-[var(--color-highlight)] ">
        <span className="mr-2">{svgs.message}</span>
         <textarea
           placeholder="Message"
@@ -364,7 +361,7 @@ const SecondSection = () => {
 
     {/* Confirm Button */}
                     <div className="mt-6 lg:mt-5 flex justify-center">
-  <Button href="#" text="CONFIRM TICKET" className="text-white" />
+  <Button href="#" text="CONFIRM TICKET" className="white-text" />
 </div>
 
     {/* Back to job link
@@ -382,7 +379,7 @@ const SecondSection = () => {
           </div>
 
           {/* Yellow strip stays fixed on the right */}
-<div className="hidden md:block absolute top-0 right-0 h-full w-2 sm:w-3 md:w-7 bg-[#FAB31E]"></div>
+<div className="hidden md:block absolute top-0 right-0 h-full w-2 sm:w-3 md:w-7 bg-[var(--color-highlight)]"></div>
 
         </div>
       </div>

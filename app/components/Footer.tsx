@@ -22,49 +22,49 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="font-['Poppins']  lg:mt-6 mt-2 border-t pt-4 lg:pt-1 flex flex-col gap-4 md:flex-row md:justify-between md:items-center text-gray-500 text-sm">
+        <div className="body4 lg:mt-6 mt-2 border-t pt-4 lg:pt-1 flex flex-col gap-4 md:flex-row md:justify-between md:items-center black-text text-sm">
           {/* Links */}
          <div className="flex flex-wrap items-start gap-1 md:gap-3 md:order-2">
   <Link
     href="#"
-    className="hover:text-[#F9B31B] transition-colors border-r border-gray-400 pr-2"
+    className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Home
   </Link>
   <Link
     href="#"
-    className="hover:text-[#F9B31B] transition-colors border-r border-gray-400 pr-2"
+    className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Our Clients
   </Link>
   <Link
     href="#"
-    className="hover:text-[#F9B31B] transition-colors border-r border-gray-400 pr-2"
+    className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Contact
   </Link>
   <Link
     href="#"
-    className="hover:text-[#F9B31B] transition-colors border-r border-gray-400 pr-2"
+    className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Client Registration
   </Link>
   <Link
     href="#"
-    className="hover:text-[#F9B31B] transition-colors border-r border-gray-400 pr-2"
+    className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Service Affiliates
   </Link>
   <Link
     href="#"
-    className="hover:text-[#F9B31B] transition-colors"
+    className="black-text transition-colors"
   >
     Blogs
   </Link>
 </div>
 
           {/* Copyright */}
-          <p className="text-left md:order-1 mt-2 font-['Poppins'] lg:text-[14px] text-[12px] ">
+          <p className="text-left md:order-1 mt-2 body4 ">
             Copyright ©2023 Bombay Blokes. All rights reserved.
           </p>
         </div>

@@ -89,17 +89,14 @@ const SecondSection = () => {
         </div>
 
         {/* Right Side Form */}
-        <div className="p-4 sm:p-5 md:p-6 text-white relative">
+        <div className="p-4 sm:p-5 md:p-6 white-text relative">
 <div className="flex items-center justify-center gap-4">
   <h2
     className="
-      text-[#FFF] text-center
-      font-[400] font-[Miso]   /* ✅ Custom font */
-      text-[80px] leading-[82px]
-      tracking-[-4.4px] capitalize
+      white-text
     "
   >
-    Let’s Have A <span className="text-[#FAB31E]">Pani Puri</span> Date
+    Let’s Have A <span className="text-highlight">Pani Puri</span> Date
   </h2>
 
   {/* ✅ Add Image */}
@@ -117,10 +114,7 @@ const SecondSection = () => {
             <div>
              <label
   className="
-    block text-[#FFF]
-    font-[400] font-[Poppins]
-    text-[24px] leading-normal
-    tracking-[-0.72px] capitalize
+    block white-text body2
     mb-1
   "
 >
@@ -135,9 +129,9 @@ const SecondSection = () => {
         onChange={(e) => setValue(e.target.value)}
         className="
           w-full px-8 py-3 bg-transparent 
-          border-0 border-b-2 border-b-[#FAB31E]
-          text-white placeholder-gray-400
-          focus:outline-none focus:border-b-[#FAB31E]
+          border-0 border-b-2 border-b-[var(--color-highlight)]
+          white-text placeholder-gray-400
+          focus:outline-none focus:border-b-[var(--color-highlight)]
         "
       />
       <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
@@ -160,11 +154,8 @@ const SecondSection = () => {
     <div>
       <label
         className="
-          block text-[#FFF]
-          font-[400] font-[Poppins]
-          text-[24px] leading-normal
-          tracking-[-0.72px] capitalize
-          mb-4
+          block white-text body2
+    mb-3
         "
       >
         And I’m Keen To Get A Taste Of Your
@@ -180,10 +171,10 @@ const SecondSection = () => {
               onClick={() => setActive(service.name)}
               className={`
                 flex  gap-5 px-3 py-3 rounded-[10px] border 
-                w-full  transition cursor-pointer font-['Poppins']
+                w-full  transition cursor-pointer
                 ${isActive 
-                  ? "bg-[#FAB31E] text-black border-[#FAB31E]" 
-                  : "border-[#FAB31E] text-white"}
+                  ? "bg-[var(--color-highlight)] text-[var(--color-pirmary)] border-[var(--color-highlight)]" 
+                  : "border-[var(--color-highlight)] text-[var(--color-secondary)]"}
               `}
             >
               <span className="w-5 h-5 ">{service.icon}</span>
@@ -198,10 +189,7 @@ const SecondSection = () => {
             {/* Message */}
             <div>
               <label         className="
-          block text-[#FFF]
-          font-[400] font-[Poppins]
-          text-[24px] leading-normal
-          tracking-[-0.72px] capitalize
+          block white-text body2
           mb-1
         ">
                 To Get Our Chat Started, Here Are Some Of My Initial
@@ -215,9 +203,9 @@ const SecondSection = () => {
         onChange={(e) => setValue(e.target.value)}
         className="
           w-full px-8 py-3 bg-transparent 
-          border-0 border-b-2 border-b-[#FAB31E]
-          text-white placeholder-gray-400
-          focus:outline-none focus:border-b-[#FAB31E]
+          border-0 border-b-2 border-b-[var(--color-highlight)]
+          white-text placeholder-gray-400
+          focus:outline-none focus:border-b-[var(--color-highlight)]
         "
       />
       <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
@@ -234,10 +222,7 @@ const SecondSection = () => {
             {/* Email */}
             <div>
               <label  className="
-          block text-[#FFF]
-          font-[400] font-[Poppins]
-          text-[24px] leading-normal
-          tracking-[-0.72px] capitalize
+          block white-text body2
           mb-1
         ">
                 You Can Send The Sukha Puri (Your Reply!) Over To
@@ -250,9 +235,9 @@ const SecondSection = () => {
         onChange={(e) => setValue(e.target.value)}
         className="
           w-full px-8 py-3 bg-transparent 
-          border-0 border-b-2 border-b-[#FAB31E]
-          text-white placeholder-gray-400
-          focus:outline-none focus:border-b-[#FAB31E]
+          border-0 border-b-2 border-b-[var(--color-highlight)]
+          white-text placeholder-gray-400
+          focus:outline-none focus:border-b-[var(--color-highlight)]
         "
       />
       <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
@@ -266,10 +251,7 @@ const SecondSection = () => {
             {/* Phone */}
             <div>
               <label className="
-          block text-[#FFF]
-          font-[400] font-[Poppins]
-          text-[24px] leading-normal
-          tracking-[-0.72px] capitalize
+          block white-text body2
           mb-1
         ">
                 Or Just Give Me A Call At
@@ -282,9 +264,9 @@ const SecondSection = () => {
         onChange={(e) => setValue(e.target.value)}
         className="
           w-full px-8 py-3 bg-transparent 
-          border-0 border-b-2 border-b-[#FAB31E]
-          text-white placeholder-gray-400
-          focus:outline-none focus:border-b-[#FAB31E]
+          border-0 border-b-2 border-b-[var(--color-highlight)]
+          white-text placeholder-gray-400
+          focus:outline-none focus:border-b-[var(--color-highlight)]
         "
       />
       <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
@@ -307,14 +289,14 @@ const SecondSection = () => {
             {/* Submit Button */}
 
                 <div className="mt-6 lg:mt-10 flex justify-center">
-  <Button href="#" text="Date confirm" className="text-white" />
+  <Button href="#" text="Date confirm" className="white-text" />
 </div>
 
           </form>
 
           {/* Yellow Stripe */}
         </div>
-          <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E]"></div>
+          <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-7 h-full bg-[var(--color-highlight)]"></div>
       </div>
     </section>
   );

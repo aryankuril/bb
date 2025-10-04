@@ -38,8 +38,8 @@ const SecondSection = () => {
  <section className="container py-10 sm:py-15 lg:py-20">
   {/* Title */}
   <div className="text-center mb-8 sm:mb-12 ">
-    <h2 className="font-[miso] text-[#1D1D1D] text-[32px] sm:text-[50px] md:text-[80px] leading-[40px] sm:leading-[60px] md:leading-[80px] tracking-[-1px] sm:tracking-[-1.5px] md:tracking-[-2.4px] font-normal capitalize lg:w-[950px] flex-[1_0_0] mx-auto">
-      How do <span className="text-[#FAB31E]">stories</span> turn into strategy, and strategy into growth?
+    <h2 className="black-text lg:w-[950px] flex-[1_0_0] mx-auto">
+      How do <span className="text-highlight">stories</span> turn into strategy, and strategy into growth?
     </h2>
   </div>
 
@@ -54,10 +54,10 @@ const SecondSection = () => {
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
-          <span className="font-[miso] text-[#FAB31E] text-[50px] sm:text-[80px] md:text-[120px] leading-[50px] sm:leading-[80px] md:leading-[120px] font-normal capitalize">
+          <span className="text-highlight numbering  inline-flex items-end translate-y-[0.22em]">
             {processSteps[0].number}
           </span>
-          <h3 className="font-['Poppins'] text-white text-[24px] sm:text-[36px] md:text-[50px] leading-[36px] sm:leading-[50px] md:leading-[73px] font-normal capitalize">
+          <h3 className="white-text  leading-tight">
             {processSteps[0].title}
           </h3>
         </div>
@@ -71,10 +71,10 @@ const SecondSection = () => {
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
-          <span className="font-[miso] text-[#FAB31E] text-[50px] sm:text-[80px] md:text-[120px] leading-[50px] sm:leading-[80px] md:leading-[120px] font-normal capitalize">
+          <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[1].number}
           </span>
-          <h3 className="font-['Poppins'] text-white text-[24px] sm:text-[36px] md:text-[50px] leading-[36px] sm:leading-[50px] md:leading-[73px] font-normal capitalize">
+          <h3 className="white-text leading-tight">
             {processSteps[1].title}
           </h3>
         </div>
@@ -91,10 +91,10 @@ const SecondSection = () => {
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
-          <span className="font-[miso] text-[#FAB31E] text-[50px] sm:text-[80px] md:text-[120px] leading-[50px] sm:leading-[80px] md:leading-[120px] font-normal capitalize">
+          <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[2].number}
           </span>
-          <h3 className="font-['Poppins'] text-white text-[24px] sm:text-[36px] md:text-[50px] leading-[36px] sm:leading-[50px] md:leading-[73px] font-normal capitalize">
+          <h3 className="white-text leading-tight">
             {processSteps[2].title}
           </h3>
         </div>
@@ -108,10 +108,10 @@ const SecondSection = () => {
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
-          <span className="font-[miso] text-[#FAB31E] text-[50px] sm:text-[80px] md:text-[120px] leading-[50px] sm:leading-[80px] md:leading-[120px] font-normal capitalize">
+          <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[3].number}
           </span>
-          <h3 className="font-['Poppins'] text-white text-[24px] sm:text-[36px] md:text-[50px] leading-[36px] sm:leading-[50px] md:leading-[73px] font-normal capitalize">
+          <h3 className="white-text leading-tight">
             {processSteps[3].title}
           </h3>
         </div>
@@ -128,10 +128,10 @@ const SecondSection = () => {
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
-          <span className="font-[miso] text-[#FAB31E] text-[50px] sm:text-[80px] md:text-[120px] leading-[50px] sm:leading-[80px] md:leading-[120px] font-normal capitalize">
+          <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[4].number}
           </span>
-          <h3 className="font-['Poppins'] text-white text-[24px] sm:text-[36px] md:text-[50px] leading-[36px] sm:leading-[50px] md:leading-[73px] font-normal capitalize">
+          <h3 className="white-text leading-tight">
             {processSteps[4].title}
           </h3>
         </div>
@@ -145,10 +145,10 @@ const SecondSection = () => {
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
         <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
-          <span className="font-[miso] text-[#FAB31E] text-[50px] sm:text-[80px] md:text-[120px] leading-[50px] sm:leading-[80px] md:leading-[120px] font-normal capitalize">
+          <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[5].number}
           </span>
-          <h3 className="font-['Poppins'] text-white text-[24px] sm:text-[36px] md:text-[50px] leading-[36px] sm:leading-[50px] md:leading-[73px] font-normal capitalize">
+          <h3 className="white-text leading-tight">
             {processSteps[5].title}
           </h3>
         </div>

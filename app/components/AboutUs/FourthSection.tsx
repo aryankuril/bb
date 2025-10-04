@@ -190,7 +190,7 @@ const MobileSlider: React.FC<{ cards: { img: string; video: string }[] }> = ({
             <button
               onClick={() => handlePaginationClick(index)}
               className={`w-12 h-12 rounded-full overflow-hidden border-2
-                ${activeIndex === index ? "border-[#FAB31E]" : "border-gray-300"}`}
+                ${activeIndex === index ? "border-[var(--color-highlight)]" : "border-gray-300"}`}
             >
               <img
                 src={card.img}
@@ -240,10 +240,8 @@ const FourthSection: React.FC = () => {
   return (
     <section className="py-16 container mx-auto">
       <div className="text-center">
-        <h2 className="text-[#1D1D1D] font-[Miso] text-[40px] sm:text-[60px] md:text-[70px] lg:text-[80px]
-                       font-normal leading-[44px] sm:leading-[64px] md:leading-[74px] lg:leading-[82px]
-                       tracking-[-2.4px] capitalize mb-8">
-          Our Story, In <span className="text-[#FAB31E]">Our Words</span>
+        <h2 className="black-text mb-8">
+          Our Story, In <span className="text-highlight">Our Words</span>
         </h2>
 
         {/* Desktop */}

@@ -42,28 +42,27 @@ const SecondSection = () => {
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
       {/* Title */}
-      <h1 className="text-black font-[miso] font-bold leading-[1.2]
-        text-[30px] sm:text-[30px] md:text-[40px] lg:text-[60px] xl:text-[80px] mr-4">
+      <h2 className="black-text mr-4">
         Category
-      </h1>
+      </h2>
 
       {/* Category Buttons */}
       <div className="flex flex-nowrap gap-2 lg:gap-3 overflow-x-auto no-scrollbar mb-5 lg:mb-20">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`cursor-pointer shrink-0 px-4 py-1 rounded-full border text-sm sm:text-base font-[Poppins] capitalize transition-all duration-300
-              ${
-                activeCategory === cat
-                  ? "bg-black text-white border-black"
-                  : "bg-white text-black border-black hover:bg-black hover:text-white"
-              }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+  {categories.map((cat) => (
+    <button
+      key={cat}
+      onClick={() => setActiveCategory(cat)}
+      className={`cursor-pointer shrink-0 px-4 py-1 rounded-full border body3 transition-all duration-300
+        ${
+          activeCategory === cat
+            ? "bg-[var(--color-primary)] text-[var(--color-secondary)] border-[var(--color-primary)]"
+            : "bg-[var(--color-secondary)] text-[var(--color-primary)] border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-secondary)]"
+        }`}
+    >
+      {cat}
+    </button>
+  ))}
+</div>
 
       {/* Card Layout */}
       <div className="space-y-6">
@@ -93,10 +92,10 @@ const SecondSection = () => {
 // ✅ Typed props
 const CardText: React.FC<{ number: string; title: string }> = ({ number, title }) => (
   <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
-    <span className="miso-font text-[#FAB31E] text-[50px] sm:text-[80px] md:text-[120px] leading-[1] font-normal capitalize">
+    <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
       {number}
     </span>
-    <h3 className="miso-font text-white text-[24px] sm:text-[36px] md:text-[50px] leading-[1.2] font-normal capitalize">
+    <h3 className="white-text leading-tight">
       {title}
     </h3>
   </div>

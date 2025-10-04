@@ -134,14 +134,12 @@ const CardCarousel = () => {
       {/* Title */}
       <h1
         className="
-          text-center font-miso font-normal
-          text-4xl sm:text-6xl md:text-7xl lg:text-[80px]
-          leading-tight lg:leading-[82px]
+          text-center 
           pointer-events-none
         "
       >
-        <span ref={unsRef} className="text-[#FAB31E]">UNSKIPPABLE</span>{" "}
-        <span ref={brandsRef} className="text-[#1D1D1D]">BRANDS</span>
+        <span ref={unsRef} className="text-highlight">UNSKIPPABLE</span>{" "}
+        <span ref={brandsRef} className="black-text">BRANDS</span>
       </h1>
  
       {/* Cards */}
@@ -170,7 +168,7 @@ const CardCarousel = () => {
                 w-[88vw] sm:w-[88vw] md:w-[calc(100vw/3-2.5rem)]
                 aspect-[3/5]
                 h-[68svh] lg:h-[70svh]
-                rounded-[28px] shadow-2xl overflow-hidden bg-white
+                rounded-[28px] shadow-2xl overflow-hidden bg-[var(--color-secondary)]
               "
             >
               {/* Image */}
@@ -192,9 +190,9 @@ const CardCarousel = () => {
                   opacity-0 group-hover:opacity-100 transition-opacity duration-300
                 "
               >
-                <span className="text-white text-lg sm:text-xl md:text-2xl font-semibold text-center px-4">
+                <span className="white-text body1 text-center px-4">
                   {card.hoverText ?? "Open"}
-                </span>
+                </span> 
               </div>
  
               {/* Click target (optional) */}
