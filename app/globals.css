@@ -59,41 +59,41 @@ body {
 h1 {
   font-family: var(--font-bold-miso);
   font-size: var(--h1-size); /* ✅ Hero Section heading */
-  line-height: 1em;
+  line-height: 1;
   text-transform: capitalize;
 }
 
 h2 {
   font-family: var(--font-regular-miso);
   font-size: var(--h2-size); /* ✅ Section titles, quotes, large paras */
-  line-height: 1.2em;
+  line-height: 1.2;
   text-transform: capitalize;
 }
 
 h3 {
   font-family: var(--font-regular-miso);
   font-size: var(--h3-size); /* ✅ Titles and descriptions */
-  line-height: 1.2em;
+  line-height: 1.2;
   text-transform: capitalize;
 }
 
 h4 {
   font-family: var(--font-regular-miso);
   font-size: var(--h4-size); /* ✅ Navigation headings, footer "Connect & Grow" */
-  line-height: 1.2em;
+  line-height: 1.2;
   text-transform: capitalize;
 }
 
 h5 {
   font-family: var(--font-regular-miso);
   font-size: var(--h5-size); /* ✅ Blog titles */
-  line-height: 1.2em;
+  line-height: 1.2;
 }
 
 h6 {
   font-family: var(--font-regular-miso);
   font-size: var(--h6-size); /* ✅ Extra - rarely used */
-  line-height: 1.2em;
+  line-height: 1.2;
 }
 
 /* =========================================
@@ -103,28 +103,28 @@ h6 {
   font-family: var(--font-poppins);
   font-size: var(--body1-size); /* ✅ Form labels, testimonials, our work cards */
   font-weight: 400;
-  line-height: 1.5em;
+  line-height: 1.5;
 }
 
 .body2 {
   font-family: var(--font-poppins);
   font-size: var(--body2-size); /* ✅ Paragraph description text */
   font-weight: 400;
-  line-height: 1.5em;
+  line-height: 1.5;
 }
 
 .body3 {
   font-family: var(--font-poppins);
   font-size: var(--body3-size); /* ✅ Form placeholder, testimonial name, filter tag, button */
   font-weight: 400;
-  line-height: 1.5em;
+  line-height: 1.5;
 }
 
 .body4 {
   font-family: var(--font-poppins);
   font-size: var(--body4-size); /* ✅ Footer menu */
   font-weight: 400;
-  line-height: 1.5em;
+  line-height: 1.5;
 }
 
 /* =========================================
@@ -134,21 +134,21 @@ h6 {
   font-family: var(--font-regular-miso);
   font-size: var(--stats-size); /* ✅ Stats numbers */
   font-weight: 400;
-  line-height: 1.5em;
+  line-height: 1.5;
 }
 
 .numbering {
   font-family: var(--font-regular-miso);
   font-size: var(--numbering-size); /* ✅ Card number sequence */
   font-weight: 400;
-  line-height: 1em;
+  line-height: 1;
 }
 
 .single-title {
   font-family: var(--font-bold-miso);
   font-size: var(--single-title-size); /* ✅ Single large title (e.g., 404 page) */
   font-weight: 400;
-  line-height: 0.8em;
+  line-height: 0.8;
 }
 
 ::placeholder{

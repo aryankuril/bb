@@ -5,6 +5,7 @@ import SecondSection from '../components/Clients/SecondSection'
 import SeventhSection from '../components/ServicesInternal/SeventhSection'
 import Footer from '../components/Footer'
 
+
 const Index = () => {
   return (
     <div>

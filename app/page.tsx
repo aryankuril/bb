@@ -12,11 +12,13 @@ import CardCarousel from "./components/HomePage/CardCarousel";
 import SixthSection from "./components/ServicesInternal/SixthSection";
 import SeventhSection from "./components/ServicesInternal/SeventhSection";
 import Footer from "./components/Footer";
+import ClientScripts from "./components/ClientScripts";
 
 // 
 export default function Home() {
   return (
     <div>
+      <ClientScripts/>
       <Navbar />
       <Firstsection/>
       <SecondSection/>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Taxi from "./components/Taxi";
+import Whatsapp from "./components/Taxi";
 import ClientScripts from "./components/ClientScripts";
 
 // Local Miso
@@ -34,8 +36,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <ClientScripts />
+        <Taxi />
+      <Whatsapp />
       </body>
     </html>
   );
 }
+ 

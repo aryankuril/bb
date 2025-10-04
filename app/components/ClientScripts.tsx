@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
-import Taxi from "./Taxi";
-import Whatsapp from "./Whatsapp";
+// import Taxi from "./Taxi";
+// import Whatsapp from "./Whatsapp";
 
 export default function ClientScripts() {
   useEffect(() => {
@@ -25,8 +25,8 @@ export default function ClientScripts() {
 
   return (
     <>
-      <Taxi />
-      <Whatsapp />
+      {/* <Taxi />
+      <Whatsapp /> */}
     </>
   );
 }
