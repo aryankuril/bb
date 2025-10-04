@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import ClientScripts from "./components/ClientScripts"; // NEW
+import ClientScripts from "./components/ClientScripts";
 
 // Local Miso
 const miso = localFont({
@@ -19,15 +19,19 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Bombay Blokes",
-  description: "Integrated Digital Solutions in Mumbai | Marketing Agency in Mumbai - Bombay Blokes",
+  description:
+    "Integrated Digital Solutions in Mumbai | Marketing Agency in Mumbai - Bombay Blokes",
   icons: {
-    icon: "/favicon.png", // This will be used as the favicon
+    icon: "/favicon.png",
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
+      <head>
+        <link rel="icon" href="/favicon.png" type="image/png" />
+      </head>
       <body>
         {children}
         <ClientScripts />
