@@ -279,7 +279,7 @@ export default function DesktopNav() {
             </div>
           </div>
         </div>
-        
+        {/*  */}
       </div>
  
       {/* backdrop (kept super light so the header feels like one piece) */}
