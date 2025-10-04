@@ -1,33 +1,32 @@
-
 // app/components/DesktopNav.tsx
 "use client";
- 
+
 import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
- 
+
 const YELLOW = "#FAB31E";
 const DARK = "#1D1D1D";
- 
+
 export default function DesktopNav() {
   const [open, setOpen] = useState(false);
- 
+
   // refs
   const root = useRef<HTMLDivElement | null>(null);
   const shell = useRef<HTMLDivElement | null>(null);
   const stage = useRef<HTMLDivElement | null>(null);
- 
-  const yellow = useRef<HTMLDivElement | null>(null);     // yellow block that morphs
-  const black = useRef<HTMLDivElement | null>(null);      // black panel revealed by clip-path
-  const divider = useRef<HTMLDivElement | null>(null);    // center rule
- 
+
+  const yellow = useRef<HTMLDivElement | null>(null); // yellow block
+  const black = useRef<HTMLDivElement | null>(null); // black panel
+  const divider = useRef<HTMLDivElement | null>(null);
+
   const leftCol = useRef<HTMLUListElement | null>(null);
   const rightCol = useRef<HTMLUListElement | null>(null);
   const bottomRow = useRef<HTMLDivElement | null>(null);
- 
+
   const tl = useRef<gsap.core.Timeline | null>(null);
- 
+
   useLayoutEffect(() => {
     const s = stage.current!;
     const y = yellow.current!;
@@ -37,7 +36,7 @@ export default function DesktopNav() {
     const r = rightCol.current!;
     const br = bottomRow.current!;
     const sh = shell.current!;
- 
+
     // base states
     gsap.set(stage.current, { opacity: 0, pointerEvents: "none" });
     gsap.set(y, {
@@ -46,90 +45,80 @@ export default function DesktopNav() {
       top: "50%",
       xPercent: -50,
       yPercent: -50,
-      width: 96,          // perfect square start
+      width: 96,
       height: 96,
       borderRadius: 16,
       backgroundColor: YELLOW,
     });
- 
-    // black layer is fully underneath but hidden by clip-path (revealed from left ➜ right)
+
     gsap.set(b, {
       position: "absolute",
       inset: 0,
       backgroundColor: DARK,
-      clipPath: "inset(0 100% 0 0 round 0px)", // 100% right side clipped (not visible)
+      clipPath: "inset(0 100% 0 0 round 0px)", // hidden
     });
- 
-    // thin right accent (we'll reuse yellow by shrinking it)
-    // divider and content hidden
+
     gsap.set(d, { scaleY: 0, transformOrigin: "50% 50%" });
     gsap.set([l.children, r.children], { opacity: 0, y: 14 });
     gsap.set(br, { opacity: 0, y: 10 });
- 
+
     // build timeline
     const ctx = gsap.context(() => {
-      const dur1 = 0.42;   // square → rectangle
-      const dur2 = 0.60;   // wipe to black while yellow pushes to edge
+      const dur1 = 0.80;
+      const dur2 = 0.80;
       const ease = "expo.inOut";
- 
+
       tl.current = gsap.timeline({ paused: true });
- 
+
       tl.current
-        // bring stage in and lock pointer
-        .to(stage.current, { opacity: 1, pointerEvents: "auto", duration: 0.12 }, 0)
- 
-        // 1) square ➜ rectangle (only width & height morph; stays centered)
+        // Stage in
+        .to(stage.current, { opacity: 1, pointerEvents: "auto", duration: 1 }, 0)
+
+        // 1) Yellow expands to fill stage
         .to(
           y,
           {
-            width: () => Math.min(640, s.clientWidth * 0.62),
-            height: 148,
-            borderRadius: 18,
+            width: () => s.clientWidth,
+            height: () => s.clientHeight,
+            left: "50%",
+            top: "50%",
+            xPercent: -50,
+            yPercent: -50,
+            borderRadius: 0,
             duration: dur1,
             ease,
           },
           0.02
         )
- 
-        // 2) push: black wipes in from left while yellow rides to the right and thins into the border
-        //    NOTE: we keep the wipe and the yellow width tied to stage width for a single-surface feel
-        .to(
-          y,
-          {
-            // move to right edge and stretch to full height first
-            left: () => s.clientWidth - 6, // target near right edge
-            xPercent: -100,
-            top: "50%",
-            height: () => s.clientHeight,
-            borderRadius: 0,
-            duration: dur2,
-            ease,
-          },
-          ">-0.08"
-        )
+
+        // 2) Black wipes in
         .to(
           b,
           {
-            // clip-path inset animates from right=100% to right=0% (full reveal)
             clipPath: "inset(0 0% 0 0 round 0px)",
             duration: dur2,
             ease,
           },
-          "<"
+          ">-0.05"
         )
+
+        // 3) Yellow shrinks into right accent line
         .to(
           y,
           {
-            // as black fills, shrink yellow into a clean 10px accent
             width: 10,
-            duration: dur2 * 0.8,
+            height: () => s.clientHeight,
+            left: () => s.clientWidth,
+            xPercent: -100,
+            top: "50%",
+            yPercent: -50,
+            duration: dur2 * 1,
             ease,
           },
-          "<"
+          "<+0.1"
         )
- 
-        // 3) center divider draws; items reveal; bottom row in
-        
+
+        // 4) Divider + content
         .to(d, { scaleY: 1, duration: 0.35, ease: "power3.out" }, "-=0.18")
         .to(
           [l.children, r.children],
@@ -143,121 +132,135 @@ export default function DesktopNav() {
           "-=0.22"
         )
         .to(br, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out" }, "-=0.22")
- 
-        // 4) shell top corners flatten so the open panel feels fused with the navbar
         .to(sh, { borderTopLeftRadius: 0, borderTopRightRadius: 0, duration: 0.18, ease }, 0.06);
     }, root);
- 
+
     return () => ctx.revert();
   }, []);
- 
+
   useLayoutEffect(() => {
     if (!tl.current) return;
     if (open) tl.current.play();
     else tl.current.reverse();
   }, [open]);
- 
+
   return (
-    <div ref={root} className=" container py-5 absolute inset-x-0 top-0 z-[99999]">
+    <div ref={root} className="container py-5 absolute inset-x-0 top-0 z-[99999]">
       {/* nav shell */}
-      <div
-        ref={shell}
-        className=" rounded-2xl  text-neutral-200"
-      >
-        <div className="flex items-center justify-between ">
+      <div ref={shell} className="rounded-2xl text-neutral-200">
+        <div className="flex items-center justify-between">
           <Link href="#">
-          <Image
-            src="/images/bblogo.webp" 
-            alt="Bombay Blokes Logo"
-            width={160}
-            height={50}
-            className="object-contain transition-opacity duration-300"
-          />
-         </Link>
- 
-          {/* HAMBURGER (animates to X) */}
+            <Image
+              src="/images/bblogo.webp"
+              alt="Bombay Blokes Logo"
+              width={160}
+              height={50}
+              className="object-contain transition-opacity duration-300"
+            />
+          </Link>
+
+          {/* HAMBURGER */}
           <button
             onClick={() => setOpen((s) => !s)}
             aria-label="Toggle menu"
-            className="relative grid h-13 w-12 text-[26px] border-2 border-black leading-6 cursor-pointer font-miso place-items-center  text-black "
+            className="relative grid h-13 w-12 text-[26px] border-2 border-black leading-6 cursor-pointer font-miso place-items-center text-black"
           >
             M E <br />N U
           </button>
         </div>
- 
-        {/* stage (animation playground) */}
+
+        {/* stage */}
         <div
           ref={stage}
           className="relative mt-30 h-[400px] w-[450px] ml-[500px] flex justify-center items-center overflow-hidden rounded-xl border border-neutral-800/60"
-         >
-          {/* black panel below, revealed by clip-path */}
+        >
           <div ref={black} />
- 
-          {/* yellow block that morphs & becomes right accent */}
           <div ref={yellow} />
- 
-          {/* center divider */}
-<div
-  ref={divider}
-  className="absolute left-1/2 mt-[200px] -translate-y-1/2 w-[2px] h-[60%]"
-  style={{
-    backgroundImage: "repeating-linear-gradient(to bottom, #737373 0 20px, transparent 20px 40px)"
-  }}
-/>
 
+          {/* divider */}
+          <div
+            ref={divider}
+            className="absolute left-1/2 mt-[200px] -translate-y-1/2 w-[2px] h-[60%]"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, #737373 0 20px, transparent 20px 40px)",
+            }}
+          />
 
-           <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-5 h-full bg-[#FAB31E]"></div>
+          {/* <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-5 h-full bg-[#FAB31E]"></div> */}
 
-           
- 
           {/* content */}
           <div className="relative z-10 grid h-full grid-cols-2 gap-10 px-12 py-12 text-sm">
             <ul ref={leftCol} className="space-y-6 text-center px-5">
-  <li>
-    <Link href="/" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
-      Home
-    </Link>
-  </li>
-  <li>
-    <Link href="/services" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
-      Services
-    </Link>
-  </li>
-  <li>
-    <Link href="/clients" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
-      Clients
-    </Link>
-  </li>
-  <li>
-    <Link href="/contactus" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
-      Contact
-    </Link>
-  </li>
-</ul>
+              <li>
+                <Link
+                  href="/"
+                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/clients"
+                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                >
+                  Clients
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contactus"
+                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
 
-<ul ref={rightCol} className="space-y-6 text-center">
-  <li>
-    <Link href="/aboutus" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
-      About
-    </Link>
-  </li>
-  <li>
-    <Link href="/ourwork" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
-      Work
-    </Link>
-  </li>
-  <li>
-    <Link href="/teams" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
-      Team
-    </Link>
-  </li>
-  <li>
-    <Link href="/career" className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none">
-      Careers
-    </Link>
-  </li>
-</ul>
- 
+            <ul ref={rightCol} className="space-y-6 text-center">
+              <li>
+                <Link
+                  href="/aboutus"
+                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/ourwork"
+                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                >
+                  Work
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/teams"
+                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                >
+                  Team
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/career"
+                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                >
+                  Careers
+                </Link>
+              </li>
+            </ul>
+
             <div
               ref={bottomRow}
               className="pointer-events-none absolute  bottom-4 left-0 right-0 flex items-center justify-center px-6 text-xs uppercase tracking-wide"
@@ -279,10 +282,9 @@ export default function DesktopNav() {
             </div>
           </div>
         </div>
-        {/*  */}
       </div>
- 
-      {/* backdrop (kept super light so the header feels like one piece) */}
+
+      {/* backdrop */}
       <div
         className={`fixed inset-0 -z-10 transition-opacity mr-5 ${
           open ? "opacity-40" : "opacity-0 pointer-events-none"

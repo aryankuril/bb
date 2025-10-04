@@ -1,5 +1,5 @@
 
-// import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import Firstsection from "./components/HomePage/Firstsection";
 import SecondSection from "./components/HomePage/SecondSection";
 import StudioSection from "./components/HomePage/StudioSection"
@@ -17,7 +17,7 @@ import Footer from "./components/Footer";
 export default function Home() {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
       <Firstsection/>
       <SecondSection/>
       <ThirdSection/>

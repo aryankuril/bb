@@ -2,6 +2,7 @@
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Image from "next/image";
 
 const ThirdSection = () => {
       const controls = useAnimation();
@@ -53,9 +54,11 @@ const ThirdSection = () => {
           animate={controls}
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[1400px] "
         >
-          <img
+          <Image
             src="/images/plantscan.png"
             alt="JK Diamonds Institute"
+            width={1400}
+            height={800}
             className="object-cover w-full h-auto rounded-2xl"
           />
         </motion.div>

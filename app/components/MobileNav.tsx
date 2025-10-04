@@ -1,18 +1,20 @@
 "use client";
  
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
  
 type NavItem = { label: string; href?: string };
  
 const NAV_ITEMS: NavItem[] = [
   { label: "HOME", href: "#" },
-  { label: "ABOUT", href: "#" },
-  { label: "SERVICES", href: "#" },
-  { label: "WORK", href: "#" },
-  { label: "CLIENTS", href: "#" },
-  { label: "TEAM", href: "#" },
-  { label: "CONTACT", href: "#" },
-  { label: "CAREERS", href: "#" },
+  { label: "ABOUT", href: "/aboutus" },
+  { label: "SERVICES", href: "services" },
+  { label: "WORK", href: "/ourwork" },
+  { label: "CLIENTS", href: "/clients" },
+  { label: "TEAM", href: "/teams" },
+  { label: "CONTACT", href: "/contactus" },
+  { label: "CAREERS", href: "/career" },
 ];
  
 const BOTTOM_BAR_H = 68; // height of the bottom bar
@@ -72,36 +74,38 @@ const MobileNav = () => {
         >
           <ul className="grid grid-cols-2 gap-2.5">
             {NAV_ITEMS.map((item, i) => {
-              const active = i === activeIndex;
-              return (
-                <li key={item.label}>
-                  <button
-                    onClick={() => handleItemClick(i, item.href)}
-                    className={`
-                      relative w-full overflow-hidden
-                      rounded-[14px] border-[2.5px] border-black
-                      transition-colors duration-300
-                      ${active ? "bg-[#FAB31E] text-black" : "bg-[#1D1D1D] text-white"}
-                      active:translate-y-[1px]
-                    `}
-                  >
-                    {/* Right yellow tab → fills on active, with rounded cap */}
-                    <span
-                      aria-hidden
-                      className={`
-                        absolute right-0 inset-y-0 bg-[#FAB31E]
-                        transition-[width] duration-300 ease-out
-                        rounded-r-[12px]
-                        ${active ? "w-full" : "w-2.5"}
-                      `}
-                    />
-                    <span className="relative z-10 block text-center font-semibold tracking-wide px-4 py-3">
-                      {item.label}
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
+  const active = i === activeIndex;
+  return (
+    <li key={item.label}>
+      <Link
+        href={item.href || "#"}
+        onClick={() => setActiveIndex(i)}
+        className={`
+          relative block w-full overflow-hidden
+          rounded-[14px] border-[2.5px] border-black
+          transition-colors duration-300
+          ${active ? "bg-[#FAB31E] text-black" : "bg-[#1D1D1D] text-white"}
+          active:translate-y-[1px]
+          text-center
+        `}
+      >
+        <span
+          aria-hidden
+          className={`
+            absolute right-0 inset-y-0 bg-[#FAB31E]
+            transition-[width] duration-300 ease-out
+            rounded-r-[12px]
+            ${active ? "w-full" : "w-2.5"}
+          `}
+        />
+        <span className="relative z-10 block px-4 py-3 font-semibold tracking-wide">
+          {item.label}
+        </span>
+      </Link>
+    </li>
+  );
+})}
+
           </ul>
         </div>
       </nav>
@@ -119,12 +123,15 @@ const MobileNav = () => {
         <div className="h-full flex items-center justify-between px-4">
           {/* Brand placeholder (replace with your logo/wordmark) */}
           <div className="flex items-center gap-2">
-            <span className="text-[22px] font-semibold tracking-wide">
-              BOMBAY BLO<span className="relative inline-block">
-                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[10px] w-[10px] rounded-full bg-[#FAB31E] border border-black" />
-                K
-              </span>ES
-            </span>
+            <Link href="#">
+            <Image
+              src="/images/bblogo.webp"
+              alt="Bombay Blokes Logo"
+              width={160}
+              height={50}
+              className="object-contain transition-opacity duration-300"
+            />
+          </Link>
           </div>
  
           <button

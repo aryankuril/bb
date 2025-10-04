@@ -34,12 +34,14 @@ useEffect(() => {
 
 
   return (
-    <section className="container py-10 sm:py-15 lg:py-20">
+    <section className="container py-0 sm:py-15 lg:py-30">
       <h1 className="black-text text-center md:text-left">
         The Squad That Turns{" "}
         <span className="text-highlight">What If</span>’ Into <br />
         ‘<span className="text-highlight">What’s Next.</span>’
       </h1>
+
+      {/* card */}
 
       <div className="mt-10 flex justify-center items-center">
         <div className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-[250px] lg:w-[1295px] lg:h-[650px] lg:rounded-[30px] rounded-[20px]  overflow-hidden bg-amber-50">

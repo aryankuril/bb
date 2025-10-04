@@ -40,7 +40,7 @@ const ThirdSection = () => {
             <div className="justify-end bg-[var(--color-primary)] white-text p-6 sm:p-8 rounded-[20px] shadow-lg
               border-r-[16px] sm:border-r-[20px] border-r-[var(--color-highlight)]
               h-auto sm:h-[280px] lg:h-[337px] w-full flex flex-col">
-              <span className="white-text numbering">
+              <span className="text-highlight numbering">
                 {inView && <CountUp end={150} duration={3} />}+
               </span>
               <h3 className="white-text">

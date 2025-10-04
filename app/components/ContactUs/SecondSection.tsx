@@ -77,10 +77,10 @@ const SecondSection = () => {
       const [active, setActive] = useState<string | null>(null);
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
-      <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 ">
+      <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 lg:overflow-visible overflow-hidden ">
         
         {/* Left Side Image */}
-        <div className="p-10 flex items-center justify-center">
+        <div className="lg:p-10 p-5 flex items-center justify-center">
           <img
             src="/images/panipuricart2.png" // replace with your image path
             alt="Pani Puri Cart"
@@ -103,13 +103,13 @@ const SecondSection = () => {
   <img 
     src="/images/panipuri.png"  // replace with your actual path
     alt="Pani Puri"
-    className="w-[150px] h-auto object-contain z-55 -mr-18 overflow-visible "
+    className="lg:w-[150px] w-[80px] h-auto object-contain z-55 lg:-mr-18 overflow-visible "
   />
 </div>
 
 
 
-          <form className="space-y-5 mt-10 w-[600px]">
+          <form className="space-y-5 mt-10 lg:w-[600px] w-full">
             {/* Name */}
             <div>
              <label
@@ -296,7 +296,7 @@ const SecondSection = () => {
 
           {/* Yellow Stripe */}
         </div>
-          <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-7 h-full bg-[var(--color-highlight)]"></div>
+          <div className="absolute right-0 top-0 w-2 sm:w-5 md:w-7 h-full bg-[var(--color-highlight)]"></div>
       </div>
     </section>
   );

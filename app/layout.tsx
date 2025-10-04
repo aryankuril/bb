@@ -1,4 +1,8 @@
 // app/layout.tsx
+"use client";
+
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
@@ -20,16 +24,33 @@ const poppins = Poppins({
 });
 
 
-export const metadata: Metadata = {
-  title: "My Project",
-  description: "Agency Website",
-};
+// export const metadata: Metadata = {
+//   title: "My Project",
+//   description: "Agency Website",
+// };
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 2.0, // Higher = slower + smoother
+      easing: (t) => 1 - Math.pow(1 - t, 3), // Custom easing
+      lerp: 0.05, // Lower = smoother but slower catch-up
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => lenis.destroy();
+  }, []);
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
       <body>

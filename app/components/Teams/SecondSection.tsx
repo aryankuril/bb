@@ -82,7 +82,7 @@ useEffect(() => {
 
       {/* ✅ Single SVG Path */}
       <svg
-        className="hidden lg:block absolute left-[285.391px] top-[180px] w-[900px] h-[1667px] z-0 pointer-events-none"
+        className="hidden lg:block absolute left-[285.391px] top-[240px] w-[900px] h-[1667px] z-0 pointer-events-none"
         viewBox="0 0 709 1781"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +141,7 @@ useEffect(() => {
 
   {/* Caption / Description */}
   <div className="px-1 py-4 bg-none">
-    <p className="body2 black-text">
+    <p className="body4 black-text">
       We’re A Mixed Crew Of Strategists, Designers, Coders And Dreamers Who Turn Brands
     </p>
   </div>

@@ -2,6 +2,7 @@
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Image from "next/image";
 
 const Firstsection = () => {
   const controls = useAnimation();
@@ -31,7 +32,7 @@ const Firstsection = () => {
     <section className="container py-10 sm:py-15 lg:py-20 ">
       {/* Headline */}
       <div className="mb-8 md:mb-12">
-        <h1 className="max-w-[1300px] black-text">
+        <h1 className="max-w-[1500px] black-text">
   Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Experience</span> That{" "}
   <span className="text-highlight">Attracts</span> and{" "}
@@ -55,11 +56,13 @@ const Firstsection = () => {
           animate={controls}
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[1400px] "
         >
-          <img
-            src="/images/plantscan.png"
-            alt="JK Diamonds Institute"
-            className="object-cover w-full h-auto rounded-2xl"
-          />
+          <Image
+  src="/images/plantscan.png"
+  alt="JK Diamonds Institute"
+  width={1400}
+  height={800}
+  className="object-cover w-full h-auto rounded-2xl"
+/>
         </motion.div>
       </div>
 
