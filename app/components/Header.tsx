@@ -163,7 +163,7 @@ export default function DesktopNav() {
           <button
             onClick={() => setOpen((s) => !s)}
             aria-label="Toggle menu"
-            className="relative grid h-13 w-12 text-[26px] border-2 border-black leading-6 cursor-pointer font-miso place-items-center text-black"
+            className="relative grid h-15 w-15  text-[26px] border-2 border-black leading-6 cursor-pointer font-miso place-items-center text-black"
           >
             M E <br />N U
           </button>

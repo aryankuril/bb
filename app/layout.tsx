@@ -1,14 +1,8 @@
-// app/layout.tsx
-"use client";
-
-import { useEffect } from "react";
-import Lenis from "@studio-freight/lenis";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Taxi from "./components/Taxi";
-import Whatsapp from "./components/Whatsapp";
+import ClientScripts from "./components/ClientScripts"; // NEW
 
 // Local Miso
 const miso = localFont({
@@ -19,44 +13,24 @@ const miso = localFont({
 // Google Poppins
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // add what you need
+  weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
 });
 
+export const metadata: Metadata = {
+  title: "Bombay Blokes",
+  description: "Integrated Digital Solutions in Mumbai | Marketing Agency in Mumbai - Bombay Blokes",
+  icons: {
+    icon: "/favicon.png", // This will be used as the favicon
+  },
+};
 
-// export const metadata: Metadata = {
-//   title: "My Project",
-//   description: "Agency Website",
-// };
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 2.0, // Higher = slower + smoother
-      easing: (t) => 1 - Math.pow(1 - t, 3), // Custom easing
-      lerp: 0.05, // Lower = smoother but slower catch-up
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => lenis.destroy();
-  }, []);
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
       <body>
         {children}
-        <Taxi />
-        <Whatsapp />
+        <ClientScripts />
       </body>
     </html>
   );
