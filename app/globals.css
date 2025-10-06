@@ -144,6 +144,8 @@ h6 {
   line-height: 1em;
 }
 
+/* / */
+
 .single-title {
   font-family: var(--font-bold-miso);
   font-size: var(--single-title-size); /* ✅ Single large title (e.g., 404 page) */
