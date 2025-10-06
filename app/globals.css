@@ -24,7 +24,7 @@
   /* =========================
      Body - Desktop Sizes
      ========================= */
-  --body1-size: 22px; /* ✅ Form labels, testimonials, our work stack cards */
+  --body1-size: 36px; /* ✅ Form labels, testimonials, our work stack cards */
   --body2-size: 20px; /* ✅ Paragraph description text */
   --body3-size: 18px; /* ✅ Form placeholders, testimonial names, filter tags, buttons */
   --body4-size: 14px; /* ✅ Footer menu links */

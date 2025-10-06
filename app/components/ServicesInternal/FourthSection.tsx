@@ -46,7 +46,7 @@ const FourthSection = () => {
 
         // Text effects
         const opacity = Math.max(0, 1 - distanceFromCenter / centerY);
-        const weight = 100 + (1 - distanceFromCenter / centerY) * 800;
+        const weight = 100 + (1 - distanceFromCenter / centerY) * 400;
         const size = 3 + (1 - distanceFromCenter / centerY); // 3vw → 4vw
 
         htmlDiv.style.opacity = opacity.toFixed(2);
