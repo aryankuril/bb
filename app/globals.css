@@ -73,7 +73,7 @@ h2 {
 h3 {
   font-family: var(--font-regular-miso);
   font-size: var(--h3-size); /* ✅ Titles and descriptions */
-  line-height: 3em;
+  line-height: 1.7em;
   text-transform: capitalize;
 }
 
