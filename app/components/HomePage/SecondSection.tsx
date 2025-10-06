@@ -115,7 +115,7 @@ export default function SecondSection() {
             </h2>
 
             {/* Title + Description + Mobile Image */}
-            <div className="flex flex-col order-2 space-y-5 ">
+            <div className="flex flex-col order-2 space-y-4 ">
               <h3 className="black-text">{s.title}</h3>
 
               {/* Mobile-only image (hidden on desktop) */}
