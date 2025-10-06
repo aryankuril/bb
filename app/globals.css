@@ -73,7 +73,7 @@ h2 {
 h3 {
   font-family: var(--font-regular-miso);
   font-size: var(--h3-size); /* ✅ Titles and descriptions */
-  line-height: 1.7em;
+  line-height: 1.2em;
   text-transform: capitalize;
 }
 
@@ -174,39 +174,39 @@ h6 {
   color: var(--color-secondary);
 }
 
-grey-text {
+.grey-text {
   color: var(--color-grey);
 }
 
 /* =========================================
    RESPONSIVE TYPOGRAPHY (Tablet & Mobile)
    ========================================= */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) and (min-width: 769px) {
   /* ---------- Headings ---------- */
-  h1 { font-size: 60px; }   /* ✅ Hero section */
-  h2 { font-size: 40px; }   /* ✅ Titles / Quotes */
-  h3 { font-size: 30px; }   /* ✅ Titles & Descriptions */
-  h4 { font-size: 20px; }   /* ✅ Navigation / Footer heading */
-  h5 { font-size: 16px; }   /* ✅ Blog title */
-  h6 { font-size: 14px; }   /* ✅ Extra */
+  h1 { font-size: 90px; }  
+  h2 { font-size: 60px; }
+  h3 { font-size: 45px; }
+  h4 { font-size: 28px; }
+  h5 { font-size: 20px; }
+  h6 { font-size: 16px; }
 
   /* ---------- Body ---------- */
-  .body1 { font-size: 20px; } /* ✅ Form labels, testimonials, our work cards */
-  .body2 { font-size: 16px; } /* ✅ Description text */
-  .body3 { font-size: 16px; } /* ✅ Placeholder, name, tag, button */
-  .body4 { font-size: 14px; } /* ✅ Footer menu */
+  .body1 { font-size: 20px; }
+  .body2 { font-size: 18px; }
+  .body3 { font-size: 16px; }
+  .body4 { font-size: 14px; }
 
   /* ---------- Numbers ---------- */
-  .stats-number { font-size: 100px; } /* ✅ Stats numbers */
-  .numbering { font-size: 50px; }     /* ✅ Card number sequence */
-  .single-title { font-size: 60px; }  /* ✅ Single large title (e.g., 404 page) */
+  .stats-number { font-size: 160px; }
+  .numbering { font-size: 80px; }
+  .single-title { font-size: 90px; }
 }
 
 
-body {
+/* body {
   @apply relative w-full min-h-screen overflow-x-hidden;
   background: url("/images/bg.svg") center center;
-}
+} */
 
 .container,
 .container-fluid,
