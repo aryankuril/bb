@@ -47,7 +47,7 @@ const SecondSection = () => {
     {/* Row 1 */}
     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
       {/* Left (wider) */}
-      <div className="col-span-1 md:col-span-3 relative h-[220px] sm:h-[300px] md:h-[400px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
+      <div className="p-5 col-span-1 md:col-span-3 relative h-[220px] sm:h-[300px] md:h-[400px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
         <img
           src={processSteps[0].image}
           alt={processSteps[0].title}
@@ -64,7 +64,7 @@ const SecondSection = () => {
       </div>
 
       {/* Right (smaller) */}
-      <div className="col-span-1 md:col-span-2 relative h-[220px] sm:h-[300px] md:h-[400px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
+      <div className=" p-5 col-span-1 md:col-span-2 relative h-[220px] sm:h-[300px] md:h-[400px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
         <img
           src={processSteps[1].image}
           alt={processSteps[1].title}
@@ -84,7 +84,7 @@ const SecondSection = () => {
     {/* Row 2 */}
     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
       {/* Left (smaller) */}
-      <div className="col-span-1 md:col-span-2 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
+      <div className="p-5 col-span-1 md:col-span-2 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
         <img
           src={processSteps[2].image}
           alt={processSteps[2].title}
@@ -101,7 +101,7 @@ const SecondSection = () => {
       </div>
 
       {/* Right (bigger) */}
-      <div className="col-span-1 md:col-span-3 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
+      <div className="p-5 col-span-1 md:col-span-3 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
         <img
           src={processSteps[3].image}
           alt={processSteps[3].title}
@@ -121,7 +121,7 @@ const SecondSection = () => {
     {/* Row 3 */}
     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
       {/* Left (wider) */}
-      <div className="col-span-1 md:col-span-3 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
+      <div className="p-5 col-span-1 md:col-span-3 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
         <img
           src={processSteps[4].image}
           alt={processSteps[4].title}
@@ -138,7 +138,7 @@ const SecondSection = () => {
       </div>
 
       {/* Right (smaller) */}
-      <div className="col-span-1 md:col-span-2 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
+      <div className="p-5 col-span-1 md:col-span-2 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
         <img
           src={processSteps[5].image}
           alt={processSteps[5].title}
