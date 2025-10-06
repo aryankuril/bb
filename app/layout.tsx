@@ -8,7 +8,7 @@ import ClientScripts from "./components/ClientScripts";
 
 // Local Miso
 const miso = localFont({
-  src: [{ path: "../public/fonts/miso-regular.ttf", weight: "400", style: "normal" }],
+  src: [{ path: "../public/fonts/miso-regular.woff2", weight: "400", style: "normal" }],
   variable: "--font-miso",
 });
 
