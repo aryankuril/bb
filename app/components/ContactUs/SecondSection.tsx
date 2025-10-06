@@ -77,7 +77,7 @@ const SecondSection = () => {
       const [active, setActive] = useState<string | null>(null);
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
-      <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 lg:overflow-visible overflow-hidden ">
+      <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
         
         {/* Left Side Image */}
         <div className="lg:p-10 p-5 flex items-center justify-center">
@@ -89,21 +89,21 @@ const SecondSection = () => {
         </div>
 
         {/* Right Side Form */}
-        <div className="p-4 sm:p-5 md:p-6 white-text relative">
-<div className="flex items-center justify-center gap-4">
-  <h2
+        <div className="p-4 sm:p-5 md:p-5 white-text relative">
+<div className="flex items-center justify-start gap-4">
+  <h3
     className="
       white-text
     "
   >
     Let’s Have A <span className="text-highlight">Pani Puri</span> Date
-  </h2>
+  </h3>
 
   {/* ✅ Add Image */}
   <img 
     src="/images/panipuri.png"  // replace with your actual path
     alt="Pani Puri"
-    className="lg:w-[150px] w-[80px] h-auto object-contain z-55 lg:-mr-18 overflow-visible "
+    className="lg:w-[140] w-[70px] h-auto object-contain z-55 lg:-mr-18"
   />
 </div>
 

@@ -3,8 +3,9 @@ import Navbar from '../components/Navbar'
 import Firstsection from '../components/AboutUs/Firstsection'
 import SecondSection from '../components/HomePage/SecondSection'
 import ThirdSection from '../components/AboutUs/ThirdSection'
-import FourthSection from '../components/AboutUs/FourthSection'
+// import FourthSection from '../components/AboutUs/FourthSection'
 import SeventhSection from '../components/ServicesInternal/SeventhSection'
+import RubberSection from '../components/HomePage/RubberSection'
 import Footer from '../components/Footer'
 import ClientScripts from '../components/ClientScripts'
 
@@ -16,7 +17,8 @@ const Index = () => {
         <Firstsection />
         <SecondSection/>
         <ThirdSection />
-        <FourthSection />
+        {/* <FourthSection /> */}
+        <RubberSection/>
         <SeventhSection />
         <Footer />
     </div>

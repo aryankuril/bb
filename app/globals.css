@@ -59,7 +59,7 @@ body {
 h1 {
   font-family: var(--font-bold-miso);
   font-size: var(--h1-size); /* ✅ Hero Section heading */
-  line-height: 1em;
+  line-height: 0.8em;
   text-transform: capitalize;
 }
 
