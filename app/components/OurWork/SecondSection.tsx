@@ -92,10 +92,10 @@ const SecondSection = () => {
 // ✅ Typed props
 const CardText: React.FC<{ number: string; title: string }> = ({ number, title }) => (
   <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
-    <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
+    <span className="text-highlight numbering ">
       {number}
     </span>
-    <h3 className="white-text ">
+    <h3 className="white-text leading-tight">
       {title}
     </h3>
   </div>
