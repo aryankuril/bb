@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "./globals.css"; // ✅ contains MisoFixed @font-face fix
 import Taxi from "./components/Taxi";
-import Whatsapp from "./components/Taxi";
+import Whatsapp from "./components/Whatsapp";
 import ClientScripts from "./components/ClientScripts";
 
-// Local Miso
-const miso = localFont({
-  src: [{ path: "../public/fonts/miso-regular.woff2", weight: "400", style: "normal" }],
-  variable: "--font-miso",
-});
-
-// Google Poppins
+// ✅ Only load Poppins here
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -30,16 +23,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${poppins.variable}`}>
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
+
+        {/* ✅ Preload your single Miso font for better performance */}
+        <link
+          rel="preload"
+          href="/fonts/miso-regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </head>
+
       <body>
         {children}
         <Taxi />
-      <Whatsapp />
+        <Whatsapp />
+        <ClientScripts />
       </body>
     </html>
   );
 }
- 

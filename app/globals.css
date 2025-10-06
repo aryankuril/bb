@@ -1,15 +1,35 @@
+/* =========================================
+   FONT IMPORTS
+   ========================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Miso:wght@300;400;700&family=Poppins:wght@400;700&display=swap");
+/* Keep only Poppins from Google (remove Miso from Google) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 @import "tailwindcss";
+
+/* =========================================
+   LOCAL FONT: Miso with macOS-safe metric overrides
+   ========================================= */
+@font-face {
+  font-family: "MisoFixed";
+  src: url("/fonts/miso-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+
+  /* Fix macOS/WebKit vertical metrics */
+  ascent-override: 88%;
+  descent-override: 12%;
+  line-gap-override: 0%;
+}
 
 /* =========================================
    FONT VARIABLES & COLORS
    ========================================= */
 :root {
-  --font-miso: "Miso", sans-serif;
+  --font-miso: "MisoFixed", sans-serif;
   --font-poppins: "Poppins", sans-serif;
-  --font-bold-miso: "Miso", sans-serif;
-  --font-regular-miso: "Miso", sans-serif;
+  --font-bold-miso: "MisoFixed", sans-serif;
+  --font-regular-miso: "MisoFixed", sans-serif;
 
   /* =========================
      Headings - Desktop Sizes
@@ -59,7 +79,7 @@ body {
 h1 {
   font-family: var(--font-bold-miso);
   font-size: var(--h1-size); /* ✅ Hero Section heading */
-  line-height: 1em;
+  line-height: 1.02em;       /* was 1em; tiny bump prevents macOS collisions */
   text-transform: capitalize;
 }
 
@@ -94,6 +114,12 @@ h6 {
   font-family: var(--font-regular-miso);
   font-size: var(--h6-size); /* ✅ Extra - rarely used */
   line-height: 1.2em;
+}
+
+/* Optional safety gap after hero heading */
+h1 + p,
+h1 + .body2 {
+  margin-top: 0.35em;
 }
 
 /* =========================================
@@ -159,31 +185,21 @@ h6 {
   font-weight: 400;
   line-height: 1em;
 }
+
 /* =========================================
    UTILITY TEXT COLORS
    ========================================= */
-.text-highlight {
-  color: var(--color-highlight);
-}
-
-.black-text {
-  color: var(--color-primary);
-}
-
-.white-text {
-  color: var(--color-secondary);
-}
-
-.grey-text {
-  color: var(--color-grey);
-}
+.text-highlight { color: var(--color-highlight); }
+.black-text { color: var(--color-primary); }
+.white-text { color: var(--color-secondary); }
+.grey-text { color: var(--color-grey); }
 
 /* =========================================
    RESPONSIVE TYPOGRAPHY (Tablet & Mobile)
    ========================================= */
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   /* ---------- Headings ---------- */
-  h1 { font-size: 90px; }  
+  h1 { font-size: 90px; }
   h2 { font-size: 60px; }
   h3 { font-size: 45px; }
   h4 { font-size: 28px; }
@@ -202,12 +218,14 @@ h6 {
   .single-title { font-size: 90px; }
 }
 
-
 /* body {
   @apply relative w-full min-h-screen overflow-x-hidden;
   background: url("/images/bg.svg") center center;
 } */
 
+/* =========================================
+   CONTAINERS
+   ========================================= */
 .container,
 .container-fluid,
 .container-xxl,
@@ -215,96 +233,71 @@ h6 {
 .container-lg,
 .container-md,
 .container-sm {
-    width: 100%;
-    padding-right: 0px !important;
-    padding-left: 0px !important;
-    margin-right: auto !important;
-    margin-left: auto !important;
+  width: 100%;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 @media screen and (min-width: 0px) and (max-width: 750px) {
-
-    .container-sm,
-    .container {
-        width: 100%;
-        padding-right: 20px !important;
-        padding-left: 20px !important;
-        margin-right: auto !important;
-        margin-left: auto !important;
-    }
-
+  .container-sm,
+  .container {
+    width: 100%;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
 }
 
 @media (min-width: 576px) {
-
-    .container-sm,
-    .container {
-        max-width: 540px;
-    }
+  .container-sm,
+  .container { max-width: 540px; }
 }
 
 @media (min-width: 768px) {
-
-    .container-md,
-    .container-sm,
-    .container {
-        max-width: 960px;
-
-    }
+  .container-md,
+  .container-sm,
+  .container { max-width: 960px; }
 }
 
 @media (min-width: 992px) {
-
-    .container-lg,
-    .container-md,
-    .container-sm,
-    .container {
-        max-width: 1000px;
-
-    }
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container { max-width: 1000px; }
 }
 
 @media (min-width: 1200px) {
-
-    .container-xl,
-    .container-lg,
-    .container-md,
-    .container-sm,
-    .container {
-        max-width: 1200px;
-
-    }
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container { max-width: 1200px; }
 }
 
 @media (min-width: 1400px) {
-
-    .container-xxl,
-    .container-xl,
-    .container-lg,
-    .container-md,
-    .container-sm,
-    .container {
-        max-width: 1400px;
-    }
+  .container-xxl,
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container { max-width: 1400px; }
 }
 
 @media (min-width: 1600px) {
-
-    .container-xxl,
-    .container-xl,
-    .container-lg,
-    .container-md,
-    .container-sm,
-    .container {
-        max-width: 1600px;
-    }
+  .container-xxl,
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container { max-width: 1600px; }
 }
 
-
-
-
-
-/* servicesPage SeventhSection Text Animation */
+/* =========================================
+   ANIMATIONS & EFFECTS
+   ========================================= */
 @keyframes highlight {
   0% { color: #FAB31E; }
   33.333% { color: #FAB31E; }
@@ -324,17 +317,7 @@ h6 {
 .animated-word:nth-child(2) { animation-delay: 1s; }
 .animated-word:nth-child(3) { animation-delay: 2s; }
 
-
-
-.perspective {
-  perspective: 1000px;
-}
-.transform-style-preserve-3d {
-  transform-style: preserve-3d;
-}
-.backface-hidden {
-  backface-visibility: hidden;
-}
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
+.perspective { perspective: 1000px; }
+.transform-style-preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }

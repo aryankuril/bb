@@ -100,7 +100,7 @@ const WorkflowSection: React.FC = () => {
                   {step.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className=" bg-[var(--color-highlight)] black-text body3 px-3 sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
+                      className=" bg-[var(--color-highlight)] black-text body3 px-3 capitalize sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
                     >
                       {tag}
                     </span>
