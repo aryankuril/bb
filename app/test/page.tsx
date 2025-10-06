@@ -1,11 +1,11 @@
 import React from 'react'
 import Button from '../components/Button'
-import Navbar from '../components/Navbar'
+// import Navbar from '../components/Navbar'
 
 const Index = () => {
   return (
     <div className="">
-    <Navbar/>
+    {/* <Navbar/> */}
 <section className="w-full container py-10 sm:py-15 lg:py-20 flex flex-col md:flex-row items-center justify-between gap-10">
   {/* Left Side - Text */}
   <div className="flex-1 text-center md:text-left space-y-4">
