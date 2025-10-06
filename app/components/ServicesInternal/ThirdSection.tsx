@@ -83,7 +83,7 @@ const WorkflowSection: React.FC = () => {
               key={index}
               className="bg-black rounded-[20px] sm:rounded-[30px] p-4 sm:p-6 md:p-8 relative 
               w-[250px] sm:w-[350px] md:w-[400px] lg:w-[450px] 
-              h-[380px] sm:h-[450px] md:h-[500px] lg:h-[550px] flex-shrink-0"
+              h-[380px] sm:h-[450px] md:h-[500px] lg:h-[540px] flex-shrink-0"
             >
               <div className="absolute right-0 top-0 w-4 sm:w-6 md:w-7 h-full bg-[var(--color-highlight)] rounded-r-[20px] sm:rounded-r-[30px]" />
 
