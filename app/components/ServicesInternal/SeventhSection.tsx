@@ -17,11 +17,11 @@ const SeventhSection = () => {
         />
 
         {/* Animated Heading */}
-        <h4 className="text-center  flex flex-wrap justify-center gap-2 sm:gap-3">
+        <h3 className="text-center  flex flex-wrap justify-center gap-2 sm:gap-3">
           <span className="animated-word">Connect.</span>
           <span className="animated-word">Collaborate.</span>
           <span className="animated-word">Grow.</span>
-        </h4>
+        </h3>
 
         {/* Contact Info */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 body3 white-text ">
