@@ -53,7 +53,7 @@ const SecondSection = () => {
           alt={processSteps[0].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
+        <div className="felex justify-end items-end gap-2 sm:gap-4">
           <span className="text-highlight numbering  inline-flex items-end translate-y-[0.22em]">
             {processSteps[0].number}
           </span>
@@ -70,7 +70,7 @@ const SecondSection = () => {
           alt={processSteps[1].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
+        <div className="felex justify-end items-end gap-2 sm:gap-4">
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[1].number}
           </span>
@@ -90,7 +90,7 @@ const SecondSection = () => {
           alt={processSteps[2].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
+        <div className="felex justify-end items-end gap-2 sm:gap-4">
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[2].number}
           </span>
@@ -107,7 +107,7 @@ const SecondSection = () => {
           alt={processSteps[3].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
+        <div className="felex justify-end items-end gap-2 sm:gap-4">
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[3].number}
           </span>
@@ -127,7 +127,7 @@ const SecondSection = () => {
           alt={processSteps[4].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
+        <div className="felex justify-end items-end gap-2 sm:gap-4">
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[4].number}
           </span>
@@ -144,7 +144,7 @@ const SecondSection = () => {
           alt={processSteps[5].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-        <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 flex items-end gap-2 sm:gap-4">
+        <div className="felex justify-end items-end gap-2 sm:gap-4">
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[5].number}
           </span>

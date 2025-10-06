@@ -24,9 +24,8 @@ const testimonials = [
   },
 ];
 
-
 const SixthSection = () => {
-   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const delay = 5000;
 
