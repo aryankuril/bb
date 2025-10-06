@@ -57,7 +57,7 @@ const SecondSection = () => {
           <span className="text-highlight numbering  inline-flex items-end translate-y-[0.22em]">
             {processSteps[0].number}
           </span>
-          <h3 className="white-text  leading-tight">
+          <h3 className="white-text   ">
             {processSteps[0].title}
           </h3>
         </div>
@@ -74,7 +74,7 @@ const SecondSection = () => {
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[1].number}
           </span>
-          <h3 className="white-text leading-tight">
+          <h3 className="white-text  ">
             {processSteps[1].title}
           </h3>
         </div>
@@ -94,7 +94,7 @@ const SecondSection = () => {
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[2].number}
           </span>
-          <h3 className="white-text leading-tight">
+          <h3 className="white-text  ">
             {processSteps[2].title}
           </h3>
         </div>
@@ -111,7 +111,7 @@ const SecondSection = () => {
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[3].number}
           </span>
-          <h3 className="white-text leading-tight">
+          <h3 className="white-text  ">
             {processSteps[3].title}
           </h3>
         </div>
@@ -131,7 +131,7 @@ const SecondSection = () => {
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[4].number}
           </span>
-          <h3 className="white-text leading-tight">
+          <h3 className="white-text  ">
             {processSteps[4].title}
           </h3>
         </div>
@@ -148,7 +148,7 @@ const SecondSection = () => {
           <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
             {processSteps[5].number}
           </span>
-          <h3 className="white-text leading-tight">
+          <h3 className="white-text  ">
             {processSteps[5].title}
           </h3>
         </div>

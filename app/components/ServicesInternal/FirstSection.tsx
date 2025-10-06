@@ -40,7 +40,6 @@ const FirstSection = () => {
   </div>
 
   {/* Right Side - Image Slider */}
-  {/* Right Side - Image Slider */}
 <div className="flex-1 w-full max-w-[600px] relative">
   {/* Wrapper with no overflow */}
   <div className="aspect-[4/3] relative rounded-[20px] sm:rounded-[30px] overflow-hidden">

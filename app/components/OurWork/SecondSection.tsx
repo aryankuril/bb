@@ -95,7 +95,7 @@ const CardText: React.FC<{ number: string; title: string }> = ({ number, title }
     <span className="text-highlight numbering inline-flex items-end translate-y-[0.22em]">
       {number}
     </span>
-    <h3 className="white-text leading-tight">
+    <h3 className="white-text ">
       {title}
     </h3>
   </div>
