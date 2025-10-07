@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Taxi from "./components/Taxi";
-// import PageLoader from "./component/s/PageLoader";
+import PageLoader from "./components/PageLoader";
 // import Whatsapp from "./components/Whatsapp";
 // import ClientScripts from "./components/ClientScripts";
 
@@ -36,10 +36,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body>
-         {/* <PageLoader> */}
+         <PageLoader>
           {children}
-          {/* </PageLoader> */}
         <Taxi />
+          </PageLoader>
       {/* <Whatsapp /> */}
       </body>
     </html>

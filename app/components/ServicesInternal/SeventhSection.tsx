@@ -12,7 +12,7 @@ const SeventhSection = () => {
         
         {/* Image */}
         <img
-          src="/images/BB-web-chai-1.gif"
+          src="/images/BB-web-chai-2.gif"
           className="w-[180px] h-[120px] sm:w-[240px] sm:h-[160px] md:w-[290px] md:h-[190px] mx-auto mb-6 sm:mb-8"
         />
 

@@ -6,6 +6,7 @@ const Taxi = () => {
   const scrollY = useMotionValue(0);
   const [docHeight, setDocHeight] = useState(1);
   const [viewportWidth, setViewportWidth] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(0);
 
   // Width of taxi dynamically based on screen size
   const getTaxiWidth = () => {
@@ -19,10 +20,10 @@ const Taxi = () => {
 
   useEffect(() => {
     const updateSizes = () => {
-      const height =
-        document.documentElement.scrollHeight - window.innerHeight;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
       setDocHeight(height || 1);
       setViewportWidth(window.innerWidth);
+      setViewportHeight(window.innerHeight);
       setTaxiWidth(getTaxiWidth());
     };
 
@@ -50,9 +51,13 @@ const Taxi = () => {
     clamp: true,
   });
 
-  // Move taxi a bit higher on small screens so it doesn’t overlap footer
-  const bottomOffset =
-    viewportWidth < 480 ? 60 : viewportWidth < 768 ? 40 : 20;
+  // Adjust bottom offset based on viewport width & height
+  let bottomOffset = 20; // default
+  if (viewportWidth < 480) {
+    bottomOffset = Math.max(viewportHeight * 0.12, 60); // at least 60px or 12% of screen height
+  } else if (viewportWidth < 768) {
+    bottomOffset = Math.max(viewportHeight * 0.08, 40); // at least 40px or 8% of screen height
+  }
 
   return (
     <motion.img
