@@ -31,7 +31,7 @@ const FirstSection = () => {
 
     </h1>
 
-    <p className="body2 w-full max-w-[1000px] black-text mx-auto md:mx-0 mt-4 break-words">
+    <p className="body2 w-full max-w-[600px] black-text mt-4 break-words">
       From Strategy To Storytelling, Identity To Impact, We Craft Everything Your Brand Needs To Stand Out And Grow.
     </p>
 

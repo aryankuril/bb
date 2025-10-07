@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import Button from "../Button";
  
 type CardItem = {
   id: number;
@@ -113,7 +114,12 @@ const CardCarousel: React.FC = () => {
             </div>
           ))}
         </motion.div>
+
+        <div className="flex justify-center items-center lg:mt-10 mt-5">
+      <Button href="#" text="BOOK FREE AUDIT " className="" />
+    </div>
       </div>
+      
     </section>
   );
 };

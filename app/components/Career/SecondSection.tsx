@@ -193,13 +193,19 @@ const SecondSection = () => {
             <div className="whitespace-pre-line  white-text body2 pr-1 sm:pr-2">
               {activeJob.details}
             </div>
-<div className="mt-4 sm:mt-6 lg:mt-10 flex justify-center"> 
+<div className=" flex justify-center">
   <Button
     onClick={() => setIsFlipped(true)}
     text="Book ticket"
-    className="lg:mt-10"
+    disabled={isFlipped} // disable when flipped
+    className={`lg:mt-10 ${
+      isFlipped
+        ? "opacity-50 cursor-not-allowed"
+        : "hover:opacity-90 transition"
+    }`}
   />
 </div>
+
 
           </div>
 
@@ -360,9 +366,19 @@ const SecondSection = () => {
     </div>
 
     {/* Confirm Button */}
-                    <div className="mt-6 lg:mt-5 flex justify-center">
-  <Button href="#" text="CONFIRM TICKET" className="white-text" />
+<div className="mt-6 lg:mt-5 flex justify-center">
+  <Button
+    href="#"
+    text="CONFIRM TICKET"
+    disabled={!isFlipped} // disable when card is not flipped
+    className={`white-text ${
+      !isFlipped
+        ? "opacity-50 cursor-not-allowed"
+        : "hover:opacity-90 transition"
+    }`}
+  />
 </div>
+
 
     {/* Back to job link
     <button

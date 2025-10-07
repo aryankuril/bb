@@ -55,7 +55,7 @@ const ThirdSection = () => {
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[1400px] "
         >
           <Image
-            src="/images/plantscan.png"
+            src="/images/Plantscan.png"
             alt="JK Diamonds Institute"
             width={1400}
             height={800}

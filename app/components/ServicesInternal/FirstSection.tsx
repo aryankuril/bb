@@ -30,7 +30,7 @@ const FirstSection = () => {
       We Don’t Just Brand, <span className="text-highlight">We Build Icons.</span>
     </h1>
 
-    <p className="body2 w-full max-w-[1000px] mx-auto  mt-4 break-words">
+    <p className="body2 w-full max-w-[600px] mt-4 break-words">
       From Strategy To Storytelling, Identity To Impact, We Craft Everything Your Brand Needs To Stand Out And Grow.
     </p>
 

@@ -145,7 +145,7 @@ export default function StackingCards() {
          our best works
         </h2>
       </div>
-    <section ref={sectionRef} className="relative w-full py-10 sm:py-15 lg:py-20">
+     <section ref={sectionRef} className="relative  container w-full py-10 sm:py-15 lg:py-20">
       <div className="sticky h-[100svh] flex items-center justify-center">
         <div className="relative w-full flex items-center justify-center mb-50">
           {cardsData.map((card, i) => (

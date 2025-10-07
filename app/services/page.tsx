@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Firstsection from '../components/Services/Firstsection'
 import SecondSection from '../components/Services/SecondSection'
+import ThirdSection from '../components/Services/ThirdSection'
 import SeventhSection from '../components/ServicesInternal/SeventhSection'
 import Footer from '../components/Footer'
 
@@ -11,7 +12,8 @@ const page = () => {
         <Navbar />
         <Firstsection />
         <SecondSection />
-        <SeventhSection />
+        <ThirdSection/>
+        <SeventhSection/>
         <Footer />
     </div>
   )

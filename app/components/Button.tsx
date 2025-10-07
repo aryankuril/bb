@@ -5,12 +5,13 @@ import { useState, useRef, useEffect } from "react";
 
 interface ButtonProps {
   text: string;
-  href?: string;          // ✅ Now optional
-  onClick?: () => void;   // ✅ Support for actions
+  href?: string;           // optional link
+  onClick?: () => void;    // click handler
   className?: string;
+  disabled?: boolean;      // ✅ new: supports disabled state
 }
 
-const Button: React.FC<ButtonProps> = ({ text, href, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ text, href, onClick, className = "", disabled = false }) => {
   const [hovered, setHovered] = useState(false);
   const textRef = useRef<HTMLSpanElement>(null);
   const [textWidth, setTextWidth] = useState(0);
@@ -27,7 +28,9 @@ const Button: React.FC<ButtonProps> = ({ text, href, onClick }) => {
 
   const content = (
     <div
-      className="relative z-10 px-4 py-2 h-12 flex items-center justify-center uppercase body3"
+      className={`relative z-10 px-4 py-2 h-12 flex items-center justify-center uppercase body3 ${
+        disabled ? "opacity-50 cursor-not-allowed" : ""
+      }`}
     >
       <span ref={textRef} className="flex">
         {chars.map((char, idx) => (
@@ -38,14 +41,14 @@ const Button: React.FC<ButtonProps> = ({ text, href, onClick }) => {
           >
             <span
               className={`block transition-transform duration-400 ease-in-out ${
-                hovered ? "-translate-y-7" : "translate-y-0"
+                hovered && !disabled ? "-translate-y-7" : "translate-y-0"
               }`}
             >
               {char}
             </span>
             <span
               className={`block absolute left-0 top-0 transition-transform duration-400 ease-in-out ${
-                hovered ? "translate-y-0" : "translate-y-7"
+                hovered && !disabled ? "translate-y-0" : "translate-y-7"
               }`}
             >
               {char}
@@ -59,24 +62,34 @@ const Button: React.FC<ButtonProps> = ({ text, href, onClick }) => {
 
   return (
     <div
-      className="relative inline-block cursor-pointer select-none"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className={`relative inline-block select-none ${className}`}
+      onMouseEnter={() => !disabled && setHovered(true)}
+      onMouseLeave={() => !disabled && setHovered(false)}
     >
       {/* Background animation */}
       <div
         className={`body3 absolute top-1/2 -translate-y-1/2 bg-[var(--color-highlight)] rounded-full transition-all duration-500 ease-in-out h-12`}
         style={{
-          width: hovered ? textWidth : 48,
+          width: hovered && !disabled ? textWidth : 48,
           left: -5,
+          opacity: disabled ? 0.5 : 1,
         }}
       ></div>
 
-      {/* Render Link OR Button based on props */}
+      {/* Render Link or Button */}
       {href ? (
-        <Link href={href}>{content}</Link>
+        <Link
+          href={disabled ? "#" : href}
+          className={disabled ? "pointer-events-none" : ""}
+        >
+          {content}
+        </Link>
       ) : (
-        <button onClick={onClick} className="relative z-10 body3 ">
+        <button
+          onClick={!disabled ? onClick : undefined}
+          disabled={disabled}
+          className="relative z-10 body3"
+        >
           {content}
         </button>
       )}

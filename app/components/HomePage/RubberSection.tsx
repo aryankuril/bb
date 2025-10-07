@@ -24,11 +24,24 @@ const RubberSection = () => {
       </h2>
 
       {/* Cards */}
-      <div className="mt-16 flex flex-wrap justify-center -gap-5 px-4 space-x-[-3rem]">
-        {cards.map((card, idx) => {  
+      <div
+        className="
+          mt-16
+          flex
+          flex-col
+          items-center
+          gap-6
+          sm:flex-col
+          md:flex-row
+          md:flex-wrap
+          md:justify-center
+          lg:space-x-[-3rem]
+          px-4
+        "
+      >
+        {cards.map((card, idx) => {
           const x = useMotionValue(0);
           const y = useMotionValue(0);
-
           const rotate = useTransform(x, [-200, 200], [-25 + card.rotate, 25 + card.rotate]);
 
           const resetPosition = () => {
@@ -40,19 +53,33 @@ const RubberSection = () => {
           return (
             <motion.div
               key={idx}
-              className="relative w-[120px] sm:w-72 md:w-[350px] lg:h-[350px] h-[120px] flex-shrink-0 rounded-xl shadow-lg cursor-grab"
+              className="
+                relative
+                w-[220px]
+                sm:w-[260px]
+                md:w-[300px]
+                lg:w-[350px]
+                h-[220px]
+                sm:h-[260px]
+                md:h-[300px]
+                lg:h-[350px]
+                flex-shrink-0
+                rounded-xl
+                shadow-lg
+                cursor-grab
+              "
               style={{ x, y, rotate }}
               drag
-              dragConstraints={sectionRef} // ✅ Full section drag allowed!
+              dragConstraints={sectionRef}
               dragElastic={0.4}
               whileDrag={{ scale: 1.05 }}
               dragTransition={{ bounceStiffness: 200, bounceDamping: 15, power: 0.2 }}
-              onDragEnd={resetPosition} // ✅ Snap back when released
+              onDragEnd={resetPosition}
             >
               <img
                 src={card.img}
                 alt={card.label}
-                className="w-[120px] lg:w-[350px] lg:h-[350px] h-[120px] rounded-xl object-cover pointer-events-none"
+                className="w-full h-full rounded-xl object-cover pointer-events-none"
               />
             </motion.div>
           );

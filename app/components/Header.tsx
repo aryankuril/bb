@@ -149,7 +149,7 @@ export default function DesktopNav() {
       {/* nav shell */}
       <div ref={shell} className="rounded-2xl text-neutral-200">
         <div className="flex items-center justify-between">
-          <Link href="#">
+          <Link href="/">
             <Image
               src="/images/bblogo.webp"
               alt="Bombay Blokes Logo"
@@ -176,11 +176,47 @@ export default function DesktopNav() {
         >
           <div ref={black} />
           <div ref={yellow} />
+          {/* CLOSE BUTTON */}
+{/* CLOSE BUTTON */}
+{open && (
+  <button
+    ref={(el) => {
+      if (el) {
+        // Fade-in GSAP animation when button mounts
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: -20 },
+          {
+            opacity: 1,
+            y: 0,
+            delay: 2, // 👈 small delay for smoother entrance
+            duration: 0.8,
+            ease: "power3.out",
+          }
+        );
+      }
+    }}
+    onClick={() => {
+      gsap.to(".close-btn", {
+        opacity: 0,
+        y: -10,
+        duration: 0.4,
+        ease: "power3.inOut",
+      });
+      setTimeout(() => setOpen(false), 350);
+    }}
+    className="close-btn absolute cursor-pointer top-6 right-6 text-white text-[16px] uppercase tracking-wider font-[Miso] z-20 hover:text-[#FAB31E] transition-colors"
+  >
+    Close
+  </button>
+)}
+
+
 
           {/* divider */}
           <div
             ref={divider}
-            className="absolute left-1/2 mt-[200px] -translate-y-1/2 w-[2px] h-[60%]"
+            className="absolute left-1/2 mt-[230px] -translate-y-1/2 w-[2px] h-[60%]"
             style={{
               backgroundImage:
                 "repeating-linear-gradient(to bottom, #737373 0 20px, transparent 20px 40px)",
@@ -190,12 +226,12 @@ export default function DesktopNav() {
           {/* <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-5 h-full bg-[#FAB31E]"></div> */}
 
           {/* content */}
-          <div className="relative z-10 grid h-full grid-cols-2 gap-10 px-12 py-12 text-sm">
-            <ul ref={leftCol} className="space-y-6 text-center px-5">
+          <div className="relative z-10 grid h-full grid-cols-2 gap-10 px-12 py-12 text-sm mt-15  ">
+            <ul ref={leftCol} className="space-y-6 text-center px-1">
               <li>
                 <Link
                   href="/"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
                 >
                   Home
                 </Link>
@@ -203,7 +239,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/services"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
                 >
                   Services
                 </Link>
@@ -211,7 +247,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/clients"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
                 >
                   Clients
                 </Link>
@@ -219,7 +255,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/contactus"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
                 >
                   Contact
                 </Link>
@@ -230,7 +266,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/aboutus"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
                 >
                   About
                 </Link>
@@ -238,7 +274,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/ourwork"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
                 >
                   Work
                 </Link>
@@ -246,7 +282,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/teams"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
                 >
                   Team
                 </Link>
@@ -254,7 +290,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/career"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
                 >
                   Careers
                 </Link>
@@ -263,7 +299,7 @@ export default function DesktopNav() {
 
             <div
               ref={bottomRow}
-              className="pointer-events-none absolute  bottom-4 left-0 right-0 flex items-center justify-center px-6 text-xs uppercase tracking-wide"
+              className="pointer-events-none absolute  bottom-9 left-0 right-0 flex items-center justify-center px-6 text-xs uppercase tracking-wide"
             >
               <div className="pointer-events-auto flex gap-3">
                 <a href="#" className="opacity-80 hover:opacity-100"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32" fill="none">

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import Button from "../Button";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,82 +65,84 @@ const cardsData = [
   },
 ];
 
-export default function FifthSection() {
-   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
-
-  const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
-    if (el) cardsRef.current[i] = el;
-  };
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const cards = cardsRef.current;
-    if (!section || !cards.length) return;
-
-    const ctx = gsap.context(() => {
-      const BEHIND_1 = { scale: 0.96, opacity: 0.38, y: -40 };
-      const BEHIND_2 = { scale: 0.9, opacity: 0.2, y: -80 };
-
-      gsap.set(cards, { x: 0 });
-
-      gsap.set(cards, {
-        y: 240,
-        opacity: 0,
-        scale: 1,
-        willChange: "transform,opacity",
-        force3D: true,
-      });
-      gsap.set(cards[0], { y: 0, opacity: 1, zIndex: 100 });
-
-      const totalVH = cards.length * 240;
-      const tl = gsap.timeline({
-        defaults: { ease: "power2.out", duration: 1.05 },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: `+=${totalVH}vh`,
-          scrub: 1.6,
-          pin: true,
-          anticipatePin: 1,
-          // markers: true,
-        },
-      });
-
-      for (let i = 1; i < cards.length; i++) {
-        const curr = cards[i];
-        const prev = cards[i - 1];
-        const prev2 = i - 2 >= 0 ? cards[i - 2] : null;
-
-        tl.to(curr, { y: 0, opacity: 1 }, i);
-        tl.to(prev, { ...BEHIND_1 }, i);
-        if (prev2) tl.to(prev2, { ...BEHIND_2 }, i);
-
-        if (i - 3 >= 0) {
-          const older = cards.slice(0, i - 2);
-          tl.to(older, { opacity: 0, duration: 0.6 }, i);
-        }
-
-        tl.set(curr, { zIndex: 100 + i }, i);
-      }
-
-      const last = cards.length - 1;
-      if (last >= 2) {
-        tl.addLabel("final", last + 0.001);
-        tl.to(cards[last - 1], { ...BEHIND_1, duration: 0.01 }, "final");
-        tl.to(cards[last - 2], { ...BEHIND_2, duration: 0.01 }, "final");
-        if (last - 2 > 0) tl.set(cards.slice(0, last - 2), { opacity: 0 }, "final");
-      }
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
-
+const ThirdSection = () => {
+      const sectionRef = useRef<HTMLDivElement | null>(null);
+      const cardsRef = useRef<HTMLDivElement[]>([]);
+    
+      const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
+        if (el) cardsRef.current[i] = el;
+      };
+    
+      useEffect(() => {
+        const section = sectionRef.current;
+        const cards = cardsRef.current;
+        if (!section || !cards.length) return;
+    
+        const ctx = gsap.context(() => {
+          const BEHIND_1 = { scale: 0.96, opacity: 0.38, y: -40 };
+          const BEHIND_2 = { scale: 0.9, opacity: 0.2, y: -80 };
+    
+          gsap.set(cards, { x: 0 });
+    
+          gsap.set(cards, {
+            y: 240,
+            opacity: 0,
+            scale: 1,
+            willChange: "transform,opacity",
+            force3D: true,
+          });
+          gsap.set(cards[0], { y: 0, opacity: 1, zIndex: 100 });
+    
+          const totalVH = cards.length * 240;
+          const tl = gsap.timeline({
+            defaults: { ease: "power2.out", duration: 1.05 },
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: `+=${totalVH}vh`,
+              scrub: 1.6,
+              pin: true,
+              anticipatePin: 1,
+              // markers: true,
+            },
+          });
+    
+          for (let i = 1; i < cards.length; i++) {
+            const curr = cards[i];
+            const prev = cards[i - 1];
+            const prev2 = i - 2 >= 0 ? cards[i - 2] : null;
+    
+            tl.to(curr, { y: 0, opacity: 1 }, i);
+            tl.to(prev, { ...BEHIND_1 }, i);
+            if (prev2) tl.to(prev2, { ...BEHIND_2 }, i);
+    
+            if (i - 3 >= 0) {
+              const older = cards.slice(0, i - 2);
+              tl.to(older, { opacity: 0, duration: 0.6 }, i);
+            }
+    
+            tl.set(curr, { zIndex: 100 + i }, i);
+          }
+    
+          const last = cards.length - 1;
+          if (last >= 2) {
+            tl.addLabel("final", last + 0.001);
+            tl.to(cards[last - 1], { ...BEHIND_1, duration: 0.01 }, "final");
+            tl.to(cards[last - 2], { ...BEHIND_2, duration: 0.01 }, "final");
+            if (last - 2 > 0) tl.set(cards.slice(0, last - 2), { opacity: 0 }, "final");
+          }
+        }, section);
+    
+        return () => ctx.revert();
+      }, []);
   return (
     <div className="">
       <div className="flex items-center justify-center w-[80%] mx-auto ">
         <h2 className="text-center black-text ">
-         our best works
+        Always Enjoy Extra 
+        <span className="text-highlight"> Chutney </span> With 
+        <span className="text-highlight"> Your Vada Pav </span> 
+        
         </h2>
       </div>
      <section ref={sectionRef} className="relative  container w-full py-10 sm:py-15 lg:py-20">
@@ -220,10 +221,9 @@ export default function FifthSection() {
           ))}
         </div>
       </div>
-      <div className="flex justify-center items-center">
-      <Button href="#" text="BOOK FREE AUDIT " className="" />
-    </div>
     </section>
     </div>
-  );
+  )
 }
+
+export default ThirdSection
