@@ -106,7 +106,7 @@ export default function DesktopNav() {
         .to(
           y,
           {
-            width: 10,
+            width: 15,
             height: () => s.clientHeight,
             left: () => s.clientWidth,
             xPercent: -100,
@@ -172,7 +172,7 @@ export default function DesktopNav() {
         {/* stage */}
         <div
           ref={stage}
-          className="relative mt-30 h-[400px] w-[450px] ml-[500px] flex justify-center items-center overflow-hidden rounded-xl border border-neutral-800/60"
+          className="relative mt-30 h-[400px] w-[450px] ml-[500px] flex justify-center items-center overflow-hidden rounded-xl "
         >
           <div ref={black} />
           <div ref={yellow} />
