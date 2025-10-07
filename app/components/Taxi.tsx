@@ -6,7 +6,16 @@ const Taxi = () => {
   const scrollY = useMotionValue(0);
   const [docHeight, setDocHeight] = useState(1);
   const [viewportWidth, setViewportWidth] = useState(0);
-  const taxiWidth = 120; // keep same as style width
+
+  // Width of taxi dynamically based on screen size
+  const getTaxiWidth = () => {
+    if (typeof window === "undefined") return 120;
+    if (window.innerWidth < 480) return 70; // small phones
+    if (window.innerWidth < 768) return 90; // tablets
+    return 120; // desktops
+  };
+
+  const [taxiWidth, setTaxiWidth] = useState(getTaxiWidth());
 
   useEffect(() => {
     const updateSizes = () => {
@@ -14,6 +23,7 @@ const Taxi = () => {
         document.documentElement.scrollHeight - window.innerHeight;
       setDocHeight(height || 1);
       setViewportWidth(window.innerWidth);
+      setTaxiWidth(getTaxiWidth());
     };
 
     const updateScroll = () => {
@@ -32,21 +42,27 @@ const Taxi = () => {
     };
   }, [scrollY]);
 
-  // Total distance to travel = viewport width minus taxi width
-  const distance = Math.max(viewportWidth - taxiWidth, 0);
+  // Total distance taxi can move
+  const distance = Math.max(viewportWidth - taxiWidth - 10, 0);
 
-  // Map scroll progress (0 → 1) to pixel distance
-  const x = useTransform(scrollY, [0, docHeight], [0, distance]);
+  // Smooth scroll mapping
+  const x = useTransform(scrollY, [0, docHeight], [0, distance], {
+    clamp: true,
+  });
+
+  // Move taxi a bit higher on small screens so it doesn’t overlap footer
+  const bottomOffset =
+    viewportWidth < 480 ? 60 : viewportWidth < 768 ? 40 : 20;
 
   return (
     <motion.img
-      src="/images/taxi.png" // 👈 put taxi.png inside public/images
+      src="/images/taxi.png"
       alt="Taxi"
       style={{
         position: "fixed",
-        bottom: 20,
+        bottom: bottomOffset,
         left: 0,
-        x, // pixel-based horizontal movement
+        x,
         width: `${taxiWidth}px`,
         height: "auto",
         zIndex: 50,
