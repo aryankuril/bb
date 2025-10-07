@@ -16,12 +16,12 @@
   /* =========================
      Headings - Desktop Sizes
      ========================= */
-  --h1-size: 120px; /* ✅ Hero section heading (1st section of all pages) */
-  --h2-size: 80px;  /* ✅ Section titles, quotes, and large paragraph text */
-  --h3-size: 60px;  /* ✅ Titles and descriptions */
-  --h4-size: 40px;  /* ✅ Navigation, “Connect & Grow” (footer heading) */
+  --h1-size: 95px; /* ✅ Hero section heading (1st section of all pages) */
+  --h2-size: 60px;  /* ✅ Section titles, quotes, and large paragraph text */
+  --h3-size: 40px;  /* ✅ Titles and descriptions */
+  --h4-size: 36px;  /* ✅ Navigation, “Connect & Grow” (footer heading) */
   --h5-size: 24px;  /* ✅ Blog titles */
-  --h6-size: 18px;  /* ✅ Extra (currently not used much) */
+  --h6-size: 18px;  /* ✅ Extra (currently not used much) */ 
 
   /* =========================
      Body - Desktop Sizes
@@ -136,7 +136,7 @@ h6 {
   font-family: var(--font-regular-miso);
   font-size: var(--stats-size); /* ✅ Stats numbers */
   font-weight: 400;
-  line-height: 1.5em;
+  line-height: 1em;
 }
 
 .numbering {
@@ -183,24 +183,24 @@ h6 {
 /* =========================================
    RESPONSIVE TYPOGRAPHY (Tablet & Mobile)
    ========================================= */
-@media screen and (max-width: 1024px) and (min-width: 769px) {
+@media screen and (max-width: 768px) {
   /* ---------- Headings ---------- */
-  h1 { font-size: 90px; }  
-  h2 { font-size: 60px; }
-  h3 { font-size: 45px; }
-  h4 { font-size: 28px; }
+  h1 { font-size: 35px; }  
+  h2 { font-size: 30px; }
+  h3 { font-size: 28px; }
+  h4 { font-size: 25px; }
   h5 { font-size: 20px; }
   h6 { font-size: 16px; }
 
   /* ---------- Body ---------- */
   .body1 { font-size: 20px; }
-  .body2 { font-size: 18px; }
+  .body2 { font-size: 15px; }
   .body3 { font-size: 16px; }
   .body4 { font-size: 14px; }
 
   /* ---------- Numbers ---------- */
-  .stats-number { font-size: 160px; }
-  .numbering { font-size: 80px; }
+  .stats-number { font-size: 60px; }
+  .numbering { font-size: 60px; }
   .single-title { font-size: 90px; }
 }
 

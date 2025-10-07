@@ -89,7 +89,7 @@ export default function SecondSection() {
 
   return (
     <section className="relative w-full py-10 sm:py-[60px] lg:py-20">
-      <div className="flex items-center justify-center w-[80%]  py-10 px-4 sm:px-6 md:px-8 lg:px-0 mx-auto">
+      <div className="flex items-center justify-center lg:w-[80%] w-full  py-10 px-4 sm:px-6 md:px-8 lg:px-0 mx-auto">
         <h2 className="text-center black-text">
           <span className="text-highlight">Born in Bombay </span>, crafting digital experiences that connect and inspire.
         </h2>

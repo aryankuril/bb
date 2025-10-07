@@ -6,12 +6,12 @@ import SecondSection from '@/app/components/ClientsInternal/SecondSection'
 import FourthSection from '../components/ClientsInternal/FourthSection'
 import SeventhSection from '../components/ServicesInternal/SeventhSection'
 import Footer from '../components/Footer'
-import ClientScripts from '../components/ClientScripts'
+// import ClientScripts from '../components/ClientScripts'
 
 const Index = () => {
   return (
     <div>
-      <ClientScripts/>
+      {/* <ClientScripts/> */}
       <Navbar />
       <Firstsection/>
       <SecondSection />

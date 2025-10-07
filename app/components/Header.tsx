@@ -195,7 +195,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/"
-                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
                 >
                   Home
                 </Link>
@@ -203,7 +203,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/services"
-                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
                 >
                   Services
                 </Link>
@@ -211,7 +211,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/clients"
-                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
                 >
                   Clients
                 </Link>
@@ -219,7 +219,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/contactus"
-                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
                 >
                   Contact
                 </Link>
@@ -230,7 +230,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/aboutus"
-                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
                 >
                   About
                 </Link>
@@ -238,7 +238,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/ourwork"
-                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
                 >
                   Work
                 </Link>
@@ -246,7 +246,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/teams"
-                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
                 >
                   Team
                 </Link>
@@ -254,7 +254,7 @@ export default function DesktopNav() {
               <li>
                 <Link
                   href="/career"
-                  className="text-white font-[Miso] text-[40px] font-normal uppercase leading-none"
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none"
                 >
                   Careers
                 </Link>

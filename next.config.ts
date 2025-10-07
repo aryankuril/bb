@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
     // ✅ Disables ESLint checks during builds
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

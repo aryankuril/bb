@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+ 
 const images = [
   "/images/section1-img1.png",
   "/images/section1-img2.png",
@@ -36,13 +36,13 @@ export default function BombAISection() {
       });
  
       tl.from(".bomb-card", { y: 50, opacity: 10, duration: 0.8, ease: "power3.out" })
-        .from(".bomb-strip", { x: 50, opacity: 10, duration: 0.5 }, "-=0.4")
+        .from(".bomb-strip", { x: 50, opacity: 10, duration: 0.2 }, "-=0.4")
         .from(".bomb-cta", { y: 20, opacity: 10, duration: 0.6 }, "-=0.2");
  
       const proxy = { count: INITIAL_TEXT.length };
       tl.to(proxy, {
         count: 0,
-        duration: 0.9,
+        duration: 0.4,
         ease: "none",
         onUpdate: () => {
           const n = Math.floor(proxy.count);
@@ -57,14 +57,14 @@ export default function BombAISection() {
         setLabelText(NEW_TEXT);
         if (labelRef.current) gsap.set(labelRef.current, { opacity: 0, y: 20 });
       });
-      tl.to(labelRef.current, { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" });
+      tl.to(labelRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
  
       tl.add(() => {
         if (!cardRef.current) return;
         const target = cardRef.current.scrollHeight;
         gsap.to(cardRef.current, {
           height: target,
-          duration: 0.8,
+          duration: 0.5,
           ease: "power2.out",
         });
       }, "+=0.0");
@@ -72,8 +72,8 @@ export default function BombAISection() {
       tl.from(gridRef.current?.children || [], {
         opacity: 0,
         y: 40,
-        stagger: 0.15,
-        duration: 0.7,
+        stagger: 0.11,
+        duration: 0.6,
         ease: "power2.out",
       }, "<");
     }, root);

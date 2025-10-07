@@ -134,7 +134,7 @@ const SecondSection = () => {
 
   <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
     {/* LEFT – Job List */}
-    <div className="p-4 md:p-6 flex flex-col gap-4">
+    <div className="p-4 md:p-6 flex flex-col lg:gap-5 gap-2">
       <h2
         className="
           white-text

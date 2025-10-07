@@ -100,11 +100,11 @@ const SecondSection = () => {
       {/* Title & CTA */}
       <div className="flex flex-col md:flex-row">
         <div className="flex-1 flex-col justify-between items-start mb-10">
-          <div
-            className="black-text single-title"
+          <h2
+            className="black-text "
           >
             {sliderData[current].title}
-          </div>
+          </h2>
           <div className="mt-6 lg:mt-10">
             <Button href="#" text="EXPLORE OUR WORK " className="lg:mt-10" />
           </div>

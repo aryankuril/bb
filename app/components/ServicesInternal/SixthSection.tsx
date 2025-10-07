@@ -50,7 +50,7 @@ const SixthSection = () => {
   };
 
   return (
-    <div className="max-w-[960px] mx-auto mt-15 font-poppins relative overflow-hidden">
+    <div className="max-w-[960px] mx-auto py-10 sm:py-15 lg:py-20 mt-15 font-poppins relative overflow-hidden">
       <div
         className={`flex ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
         style={{
@@ -60,7 +60,7 @@ const SixthSection = () => {
       >
         {testimonials.map(({ text, name }, index) => (
           <div key={index} className="flex-shrink-0 w-full flex justify-center">
-            <div className="w-[95%] px-4 py-6 sm:py-8 lg:py-12 relative flex flex-col items-center text-center">
+            <div className="w-[95%] px-4 py-6 sm:py-8 lg:py-10 relative flex flex-col items-center text-center">
               <div className="body1 mb-6 sm:mb-8 lg:mb-10 text-black">
                 {text}
               </div>
@@ -81,7 +81,7 @@ const SixthSection = () => {
       </div>
 
       {/* Dots navigation (optional) */}
-      <div className="flex justify-center gap-3 mt-4">
+      <div className="flex justify-center gap-3">
         {testimonials.map((_, idx) => (
           <button
             key={idx}

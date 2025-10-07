@@ -76,9 +76,9 @@ const FourthSection = () => {
     <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
       {/* Sticky Title */}
       <div className="sticky top-0 h-screen flex items-center justify-center px-2">
-        <div
+        <h2
           style={{ color: serviceColor }}
-          className="text-center single-title select-none"
+          className="text-center select-none"
         >
           Our Strategy Didn’t Follow Trends, It Created Impact{" "}
           <span style={{ color: spanColor }}>Transforming</span> The Brand’s{" "}
@@ -86,7 +86,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span>
-        </div>
+        </h2>
       </div>
 
       {/* Scrollable Cards */}

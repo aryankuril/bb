@@ -22,7 +22,7 @@ const Firstsection = () => {
   return (
     <section
       ref={ref}
-      className="relative container py-10 sm:py-15 lg:py-30  mx-auto overflow-hidden px-4 sm:px-6 lg:px-8"
+      className="relative lg:top-0 -top-10 container py-0 sm:py-15 lg:py-30  mx-auto overflow-hidden px-4 sm:px-6 lg:px-8"
     >
       <div className="border-b-2 border-yellow-400">
         <div className="flex flex-col lg:flex-row items-start relative">
@@ -43,7 +43,7 @@ const Firstsection = () => {
           </div>
 
           {/* Station Board */}
-          <div className="lg:absolute lg:top-28 top-15 lg:right-15 right-5 flex justify-end w-full lg:w-auto">
+          <div className="lg:absolute lg:top-9 top-15 lg:right-15 right-5 flex justify-end w-full lg:w-auto">
             <img
               src="/images/stationbord.png"
               alt="Decorative element"
@@ -57,7 +57,7 @@ const Firstsection = () => {
           initial={{ x: "-120%" }}
           animate={
             isMobile
-              ? { x: 80 }             // 🚫 No movement on mobile
+              ? { x: 60 }             // 🚫 No movement on mobile
               : inView
               ? { x: 550 }           // ✅ Animate on larger screens
               : {}

@@ -26,7 +26,7 @@ const FirstSection = () => {
 <section className="w-full container py-10 sm:py-15 lg:py-30 flex flex-col md:flex-row items-center justify-between gap-10">
   {/* Left Side - Text */}
   <div className="flex-1 text-center md:text-left">
-    <h1 className="black-text w-full max-w-[700px] mx-auto md:mx-0 ">
+    <h1 className="black-text w-full max-w-[800px] mx-auto md:mx-0 ">
       We <span className="text-highlight">Build Digital Stories</span> That People Remember
 
     </h1>

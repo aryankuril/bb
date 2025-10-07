@@ -3,8 +3,9 @@ import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Taxi from "./components/Taxi";
-import Whatsapp from "./components/Taxi";
-import ClientScripts from "./components/ClientScripts";
+import PageLoader from "./components/PageLoader";
+// import Whatsapp from "./components/Whatsapp";
+// import ClientScripts from "./components/ClientScripts";
 
 // Local Miso
 const miso = localFont({
@@ -35,9 +36,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body>
-        {children}
+         <PageLoader>{children}</PageLoader>
         <Taxi />
-      <Whatsapp />
+      {/* <Whatsapp /> */}
       </body>
     </html>
   );

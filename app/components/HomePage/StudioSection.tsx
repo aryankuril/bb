@@ -153,7 +153,7 @@ export default function LightCameraAction() {
   }, []);
  
   return (
-    <div className="w-full black-text py-10 sm:py-15 lg:py-20">
+    <div className="w-full black-text  container py-10 sm:py-15 lg:py-20">
       <section
         ref={rootRef}
         className="relative w-full min-h-[100svh] flex items-center justify-center "

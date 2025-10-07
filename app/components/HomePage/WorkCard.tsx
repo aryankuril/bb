@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Button from "../Button";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -137,9 +138,16 @@ export default function StackingCards() {
   }, []);
 
   return (
+
+    <div className="">
+      <div className="flex items-center justify-center w-[80%] mx-auto ">
+        <h2 className="text-center black-text ">
+         our best works
+        </h2>
+      </div>
     <section ref={sectionRef} className="relative w-full py-10 sm:py-15 lg:py-20">
       <div className="sticky h-[100svh] flex items-center justify-center">
-        <div className="relative w-full flex items-center justify-center">
+        <div className="relative w-full flex items-center justify-center mb-50">
           {cardsData.map((card, i) => (
             <div
               key={i}
@@ -213,6 +221,10 @@ export default function StackingCards() {
           ))}
         </div>
       </div>
+      <div className="flex justify-center items-center">
+      <Button href="#" text="BOOK FREE AUDIT " className="" />
+    </div>
     </section>
+    </div>
   );
 }

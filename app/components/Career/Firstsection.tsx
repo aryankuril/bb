@@ -21,7 +21,7 @@ const Firstsection = () => {
 
   return (    <section
       ref={ref}
-      className="relative container py-10 sm:py-15 lg:py-30 mx-auto overflow-hidden px-4 sm:px-6 lg:px-8"
+      className="relative h-5xl lg:top-0 -top-10 container py-0 sm:py-15 lg:py-30  overflow-hidden px-4 sm:px-6 lg:px-8"
     >
       <div className="border-b-2 border-[var(--color-highlight)]">
         <div className="flex flex-col lg:flex-row items-start relative">
@@ -30,7 +30,7 @@ const Firstsection = () => {
           <div className="flex-1">
             <h1
               className="
-                black-text max-w-full lg:max-w-[1020px]
+                black-text max-w-full lg:max-w-[1000px]
               "
             >
               Ride the Mumbai Spirit.{" "}
@@ -40,11 +40,11 @@ const Firstsection = () => {
           </div>
 
           {/* Station Board */}
-          <div className="lg:absolute lg:top-1 top-15 lg:right-15 right-5 flex justify-end w-full lg:w-auto">
+          <div className="lg:absolute  lg:right-15 right-5 flex justify-end w-full lg:w-auto">
             <img
               src="/images/stationbord.png"
               alt="Decorative element"
-              className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-55 h-auto"
+              className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-45 h-auto"
             />
           </div>
         </div>
@@ -54,7 +54,7 @@ const Firstsection = () => {
           initial={{ x: "-120%" }}
           animate={
             isMobile
-              ? { x: 80 }             // 🚫 No movement on mobile
+              ? { x: 60 }             // 🚫 No movement on mobile
               : inView
               ? { x: 550 }           // ✅ Animate on larger screens
               : {}
