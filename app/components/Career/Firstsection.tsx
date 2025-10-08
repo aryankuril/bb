@@ -40,13 +40,22 @@ const Firstsection = () => {
           </div>
 
           {/* Station Board */}
-          <div className="lg:absolute lg:right-1 right-5 w-full lg:w-auto">
+          {/* <div className="lg:absolute lg:right-1 right-5 w-full lg:w-auto">
             <img
               src="/images/career-station.svg"
               alt="Decorative element"
               className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-74 h-auto"
             />
+          </div> */}
+          <div className="lg:absolute lg:right-15 right-5 flex justify-end w-full lg:w-auto">
+            <img
+              src="/images/stationbord.png"
+              alt="Decorative element"
+              className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-46 h-auto"
+            />
           </div>
+
+
         </div>
 
         {/* Train Animation */}

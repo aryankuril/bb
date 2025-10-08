@@ -50,7 +50,7 @@ const SixthSection = () => {
   };
 
   return (
-    <div className="max-w-[960px] mx-auto py-10 sm:py-15 lg:py-20 mt-15 font-poppins relative overflow-hidden">
+    <div className="max-w-[960px] mx-auto py-10 sm:py-15 lg:py-20 font-poppins relative overflow-hidden">
       <div
         className={`flex ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
         style={{
