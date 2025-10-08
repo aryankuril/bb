@@ -34,7 +34,10 @@ const services = [
 export default function SecondSection() {
   const [active, setActive] = useState<number | null>(null);
   const imgRef = useRef<HTMLDivElement>(null);
-  const lastMouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const lastMouse = useRef<{ x: number; y: number }>({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  });
 
   useEffect(() => {
     if (!imgRef.current) return;
@@ -53,6 +56,11 @@ export default function SecondSection() {
     };
 
     if (active !== null) {
+      if (lastMouse.current.x === 0 && lastMouse.current.y === 0) {
+        lastMouse.current.x = window.innerWidth / 2;
+        lastMouse.current.y = window.innerHeight / 2;
+      }
+
       window.addEventListener("mousemove", moveImage);
 
       gsap.killTweensOf(imgRef.current);
@@ -67,7 +75,13 @@ export default function SecondSection() {
       gsap.fromTo(
         imgRef.current,
         { scale: 0.95, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1, duration: 0.22, ease: "power2.out", overwrite: "auto" }
+        {
+          scale: 1,
+          autoAlpha: 1,
+          duration: 0.22,
+          ease: "power2.out",
+          overwrite: "auto",
+        }
       );
     } else {
       gsap.to(imgRef.current, {
@@ -91,7 +105,8 @@ export default function SecondSection() {
     <section className="relative w-full py-10 sm:py-[60px] lg:py-20">
       <div className="flex items-center justify-center lg:w-[80%] w-full  py-10 px-4 sm:px-6 md:px-8 lg:px-0 mx-auto">
         <h2 className="text-center black-text">
-          <span className="text-highlight">Born in Bombay </span>, crafting digital experiences that connect and inspire.
+          <span className="text-highlight">Born in Bombay </span>, crafting
+          digital experiences that connect and inspire.
         </h2>
       </div>
 
@@ -99,23 +114,22 @@ export default function SecondSection() {
         {services.map((s) => (
           <div
             key={s.id}
-            onMouseEnter={() => setActive(s.id)} 
+            onMouseEnter={() => setActive(s.id)}
             onMouseLeave={() => setActive(null)}
             className="
-              grid grid-cols-1
-              md:grid-cols-[120px_1fr]
-              md:gap-0 
-              cursor-pointer group items-center
-              md:justify-items-end
+              flex flex-col
+              md:flex-row md:justify-between
+              md:gap-12
+              cursor-pointer group items-start
             "
           >
             {/* Number */}
-            <h2 className="order-1 text-highlight numbering">
+            <h2 className="order-1 text-highlight numbering text-left">
               {s.id.toString().padStart(2, "0")}
             </h2>
 
             {/* Title + Description + Mobile Image */}
-            <div className="flex flex-col order-2 space-y-4 ">
+            <div className="flex flex-col order-2 space-y-4 text-left">
               <h3 className="black-text">{s.title}</h3>
 
               {/* Mobile-only image (hidden on desktop) */}

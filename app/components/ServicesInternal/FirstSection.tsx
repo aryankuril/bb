@@ -34,9 +34,9 @@ const FirstSection = () => {
       From Strategy To Storytelling, Identity To Impact, We Craft Everything Your Brand Needs To Stand Out And Grow.
     </p>
 
-    {/* <div className="mt-6 lg:mt-10">
+    <div className="mt-6 lg:mt-10 z-50">
       <Button href="#" text="BOOK FREE AUDIT " className="lg:mt-10" />
-    </div> */}
+    </div>
   </div>
 
   {/* Right Side - Image Slider */}

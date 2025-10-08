@@ -130,7 +130,8 @@ export default function StackingCards() {
         tl.addLabel("final", last + 0.001);
         tl.to(cards[last - 1], { ...BEHIND_1, duration: 0.01 }, "final");
         tl.to(cards[last - 2], { ...BEHIND_2, duration: 0.01 }, "final");
-        if (last - 2 > 0) tl.set(cards.slice(0, last - 2), { opacity: 0 }, "final");
+        if (last - 2 > 0)
+          tl.set(cards.slice(0, last - 2), { opacity: 0 }, "final");
       }
     }, section);
 
@@ -138,22 +139,22 @@ export default function StackingCards() {
   }, []);
 
   return (
-
     <div className="">
       <div className="flex items-center justify-center w-[80%] mx-auto ">
-        <h2 className="text-center black-text ">
-         our best works
-        </h2>
+        <h2 className="text-center black-text ">our best works</h2>
       </div>
-     <section ref={sectionRef} className="relative  container w-full py-10 sm:py-15 lg:py-20">
-      <div className="sticky h-[100svh] flex items-center justify-center">
-        <div className="relative w-full flex items-center justify-center mb-50">
-          {cardsData.map((card, i) => (
-            <div
-              key={i}
-              ref={setCardRef(i)}
-              style={{ zIndex: cardsData.length - i }}
-              className="
+      <section
+        ref={sectionRef}
+        className="relative container w-full py-10 sm:py-15 lg:py-20"
+      >
+        <div className="sticky h-[100svh] flex items-center justify-center -mt-20">
+          <div className="relative w-full flex items-center justify-center">
+            {cardsData.map((card, i) => (
+              <div
+                key={i}
+                ref={setCardRef(i)}
+                style={{ zIndex: cardsData.length - i }}
+                className="
                 absolute left-1/2 -translate-x-1/2
                 w-[94%]
                 h-[clamp(420px,76vh,600px)]
@@ -161,70 +162,67 @@ export default function StackingCards() {
                 white-text
                 will-change-transform overflow-hidden
               "
-            >
-              <div
-                aria-hidden
-                className="absolute inset-0 translate-y-3 translate-x-3 rounded-3xl bg-white/5 border border-white/10 pointer-events-none"
-                style={{ zIndex: 0 }}
-              />
+              >
+                <div
+                  aria-hidden
+                  className="absolute inset-0 translate-y-3 translate-x-3 rounded-3xl bg-white/5 border border-white/10 pointer-events-none"
+                  style={{ zIndex: 0 }}
+                />
 
-              <div
-                className="
+                <div
+                  className="
                   relative h-full rounded-3xl bg-black/95 border border-white/8
                   shadow-[0_20px_60px_rgba(0,0,0,0.45)]
                   p-6 sm:p-8 md:p-10
                   grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8
                 "
-                style={{ zIndex: 1 }}
-              >
-                <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E]"></div>
+                  style={{ zIndex: 1 }}
+                >
+                  <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E]"></div>
 
-                {/* Left content */}
-                <div className="flex flex-col justify-center min-h-0">
-                  <h3 className="white-text">
-                    {card.title}
-                  </h3>
+                  {/* Left content */}
+                  <div className="flex flex-col justify-center min-h-0">
+                    <h3 className="white-text">{card.title}</h3>
 
-                  <div className="flex flex-wrap gap-2 sm:gap-3 mt-4">
-                    {card.tags.map((t, idx) => (
-                      <span
-                        key={idx}
-                        className="body4 px-3 py-1 rounded-full border border-white/30 [text-wrap:balance]"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                    <div className="flex flex-wrap gap-2 sm:gap-3 mt-4">
+                      {card.tags.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="body4 px-3 py-1 rounded-full border border-white/30 [text-wrap:balance]"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <p className="mt-4 sm:mt-6 opacity-90 body2 white-text">
+                      {card.content}
+                    </p>
                   </div>
 
-                  <p className="mt-4 sm:mt-6 opacity-90 body2 white-text">
-                    {card.content}
-                  </p>
-                </div>
-
-                {/* Right visual – no cropping, equal top/bottom padding */}
-                <div className="w-full h-full min-h-0">
-                  <div className="w-full h-full min-h-0 flex items-center justify-center py-6 sm:py-8 md:py-10">
-  <img
-    src={card.image}
-    alt={card.title}
-    className="block w-full max-h-full object-contain"
-    onError={(e) => {
-      e.currentTarget.src =
-        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%23151515'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaaaaa' font-size='24'%3EImage%20placeholder%3C/text%3E%3C/svg%3E";
-    }}
-  />
-</div>
-
+                  {/* Right visual – no cropping, equal top/bottom padding */}
+                  <div className="w-full h-full min-h-0">
+                    <div className="w-full h-full min-h-0 flex items-center justify-center py-6 sm:py-8 md:py-10">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="block w-full max-h-full object-contain"
+                        onError={(e) => {
+                          e.currentTarget.src =
+                            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%23151515'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaaaaa' font-size='24'%3EImage%20placeholder%3C/text%3E%3C/svg%3E";
+                        }}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="flex justify-center items-center">
-      <Button href="#" text="BOOK FREE AUDIT " className="" />
-    </div>
-    </section>
+        <div className="flex justify-center items-center">
+          <Button href="#" text="BOOK FREE AUDIT " className="" />
+        </div>
+      </section>
     </div>
   );
 }

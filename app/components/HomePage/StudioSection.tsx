@@ -1,11 +1,11 @@
 "use client";
- 
+
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MuxPlayer from "@mux/mux-player-react";
 import Button from "../Button";
- 
+
 export default function LightCameraAction() {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const headlineRef = useRef<HTMLHeadingElement | null>(null);
@@ -14,10 +14,10 @@ export default function LightCameraAction() {
   const panelBLRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLDivElement | null>(null);
   const muxRef = useRef<any | null>(null);
- 
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
- 
+
     // Optional: temporarily filter noisy mux/hls error logs coming from
     // getErrorFromHlsErrorData() which is emitted by the mux/hls internals.
     // We scope this wrapper to this component and restore the original
@@ -26,7 +26,10 @@ export default function LightCameraAction() {
     console.error = (...args: any[]) => {
       try {
         const first = args[0];
-        if (typeof first === "string" && first.includes("getErrorFromHlsErrorData()")) {
+        if (
+          typeof first === "string" &&
+          first.includes("getErrorFromHlsErrorData()")
+        ) {
           // swallow this specific noisy message — keep other error logs
           return;
         }
@@ -36,19 +39,19 @@ export default function LightCameraAction() {
       }
       _origConsoleError(...args);
     };
- 
-  let mm: ReturnType<typeof gsap.matchMedia> | null = null;
- 
+
+    let mm: ReturnType<typeof gsap.matchMedia> | null = null;
+
     const ctx = gsap.context(() => {
       const headline = headlineRef.current as HTMLElement;
       const words = Array.from(
         headline.querySelectorAll<HTMLElement>("[data-word]")
       );
- 
+
       // Initial styles
       gsap.set(words, { color: "#1D1D1D" });
       gsap.set(frameRef.current, { opacity: 0, scale: 0.94 });
- 
+
       // ✅ Responsive shutter panel config
       mm = gsap.matchMedia();
       mm.add(
@@ -58,7 +61,7 @@ export default function LightCameraAction() {
         },
         (mctx: gsap.Context) => {
           const isMobile = !!mctx.conditions?.isMobile;
- 
+
           if (panelTRRef.current) {
             gsap.set(panelTRRef.current, {
               xPercent: 70,
@@ -77,15 +80,15 @@ export default function LightCameraAction() {
           }
         }
       );
- 
+
       gsap.set(videoRef.current, {
         opacity: 0,
         scale: 0.16,
         transformOrigin: "50% 50%",
       });
- 
+
       // ...existing code...
- 
+
       const tl = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
@@ -97,21 +100,19 @@ export default function LightCameraAction() {
           anticipatePin: 1,
         },
       });
- 
+
       if (words.length) {
         tl.to(words[0], { color: "#FAB31E", duration: 0.3 });
-        if (words[1])
-          tl.to(words[1], { color: "#FAB31E", duration: 0.3 });
-        if (words[2])
-          tl.to(words[2], { color: "#FAB31E", duration: 0.3 });
+        if (words[1]) tl.to(words[1], { color: "#FAB31E", duration: 0.3 });
+        if (words[2]) tl.to(words[2], { color: "#FAB31E", duration: 0.3 });
       }
- 
+
       tl.to(
         frameRef.current,
         { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" },
         "+=0.12"
       );
- 
+
       if (panelTRRef.current && panelBLRef.current) {
         tl.to(
           panelTRRef.current,
@@ -122,7 +123,7 @@ export default function LightCameraAction() {
           { xPercent: 0, yPercent: 0, duration: 0.9, ease: "power2.inOut" },
           "shutter"
         );
- 
+
         tl.to(
           panelTRRef.current,
           { xPercent: 70, yPercent: -70, duration: 0.9, ease: "power2.inOut" },
@@ -132,29 +133,29 @@ export default function LightCameraAction() {
           { xPercent: -70, yPercent: 70, duration: 0.9, ease: "power2.inOut" },
           "retract"
         );
- 
+
         tl.to(
           videoRef.current,
           { opacity: 1, scale: 1, duration: 1.8, ease: "power2.out" },
           "retract+=0.7"
         );
       }
- 
+
       tl.to(
         frameRef.current,
         { opacity: 0, scale: 1.02, duration: 0.6, ease: "power2.out" },
         "retract+=1.4"
       );
     }, rootRef);
- 
+
     return () => {
       ctx.revert();
       mm?.revert();
     };
   }, []);
- 
+
   return (
-    <div className="w-full black-text  container py-10 sm:py-15 lg:py-20">
+    <div className="w-full black-text container py-10 sm:py-15 lg:py-20">
       <section
         ref={rootRef}
         className="relative w-full min-h-[100svh] flex items-center justify-center "
@@ -164,14 +165,19 @@ export default function LightCameraAction() {
           ref={headlineRef}
           className="select-none relative -z-10 text-center flex flex-col md:flex-row gap-2"
         >
-          <span data-word className="inline-block">Light.</span>{" "}
-          <span data-word className="inline-block">Camera.</span>{" "}
-          <span data-word className="inline-block">Action</span>
+          <span data-word className="inline-block">
+            Light.
+          </span>{" "}
+          <span data-word className="inline-block">
+            Camera.
+          </span>{" "}
+          <span data-word className="inline-block">
+            Action
+          </span>
         </h2>
-        
- 
+
         {/* Video container with Mux Player */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center z-10">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div
             ref={videoRef}
             className="
@@ -204,12 +210,12 @@ export default function LightCameraAction() {
                 muxRef.current = el;
                 // attach a basic error handler if the player exposes one
                 try {
-                  if (el && typeof el.addEventListener === 'function') {
-                    el.addEventListener('error', (ev: Event) => {
+                  if (el && typeof el.addEventListener === "function") {
+                    el.addEventListener("error", (ev: Event) => {
                       // ev may be a CustomEvent from mux/hls; log for debugging
                       // You can replace this with a user-facing UI or telemetry call
                       // eslint-disable-next-line no-console
-                      console.error('MuxPlayer error event:', ev);
+                      console.error("MuxPlayer error event:", ev);
                     });
                   }
                 } catch (e) {
@@ -217,22 +223,21 @@ export default function LightCameraAction() {
                 }
               }}
             />
- 
+
             {/* yellow accent line */}
-            
-              <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E] rounded-tr-2xl rounded-br-2xl"></div>
 
-  {/* <div className="absolute bottom-10 right-4 z-40">
-    <Button
-      href="#"
-      text="BOOK FREE AUDIT"
-      className=" text-black font-semibold px-4 py-2 rounded-xl shadow-lg  transition-colors"
-    />
-  </div> */}
-</div>
+            <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E] rounded-tr-2xl rounded-br-2xl"></div>
 
+            <div className="absolute bottom-10 right-20 z-50">
+              <Button
+                href="#"
+                text="BOOK FREE AUDIT"
+                className="white-text font-semibold rounded-xl shadow-lg transition-colors"
+              />
+            </div>
+          </div>
         </div>
- 
+
         {/* Frame + diagonal shutter panels */}
         <div
           ref={frameRef}
