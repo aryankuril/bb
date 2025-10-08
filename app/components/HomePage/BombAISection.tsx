@@ -194,15 +194,15 @@ export default function BombAISection() {
                 </div>
               ))}
 
-             <div className="py-5 z-40">
-  <Button
-    href="#"
-    text="Explore Our Work"
-    className=" text-white font-semibold "
-  />
-</div>
 
             </div>
+            <div className=" flex justify-center items-center py-10">
+    <Button
+      href="#"
+      text="Explore Our Work"
+      className="text-white font-semibold"
+    />
+  </div>
           </div>
         </div>
       </div>

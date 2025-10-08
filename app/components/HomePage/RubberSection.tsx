@@ -31,11 +31,11 @@ const RubberSection = () => {
           flex
           flex-col
           items-center
-          gap-6
+          lg:gap-6 gap-1
           sm:flex-col
           md:flex-row
           md:flex-wrap
-          md:justify-center
+          md:justify-center 
           lg:space-x-[-3rem]
           px-4
         "
@@ -86,7 +86,7 @@ const RubberSection = () => {
           );
         })}
       </div>
-                     <div className=" flex items-center justify-center py-5 z-40">
+                     <div className=" flex items-center justify-center py-10 z-40">
   <Button
     href="#"
     text="Join Our Team"

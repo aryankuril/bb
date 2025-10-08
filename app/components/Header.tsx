@@ -1,13 +1,24 @@
 // app/components/DesktopNav.tsx
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 
 const YELLOW = "#FAB31E";
 const DARK = "#1D1D1D";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/clients", label: "Clients" },
+  { href: "/contactus", label: "Contact" },
+  { href: "/aboutus", label: "About" },
+  { href: "/ourwork", label: "Work" },
+  { href: "/teams", label: "Team" },
+  { href: "/career", label: "Careers" },
+];
 
 export default function DesktopNav() {
   const [open, setOpen] = useState(false);
@@ -17,25 +28,25 @@ export default function DesktopNav() {
   const shell = useRef<HTMLDivElement | null>(null);
   const stage = useRef<HTMLDivElement | null>(null);
 
-  const yellow = useRef<HTMLDivElement | null>(null); // yellow block
-  const black = useRef<HTMLDivElement | null>(null); // black panel
+  const yellow = useRef<HTMLDivElement | null>(null);
+  const black = useRef<HTMLDivElement | null>(null);
   const divider = useRef<HTMLDivElement | null>(null);
-
-  const leftCol = useRef<HTMLUListElement | null>(null);
-  const rightCol = useRef<HTMLUListElement | null>(null);
   const bottomRow = useRef<HTMLDivElement | null>(null);
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 
+  const textRefs = useRef<HTMLAnchorElement[]>([]);
   const tl = useRef<gsap.core.Timeline | null>(null);
 
+  // Initialize GSAP timeline
   useLayoutEffect(() => {
-    const s = stage.current!;
-    const y = yellow.current!;
-    const b = black.current!;
-    const d = divider.current!;
-    const l = leftCol.current!;
-    const r = rightCol.current!;
-    const br = bottomRow.current!;
-    const sh = shell.current!;
+    const s = stage.current;
+    const y = yellow.current;
+    const b = black.current;
+    const d = divider.current;
+    const br = bottomRow.current;
+    const sh = shell.current;
+
+    if (!s || !y || !b || !d || !br || !sh) return;
 
     // base states
     gsap.set(stage.current, { opacity: 0, pointerEvents: "none" });
@@ -50,22 +61,18 @@ export default function DesktopNav() {
       borderRadius: 16,
       backgroundColor: YELLOW,
     });
-
     gsap.set(b, {
       position: "absolute",
       inset: 0,
       backgroundColor: DARK,
-      clipPath: "inset(0 100% 0 0 round 0px)", // hidden
+      clipPath: "inset(0 100% 0 0 round 0px)",
     });
-
     gsap.set(d, { scaleY: 0, transformOrigin: "50% 50%" });
-    gsap.set([l.children, r.children], { opacity: 0, y: 14 });
     gsap.set(br, { opacity: 0, y: 10 });
 
-    // build timeline
     const ctx = gsap.context(() => {
-      const dur1 = 0.80;
-      const dur2 = 0.80;
+      const dur1 = 0.8;
+      const dur2 = 0.8;
       const ease = "expo.inOut";
 
       tl.current = gsap.timeline({ paused: true });
@@ -73,8 +80,7 @@ export default function DesktopNav() {
       tl.current
         // Stage in
         .to(stage.current, { opacity: 1, pointerEvents: "auto", duration: 1 }, 0)
-
-        // 1) Yellow expands to fill stage
+        // 1) Yellow expands
         .to(
           y,
           {
@@ -90,7 +96,6 @@ export default function DesktopNav() {
           },
           0.02
         )
-
         // 2) Black wipes in
         .to(
           b,
@@ -101,53 +106,80 @@ export default function DesktopNav() {
           },
           ">-0.05"
         )
-
         // 3) Yellow shrinks into right accent line
         .to(
           y,
           {
             width: 15,
             height: () => s.clientHeight,
-            left: () => s.clientWidth,
+            left: () => s.clientWidth + 3,
             xPercent: -100,
             top: "50%",
             yPercent: -50,
-            duration: dur2 * 1,
+            duration: dur2,
             ease,
           },
           "<+0.1"
         )
-
-        // 4) Divider + content
-        .to(d, { scaleY: 1, duration: 0.35, ease: "power3.out" }, "-=0.18")
-        .to(
-          [l.children, r.children],
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.42,
-            ease: "power3.out",
-            stagger: { each: 0.05, from: "edges" },
-          },
+        // Divider + bottom row
+        .fromTo(
+          d,
+          { scaleY: 0, opacity: 0, transformOrigin: "50% 100%" },
+          { scaleY: 1, opacity: 1, duration: 0.35, ease: "power3.out" },
+          "-=0.18"
+        )
+        .fromTo(
+          br,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.28, ease: "power3.out" },
           "-=0.22"
         )
-        .to(br, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out" }, "-=0.22")
-        .to(sh, { borderTopLeftRadius: 0, borderTopRightRadius: 0, duration: 0.18, ease }, 0.06);
+        .to(sh, { borderTopLeftRadius: 0, borderTopRightRadius: 0, duration: 0.18, ease }, 0.06)
+        // Animate menu text from center
+        .fromTo(
+          textRefs.current,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.1 },
+          "-=0.15"
+        );
     }, root);
 
     return () => ctx.revert();
   }, []);
 
-  useLayoutEffect(() => {
+  // Play / reverse timeline
+  useEffect(() => {
     if (!tl.current) return;
     if (open) tl.current.play();
     else tl.current.reverse();
   }, [open]);
 
+  // Clear refs on unmount
+  useEffect(() => {
+    return () => {
+      textRefs.current = [];
+    };
+  }, []);
+
+  // Prevent body scroll when menu is open
+useEffect(() => {
+  if (open) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+
+  // Clean up in case component unmounts
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [open]);
+
+
   return (
     <div ref={root} className="container py-5 absolute inset-x-0 top-0 z-[99999]">
       {/* nav shell */}
-      <div ref={shell} className="rounded-2xl text-neutral-200">
+      <div ref={shell} className="rounded-2xl text-neutral-200 relative z-50">
         <div className="flex items-center justify-between">
           <Link href="/">
             <Image
@@ -163,7 +195,7 @@ export default function DesktopNav() {
           <button
             onClick={() => setOpen((s) => !s)}
             aria-label="Toggle menu"
-            className="relative grid h-15 w-15  text-[26px] border-2 border-black leading-6 cursor-pointer font-miso place-items-center text-black"
+            className="relative grid h-15 w-15 text-[26px] border-2 border-black leading-6 cursor-pointer font-miso place-items-center text-black"
           >
             M E <br />N U
           </button>
@@ -172,13 +204,13 @@ export default function DesktopNav() {
         {/* stage */}
         <div
           ref={stage}
-          className="relative mt-30 h-[400px] w-[450px] ml-[500px] flex justify-center items-center overflow-hidden rounded-xl "
+          className="relative mt-10 h-[450px] w-[650px] mx-auto flex justify-center items-center overflow-hidden rounded-xl z-50"
         >
           <div ref={black} />
           <div ref={yellow} />
+
           {/* CLOSE BUTTON */}
-{/* CLOSE BUTTON */}
-{open && (
+         {open && (
   <button
     ref={(el) => {
       if (el) {
@@ -211,96 +243,39 @@ export default function DesktopNav() {
   </button>
 )}
 
-
-
           {/* divider */}
           <div
             ref={divider}
             className="absolute left-1/2 mt-[230px] -translate-y-1/2 w-[2px] h-[60%]"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(to bottom, #737373 0 20px, transparent 20px 40px)",
-            }}
           />
 
-          {/* <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-5 h-full bg-[#FAB31E]"></div> */}
+          {/* menu links */}
+          <div className="relative z-10 grid grid-cols-2 grid-rows-4 gap-y-10 px-12 py-8 text-center place-items-center w-full">
+            {links.map((link, index) => (
+              <div
+                key={index}
+                className={`w-full flex justify-center items-center relative ${
+                  index % 2 === 0 ? "border-r border-white" : ""
+                }`}
+              >
+                <Link
+                  href={link.href}
+                  ref={(el) => {
+                    if (el) textRefs.current[index] = el;
+                  }}
+                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </div>
+            ))}
+          </div>
 
-          {/* content */}
-          <div className="relative z-10 grid h-full grid-cols-2 gap-10 px-12 py-12 text-sm mt-15  ">
-            <ul ref={leftCol} className="space-y-6 text-center px-1">
-              <li>
-                <Link
-                  href="/"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/clients"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                >
-                  Clients
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contactus"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-
-            <ul ref={rightCol} className="space-y-6 text-center">
-              <li>
-                <Link
-                  href="/aboutus"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/ourwork"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                >
-                  Work
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/teams"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                >
-                  Team
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/career"
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                >
-                  Careers
-                </Link>
-              </li>
-            </ul>
-
-            <div
-              ref={bottomRow}
-              className="pointer-events-none absolute  bottom-9 left-0 right-0 flex items-center justify-center px-6 text-xs uppercase tracking-wide"
-            >
+          {/* bottom row social icons */}
+          <div
+            ref={bottomRow}
+            className="pointer-events-none absolute bottom-10 left-0 right-0 flex items-center justify-center px-6 text-xs uppercase tracking-wide"
+          >
               <div className="pointer-events-auto flex gap-3">
                 <a href="#" className="opacity-80 hover:opacity-100"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32" fill="none">
   <path d="M16.0012 0C11.6558 0 11.1104 0.0190003 9.40376 0.096667C7.70041 0.174667 6.53774 0.444334 5.52039 0.84C4.46805 1.24867 3.57537 1.79533 2.68603 2.685C1.79602 3.57433 1.24935 4.467 0.839342 5.519C0.442671 6.53667 0.172669 7.69967 0.0960011 9.40233C0.0200003 11.109 0 11.6547 0 16C0 20.3453 0.0193338 20.889 0.096668 22.5957C0.175002 24.299 0.444672 25.4617 0.840009 26.479C1.24901 27.5313 1.79569 28.424 2.68536 29.3133C3.57437 30.2033 4.46705 30.7513 5.51872 31.16C6.53674 31.5557 7.69975 31.8253 9.40277 31.9033C11.1095 31.981 11.6545 32 15.9995 32C20.3452 32 20.8889 31.981 22.5956 31.9033C24.2989 31.8253 25.4629 31.5557 26.4809 31.16C27.533 30.7513 28.4243 30.2033 29.3133 29.3133C30.2033 28.424 30.75 27.5313 31.16 26.4793C31.5533 25.4617 31.8233 24.2987 31.9033 22.596C31.98 20.8893 32 20.3453 32 16C32 11.6547 31.98 11.1093 31.9033 9.40267C31.8233 7.69933 31.5533 6.53667 31.16 5.51933C30.75 4.467 30.2033 3.57433 29.3133 2.685C28.4233 1.795 27.5333 1.24833 26.4799 0.84C25.4599 0.444334 24.2966 0.174667 22.5932 0.096667C20.8866 0.0190003 20.3432 0 15.9965 0H16.0012ZM14.5658 2.88333C14.9918 2.88267 15.4672 2.88333 16.0012 2.88333C20.2732 2.88333 20.7796 2.89867 22.4666 2.97533C24.0266 3.04667 24.8733 3.30733 25.4373 3.52633C26.1839 3.81633 26.7163 4.163 27.276 4.723C27.836 5.283 28.1826 5.81633 28.4733 6.563C28.6923 7.12633 28.9533 7.973 29.0243 9.533C29.101 11.2197 29.1176 11.7263 29.1176 15.9963C29.1176 20.2663 29.101 20.773 29.0243 22.4597C28.953 24.0197 28.6923 24.8663 28.4733 25.4297C28.1833 26.1763 27.836 26.708 27.276 27.2677C26.7159 27.8277 26.1843 28.1743 25.4373 28.4643C24.8739 28.6843 24.0266 28.9443 22.4666 29.0157C20.7799 29.0923 20.2732 29.109 16.0012 29.109C11.7288 29.109 11.2225 29.0923 9.53577 29.0157C7.97575 28.9437 7.12908 28.683 6.56474 28.464C5.81806 28.174 5.28472 27.8273 4.72472 27.2673C4.16471 26.7073 3.81804 26.1753 3.52737 25.4283C3.30837 24.865 3.04737 24.0183 2.97637 22.4583C2.8997 20.7717 2.88436 20.265 2.88436 15.9923C2.88436 11.7197 2.8997 11.2157 2.97637 9.529C3.0477 7.969 3.30837 7.12233 3.52737 6.55833C3.81737 5.81167 4.16471 5.27833 4.72472 4.71833C5.28472 4.15833 5.81806 3.81167 6.56474 3.521C7.12874 3.301 7.97575 3.041 9.53577 2.96933C11.0118 2.90267 11.5838 2.88267 14.5658 2.87933V2.88333Z" fill="#FAB31E"/>
@@ -315,19 +290,19 @@ export default function DesktopNav() {
 </svg></a>
               </div>
 
-            </div>
           </div>
         </div>
       </div>
 
       {/* backdrop */}
       <div
-        className={`fixed inset-0 -z-10 transition-opacity mr-5 ${
-          open ? "opacity-40" : "opacity-0 pointer-events-none"
-        }`}
-        style={{ background: "linear-gradient(0deg, rgba(0,0,0,.2), rgba(0,0,0,.2))" }}
-        onClick={() => setOpen(false)}
-      />
+  className={`fixed inset-0 -z-10 transition-all duration-500 ${
+    open ? "opacity-90 backdrop-blur-3xl" : "opacity-0 pointer-events-none backdrop-blur-0"
+  }`}
+  style={{ background: "rgba(0,0,0,0.3)" }}
+  onClick={() => setOpen(false)}
+/>
+
     </div>
   );
 }

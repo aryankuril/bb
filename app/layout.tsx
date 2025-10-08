@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Taxi from "./components/Taxi";
 import PageLoader from "./components/PageLoader";
+import ScrollToTop from "./components/ScrollToTop";
 // import Whatsapp from "./components/Whatsapp";
 // import ClientScripts from "./components/ClientScripts";
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         <Taxi />
           </PageLoader>
+          <ScrollToTop/>
       {/* <Whatsapp /> */}
       </body>
     </html>

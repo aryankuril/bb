@@ -70,7 +70,7 @@ const CardCarousel: React.FC = () => {
                 group relative flex-shrink-0
                 w-[88vw] sm:w-[70vw] md:w-[45vw] lg:w-[30vw]
                 h-[60vh] sm:h-[65vh] lg:h-[70vh]
-                rounded-[20px] sm:rounded-[28px] shadow-2xl overflow-hidden 
+                rounded-[20px] sm:rounded-[28px] overflow-hidden 
                 bg-[var(--color-secondary)]
               "
             >
