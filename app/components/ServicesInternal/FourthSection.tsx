@@ -45,7 +45,7 @@ const FourthSection = () => {
   }, []);
 
   return (
-    <div className="container mx-auto text-center black-text single-title py-[30vw] space-y-6 px-4 sm:px-8 md:px-16">
+    <div className="container mx-auto text-center black-text single-title py-0 sm:py-15 lg:py-20  space-y-6 px-4 sm:px-8 md:px-16">
       <h1>
         {textBlock1.map((line, index) =>
           line === "" ? (

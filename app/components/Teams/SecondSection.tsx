@@ -24,30 +24,29 @@ useEffect(() => {
     path.style.strokeDashoffset = `${length}`;
 
     const segments = [0, length * 0.33, length * 0.66, length];
-    let currentIndex = 0;
 
     const update = () => {
-      let maxVisibleIndex = 0;
+      let visibleIndex = 0;
 
       cardRefs.current.forEach((card, idx) => {
         if (!card) return;
         const rect = card.getBoundingClientRect();
         const winH = window.innerHeight;
 
+        // Calculate visibility percentage
         const visible =
           Math.max(0, Math.min(rect.bottom, winH) - Math.max(rect.top, 0)) /
           rect.height;
 
-        if (visible >= 0.3 && idx > maxVisibleIndex) {
-          maxVisibleIndex = idx;
+        // Track the card that is most visible (top-to-bottom)
+        if (visible >= 0.3) {
+          visibleIndex = idx;
         }
       });
 
-      if (maxVisibleIndex > currentIndex) {
-        currentIndex = maxVisibleIndex;
-        path.style.transition = "stroke-dashoffset 0.8s ease-out";
-        path.style.strokeDashoffset = `${length - segments[currentIndex]}`;
-      }
+      // Animate the line to the corresponding segment
+      path.style.transition = "stroke-dashoffset 0.5s ease-out";
+      path.style.strokeDashoffset = `${length - segments[visibleIndex]}`;
     };
 
     update();
@@ -60,7 +59,6 @@ useEffect(() => {
     };
   };
 
-  // Animate both desktop and mobile paths
   const cleanDesktop = animatePath(pathRef.current);
   const cleanMobile = animatePath(mobilePathRef.current);
 
@@ -69,6 +67,7 @@ useEffect(() => {
     cleanMobile?.();
   };
 }, []);
+
 
 
   return (

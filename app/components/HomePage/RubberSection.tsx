@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import Button from "../Button";
 
 const cards = [
   { img: "/images/section1-img1.png", label: "Young Passionate Crowd", rotate: 10 },
@@ -85,6 +86,13 @@ const RubberSection = () => {
           );
         })}
       </div>
+                     <div className=" flex items-center justify-center py-5 z-40">
+  <Button
+    href="#"
+    text="Join Our Team"
+    className=" text-black font-semibold "
+  />
+</div>
     </section>
   );
 };

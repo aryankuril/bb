@@ -7,13 +7,12 @@ const SeventhSection = () => {
   return (
 <section className="container py-10 sm:py-15 lg:py-20">
   <div className="bg-[#1D1D1D] rounded-[20px] relative overflow-hidden">
-    <div className="relative z-10 flex items-center justify-center py-10 sm:py-12 md:py-16">
+    <div className="relative z-10 flex items-center justify-center py-10 sm:py-12 md:py-10">
       <div className="text-center space-y-6 sm:space-y-8">
-        
         {/* Image */}
         <img
           src="/images/BB-web-chai-2.gif"
-          className="w-[180px] h-[120px] sm:w-[240px] sm:h-[160px] md:w-[290px] md:h-[190px] mx-auto mb-6 sm:mb-8"
+          className="w-[180px] h-auto sm:w-[240px] sm:h-[160px] md:w-[210px] md:h-auto mx-auto mb-6 sm:mb-8"
         />
 
         {/* Animated Heading */}

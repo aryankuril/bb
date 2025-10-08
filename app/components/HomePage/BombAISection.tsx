@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Button from "../Button";
  
 const images = [
   "/images/section1-img1.png",
@@ -178,7 +179,7 @@ export default function BombAISection() {
  
             <div
               ref={gridRef}
-              className="mt-16 grid gap-4 w-full max-w-4xl grid-cols-2 sm:grid-cols-3"
+              className="mt-16 grid gap-4 w-full max-w-4xl grid-cols-2 sm:grid-cols-3 "
             >
               {images.map((src, i) => (
                 <div
@@ -192,6 +193,15 @@ export default function BombAISection() {
                   />
                 </div>
               ))}
+
+             <div className="py-5 z-40">
+  <Button
+    href="#"
+    text="Explore Our Work"
+    className=" text-white font-semibold "
+  />
+</div>
+
             </div>
           </div>
         </div>
