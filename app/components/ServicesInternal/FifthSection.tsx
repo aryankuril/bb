@@ -138,7 +138,7 @@ export default function FifthSection() {
   }, []);
 
   return (
-    <div className="">
+    <div className=" lg:mt-0 mt-20">
       <div className="flex items-center justify-center w-[80%] mx-auto ">
         <h2 className="text-center black-text ">
          our best works

@@ -29,7 +29,7 @@ const ThirdSection = () => {
   }, [controls, spacerControls, inView]);
 
   return (
-    <section className="container py-10 sm:py-15 lg:py-20 ">
+    <section id="second-section" className="container py-10 sm:py-15 lg:py-20 ">
       {/* Headline */}
 <div className="flex justify-center items-center mb-8 md:mb-12 w-full">
   <h2 className="max-w-[1100px] text-center black-text">

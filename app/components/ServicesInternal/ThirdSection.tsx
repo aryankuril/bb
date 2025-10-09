@@ -46,7 +46,7 @@ const WorkflowSection: React.FC = () => {
   );
 
   return (
-    <section ref={containerRef} className="relative h-[400vh] container py-10 sm:py-15 lg:py-20 ">
+    <section ref={containerRef} className="relative h-[400vh] container  py-0 sm:py-15 lg:py-20 ">
       {/* Sticky wrapper keeps everything (title + train + cards) fixed */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
         

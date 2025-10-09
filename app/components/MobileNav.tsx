@@ -7,7 +7,7 @@ import Link from "next/link";
 type NavItem = { label: string; href?: string };
  
 const NAV_ITEMS: NavItem[] = [
-  { label: "HOME", href: "#" },
+  { label: "HOME", href: "/" },
   { label: "ABOUT", href: "/aboutus" },
   { label: "SERVICES", href: "services" },
   { label: "WORK", href: "/ourwork" },
@@ -123,7 +123,7 @@ const MobileNav = () => {
         <div className="h-full flex items-center justify-between px-4">
           {/* Brand placeholder (replace with your logo/wordmark) */}
           <div className="flex items-center gap-2">
-            <Link href="#">
+            <Link href="/">
             <Image
               src="/images/bblogo.webp"
               alt="Bombay Blokes Logo"

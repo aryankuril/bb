@@ -5,6 +5,7 @@ import "./globals.css";
 import Taxi from "./components/Taxi";
 import PageLoader from "./components/PageLoader";
 import ScrollToTop from "./components/ScrollToTop";
+import FloatingIcons from "./components/FloatingIcons";
 // import Whatsapp from "./components/Whatsapp";
 // import ClientScripts from "./components/ClientScripts";
 
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Taxi />
           </PageLoader>
           <ScrollToTop/>
+          {/* <FloatingIcons/> */}
       {/* <Whatsapp /> */}
       </body>
     </html>

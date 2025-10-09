@@ -145,7 +145,7 @@ export default function StackingCards() {
       </div>
       <section
         ref={sectionRef}
-        className="relative container w-full py-10 sm:py-15 lg:py-20"
+        className="relative container w-full py-0 sm:py-10 lg:py-10"
       >
         <div className="sticky h-[100svh] flex items-center justify-center -mt-20">
           <div className="relative w-full flex items-center justify-center">

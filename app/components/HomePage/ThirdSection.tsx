@@ -51,7 +51,7 @@ export default function ThirdSection() {
 
   return (
     <section
-  className="h-screen relative bg-contain bg-center bg-no-repeat"
+  className="lg:h-screen h-100 relative bg-contain bg-center bg-no-repeat"
   style={{ backgroundImage: "url(/images/tech-we-use-bg.png)" }}
 >
       {/* Center wrapper */}

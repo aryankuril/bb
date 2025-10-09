@@ -77,7 +77,7 @@ const SecondSection = () => {
   };
 
   return (
-    <section className="w-full container py-10 sm:py-15 lg:py-20">
+    <section id="second-section" className="w-full container py-10 sm:py-15 lg:py-20">
       {/* Category Filter */}
 <div className="flex gap-3 mb-8 overflow-x-auto scrollbar-hide flex-nowrap">
   {categories.map((cat, i) => (

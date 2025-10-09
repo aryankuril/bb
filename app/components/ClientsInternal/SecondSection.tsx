@@ -64,7 +64,7 @@ const SecondSection = () => {
   }, []);
 
   return (
-    <section className="  relative container py-10 sm:py-15 lg:py-20">
+    <section id="second-section" className="  relative container py-10 sm:py-15 lg:py-20">
 
       <div className="lg:px-30 px-2" >
       <div className="text-center mb-12">

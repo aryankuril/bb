@@ -35,7 +35,7 @@ import React from "react";
 
 const SecondSection = () => {
   return (
- <section className="container py-10 sm:py-15 lg:py-20">
+ <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
   {/* Title */}
   <div className="text-center mb-8 sm:mb-12 ">
     <h2 className="black-text lg:w-[950px] flex-[1_0_0] mx-auto">

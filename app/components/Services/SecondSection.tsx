@@ -47,7 +47,7 @@ export default function SecondSection() {
   const segment = 1 / cards.length;
 
   return (
-    <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
+    <section id="second-section" className="container py-10 sm:py-15 lg:py-20 relative w-full">
       {/* Sticky Title */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center pointer-events-none z-0 px-2">
         <div

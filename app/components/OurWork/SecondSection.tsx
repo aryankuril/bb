@@ -40,9 +40,9 @@ const SecondSection = () => {
   }
 
   return (
-    <section className="container py-10 sm:py-15 lg:py-20 ">
+    <section id="second-section" className="container py-10 sm:py-15 lg:py-20 ">
       {/* Title */}
-      <h2 className="black-text mr-4 lg:mb-5 ">
+      <h2 className="black-text mr-4 lg:mb-5 mb-4 ">
         Category
       </h2>
 

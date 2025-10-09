@@ -158,7 +158,7 @@ const SecondSection = () => {
      )
   };
   return (
-  <section className="mx-auto container py-10 sm:py-15 lg:py-20">
+  <section id="second-section" className="mx-auto container py-10 sm:py-15 lg:py-20">
   <h2
     className="
       text-center black-text

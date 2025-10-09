@@ -108,7 +108,7 @@ const getIconColor = (fieldValue: string | undefined, fieldFocused: boolean) => 
   return fieldFocused || fieldValue ? "#FAB31E" : "#ABABAB";
 };
   return (
-    <section className="container py-10 sm:py-15 lg:py-20">
+    <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
       <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
         
         {/* Left Side Image */}

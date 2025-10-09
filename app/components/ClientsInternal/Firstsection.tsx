@@ -29,7 +29,7 @@ const Firstsection = () => {
   }, [controls, spacerControls, inView]);
 
   return (
-    <section className="lg:top-0 -top-10 container py-0 sm:py-15 lg:py-30 ">
+    <section className="-lg:mt-10 -mt-10 container py-0 sm:py-15 lg:py-30 ">
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-[1500px] black-text">

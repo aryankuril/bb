@@ -60,7 +60,7 @@ export default function PerformanceROI() {
   }, []);
  
   return (
-    <section ref={root} className="w-full container py-10 sm:py-15 lg:py-20" aria-labelledby="roi-heading">
+    <section ref={root} className="w-full container py-0 sm:py-15 lg:py-20" aria-labelledby="roi-heading">
       <div className="mx-auto max-w-7xl w-fullpx-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
           {/* Left: Counter */}
