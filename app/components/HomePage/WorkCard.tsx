@@ -13,57 +13,30 @@ const cardsData = [
     tags: ["Mobile App", "Engagement", "UI/UX"],
     content:
       "Crafting Digital Experiences Where Beauty Meets ROI, Turning Heads And Unlocking Revenue Potential With Every Click.",
-    image: "/images/section1-img1.png",
+    image: "/images/SocialMedia/ricrac.webp",
   },
   {
     title: "Healthcare Dashboard",
     tags: ["Dashboard", "Analytics", "UI/UX"],
     content:
       "Delivering precision-driven solutions that simplify complex workflows and enhance decision-making.",
-    image: "/images/section1-img2.png",
+    image: "/images/SocialMedia/scs.webp",
   },
   {
     title: "E-commerce Platform",
     tags: ["E-commerce", "Performance", "UX"],
     content:
       "Boosting sales through seamless checkout flows and engaging shopping experiences.",
-    image: "/images/section1-img3.png",
+    image: "/images/webdev/jkdiamonds.webp",
   },
   {
     title: "SaaS Admin Panel",
     tags: ["SaaS", "Admin", "UX"],
     content:
       "Scaling product dashboards that reduce friction and accelerate decision cycles for teams.",
-    image: "/images/section1-img4.png",
+    image: "/images/webdev/mysuit.webp",
   },
-  {
-    title: "Fintech Mobile Experience",
-    tags: ["Fintech", "Security", "UI"],
-    content:
-      "Secure, clear interfaces that build trust and improve conversion for financial products.",
-    image: "/images/section1-img1.png",
-  },
-  {
-    title: "Travel Booking Flow",
-    tags: ["Travel", "UX", "Performance"],
-    content:
-      "Streamlined flows that reduce abandonment and increase bookings across devices.",
-    image: "/images/section1-img2.png",
-  },
-  {
-    title: "Onboarding Experience",
-    tags: ["Onboarding", "Activation", "UX"],
-    content:
-      "Delightful onboarding that levies progressive profiling and boosts activation.",
-    image: "/images/section1-img3.png",
-  },
-  {
-    title: "Marketing Microsite",
-    tags: ["Brand", "Marketing", "Design"],
-    content:
-      "Visually rich microsites built for conversion and campaign storytelling.",
-    image: "/images/section1-img4.png",
-  },
+ 
 ];
 
 export default function StackingCards() {
@@ -201,12 +174,13 @@ export default function StackingCards() {
                   </div>
 
                   {/* Right visual – no cropping, equal top/bottom padding */}
-                  <div className="w-full h-full min-h-0">
-                    <div className="w-full h-full min-h-0 flex items-center justify-center py-6 sm:py-8 md:py-10">
+                  <div className="w-full h-full min-h-0 ">
+                    <div className="w-full h-full min-h-0 flex items-center  justify-center py-6 sm:py-8 md:py-10">
                       <img
                         src={card.image}
                         alt={card.title}
-                        className="block w-full max-h-full object-contain"
+                        className="block max-h-full object-contain rounded-3xl"
+
                         onError={(e) => {
                           e.currentTarget.src =
                             "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%23151515'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaaaaa' font-size='24'%3EImage%20placeholder%3C/text%3E%3C/svg%3E";

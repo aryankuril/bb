@@ -26,15 +26,18 @@ const ThirdSection = () => {
           <div className="flex flex-col gap-6 w-full md:w-1/2">
             {/* Years of Creativity */}
             <div className="justify-end bg-[var(--color-primary)] white-text p-6 sm:p-8 rounded-[20px] shadow-lg
-              border-r-[16px] sm:border-r-[20px] border-r-[var(--color-highlight)]
-              h-auto sm:h-[280px] lg:h-[337px] w-full flex flex-col">
-              <span className="text-highlight numbering">
-                {inView && <CountUp end={2015} duration={3} />}+
-              </span>
-              <h3 className="white-text">
-                Years Of Bold Digital Creativity
-              </h3>
-            </div>
+    border-r-[16px] sm:border-r-[20px] border-r-[var(--color-highlight)]
+    h-auto sm:h-[280px] lg:h-[337px] w-full flex flex-col">
+  
+  <span className="text-highlight numbering text-4xl sm:text-5xl">
+    {inView && <CountUp end={2015} duration={3} separator="" />}+
+  </span>
+
+  <h3 className="white-text mt-2">
+    Years Of Bold Digital Creativity
+  </h3>
+</div>
+
 
             {/* Projects Delivered */}
             <div className="justify-end bg-[var(--color-primary)] white-text p-6 sm:p-8 rounded-[20px] shadow-lg

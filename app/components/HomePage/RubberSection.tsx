@@ -5,10 +5,10 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import Button from "../Button";
 
 const cards = [
-  { img: "/images/section1-img1.png", label: "Young Passionate Crowd", rotate: 10 },
-  { img: "/images/section1-img2.png", label: "Jugged Masters", rotate: -10 },
-  { img: "/images/section1-img3.png", label: "Goldi-Cricket Champs", rotate: 10 },
-  { img: "/images/section1-img1.png", label: "Creative Experts", rotate: 10 },
+  { img: "/images/rubber1.webp", label: "Young Passionate Crowd", rotate: 10 },
+  { img: "/images/rubber2.webp", label: "Jugged Masters", rotate: -10 },
+  { img: "/images/rubber3.webp", label: "Goldi-Cricket Champs", rotate: 10 },
+  { img: "/images/rubber4.webp", label: "Creative Experts", rotate: 10 },
 ];
 
 const RubberSection = () => {

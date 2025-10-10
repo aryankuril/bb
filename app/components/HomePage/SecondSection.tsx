@@ -9,25 +9,25 @@ const services = [
     id: 1,
     title: " Branding – thecha to your vada pav",
     desc: "Branding adds flavor and personality to your brand, giving it a strong identity that everything else builds on.",
-    img: "/images/section1-img1.png",
+    img: "/images/Branding.jpg",
   },
   {
     id: 2,
     title: "Digital marketing – spreading the aroma ",
     desc: "Just like the aroma of a Vada Pav spreads and attracts people, digital marketing spreads your message to the audience, making your brand visible and enticing.",
-    img: "/images/section1-img2.png",
+    img: "/images/DigitalMarketing.png",
   },
   {
     id: 3,
     title: "Web development – the aftertaste",
     desc: "The aftertaste is what lingers and leaves an impression.Web development ensures your website functions smoothly and leaves a lasting, reliable impression on your audience.",
-    img: "/images/section1-img3.png",
+    img: "/images/UI-UX.webp",
   },
   {
     id: 4,
     title: "ui/ux – the firstbite - UI/UX The First Bite",
     desc: "The first bite defines the entire experience.UI/UX design ensures the user’s first interaction with your digital presence is enjoyable, intuitive, and memorable.",
-    img: "/images/section1-img4.png",
+    img: "/images/Website.webp",
   },
 ];
 

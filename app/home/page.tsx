@@ -15,7 +15,7 @@ import Footer from "../components/Footer";
 // import ClientScripts from "./components/ClientScripts";
 
 // 
-export default function Home() {
+const Index = () => {
   return (
     <div>
       {/* <ClientScripts/> */}
@@ -36,3 +36,6 @@ export default function Home() {
     
   );
 }
+
+
+export default Index

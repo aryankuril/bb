@@ -58,7 +58,7 @@ Solving the React SEO Puzzle: The Presolv360 Case Study
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[1400px] "
         >
           <Image
- src="/images/SocialMedia/ricrac.webp"
+ src="/images/SEO/Presolv.png"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

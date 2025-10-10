@@ -188,7 +188,7 @@ export default function LightCameraAction() {
             "
           >
             <MuxPlayer
-              playbackId="a4nOgmxGWg6gULfcBbAa00gXyfcwPnAFldF8RdsNyk8M"
+              playbackId="vzvQQF6ubVWKOj8iM5C27pKCSwgI7xENHqxU7IbxR00w"
               metadata={{
                 video_id: "video-id-54321",
                 video_title: "Test video title",
@@ -232,7 +232,7 @@ export default function LightCameraAction() {
               <Button
                 href="#"
                 text="BOOK FREE AUDIT"
-                className="white-text font-semibold rounded-xl shadow-lg transition-colors"
+                className="white-text font-semibold transition-colors"
               />
             </div>
           </div>
