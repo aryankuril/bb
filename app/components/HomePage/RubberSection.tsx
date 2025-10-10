@@ -21,7 +21,7 @@ const RubberSection = () => {
     >
       {/* Heading */}
       <h2 className="mb-3 text-center">
-        <span className="text-highlight">BB Culture</span> = Bold Ideas. Real Impact. Human At Heart.
+        <span className="text-highlight">BB culture </span> - Ideate,innovate,create
       </h2>
 
       {/* Cards */}

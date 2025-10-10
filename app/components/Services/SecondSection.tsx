@@ -1,33 +1,45 @@
 "use client";
+
 import React, { useRef, useState, useEffect } from "react";
 import { useScroll } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 interface Card {
   title: string;
   subtitle: string;
   image: string;
+  link: string;
 }
 
 const cards: Card[] = [
   {
-    title: "Branding Workflow",
-    subtitle: "We dig deep into your business, audience and competitors.",
+    title: "Web Development",
+    subtitle:
+      "Custom websites and applications built with modern technologies to deliver performance and scalability.",
     image: "/images/section1-img1.png",
+    link: "/website-design",
   },
   {
-    title: "Creative Direction",
-    subtitle: "Design-first approach to build memorable products.",
+    title: "Performance Marketing",
+    subtitle:
+      "Data-driven marketing strategies to maximize ROAS and drive measurable business growth.",
     image: "/images/section1-img2.png",
+    link: "/performance-maketing",
+    
   },
   {
-    title: "Strategy & Research",
-    subtitle: "Market research to inform design & growth.",
+    title: "SEO Optimization",
+    subtitle:
+      "On-page and off-page SEO solutions to boost visibility, organic traffic, and search engine rankings.",
     image: "/images/section1-img3.png",
+    link: "/seo",
   },
   {
-    title: "Product Design",
-    subtitle: "From concept to pixel-perfect interfaces.",
+    title: "Social Media Management",
+    subtitle:
+      "Engaging content and campaigns to grow, nurture, and retain your social audience effectively.",
     image: "/images/section1-img4.png",
+    link: "/social-media",
   },
 ];
 
@@ -37,8 +49,8 @@ export default function SecondSection() {
     target: containerRef,
     offset: ["start start", "end end"],
   });
-
   const [progress, setProgress] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     return scrollYProgress.on("change", (v) => setProgress(v));
@@ -55,7 +67,7 @@ export default function SecondSection() {
             color: progress < 0.05 ? "#1D1D1D" : "#F1F1F1",
             transition: "color 0.3s linear",
           }}
-          className="text-center single-title  select-none"
+          className="text-center single-title select-none"
         >
           Services
         </div>
@@ -74,22 +86,20 @@ export default function SecondSection() {
               1
             );
 
-            // only slide + rotate, no fade
             const y = 100 - localProgress * 200;
-            const rotate =
-              i % 2 === 0 ? (1 - localProgress) * 5 : (localProgress - 1) * 5;
+            const rotate = i % 2 === 0 ? (1 - localProgress) * 5 : (localProgress - 1) * 5;
 
             return (
               <div
                 key={i}
-                className={`absolute top-1/2 -translate-y-1/2 ${
-                  i % 2 === 0 ? "left-0" : "right-0"
-                } z-10 px-2`}
+                className={`absolute top-1/2 -translate-y-1/2 ${i % 2 === 0 ? "left-0" : "right-0"} z-10 px-2`}
                 style={{
                   transform: `translateY(${y}%) rotate(${rotate}deg)`,
-                  opacity: visible ? 1 : 0, // 👈 no fading in/out, just snap
+                  opacity: visible ? 1 : 0,
                   transition: "transform 0.3s linear, opacity 0.3s linear",
+                  cursor: "pointer",
                 }}
+                onClick={() => router.push(card.link)}
               >
                 <div
                   className="flex flex-col justify-end
@@ -105,12 +115,8 @@ export default function SecondSection() {
                     backgroundRepeat: "no-repeat",
                   }}
                 >
-                  <h3 className="text-highlight">
-                    {card.title}
-                  </h3>
-                  <p className="mt-2 white-text body2">
-                    {card.subtitle}
-                  </p>
+                  <h3 className="text-highlight">{card.title}</h3>
+                  <p className="mt-2 white-text body2">{card.subtitle}</p>
                 </div>
               </div>
             );

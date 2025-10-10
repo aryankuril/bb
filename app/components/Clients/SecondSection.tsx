@@ -10,24 +10,54 @@ interface Card {
 
 const cards: Card[] = [
   {
-    title: "Branding Workflow",
+    title: "Antar",
     subtitle: "We dig deep into your business, audience and competitors.",
-    image: "/images/section1-img1.png",
+    image: "/images/clientpage/Antar.webp",
   },
   {
-    title: "Creative Direction",
+    title: "Blancorra",
     subtitle: "Design-first approach to build memorable products.",
-    image: "/images/section1-img2.png",
+    image: "/images/clientpage/blancorra.webp",
   },
   {
-    title: "Strategy & Research",
+    title: "Cadini",
     subtitle: "Market research to inform design & growth.",
-    image: "/images/section1-img3.png",
+    image: "/images/clientpage/Cadini.webp",
   },
   {
-    title: "Product Design",
+    title: "Carron",
     subtitle: "From concept to pixel-perfect interfaces.",
-    image: "/images/section1-img4.png",
+    image: "/images/clientpage/Carron.webp",
+  },
+    {
+    title: "Divine Solitaire",
+    subtitle: "We dig deep into your business, audience and competitors.",
+    image: "/images/clientpage/Divine-solitaire.webp",
+  },
+  {
+    title: "Manba",
+    subtitle: "Design-first approach to build memorable products.",
+    image: "/images/clientpage/manba.webp",
+  },
+  {
+    title: "MB Mehta ",
+    subtitle: "Market research to inform design & growth.",
+    image: "/images/clientpage/MB-mehta.webp",
+  },
+  {
+    title: "Obuka",
+    subtitle: "From concept to pixel-perfect interfaces.",
+    image: "/images/clientpage/obuka.webp",
+  },
+    {
+    title: "Ric Rac",
+    subtitle: "We dig deep into your business, audience and competitors.",
+    image: "/images/clientpage/Ric-Rac.webp",
+  },
+  {
+    title: "SCS",
+    subtitle: "Design-first approach to build memorable products.",
+    image: "/images/clientpage/SCS.webp",
   },
 ];
 

@@ -14,12 +14,12 @@ type CardItem = {
  
 const CardCarousel: React.FC = () => {
   const cards: CardItem[] = [
-      { id: 1, src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600", hoverText: "View Case Study" },
-      { id: 2, src: "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1600", hoverText: "Explore Work" },
-      { id: 3, src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1600", hoverText: "See Details" },
-      { id: 4, src: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=1600", hoverText: "Open Project" },
-      { id: 5, src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600", hoverText: "Learn More" },
-      { id: 6, src: "https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6?q=80&w=1600", hoverText: "Discover" },
+      { id: 1, src: "/images/unskippable-brands/cadini.webp", hoverText: "View Case Study" },
+      { id: 2, src: "/images/unskippable-brands/carron.webp", hoverText: "Explore Work" },
+      { id: 3, src: "/images/unskippable-brands/divine.webp", hoverText: "See Details" },
+      { id: 4, src: "/images/unskippable-brands/manba.webp", hoverText: "Open Project" },
+      { id: 5, src: "/images/unskippable-brands/supersox.webp", hoverText: "Learn More" },
+      { id: 6, src: "/images/unskippable-brands/Mbmehta.webp", hoverText: "Discover" },
     ];
  
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,14 +49,17 @@ const CardCarousel: React.FC = () => {
       className="relative h-[400vh] container py-10 sm:py-15 lg:py-20"
     >
       {/* Sticky wrapper keeps everything (title + cards) fixed */}
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
+      <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden gap-5">
+      <h2 className="mb-3 text-center">
+        <span className="text-highlight">Bombay Blokes </span>makes ideas real
+      </h2>
         {/* Title stays fixed at center */}
-        <div className="absolute text-center px-4 z-0">
+        {/* <div className="absolute text-center px-4 z-0">
           <h1 className="black-text">
             <span className="text-highlight">UNSKIPPABLE</span>{" "}
             <span className="black-text">BRANDS</span>
           </h1>
-        </div>
+        </div> */}
  
         {/* Horizontal cards */}
         <motion.div

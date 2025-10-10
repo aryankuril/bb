@@ -7,26 +7,26 @@ import gsap from "gsap";
 const services = [
   {
     id: 1,
-    title: "Branding",
-    desc: "Most Ad Spend Is Wasted On Poor Targeting, Weak Creatives, And Missed Optimization, Only 20% Drives Real Growth.",
+    title: " Branding – thecha to your vada pav",
+    desc: "Branding adds flavor and personality to your brand, giving it a strong identity that everything else builds on.",
     img: "/images/section1-img1.png",
   },
   {
     id: 2,
-    title: "Digital Marketing",
-    desc: "Most Ad Spend Is Wasted On Poor Targeting, Weak Creatives, And Missed Optimization, Only 20% Drives Real Growth.",
+    title: "Digital marketing – spreading the aroma ",
+    desc: "Just like the aroma of a Vada Pav spreads and attracts people, digital marketing spreads your message to the audience, making your brand visible and enticing.",
     img: "/images/section1-img2.png",
   },
   {
     id: 3,
-    title: "UI/UX",
-    desc: "Most Ad Spend Is Wasted On Poor Targeting, Weak Creatives, And Missed Optimization, Only 20% Drives Real Growth.",
+    title: "Web development – the aftertaste",
+    desc: "The aftertaste is what lingers and leaves an impression.Web development ensures your website functions smoothly and leaves a lasting, reliable impression on your audience.",
     img: "/images/section1-img3.png",
   },
   {
     id: 4,
-    title: "Website Development",
-    desc: "Most Ad Spend Is Wasted On Poor Targeting, Weak Creatives, And Missed Optimization, Only 20% Drives Real Growth.",
+    title: "ui/ux – the firstbite - UI/UX The First Bite",
+    desc: "The first bite defines the entire experience.UI/UX design ensures the user’s first interaction with your digital presence is enjoyable, intuitive, and memorable.",
     img: "/images/section1-img4.png",
   },
 ];
@@ -124,12 +124,12 @@ export default function SecondSection() {
             "
           >
             {/* Number */}
-            <h2 className="order-1 text-highlight numbering text-left">
+            <h2 className="order-1 text-highlight numbering text-left flex items-center justify-center">
               {s.id.toString().padStart(2, "0")}
             </h2>
 
             {/* Title + Description + Mobile Image */}
-            <div className="flex flex-col order-2 space-y-4 text-left">
+            <div className="flex flex-col order-2 space-y-4 text-left max-w-120">
               <h3 className="black-text">{s.title}</h3>
 
               {/* Mobile-only image (hidden on desktop) */}

@@ -36,7 +36,7 @@ export default function PerformanceROI() {
       if (!prefersReduced && counterRef.current) {
         const obj = { val: 0 };
         gsap.to(obj, {
-          val: 80,
+          val: 90,
           duration: 2,
           ease: "power3.out",
           snap: { val: 1 },
@@ -52,7 +52,7 @@ export default function PerformanceROI() {
           },
         });
       } else if (counterRef.current) {
-        counterRef.current.textContent = "80%";
+        counterRef.current.textContent = "90%";
       }
     }, root);
  
@@ -61,7 +61,7 @@ export default function PerformanceROI() {
  
   return (
     <section ref={root} className="w-full container py-0 sm:py-15 lg:py-20" aria-labelledby="roi-heading">
-      <div className="mx-auto max-w-7xl w-fullpx-4 sm:px-6 lg:px-8 py-14">
+      <div className="mx-auto w-full py-14">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
           {/* Left: Counter */}
           <div className="md:col-span-2 flex justify-center md:justify-start items-center">
@@ -74,20 +74,20 @@ export default function PerformanceROI() {
           </div>
  
           {/* Right: Text */}
-          <div className="md:col-span-3 flex flex-col justify-center text-center md:text-left">
+          <div className="md:col-span-3 flex flex-col justify-center text-center md:text-left max-w-4xl">
             <h2
               id="roi-heading"
               ref={titleRef}
               className="font-secondary mb-2"
             >
-              Of Performance Marketing Budgets Don’t Deliver ROI.
+              of our performance marketing budgets don’t deliver ROI but...
             </h2>
             <p
               ref={subCopyRef}
               className="font-secondary body2 max-w-xl w-full "
             >
-              Most ad spend is wasted on poor targeting, weak creatives, and
-              missed optimization only 20% drives real growth.
+              We meant they don’t just deliver ROI, but also retain customers and 
+increase engagement too
             </p>
           </div>
         </div>
