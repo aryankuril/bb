@@ -9,61 +9,34 @@ gsap.registerPlugin(ScrollTrigger);
 // ------- Demo data (8 cards) -------
 const cardsData = [
   {
-    title: "EdTech Mobile App",
-    tags: ["Mobile App", "Engagement", "UI/UX"],
+    title: "Ric Rac",
+    tags: ["Adobe illustrator", "AI"],
     content:
-      "Crafting Digital Experiences Where Beauty Meets ROI, Turning Heads And Unlocking Revenue Potential With Every Click.",
-    image: "/images/section1-img1.png",
+      "Our challenge was launching RicRac Kids from absolute zero—a new brand with no digital footprint, no awareness, and the critical need to build trust from scratch.",
+    image: "/images/SocialMedia/ricrac.webp",
   },
   {
-    title: "Healthcare Dashboard",
-    tags: ["Dashboard", "Analytics", "UI/UX"],
+    title: "SCS",
+    tags: ["Meta Ads"],
     content:
-      "Delivering precision-driven solutions that simplify complex workflows and enhance decision-making.",
-    image: "/images/section1-img2.png",
+      "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue—a mission that culminated in a game-changing 12x ROAS.",
+    image: "/images/SocialMedia/scs.webp",
   },
   {
-    title: "E-commerce Platform",
-    tags: ["E-commerce", "Performance", "UX"],
+    title: "J K Diamonds Institute",
+    tags: ["UI UX", "Framer", "Zoho CRM"],
     content:
-      "Boosting sales through seamless checkout flows and engaging shopping experiences.",
-    image: "/images/section1-img3.png",
+      "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
+    image: "/images/webdev/jkdiamonds.webp",
   },
   {
-    title: "SaaS Admin Panel",
-    tags: ["SaaS", "Admin", "UX"],
+    title: "My Suit Tailor",
+    tags: [" UI UX", "Shopify "],
     content:
-      "Scaling product dashboards that reduce friction and accelerate decision cycles for teams.",
-    image: "/images/section1-img4.png",
+      "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
+    image: "/images/webdev/mysuit.webp",
   },
-  {
-    title: "Fintech Mobile Experience",
-    tags: ["Fintech", "Security", "UI"],
-    content:
-      "Secure, clear interfaces that build trust and improve conversion for financial products.",
-    image: "/images/section1-img1.png",
-  },
-  {
-    title: "Travel Booking Flow",
-    tags: ["Travel", "UX", "Performance"],
-    content:
-      "Streamlined flows that reduce abandonment and increase bookings across devices.",
-    image: "/images/section1-img2.png",
-  },
-  {
-    title: "Onboarding Experience",
-    tags: ["Onboarding", "Activation", "UX"],
-    content:
-      "Delightful onboarding that levies progressive profiling and boosts activation.",
-    image: "/images/section1-img3.png",
-  },
-  {
-    title: "Marketing Microsite",
-    tags: ["Brand", "Marketing", "Design"],
-    content:
-      "Visually rich microsites built for conversion and campaign storytelling.",
-    image: "/images/section1-img4.png",
-  },
+ 
 ];
 
 export default function FifthSection() {

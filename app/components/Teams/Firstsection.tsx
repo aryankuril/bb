@@ -57,7 +57,7 @@ const Firstsection: React.FC = () => {
   }, []);
 
   return (
-    <section className="container -lg:mt-10 -mt-10  py-0 sm:py-15 lg:py-30">
+    <section className="container lg:mt-0 -mt-10  py-0 sm:py-15 lg:py-30">
       <h1 className="black-text text-center md:text-left">
         The Squad That Turns <span className="text-highlight">What If</span>’
         Into <br />‘<span className="text-highlight">What’s Next.</span>’
@@ -74,7 +74,7 @@ const Firstsection: React.FC = () => {
           <div className="flex flex-wrap lg:gap-4 gap-1 justify-center lg:mt-20 mt-0">
             <div className="w-[32%] max-w-[562px] lg:w-[562px]  0">
               <Image
-                src="/images/section2-img1.png"
+                src="/images/teams/1.png"
                 alt="Big Image"
                 width={250}
                 height={250}
@@ -83,7 +83,7 @@ const Firstsection: React.FC = () => {
             </div>
             <div className="w-[32%] max-w-[350px] lg:w-[350px] ">
               <Image
-                src="/images/section2-img2.png"
+                src="/images/teams/2.png"
                 alt="Small 1"
                 width={250}
                 height={250}
@@ -92,7 +92,7 @@ const Firstsection: React.FC = () => {
             </div>
             <div className="w-[32%] max-w-[350px] lg:w-[350px] ">
               <Image
-                src="/images/section2-img3.png"
+                src="/images/teams/3.png"
                 alt="Small 2"
                 width={250}
                 height={250}
@@ -105,7 +105,7 @@ const Firstsection: React.FC = () => {
           <div className="flex flex-wrap lg:gap-4 gap-1 justify-center">
             <div className="w-[32%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[120px] flex-shrink-0">
               <Image
-                src="/images/section2-img4.png"
+                src="/images/teams/4.png"
                 alt="Hands"
                 width={250}
                 height={250}
@@ -123,7 +123,7 @@ const Firstsection: React.FC = () => {
               }}
             >
               <Image
-                src="/images/section1-img1.png"
+                src="/images/teams/5.png"
                 alt="Hands Zoom"
                 fill
                 className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
@@ -132,7 +132,7 @@ const Firstsection: React.FC = () => {
 
             <div className="w-[32%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[120px] flex-shrink-0">
               <Image
-                src="/images/section2-img4.png"
+                src="/images/teams/5.png"
                 alt="Hands"
                 width={250}
                 height={250}
@@ -145,7 +145,7 @@ const Firstsection: React.FC = () => {
           <div className="flex flex-wrap gap-4 justify-center">
             <div className="w-[30%] max-w-[350px] lg:w-[350px] flex-shrink-0">
               <Image
-                src="/images/section2-img1.png"
+                src="/images/teams/6.png"
                 alt="Woman"
                 width={250}
                 height={250}
@@ -154,7 +154,7 @@ const Firstsection: React.FC = () => {
             </div>
             <div className="w-[30%] max-w-[350px] lg:w-[350px] flex-shrink-0">
               <Image
-                src="/images/section2-img2.png"
+                src="/images/teams/7.png"
                 alt="Man"
                 width={250}
                 height={250}
@@ -163,7 +163,7 @@ const Firstsection: React.FC = () => {
             </div>
             <div className="w-[30%] max-w-[562px] lg:w-[562px]  flex-shrink-0">
               <Image
-                src="/images/section2-img3.png"
+                src="/images/teams/8.png"
                 alt="Hands"
                 width={250}
                 height={250}

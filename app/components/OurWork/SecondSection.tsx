@@ -12,27 +12,27 @@ type Step = {
 
 const allSteps: Step[] = [
   // 🟦 WEB DEVELOPMENT (5)
-  { number: "01", title: "JK Diamonds", image: "/images/webdev/jkdiamonds.webp", category: "Web Development", link: "/jkdiamonds" },
-  { number: "02", title: "My Suit", image: "/images/webdev/mysuit.webp", category: "Web Development", link: "/mysuit" },
-  { number: "03", title: "SCS", image: "/images/webdev/scs.webp", category: "Web Development", link: "/scs" },
-  { number: "04", title: "The Feline Foundation", image: "/images/webdev/supersox.webp", category: "Web Development", link: "/ff" },
-  { number: "05", title: "SuperSox", image: "/images/webdev/foundation.webp", category: "Web Development", link: "/supersox" },
+  { number: "01", title: "JK Diamonds", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/jkdiamonds" },
+  { number: "02", title: "My Suit", image: "/images/webdev/MST.png", category: "Web Development", link: "/mysuit" },
+  { number: "03", title: "SCS", image: "/images/webdev/SCS.png", category: "Web Development", link: "/scs" },
+  { number: "04", title: "The Feline Foundation", image: "/images/webdev/Super-Sox.png", category: "Web Development", link: "/ff" },
+  { number: "05", title: "Super Sox", image: "/images/webdev/Foundation.png", category: "Web Development", link: "/supersox" },
 
   // 🟩 PERFORMANCE MARKETING (4)
-  { number: "01", title: "Campaign Strategy", image: "/images/section2-img6.png", category: "Performance Marketing", link: "/performance-marketing/strategy" },
-  { number: "02", title: "Ad Creative Development", image: "/images/section2-img2.png", category: "Performance Marketing", link: "/performance-marketing/creatives" },
-  { number: "03", title: "Optimization & Scaling", image: "/images/section2-img3.png", category: "Performance Marketing", link: "/performance-marketing/optimization" },
-  { number: "04", title: "Performance Reporting", image: "/images/section2-img4.png", category: "Performance Marketing", link: "/performance-marketing/reporting" },
+  { number: "01", title: "Chater Box", image: "/images/pm/chaterbox.webp", category: "Performance Marketing", link: "/chatterbox" },
+  { number: "02", title: "Dancing Leaf", image: "/images/pm/Dancingleaf.webp", category: "Performance Marketing", link: "/dancingleaf" },
+  { number: "03", title: "JK Diamonds", image: "/images/pm/jkdiamonds.webp", category: "Performance Marketing", link: "/jkdiamondsperformance" },
+  { number: "04", title: "SCS", image: "/images/pm/SCS.webp", category: "Performance Marketing", link: "/scsperformance" },
 
   // 🟥 SOCIAL MEDIA (2)
-  { number: "01", title: "Content Strategy & Planning", image: "/images/section2-img1.png", category: "Social Media", link: "/social-media/content-strategy" },
-  { number: "02", title: "Community Engagement", image: "/images/section2-img5.png", category: "Social Media", link: "/social-media/community" },
+  { number: "01", title: "Ric Rac", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/ricrac" },
+  { number: "02", title: "SCS", image: "/images/sm/SCS.png", category: "Social Media", link: "/scs" },
+   { number: "03", title: "Super Sox", image: "/images/sm/Super-Sox.png", category: "Social Media", link: "/supersox-sm" },
 
   // 🟨 SEO (4)
-  { number: "01", title: "Keyword & Content Gap Analysis", image: "/images/section2-img1.png", category: "SEO", link: "/seo/keyword-analysis" },
-  { number: "02", title: "In-Depth Service Pages", image: "/images/section2-img2.png", category: "SEO", link: "/seo/service-pages" },
-  { number: "03", title: "Topical Blog Strategy", image: "/images/section2-img3.png", category: "SEO", link: "/seo/blog-strategy" },
-  { number: "04", title: "Lead Generation Optimization", image: "/images/section2-img4.png", category: "SEO", link: "/seo/lead-generation" },
+  { number: "01", title: "Manba", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/manba" },
+  { number: "02", title: "Prosolv", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/presolv" },
+  { number: "03", title: "SCS", image: "/images/seo-cs/SCS.png", category: "SEO", link: "/scs-seo" },
 ];
 
 const categories = ["All", "Web Development", "Performance Marketing", "Social Media", "SEO"];
@@ -104,7 +104,7 @@ const SecondSection = () => {
         <div className="flex justify-center mt-10">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="px-6 py-2 border border-[var(--color-primary)] text-[var(--color-primary)] rounded-full hover:bg-[var(--color-primary)] hover:text-[var(--color-secondary)] transition-all duration-300"
+            className="px-6 py-2 border border-[var(--color-primary)] cursor-pointer text-[var(--color-primary)] rounded-full hover:bg-[var(--color-primary)] hover:text-[var(--color-secondary)] transition-all duration-300"
           >
             {showAll ? "Show Less" : "Show All"}
           </button>

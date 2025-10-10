@@ -11,52 +11,52 @@ interface Card {
 const cards: Card[] = [
   {
     title: "Antar",
-    subtitle: "We dig deep into your business, audience and competitors.",
+    subtitle: "Your confidential digital companion for accessible mental health and wellness support, right in your pocket.",
     image: "/images/clientpage/Antar.webp",
   },
   {
     title: "Blancorra",
-    subtitle: "Design-first approach to build memorable products.",
+    subtitle: "Where timeless elegance meets modern sophistication in a curated collection of womenswear.",
     image: "/images/clientpage/blancorra.webp",
   },
   {
     title: "Cadini",
-    subtitle: "Market research to inform design & growth.",
+    subtitle: "The epitome of Italian luxury, offering finely crafted formal wear for the discerning gentleman.",
     image: "/images/clientpage/Cadini.webp",
   },
   {
     title: "Carron",
-    subtitle: "From concept to pixel-perfect interfaces.",
+    subtitle: "Elevating classic board games into timeless works of handcrafted art",
     image: "/images/clientpage/Carron.webp",
   },
     {
     title: "Divine Solitaire",
-    subtitle: "We dig deep into your business, audience and competitors.",
+    subtitle: "Setting the standard for brilliance with perfectly cut and certified solitaire diamonds.",
     image: "/images/clientpage/Divine-solitaire.webp",
   },
   {
-    title: "Manba",
-    subtitle: "Design-first approach to build memorable products.",
+    title: "Manba Finance",
+    subtitle: "Your trusted financial partner, providing the support to help you achieve your goals.",
     image: "/images/clientpage/manba.webp",
   },
   {
     title: "MB Mehta ",
-    subtitle: "Market research to inform design & growth.",
+    subtitle: "A legacy of trust, crafting timeless jewelry for generations.",
     image: "/images/clientpage/MB-mehta.webp",
   },
   {
     title: "Obuka",
-    subtitle: "From concept to pixel-perfect interfaces.",
+    subtitle: "Crafting exquisite, handcrafted leather shoes for the modern connoisseur.",
     image: "/images/clientpage/obuka.webp",
   },
     {
     title: "Ric Rac",
-    subtitle: "We dig deep into your business, audience and competitors.",
+    subtitle: "Thoughtfully designed innerwear for Indian kids, created by parents who understand true comfort.",
     image: "/images/clientpage/Ric-Rac.webp",
   },
   {
     title: "SCS",
-    subtitle: "Design-first approach to build memorable products.",
+    subtitle: "The trusted one-stop destination for authentic gear across every sport.",
     image: "/images/clientpage/SCS.webp",
   },
 ];

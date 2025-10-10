@@ -15,30 +15,30 @@ const cards: Card[] = [
   {
     title: "Web Development",
     subtitle:
-      "Custom websites and applications built with modern technologies to deliver performance and scalability.",
-    image: "/images/section1-img1.png",
+      "We build pixel-perfect websites and digital experiences that aren't just beautiful, but are engineered to convert.",
+    image: "/images/servicespage/Development.png",
     link: "/website-design",
   },
   {
     title: "Performance Marketing",
     subtitle:
-      "Data-driven marketing strategies to maximize ROAS and drive measurable business growth.",
-    image: "/images/section1-img2.png",
+      "We create data-driven ad campaigns that deliver measurable results—turning clicks into customers and spend into revenue.",
+    image: "/images/servicespage/Performance.png",
     link: "/performance-maketing",
     
   },
   {
     title: "SEO Optimization",
     subtitle:
-      "On-page and off-page SEO solutions to boost visibility, organic traffic, and search engine rankings.",
-    image: "/images/section1-img3.png",
+      "We put your brand at the top of Google, connecting you with customers who are already searching for you.",
+    image: "/images/servicespage/SEO.png",
     link: "/seo",
   },
   {
     title: "Social Media Management",
     subtitle:
-      "Engaging content and campaigns to grow, nurture, and retain your social audience effectively.",
-    image: "/images/section1-img4.png",
+      "We build and nurture your online community, turning followers into loyal fans through creative content and authentic engagement.",
+    image: "/images/servicespage/Social-Media.png",
     link: "/social-media",
   },
 ];

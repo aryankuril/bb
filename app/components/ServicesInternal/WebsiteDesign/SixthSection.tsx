@@ -3,22 +3,32 @@ import { useState, useEffect, useRef } from "react";
 
 const testimonials = [
   {
-    text: `“Had an amazing journey working with Bombay Blokes, never felt like I was working with an outside agency!”`,
-    name: "~ Kaushik Shah",
+    text: `“A partner who understands business goals, deadlines, and the pulse of the audience.”`,
+    name: "~ Naman Ajmera",
+    brand: "J K Diamonds Institute",
   },
   {
-    text: `“The team delivered outstanding results on time and exceeded our expectations!”`,
-    name: "~ Anita Patel",
+    text: `“Ideas are fresh, relevant, and perfectly aligned with our audience.”`,
+    name: "~ Keval Shah",
+    brand: "Selection Centre Sports (SCS)",
   },
   {
-    text: `“Highly recommend their services, professional and friendly throughout.”`,
-    name: "~ Ravi Kumar",
+    text: `“From strategy to execution, their team understood our brand inside out.”`,
+    name: "~ Shaurya Modi",
+    brand: "DNM Sports",
   },
   {
-    text: `“A fantastic partner for all our creative needs. The quality of work is unparalleled.”`,
-    name: "~ Retail Brand",
+    text: `“Data-driven campaigns that actually work. We finally see measurable results.”`,
+    name: "~ Ankit Garg",
+    brand: "Dancing Leaf Tea",
+  },
+  {
+    text: `“Our digital presence is stronger than ever. Every campaign brings tangible results.”`,
+    name: "~ Mickey Mehta",
+    brand: "Antar", 
   },
 ];
+
 
 const SixthSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -41,35 +51,39 @@ const SixthSection = () => {
   };
 
   // Handle transition end (jump from clone back to real first)
-const handleTransitionEnd = () => {
-  if (currentIndex === testimonials.length) {
-    // reached the clone — jump back without flash
-    setIsTransitioning(false);
-    setTimeout(() => {
-      setCurrentIndex(0);
-      // re-enable transition *after* the instant jump
-      setTimeout(() => setIsTransitioning(true), 50);
-    }, 20);
-  }
-};
-
+  const handleTransitionEnd = () => {
+    if (currentIndex === testimonials.length) {
+      // reached the clone — jump back without flash
+      setIsTransitioning(false);
+      setTimeout(() => {
+        setCurrentIndex(0);
+        // re-enable transition *after* the instant jump
+        setTimeout(() => setIsTransitioning(true), 50);
+      }, 20);
+    }
+  };
 
   return (
     <div className="max-w-[960px] mx-auto py-10 sm:py-15 lg:py-20 font-poppins relative overflow-hidden">
       <div
-        className={`flex ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
+        className={`flex ${
+          isTransitioning
+            ? "transition-transform duration-700 ease-in-out"
+            : ""
+        }`}
         style={{
           transform: `translateX(-${currentIndex * 100}%)`,
         }}
         onTransitionEnd={handleTransitionEnd}
       >
-        {testimonials.map(({ text, name }, index) => (
+        {testimonials.map(({ text, name, brand }, index) => (
           <div key={index} className="flex-shrink-0 w-full flex justify-center">
             <div className="w-[95%] px-4 py-6 sm:py-8 lg:py-10 relative flex flex-col items-center text-center">
               <div className="body1 mb-6 sm:mb-8 lg:mb-10 text-black">
                 {text}
               </div>
-              <p className="body3 black-text">{name}</p>
+              <p className="body2 black-text">{brand}</p>
+              <p className="body3 black-text font-semibold">{name}</p>
             </div>
           </div>
         ))}
@@ -80,18 +94,21 @@ const handleTransitionEnd = () => {
             <div className="body1 mb-6 sm:mb-8 lg:mb-10 text-black">
               {testimonials[0].text}
             </div>
-            <p className="body3 black-text">{testimonials[0].name}</p>
+            <p className="body3 black-text font-semibold">
+              {testimonials[0].name}
+            <p className="body3 text-gray-500 mt-1">{testimonials[0].brand}</p>
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Dots navigation (optional) */}
-      <div className="flex justify-center gap-3">
+      {/* Dots navigation */}
+      <div className="flex justify-center gap-3 mt-4">
         {testimonials.map((_, idx) => (
           <button
             key={idx}
             className={`w-3 h-3 rounded-full transition-colors ${
-              idx === (currentIndex % testimonials.length)
+              idx === currentIndex % testimonials.length
                 ? "bg-yellow-400"
                 : "bg-gray-300"
             }`}

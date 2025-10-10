@@ -8,60 +8,18 @@ gsap.registerPlugin(ScrollTrigger);
 // ------- Demo data (8 cards) -------
 const cardsData = [
   {
-    title: "EdTech Mobile App",
-    tags: ["Mobile App", "Engagement", "UI/UX"],
+    title: "BB Studios",
+    tags: ["Branding", "Engagement", ],
     content:
-      "Crafting Digital Experiences Where Beauty Meets ROI, Turning Heads And Unlocking Revenue Potential With Every Click.",
-    image: "/images/section1-img1.png",
+      "Our in-house production arm, where we create stunning, campaign-ready photos and videos that bring your brand's story to life.",
+    image: "/images/servicespage/BB-Studios.png",
   },
   {
-    title: "Healthcare Dashboard",
-    tags: ["Dashboard", "Analytics", "UI/UX"],
+    title: "BomB AI",
+    tags: ["Ai", "Analytics"],
     content:
-      "Delivering precision-driven solutions that simplify complex workflows and enhance decision-making.",
-    image: "/images/section1-img2.png",
-  },
-  {
-    title: "E-commerce Platform",
-    tags: ["E-commerce", "Performance", "UX"],
-    content:
-      "Boosting sales through seamless checkout flows and engaging shopping experiences.",
-    image: "/images/section1-img3.png",
-  },
-  {
-    title: "SaaS Admin Panel",
-    tags: ["SaaS", "Admin", "UX"],
-    content:
-      "Scaling product dashboards that reduce friction and accelerate decision cycles for teams.",
-    image: "/images/section1-img4.png",
-  },
-  {
-    title: "Fintech Mobile Experience",
-    tags: ["Fintech", "Security", "UI"],
-    content:
-      "Secure, clear interfaces that build trust and improve conversion for financial products.",
-    image: "/images/section1-img1.png",
-  },
-  {
-    title: "Travel Booking Flow",
-    tags: ["Travel", "UX", "Performance"],
-    content:
-      "Streamlined flows that reduce abandonment and increase bookings across devices.",
-    image: "/images/section1-img2.png",
-  },
-  {
-    title: "Onboarding Experience",
-    tags: ["Onboarding", "Activation", "UX"],
-    content:
-      "Delightful onboarding that levies progressive profiling and boosts activation.",
-    image: "/images/section1-img3.png",
-  },
-  {
-    title: "Marketing Microsite",
-    tags: ["Brand", "Marketing", "Design"],
-    content:
-      "Visually rich microsites built for conversion and campaign storytelling.",
-    image: "/images/section1-img4.png",
+      "We leverage cutting-edge artificial intelligence to generate unique and compelling visuals at scale, moving at the speed of culture.",
+    image: "/images/servicespage/Bomb-Ai.png",
   },
 ];
 

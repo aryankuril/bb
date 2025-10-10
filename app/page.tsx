@@ -14,7 +14,8 @@ import SeventhSection from "./components/ServicesInternal/WebsiteDesign/SeventhS
 import Footer from "./components/Footer";
 // import ClientScripts from "./components/ClientScripts";
 
-// 
+
+
 export default function Home() {
   return (
     <div>
