@@ -230,8 +230,8 @@ export default function LightCameraAction() {
 
             <div className="absolute bottom-10 right-20 z-50">
               <Button
-                href="#"
-                text="BOOK FREE AUDIT"
+                href="https://bbstudios.co.in/"
+                text="Enter Studio Mode"
                 className="white-text font-semibold transition-colors"
               />
             </div>
