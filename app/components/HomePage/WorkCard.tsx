@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedButton from "../AnimatedButton";
 gsap.registerPlugin(ScrollTrigger);
 
-// ------- Demo data (8 cards) -------
+// ------- Demo data (4 cards) -------
 const cardsData = [
   {
     title: "Ric Rac",
@@ -15,6 +15,7 @@ const cardsData = [
     content:
       "Our challenge was launching RicRac Kids from absolute zero—a new brand with no digital footprint, no awareness, and the critical need to build trust from scratch.",
     image: "/images/SocialMedia/ricrac.webp",
+    url: "/ricrac",
   },
   {
     title: "SCS",
@@ -22,22 +23,22 @@ const cardsData = [
     content:
       "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue—a mission that culminated in a game-changing 12x ROAS.",
     image: "/images/SocialMedia/scs.webp",
+    url: "/scs-sm",
   },
   {
     title: "J K Diamonds Institute",
     tags: ["UI UX", "Framer", "Zoho CRM"],
     content:
       "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
-    image: "/images/webdev/Jk-Diamonds.png",
+    image: "/images/webdev/jkdiamonds.webp",
   },
   {
     title: "My Suit Tailor",
     tags: [" UI UX", "Shopify "],
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
-    image: "/images/webdev/MST.png",
+    image: "/images/webdev/mysuit.webp",
   },
- 
 ];
 
 export default function StackingCards() {
@@ -104,8 +105,7 @@ export default function StackingCards() {
         tl.addLabel("final", last + 0.001);
         tl.to(cards[last - 1], { ...BEHIND_1, duration: 0.01 }, "final");
         tl.to(cards[last - 2], { ...BEHIND_2, duration: 0.01 }, "final");
-        if (last - 2 > 0)
-          tl.set(cards.slice(0, last - 2), { opacity: 0 }, "final");
+        if (last - 2 > 0) tl.set(cards.slice(0, last - 2), { opacity: 0 }, "final");
       }
     }, section);
 
@@ -126,7 +126,7 @@ export default function StackingCards() {
             {cardsData.map((card, i) => (
               <div
                 key={i}
-                ref={setCardRef(i)}
+                ref={setCardRef(i)} // <-- ref remains on the original card DIV
                 style={{ zIndex: cardsData.length - i }}
                 className="
                 absolute left-1/2 -translate-x-1/2
@@ -181,7 +181,7 @@ export default function StackingCards() {
                       <img
                         src={card.image}
                         alt={card.title}
-                        className="block lg:h-[60vh] h-[30vh] object-cover rounded-3xl"
+                        className="block max-h-full object-contain rounded-3xl"
 
                         onError={(e) => {
                           e.currentTarget.src =
@@ -191,6 +191,16 @@ export default function StackingCards() {
                     </div>
                   </div>
                 </div>
+
+                {/* ------- TRANSPARENT CLICK OVERLAY (non-invasive) ------- */}
+                {/* This overlay sits on top and makes the whole card clickable without changing layout or animations */}
+                <a
+                  href={card.url}
+                  aria-label={`Open ${card.title}`}
+                  className="absolute inset-0 z-50 block"
+                  style={{ pointerEvents: "auto", background: "transparent" }}
+                  tabIndex={0}
+                />
               </div>
             ))}
           </div>

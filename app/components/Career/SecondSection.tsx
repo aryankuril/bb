@@ -170,7 +170,7 @@ const SecondSection = () => {
 
   <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
     {/* LEFT – Job List */}
-    <div className="p-4 md:p-6 flex flex-col lg:gap-5 gap-2">
+    <div className="p-4 md:p-6 flex flex-col lg:gap-6 gap-2">
       <h2
         className="
           white-text
@@ -246,7 +246,7 @@ const SecondSection = () => {
           </div>
 
           {/* BACK – Ticket Form */}
-          <div className="absolute inset-0 backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[6px] px-4 sm:px-6 py-8 sm:py-10 ">
+          <div className="absolute inset-0 backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[30px] px-4 sm:px-6 py-8 sm:py-10 ">
             <form className="flex flex-col gap-4 white-text">
     {/* Ticket Name */}
     <div>
