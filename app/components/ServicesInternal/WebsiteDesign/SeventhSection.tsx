@@ -12,7 +12,7 @@ const SeventhSection = () => {
         {/* Image */}
         <img
           src="/images/BB-web-chai-2.gif"
-          className="w-[180px] h-auto sm:w-[240px] sm:h-[160px] md:w-[210px] md:h-auto mx-auto mb-6 sm:mb-8"
+          className="w-[180px] h-auto sm:w-[240px] sm:h-[160px] md:w-[250px] md:h-auto mx-auto mb-6 sm:mb-8"
         />
 
         {/* Animated Heading */}
@@ -23,11 +23,27 @@ const SeventhSection = () => {
         </h2>
 
         {/* Contact Info */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 body3 white-text ">
-          <span>hello@bombayblokes.com</span>
-          <span >|</span>
-          <span>+91 99875 58189</span>
-        </div>
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 body3 white-text">
+  {/* Email – opens default mail app */}
+  <a 
+    href="mailto:hello@bombayblokes.com"
+
+  >
+    hello@bombayblokes.com
+  </a>
+
+  <span>|</span>
+
+  {/* Phone – opens call option on mobile */}
+  <a 
+    href="tel:+919987558189"
+  >
+    +91 99875 58189
+  </a>
+
+
+</div>
+
       </div>
     </div>
 

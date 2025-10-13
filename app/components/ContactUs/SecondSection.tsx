@@ -116,7 +116,7 @@ const getIconColor = (fieldValue: string | undefined, fieldFocused: boolean) => 
           <img
             src="/images/panipuricart2.png" // replace with your image path
             alt="Pani Puri Cart"
-            className="rounded-xl w-full h-auto object-contain"
+            className=" w-full h-auto object-contain"
           />
         </div>
 

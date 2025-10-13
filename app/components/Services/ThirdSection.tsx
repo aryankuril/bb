@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnimatedButton from "../AnimatedButton";
 gsap.registerPlugin(ScrollTrigger);
 
 // ------- Demo data (8 cards) -------
@@ -147,9 +148,9 @@ const ThirdSection = () => {
                     {card.tags.map((t, idx) => (
                       <span
                         key={idx}
-                        className="body4 px-3 py-1 rounded-full border border-white/30 [text-wrap:balance]"
+                        className="body4 "
                       >
-                        {t}
+                       <AnimatedButton text={t} href="/" />
                       </span>
                     ))}
                   </div>
@@ -160,20 +161,20 @@ const ThirdSection = () => {
                 </div>
 
                 {/* Right visual – no cropping, equal top/bottom padding */}
-                <div className="w-full h-full min-h-0">
-                  <div className="w-full h-full min-h-0 flex items-center justify-center py-6 sm:py-8 md:py-10">
-  <img
-    src={card.image}
-    alt={card.title}
-    className="block w-full max-h-full object-contain"
-    onError={(e) => {
-      e.currentTarget.src =
-        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%23151515'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaaaaa' font-size='24'%3EImage%20placeholder%3C/text%3E%3C/svg%3E";
-    }}
-  />
-</div>
+                 <div className="w-full  min-h-0 ">
+                    <div className="w-full h-full min-h-0 flex items-center  justify-center py-6 sm:py-8 md:py-10">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="block lg:h-[60vh] h-[30vh] object-cover rounded-3xl"
 
-                </div>
+                        onError={(e) => {
+                          e.currentTarget.src =
+                            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%23151515'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaaaaa' font-size='24'%3EImage%20placeholder%3C/text%3E%3C/svg%3E";
+                        }}
+                      />
+                    </div>
+                  </div>
               </div>
             </div>
           ))}

@@ -5,6 +5,7 @@ import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
+import Button from "./Button";
 
 const YELLOW = "#FAB31E";
 const DARK = "#1D1D1D";
@@ -177,9 +178,10 @@ useEffect(() => {
 
 
   return (
-    <div ref={root} className="container py-5 absolute inset-x-0 top-0 z-[99999]">
+    <div className="bg-white">
+    <div ref={root} className="h-[80px] bg-white py-5 px-10 absolute inset-x-0 top-0 z-[99999] ">
       {/* nav shell */}
-      <div ref={shell} className="rounded-2xl text-neutral-200 relative z-50">
+      <div ref={shell} className=" container rounded-2xl text-neutral-200 relative z-50 ">
         <div className="flex items-center justify-between">
           <Link href="/">
             <Image
@@ -192,13 +194,23 @@ useEffect(() => {
           </Link>
 
           {/* HAMBURGER */}
-          <button
-            onClick={() => setOpen((s) => !s)}
-            aria-label="Toggle menu"
-            className="relative grid h-15 w-15 text-[26px] border-2 border-black leading-6 cursor-pointer font-miso place-items-center text-black"
-          >
-            M E <br />N U
-          </button>
+
+ <div className="flex items-center gap-4">
+  <Button
+    href="/contactus"
+    text="Start Growing"
+    className="relative justify-center text-black font-semibold transition-colors"
+  />
+
+  <button
+    onClick={() => setOpen((s) => !s)}
+    aria-label="Toggle menu"
+    className="relative grid h-15 w-15 text-[26px] border-2 border-black leading-6 cursor-pointer font-miso place-items-center text-black"
+  >
+    M E <br />N U
+  </button>
+</div>
+
         </div>
 
         {/* stage */}
@@ -229,14 +241,20 @@ useEffect(() => {
       }
     }}
     onClick={() => {
-      gsap.to(".close-btn", {
-        opacity: 0,
-        y: -10,
-        duration: 0.4,
-        ease: "power3.inOut",
-      });
-      setTimeout(() => setOpen(false), 350);
-    }}
+  // Faster fade-out
+  gsap.to(".close-btn", {
+    opacity: 0,
+    y: -10,
+    duration: 0.25,
+    ease: "power3.inOut",
+  });
+
+  // Make the entire reverse animation faster
+  if (tl.current) tl.current.timeScale(1.5); // 🔥 speed up reverse
+
+  setTimeout(() => setOpen(false), 50); // close a bit earlier
+}}
+
     className="close-btn absolute cursor-pointer top-6 right-6 text-white text-[16px] uppercase tracking-wider font-[Miso] z-20 hover:text-[#FAB31E] transition-colors"
   >
     Close
@@ -303,6 +321,7 @@ useEffect(() => {
   onClick={() => setOpen(false)}
 />
 
+    </div>
     </div>
   );
 }

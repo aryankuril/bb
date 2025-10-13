@@ -167,12 +167,14 @@ export default function LightCameraAction() {
         >
           <span data-word className="inline-block">
             Light.
-          </span>{" "}
+          </span>
+          {/* {" "} */}
           <span data-word className="inline-block">
-            Camera.
-          </span>{" "}
+          Camera.
+          </span>
+          {/* {" "} */}
           <span data-word className="inline-block">
-            Action
+          Action
           </span>
         </h2>
 
@@ -230,8 +232,8 @@ export default function LightCameraAction() {
 
             <div className="absolute bottom-10 right-20 z-50">
               <Button
-                href="#"
-                text="BOOK FREE AUDIT"
+                href="https://bbstudios.bombayblokes.com"
+                text="Explore Our Work"
                 className="white-text font-semibold transition-colors"
               />
             </div>

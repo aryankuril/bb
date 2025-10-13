@@ -340,3 +340,92 @@ h6 {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+
+
+/* animtionbutton */
+:root {
+  --border: 2px;
+  --radius: 60px;
+  --color-button: #fab31e;
+}
+
+.animated-border-btn {
+  position: relative;
+  background: transparent;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 7px 13px; /* Adjust padding instead of fixed width */
+  animation: glow 2s linear infinite;
+  white-space: nowrap; /* Prevent breaking text */
+}
+
+.animated-border-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1/1;
+  width: 200%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--color-button) 0%,
+    transparent 25%,
+    var(--color-button) 50%,
+    transparent 75%,
+    var(--color-button) 100%
+  );
+  animation: spin 2s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.animated-border-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - var(--border));
+  height: calc(100% - var(--border));
+  border-color: #fff;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: var(--radius);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  backdrop-filter: blur(6px);
+}
+
+.animated-border-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* @keyframes glow {
+  0% {
+    box-shadow: 0 0 0px transparent;
+  }
+  50% {
+    box-shadow: 0 0 25px var(--color-button);
+  }
+  100% {
+    box-shadow: 0 0 0px transparent;
+  }
+} */

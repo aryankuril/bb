@@ -51,7 +51,7 @@ export default function ThirdSection() {
 
   return (
     <section
-  className="lg:h-screen h-100 relative bg-contain bg-center bg-no-repeat"
+  className="lg:h-screen h-100 relative bg-contain bg-center bg-no-repeat py-10 sm:py-15 lg:py-20"
   style={{ backgroundImage: "url(/images/tech-we-use-bg.png)" }}
 >
       {/* Center wrapper */}
@@ -61,7 +61,7 @@ export default function ThirdSection() {
         >
           The <span className="text-highlight">Stack</span> That
           Powers Innovation, Performance,
-          <span className="inline-block align-middle mx-2 relative w-10 h-10">
+          <span className="inline-block align-middle mx-1 relative w-10 h-10">
             {images.map((img, i) => (
               <div
                 key={i}

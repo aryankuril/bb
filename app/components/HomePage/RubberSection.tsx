@@ -5,14 +5,22 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import Button from "../Button";
 
 const cards = [
-  { img: "/images/rubber1.webp", label: "Young Passionate Crowd", rotate: 10 },
-  { img: "/images/rubber2.webp", label: "Jugged Masters", rotate: -10 },
-  { img: "/images/rubber3.webp", label: "Goldi-Cricket Champs", rotate: 10 },
-  { img: "/images/rubber4.webp", label: "Creative Experts", rotate: 10 },
+  { img: "/images/rubber1.webp", label: "Young Passionate Crowd", rotate: 10, entry: "left" },
+  { img: "/images/rubber2.webp", label: "Jugged Masters", rotate: -10, entry: "top" },
+  { img: "/images/rubber3.webp", label: "Goldi-Cricket Champs", rotate: 10, entry: "bottom" },
+  { img: "/images/rubber4.webp", label: "Creative Experts", rotate: 10, entry: "right" },
 ];
 
 const RubberSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Entry animation directions
+  const entryVariants = {
+    left: { hidden: { x: -200, opacity: 0 }, visible: { x: 0, opacity: 1 } },
+    right: { hidden: { x: 200, opacity: 0 }, visible: { x: 0, opacity: 1 } },
+    top: { hidden: { y: -200, opacity: 0 }, visible: { y: 0, opacity: 1 } },
+    bottom: { hidden: { y: 200, opacity: 0 }, visible: { y: 0, opacity: 1 } },
+  };
 
   return (
     <section
@@ -21,7 +29,7 @@ const RubberSection = () => {
     >
       {/* Heading */}
       <h2 className="mb-3 text-center">
-        <span className="text-highlight">BB culture </span> - Ideate,innovate,create
+        <span className="text-highlight">BB culture </span> - Ideate, innovate, create
       </h2>
 
       {/* Cards */}
@@ -41,6 +49,7 @@ const RubberSection = () => {
         "
       >
         {cards.map((card, idx) => {
+          // your existing drag + motion values
           const x = useMotionValue(0);
           const y = useMotionValue(0);
           const rotate = useTransform(x, [-200, 200], [-25 + card.rotate, 25 + card.rotate]);
@@ -54,45 +63,61 @@ const RubberSection = () => {
           return (
             <motion.div
               key={idx}
-              className="
-                relative
-                w-[220px]
-                sm:w-[260px]
-                md:w-[300px]
-                lg:w-[350px]
-                h-[220px]
-                sm:h-[260px]
-                md:h-[300px]
-                lg:h-[350px]
-                flex-shrink-0
-                rounded-xl
-                shadow-lg
-                cursor-grab
-              "
-              style={{ x, y, rotate }}
-              drag
-              dragConstraints={sectionRef}
-              dragElastic={0.4}
-              whileDrag={{ scale: 1.05 }}
-              dragTransition={{ bounceStiffness: 200, bounceDamping: 15, power: 0.2 }}
-              onDragEnd={resetPosition}
+              variants={entryVariants[card.entry as keyof typeof entryVariants]}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                type: "spring",
+                stiffness: 120,
+                damping: 12,
+                duration: 1.2,
+                delay: idx * 0.2,
+              }}
             >
-              <img
-                src={card.img}
-                alt={card.label}
-                className="w-full h-full rounded-xl object-cover pointer-events-none"
-              />
+              <motion.div
+                className="
+                  relative
+                  w-[220px]
+                  sm:w-[260px]
+                  md:w-[300px]
+                  lg:w-[350px]
+                  h-[220px]
+                  sm:h-[260px]
+                  md:h-[300px]
+                  lg:h-[350px]
+                  flex-shrink-0
+                  rounded-xl
+                  shadow-lg
+                  cursor-grab
+                "
+                style={{ x, y, rotate }}
+                drag
+                dragConstraints={sectionRef}
+                dragElastic={0.4}
+                whileDrag={{ scale: 1.05 }}
+                dragTransition={{ bounceStiffness: 200, bounceDamping: 15, power: 0.2 }}
+                onDragEnd={resetPosition}
+              >
+                <img
+                  src={card.img}
+                  alt={card.label}
+                  className="w-full h-full rounded-xl object-cover pointer-events-none"
+                />
+              </motion.div>
             </motion.div>
           );
         })}
       </div>
-                     <div className=" flex items-center justify-center py-10 z-40">
-  <Button
-    href="#"
-    text="Join Our Team"
-    className=" text-black font-semibold "
-  />
-</div>
+
+      {/* Button */}
+      <div className="flex items-center justify-center py-10 z-40">
+        <Button
+          href="/career"
+          text="Join Our Team"
+          className=" text-black font-semibold "
+        />
+      </div>
     </section>
   );
 };

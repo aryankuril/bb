@@ -116,10 +116,10 @@ export default function SecondSection() {
   return (
     <section id="second-section" className="relative w-full py-10 sm:py-[60px] lg:py-20">
       {/* Section Heading */}
-      <div className="flex items-center justify-center lg:w-[80%] w-full py-10 px-4 sm:px-6 md:px-8 lg:px-0 mx-auto">
-        <h2 className="text-center black-text">
-          <span className="text-highlight">Born in Bombay </span>, crafting digital experiences that connect and inspire.
-        </h2>
+      <div className="flex items-center justify-center lg:w-[90%] w-full py-10 px-4 sm:px-6 md:px-8 lg:px-0 mx-auto">
+        <h1 className="text-center black-text">
+          <span className="text-highlight">Born in Bombay</span>,crafting digital experiences that connect and inspire.
+        </h1>
       </div>
 
       {/* Services List */}
@@ -163,13 +163,13 @@ export default function SecondSection() {
           ref={imgRef}
           className="hidden md:block fixed -top-40 -left-50 pointer-events-none z-50"
         >
-          <Image
+          {/* <Image
             src={services[active].img}
             alt={services[active].title}
             width={300}
             height={300}
             className="rounded-[30px] shadow-lg"
-          />
+          /> */}
         </div>
       )}
     </section>

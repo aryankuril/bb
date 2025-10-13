@@ -103,11 +103,11 @@ export default function SecondSection() {
 
   return (
     <section id="second-section" className="relative w-full py-10 sm:py-[60px] lg:py-20">
-      <div className="flex items-center justify-center lg:w-[80%] w-full  py-10 px-4 sm:px-6 md:px-8 lg:px-0 mx-auto">
-        <h2 className="text-center black-text">
-          <span className="text-highlight">Born in Bombay </span>, crafting
+      <div className="flex items-center justify-center lg:w-[90%] w-full  py-10 px-4 sm:px-6 md:px-8 lg:px-0 mx-auto">
+        <h1 className="text-center black-text">
+          <span className="text-highlight">Born in Bombay</span>,crafting
           digital experiences that connect and inspire.
-        </h2>
+        </h1>
       </div>
 
       <div className="mx-auto flex flex-col lg:w-[70%] space-y-16 px-4 sm:px-6 md:px-8 lg:px-0">

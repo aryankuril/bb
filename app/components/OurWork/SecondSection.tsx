@@ -15,14 +15,14 @@ const allSteps: Step[] = [
   { number: "01", title: "JK Diamonds", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/jkdiamonds" },
   { number: "02", title: "My Suit", image: "/images/webdev/MST.png", category: "Web Development", link: "/mysuit" },
   { number: "03", title: "SCS", image: "/images/webdev/SCS.png", category: "Web Development", link: "/scs" },
-  { number: "04", title: "The Feline Foundation", image: "/images/webdev/Super-Sox.png", category: "Web Development", link: "/ff" },
-  { number: "05", title: "Super Sox", image: "/images/webdev/Foundation.png", category: "Web Development", link: "/supersox" },
+  { number: "04", title: "The Feline Foundation", image: "/images/webdev/Foundation.png", category: "Web Development", link: "/ff" },
+  { number: "05", title: "Super Sox", image: "/images/webdev/Super-Sox.png", category: "Web Development", link: "/supersox" },
 
   // 🟩 PERFORMANCE MARKETING (4)
-  { number: "01", title: "Chater Box", image: "/images/pm/chaterbox.webp", category: "Performance Marketing", link: "/chatterbox" },
-  { number: "02", title: "Dancing Leaf", image: "/images/pm/Dancingleaf.webp", category: "Performance Marketing", link: "/dancingleaf" },
-  { number: "03", title: "JK Diamonds", image: "/images/pm/jkdiamonds.webp", category: "Performance Marketing", link: "/jkdiamondsperformance" },
-  { number: "04", title: "SCS", image: "/images/pm/SCS.webp", category: "Performance Marketing", link: "/scsperformance" },
+  { number: "01", title: "Chater Box", image: "/images/pm/chaterbox.png", category: "Performance Marketing", link: "/chatterbox" },
+  { number: "02", title: "Dancing Leaf", image: "/images/pm/Dancingleaf.png", category: "Performance Marketing", link: "/dancingleaf" },
+  { number: "03", title: "JK Diamonds", image: "/images/pm/Jk-diamonds.png", category: "Performance Marketing", link: "/jkdiamondsperformance" },
+  { number: "04", title: "SCS", image: "/images/pm/SCS.png", category: "Performance Marketing", link: "/scsperformance" },
 
   // 🟥 SOCIAL MEDIA (2)
   { number: "01", title: "Ric Rac", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/ricrac" },
@@ -30,8 +30,8 @@ const allSteps: Step[] = [
    { number: "03", title: "Super Sox", image: "/images/sm/Super-Sox.png", category: "Social Media", link: "/supersox-sm" },
 
   // 🟨 SEO (4)
-  { number: "01", title: "Manba", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/manba" },
-  { number: "02", title: "Prosolv", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/presolv" },
+  { number: "01", title: "Manba Finance", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/manba" },
+  { number: "02", title: "Prosolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/presolv" },
   { number: "03", title: "SCS", image: "/images/seo-cs/SCS.png", category: "SEO", link: "/scs-seo" },
 ];
 

@@ -198,7 +198,7 @@ export default function BombAISection() {
             </div>
             <div className=" flex justify-center items-center py-10">
     <Button
-      href="#"
+      href="https://bbstudios.bombayblokes.com/bomb.ai"
       text="Explore Our Work"
       className="text-white font-semibold"
     />

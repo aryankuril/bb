@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Button from "../Button";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnimatedButton from "../AnimatedButton";
 gsap.registerPlugin(ScrollTrigger);
 
 // ------- Demo data (8 cards) -------
@@ -27,14 +28,14 @@ const cardsData = [
     tags: ["UI UX", "Framer", "Zoho CRM"],
     content:
       "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
-    image: "/images/webdev/jkdiamonds.webp",
+    image: "/images/webdev/Jk-Diamonds.png",
   },
   {
     title: "My Suit Tailor",
     tags: [" UI UX", "Shopify "],
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
-    image: "/images/webdev/mysuit.webp",
+    image: "/images/webdev/MST.png",
   },
  
 ];
@@ -157,16 +158,17 @@ export default function StackingCards() {
                   <div className="flex flex-col justify-center min-h-0">
                     <h3 className="white-text">{card.title}</h3>
 
-                    <div className="flex flex-wrap gap-2 sm:gap-3 mt-4">
-                      {card.tags.map((t, idx) => (
-                        <span
-                          key={idx}
-                          className="body4 px-3 py-1 rounded-full border border-white/30 [text-wrap:balance]"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+                    <div className="flex flex-wrap mt-4">
+  {card.tags.map((t, idx) => (
+    <span
+      key={idx}
+      className="body4 px-1 py-1 [text-wrap:balance] text-white"
+    >
+      <AnimatedButton text={t} href="/" />
+    </span>
+  ))}
+</div>
+
 
                     <p className="mt-4 sm:mt-6 opacity-90 body2 white-text">
                       {card.content}
@@ -174,12 +176,12 @@ export default function StackingCards() {
                   </div>
 
                   {/* Right visual – no cropping, equal top/bottom padding */}
-                  <div className="w-full h-full min-h-0 ">
+                  <div className="w-full  min-h-0 ">
                     <div className="w-full h-full min-h-0 flex items-center  justify-center py-6 sm:py-8 md:py-10">
                       <img
                         src={card.image}
                         alt={card.title}
-                        className="block max-h-full object-contain rounded-3xl"
+                        className="block lg:h-[60vh] h-[30vh] object-cover rounded-3xl"
 
                         onError={(e) => {
                           e.currentTarget.src =
@@ -194,7 +196,7 @@ export default function StackingCards() {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <Button href="#" text="BOOK FREE AUDIT " className="" />
+          <Button href="/ourwork" text="Explore Our Work " className="" />
         </div>
       </section>
     </div>

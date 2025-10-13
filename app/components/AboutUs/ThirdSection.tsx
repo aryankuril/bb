@@ -56,9 +56,15 @@ const ThirdSection = () => {
           <div className="justify-end bg-[var(--color-primary)] white-text p-6 sm:p-8 lg:p-10 rounded-[20px] shadow-lg
             border-r-[16px] sm:border-r-[20px] border-r-[var(--color-highlight)]
             h-auto sm:h-[500px] lg:h-[700px] w-full md:w-1/2 flex flex-col ">
+              <div className=" flex align-bottom items-end">
             <span className="text-highlight stats-number">
-              {inView && <CountUp end={98} duration={3} />}%
+              {inView && <CountUp end={98} duration={3} />}
+              
             </span>
+             <span className="text-highlight numbering">
+               %
+              </span>
+              </div>
             <h3 className="white-text">
               Client Retention Rate
             </h3>

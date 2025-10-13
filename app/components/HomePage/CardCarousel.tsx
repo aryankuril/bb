@@ -14,12 +14,12 @@ type CardItem = {
  
 const CardCarousel: React.FC = () => {
   const cards: CardItem[] = [
-      { id: 1, src: "/images/unskippable-brands/cadini.webp", hoverText: "View Case Study" },
-      { id: 2, src: "/images/unskippable-brands/carron.webp", hoverText: "Explore Work" },
-      { id: 3, src: "/images/unskippable-brands/divine.webp", hoverText: "See Details" },
-      { id: 4, src: "/images/unskippable-brands/manba.webp", hoverText: "Open Project" },
-      { id: 5, src: "/images/unskippable-brands/supersox.webp", hoverText: "Learn More" },
-      { id: 6, src: "/images/unskippable-brands/Mbmehta.webp", hoverText: "Discover" },
+      { id: 1, src: "/images/unskippable-brands/cadini.webp", hoverText: "Cadini" },
+      { id: 2, src: "/images/unskippable-brands/carron.webp", hoverText: "Carron" },
+      { id: 3, src: "/images/unskippable-brands/divine.webp", hoverText: "Divine" },
+      { id: 4, src: "/images/unskippable-brands/manba.webp", hoverText: "Manba Finanace" },
+      { id: 5, src: "/images/unskippable-brands/supersox.webp", hoverText: "Super Sox" },
+      { id: 6, src: "/images/unskippable-brands/Mbmehta.webp", hoverText: "Mbmehta" },
     ];
  
   const containerRef = useRef<HTMLDivElement>(null);
@@ -119,7 +119,7 @@ const CardCarousel: React.FC = () => {
         </motion.div>
 
         <div className="flex justify-center items-center lg:mt-10 mt-5">
-      <Button href="#" text="BOOK FREE AUDIT " className="" />
+      <Button href="/clients" text="Explore Our Brands " className="" />
     </div>
       </div>
       

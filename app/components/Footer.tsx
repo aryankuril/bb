@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 items-start lg:gap-8 gap-4 text-left">
           {/* Logo */}
           <div className="flex justify-start">
-            <Link href="#">
+            <Link href="/">
             <Image
               src="/images/bblogo.webp"
               alt="Bombay Blokes Logo"

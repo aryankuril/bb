@@ -162,7 +162,7 @@ const SecondSection = () => {
   <h2
     className="
       text-center black-text
-      mb-8 md:mb-10
+      mb-8 md:mb-8
     "
   >
     This Train’s Departing: <span className="text-highlight">Open Roles</span>
@@ -225,7 +225,7 @@ const SecondSection = () => {
           }`}
         >
           {/* FRONT */}
-          <div className="absolute inset-0 backface-hidden border border-[var(--color-highlight)] rounded-[30px] px-4 sm:px-5 py-12 sm:py-20 flex flex-col justify-between">
+          <div className="absolute inset-0 backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-4 sm:px-5 py-12 sm:py-20 flex flex-col justify-between">
             <div className="whitespace-pre-line  white-text body2 pr-1 sm:pr-2">
               {activeJob.details}
             </div>
@@ -246,7 +246,7 @@ const SecondSection = () => {
           </div>
 
           {/* BACK – Ticket Form */}
-          <div className="absolute inset-0 backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[30px] px-4 sm:px-6 py-8 sm:py-10 ">
+          <div className="absolute inset-0 backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[6px] px-4 sm:px-6 py-8 sm:py-10 ">
             <form className="flex flex-col gap-4 white-text">
     {/* Ticket Name */}
     <div>
