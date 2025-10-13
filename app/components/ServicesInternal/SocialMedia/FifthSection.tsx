@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Button from "../../Button";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnimatedButton from "../../AnimatedButton";
 gsap.registerPlugin(ScrollTrigger);
 
 // ------- Demo data (8 cards) -------
@@ -27,14 +28,14 @@ const cardsData = [
     tags: ["UI UX", "Framer", "Zoho CRM"],
     content:
       "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
-    image: "/images/webdev/jkdiamonds.webp",
+    image: "/images/webdev/Jk-Diamonds.png",
   },
   {
     title: "My Suit Tailor",
     tags: [" UI UX", "Shopify "],
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
-    image: "/images/webdev/mysuit.webp",
+    image: "/images/webdev/MST.png",
   },
  
 ];
@@ -111,7 +112,7 @@ export default function FifthSection() {
   }, []);
 
   return (
-    <div className=" lg:mt-0 mt-20">
+    <div className=" lg:mt-0 mt-20 py-10 sm:py-15 lg:py-20">
       <div className="flex items-center justify-center w-[80%] mx-auto ">
         <h2 className="text-center black-text ">
          our best works
@@ -161,9 +162,9 @@ export default function FifthSection() {
                     {card.tags.map((t, idx) => (
                       <span
                         key={idx}
-                        className="body4 px-3 py-1 rounded-full border border-white/30 [text-wrap:balance]"
+                        className="body4 "
                       >
-                        {t}
+                        <AnimatedButton text={t} href="/" />
                       </span>
                     ))}
                   </div>
@@ -174,27 +175,30 @@ export default function FifthSection() {
                 </div>
 
                 {/* Right visual – no cropping, equal top/bottom padding */}
-                <div className="w-full h-full min-h-0">
-                  <div className="w-full h-full min-h-0 flex items-center justify-center py-6 sm:py-8 md:py-10">
-  <img
-    src={card.image}
-    alt={card.title}
-    className="block w-full max-h-full object-contain"
-    onError={(e) => {
-      e.currentTarget.src =
-        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%23151515'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaaaaa' font-size='24'%3EImage%20placeholder%3C/text%3E%3C/svg%3E";
-    }}
-  />
-</div>
+                <div className="w-full  min-h-0 ">
+                    <div className="w-full h-full min-h-0 flex items-center  justify-center py-6 sm:py-8 md:py-10">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="block lg:h-[60vh] h-[30vh] object-cover rounded-3xl"
 
-                </div>
+                        onError={(e) => {
+                          e.currentTarget.src =
+                            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%23151515'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaaaaa' font-size='24'%3EImage%20placeholder%3C/text%3E%3C/svg%3E";
+                        }}
+                      />
+                    </div>
+                  </div>
+
+
+                
               </div>
             </div>
           ))}
         </div>
       </div>
       <div className="flex justify-center items-center">
-      <Button href="/ourwork" text="Explore Our Work" className="" />
+      <Button href="/ourwork" text="Explore Our Work " className="" />
     </div>
     </section>
     </div>

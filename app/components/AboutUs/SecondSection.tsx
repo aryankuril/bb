@@ -127,8 +127,8 @@ export default function SecondSection() {
         {services.map((s, index) => (
           <div
             key={index}
-            onMouseEnter={() => setActive(index)}
-            onMouseLeave={() => setActive(null)}
+            // onMouseEnter={() => setActive(index)}
+            // onMouseLeave={() => setActive(null)}
             className="flex flex-col md:flex-row md:justify-between md:gap-12 cursor-pointer group items-start"
           >
             {/* Custom Number */}
@@ -141,7 +141,7 @@ export default function SecondSection() {
               <h3 className="black-text">{s.title}</h3>
 
               {/* Mobile-only image */}
-              <div className="block md:hidden">
+              {/* <div className="block md:hidden">
                 <Image
                   src={s.img}
                   alt={s.title}
@@ -149,7 +149,7 @@ export default function SecondSection() {
                   height={400}
                   className="rounded-[30px] shadow-lg w-full"
                 />
-              </div>
+              </div> */}
 
               <p className="black-text max-w-120 body2">{s.desc}</p>
             </div>

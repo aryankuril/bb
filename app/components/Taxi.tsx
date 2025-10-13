@@ -52,7 +52,7 @@ const Taxi = () => {
   });
 
   // Adjust bottom offset based on viewport width & height
-  let bottomOffset = 20; // default
+  let bottomOffset = 5; // default
   if (viewportWidth < 480) {
     bottomOffset = Math.max(viewportHeight * 0.12, 60); // at least 60px or 12% of screen height
   } else if (viewportWidth < 768) {

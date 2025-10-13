@@ -30,14 +30,14 @@ const cardsData = [
     tags: ["UI UX", "Framer", "Zoho CRM"],
     content:
       "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
-    image: "/images/webdev/jkdiamonds.webp",
+    image: "/images/webdev/Jk-Diamonds.png",
   },
   {
     title: "My Suit Tailor",
     tags: [" UI UX", "Shopify "],
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
-    image: "/images/webdev/mysuit.webp",
+    image: "/images/webdev/MST.png",
   },
 ];
 
@@ -181,7 +181,7 @@ export default function StackingCards() {
                       <img
                         src={card.image}
                         alt={card.title}
-                        className="block max-h-full object-contain rounded-3xl"
+                        className="block lg:h-[60vh] h-[30vh] object-cover rounded-3xl"
 
                         onError={(e) => {
                           e.currentTarget.src =
