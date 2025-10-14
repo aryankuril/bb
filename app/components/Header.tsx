@@ -181,8 +181,8 @@ useEffect(() => {
     <div className="bg-white">
     <div ref={root} className="h-[80px] bg-white py-5 px-10 absolute inset-x-0 top-0 z-[99999] ">
       {/* nav shell */}
-      <div ref={shell} className=" container rounded-2xl text-neutral-200 relative z-50 ">
-        <div className="flex items-center justify-between">
+      <div ref={shell} className="h-[90px] container  bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md  shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center   absolute inset-x-0 top-5 z-[99999] ">
+        <div className="flex items-center justify-between py-4 px-10 ">
           <Link href="/">
             <Image
               src="/images/bblogo.webp"
@@ -245,14 +245,16 @@ useEffect(() => {
   gsap.to(".close-btn", {
     opacity: 0,
     y: -10,
-    duration: 0.25,
+    duration: 0.2,
     ease: "power3.inOut",
   });
 
   // Make the entire reverse animation faster
-  if (tl.current) tl.current.timeScale(1.5); // 🔥 speed up reverse
+  if (tl.current) {
+    tl.current.pause(0); // stop the GSAP timeline
+  }// 🔥 speed up reverse
 
-  setTimeout(() => setOpen(false), 50); // close a bit earlier
+    setTimeout(() => setOpen(false), 50); // close a bit earlier
 }}
 
     className="close-btn absolute cursor-pointer top-6 right-6 text-white text-[16px] uppercase tracking-wider font-[Miso] z-20 hover:text-[#FAB31E] transition-colors"
@@ -312,16 +314,17 @@ useEffect(() => {
         </div>
       </div>
 
-      {/* backdrop */}
-      <div
-  className={`fixed inset-0 -z-10 transition-all duration-500 ${
-    open ? "opacity-90 backdrop-blur-3xl" : "opacity-0 pointer-events-none backdrop-blur-0"
-  }`}
-  style={{ background: "rgba(0,0,0,0.3)" }}
-  onClick={() => setOpen(false)}
-/>
-
-    </div>
+      {/* Backdrop */}
+        <div
+          className={`fixed inset-0 -z-10 transition-all duration-500 ${
+            open
+              ? "opacity-90 backdrop-blur-3xl"
+              : "opacity-0 pointer-events-none backdrop-blur-0"
+          }`}
+          style={{ background: "rgba(0,0,0,0.3)" }}
+          onClick={() => setOpen(false)}
+        />
+      </div>
     </div>
   );
 }
