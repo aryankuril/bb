@@ -1,12 +1,11 @@
 "use client";
-
+ 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Button from "../Button";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import AnimatedButton from "../AnimatedButton";
 gsap.registerPlugin(ScrollTrigger);
-
+ 
 // ------- Demo data (4 cards) -------
 const cardsData = [
   {
@@ -31,6 +30,7 @@ const cardsData = [
     content:
       "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
     image: "/images/webdev/Jk-Diamonds.png",
+    url: "/jkdiamonds",
   },
   {
     title: "My Suit Tailor",
@@ -38,28 +38,29 @@ const cardsData = [
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
     image: "/images/webdev/MST.png",
+    url: "/mysuit",
   },
 ];
-
+ 
 export default function StackingCards() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
-
+ 
   const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
     if (el) cardsRef.current[i] = el;
   };
-
+ 
   useEffect(() => {
     const section = sectionRef.current;
     const cards = cardsRef.current;
     if (!section || !cards.length) return;
-
+ 
     const ctx = gsap.context(() => {
       const BEHIND_1 = { scale: 0.96, opacity: 0.38, y: -40 };
       const BEHIND_2 = { scale: 0.9, opacity: 0.2, y: -80 };
-
+ 
       gsap.set(cards, { x: 0 });
-
+ 
       gsap.set(cards, {
         y: 240,
         opacity: 0,
@@ -68,7 +69,7 @@ export default function StackingCards() {
         force3D: true,
       });
       gsap.set(cards[0], { y: 0, opacity: 1, zIndex: 100 });
-
+ 
       const totalVH = cards.length * 240;
       const tl = gsap.timeline({
         defaults: { ease: "power2.out", duration: 1.05 },
@@ -82,24 +83,24 @@ export default function StackingCards() {
           // markers: true,
         },
       });
-
+ 
       for (let i = 1; i < cards.length; i++) {
         const curr = cards[i];
         const prev = cards[i - 1];
         const prev2 = i - 2 >= 0 ? cards[i - 2] : null;
-
+ 
         tl.to(curr, { y: 0, opacity: 1 }, i);
         tl.to(prev, { ...BEHIND_1 }, i);
         if (prev2) tl.to(prev2, { ...BEHIND_2 }, i);
-
+ 
         if (i - 3 >= 0) {
           const older = cards.slice(0, i - 2);
           tl.to(older, { opacity: 0, duration: 0.6 }, i);
         }
-
+ 
         tl.set(curr, { zIndex: 100 + i }, i);
       }
-
+ 
       const last = cards.length - 1;
       if (last >= 2) {
         tl.addLabel("final", last + 0.001);
@@ -108,10 +109,10 @@ export default function StackingCards() {
         if (last - 2 > 0) tl.set(cards.slice(0, last - 2), { opacity: 0 }, "final");
       }
     }, section);
-
+ 
     return () => ctx.revert();
   }, []);
-
+ 
   return (
     <div className="">
       <div className="flex items-center justify-center w-[80%] mx-auto ">
@@ -142,7 +143,7 @@ export default function StackingCards() {
                   className="absolute inset-0 translate-y-3 translate-x-3 rounded-3xl bg-white/5 border border-white/10 pointer-events-none"
                   style={{ zIndex: 0 }}
                 />
-
+ 
                 <div
                   className="
                   relative h-full rounded-3xl bg-black/95 border border-white/8
@@ -153,36 +154,34 @@ export default function StackingCards() {
                   style={{ zIndex: 1 }}
                 >
                   <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E]"></div>
-
+ 
                   {/* Left content */}
                   <div className="flex flex-col justify-center min-h-0">
                     <h3 className="white-text">{card.title}</h3>
-
-                    <div className="flex flex-wrap mt-4">
-  {card.tags.map((t, idx) => (
-    <span
-      key={idx}
-      className="body4 px-1 py-1 [text-wrap:balance] text-white"
-    >
-      <AnimatedButton text={t} href="/" />
-    </span>
-  ))}
-</div>
-
-
+ 
+                    <div className="flex flex-wrap gap-2 sm:gap-3 mt-4">
+                      {card.tags.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="body4 px-3 py-1 rounded-full border border-white/30 [text-wrap:balance]"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+ 
                     <p className="mt-4 sm:mt-6 opacity-90 body2 white-text">
                       {card.content}
                     </p>
                   </div>
-
+ 
                   {/* Right visual – no cropping, equal top/bottom padding */}
-                  <div className="w-full  min-h-0 ">
+                  <div className="w-full h-full min-h-0 ">
                     <div className="w-full h-full min-h-0 flex items-center  justify-center py-6 sm:py-8 md:py-10">
                       <img
                         src={card.image}
                         alt={card.title}
-                        className="block lg:h-[60vh] h-[30vh] object-cover rounded-3xl"
-
+                        className="block max-h-full object-contain rounded-3xl"
                         onError={(e) => {
                           e.currentTarget.src =
                             "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%23151515'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaaaaa' font-size='24'%3EImage%20placeholder%3C/text%3E%3C/svg%3E";
@@ -191,7 +190,7 @@ export default function StackingCards() {
                     </div>
                   </div>
                 </div>
-
+ 
                 {/* ------- TRANSPARENT CLICK OVERLAY (non-invasive) ------- */}
                 {/* This overlay sits on top and makes the whole card clickable without changing layout or animations */}
                 <a

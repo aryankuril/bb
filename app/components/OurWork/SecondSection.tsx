@@ -31,7 +31,7 @@ const allSteps: Step[] = [
 
   // 🟨 SEO (4)
   { number: "01", title: "Manba Finance", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/manba" },
-  { number: "02", title: "Prosolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/presolv" },
+  { number: "02", title: "Presolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/presolv" },
   { number: "03", title: "SCS", image: "/images/seo-cs/SCS.png", category: "SEO", link: "/scs-seo" },
 ];
 

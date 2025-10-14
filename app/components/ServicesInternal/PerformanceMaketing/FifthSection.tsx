@@ -8,13 +8,14 @@ import AnimatedButton from "../../AnimatedButton";
 gsap.registerPlugin(ScrollTrigger);
 
 // ------- Demo data (8 cards) -------
-const cardsData = [
+const cardsData =[
   {
     title: "Ric Rac",
     tags: ["Adobe illustrator", "AI"],
     content:
       "Our challenge was launching RicRac Kids from absolute zero—a new brand with no digital footprint, no awareness, and the critical need to build trust from scratch.",
     image: "/images/SocialMedia/ricrac.webp",
+    url: "/ricrac",
   },
   {
     title: "SCS",
@@ -22,6 +23,7 @@ const cardsData = [
     content:
       "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue—a mission that culminated in a game-changing 12x ROAS.",
     image: "/images/SocialMedia/scs.webp",
+    url: "/scs-sm",
   },
   {
     title: "J K Diamonds Institute",
@@ -29,6 +31,7 @@ const cardsData = [
     content:
       "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
     image: "/images/webdev/Jk-Diamonds.png",
+    url: "/jkdiamonds",
   },
   {
     title: "My Suit Tailor",
@@ -36,8 +39,8 @@ const cardsData = [
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
     image: "/images/webdev/MST.png",
+    url: "/mysuit",
   },
- 
 ];
 
 export default function FifthSection() {
@@ -115,7 +118,7 @@ export default function FifthSection() {
     <div className=" lg:mt-0 mt-20 py-10 sm:py-15 lg:py-20">
       <div className="flex items-center justify-center w-[80%] mx-auto ">
         <h2 className="text-center black-text ">
-         our best works
+         Our Results
         </h2>
       </div>
      <section ref={sectionRef} className="relative  container w-full py-10 sm:py-15 lg:py-20">
@@ -193,6 +196,14 @@ export default function FifthSection() {
 
                 
               </div>
+<a
+                  href={card.url}
+                  aria-label={`Open ${card.title}`}
+                  className="absolute inset-0 z-50 block"
+                  style={{ pointerEvents: "auto", background: "transparent" }}
+                  tabIndex={0}
+                />
+
             </div>
           ))}
         </div>

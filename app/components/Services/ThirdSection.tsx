@@ -14,6 +14,7 @@ const cardsData = [
     content:
       "Our in-house production arm, where we create stunning, campaign-ready photos and videos that bring your brand's story to life.",
     image: "/images/servicespage/BB-Studios.png",
+    url: "https://bbstudios.bombayblokes.com",
   },
   {
     title: "BomB AI",
@@ -21,6 +22,7 @@ const cardsData = [
     content:
       "We leverage cutting-edge artificial intelligence to generate unique and compelling visuals at scale, moving at the speed of culture.",
     image: "/images/servicespage/Bomb-Ai.png",
+    url: "https://bbstudios.bombayblokes.com/bomb.ai",
   },
 ];
 
@@ -176,6 +178,14 @@ const ThirdSection = () => {
                     </div>
                   </div>
               </div>
+
+               <a
+                  href={card.url}
+                  aria-label={`Open ${card.title}`}
+                  className="absolute inset-0 z-50 block"
+                  style={{ pointerEvents: "auto", background: "transparent" }}
+                  tabIndex={0}
+                />
             </div>
           ))}
         </div>
