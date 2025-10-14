@@ -57,8 +57,18 @@ export default function StackingCards() {
     if (!section || !cards.length) return;
 
     const ctx = gsap.context(() => {
-      const BEHIND_1 = { scale: 0.96, opacity: 0.38, y: -40 };
-      const BEHIND_2 = { scale: 0.9, opacity: 0.2, y: -80 };
+      const BEHIND_1 = {
+        scale: 0.96,
+        opacity: 0.38,
+        y: -40,
+        filter: "blur(4px) brightness(0.6)",
+      };
+      const BEHIND_2 = {
+        scale: 0.9,
+        opacity: 0.2,
+        y: -80,
+        filter: "blur(8px) brightness(0.4)",
+      };
 
       gsap.set(cards, { x: 0 });
 
@@ -66,19 +76,25 @@ export default function StackingCards() {
         y: 240,
         opacity: 0,
         scale: 1,
+        filter: "blur(0px) brightness(1)",
         willChange: "transform,opacity",
         force3D: true,
       });
-      gsap.set(cards[0], { y: 0, opacity: 1, zIndex: 100 });
+      gsap.set(cards[0], {
+        y: 0,
+        opacity: 1,
+        zIndex: 100,
+        filter: "blur(0px) brightness(1)",
+      });
 
-      const totalVH = cards.length * 240;
+      const totalVH = cards.length * 600;
       const tl = gsap.timeline({
-        defaults: { ease: "power2.out", duration: 1.05 },
+        defaults: { ease: "power2.out", duration: 1.5 },
         scrollTrigger: {
           trigger: section,
           start: "top top",
           end: `+=${totalVH}vh`,
-          scrub: 1.6,
+          scrub: 3,
           pin: true,
           anticipatePin: 1,
           // markers: true,
@@ -90,24 +106,22 @@ export default function StackingCards() {
         const prev = cards[i - 1];
         const prev2 = i - 2 >= 0 ? cards[i - 2] : null;
 
-        tl.to(curr, { y: 0, opacity: 1 }, i);
-        tl.to(prev, { ...BEHIND_1 }, i);
-        if (prev2) tl.to(prev2, { ...BEHIND_2 }, i);
+        const startTime = i * 2;
+
+        tl.to(
+          curr,
+          { y: 0, opacity: 1, filter: "blur(0px) brightness(1)", duration: 2 },
+          startTime
+        );
+        tl.to(prev, { ...BEHIND_1, duration: 2 }, startTime);
+        if (prev2) tl.to(prev2, { ...BEHIND_2, duration: 2 }, startTime);
 
         if (i - 3 >= 0) {
           const older = cards.slice(0, i - 2);
-          tl.to(older, { opacity: 0, duration: 0.6 }, i);
+          tl.to(older, { opacity: 0, duration: 1 }, startTime);
         }
 
-        tl.set(curr, { zIndex: 100 + i }, i);
-      }
-
-      const last = cards.length - 1;
-      if (last >= 2) {
-        tl.addLabel("final", last + 0.001);
-        tl.to(cards[last - 1], { ...BEHIND_1, duration: 0.01 }, "final");
-        tl.to(cards[last - 2], { ...BEHIND_2, duration: 0.01 }, "final");
-        if (last - 2 > 0) tl.set(cards.slice(0, last - 2), { opacity: 0 }, "final");
+        tl.set(curr, { zIndex: 100 + i }, startTime);
       }
     }, section);
 
@@ -161,16 +175,15 @@ export default function StackingCards() {
                     <h3 className="white-text">{card.title}</h3>
 
                     <div className="flex flex-wrap mt-4">
-  {card.tags.map((t, idx) => (
-    <span
-      key={idx}
-      className="body4 px-1 py-1 [text-wrap:balance] text-white"
-    >
-      <AnimatedButton text={t} href="/" />
-    </span>
-  ))}
-</div>
-
+                      {card.tags.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="body4 px-1 py-1 [text-wrap:balance] text-white"
+                        >
+                          <AnimatedButton text={t} href="/" />
+                        </span>
+                      ))}
+                    </div>
 
                     <p className="mt-4 sm:mt-6 opacity-90 body2 white-text">
                       {card.content}
@@ -184,7 +197,6 @@ export default function StackingCards() {
                         src={card.image}
                         alt={card.title}
                         className="block lg:h-[60vh] h-[30vh] object-cover rounded-3xl"
-
                         onError={(e) => {
                           e.currentTarget.src =
                             "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='100%25' height='100%25' fill='%23151515'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23aaaaaa' font-size='24'%3EImage%20placeholder%3C/text%3E%3C/svg%3E";

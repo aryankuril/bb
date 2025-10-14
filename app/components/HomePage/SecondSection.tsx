@@ -34,6 +34,7 @@ const services = [
 export default function SecondSection() {
   const [active, setActive] = useState<number | null>(null);
   const imgRef = useRef<HTMLDivElement>(null);
+  const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lastMouse = useRef<{ x: number; y: number }>({
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
@@ -74,7 +75,7 @@ export default function SecondSection() {
 
       gsap.fromTo(
         imgRef.current,
-        { scale: 0.95, autoAlpha: 0 },
+        { scale: 0.5, autoAlpha: 0 },
         {
           scale: 1,
           autoAlpha: 1,
@@ -85,7 +86,7 @@ export default function SecondSection() {
       );
     } else {
       gsap.to(imgRef.current, {
-        scale: 0.97,
+        scale: 0.5,
         autoAlpha: 0,
         duration: 0.18,
         ease: "power2.inOut",
@@ -101,8 +102,54 @@ export default function SecondSection() {
     };
   }, [active]);
 
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    serviceRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              gsap.fromTo(
+                entry.target,
+                {
+                  opacity: 0,
+                  y: 50,
+                },
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 1,
+                  delay: index * 0.15,
+                  ease: "power3.out",
+                }
+              );
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+          rootMargin: "0px 0px -50px 0px",
+        }
+      );
+
+      observer.observe(ref);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, []);
+
   return (
-    <section id="second-section" className="relative container w-full py-10 sm:py-[60px] lg:py-20">
+    <section
+      id="second-section"
+      className="relative container w-full py-10 sm:py-[60px] lg:py-20"
+    >
       <div className="flex items-center justify-center w-full py-20 mx-auto ">
         <h1 className="text-center black-text">
           <span className="text-highlight">Born in Bombay,</span> crafting
@@ -111,9 +158,12 @@ export default function SecondSection() {
       </div>
 
       <div className="mx-auto flex flex-col lg:w-[70%] space-y-16 px-4 sm:px-6 md:px-8 lg:px-0">
-        {services.map((s) => (
+        {services.map((s, index) => (
           <div
             key={s.id}
+            ref={(el) => {
+              serviceRefs.current[index] = el;
+            }}
             onMouseEnter={() => setActive(s.id)}
             onMouseLeave={() => setActive(null)}
             className="
@@ -121,6 +171,7 @@ export default function SecondSection() {
               md:flex-row md:justify-between
               md:gap-12
               cursor-pointer group items-start
+              opacity-0
             "
           >
             {/* Number */}
