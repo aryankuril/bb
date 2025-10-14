@@ -3,29 +3,34 @@ import { useState, useEffect, useRef } from "react";
 
 const testimonials = [
   {
-    text: `“A partner who understands business goals, deadlines, and the pulse of the audience.”`,
+    text: `A partner who understands business goals, deadlines, and the pulse of the audience.`,
     name: "~ Naman Ajmera",
     brand: "J K Diamonds Institute",
+    maintext:"“Better Understanding”"
   },
   {
-    text: `“Ideas are fresh, relevant, and perfectly aligned with our audience.”`,
+    text: `Ideas are fresh, relevant, and perfectly aligned with our audience.`,
     name: "~ Keval Shah",
     brand: "Selection Centre Sports (SCS)",
+    maintext:"“Good Ideas”"
   },
   {
-    text: `“From strategy to execution, their team understood our brand inside out.”`,
+    text: `From strategy to execution, their team understood our brand inside out.`,
     name: "~ Shaurya Modi",
     brand: "DNM Sports",
+    maintext:"“Best Strategy”"
   },
   {
-    text: `“Data-driven campaigns that actually work. We finally see measurable results.”`,
+    text: `Data-driven campaigns that actually work. We finally see measurable results.`,
     name: "~ Ankit Garg",
     brand: "Dancing Leaf Tea",
+    maintext:"“Measurable Results”"
   },
   {
-    text: `“Our digital presence is stronger than ever. Every campaign brings tangible results.”`,
+    text: `Our digital presence is stronger than ever. Every campaign brings tangible results.`,
     name: "~ Mickey Mehta",
     brand: "Antar", 
+    maintext:"“Tangible Results”"
   },
 ];
 
@@ -76,9 +81,10 @@ const SixthSection = () => {
         }}
         onTransitionEnd={handleTransitionEnd}
       >
-        {testimonials.map(({ text, name, brand }, index) => (
+        {testimonials.map(({ text, name, brand ,maintext}, index) => (
           <div key={index} className="flex-shrink-0 w-full flex justify-center">
             <div className="w-[95%] px-4 py-6 sm:py-8 lg:py-10 relative flex flex-col items-center text-center">
+              <h3 className=" mb-6 sm:mb-8 lg:mb-10 text-black">{maintext}</h3>
               <div className="body1 mb-6 sm:mb-8 lg:mb-10 text-black">
                 {text}
               </div>

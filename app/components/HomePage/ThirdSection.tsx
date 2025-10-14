@@ -7,7 +7,7 @@ import gsap from "gsap";
 const images = [
   "/images/wordpress-logo.svg",
   "/images/tailwind-logo.svg",
-  "/images/framer-motion-logo.svg",
+  "/images/framer-motion-logo2.webp",
   "/images/nextjs-logo.svg",
   "/images/react-logo.svg",
 ];

@@ -25,11 +25,11 @@ const RubberSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full lg:h-[100vh] h-full relative overflow-hidden py-10 sm:py-15 lg:py-20"
+      className=" container w-full lg:h-[100vh] h-full relative overflow-hidden py-10 sm:py-15 lg:py-20"
     >
       {/* Heading */}
       <h2 className="mb-3 text-center">
-        <span className="text-highlight">BB culture </span> - Ideate,innovate,create
+        <span className="text-highlight">BB culture </span> - Ideate, innovate, create
       </h2>
 
       {/* Cards */}

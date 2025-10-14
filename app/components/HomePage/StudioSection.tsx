@@ -155,7 +155,7 @@ export default function LightCameraAction() {
   }, []);
 
   return (
-    <div className="w-full black-text container py-10 sm:py-15 lg:py-20">
+    <div className="w-full container black-text  py-10 sm:py-15 lg:py-20">
       <section
         ref={rootRef}
         className="relative w-full min-h-[100svh] flex items-center justify-center "
@@ -184,8 +184,8 @@ export default function LightCameraAction() {
             ref={videoRef}
             className="
               relative 
-              w-[86vw] max-w-[520px] aspect-[9/16]
-              md:w/full md:max-w-full md:aspect-video
+              w-[86vw]  aspect-[9/16]
+              lg:w-full md:aspect-video
               overflow-hidden rounded-2xl
             "
           >

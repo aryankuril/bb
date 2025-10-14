@@ -129,8 +129,8 @@ export default function StackingCards() {
   }, []);
 
   return (
-    <div className="">
-      <div className="flex items-center justify-center w-[80%] mx-auto ">
+    <div className="py-0 sm:py-10 lg:py-20">
+      <div className="flex container items-center justify-center w-full mx-auto ">
         <h2 className="text-center black-text ">our best works</h2>
       </div>
       <section
@@ -146,7 +146,7 @@ export default function StackingCards() {
                 style={{ zIndex: cardsData.length - i }}
                 className="
                 absolute left-1/2 -translate-x-1/2
-                w-[94%]
+                w-full
                 h-[clamp(420px,76vh,600px)]
                 rounded-3xl
                 white-text
@@ -175,15 +175,16 @@ export default function StackingCards() {
                     <h3 className="white-text">{card.title}</h3>
 
                     <div className="flex flex-wrap mt-4">
-                      {card.tags.map((t, idx) => (
-                        <span
-                          key={idx}
-                          className="body4 px-1 py-1 [text-wrap:balance] text-white"
-                        >
-                          <AnimatedButton text={t} href="/" />
-                        </span>
-                      ))}
-                    </div>
+  {card.tags.map((t, idx) => (
+    <span
+      key={idx}
+      className="body4 px-1 py-1 [text-wrap:balance] text-white"
+    >
+      <AnimatedButton text={t} href="/" index={idx} />
+    </span>
+  ))}
+</div>
+
 
                     <p className="mt-4 sm:mt-6 opacity-90 body2 white-text">
                       {card.content}
