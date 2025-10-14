@@ -16,7 +16,7 @@
   /* =========================
      Headings - Desktop Sizes
      ========================= */
-  --h1-size: 95px; /* ✅ Hero section heading (1st section of all pages) */
+  --h1-size: 95px;  /* ✅ Hero section heading (1st section of all pages) */
   --h2-size: 60px;  /* ✅ Section titles, quotes, and large paragraph text */
   --h3-size: 40px;  /* ✅ Titles and descriptions */
   --h4-size: 36px;  /* ✅ Navigation, “Connect & Grow” (footer heading) */
@@ -26,7 +26,7 @@
   /* =========================
      Body - Desktop Sizes
      ========================= */
-  --body1-size: 36px; /* ✅ Form labels, testimonials, our work stack cards */
+  --body1-size: 36px; /* ✅ Testimonials, our work stack cards */
   --body2-size: 20px; /* ✅ Paragraph description text */
   --body3-size: 18px; /* ✅ Form placeholders, testimonial names, filter tags, buttons */
   --body4-size: 14px; /* ✅ Footer menu links */

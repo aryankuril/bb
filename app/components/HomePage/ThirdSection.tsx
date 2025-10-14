@@ -61,7 +61,7 @@ export default function ThirdSection() {
         >
           The <span className="text-highlight">Stack</span> That
           Powers Innovation, Performance,
-          <span className="inline-block align-middle mx-1 relative w-10 h-10">
+          <span className="inline-block align-middle mx-1 relative w-15 h-15">
             {images.map((img, i) => (
               <div
                 key={i}
@@ -75,14 +75,14 @@ export default function ThirdSection() {
                 <Image
                   src={img}
                   alt={`icon-${i}`}
-                  width={40}
-                  height={40}
+                  width={250}
+                  height={220}
                   className="object-contain"
                 />
               </div>
             ))}
           </span>
-          And Growth{" "}
+           And Growth{" "}
           <span className="text-highlight">Across</span> Every{" "}
           <span className="text-highlight">Project</span>
         </h2>

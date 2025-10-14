@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import Button from "../Button";
+import ContactButton from "../ContactButton";
 
 const SecondSection = () => {
   const services = [
@@ -198,50 +200,27 @@ const SecondSection = () => {
     );
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitStatus("idle");
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: message,
-          services: selectedServices,
-        }),
-      });
+  try {
+    // 🔹 Mock success response
+    await new Promise((res) => setTimeout(res, 1000));
 
-      if (!response.ok) {
-        throw new Error("Failed to submit form");
-      }
+    setSubmitStatus("success");
+    setFormData({ name: "", email: "", phone: "" });
+    setMessage("");
+    setSelectedServices([]);
+  } catch (error) {
+    console.error(error);
+    setSubmitStatus("error");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
-      setSubmitStatus("success");
-      // Reset form
-      setFormData({ name: "", email: "", phone: "" });
-      setMessage("");
-      setSelectedServices([]);
-
-      // Show success message for 3 seconds
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 3000);
-    } catch (error) {
-      console.error("Form submission error:", error);
-      setSubmitStatus("error");
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 3000);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   // fieldValue is a string (or undefined/null if empty), fieldFocused is boolean
   const getIconColor = (
@@ -299,7 +278,7 @@ const SecondSection = () => {
 
               <div className="relative w-full">
                 <input
-                  type="text"
+                  type="text" 
                   name="name"
                   placeholder="Name"
                   value={formData.name}
@@ -527,17 +506,12 @@ const SecondSection = () => {
             {/* Submit Button */}
 
             <div className="mt-6 lg:mt-10 flex flex-col items-center gap-3">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`px-8 py-3 rounded-full bg-[var(--color-highlight)] text-black font-semibold transition ${
-                  isSubmitting
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:opacity-90"
-                }`}
-              >
-                {isSubmitting ? "Sending..." : "Date Confirm"}
-              </button>
+             <ContactButton
+      text="Date Confirm"
+      type="submit"        // ✅ make it a submit button
+      isSubmitting={isSubmitting}
+    />
+
 
               {submitStatus === "success" && (
                 <p className="text-green-500 text-sm">
