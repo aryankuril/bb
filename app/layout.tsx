@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <SmoothScroll>
           
-        </SmoothScroll>
+        
          <PageLoader>
           {children}
         <Taxi />
@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ScrollToTop/>
           {/* <FloatingIcons/> */}
       {/* <Whatsapp /> */}
-      </SmoothScroll>
+    </SmoothScroll>
       </body>
     </html>
   );
