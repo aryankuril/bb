@@ -7,12 +7,12 @@ import ThirdSection from '../components/AboutUs/ThirdSection'
 import SeventhSection from '../components/ServicesInternal/WebsiteDesign/SeventhSection'
 import RubberSection from '../components/HomePage/RubberSection'
 import Footer from '../components/Footer'
-import ClientScripts from '../components/ClientScripts'
+// import ClientScripts from '../components/ClientScripts'
 
 const Index = () => {
   return (
     <div>
-        <ClientScripts/>
+        {/* <ClientScripts/> */}
         <Navbar/>
         <Firstsection />
         <SecondSection/>
