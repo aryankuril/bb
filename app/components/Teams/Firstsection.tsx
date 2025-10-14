@@ -57,7 +57,7 @@ const Firstsection: React.FC = () => {
   }, []);
 
   return (
-    <section className="container lg:mt-0 -mt-10  py-0 sm:py-15 lg:py-30">
+    <section className="container lg:mt-0 -mt-10  py-0 sm:py-15 lg:py-40">
       <h1 className="black-text text-center md:text-left">
         The Squad That Turns <span className="text-highlight">What If</span>’
         Into <br />‘<span className="text-highlight">What’s Next.</span>’
