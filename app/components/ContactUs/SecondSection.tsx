@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import ContactButton from "../ContactButton";
 
 const SecondSection = () => {
   const services = [
@@ -190,7 +191,8 @@ const SecondSection = () => {
   };
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/;
+    const phoneRegex =
+      /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/;
     return phoneRegex.test(phone);
   };
 
@@ -198,7 +200,8 @@ const SecondSection = () => {
     switch (name) {
       case "name":
         if (!value.trim()) return "Name is required";
-        if (value.trim().length < 2) return "Name must be at least 2 characters";
+        if (value.trim().length < 2)
+          return "Name must be at least 2 characters";
         return "";
       case "email":
         if (!value.trim()) return "Email is required";
@@ -210,7 +213,8 @@ const SecondSection = () => {
         return "";
       case "message":
         if (!value.trim()) return "Message is required";
-        if (value.trim().length < 10) return "Message must be at least 10 characters";
+        if (value.trim().length < 10)
+          return "Message must be at least 10 characters";
         return "";
       default:
         return "";
@@ -220,7 +224,7 @@ const SecondSection = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
+
     // Clear error when user starts typing
     if (errors[name as keyof typeof errors]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
@@ -234,10 +238,13 @@ const SecondSection = () => {
 
   const handleBlur = (field: string) => {
     setFocused((prev) => ({ ...prev, [field]: false }));
-    
+
     // Validate on blur
     if (field === "name" || field === "email" || field === "phone") {
-      const error = validateField(field, formData[field as keyof typeof formData]);
+      const error = validateField(
+        field,
+        formData[field as keyof typeof formData]
+      );
       setErrors((prev) => ({ ...prev, [field]: error }));
     } else if (field === "message") {
       const error = validateField("message", message);
@@ -251,7 +258,7 @@ const SecondSection = () => {
         ? prev.filter((s) => s !== serviceName)
         : [...prev, serviceName]
     );
-    
+
     // Clear services error when user selects a service
     if (errors.services) {
       setErrors((prev) => ({ ...prev, services: "" }));
@@ -260,21 +267,24 @@ const SecondSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate all fields
     const newErrors = {
       name: validateField("name", formData.name),
       email: validateField("email", formData.email),
       phone: validateField("phone", formData.phone),
       message: validateField("message", message),
-      services: selectedServices.length === 0 ? "Please select at least one service" : "",
+      services:
+        selectedServices.length === 0
+          ? "Please select at least one service"
+          : "",
     };
 
     setErrors(newErrors);
 
     // Check if there are any errors
     const hasErrors = Object.values(newErrors).some((error) => error !== "");
-    
+
     if (hasErrors) {
       // Scroll to first error
       const firstErrorField = Object.keys(newErrors).find(
@@ -402,7 +412,11 @@ const SecondSection = () => {
                   onBlur={() => handleBlur("name")}
                   className={`
           w-full px-8 py-3 bg-transparent 
-          border-0 border-b-2 ${errors.name ? 'border-b-red-500' : 'border-b-[var(--color-highlight)]'}
+          border-0 border-b-2 ${
+            errors.name
+              ? "border-b-red-500"
+              : "border-b-[var(--color-highlight)]"
+          }
           white-text placeholder-gray-400
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
@@ -502,7 +516,11 @@ const SecondSection = () => {
                   onBlur={() => handleBlur("message")}
                   className={`
           w-full px-8 py-3 bg-transparent 
-          border-0 border-b-2 ${errors.message ? 'border-b-red-500' : 'border-b-[var(--color-highlight)]'}
+          border-0 border-b-2 ${
+            errors.message
+              ? "border-b-red-500"
+              : "border-b-[var(--color-highlight)]"
+          }
           white-text placeholder-gray-400
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
@@ -557,7 +575,11 @@ const SecondSection = () => {
                   onChange={handleChange}
                   className={`
           w-full px-8 py-3 bg-transparent 
-          border-0 border-b-2 ${errors.email ? 'border-b-red-500' : 'border-b-[var(--color-highlight)]'}
+          border-0 border-b-2 ${
+            errors.email
+              ? "border-b-red-500"
+              : "border-b-[var(--color-highlight)]"
+          }
           white-text placeholder-gray-400
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
@@ -603,7 +625,11 @@ const SecondSection = () => {
                   onBlur={() => handleBlur("phone")}
                   className={`
           w-full px-8 py-3 bg-transparent 
-          border-0 border-b-2 ${errors.phone ? 'border-b-red-500' : 'border-b-[var(--color-highlight)]'}
+          border-0 border-b-2 ${
+            errors.phone
+              ? "border-b-red-500"
+              : "border-b-[var(--color-highlight)]"
+          }
           white-text placeholder-gray-400
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
@@ -643,17 +669,12 @@ const SecondSection = () => {
             {/* Submit Button */}
 
             <div className="mt-6 lg:mt-10 flex flex-col items-center gap-3">
-              <button
+              <ContactButton
+                text="DATE CONFIRM"
                 type="submit"
                 disabled={isSubmitting}
-                className={`px-8 py-3 rounded-full bg-[var(--color-highlight)] text-black font-semibold transition ${
-                  isSubmitting
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:opacity-90"
-                }`}
-              >
-                {isSubmitting ? "Sending..." : "Date Confirm"}
-              </button>
+                isSubmitting={isSubmitting}
+              />
 
               {submitStatus === "success" && (
                 <p className="text-green-500 text-sm">
