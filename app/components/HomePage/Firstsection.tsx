@@ -12,7 +12,7 @@ const Firstsection = () => {
           muted
           loop
           playsInline
-          className="hidden md:block absolute inset-0 w-full h-full object-contain"
+          className="hidden md:block absolute inset-0 w-full h-full object-cover"
         />
 
         {/* Mobile Video */}
@@ -22,7 +22,7 @@ const Firstsection = () => {
           muted
           loop
           playsInline
-          className="block md:hidden absolute inset-0 w-full h-full object-contain"
+          className="block md:hidden absolute inset-0 w-full h-full object-cover"
         />
       </div>
     </section>

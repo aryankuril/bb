@@ -150,7 +150,7 @@ export default function SecondSection() {
       id="second-section"
       className="relative container w-full py-10 sm:py-[60px] lg:py-20"
     >
-      <div className="flex items-center justify-center w-full py-30 mx-auto ">
+      <div className="flex items-center justify-center w-full py-30 mx-auto lg:mb-20 ">
         <h1 className="text-center black-text">
           <span className="text-highlight">Born in Bombay,</span> crafting
           digital experiences that connect and inspire.

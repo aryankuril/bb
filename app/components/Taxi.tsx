@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { motion, useTransform, useMotionValue } from "framer-motion";
 
@@ -8,56 +9,54 @@ const Taxi = () => {
   const [viewportWidth, setViewportWidth] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(0);
 
-  // Width of taxi dynamically based on screen size
   const getTaxiWidth = () => {
     if (typeof window === "undefined") return 120;
-    if (window.innerWidth < 480) return 70; // small phones
-    if (window.innerWidth < 768) return 90; // tablets
-    return 120; // desktops
+    if (window.innerWidth < 480) return 70;
+    if (window.innerWidth < 768) return 90;
+    return 120;
   };
 
   const [taxiWidth, setTaxiWidth] = useState(getTaxiWidth());
 
   useEffect(() => {
     const updateSizes = () => {
-      const height = document.documentElement.scrollHeight - window.innerHeight;
-      setDocHeight(height || 1);
-      setViewportWidth(window.innerWidth);
-      setViewportHeight(window.innerHeight);
+      const vh = window.innerHeight;
+      const vw = window.innerWidth;
+      const fullDocHeight = document.documentElement.scrollHeight;
+
+      setViewportHeight(vh);
+      setViewportWidth(vw);
       setTaxiWidth(getTaxiWidth());
+
+      // Ensure minimum docHeight to allow full taxi movement
+      const scrollableHeight = Math.max(fullDocHeight - vh, 100);
+      setDocHeight(scrollableHeight);
     };
 
-    const updateScroll = () => {
-      scrollY.set(window.scrollY);
-    };
+    const handleScroll = () => scrollY.set(window.scrollY);
 
     window.addEventListener("resize", updateSizes);
-    window.addEventListener("scroll", updateScroll);
+    window.addEventListener("scroll", handleScroll);
 
     updateSizes();
-    updateScroll();
+    handleScroll();
 
     return () => {
       window.removeEventListener("resize", updateSizes);
-      window.removeEventListener("scroll", updateScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollY]);
 
-  // Total distance taxi can move
   const distance = Math.max(viewportWidth - taxiWidth - 10, 0);
 
-  // Smooth scroll mapping
-  const x = useTransform(scrollY, [0, docHeight], [0, distance], {
-    clamp: true,
-  });
+  // Map scrollY to horizontal position
+  const x = useTransform(scrollY, [0, docHeight], [0, distance]);
 
-  // Adjust bottom offset based on viewport width & height
-  let bottomOffset = 5; // default
-  if (viewportWidth < 480) {
-    bottomOffset = Math.max(viewportHeight * 0.12, 60); // at least 60px or 12% of screen height
-  } else if (viewportWidth < 768) {
-    bottomOffset = Math.max(viewportHeight * 0.08, 40); // at least 40px or 8% of screen height
-  }
+  const bottomOffset = viewportWidth < 480
+    ? Math.max(viewportHeight * 0.12, 60)
+    : viewportWidth < 768
+    ? Math.max(viewportHeight * 0.08, 40)
+    : 20;
 
   return (
     <motion.img
@@ -68,7 +67,7 @@ const Taxi = () => {
         bottom: bottomOffset,
         left: 0,
         x,
-        width: `${taxiWidth}px`,
+        width: taxiWidth,
         height: "auto",
         zIndex: 50,
         pointerEvents: "none",

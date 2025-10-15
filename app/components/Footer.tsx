@@ -26,37 +26,31 @@ export default function Footer() {
           {/* Links */}
          <div className="flex flex-wrap items-start gap-1 md:gap-3 md:order-2">
   <Link
-    href="#"
+    href="/"
     className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Home
   </Link>
   <Link
-    href="#"
+    href="/clients"
     className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Our Clients
   </Link>
   <Link
-    href="#"
+    href="/contactus"
     className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Contact
   </Link>
-  <Link
+  {/* <Link
     href="#"
     className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Client Registration
-  </Link>
+  </Link> */}
   <Link
-    href="#"
-    className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
-  >
-    Service Affiliates
-  </Link>
-  <Link
-    href="#"
+    href="/blogs"
     className="black-text transition-colors"
   >
     Blogs

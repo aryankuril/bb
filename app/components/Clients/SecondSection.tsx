@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useRef, useState, useEffect } from "react";
 import { useScroll } from "framer-motion";
 
@@ -6,6 +7,7 @@ interface Card {
   title: string;
   subtitle: string;
   image: string;
+  shape: "square" | "rectangle" | "circle";
 }
 
 const cards: Card[] = [
@@ -13,51 +15,61 @@ const cards: Card[] = [
     title: "Antar",
     subtitle: "Your confidential digital companion for accessible mental health and wellness support, right in your pocket.",
     image: "/images/clientpage/Antar.webp",
+    shape: "rectangle",
   },
   {
     title: "Blancorra",
     subtitle: "Where timeless elegance meets modern sophistication in a curated collection of womenswear.",
     image: "/images/clientpage/blancorra.webp",
+    shape: "square",
   },
   {
     title: "Cadini",
     subtitle: "The epitome of Italian luxury, offering finely crafted formal wear for the discerning gentleman.",
     image: "/images/clientpage/Cadini.webp",
+    shape: "circle",
   },
   {
     title: "Carron",
     subtitle: "Elevating classic board games into timeless works of handcrafted art",
     image: "/images/clientpage/Carron.webp",
+    shape: "rectangle",
   },
-    {
+  {
     title: "Divine Solitaire",
     subtitle: "Setting the standard for brilliance with perfectly cut and certified solitaire diamonds.",
     image: "/images/clientpage/Divine-solitaire.webp",
+    shape: "rectangle",
   },
   {
     title: "Manba Finance",
     subtitle: "Your trusted financial partner, providing the support to help you achieve your goals.",
     image: "/images/clientpage/manba.webp",
+    shape: "square",
   },
   {
     title: "MB Mehta ",
     subtitle: "A legacy of trust, crafting timeless jewelry for generations.",
     image: "/images/clientpage/MB-mehta.webp",
+    shape: "circle",
   },
   {
     title: "Obuka",
     subtitle: "Crafting exquisite, handcrafted leather shoes for the modern connoisseur.",
     image: "/images/clientpage/obuka.webp",
+    shape: "rectangle",
   },
-    {
+  {
     title: "Ric Rac",
     subtitle: "Thoughtfully designed innerwear for Indian kids, created by parents who understand true comfort.",
     image: "/images/clientpage/Ric-Rac.webp",
+    shape: "rectangle",
   },
   {
     title: "SCS",
     subtitle: "The trusted one-stop destination for authentic gear across every sport.",
     image: "/images/clientpage/SCS.webp",
+    shape: "square",
   },
 ];
 
@@ -67,7 +79,6 @@ export default function SecondSection() {
     target: containerRef,
     offset: ["start start", "end end"],
   });
-
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -85,7 +96,7 @@ export default function SecondSection() {
             color: progress < 0.05 ? "#1D1D1D" : "#F1F1F1",
             transition: "color 0.3s linear",
           }}
-          className="ext-center single-title  select-none "
+          className="text-center single-title select-none"
         >
           Clients
         </div>
@@ -99,48 +110,47 @@ export default function SecondSection() {
             const end = start + segment;
 
             const visible = progress >= start && progress <= end;
-            const localProgress = Math.min(
-              Math.max((progress - start) / segment, 0),
-              1
-            );
+            const localProgress = Math.min(Math.max((progress - start) / segment, 0), 1);
 
-            // only slide + rotate, no fade
             const y = 100 - localProgress * 200;
-            const rotate =
-              i % 2 === 0 ? (1 - localProgress) * 5 : (localProgress - 1) * 5;
+            const rotate = i % 2 === 0 ? (1 - localProgress) * 5 : (localProgress - 1) * 5;
 
             return (
               <div
                 key={i}
-                className={`absolute top-1/2 -translate-y-1/2 ${
-                  i % 2 === 0 ? "left-0" : "right-0"
-                } z-10 px-2`}
+                className={`absolute top-1/2 -translate-y-1/2 md:px-4 px-2 z-10
+                  ${i % 2 === 0 ? "md:left-0" : "md:right-0"} 
+                  max-md:left-1/2 max-md:-translate-x-1/2`}
                 style={{
                   transform: `translateY(${y}%) rotate(${rotate}deg)`,
-                  opacity: visible ? 1 : 0, // 👈 no fading in/out, just snap
+                  opacity: visible ? 1 : 0,
                   transition: "transform 0.3s linear, opacity 0.3s linear",
                 }}
               >
                 <div
-                  className="flex flex-col justify-end
-                    p-4 sm:p-6 md:p-10
-                    h-[300px] sm:h-[440px] md:h-[528px]
-                    w-[70vw] sm:w-[420px] md:w-[480px]
-                    rounded-[20px]
-                    border-[5px] border-[var(--color-primary)]"
+                  className="flex flex-col justify-end p-4 sm:p-6 border-[5px] border-[var(--color-primary)]"
                   style={{
+                    width:
+                      card.shape === "circle"
+                        ? "clamp(220px, 65vw, 480px)"
+                        : card.shape === "square"
+                        ? "clamp(220px, 75vw, 400px)"
+                        : "clamp(260px, 80vw, 650px)",
+                    height:
+                      card.shape === "circle"
+                        ? "clamp(220px, 65vw, 440px)"
+                        : card.shape === "square"
+                        ? "clamp(220px, 75vw, 400px)"
+                        : "clamp(260px, 60vh, 350px)",
+                    borderRadius: card.shape === "circle" ? "20%" : "20px",
                     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                   }}
                 >
-                  <h3 className="text-highlight">
-                    {card.title}
-                  </h3>
-                  <p className="mt-2 white-text body2">
-                    {card.subtitle}
-                  </p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-highlight">{card.title}</h3>
+                  <p className="mt-2 text-sm sm:text-base md:text-lg white-text">{card.subtitle}</p>
                 </div>
               </div>
             );

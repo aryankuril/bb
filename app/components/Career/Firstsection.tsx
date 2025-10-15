@@ -33,8 +33,8 @@ const Firstsection = () => {
                 black-text max-w-full lg:max-w-[1000px]
               "
             >
-              Ride the Mumbai Spirit.{" "}
-              <span className="text-highlight"> Grow With Us</span>
+              Ride the Mumbai spirit, {" "}
+              <span className="text-highlight">Grab opportunities and grow with us.</span>
 
             </h1>
           </div>
@@ -47,11 +47,11 @@ const Firstsection = () => {
               className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-74 h-auto"
             />
           </div> */}
-          <div className="lg:absolute lg:right-15 right-5 flex justify-end w-full lg:w-auto">
+          <div className="lg:absolute lg:top-1 top-15 lg:right-15 right-5 flex justify-end w-full lg:w-auto">
             <img
-              src="/images/stationbord.png"
+              src="/images/carrer-station.svg"
               alt="Decorative element"
-              className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-46 h-auto"
+              className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-86 h-auto"
             />
           </div>
 
