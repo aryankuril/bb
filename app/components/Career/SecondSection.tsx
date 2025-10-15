@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent } from "react";
+import ContactButton from "../ContactButton";
 
 const jobs = [
   {
@@ -600,18 +601,12 @@ const SecondSection = () => {
                   {activeJob.details}
                 </div>
                 <div className="flex justify-center">
-                  <button
+                  <ContactButton
+                    text="BOOK TICKET"
                     type="button"
                     onClick={() => setIsFlipped(true)}
                     disabled={isFlipped}
-                    className={`lg:mt-10 px-8 py-3 rounded-full bg-[var(--color-highlight)] text-black font-semibold transition ${
-                      isFlipped
-                        ? "opacity-50 cursor-not-allowed"
-                        : "hover:opacity-90"
-                    }`}
-                  >
-                    Book Ticket
-                  </button>
+                  />
                 </div>
               </div>
 
@@ -885,17 +880,12 @@ const SecondSection = () => {
 
                   {/* Confirm Button */}
                   <div className="mt-6 lg:mt-3 flex flex-col items-center gap-3">
-                    <button
+                    <ContactButton
+                      text="CONFIRM TICKET"
                       type="submit"
                       disabled={isSubmitting}
-                      className={`px-8 py-3 rounded-full bg-[var(--color-highlight)] text-black font-semibold transition ${
-                        isSubmitting
-                          ? "opacity-50 cursor-not-allowed"
-                          : "hover:opacity-90"
-                      }`}
-                    >
-                      {isSubmitting ? "Submitting..." : "CONFIRM TICKET"}
-                    </button>
+                      isSubmitting={isSubmitting}
+                    />
 
                     {submitStatus === "success" && (
                       <p className="text-green-500 text-sm">
