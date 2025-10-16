@@ -176,7 +176,7 @@ const SecondSection = () => {
     name: "",
     email: "",
     phone: "",
-    message: "",
+    // message: "",
     services: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -211,11 +211,11 @@ const SecondSection = () => {
         if (!value.trim()) return "Phone number is required";
         if (!validatePhone(value)) return "Please enter a valid phone number";
         return "";
-      case "message":
-        if (!value.trim()) return "Message is required";
-        if (value.trim().length < 10)
-          return "Message must be at least 10 characters";
-        return "";
+      // case "message":
+      //   if (!value.trim()) return "Message is required";
+      //   if (value.trim().length < 10)
+      //     return "Message must be at least 10 characters";
+      //   return "";
       default:
         return "";
     }
@@ -328,7 +328,7 @@ const SecondSection = () => {
         name: "",
         email: "",
         phone: "",
-        message: "",
+        // message: "",
         services: "",
       });
 
@@ -508,18 +508,16 @@ const SecondSection = () => {
                   value={message}
                   onChange={(e) => {
                     setMessage(e.target.value);
-                    if (errors.message) {
-                      setErrors((prev) => ({ ...prev, message: "" }));
-                    }
+                    // if (errors.message) {
+                    //   setErrors((prev) => ({ ...prev, message: "" }));
+                    // }
                   }}
                   onFocus={() => handleFocus("message")}
                   onBlur={() => handleBlur("message")}
                   className={`
           w-full px-8 py-3 bg-transparent 
           border-0 border-b-2 ${
-            errors.message
-              ? "border-b-red-500"
-              : "border-b-[var(--color-highlight)]"
+            false ? "border-b-red-500" : "border-b-[var(--color-highlight)]"
           }
           white-text placeholder-gray-400
           focus:outline-none focus:border-b-[var(--color-highlight)]
@@ -549,9 +547,9 @@ const SecondSection = () => {
                   </svg>
                 </div>
               </div>
-              {errors.message && (
+              {/* {errors.message && (
                 <p className="text-red-500 text-xs mt-1">{errors.message}</p>
-              )}
+              )} */}
             </div>
 
             {/* Email */}

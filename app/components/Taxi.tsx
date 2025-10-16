@@ -2,8 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, useTransform, useMotionValue } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 const Taxi = () => {
+  const pathname = usePathname();
   const scrollY = useMotionValue(0);
   const [docHeight, setDocHeight] = useState(1);
   const [viewportWidth, setViewportWidth] = useState(0);
@@ -38,25 +40,28 @@ const Taxi = () => {
     window.addEventListener("resize", updateSizes);
     window.addEventListener("scroll", handleScroll);
 
+    const timer = setTimeout(updateSizes, 100);
     updateSizes();
     handleScroll();
 
     return () => {
       window.removeEventListener("resize", updateSizes);
       window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
     };
-  }, [scrollY]);
+  }, [scrollY, pathname]);
 
   const distance = Math.max(viewportWidth - taxiWidth - 10, 0);
 
   // Map scrollY to horizontal position
   const x = useTransform(scrollY, [0, docHeight], [0, distance]);
 
-  const bottomOffset = viewportWidth < 480
-    ? Math.max(viewportHeight * 0.12, 60)
-    : viewportWidth < 768
-    ? Math.max(viewportHeight * 0.08, 40)
-    : 20;
+  const bottomOffset =
+    viewportWidth < 480
+      ? Math.max(viewportHeight * 0.12, 60)
+      : viewportWidth < 768
+      ? Math.max(viewportHeight * 0.08, 40)
+      : 20;
 
   return (
     <motion.img
