@@ -86,7 +86,7 @@ const Button: React.FC<ButtonProps> = ({
     >
       {/* Background animation */}
       <div
-        className={`absolute top-1/2 -translate-y-1/2 bg-[var(--color-highlight)] rounded-full transition-all duration-500 ease-in-out h-12`}
+        className={`absolute top-1/2 -translate-y-1/2 cursor-pointer bg-[var(--color-highlight)] rounded-full transition-all duration-500 ease-in-out h-12`}
         style={{
           width: hovered && !disabled && !isSubmitting ? textWidth : 48,
           left: -1,

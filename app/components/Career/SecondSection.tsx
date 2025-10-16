@@ -796,7 +796,7 @@ const SecondSection = () => {
 
       <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
         {/* LEFT – Job List */}
-        <div className="p-4 md:p-6 flex flex-col lg:gap-5 gap-2">
+        <div className="p-4 md:p-6 flex flex-col lg:gap-3 gap-2">
           <h2
             className="
           white-text
@@ -817,7 +817,7 @@ const SecondSection = () => {
                   setIsFlipped(false);
                 }
               }}
-              className={`text-left body2 px-3 py-2 sm:px-4 sm:py-3 rounded-[6px] border transition-all duration-200
+              className={`text-left body2 px-3 py-2 sm:px-4 sm:py-3 cursor-pointer rounded-[6px] border transition-all duration-200
   ${
     activeJob.title === job.title
       ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
@@ -853,7 +853,7 @@ const SecondSection = () => {
               <div
                 className={`${
                   isFlipped ? "hidden" : "block"
-                } backface-hidden border border-[var(--color-highlight)] rounded-[30px] px-4 sm:px-5 py-6 flex flex-col justify-between min-h-[700px]`}
+                } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-4 sm:px-5 py-6 flex flex-col justify-between min-h-[700px]`}
               >
                 <div className="whitespace-pre-line  white-text body2 pr-1 sm:pr-2">
                   {activeJob.details}
@@ -872,7 +872,7 @@ const SecondSection = () => {
               <div
                 className={`${
                   !isFlipped ? "hidden" : "block"
-                } backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[30px] px-4 sm:px-6 py-6`}
+                } backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[6px] px-4 sm:px-6 py-6`}
               >
                 <form
                   className="flex flex-col gap-4 white-text"
