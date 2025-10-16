@@ -50,10 +50,43 @@
 
 body {
   font-family: var(--font-poppins);
-  background-color: var(--color-secondary);
+ @apply relative w-full min-h-screen overflow-x-hidden;
+  background: url("/images/bg.svg") center center;
   color: var(--color-primary);
 }
 
+/* body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/images/bg.svg") no-repeat center center;
+  background-size: cover;
+  z-index: -2;
+}
+
+/* Shine animation */
+/* body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;   /* reduce width here */
+  /* height: 100%;
+  background: url("/images/bg-shine.svg") no-repeat center top;
+  background-size: contain; /* keeps aspect ratio */
+  /* animation: moveShine 3s infinite ease-in-out alternate;
+  z-index: -1; */
+/* } */ 
+
+/* @keyframes moveShine {
+  from {
+    transform: translate(-50%, -5px);
+  }
+  to {
+    transform: translate(-50%, 1000px);
+  }
+} */ 
 /* =========================================
    HEADINGS (Desktop Defaults)
    ========================================= */

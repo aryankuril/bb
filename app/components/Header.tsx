@@ -199,11 +199,11 @@ export default function DesktopNav() {
 
   return (
     <div className="">
-      <div ref={root} className="py-5 px-10 absolute inset-x-0 top-0 z-[99999]">
+      <div ref={root} className="py-5 px-10  inset-x-0 top-0 z-[99999]">
         {/* nav shell */}
         <div
           ref={shell}
-          className="h-[90px] container bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center absolute inset-x-0 top-5 z-[99999]"
+          className="h-[90px] container bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center absolute inset-x-0 z-[99999]"
         >
           <div className="flex items-center justify-between py-4 px-10 ">
             <Link href="/">
