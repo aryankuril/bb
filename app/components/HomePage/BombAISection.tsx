@@ -196,7 +196,7 @@ export default function BombAISection() {
 
 
             </div>
-           <div className="flex justify-center items-center py-10">
+          <div className="flex justify-center items-center py-10">
   <Button
     href="https://bbstudios.bombayblokes.com/bomb.ai"
     text="Explore Our Work"
@@ -205,6 +205,7 @@ export default function BombAISection() {
     rel="noopener noreferrer"
   />
 </div>
+
 
           </div>
         </div>

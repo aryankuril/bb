@@ -26,7 +26,7 @@ const allSteps: Step[] = [
 
   // 🟥 SOCIAL MEDIA (2)
   { number: "01", title: "RicRac Kids", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/ricrac" },
-  { number: "02", title: "SCS Sports", image: "/images/sm/SCS.png", category: "Social Media", link: "/scs" },
+  { number: "02", title: "SCS Sports", image: "/images/sm/SCS.png", category: "Social Media", link: "/scs-sm" },
    { number: "03", title: "Supersox", image: "/images/sm/Super-Sox.png", category: "Social Media", link: "/supersox-sm" },
 
   // 🟨 SEO (4)

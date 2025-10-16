@@ -8,7 +8,7 @@ const services = [
   {
     id: "2016",
     title: "Humble Office Beginning",
-    desc: "Started from a small office in Opera House with 0 employees just us 2 partners trying to make a mark",
+    desc: "We started with just the two of us in a small office at Opera House, aiming to make our mark",
     img: "/images/Branding.jpg",
   },
   {
@@ -26,7 +26,7 @@ const services = [
   {
     id: "2022",
     title: "Expanded Capabilities Team",
-    desc: "Our biggest office yet - added UI / UX as core capabilities - team size 30",
+    desc: "Our Biggest office to date, now with UI/UX as a core capability and a growing team of 30.",
     img: "/images/Website.webp",
   },
   {
@@ -182,7 +182,7 @@ export default function SecondSection() {
                   alt={s.title}
                   width={600}
                   height={400}
-                  className="rounded-[30px] shadow-lg w-full h-[300px] object-contain"
+                  className="rounded-[15px] shadow-lg w-full h-[300px] object-contain"
                 /> */}
               </div>
 
@@ -203,7 +203,7 @@ export default function SecondSection() {
             alt={activeService.title}
             width={300}
             height={300}
-            className="rounded-[30px] shadow-lg w-full h-full object-contain"
+            className="rounded-[15px]  shadow-lg w-full h-full object-contain"
           /> */}
         </div>
       )}

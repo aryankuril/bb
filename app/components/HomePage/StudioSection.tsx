@@ -235,6 +235,8 @@ export default function LightCameraAction() {
                 href="https://bbstudios.bombayblokes.com"
                 text="Explore Our Work"
                 className="white-text font-semibold transition-colors"
+                target="_blank"
+    rel="noopener noreferrer"
               />
             </div>
           </div>

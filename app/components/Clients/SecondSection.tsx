@@ -60,7 +60,7 @@ const cards: Card[] = [
     shape: "rectangle",
   },
   {
-    title: "Ric Rac Kids",
+    title: "RicRac Kids",
     subtitle: "Thoughtfully designed innerwear for Indian kids, created by parents who understand true comfort.",
     image: "/images/clientpage/Ric-Rac.webp",
     shape: "rectangle",

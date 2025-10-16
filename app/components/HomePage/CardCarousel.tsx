@@ -108,7 +108,7 @@ const CardCarousel: React.FC = () => {
               {/* Click target */}
               <button
                 aria-label={card.hoverText ?? `Open Card ${i + 1}`}
-                className="absolute inset-0 cursor-pointer"
+                className="absolute inset-0 "
                 onClick={() => {
                   // handle click / route / lightbox
                   console.log(`Card ${i + 1} clicked`);

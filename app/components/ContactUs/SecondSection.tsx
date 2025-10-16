@@ -360,9 +360,9 @@ const SecondSection = () => {
         {/* Left Side Image */}
         <div className="lg:p-10 p-5 flex items-center justify-center">
           <img
-            src="/images/panipuricart2.png" // replace with your image path
+            src="/images/panipuricart1.png" // replace with your image path
             alt="Pani Puri Cart"
-            className=" w-full h-auto object-contain"
+            className=" w-full h-auto object-contain rounded-[15px]"
           />
         </div>
 

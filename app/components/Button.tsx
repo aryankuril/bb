@@ -9,11 +9,19 @@ interface ButtonProps {
   onClick?: () => void;    // click handler
   className?: string;
   disabled?: boolean; 
-   target?: string; // ✅ add this
-  rel?: string;      // ✅ new: supports disabled state
+  target?: string; // for external links
+  rel?: string;    // for external links
 }
 
-const Button: React.FC<ButtonProps> = ({ text, href, onClick, className = "", disabled = false }) => {
+const Button: React.FC<ButtonProps> = ({
+  text,
+  href,
+  onClick,
+  className = "",
+  disabled = false,
+  target,
+  rel,
+}) => {
   const [hovered, setHovered] = useState(false);
   const textRef = useRef<HTMLSpanElement>(null);
   const [textWidth, setTextWidth] = useState(0);
@@ -78,14 +86,27 @@ const Button: React.FC<ButtonProps> = ({ text, href, onClick, className = "", di
         }}
       ></div>
 
-      {/* Render Link or Button */}
+      {/* Render external link (<a>) or internal link (<Link>) */}
       {href ? (
-        <Link
-          href={disabled ? "#" : href}
-          className={disabled ? "pointer-events-none" : ""}
-        >
-          {content}
-        </Link>
+        target ? (
+          // external link with target
+          <a
+            href={href}
+            target={target}
+            rel={rel}
+            className={disabled ? "pointer-events-none" : ""}
+          >
+            {content}
+          </a>
+        ) : (
+          // internal Next.js link
+          <Link
+            href={disabled ? "#" : href}
+            className={disabled ? "pointer-events-none" : ""}
+          >
+            {content}
+          </Link>
+        )
       ) : (
         <button
           onClick={!disabled ? onClick : undefined}
