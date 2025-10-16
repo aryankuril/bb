@@ -271,25 +271,30 @@ Salary – Upto 6.6L per annum`,
   },
   {
     title: "Content Creator",
-    details: `Minimum Experience : Comfortable on camera | Send 3 video samples with your application
+    details: `Minimum Experience : Portfolio beyond college assignments | Must include AI-generated or AI-assisted work
 
 Role:
-You won’t just create content — you’ll be the content.
-From reels to talking-head explainers, trending formats to voiceovers — you’ll script, shoot, and show up on screen.
-We’re not looking for cringe. We’re looking for content that connects — fast.
+You won’t just make posts — you’ll shape creative direction and elevate the whole team.
+From social to branding to web, your designs will push boundaries and set standards.
+AI tools aren’t optional — they’re your creative accelerator.
 
 Key Responsibilities:
-● Be confident and engaging in front of the camera
-● Create Instagram & YouTube-first content in trending formats
-● Script, shoot, and edit short-form videos (CapCut, VN, or any editing tool that works)
-● Jump on trends quickly — execution over endless “moodboarding”
-● Ensure every piece of content is sharp, authentic, and on-brand
+● Create scroll-stopping design work for social, branding, and web
+● Collaborate closely with content, strategy, and performance teams
+● Use AI tools (MidJourney, Firefly, Runway, etc.) to scale output and innovate creatively
+● Lead the team in exploring what’s next in design, not just following trends
+
+Must-Have Skills:
+● Mastery of Illustrator, Photoshop, and Figma
+● Experience with AI tools for design innovation
+● Strong sense of layout, typography, and brand presence
+● Portfolio demonstrating clarity, creativity, and ambition
 
 Work Culture:
-This is a part-time role — 3 days a week at our Worli office or shoot location.
-We move fast, expect ownership, and care about quality over fluff.
+This is not a remote role.
+We work from our Worli office, every day, fast-paced and collaborative.
 
-Salary – Upto 3L per annum`,
+Salary – Upto 6L per annum`,
   },
   {
     title: "Video Editor",

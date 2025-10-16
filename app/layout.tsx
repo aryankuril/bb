@@ -9,6 +9,7 @@ import FloatingIcons from "./components/FloatingIcons";
 // import Whatsapp from "./components/Whatsapp";
 // import ClientScripts from "./components/ClientScripts";
 import SmoothScroll from "./components/SmoothScroll";
+import MobilePopup from "./components/MobilePopup";
 
 // Local Miso
 const miso = localFont({
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
          <PageLoader>
            {children}
             {/* <Taxi /> */}
+            <MobilePopup/>
          </PageLoader>
         <ScrollToTop/>
           {/* <FloatingIcons/> */}
