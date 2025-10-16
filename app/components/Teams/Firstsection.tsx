@@ -18,41 +18,29 @@ const Firstsection: React.FC = () => {
     const element = secondImgRef.current;
     const container = containerRef.current;
 
-    let hasAnimated = false;
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    const scaleX = containerRect.width / elementRect.width;
+    const scaleY = containerRect.height / elementRect.height;
+    const targetScale = Math.max(scaleX, scaleY);
 
-    const handleScroll = () => {
-      const scrollPercentage =
-        (window.scrollY /
-          (document.documentElement.scrollHeight - window.innerHeight)) *
-        100;
+    const scrollTrigger = gsap.to(element, {
+      scale: targetScale,
+      zIndex: 10,
+      ease: "power2.inOut",
+      scrollTrigger: {
+        trigger: container,
+        start: "top 50%",
+        end: "top 20%",
+        scrub: 1.5,
+        toggleActions: "play reverse play reverse",
+        markers: true,
+      },
+    });
 
-      if (scrollPercentage >= 2 && !hasAnimated) {
-        hasAnimated = true;
-
-        const containerRect = container.getBoundingClientRect();
-        const elementRect = element.getBoundingClientRect();
-
-        const scaleX = containerRect.width / elementRect.width;
-        const scaleY = containerRect.height / elementRect.height;
-        const scale = Math.max(scaleX, scaleY);
-
-        gsap.to(element, {
-          scale: scale,
-          duration: 1.2,
-          ease: "power2.inOut",
-          zIndex: 10,
-        });
-      }
-    };
-
-    // Initial check
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      scrollTrigger.scrollTrigger?.kill();
+      scrollTrigger.kill();
     };
   }, []);
 

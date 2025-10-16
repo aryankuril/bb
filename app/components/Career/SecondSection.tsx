@@ -796,7 +796,7 @@ const SecondSection = () => {
 
       <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
         {/* LEFT – Job List */}
-        <div className="p-4 md:p-6 flex flex-col lg:gap-3 gap-2">
+        <div className="p-4 md:p-6 flex flex-col lg:gap-3 gap-2 ">
           <h2
             className="
           white-text
@@ -817,7 +817,7 @@ const SecondSection = () => {
                   setIsFlipped(false);
                 }
               }}
-              className={`text-left body2 px-3 py-2 sm:px-4 sm:py-3 cursor-pointer rounded-[6px] border transition-all duration-200
+              className={`text-left body2 px-3 py-2 sm:px-4 sm:py-3 rounded-[6px] border transition-all duration-200
   ${
     activeJob.title === job.title
       ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
@@ -1177,6 +1177,6 @@ const SecondSection = () => {
       </div>
     </section>
   );
-};
+}; 
 
 export default SecondSection;
