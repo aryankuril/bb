@@ -39,14 +39,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body>
-        <SmoothScroll>
-          
-        
+        <SmoothScroll>  
          <PageLoader>
-          {children}
-        <Taxi />
-          </PageLoader>
-          <ScrollToTop/>
+           {children}
+            {/* <Taxi /> */}
+         </PageLoader>
+        <ScrollToTop/>
           {/* <FloatingIcons/> */}
       {/* <Whatsapp /> */}
     </SmoothScroll>

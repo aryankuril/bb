@@ -1,55 +1,51 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import React from "react";
+import { motion, Variants, useMotionValue, useTransform, animate } from "framer-motion";
 import Button from "../Button";
 
 const cards = [
-  { img: "/images/rubber1.webp", label: "Young Passionate Crowd", rotate: 10, entry: "left" },
-  { img: "/images/rubber2.webp", label: "Jugged Masters", rotate: -10, entry: "top" },
-  { img: "/images/rubber3.webp", label: "Goldi-Cricket Champs", rotate: 10, entry: "bottom" },
-  { img: "/images/rubber4.webp", label: "Creative Experts", rotate: 10, entry: "right" },
+  { img: "/images/rubber1.webp", label: "Young Passionate Crowd", rotate: 10 },
+  { img: "/images/rubber2.webp", label: "Jugged Masters", rotate: -10 },
+  { img: "/images/rubber3.webp", label: "Goldi-Cricket Champs", rotate: 10 },
+  { img: "/images/rubber4.webp", label: "Creative Experts", rotate: 10 },
 ];
 
 const RubberSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Entry animation directions
-  const entryVariants = {
-    left: { hidden: { x: -200, opacity: 0 }, visible: { x: 0, opacity: 1 } },
-    right: { hidden: { x: 200, opacity: 0 }, visible: { x: 0, opacity: 1 } },
-    top: { hidden: { y: -200, opacity: 0 }, visible: { y: 0, opacity: 1 } },
-    bottom: { hidden: { y: 200, opacity: 0 }, visible: { y: 0, opacity: 1 } },
-  };
+const throwInVariant: Variants = {
+  hidden: { x: 600, y: 0, rotate: 45, opacity: 0 },
+  visible: {
+    x: 0,
+    y: 0,
+    rotate: 0,
+    opacity: 1,
+    transition: {
+      type: "spring" as const, // ensure TS knows this is a valid spring type
+      stiffness: 80,
+      damping: 20,
+      mass: 0.8,
+    },
+  },
+};
 
   return (
-    <section
-      ref={sectionRef}
-      className=" container w-full lg:h-[100vh] h-full relative overflow-hidden py-10 sm:py-15 lg:py-20"
-    >
-      {/* Heading */}
+    <section className="container w-full lg:h-[100vh] h-full relative py-10 sm:py-15 lg:py-20 overflow-x-hidden overflow-y-hidden">
       <h2 className="mb-3 text-center">
         <span className="text-highlight">BB culture </span> - Ideate, innovate, create
       </h2>
 
-      {/* Cards */}
-      <div
-        className="
-          mt-16
-          flex
-          flex-col
-          items-center
-          lg:gap-6 gap-1
-          sm:flex-col
-          md:flex-row
-          md:flex-wrap
-          md:justify-center 
-          lg:space-x-[-3rem]
-          px-4
-        "
+      {/* Cards container with overlapping */}
+      <motion.div
+        className="mt-16 flex justify-center items-center px-4"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.25 } }, // slightly more stagger
+        }}
       >
         {cards.map((card, idx) => {
-          // your existing drag + motion values
           const x = useMotionValue(0);
           const y = useMotionValue(0);
           const rotate = useTransform(x, [-200, 200], [-25 + card.rotate, 25 + card.rotate]);
@@ -63,41 +59,25 @@ const RubberSection = () => {
           return (
             <motion.div
               key={idx}
-              variants={entryVariants[card.entry as keyof typeof entryVariants]}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                type: "spring",
-                stiffness: 120,
-                damping: 12,
-                duration: 1.2,
-                delay: idx * 0.2,
-              }}
+              variants={throwInVariant}
+              className={`relative w-[220px] sm:w-[260px] md:w-[280px] lg:w-[350px] h-[220px] sm:h-[260px] md:h-[280px] lg:h-[330px] flex-shrink cursor-grab rounded-xl ${
+                idx !== 0 ? "-ml-10 sm:-ml-12 md:-ml-14 lg:-ml-10" : ""
+              }`} // negative margin for overlap
             >
               <motion.div
-                className="
-                  relative
-                  w-[220px]
-                  sm:w-[260px]
-                  md:w-[300px]
-                  lg:w-[350px]
-                  h-[220px]
-                  sm:h-[260px]
-                  md:h-[300px]
-                  lg:h-[350px]
-                  flex-shrink-0
-                  rounded-xl
-                  shadow-lg
-                  cursor-grab
-                "
                 style={{ x, y, rotate }}
                 drag
-                dragConstraints={sectionRef}
+                dragConstraints={{
+                  left: -window.innerWidth / 2,
+                  right: window.innerWidth / 2,
+                  top: -100,
+                  bottom: 100,
+                }}
                 dragElastic={0.4}
                 whileDrag={{ scale: 1.05 }}
                 dragTransition={{ bounceStiffness: 200, bounceDamping: 15, power: 0.2 }}
                 onDragEnd={resetPosition}
+                className="w-full h-full rounded-xl"
               >
                 <img
                   src={card.img}
@@ -108,15 +88,10 @@ const RubberSection = () => {
             </motion.div>
           );
         })}
-      </div>
+      </motion.div>
 
-      {/* Button */}
       <div className="flex items-center justify-center py-10 z-40">
-        <Button
-          href="/career"
-          text="Join Our Team"
-          className=" text-black font-semibold "
-        />
+        <Button href="/career" text="Join Our Team" className="text-black font-semibold" />
       </div>
     </section>
   );

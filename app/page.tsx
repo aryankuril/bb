@@ -12,6 +12,7 @@ import CardCarousel from "./components/HomePage/CardCarousel";
 import SixthSection from "./components/ServicesInternal/WebsiteDesign/SixthSection";
 import SeventhSection from "./components/ServicesInternal/WebsiteDesign/SeventhSection";
 import Footer from "./components/Footer";
+import Taxi from "./components/Taxi";
 // import ClientScripts from "./components/ClientScripts";
 
 
@@ -20,6 +21,7 @@ export default function Home() {
   return (
     <div>
       {/* <ClientScripts/> */}
+      <Taxi/>
       <Navbar />
       <Firstsection/>
       <SecondSection/>

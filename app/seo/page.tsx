@@ -8,11 +8,13 @@ import SixthSection from "../components/ServicesInternal/SEO/SixthSection";
 import SeventhSection from "../components/ServicesInternal/SEO/SeventhSection";
 import Footer from "../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
+import Taxi from '../components/Taxi'
 
 const Index = () => {
   return (
     <div>
       {/* <ClientScripts/> */}
+      <Taxi/>
       <Navbar />
       <FirstSection />
       {/* <SecondSection /> */}

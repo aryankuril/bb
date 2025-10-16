@@ -60,6 +60,7 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({ children, className =
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
+      style={{ textTransform: "none" }} // ✅ ensures text keeps its original casing
     >
       {animateText(children)}
     </motion.div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import FadeInSection from "../FadeInSection";
  
 gsap.registerPlugin(ScrollTrigger);
  
@@ -60,6 +61,7 @@ export default function PerformanceROI() {
   }, []);
  
   return (
+    <FadeInSection>
     <section ref={root} className="w-full container py-0 sm:py-15 lg:py-20" aria-labelledby="roi-heading">
       <div className="mx-auto w-full py-14">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
@@ -93,5 +95,6 @@ increase engagement too
         </div>
       </div>
     </section>
+    </FadeInSection>
   );
 }

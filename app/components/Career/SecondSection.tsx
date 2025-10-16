@@ -4,52 +4,310 @@ import ContactButton from "../ContactButton";
 
 const jobs = [
   {
-    title: "Performance Marketing - Specialist",
-    details: `Minimum Experience : 3+ Years & Worked On 25+ Brands | D2C Focus Is Non-Negotiable
+    title: "Performance Marketing - Specialist / Manager",
+    details: `Minimum Experience : 3+ years & worked on 25+ brands | D2C focus is non-negotiable
 
 Role:
-You’ll Lead A Sharp, Fast-Moving Performance Team. Strategy, Execution, Scaling — All On Your Plate.
-Meta, Google, Amazon — We Play Across The Board.
-We’re Not Looking For Media Buyers. We Want Growth Thinkers. 
-You Should Know Your Numbers, Trust Your Gut, And Never Hide Behind Jargon.
+You’ll lead a sharp, fast-moving performance team.
+Strategy, execution, scaling — all on your plate.
+Meta, Google, Amazon — we play across the board.
+We’re not looking for media buyers. We want growth thinkers.
+
+You should know your numbers, trust your gut, and never hide behind jargon.
+
+Key Responsibilities:
+● Lead performance marketing strategy and execution across Meta Ads and Google Ads
+
+● Plan, launch, monitor, and scale campaigns with a strong focus on ROAS, CAC, and efficiency
+
+● Collaborate with creative teams to ensure ads are not just beautiful – but effective
+
+● Manage monthly budgets in the range of ₹20L – ₹30L (Monthly) 
 
 Work Culture:
-This Is Not A Remote Gig. We Work From Our Worli Office, Together, Every Day.
+This is not a remote gig. We work from our Worli office, together, every day.
 
-Salary – Upto 10L Per Annum`,
+Salary – Upto 10L per annum`,
   },
   {
     title: "Performance Marketing - Executive",
-    details: `Minimum Experience : 1+ Year | Assist in Meta & Google Campaigns.
-Work closely with senior strategist to learn scaling and growth.`,
+    details: `Minimum Experience :  1+ years & worked on 6+ brands
+
+Role:
+
+You’ll be hands-on with performance campaigns across Meta & Google.
+From ad setup to daily optimisations — you’ll be in the thick of it.
+We’re not looking for button-pushers.
+Plan and execute performance marketing campaigns across Google Ads (Search, Display, YouTube, PMax) and Meta Ads (Facebook & Instagram).
+Optimize campaigns for CPC, CPA, CTR, ROAS, and conversions.
+Conduct regular A/B tests on ad creatives, copy, and landing pages.
+Manage and monitor daily budgets to ensure efficient spend and consistent delivery.
+Track, measure, and analyze performance data using Google Analytics, Meta Ads Manager, and other tools.
+Platforms – Meta, Google, Amazon.
+
+Work Culture:
+Worli office only. This isn’t a remote role.
+We don’t micromanage but we expect things to be done.
+
+Salary – Upto 5.5L per annum`,
+  },
+  {
+    title: "Performance Marketing - Intern",
+    details: `Minimum Experience :  0 – 6 Months
+
+Role Overview:
+We’re looking for a Performance Marketing Intern to support our digital advertising efforts across Meta (Facebook/Instagram) and Google Ads. The role involves assisting with campaign setup, audience research, performance tracking, and reporting.
+
+Ideal for individuals passionate about digital marketing, this internship provides exposure to real campaign data, learning opportunities in optimisation techniques, and an understanding of how performance marketing drives business growth.
+
+Responsibilities:
+
+Basic understanding of Meta Ads Manager and Google Ads platforms.
+Knowledge of key digital marketing concepts: CPC, CTR, ROAS, conversions, etc.
+Strong analytical skills with comfort in working on Excel/Google Sheets.
+Curious to learn, experiment, and adapt quickly in a digital-first environment.
+Good communication and organisational skills.
+What You’ll Gain:
+Real-world experience in managing performance marketing campaigns
+Exposure to agency life and cross-functional collaboration
+Mentorship from experienced digital marketers
+Potential full-time opportunity based on performance
+
+Stipend :  10K per month`,
   },
   {
     title: "Social Media Marketing - Specialist",
-    details: `Lead social strategy, content planning & analytics across multiple brands.`,
+    details: `Minimum Experience : 3–5 years | Proven results growing brands and their community on social platforms.
+
+Role:
+This isn’t a posting job — it’s a growth role.
+You’ll own the strategy across platforms: Instagram, LinkedIn, YouTube, maybe even the next big thing.
+
+You’ll work with designers, writers, and performance teams to build campaigns that drive actual business results. Audience building, engagement flows, performance-based content planning — that’s your territory.
+
+We’re looking for someone who can think brand, plan content, and hit numbers — all at once.
+
+Responsibilities : 
+
+Plan and execute paid social media campaigns.
+Track and manage ad budgets, targeting, and performance.
+Test new formats and strategies to improve engagement and conversions.
+Monitor key performance metrics (KPIs) like reach, engagement, impressions, CTR, conversions.
+Generate regular performance reports and insights.
+Recommend improvements based on analytics to optimize campaigns
+Develop and implement social media strategies aligned with marketing goals.
+Create content calendars for various platforms 
+
+Work Culture:
+Worli office. In person.
+This is a leadership role, not a remote consultant gig.
+You’ll be in the room, shaping the work, every day.
+
+Salary : Upto 6 LPA`,
   },
   {
     title: "Social Media Marketing - Executive",
-    details: `Support content calendar, posting, community management and reporting.`,
+    details: `Minimum Experience : 1+ Year Agency Experience | No, running your own meme page doesn’t count (unless it’s really good).
+
+Role:
+You’ll plan, write, and execute content across Instagram, LinkedIn & more.
+
+This means:
+
+Developing and implementing creative and innovative social media campaigns across various platforms (Instagram, Facebook, Twitter, LinkedIn, etc.).
+Creating compelling and on-brand content calendars, ensuring a consistent and engaging flow of posts.
+Drafting copy that makes people stop scrolling
+Keeping calendars tight and posts consistent
+Collaborating with designers & performance teams
+Jumping on trends with context (not just copying)
+You’ll be the voice behind brands — so make it count.
+
+Work Culture:
+Worli office. Everyday. No hybrid, no remote.
+We move fast, we don’t babysit – If you love owning the feed and seeing real impact — let’s talk.
+
+Salary – Upto 4.2 LPA`,
   },
   {
-    title: "Graphic Designer (AI-First, Vision-Led)",
-    details: `Create AI-driven, vision-led graphics for campaigns and brand stories.`,
+    title: "Social Media Marketing - Intern",
+    details: `Minimum Experience : 0 – 6 Months
+
+Role:
+
+Brainstorming and creating content for platforms like Instagram, LinkedIn, and
+more
+Assisting with Reels, Stories, carousels, and the occasional meme
+Writing captions that sound human, not robotic
+Researching trends, hashtags, and what’s popping online
+Helping manage posting schedules and engagement
+Bringing fresh energy and ideas to the table
+
+Work Culture:
+Worli office. Everyday. No hybrid, no remote.
+We move fast, we don’t babysit – If you love owning the feed and seeing real impact — let’s talk.
+
+Stipend :  10K per month`,
   },
   {
-    title: "Content Creator",
-    details: `Plan & produce short-form and long-form content across social platforms.`,
-  },
-  {
-    title: "Video Editor",
-    details: `Edit high-impact videos with motion graphics and sound design.`,
+    title: "Copywriter - Senior",
+    details: `Minimum Experience : 4+ years
+
+Responsibilities:
+
+Craft compelling, high-quality copy across multiple platforms: social media, websites, blogs, emails, ads, scripts, and brand campaigns.
+Develop creative concepts in alignment with brand voice and marketing objectives.
+Translate complex ideas into clear, persuasive, and engaging messaging.
+Work closely with designers, art directors, marketers, and clients to create integrated campaigns.
+Lead brainstorming sessions and contribute original ideas for campaigns, activations, and content strategies.
+Ability to juggle multiple projects without dropping punchlines.
+Killer storytelling skills, whether it’s a 5-word headline or a 500-word blog.
+A sense of humor and zero tolerance for boring copy..
+ 
+Work Culture:
+Worli office. Everyday. No hybrid, no remote.
+We move fast, we don’t babysit – If you love owning the feed and seeing real impact — let’s talk.
+
+Salary : 7.2 LPA`,
   },
   {
     title: "SEO - Senior Specialist",
-    details: `Lead on-page & off-page strategy to grow organic reach.`,
+    details: `Minimum Experience : 2–4 years | Must have ranked content across competitive categories
+
+We don’t need someone to throw keywords into a blog and call it strategy.
+We need someone who knows how to build traffic — consistently.
+
+You’ll be responsible for:
+
+Keyword research that actually aligns with intent
+On-page, off-page, and technical SEO
+Optimising web content, landing pages, and even YouTube descriptions
+Tracking performance and knowing what’s working and why
+Knowledge of HTML/CSS
+Familiarity with relevant tools (e.g. SEMrush, Screaming Frog, MOZ, Ahref etc.) and web analytics tools (eg Search Console, Google Analytics, WebTrends)
+Develop and execute comprehensive SEO strategies focused on measurable
+growth in organic traffic, rankings, and leads.
+Perform in-depth keyword research, competitor analysis, and on-page/off-page
+optimization.
+Manage technical SEO audits and coordinate with the dev team for timely fixes.
+Monitor, analyze, and report performance using SEO and analytics tools with a
+focus on clear numbers and growth insights.
+Stay updated with the latest industry changes, including AI-driven SEO tools
+and strategies.
+
+
+Salary – Upto 6.6 LPA`,
   },
   {
-    title: "Open Internship Positions",
-    details: `Various marketing, design & content internships available.`,
+    title: "Graphic Designer (AI-First, Vision-Led)",
+    details: `Minimum Experience : Need a portfolio which is more than just college assignments. | Must include AI-generated or AI-assisted work in portfolio
+
+Role:
+We’re not looking for someone to just make posts.
+We’re looking for someone who can visualise, lead creative direction, and make the whole team sharper.
+
+You’ll be:
+→ Creating scroll-stopping design work for social, branding & web
+→ Working closely with content, strategy & performance teams
+→ Using AI tools to scale output and push creative boundaries
+→ Leading the charge on what’s next in design, not what’s trending now
+
+Must Have:
+→ Mastery of Illustrator, Photoshop, Figma
+→ AI tool experience — Midjourney, Firefly, Runway, anything that shows you’re ahead of the curve
+→ A strong sense of layout, typography, and brand presence
+→ A portfolio that shows clarity, creativity, and ambition
+
+Figma is a bonus. 
+
+Salary –  6 LPA`,
+  },
+  {
+    title: "Content Creator",
+    details: `Minimum Experience : 
+Comfortable on camera | Send 3 video samples with your application
+
+Role:
+We’re looking for someone who can create content and be the content.
+Think reels, talking-head explainers, voiceovers, trending formats — you’ll be scripting, shooting, and showing up on screen.
+
+You should:
+→ Be confident in front of the camera
+→ Know what works on Instagram & YouTube
+→ Be quick with execution — not stuck in “moodboarding” mode
+→ Edit basic videos (on CapCut, VN, or anything that works)
+
+We’re not here for cringe content.
+We’re here for content that connects — fast.
+
+Work Culture:
+Part time – 3 days a week at our Worli office or shoot location. 
+
+Salary – Upto 3 LPA`,
+  },
+  {
+    title: "Video Editor",
+    details: `Minimum Experience : 
+1 – 2 years | Only short-format editors with viral instincts need apply
+No wedding reels. No trailers. Just punchy, scroll-stopping edits.
+
+Role:
+You’ll be editing videos for Instagram Reels, YouTube Shorts & more.
+We’re looking for someone who:
+
+Can take raw footage and turn it into something you want to watch twice
+Understands pacing, hooks, and retention
+Knows what makes content go viral
+Uses AI tools to move faster and create output that beats industry standards.
+Editing addictive short-format videos for Instagram reels that keep audiences engaged.
+Crafting long-format Digital Video Campaigns (DVCs) that make our clients’ brands shine.
+Adding motion graphics that make our content visually exciting and uniquely ours.
+Bringing your creative perspective to every project – we want ideas, originality, and a little bit of boldness.
+
+Must:
+
+Know your way around CapCut, Premiere, or Final Cut Pro,
+Know AI tools that boost output ChatGPT, Runway, ElevenLabs, Mid journey etc.
+Be obsessed with trends  and know how to make them better.
+ 
+
+Application Requirement:
+Only send your best 3 short-form video edits.
+No full portfolios. No long showreels.
+If the first 5 seconds don’t hit — we’re not watching the rest.
+
+Work Culture:
+5 days a week at our Worli office. 
+
+Salary – Upto 4.8 LPA`,
+  },
+  {
+    title: "Accountant - Inhouse",
+    details: `Minimum Experience : 2  years
+
+Role:
+
+Raise Invoices
+Prepare journal entries and ensure proper documentation.
+Assist in month-end and year-end closing processes.
+Reconcile bank statements and resolve discrepancies.
+Preparing & filing GST, TDS, and other statutory returns as per compliance requirements.
+Payment to Vendors (Contractual employees, Freelancers)
+Support the preparation of financial statements and reports.
+Assist in audits (internal/external) by providing required documentation.
+Manage accounts payable and receivable processes.
+ 
+
+Preferred Qualifications:
+
+Minimum 2 years of relevant accounting experience.
+Certification like CA-Inter or any other pursuing a professional accounting course is a plus
+Strong MS Excel skills (VLOOKUP, Pivot Tables, etc.).
+Knowledge of Indian accounting standards and tax regulations (if applicable).
+
+Work Culture:
+5 days a week at our Worli office. 
+
+Salary – Upto 3.6 LPA`,
   },
 ];
 

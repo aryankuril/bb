@@ -6,10 +6,12 @@ import SecondSection from '../components/Services/SecondSection'
 // import WorkCard from '../components/HomePage/WorkCard'
 import SeventhSection from '../components/ServicesInternal/WebsiteDesign/SeventhSection'
 import Footer from '../components/Footer'
+import Taxi from '../components/Taxi'
 
 const page = () => {
   return (
     <div>
+      <Taxi/>
         <Navbar />
         <Firstsection />
         <SecondSection />

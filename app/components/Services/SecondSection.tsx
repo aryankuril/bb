@@ -118,7 +118,7 @@ export default function SecondSection() {
                         ? "clamp(220px, 65vw, 440px)"
                         : card.shape === "square"
                         ? "clamp(220px, 75vw, 400px)"
-                        : "clamp(260px, 60vh, 280px)",
+                        : "clamp(260px, 60vh, 350px)",
                     borderRadius: card.shape === "circle" ? "20%" : "20px",
                     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
                     backgroundSize: "cover",
