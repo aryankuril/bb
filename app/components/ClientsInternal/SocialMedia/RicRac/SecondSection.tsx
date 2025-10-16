@@ -7,14 +7,14 @@ const achievements = [
     number: "01",
     title: "Brand Introduction & Positioning",
     description:
-      "We began with a soft launch, highlighting a key market gap: the lack of a specialized innerwear brand for kids. This positioned RicRac as a necessary, problem-solving brand.",
+      "We began with a soft launch, highlighting a key market gap: the lack of a specialized innerwear brand for kids. This positioned RicRac Kids as a necessary, problem-solving brand.",
     position: "left",
   },
   {
     number: "02",
     title: "Founder-Driven Trust Building",
     description:
-      "We introduced the founder's story to explain why RicRac matters. This built an authentic connection and positioned the brand as being 'By Indian parents, for Indian kids.'",
+      "We introduced the founder's story to explain why RicRac Kids matters. This built an authentic connection and positioned the brand as being 'By Indian parents, for Indian kids.'",
     position: "right",
   },
   {
@@ -28,7 +28,7 @@ const achievements = [
     number: "04",
     title: "Problem-Solving Content Series",
     description:
-      "A 'Founder Series' was launched to address everyday problems kids face with uncomfortable innerwear and to showcase how RicRac's products provide the solution.",
+      "A 'Founder Series' was launched to address everyday problems kids face with uncomfortable innerwear and to showcase how RicRac Kids's products provide the solution.",
     position: "right",
   },
 ];

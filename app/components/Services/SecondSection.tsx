@@ -2,7 +2,8 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { useScroll } from "framer-motion";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import gsap from "gsap";
 
 interface Card {
   title: string;
@@ -24,7 +25,7 @@ const cards: Card[] = [
   {
     title: "Performance Marketing",
     subtitle:
-      "We create data-driven ad campaigns that deliver measurable results—turning clicks into customers and spend into revenue.",
+      "We create data-driven ad campaigns that deliver measurable results, turning clicks into customers and spend into revenue.",
     image: "/images/servicespage/Performance.png",
     link: "/performance-maketing",
     shape: "square",
@@ -54,7 +55,6 @@ export default function SecondSection() {
     offset: ["start start", "end end"],
   });
   const [progress, setProgress] = useState(0);
-  const router = useRouter();
 
   useEffect(() => {
     return scrollYProgress.on("change", (v) => setProgress(v));
@@ -63,7 +63,10 @@ export default function SecondSection() {
   const segment = 1 / cards.length;
 
   return (
-    <section id="second-section" className="container py-10 sm:py-15 lg:py-20 relative w-full">
+    <section
+      id="second-section"
+      className="container py-10 sm:py-15 lg:py-20 relative w-full"
+    >
       {/* Sticky Title */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center pointer-events-none z-0 px-2">
         <div
@@ -85,26 +88,46 @@ export default function SecondSection() {
             const end = start + segment;
 
             const visible = progress >= start && progress <= end;
-            const localProgress = Math.min(Math.max((progress - start) / segment, 0), 1);
+            const localProgress = Math.min(
+              Math.max((progress - start) / segment, 0),
+              1
+            );
 
             const y = 100 - localProgress * 200;
             const rotate = i % 2 === 0 ? (1 - localProgress) * 5 : (localProgress - 1) * 5;
 
+            const cardRef = useRef<HTMLDivElement>(null);
+
             return (
-              <div
-                key={i}
-                className={`absolute top-1/2 -translate-y-1/2 md:px-4 px-2 z-10
-                  ${i % 2 === 0 ? "md:left-0" : "md:right-0"} 
-                  max-md:left-1/2 max-md:-translate-x-1/2`} // ✅ only center on mobile
-                style={{
-                  transform: `translateY(${y}%) rotate(${rotate}deg)`,
-                  opacity: visible ? 1 : 0,
-                  transition: "transform 0.3s linear, opacity 0.3s linear",
-                  cursor: "pointer",
-                }}
-                onClick={() => router.push(card.link)}
-              >
-                <div
+              <Link key={i} href={card.link} scroll={true}>
+  <div
+    ref={cardRef}
+    className={`absolute top-1/2 -translate-y-1/2 md:px-4 px-2 z-10
+      ${i % 2 === 0 ? "md:left-0" : "md:right-0"} 
+      max-md:left-1/2 max-md:-translate-x-1/2`}
+    style={{
+      transform: `translateY(${y}%) rotate(${rotate}deg)`,
+      opacity: visible ? 1 : 0,
+      transition: "transform 0.3s linear, opacity 0.3s linear",
+      cursor: "pointer",
+    }}
+    onClick={(e) => {
+      e.preventDefault();
+      if (!cardRef.current) return;
+
+      // Animate card before navigating
+      gsap.to(cardRef.current, {
+        y: "100vh",
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.inOut",
+        onComplete: () => {
+          window.location.href = card.link;
+        },
+      });
+    }}
+  >
+   <div
                   className="flex flex-col justify-end p-4 sm:p-6 border-[5px] border-[var(--color-primary)]"
                   style={{
                     width:
@@ -125,11 +148,17 @@ export default function SecondSection() {
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                   }}
-                >
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-highlight">{card.title}</h3>
-                  <p className="mt-2 text-sm sm:text-base md:text-lg white-text">{card.subtitle}</p>
+                 >
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-highlight">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-sm sm:text-base md:text-lg white-text">
+                    {card.subtitle}
+                  </p>
                 </div>
-              </div>
+  </div>
+</Link>
+
             );
           })}
         </div>

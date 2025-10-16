@@ -6,6 +6,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
+import { useRouter } from "next/navigation";
 
 const YELLOW = "#FAB31E";
 const DARK = "#1D1D1D";
@@ -23,6 +24,7 @@ const links = [
 
 export default function DesktopNav() {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   // refs
   const root = useRef<HTMLDivElement | null>(null);
@@ -33,7 +35,6 @@ export default function DesktopNav() {
   const black = useRef<HTMLDivElement | null>(null);
   const divider = useRef<HTMLDivElement | null>(null);
   const bottomRow = useRef<HTMLDivElement | null>(null);
-  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 
   const textRefs = useRef<HTMLAnchorElement[]>([]);
   const tl = useRef<gsap.core.Timeline | null>(null);
@@ -162,176 +163,205 @@ export default function DesktopNav() {
     };
   }, []);
 
-  // Prevent body scroll when menu is open
-useEffect(() => {
-  if (open) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "";
-  }
+  // ✅ Prevent body scroll when menu is open
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
 
-  // Clean up in case component unmounts
-  return () => {
-    document.body.style.overflow = "";
-  };
-}, [open]);
+    if (open) {
+      const scrollY = window.scrollY;
+      body.style.position = "fixed";
+      body.style.top = `-${scrollY}px`;
+      body.style.left = "0";
+      body.style.right = "0";
+      body.style.overflow = "hidden";
+      html.style.overflow = "hidden";
+    } else {
+      const scrollY = body.style.top;
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      body.style.overflow = "";
+      html.style.overflow = "";
+      if (scrollY) window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
 
+    return () => {
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      body.style.overflow = "";
+      html.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <div className="">
-    <div ref={root} className=" py-5 px-10 absolute inset-x-0 top-0 z-[99999] ">
-      {/* nav shell */}
-      <div ref={shell} className="h-[90px] container  bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md  shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center   absolute inset-x-0 top-5 z-[99999] ">
-        <div className="flex items-center justify-between py-4 px-10 ">
-          <Link href="/">
-            <Image
-              src="/images/bblogo.webp"
-              alt="Bombay Blokes Logo"
-              width={160}
-              height={50}
-              className="object-contain transition-opacity duration-300"
-            />
-          </Link>
-
-          {/* HAMBURGER */}
-
- <div className="flex items-center gap-4">
-  <Button
-    href="/contactus"
-    text="Start Growing"
-    className="relative justify-center text-black font-semibold transition-colors"
-  />
-
-  <button
-    onClick={() => setOpen((s) => !s)}
-    aria-label="Toggle menu"
-    className="relative grid h-15 w-15 text-[26px] border-2 border-black leading-6 cursor-pointer font-miso place-items-center text-black"
-  >
-    M E <br />N U
-  </button>
-</div>
-
-        </div>
-
-        {/* stage */}
+      <div ref={root} className="py-5 px-10 absolute inset-x-0 top-0 z-[99999]">
+        {/* nav shell */}
         <div
-          ref={stage}
-          className="relative mt-10 h-[500px] w-[650px] mx-auto flex justify-center items-center overflow-hidden rounded-xl z-50"
+          ref={shell}
+          className="h-[90px] container bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center absolute inset-x-0 top-5 z-[99999]"
         >
-          <div ref={black} />
-          <div ref={yellow} />
+          <div className="flex items-center justify-between py-4 px-10 ">
+            <Link href="/">
+              <Image
+                src="/images/bblogo.webp"
+                alt="Bombay Blokes Logo"
+                width={160}
+                height={50}
+                className="object-contain transition-opacity duration-300"
+              />
+            </Link>
 
-          {/* CLOSE BUTTON */}
-         {open && (
-  <button
-    ref={(el) => {
-      if (el) {
-        // Fade-in GSAP animation when button mounts
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: -20 },
-          {
-            opacity: 1,
-            y: 0,
-            delay: 2, // 👈 small delay for smoother entrance
-            duration: 0.8,
-            ease: "power3.out",
-          }
-        );
-      }
-    }}
-    onClick={() => {
-  // Faster fade-out
-  gsap.to(".close-btn", {
-    opacity: 0,
-    y: -10,
-    duration: 0.2,
-    ease: "power3.inOut",
-  });
+            {/* HAMBURGER */}
+            <div className="flex items-center gap-4">
+              <Button
+                href="/contactus"
+                text="Start Growing"
+                className="relative justify-center text-black font-semibold transition-colors"
+              />
 
-  // Make the entire reverse animation faster
-  if (tl.current) {
-    tl.current.pause(0); // stop the GSAP timeline
-  }// 🔥 speed up reverse
-
-    setTimeout(() => setOpen(false), 50); // close a bit earlier
-}}
-
-    className="close-btn absolute cursor-pointer top-6 right-6 text-white text-[16px] uppercase tracking-wider font-[Miso] z-20 hover:text-[#FAB31E] transition-colors"
-  >
-    Close
-  </button>
-)}
-
-          {/* divider */}
-          <div
-            ref={divider}
-            className="absolute left-1/2 mt-[230px] -translate-y-1/2 w-[2px] h-[60%]"
-          />
-
-          {/* menu links */}
-          <div className="relative z-10 grid grid-cols-2 grid-rows-4 gap-y-10 px-12 py-8 lg:mb-15 md:mb-10 mb-5 text-center place-items-center w-full">
-            {links.map((link, index) => (
-              <div
-                key={index}
-                className={`w-full flex justify-center items-center relative ${
-                  index % 2 === 0 ? "border-r border-white" : ""
-                }`}
+              <button
+                onClick={() => {
+                  if (open) {
+                    if (tl.current) tl.current.pause(0);
+                    setOpen(false);
+                  } else {
+                    setOpen(true);
+                  }
+                }}
+                aria-label="Toggle menu"
+                className="relative grid h-15 w-15 text-[26px] border-2 rounded-[5px] border-black leading-6 cursor-pointer font-miso place-items-center text-black"
               >
-                <Link
-                  href={link.href}
-                  ref={(el) => {
-                    if (el) textRefs.current[index] = el;
-                  }}
-                  className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                >
-                  {link.label}
-                </Link>
-              </div>
-            ))}
+                M E <br />N U
+              </button>
+            </div>
           </div>
 
-          {/* bottom row social icons */}
-          {/* bottom row social icons */}
-<div
-  ref={bottomRow}
-  className="absolute bottom-5 left-0 right-0 flex items-center justify-center px-6 text-xs uppercase tracking-wide"
->
-  <div className="flex flex-col items-center gap-2 text-center z-10 cursor-pointer">
-    <p className="text-white text-lg tracking-wide">FOLLOW US ON</p>
-    <div className="flex gap-8 relative z-50">
-      <a
-        href="https://www.instagram.com/bombay_blokes"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
-      >
-        INSTAGRAM
-      </a>
-      <a
-        href="https://in.linkedin.com/company/bombay-blokes-digital-solutions-llp"
-        target="_blank"
-        rel="noopener noreferrer"
-         className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
-      >
-        LINKEDIN
-      </a>
-      <a
-        href="https://x.com/Bombay_Blokes"
-        target="_blank"
-        rel="noopener noreferrer"
-         className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
-      >
-        TWITTER
-      </a>
-    </div>
-  </div>
-</div>
+          {/* stage */}
+          <div
+            ref={stage}
+            className="relative mt-10 h-[500px] w-[650px] mx-auto flex justify-center items-center overflow-hidden rounded-xl z-50"
+          >
+            <div ref={black} />
+            <div ref={yellow} />
 
+            {/* CLOSE BUTTON */}
+            {open && (
+              <button
+                ref={(el) => {
+                  if (el) {
+                    gsap.fromTo(
+                      el,
+                      { opacity: 0, y: -20 },
+                      {
+                        opacity: 1,
+                        y: 0,
+                        delay: 2,
+                        duration: 0.8,
+                        ease: "power3.out",
+                      }
+                    );
+                  }
+                }}
+                onClick={() => {
+                  gsap.to(".close-btn", {
+                    opacity: 0,
+                    y: -10,
+                    duration: 0.2,
+                    ease: "power3.inOut",
+                  });
+
+                  if (tl.current) tl.current.pause(0);
+                  setTimeout(() => setOpen(false), 50);
+                }}
+                className="close-btn absolute cursor-pointer top-6 right-6 text-white text-[16px] uppercase tracking-wider font-[Miso] z-20 hover:text-[#FAB31E] transition-colors"
+              >
+                Close
+              </button>
+            )}
+
+            {/* divider */}
+            <div
+              ref={divider}
+              className="absolute left-1/2 mt-[230px] -translate-y-1/2 w-[2px] h-[60%]"
+            />
+
+            {/* menu links */}
+            <div className="relative z-10 grid grid-cols-2 grid-rows-4 gap-y-10 px-12 py-8 lg:mb-15 md:mb-10 mb-5 text-center place-items-center w-full">
+              {links.map((link, index) => (
+                <div
+                  key={index}
+                  className={`w-full flex justify-center items-center relative ${
+                    index % 2 === 0 ? "border-r border-white" : ""
+                  }`}
+                >
+                  <Link
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (tl.current) tl.current.pause(0);
+                      setOpen(false);
+
+                      if (window.location.pathname === link.href) {
+                        router.refresh();
+                      } else {
+                        router.push(link.href);
+                      }
+                    }}
+                    ref={(el) => {
+                      if (el) textRefs.current[index] = el;
+                    }}
+                    className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
+            </div>
+
+            {/* bottom row social icons */}
+            <div
+              ref={bottomRow}
+              className="absolute bottom-5 left-0 right-0 flex items-center justify-center px-6 text-xs uppercase tracking-wide"
+            >
+              <div className="flex flex-col items-center gap-2 text-center z-10 cursor-pointer">
+                <p className="text-white text-lg tracking-wide">FOLLOW US ON</p>
+                <div className="flex gap-8 relative z-50">
+                  <a
+                    href="https://www.instagram.com/bombay_blokes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
+                  >
+                    INSTAGRAM
+                  </a>
+                  <a
+                    href="https://in.linkedin.com/company/bombay-blokes-digital-solutions-llp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
+                  >
+                    LINKEDIN
+                  </a>
+                  <a
+                    href="https://x.com/Bombay_Blokes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
+                  >
+                    TWITTER
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Backdrop */}
+        {/* Backdrop */}
         <div
           className={`fixed inset-0 -z-10 transition-all duration-500 ${
             open
@@ -339,7 +369,10 @@ useEffect(() => {
               : "opacity-0 pointer-events-none backdrop-blur-0"
           }`}
           style={{ background: "rgba(0,0,0,0.3)" }}
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            if (tl.current) tl.current.pause(0);
+            setOpen(false);
+          }}
         />
       </div>
     </div>

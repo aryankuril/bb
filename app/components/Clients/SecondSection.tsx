@@ -18,19 +18,19 @@ const cards: Card[] = [
     shape: "rectangle",
   },
   {
-    title: "Blancorra",
+    title: "Earth By Blancora",
     subtitle: "Where timeless elegance meets modern sophistication in a curated collection of womenswear.",
     image: "/images/clientpage/blancorra.webp",
     shape: "square",
   },
   {
-    title: "Cadini",
+    title: "Cadini Italy",
     subtitle: "The epitome of Italian luxury, offering finely crafted formal wear for the discerning gentleman.",
     image: "/images/clientpage/Cadini.webp",
     shape: "circle",
   },
   {
-    title: "Carron",
+    title: "Carron Clothing",
     subtitle: "Elevating classic board games into timeless works of handcrafted art",
     image: "/images/clientpage/Carron.webp",
     shape: "rectangle",
@@ -48,7 +48,7 @@ const cards: Card[] = [
     shape: "square",
   },
   {
-    title: "MB Mehta ",
+    title: "M. B. Mehta & Co.",
     subtitle: "A legacy of trust, crafting timeless jewelry for generations.",
     image: "/images/clientpage/MB-mehta.webp",
     shape: "circle",
@@ -60,13 +60,13 @@ const cards: Card[] = [
     shape: "rectangle",
   },
   {
-    title: "Ric Rac",
+    title: "Ric Rac Kids",
     subtitle: "Thoughtfully designed innerwear for Indian kids, created by parents who understand true comfort.",
     image: "/images/clientpage/Ric-Rac.webp",
     shape: "rectangle",
   },
   {
-    title: "SCS",
+    title: "SCS Sports",
     subtitle: "The trusted one-stop destination for authentic gear across every sport.",
     image: "/images/clientpage/SCS.webp",
     shape: "square",

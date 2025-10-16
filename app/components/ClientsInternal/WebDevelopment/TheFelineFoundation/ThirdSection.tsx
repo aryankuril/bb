@@ -11,7 +11,7 @@ const timelineData = [
   },
   {
     week: "(Week 2–3): Product Data, Navigation & Brand Integration",
-    desc: "Imported the complete product database, organized the site’s navigation and information architecture, and customized the theme with SCS branding and trust-building content.",
+    desc: "Imported the complete product database, organized the site’s navigation and information architecture, and customized the theme with SCS Sports branding and trust-building content.",
     img: "/images/timeline2.png",
   },
   {

@@ -30,8 +30,6 @@ export async function POST(request: NextRequest) {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
   <body>
-    <p style="font-size: 16px; font-weight: bold; color: #FCB315;">You've made a smart choice. #BeABlok</p>
-
     <p>Hi ${ticketName}!</p>
     <p>Thank you for showing interest in working with us.</p>
     
@@ -112,7 +110,7 @@ export async function POST(request: NextRequest) {
     // Send email to applicant
     const result = await sendEmail({
       to: email,
-      subject: "You've made a smart choice. #BeABlok",
+      subject: "You've made a smart choice. #BeABloke",
       html: htmlTemplate,
       fromName: "Bombay Blokes",
       fromAddress: "careers@bombayblokes.com",

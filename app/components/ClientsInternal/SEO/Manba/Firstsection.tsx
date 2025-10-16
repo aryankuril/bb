@@ -29,11 +29,11 @@ const Firstsection = () => {
   }, [controls, spacerControls, inView]);
 
   return (
-    <section className="lg:mt-0 -mt-10 container py-0 sm:py-15 lg:py-40 ">
+    <section className=" container py-0 sm:py-15 lg:py-20 lg:mt-20 -mt-10 ">
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-[1000px] black-text">
-Capturing the Market: How Manba Secured High-Volume Keywords
+Capturing the Market: How Manba Finance Secured High-Volume Keywords
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}

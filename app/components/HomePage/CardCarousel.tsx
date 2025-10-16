@@ -14,12 +14,12 @@ type CardItem = {
  
 const CardCarousel: React.FC = () => {
   const cards: CardItem[] = [
-      { id: 1, src: "/images/unskippable-brands/cadini.webp", hoverText: "Cadini" },
-      { id: 2, src: "/images/unskippable-brands/carron.webp", hoverText: "Carron" },
-      { id: 3, src: "/images/unskippable-brands/divine.webp", hoverText: "Divine" },
-      { id: 4, src: "/images/unskippable-brands/manba.webp", hoverText: "Manba Finanace" },
-      { id: 5, src: "/images/unskippable-brands/supersox.webp", hoverText: "Super Sox" },
-      { id: 6, src: "/images/unskippable-brands/Mbmehta.webp", hoverText: "Mbmehta" },
+      { id: 1, src: "/images/unskippable-brands/cadini.webp", hoverText: "Cadini Italy" },
+      { id: 2, src: "/images/unskippable-brands/carron.webp", hoverText: "Carron Clothing" },
+      { id: 3, src: "/images/unskippable-brands/divine.webp", hoverText: "Divine Solitaires" },
+      { id: 4, src: "/images/unskippable-brands/manba.webp", hoverText: "Manba Finance" },
+      { id: 5, src: "/images/unskippable-brands/supersox.webp", hoverText: "Supersox" },
+      { id: 6, src: "/images/unskippable-brands/Mbmehta.webp", hoverText: "M. B. Mehta & Co." },
     ];
  
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,7 +51,7 @@ const CardCarousel: React.FC = () => {
       {/* Sticky wrapper keeps everything (title + cards) fixed */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden gap-5">
       <h2 className="mb-3 text-center">
-        <span className="text-highlight">Bombay Blokes </span>makes ideas real
+        <span className="text-highlight">We </span>makes ideas real
       </h2>
         {/* Title stays fixed at center */}
         {/* <div className="absolute text-center px-4 z-0">

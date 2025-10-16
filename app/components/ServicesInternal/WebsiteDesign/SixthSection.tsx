@@ -11,7 +11,7 @@ const testimonials = [
   {
     text: `Ideas are fresh, relevant, and perfectly aligned with our audience.`,
     name: "~ Keval Shah",
-    brand: "Selection Centre Sports (SCS)",
+    brand: "Selection Centre Sports (SCS Sports)",
     maintext:"“Good Ideas”"
   },
   {

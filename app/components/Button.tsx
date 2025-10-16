@@ -8,7 +8,9 @@ interface ButtonProps {
   href?: string;           // optional link
   onClick?: () => void;    // click handler
   className?: string;
-  disabled?: boolean;      // ✅ new: supports disabled state
+  disabled?: boolean; 
+   target?: string; // ✅ add this
+  rel?: string;      // ✅ new: supports disabled state
 }
 
 const Button: React.FC<ButtonProps> = ({ text, href, onClick, className = "", disabled = false }) => {

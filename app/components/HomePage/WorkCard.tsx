@@ -13,15 +13,15 @@ const cardsData = [
     title: "Ric Rac",
     tags: ["Adobe illustrator", "AI"],
     content:
-      "Our challenge was launching RicRac Kids from absolute zero—a new brand with no digital footprint, no awareness, and the critical need to build trust from scratch.",
+      "Our challenge was launching RicRac Kids from absolute zero, a new brand with no digital footprint, no awareness, and the critical need to build trust from scratch.",
     image: "/images/SocialMedia/ricrac.webp",
     url: "/ricrac",
   },
   {
-    title: "SCS",
+    title: "SCS Sports",
     tags: ["Meta Ads"],
     content:
-      "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue—a mission that culminated in a game-changing 12x ROAS.",
+      "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue, a mission that culminated in a game-changing 12x ROAS.",
     image: "/images/SocialMedia/scs.webp",
     url: "/scs-sm",
   },

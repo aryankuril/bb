@@ -29,7 +29,7 @@ const Firstsection = () => {
   }, [controls, spacerControls, inView]);
 
   return (
-    <section className="lg:mt-0 -mt-10 container py-0 sm:py-15 lg:py-40 ">
+    <section className=" container py-0 sm:py-15 lg:py-20 lg:mt-20 -mt-10 ">
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-[1000px] black-text">
@@ -70,7 +70,7 @@ Powering a Sports Retail Giant: A Strategic Shopify Launch for SCS Sports
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
         <p className="body2 black-text">
-With a legacy spanning over 37 years and 17 retail locations, Selection Centre Sports (SCS) is a titan in the Indian sports industry. They required a powerful e-commerce platform that could handle their massive inventory of over 40 sports and 50+ international brands. Our mission was to bring their extensive catalog online quickly and efficiently. We chose the Shopify platform to build a robust, scalable, and user-friendly digital store that lives up to their sterling reputation.
+With a legacy spanning over 37 years and 17 retail locations, Selection Centre Sports (SCS Sports) is a titan in the Indian sports industry. They required a powerful e-commerce platform that could handle their massive inventory of over 40 sports and 50+ international brands. Our mission was to bring their extensive catalog online quickly and efficiently. We chose the Shopify platform to build a robust, scalable, and user-friendly digital store that lives up to their sterling reputation.
         </p>
       </div>
     </section>

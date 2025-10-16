@@ -34,7 +34,7 @@ const ThirdSection = () => {
   return (
     <section className="container py-10 sm:py-15 lg:py-20 min-h-[100vh]">
       <h1 className="text-[#000] font-[Miso] text-3xl sm:text-5xl md:text-6xl lg:text-[80px] font-normal leading-snug tracking-tight capitalize text-center mb-10 px-4">
-        Timeline for <span className="text-[#FAB31E]">My Suit</span>
+        Timeline for <span className="text-[#FAB31E]">My Suit Tailor</span>
       </h1>
 
       <div className="bg-black text-white rounded-[20px] relative overflow-hidden grid grid-cols-1 lg:grid-cols-2">

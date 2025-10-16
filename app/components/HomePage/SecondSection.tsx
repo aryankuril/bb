@@ -20,13 +20,13 @@ const services = [
   {
     id: 3,
     title: "Web development – the aftertaste",
-    desc: "The aftertaste is what lingers and leaves an impression.Web development ensures your website functions smoothly and leaves a lasting, reliable impression on your audience.",
+    desc: "The aftertaste is what lingers and leaves an impression. Web development ensures your website functions smoothly and leaves a lasting, reliable impression on your audience.",
     img: "/images/UI-UX.png",
   },
   {
     id: 4,
-    title: "ui/ux – the firstbite - UI/UX The First Bite",
-    desc: "The first bite defines the entire experience.UI/UX design ensures the user’s first interaction with your digital presence is enjoyable, intuitive, and memorable.",
+    title: "UI/UX The First Bite",
+    desc: "The first bite defines the entire experience. UI/UX design ensures the user’s first interaction with your digital presence is enjoyable, intuitive, and memorable.",
     img: "/images/Website.png",
   },
 ];
@@ -153,7 +153,7 @@ export default function SecondSection() {
 <div className="flex items-center justify-center w-full py-30 lg:mb-20">
   {/* <AnimatedHeading> */}
     <h1 className="text-center black-text" style={{ textTransform: "none" }}>
-      <span className="text-highlight">Born in Bombay,</span>crafting
+      <span className="text-highlight">Born in Bombay,</span> crafting
       digital experiences that connect and inspire.
     </h1>
   {/* </AnimatedHeading> */}
@@ -194,7 +194,7 @@ export default function SecondSection() {
                   alt={s.title}
                   width={600}
                   height={400}
-                  className="rounded-[30px] shadow-lg w-full"
+                  className="rounded-[15px] shadow-lg w-full"
                 />
               </div>
 
@@ -215,7 +215,7 @@ export default function SecondSection() {
             alt={services[active - 1].title}
             width={300}
             height={300}
-            className="rounded-[30px] shadow-lg"
+            className="rounded-[15px] shadow-lg"
           />
         </div>
       )}

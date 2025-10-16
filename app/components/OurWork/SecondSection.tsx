@@ -12,30 +12,30 @@ type Step = {
 
 const allSteps: Step[] = [
   // 🟦 WEB DEVELOPMENT (5)
-  { number: "01", title: "JK Diamonds", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/jkdiamonds" },
-  { number: "02", title: "My Suit", image: "/images/webdev/MST.png", category: "Web Development", link: "/mysuit" },
-  { number: "03", title: "SCS", image: "/images/webdev/SCS.png", category: "Web Development", link: "/scs" },
+  { number: "01", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/jkdiamonds" },
+  { number: "02", title: "My Suit Tailor", image: "/images/webdev/MST.png", category: "Web Development", link: "/mysuit" },
+  { number: "03", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/scs" },
   { number: "04", title: "The Feline Foundation", image: "/images/webdev/Foundation.png", category: "Web Development", link: "/ff" },
-  { number: "05", title: "Super Sox", image: "/images/webdev/Super-Sox.png", category: "Web Development", link: "/supersox" },
+  { number: "05", title: "Supersox", image: "/images/webdev/Super-Sox.png", category: "Web Development", link: "/supersox" },
 
   // 🟩 PERFORMANCE MARKETING (4)
-  { number: "01", title: "Chater Box", image: "/images/pm/chaterbox.png", category: "Performance Marketing", link: "/chatterbox" },
+  { number: "01", title: "Chatterbox Labels", image: "/images/pm/chaterbox.png", category: "Performance Marketing", link: "/chatterbox" },
   { number: "02", title: "Dancing Leaf", image: "/images/pm/Dancingleaf.png", category: "Performance Marketing", link: "/dancingleaf" },
-  { number: "03", title: "JK Diamonds", image: "/images/pm/Jk-diamonds.png", category: "Performance Marketing", link: "/jkdiamondsperformance" },
-  { number: "04", title: "SCS", image: "/images/pm/SCS.png", category: "Performance Marketing", link: "/scsperformance" },
+  { number: "03", title: "JK Diamonds Institute", image: "/images/pm/Jk-diamonds.png", category: "Performance Marketing", link: "/jkdiamondsperformance" },
+  { number: "04", title: "SCS Sports", image: "/images/pm/SCS.png", category: "Performance Marketing", link: "/scsperformance" },
 
   // 🟥 SOCIAL MEDIA (2)
-  { number: "01", title: "Ric Rac", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/ricrac" },
-  { number: "02", title: "SCS", image: "/images/sm/SCS.png", category: "Social Media", link: "/scs" },
-   { number: "03", title: "Super Sox", image: "/images/sm/Super-Sox.png", category: "Social Media", link: "/supersox-sm" },
+  { number: "01", title: "RicRac Kids", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/ricrac" },
+  { number: "02", title: "SCS Sports", image: "/images/sm/SCS.png", category: "Social Media", link: "/scs" },
+   { number: "03", title: "Supersox", image: "/images/sm/Super-Sox.png", category: "Social Media", link: "/supersox-sm" },
 
   // 🟨 SEO (4)
   { number: "01", title: "Manba Finance", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/manba" },
   { number: "02", title: "Presolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/presolv" },
-  { number: "03", title: "SCS", image: "/images/seo-cs/SCS.png", category: "SEO", link: "/scs-seo" },
+  { number: "03", title: "SCS Sports", image: "/images/seo-cs/SCS.png", category: "SEO", link: "/scs-seo" },
 ];
 
-const categories = ["All", "Web Development", "Performance Marketing", "Social Media", "SEO"];
+const categories = [ "Web Development", "Performance Marketing", "Social Media", "SEO"];
 
 const SecondSection = () => {
   const [activeCategory, setActiveCategory] = useState("Web Development");
@@ -57,7 +57,7 @@ const SecondSection = () => {
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
       <h2 className="black-text mr-4 lg:mb-5 mb-4">Services</h2>
 
-      <div className="flex flex-nowrap gap-2 lg:gap-3 overflow-x-auto no-scrollbar mb-5 lg:mb-20">
+      <div className="flex flex-nowrap gap-2 lg:gap-3 overflow-x-auto no-scrollbar mb-5 lg:mb-10">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -86,7 +86,7 @@ const SecondSection = () => {
               const colSpan = isFirstBig ? 3 : 2;
 
               return (
-                <Link key={i} href={step.link} className={`col-span-1 md:col-span-${colSpan} relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden`}>
+                <Link key={i} href={step.link} className={`col-span-1 md:col-span-${colSpan} relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[15px] overflow-hidden`}>
                   <img
                     src={step.image}
                     alt={step.title}

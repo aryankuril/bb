@@ -21,7 +21,7 @@ const achievements = [
     number: "03",
     title: "Showcasing Trust",
     description:
-      "We prominently displayed trust signals like the 'SCS Seal of Authenticity' to assure customers of product quality and build online credibility.",
+      "We prominently displayed trust signals like the 'SCS Sports Seal of Authenticity' to assure customers of product quality and build online credibility.",
     position: "left",
   },
   {

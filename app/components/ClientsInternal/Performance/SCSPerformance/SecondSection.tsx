@@ -7,7 +7,7 @@ const achievements = [
     number: "01",
     title: "End-to-End Partnership",
     description:
-      "Bombay Blokes partnered with SCS from day one of their digital journey, providing end-to-end performance marketing expertise.",
+      "Bombay Blokes partnered with SCS Sports from day one of their digital journey, providing end-to-end performance marketing expertise.",
     position: "left",
   },
   {

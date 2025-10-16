@@ -34,7 +34,7 @@ const Firstsection: React.FC = () => {
         end: "top 20%",
         scrub: 1.5,
         toggleActions: "play reverse play reverse",
-        markers: true,
+        // markers: true,
       },
     });
 
@@ -45,7 +45,7 @@ const Firstsection: React.FC = () => {
   }, []);
 
   return (
-    <section className="container lg:mt-0 -mt-10  py-0 sm:py-15 lg:py-40">
+    <section className="container  py-0 sm:py-15 lg:py-20 lg:mt-20 -mt-10">
       <h1 className="black-text text-center md:text-left">
         The Squad That Turns <span className="text-highlight">What If</span>’
         Into <br />‘<span className="text-highlight">What’s Next.</span>’

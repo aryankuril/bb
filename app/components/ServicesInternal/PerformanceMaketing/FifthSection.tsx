@@ -18,7 +18,7 @@ const cardsData = [
     url: "/ricrac",
   },
   {
-    title: "SCS",
+    title: "SCS Sports",
     tags: ["Meta Ads"],
     content:
       "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue—a mission that culminated in a game-changing 12x ROAS.",
