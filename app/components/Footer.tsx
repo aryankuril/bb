@@ -43,12 +43,12 @@ export default function Footer() {
   >
     Contact
   </Link>
-  {/* <Link
-    href="#"
+  <Link
+    href="/client-registration"
     className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Client Registration
-  </Link> */}
+  </Link>
   <Link
     href="/blogs"
     className="black-text transition-colors"
