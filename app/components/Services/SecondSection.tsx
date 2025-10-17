@@ -19,7 +19,7 @@ const cards: Card[] = [
     subtitle:
       "We build pixel-perfect websites and digital experiences that aren't just beautiful, but are engineered to convert.",
     image: "/images/servicespage/Development.png",
-    link: "/website-design",
+    link: "/services/website-design",
     shape: "rectangle",
   },
   {
@@ -27,7 +27,7 @@ const cards: Card[] = [
     subtitle:
       "We create data-driven ad campaigns that deliver measurable results, turning clicks into customers and spend into revenue.",
     image: "/images/servicespage/Performance.png",
-    link: "/performance-maketing",
+    link: "/services/performance-maketing",
     shape: "square",
   },
   {
@@ -35,7 +35,7 @@ const cards: Card[] = [
     subtitle:
       "We put your brand at the top of Google, connecting you with customers who are already searching for you.",
     image: "/images/servicespage/SEO.png",
-    link: "/seo",
+    link: "/services/seo",
     shape: "circle",
   },
   {
@@ -43,7 +43,7 @@ const cards: Card[] = [
     subtitle:
       "We build and nurture your online community, turning followers into loyal fans through creative content and authentic engagement.",
     image: "/images/servicespage/Social-Media.png",
-    link: "/social-media",
+    link: "/services/social-media",
     shape: "rectangle",
   },
 ];
