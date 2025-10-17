@@ -5,25 +5,25 @@ const SecondSection = () => {
   const achievements = [
     {
       number: "01",
-      image: "/images/card1.png",
+      image: "/images/teams/team1.webp",
       description: "Modern & Premium Design that captivates every eye.",
       position: "left",
     },
     {
       number: "02",
-      image: "/images/card2.png",
+      image: "/images/teams/team2.webp",
       description: "Responsive Layout – built to shine on every device.",
       position: "right",
     },
     {
       number: "03",
-      image: "/images/card3.png",
+      image: "/images/teams/team3.webp",
       description: "Streamlined Navigation for smooth and effortless browsing.",
       position: "left",
     },
     {
       number: "04",
-      image: "/images/card4.png",
+      image: "/images/teams/team5.webp",
       description: "Comprehensive Course Pages that engage and inspire learners.",
       position: "right",
     },
@@ -91,7 +91,7 @@ const SecondSection = () => {
 
         {/* ✅ Desktop SVG Path */}
         <svg
-          className="hidden lg:block absolute left-[285.391px] top-[260px] w-[900px] h-[1667px] z-0 pointer-events-none"
+          className="hidden lg:block absolute left-[285.391px] top-[210px] w-[900px] h-[1667px] z-0 pointer-events-none"
           viewBox="0 0 709 1781"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +123,7 @@ const SecondSection = () => {
         </svg>
 
         {/* ✅ Achievements Cards */}
-        <div className="space-y-[-40px] relative z-10">
+        <div className="space-y-[80px] relative z-10">
           {achievements.map((achievement, index) => {
             const tiltClass =
               achievement.position === "left"
@@ -146,12 +146,21 @@ const SecondSection = () => {
                   className={`relative transform ${tiltClass} rounded-[20px] overflow-hidden lg:w-[500px] w-[280px] bg-transparent`}
                 >
                   {/* Orange dot */}
-                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-10">
-                    <div className="lg:w-8 w-4 lg:h-8 h-4 bg-[#FAB31E] rounded-full border-4 border-white"></div>
-                  </div>
+                 <div className="absolute top-10 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 lg:w-12 lg:h-12 rounded-full bg-[var(--color-secondary)] flex items-center justify-center">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="40"
+    height="40"
+    viewBox="0 0 31 30"
+    fill="none"
+  >
+    <circle cx="15.3" cy="15" r="15" fill="#FAB31E" />
+  </svg>
+</div>
+
 
                   {/* ✅ Fixed-size image box */}
-                  <div className="w-full h-[280px] lg:h-[350px] overflow-hidden">
+                  <div className="w-full h-[280px] lg:h-[350px] rounded-b-[20px] ">
                     <img
                       src={achievement.image}
                       alt={achievement.description}
@@ -160,10 +169,10 @@ const SecondSection = () => {
                   </div>
 
                   {/* ✅ Caption */}
-                  <div className="px-4 py-4 bg-white shadow-md rounded-b-[20px]">
-                    <p className="text-gray-800 text-center font-medium">
+                  <div className="px-4 py-4  rounded-b-[20px]">
+                    {/* <p className="text-gray-800 font-medium">
                       {achievement.description}
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>
