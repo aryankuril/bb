@@ -2,6 +2,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const MobilePopup = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -22,9 +24,18 @@ const MobilePopup = () => {
   return (
     <div className="fixed inset-0 bg-white z-99999 bg-opacity-50 flex items-center justify-center ">
       <div className="bg-white  rounded-lg  p-6 w-11/12 max-w-sm text-center">
-        {/* <h2 className="text-lg font-semibold mb-4">
-          Mobile Version Coming Soon!
-        </h2> */}
+      <div className="flex items-center justify-center py-10">
+  <Link href="/">
+    <Image
+      src="/images/bblogo.webp"
+      alt="Bombay Blokes Logo"
+      width={200}
+      height={1000}
+      className="object-contain transition-opacity duration-300"
+    />
+  </Link>
+</div>
+
         <p className="body1 mb-6">
         Our mobile experience is temporarily under Diwali maintenance 🎆.Our mobile site will sparkle again after Diwali.
 
