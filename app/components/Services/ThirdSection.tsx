@@ -205,7 +205,7 @@ export default function StackingCards() {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <Button href="/ourwork" text="Explore Our Work " className="" />
+          <Button href="/work" text="Explore Our Work " className="" />
         </div>
       </section>
     </div>

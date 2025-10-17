@@ -10,7 +10,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "HOME", href: "/" },
   { label: "ABOUT", href: "/aboutus" },
   { label: "SERVICES", href: "services" },
-  { label: "WORK", href: "/ourwork" },
+  { label: "WORK", href: "/work" },
   { label: "CLIENTS", href: "/clients" },
   { label: "TEAM", href: "/teams" },
   { label: "CONTACT", href: "/contactus" },

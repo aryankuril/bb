@@ -20,21 +20,23 @@ const MobilePopup = () => {
   if (!isMobile || !showPopup) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/80 z-99999 bg-opacity-50 flex items-center justify-center ">
-      <div className="bg-white  rounded-lg shadow-lg p-6 w-11/12 max-w-sm text-center">
+    <div className="fixed inset-0 bg-white z-99999 bg-opacity-50 flex items-center justify-center ">
+      <div className="bg-white  rounded-lg  p-6 w-11/12 max-w-sm text-center">
         {/* <h2 className="text-lg font-semibold mb-4">
           Mobile Version Coming Soon!
         </h2> */}
         <p className="body1 mb-6">
-         We are working on the mobile version now. Please visit the desktop site for the full experience.
+        Our mobile experience is temporarily under Diwali maintenance 🎆.Our mobile site will sparkle again after Diwali.
 
         </p>
-        <button
+
+        <h1>Happy Diwali 🪔</h1>
+        {/* <button
           onClick={() => setShowPopup(false)}
           className="bg-[#FAB31E] text-white px-4 py-2 rounded "
         >
           OK
-        </button>
+        </button> */}
       </div>
     </div>
   );

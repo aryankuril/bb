@@ -17,7 +17,7 @@ const links = [
   { href: "/clients", label: "Clients" },
   { href: "/contactus", label: "Contact" },
   { href: "/aboutus", label: "About" },
-  { href: "/ourwork", label: "Work" },
+  { href: "/work", label: "Work" },
   { href: "/teams", label: "Team" },
   { href: "/career", label: "Careers" },
 ];
