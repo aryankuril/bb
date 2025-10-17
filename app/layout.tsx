@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   title: "Bombay Blokes",
   description:
     "Integrated Digital Solutions in Mumbai | Marketing Agency in Mumbai - Bombay Blokes",
-  icons: {
-    icon: "/favicon.png",
-  },
+  // icons: {
+  //   icon: "/favicon.png",
+  // },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
