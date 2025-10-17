@@ -40,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const content = (
     <div
-      className={`relative z-10 px-5 py-3 h-12 flex items-center justify-center rounded-full font-semibold transition-all duration-300 ${
+      className={`relative z-10 px-5 py-3 h-12 flex items-center justify-center rounded-full font-semibold transition-all duration-300 body3 ${
         disabled || isSubmitting ? "opacity-50 cursor-not-allowed" : ""
       }`}
     >

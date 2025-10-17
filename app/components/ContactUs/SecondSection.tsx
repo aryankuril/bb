@@ -358,11 +358,11 @@ const SecondSection = () => {
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
       <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
         {/* Left Side Image */}
-        <div className="lg:p-10 p-5 flex items-center justify-center">
+        <div className="lg:p-10 p-5  flex items-center justify-center">
           <img
-            src="/images/panipuricart1.png" // replace with your image path
+            src="/images/panipuricart.png" // replace with your image path
             alt="Pani Puri Cart"
-            className=" w-full h-auto object-contain rounded-[15px]"
+            className=" w-full h-full object-contain rounded-[15px]"
           />
         </div>
 

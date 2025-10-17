@@ -21,7 +21,7 @@ const Firstsection = () => {
 
   return (    <section
       ref={ref}
-      className="relative container py-0 sm:py-15 lg:py-20 lg:mt-20 -mt-10 mx-auto overflow-hidden px-4 sm:px-6 lg:px-8"
+      className="relative container py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10 mx-auto overflow-hidden px-4 sm:px-6 lg:px-8"
     >
       <div className="border-b-2 border-[var(--color-highlight)]">
         <div className="flex flex-col lg:flex-row items-start relative">

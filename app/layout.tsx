@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="images/favicon.png" type="image/png" />
       </head>
       <body>
         <SmoothScroll>  

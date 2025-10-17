@@ -199,11 +199,11 @@ export default function DesktopNav() {
 
   return (
     <div className="">
-      <div ref={root} className="py-5 px-10  inset-x-0 top-0 z-[99999]">
+      <div ref={root} className="py-5 px-10  inset-x-0 z-[100000]">
         {/* nav shell */}
         <div
           ref={shell}
-          className="h-[90px] container bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center absolute inset-x-0 z-[99999]"
+          className="h-[90px] container bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center absolute inset-x-0 z-[100001]"
         >
           <div className="flex items-center justify-between py-4 px-10 ">
             <Link href="/">
@@ -244,7 +244,7 @@ export default function DesktopNav() {
           {/* stage */}
           <div
             ref={stage}
-            className="relative mt-10 h-[500px] w-[650px] mx-auto flex justify-center items-center overflow-hidden rounded-xl z-50"
+            className="relative mt-10 h-[500px] w-[650px] mx-auto flex justify-center items-center overflow-hidden rounded-xl z-[100002]"
           >
             <div ref={black} />
             <div ref={yellow} />
@@ -363,7 +363,7 @@ export default function DesktopNav() {
 
         {/* Backdrop */}
         <div
-          className={`fixed inset-0 -z-10 transition-all duration-500 ${
+          className={`fixed inset-0 z-[100000] transition-all duration-500 ${
             open
               ? "opacity-90 backdrop-blur-3xl"
               : "opacity-0 pointer-events-none backdrop-blur-0"
