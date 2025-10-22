@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "bombayblokes.com"
+        }
+      ],
+      "destination": "https://www.bombayblokes.com/$1",
+      "permanent": true
+    }
+  ]
+}
