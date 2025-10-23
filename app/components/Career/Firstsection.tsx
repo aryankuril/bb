@@ -63,7 +63,7 @@ const Firstsection = () => {
           initial={{ x: "-120%" }}
           animate={
             isMobile
-              ? { x: 125 }             // 🚫 No movement on mobile
+              ? { x: 140 }             // 🚫 No movement on mobile
               : inView
               ? { x: 550 }           // ✅ Animate on larger screens
               : {}
