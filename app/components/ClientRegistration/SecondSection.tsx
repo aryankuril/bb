@@ -161,22 +161,37 @@ const SecondSection = () => {
 
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [formData, setFormData] = useState({
-    name: "",
+    companyName: "",
+    brandName: "",
+    industry: "",
+    gstin: "",
+    contactPerson: "",
     email: "",
     phone: "",
+    address: "",
+    website: "",
   });
-  const [message, setMessage] = useState("");
   const [focused, setFocused] = useState({
-    name: false,
+    companyName: false,
+    brandName: false,
+    industry: false,
+    gstin: false,
+    contactPerson: false,
     email: false,
     phone: false,
-    message: false,
+    address: false,
+    website: false,
   });
   const [errors, setErrors] = useState({
-    name: "",
+    companyName: "",
+    brandName: "",
+    industry: "",
+    gstin: "",
+    contactPerson: "",
     email: "",
     phone: "",
-    // message: "",
+    address: "",
+    website: "",
     services: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -198,10 +213,13 @@ const SecondSection = () => {
 
   const validateField = (name: string, value: string): string => {
     switch (name) {
-      case "name":
-        if (!value.trim()) return "Name is required";
+      case "companyName":
+        if (!value.trim()) return "Company name is required";
         if (value.trim().length < 2)
-          return "Name must be at least 2 characters";
+          return "Company name must be at least 2 characters";
+        return "";
+      case "industry":
+        if (!value.trim()) return "Industry is required";
         return "";
       case "email":
         if (!value.trim()) return "Email is required";
@@ -211,11 +229,15 @@ const SecondSection = () => {
         if (!value.trim()) return "Phone number is required";
         if (!validatePhone(value)) return "Please enter a valid phone number";
         return "";
-      // case "message":
-      //   if (!value.trim()) return "Message is required";
-      //   if (value.trim().length < 10)
-      //     return "Message must be at least 10 characters";
-      //   return "";
+      case "contactPerson":
+        if (!value.trim()) return "Contact Person is required";
+        return "";
+      case "brandName":
+      case "gstin":
+      case "address":
+      case "website":
+        // Optional fields - no validation required
+        return "";
       default:
         return "";
     }
@@ -239,16 +261,13 @@ const SecondSection = () => {
   const handleBlur = (field: string) => {
     setFocused((prev) => ({ ...prev, [field]: false }));
 
-    // Validate on blur
-    if (field === "name" || field === "email" || field === "phone") {
+    // Validate on blur for form fields
+    if (field in formData) {
       const error = validateField(
         field,
         formData[field as keyof typeof formData]
       );
       setErrors((prev) => ({ ...prev, [field]: error }));
-    } else if (field === "message") {
-      const error = validateField("message", message);
-      setErrors((prev) => ({ ...prev, message: error }));
     }
   };
 
@@ -268,12 +287,17 @@ const SecondSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate all fields
+    // Validate all required fields
     const newErrors = {
-      name: validateField("name", formData.name),
+      companyName: validateField("companyName", formData.companyName),
+      brandName: validateField("brandName", formData.brandName),
+      industry: validateField("industry", formData.industry),
+      gstin: validateField("gstin", formData.gstin),
+      contactPerson: validateField("contactPerson", formData.contactPerson),
       email: validateField("email", formData.email),
       phone: validateField("phone", formData.phone),
-      message: validateField("message", message),
+      address: validateField("address", formData.address),
+      website: validateField("website", formData.website),
       services:
         selectedServices.length === 0
           ? "Please select at least one service"
@@ -301,17 +325,22 @@ const SecondSection = () => {
     setSubmitStatus("idle");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/client-registration", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: formData.name,
+          companyName: formData.companyName,
+          brandName: formData.brandName,
+          industry: formData.industry,
+          gstin: formData.gstin,
+          services: selectedServices,
+          contactPerson: formData.contactPerson,
           email: formData.email,
           phone: formData.phone,
-          message: message,
-          services: selectedServices,
+          address: formData.address,
+          website: formData.website,
         }),
       });
 
@@ -321,14 +350,28 @@ const SecondSection = () => {
 
       setSubmitStatus("success");
       // Reset form
-      setFormData({ name: "", email: "", phone: "" });
-      setMessage("");
-      setSelectedServices([]);
-      setErrors({
-        name: "",
+      setFormData({
+        companyName: "",
+        brandName: "",
+        industry: "",
+        gstin: "",
+        contactPerson: "",
         email: "",
         phone: "",
-        // message: "",
+        address: "",
+        website: "",
+      });
+      setSelectedServices([]);
+      setErrors({
+        companyName: "",
+        brandName: "",
+        industry: "",
+        gstin: "",
+        contactPerson: "",
+        email: "",
+        phone: "",
+        address: "",
+        website: "",
         services: "",
       });
 
@@ -359,13 +402,12 @@ const SecondSection = () => {
       <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
         {/* Left Side Image */}
         <div className="flex items-stretch justify-center p-10">
-  <img
-    src="/images/panipuricart1.png"
-    alt="Pani Puri Cart"
-    className="w-full h-full object-cover rounded-[15px]"
-  />
-</div>
-
+          <img
+            src="/images/panipuricart1.png"
+            alt="Pani Puri Cart"
+            className="w-full h-full object-cover rounded-[15px]"
+          />
+        </div>
 
         {/* Right Side Form */}
         <div className="p-4 sm:p-5 md:p-5 lg:mt-10 white-text relative">
@@ -375,7 +417,7 @@ const SecondSection = () => {
       white-text
     "
             >
-             Start Your <span className="text-highlight">Journey</span> now
+              Start Your <span className="text-highlight">Journey</span> now
             </h3>
 
             {/* ✅ Add Image */}
@@ -398,22 +440,22 @@ const SecondSection = () => {
     mb-1
   "
               >
-                Registered Company Name
+                Registered Company Name <span className="text-red-500">*</span>
               </label>
 
               <div className="relative w-full">
                 <input
                   type="text"
-                  name="name"
+                  name="companyName"
                   placeholder="Company Name"
-                  value={formData.name}
+                  value={formData.companyName}
                   onChange={handleChange}
-                  onFocus={() => handleFocus("name")}
-                  onBlur={() => handleBlur("name")}
+                  onFocus={() => handleFocus("companyName")}
+                  onBlur={() => handleBlur("companyName")}
                   className={`
           w-full px-8 py-3 bg-transparent 
           border-0 border-b-2 ${
-            errors.name
+            errors.companyName
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
@@ -428,25 +470,36 @@ const SecondSection = () => {
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                    fill={getIconColor(formData.name, focused.name)} // changes color when typing
-                   >
+                    fill={getIconColor(
+                      formData.companyName,
+                      focused.companyName
+                    )}
+                  >
                     <path
                       d="M11.8295 11.5609C13.4177 11.5609 14.7928 10.9913 15.9167 9.86735C17.0403 8.74364 17.6101 7.3687 17.6101 5.78026C17.6101 4.19237 17.0405 2.81726 15.9166 1.69317C14.7927 0.56964 13.4175 0 11.8295 0C10.241 0 8.86609 0.56964 7.74237 1.69336C6.61865 2.81707 6.04883 4.19219 6.04883 5.78026C6.04883 7.3687 6.61865 8.74382 7.74237 9.86753C8.86646 10.9911 10.2416 11.5609 11.8295 11.5609ZM8.737 2.6878C9.59924 1.82556 10.6107 1.40643 11.8295 1.40643C13.048 1.40643 14.0597 1.82556 14.9221 2.6878C15.7844 3.55023 16.2037 4.56188 16.2037 5.78026C16.2037 6.99901 15.7844 8.01048 14.9221 8.87291C14.0597 9.73533 13.048 10.1545 11.8295 10.1545C10.6111 10.1545 9.59961 9.73515 8.737 8.87291C7.87457 8.01067 7.45526 6.99901 7.45526 5.78026C7.45526 4.56188 7.87457 3.55023 8.737 2.6878Z"
-                      fill={getIconColor(formData.name, focused.name)}
+                      fill={getIconColor(
+                        formData.companyName,
+                        focused.companyName
+                      )}
                     />
                     <path
                       d="M21.9435 18.4548C21.9111 17.9871 21.8456 17.477 21.7491 16.9383C21.6517 16.3956 21.5262 15.8825 21.3761 15.4136C21.2208 14.9289 21.0101 14.4503 20.7491 13.9916C20.4787 13.5155 20.1608 13.101 19.8041 12.7599C19.4312 12.403 18.9745 12.1161 18.4464 11.9068C17.9202 11.6986 17.337 11.5931 16.7131 11.5931C16.4681 11.5931 16.2312 11.6936 15.7736 11.9916C15.492 12.1752 15.1626 12.3876 14.7949 12.6225C14.4805 12.8229 14.0546 13.0105 13.5286 13.1805C13.0153 13.3465 12.4942 13.4308 11.9797 13.4308C11.4655 13.4308 10.9444 13.3465 10.4308 13.1805C9.90527 13.0107 9.47919 12.823 9.16534 12.6227C8.80115 12.39 8.47156 12.1776 8.18573 11.9914C7.72852 11.6935 7.49158 11.5929 7.24658 11.5929C6.62256 11.5929 6.03955 11.6986 5.51349 11.907C4.98578 12.1159 4.52893 12.4028 4.15558 12.76C3.79889 13.1014 3.48102 13.5157 3.21075 13.9916C2.9502 14.4503 2.73926 14.9287 2.58398 15.4138C2.43402 15.8827 2.30859 16.3956 2.21118 16.9383C2.1145 17.4763 2.04913 17.9866 2.01672 18.4553C1.98486 18.9137 1.96875 19.3906 1.96875 19.8726C1.96875 21.1254 2.367 22.1396 3.15234 22.8876C3.92798 23.6257 4.9541 24 6.20233 24H17.7585C19.0063 24 20.0325 23.6257 20.8083 22.8876C21.5938 22.1402 21.9921 21.1256 21.9921 19.8724C21.9919 19.3888 21.9756 18.9118 21.9435 18.4548Z"
-                      fill={getIconColor(formData.name, focused.name)}
+                      fill={getIconColor(
+                        formData.companyName,
+                        focused.companyName
+                      )}
                     />
                   </svg>
                 </div>
               </div>
-              {errors.name && (
-                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+              {errors.companyName && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.companyName}
+                </p>
               )}
             </div>
 
-              {/* Brand Name  */}
+            {/* Brand Name  */}
             <div>
               <label
                 className="
@@ -460,16 +513,16 @@ const SecondSection = () => {
               <div className="relative w-full">
                 <input
                   type="text"
-                  name="name"
+                  name="brandName"
                   placeholder="Brand Name, If any"
-                  value={formData.name}
+                  value={formData.brandName}
                   onChange={handleChange}
-                  onFocus={() => handleFocus("name")}
-                  onBlur={() => handleBlur("name")}
+                  onFocus={() => handleFocus("brandName")}
+                  onBlur={() => handleBlur("brandName")}
                   className={`
           w-full px-8 py-3 bg-transparent 
           border-0 border-b-2 ${
-            errors.name
+            errors.brandName
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
@@ -484,49 +537,48 @@ const SecondSection = () => {
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                    fill={getIconColor(formData.name, focused.name)} // changes color when typing
+                    fill={getIconColor(formData.brandName, focused.brandName)}
                   >
                     <path
                       d="M11.8295 11.5609C13.4177 11.5609 14.7928 10.9913 15.9167 9.86735C17.0403 8.74364 17.6101 7.3687 17.6101 5.78026C17.6101 4.19237 17.0405 2.81726 15.9166 1.69317C14.7927 0.56964 13.4175 0 11.8295 0C10.241 0 8.86609 0.56964 7.74237 1.69336C6.61865 2.81707 6.04883 4.19219 6.04883 5.78026C6.04883 7.3687 6.61865 8.74382 7.74237 9.86753C8.86646 10.9911 10.2416 11.5609 11.8295 11.5609ZM8.737 2.6878C9.59924 1.82556 10.6107 1.40643 11.8295 1.40643C13.048 1.40643 14.0597 1.82556 14.9221 2.6878C15.7844 3.55023 16.2037 4.56188 16.2037 5.78026C16.2037 6.99901 15.7844 8.01048 14.9221 8.87291C14.0597 9.73533 13.048 10.1545 11.8295 10.1545C10.6111 10.1545 9.59961 9.73515 8.737 8.87291C7.87457 8.01067 7.45526 6.99901 7.45526 5.78026C7.45526 4.56188 7.87457 3.55023 8.737 2.6878Z"
-                      fill={getIconColor(formData.name, focused.name)}
+                      fill={getIconColor(formData.brandName, focused.brandName)}
                     />
                     <path
                       d="M21.9435 18.4548C21.9111 17.9871 21.8456 17.477 21.7491 16.9383C21.6517 16.3956 21.5262 15.8825 21.3761 15.4136C21.2208 14.9289 21.0101 14.4503 20.7491 13.9916C20.4787 13.5155 20.1608 13.101 19.8041 12.7599C19.4312 12.403 18.9745 12.1161 18.4464 11.9068C17.9202 11.6986 17.337 11.5931 16.7131 11.5931C16.4681 11.5931 16.2312 11.6936 15.7736 11.9916C15.492 12.1752 15.1626 12.3876 14.7949 12.6225C14.4805 12.8229 14.0546 13.0105 13.5286 13.1805C13.0153 13.3465 12.4942 13.4308 11.9797 13.4308C11.4655 13.4308 10.9444 13.3465 10.4308 13.1805C9.90527 13.0107 9.47919 12.823 9.16534 12.6227C8.80115 12.39 8.47156 12.1776 8.18573 11.9914C7.72852 11.6935 7.49158 11.5929 7.24658 11.5929C6.62256 11.5929 6.03955 11.6986 5.51349 11.907C4.98578 12.1159 4.52893 12.4028 4.15558 12.76C3.79889 13.1014 3.48102 13.5157 3.21075 13.9916C2.9502 14.4503 2.73926 14.9287 2.58398 15.4138C2.43402 15.8827 2.30859 16.3956 2.21118 16.9383C2.1145 17.4763 2.04913 17.9866 2.01672 18.4553C1.98486 18.9137 1.96875 19.3906 1.96875 19.8726C1.96875 21.1254 2.367 22.1396 3.15234 22.8876C3.92798 23.6257 4.9541 24 6.20233 24H17.7585C19.0063 24 20.0325 23.6257 20.8083 22.8876C21.5938 22.1402 21.9921 21.1256 21.9921 19.8724C21.9919 19.3888 21.9756 18.9118 21.9435 18.4548Z"
-                      fill={getIconColor(formData.name, focused.name)}
+                      fill={getIconColor(formData.brandName, focused.brandName)}
                     />
                   </svg>
                 </div>
               </div>
-              {errors.name && (
-                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+              {errors.brandName && (
+                <p className="text-red-500 text-xs mt-1">{errors.brandName}</p>
               )}
             </div>
-               
 
-                {/* indrustry  */}
-             <div>
+            {/* industry  */}
+            <div>
               <label
                 className="
     block white-text body2
     mb-1
   "
               >
-                Industry
+                Industry <span className="text-red-500">*</span>
               </label>
 
               <div className="relative w-full">
                 <input
                   type="text"
-                  name="name"
+                  name="industry"
                   placeholder="Industry"
-                  value={formData.name}
+                  value={formData.industry}
                   onChange={handleChange}
-                  onFocus={() => handleFocus("name")}
-                  onBlur={() => handleBlur("name")}
+                  onFocus={() => handleFocus("industry")}
+                  onBlur={() => handleBlur("industry")}
                   className={`
           w-full px-8 py-3 bg-transparent 
           border-0 border-b-2 ${
-            errors.name
+            errors.industry
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
@@ -541,24 +593,23 @@ const SecondSection = () => {
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                    fill={getIconColor(formData.name, focused.name)} // changes color when typing
-                   >
+                    fill={getIconColor(formData.industry, focused.industry)}
+                  >
                     <path
                       d="M11.8295 11.5609C13.4177 11.5609 14.7928 10.9913 15.9167 9.86735C17.0403 8.74364 17.6101 7.3687 17.6101 5.78026C17.6101 4.19237 17.0405 2.81726 15.9166 1.69317C14.7927 0.56964 13.4175 0 11.8295 0C10.241 0 8.86609 0.56964 7.74237 1.69336C6.61865 2.81707 6.04883 4.19219 6.04883 5.78026C6.04883 7.3687 6.61865 8.74382 7.74237 9.86753C8.86646 10.9911 10.2416 11.5609 11.8295 11.5609ZM8.737 2.6878C9.59924 1.82556 10.6107 1.40643 11.8295 1.40643C13.048 1.40643 14.0597 1.82556 14.9221 2.6878C15.7844 3.55023 16.2037 4.56188 16.2037 5.78026C16.2037 6.99901 15.7844 8.01048 14.9221 8.87291C14.0597 9.73533 13.048 10.1545 11.8295 10.1545C10.6111 10.1545 9.59961 9.73515 8.737 8.87291C7.87457 8.01067 7.45526 6.99901 7.45526 5.78026C7.45526 4.56188 7.87457 3.55023 8.737 2.6878Z"
-                      fill={getIconColor(formData.name, focused.name)}
+                      fill={getIconColor(formData.industry, focused.industry)}
                     />
                     <path
                       d="M21.9435 18.4548C21.9111 17.9871 21.8456 17.477 21.7491 16.9383C21.6517 16.3956 21.5262 15.8825 21.3761 15.4136C21.2208 14.9289 21.0101 14.4503 20.7491 13.9916C20.4787 13.5155 20.1608 13.101 19.8041 12.7599C19.4312 12.403 18.9745 12.1161 18.4464 11.9068C17.9202 11.6986 17.337 11.5931 16.7131 11.5931C16.4681 11.5931 16.2312 11.6936 15.7736 11.9916C15.492 12.1752 15.1626 12.3876 14.7949 12.6225C14.4805 12.8229 14.0546 13.0105 13.5286 13.1805C13.0153 13.3465 12.4942 13.4308 11.9797 13.4308C11.4655 13.4308 10.9444 13.3465 10.4308 13.1805C9.90527 13.0107 9.47919 12.823 9.16534 12.6227C8.80115 12.39 8.47156 12.1776 8.18573 11.9914C7.72852 11.6935 7.49158 11.5929 7.24658 11.5929C6.62256 11.5929 6.03955 11.6986 5.51349 11.907C4.98578 12.1159 4.52893 12.4028 4.15558 12.76C3.79889 13.1014 3.48102 13.5157 3.21075 13.9916C2.9502 14.4503 2.73926 14.9287 2.58398 15.4138C2.43402 15.8827 2.30859 16.3956 2.21118 16.9383C2.1145 17.4763 2.04913 17.9866 2.01672 18.4553C1.98486 18.9137 1.96875 19.3906 1.96875 19.8726C1.96875 21.1254 2.367 22.1396 3.15234 22.8876C3.92798 23.6257 4.9541 24 6.20233 24H17.7585C19.0063 24 20.0325 23.6257 20.8083 22.8876C21.5938 22.1402 21.9921 21.1256 21.9921 19.8724C21.9919 19.3888 21.9756 18.9118 21.9435 18.4548Z"
-                      fill={getIconColor(formData.name, focused.name)}
+                      fill={getIconColor(formData.industry, focused.industry)}
                     />
                   </svg>
                 </div>
               </div>
-              {errors.name && (
-                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+              {errors.industry && (
+                <p className="text-red-500 text-xs mt-1">{errors.industry}</p>
               )}
             </div>
-
 
             {/* GSTIN */}
             <div>
@@ -568,22 +619,22 @@ const SecondSection = () => {
     mb-1
   "
               >
-              GSTIN
+                GSTIN
               </label>
 
               <div className="relative w-full">
                 <input
                   type="text"
-                  name="name"
+                  name="gstin"
                   placeholder="GSTIN, If any"
-                  value={formData.name}
+                  value={formData.gstin}
                   onChange={handleChange}
-                  onFocus={() => handleFocus("name")}
-                  onBlur={() => handleBlur("name")}
+                  onFocus={() => handleFocus("gstin")}
+                  onBlur={() => handleBlur("gstin")}
                   className={`
           w-full px-8 py-3 bg-transparent 
           border-0 border-b-2 ${
-            errors.name
+            errors.gstin
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
@@ -598,21 +649,21 @@ const SecondSection = () => {
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
-                    fill={getIconColor(formData.name, focused.name)} // changes color when typing
+                    fill={getIconColor(formData.gstin, focused.gstin)}
                   >
                     <path
                       d="M11.8295 11.5609C13.4177 11.5609 14.7928 10.9913 15.9167 9.86735C17.0403 8.74364 17.6101 7.3687 17.6101 5.78026C17.6101 4.19237 17.0405 2.81726 15.9166 1.69317C14.7927 0.56964 13.4175 0 11.8295 0C10.241 0 8.86609 0.56964 7.74237 1.69336C6.61865 2.81707 6.04883 4.19219 6.04883 5.78026C6.04883 7.3687 6.61865 8.74382 7.74237 9.86753C8.86646 10.9911 10.2416 11.5609 11.8295 11.5609ZM8.737 2.6878C9.59924 1.82556 10.6107 1.40643 11.8295 1.40643C13.048 1.40643 14.0597 1.82556 14.9221 2.6878C15.7844 3.55023 16.2037 4.56188 16.2037 5.78026C16.2037 6.99901 15.7844 8.01048 14.9221 8.87291C14.0597 9.73533 13.048 10.1545 11.8295 10.1545C10.6111 10.1545 9.59961 9.73515 8.737 8.87291C7.87457 8.01067 7.45526 6.99901 7.45526 5.78026C7.45526 4.56188 7.87457 3.55023 8.737 2.6878Z"
-                      fill={getIconColor(formData.name, focused.name)}
+                      fill={getIconColor(formData.gstin, focused.gstin)}
                     />
                     <path
                       d="M21.9435 18.4548C21.9111 17.9871 21.8456 17.477 21.7491 16.9383C21.6517 16.3956 21.5262 15.8825 21.3761 15.4136C21.2208 14.9289 21.0101 14.4503 20.7491 13.9916C20.4787 13.5155 20.1608 13.101 19.8041 12.7599C19.4312 12.403 18.9745 12.1161 18.4464 11.9068C17.9202 11.6986 17.337 11.5931 16.7131 11.5931C16.4681 11.5931 16.2312 11.6936 15.7736 11.9916C15.492 12.1752 15.1626 12.3876 14.7949 12.6225C14.4805 12.8229 14.0546 13.0105 13.5286 13.1805C13.0153 13.3465 12.4942 13.4308 11.9797 13.4308C11.4655 13.4308 10.9444 13.3465 10.4308 13.1805C9.90527 13.0107 9.47919 12.823 9.16534 12.6227C8.80115 12.39 8.47156 12.1776 8.18573 11.9914C7.72852 11.6935 7.49158 11.5929 7.24658 11.5929C6.62256 11.5929 6.03955 11.6986 5.51349 11.907C4.98578 12.1159 4.52893 12.4028 4.15558 12.76C3.79889 13.1014 3.48102 13.5157 3.21075 13.9916C2.9502 14.4503 2.73926 14.9287 2.58398 15.4138C2.43402 15.8827 2.30859 16.3956 2.21118 16.9383C2.1145 17.4763 2.04913 17.9866 2.01672 18.4553C1.98486 18.9137 1.96875 19.3906 1.96875 19.8726C1.96875 21.1254 2.367 22.1396 3.15234 22.8876C3.92798 23.6257 4.9541 24 6.20233 24H17.7585C19.0063 24 20.0325 23.6257 20.8083 22.8876C21.5938 22.1402 21.9921 21.1256 21.9921 19.8724C21.9919 19.3888 21.9756 18.9118 21.9435 18.4548Z"
-                      fill={getIconColor(formData.name, focused.name)}
+                      fill={getIconColor(formData.gstin, focused.gstin)}
                     />
                   </svg>
                 </div>
               </div>
-              {errors.name && (
-                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+              {errors.gstin && (
+                <p className="text-red-500 text-xs mt-1">{errors.gstin}</p>
               )}
             </div>
 
@@ -624,7 +675,7 @@ const SecondSection = () => {
     mb-3
         "
               >
-               Select Service
+                Select Service <span className="text-red-500">*</span>
               </label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -668,25 +719,23 @@ const SecondSection = () => {
           mb-1
         "
               >
-                Contact Person
+                Contact Person <span className="text-red-500">*</span>
               </label>
               <div className="relative w-full">
                 <input
                   type="text"
-                  placeholder="Contact"
-                  value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                    // if (errors.message) {
-                    //   setErrors((prev) => ({ ...prev, message: "" }));
-                    // }
-                  }}
-                  onFocus={() => handleFocus("message")}
-                  onBlur={() => handleBlur("message")}
+                  name="contactPerson"
+                  placeholder="Contact Person Name"
+                  value={formData.contactPerson}
+                  onChange={handleChange}
+                  onFocus={() => handleFocus("contactPerson")}
+                  onBlur={() => handleBlur("contactPerson")}
                   className={`
           w-full px-8 py-3 bg-transparent 
           border-0 border-b-2 ${
-            false ? "border-b-red-500" : "border-b-[var(--color-highlight)]"
+            errors.contactPerson
+              ? "border-b-red-500"
+              : "border-b-[var(--color-highlight)]"
           }
           white-text placeholder-gray-400
           focus:outline-none focus:border-b-[var(--color-highlight)]
@@ -696,29 +745,35 @@ const SecondSection = () => {
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill={getIconColor(message, focused.message)}
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill={getIconColor(
+                      formData.contactPerson,
+                      focused.contactPerson
+                    )}
                   >
-                    <path d="M20.1449 2.11723H3.83162C2.12599 2.11723 0.738281 3.50467 0.738281 5.21057V15.194C0.738281 16.896 2.11995 18.2813 3.82063 18.2873V22.8177L10.3313 18.2873H20.1449C21.8506 18.2873 23.2383 16.8996 23.2383 15.194V5.21057C23.2383 3.50467 21.8506 2.11723 20.1449 2.11723ZM21.9199 15.194C21.9199 16.1726 21.1237 16.969 20.1449 16.969H9.91763L5.13899 20.2943V16.969H3.83162C2.85287 16.969 2.05664 16.1726 2.05664 15.194V5.21057C2.05664 4.23169 2.85287 3.43559 3.83162 3.43559H20.1449C21.1237 3.43559 21.9199 4.23169 21.9199 5.21057V15.194Z" />
                     <path
-                      d="M6.76074 6.77557H17.2167V8.09393H6.76074V6.77557Z"
-                      fill={getIconColor(message, focused.message)}
+                      d="M11.8295 11.5609C13.4177 11.5609 14.7928 10.9913 15.9167 9.86735C17.0403 8.74364 17.6101 7.3687 17.6101 5.78026C17.6101 4.19237 17.0405 2.81726 15.9166 1.69317C14.7927 0.56964 13.4175 0 11.8295 0C10.241 0 8.86609 0.56964 7.74237 1.69336C6.61865 2.81707 6.04883 4.19219 6.04883 5.78026C6.04883 7.3687 6.61865 8.74382 7.74237 9.86753C8.86646 10.9911 10.2416 11.5609 11.8295 11.5609ZM8.737 2.6878C9.59924 1.82556 10.6107 1.40643 11.8295 1.40643C13.048 1.40643 14.0597 1.82556 14.9221 2.6878C15.7844 3.55023 16.2037 4.56188 16.2037 5.78026C16.2037 6.99901 15.7844 8.01048 14.9221 8.87291C14.0597 9.73533 13.048 10.1545 11.8295 10.1545C10.6111 10.1545 9.59961 9.73515 8.737 8.87291C7.87457 8.01067 7.45526 6.99901 7.45526 5.78026C7.45526 4.56188 7.87457 3.55023 8.737 2.6878Z"
+                      fill={getIconColor(
+                        formData.contactPerson,
+                        focused.contactPerson
+                      )}
                     />
                     <path
-                      d="M6.76074 9.58807H17.2167V10.9064H6.76074V9.58807Z"
-                      fill={getIconColor(message, focused.message)}
-                    />
-                    <path
-                      d="M6.76074 12.4006H17.2167V13.7189H6.76074V12.4006Z"
-                      fill={getIconColor(message, focused.message)}
+                      d="M21.9435 18.4548C21.9111 17.9871 21.8456 17.477 21.7491 16.9383C21.6517 16.3956 21.5262 15.8825 21.3761 15.4136C21.2208 14.9289 21.0101 14.4503 20.7491 13.9916C20.4787 13.5155 20.1608 13.101 19.8041 12.7599C19.4312 12.403 18.9745 12.1161 18.4464 11.9068C17.9202 11.6986 17.337 11.5931 16.7131 11.5931C16.4681 11.5931 16.2312 11.6936 15.7736 11.9916C15.492 12.1752 15.1626 12.3876 14.7949 12.6225C14.4805 12.8229 14.0546 13.0105 13.5286 13.1805C13.0153 13.3465 12.4942 13.4308 11.9797 13.4308C11.4655 13.4308 10.9444 13.3465 10.4308 13.1805C9.90527 13.0107 9.47919 12.823 9.16534 12.6227C8.80115 12.39 8.47156 12.1776 8.18573 11.9914C7.72852 11.6935 7.49158 11.5929 7.24658 11.5929C6.62256 11.5929 6.03955 11.6986 5.51349 11.907C4.98578 12.1159 4.52893 12.4028 4.15558 12.76C3.79889 13.1014 3.48102 13.5157 3.21075 13.9916C2.9502 14.4503 2.73926 14.9287 2.58398 15.4138C2.43402 15.8827 2.30859 16.3956 2.21118 16.9383C2.1145 17.4763 2.04913 17.9866 2.01672 18.4553C1.98486 18.9137 1.96875 19.3906 1.96875 19.8726C1.96875 21.1254 2.367 22.1396 3.15234 22.8876C3.92798 23.6257 4.9541 24 6.20233 24H17.7585C19.0063 24 20.0325 23.6257 20.8083 22.8876C21.5938 22.1402 21.9921 21.1256 21.9921 19.8724C21.9919 19.3888 21.9756 18.9118 21.9435 18.4548Z"
+                      fill={getIconColor(
+                        formData.contactPerson,
+                        focused.contactPerson
+                      )}
                     />
                   </svg>
                 </div>
               </div>
-              {/* {errors.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.message}</p>
-              )} */}
+              {errors.contactPerson && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.contactPerson}
+                </p>
+              )}
             </div>
 
             {/* Email */}
@@ -729,7 +784,8 @@ const SecondSection = () => {
           mb-1
         "
               >
-                You Can Send The Sukha Puri (Your Reply!) Over To
+                You Can Send The Sukha Puri (Your Reply!) Over To{" "}
+                <span className="text-red-500">*</span>
               </label>
               <div className="relative w-full">
                 <input
@@ -779,7 +835,8 @@ const SecondSection = () => {
           mb-1
         "
               >
-                Or Just Give Me A Call At
+                Or Just Give Me A Call At{" "}
+                <span className="text-red-500">*</span>
               </label>
               <div className="relative w-full">
                 <input
@@ -833,7 +890,7 @@ const SecondSection = () => {
               )}
             </div>
 
-          {/* website */}
+            {/* Address */}
             <div>
               <label
                 className="
@@ -841,25 +898,23 @@ const SecondSection = () => {
           mb-1
         "
               >
-                Registered Address 
+                Registered Address
               </label>
               <div className="relative w-full">
                 <input
                   type="text"
-                  placeholder="Address "
-                  value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                    // if (errors.message) {
-                    //   setErrors((prev) => ({ ...prev, message: "" }));
-                    // }
-                  }}
-                  onFocus={() => handleFocus("message")}
-                  onBlur={() => handleBlur("message")}
+                  name="address"
+                  placeholder="Address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  onFocus={() => handleFocus("address")}
+                  onBlur={() => handleBlur("address")}
                   className={`
           w-full px-8 py-3 bg-transparent 
           border-0 border-b-2 ${
-            false ? "border-b-red-500" : "border-b-[var(--color-highlight)]"
+            errors.address
+              ? "border-b-red-500"
+              : "border-b-[var(--color-highlight)]"
           }
           white-text placeholder-gray-400
           focus:outline-none focus:border-b-[var(--color-highlight)]
@@ -871,55 +926,53 @@ const SecondSection = () => {
                     width="24"
                     height="25"
                     viewBox="0 0 24 25"
-                    fill={getIconColor(message, focused.message)}
+                    fill={getIconColor(formData.address, focused.address)}
                   >
                     <path d="M20.1449 2.11723H3.83162C2.12599 2.11723 0.738281 3.50467 0.738281 5.21057V15.194C0.738281 16.896 2.11995 18.2813 3.82063 18.2873V22.8177L10.3313 18.2873H20.1449C21.8506 18.2873 23.2383 16.8996 23.2383 15.194V5.21057C23.2383 3.50467 21.8506 2.11723 20.1449 2.11723ZM21.9199 15.194C21.9199 16.1726 21.1237 16.969 20.1449 16.969H9.91763L5.13899 20.2943V16.969H3.83162C2.85287 16.969 2.05664 16.1726 2.05664 15.194V5.21057C2.05664 4.23169 2.85287 3.43559 3.83162 3.43559H20.1449C21.1237 3.43559 21.9199 4.23169 21.9199 5.21057V15.194Z" />
                     <path
                       d="M6.76074 6.77557H17.2167V8.09393H6.76074V6.77557Z"
-                      fill={getIconColor(message, focused.message)}
+                      fill={getIconColor(formData.address, focused.address)}
                     />
                     <path
                       d="M6.76074 9.58807H17.2167V10.9064H6.76074V9.58807Z"
-                      fill={getIconColor(message, focused.message)}
+                      fill={getIconColor(formData.address, focused.address)}
                     />
                     <path
                       d="M6.76074 12.4006H17.2167V13.7189H6.76074V12.4006Z"
-                      fill={getIconColor(message, focused.message)}
+                      fill={getIconColor(formData.address, focused.address)}
                     />
                   </svg>
                 </div>
               </div>
-              {/* {errors.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.message}</p>
-              )} */}
+              {errors.address && (
+                <p className="text-red-500 text-xs mt-1">{errors.address}</p>
+              )}
             </div>
 
-              <div>
+            <div>
               <label
                 className="
           block white-text body2
           mb-1
         "
               >
-                Your Website 
+                Your Website
               </label>
               <div className="relative w-full">
                 <input
                   type="text"
+                  name="website"
                   placeholder="Website"
-                  value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                    // if (errors.message) {
-                    //   setErrors((prev) => ({ ...prev, message: "" }));
-                    // }
-                  }}
-                  onFocus={() => handleFocus("message")}
-                  onBlur={() => handleBlur("message")}
+                  value={formData.website}
+                  onChange={handleChange}
+                  onFocus={() => handleFocus("website")}
+                  onBlur={() => handleBlur("website")}
                   className={`
           w-full px-8 py-3 bg-transparent 
           border-0 border-b-2 ${
-            false ? "border-b-red-500" : "border-b-[var(--color-highlight)]"
+            errors.website
+              ? "border-b-red-500"
+              : "border-b-[var(--color-highlight)]"
           }
           white-text placeholder-gray-400
           focus:outline-none focus:border-b-[var(--color-highlight)]
@@ -931,27 +984,27 @@ const SecondSection = () => {
                     width="24"
                     height="25"
                     viewBox="0 0 24 25"
-                    fill={getIconColor(message, focused.message)}
+                    fill={getIconColor(formData.website, focused.website)}
                   >
                     <path d="M20.1449 2.11723H3.83162C2.12599 2.11723 0.738281 3.50467 0.738281 5.21057V15.194C0.738281 16.896 2.11995 18.2813 3.82063 18.2873V22.8177L10.3313 18.2873H20.1449C21.8506 18.2873 23.2383 16.8996 23.2383 15.194V5.21057C23.2383 3.50467 21.8506 2.11723 20.1449 2.11723ZM21.9199 15.194C21.9199 16.1726 21.1237 16.969 20.1449 16.969H9.91763L5.13899 20.2943V16.969H3.83162C2.85287 16.969 2.05664 16.1726 2.05664 15.194V5.21057C2.05664 4.23169 2.85287 3.43559 3.83162 3.43559H20.1449C21.1237 3.43559 21.9199 4.23169 21.9199 5.21057V15.194Z" />
                     <path
                       d="M6.76074 6.77557H17.2167V8.09393H6.76074V6.77557Z"
-                      fill={getIconColor(message, focused.message)}
+                      fill={getIconColor(formData.website, focused.website)}
                     />
                     <path
                       d="M6.76074 9.58807H17.2167V10.9064H6.76074V9.58807Z"
-                      fill={getIconColor(message, focused.message)}
+                      fill={getIconColor(formData.website, focused.website)}
                     />
                     <path
                       d="M6.76074 12.4006H17.2167V13.7189H6.76074V12.4006Z"
-                      fill={getIconColor(message, focused.message)}
+                      fill={getIconColor(formData.website, focused.website)}
                     />
                   </svg>
                 </div>
               </div>
-              {/* {errors.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.message}</p>
-              )} */}
+              {errors.website && (
+                <p className="text-red-500 text-xs mt-1">{errors.website}</p>
+              )}
             </div>
 
             {/* Submit Button */}
