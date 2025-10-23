@@ -3,9 +3,9 @@ import React, { useState, ChangeEvent } from "react";
 import ContactButton from "../ContactButton";
 
 const jobs = [
-    {
+  {
     title: "WordPress Developer - Senior",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 2–3 years
 
 Role:
@@ -28,7 +28,7 @@ Salary – Upto 4L per annum`,
   },
   {
     title: "Shopify Developer - Senior",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 2–3 years
 
 Role:
@@ -50,7 +50,7 @@ Salary – Upto 4.5L per annum`,
   },
   {
     title: "Performance Marketing - Specialist / Manager",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 3+ years & worked on 25+ brands | D2C focus is non-negotiable
 
 Role:
@@ -77,7 +77,7 @@ Salary – Upto 10L per annum`,
   },
   {
     title: "Performance Marketing - Executive",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 1+ years & worked on 6+ brands
 
 Role:
@@ -101,7 +101,7 @@ Salary – Upto 5.5L per annum`,
   },
   {
     title: "Performance Marketing - Intern",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 0 – 6 Months
 
 Role:
@@ -126,7 +126,7 @@ Stipend – ₹10,000 per month`,
   },
   {
     title: "Social Media Marketing - Specialist",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 3–5 years | Proven results growing brands & communities on social platforms
 
 Role:
@@ -154,7 +154,7 @@ Salary – Upto 6L per annum`,
   },
   {
     title: "Social Media Marketing - Executive",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 1+ year agency experience | No, running your own meme page doesn’t count (unless it’s really good)
 
 Role:
@@ -179,7 +179,7 @@ Salary – Upto 4.2L per annum`,
   },
   {
     title: "Social Media Marketing - Intern",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 0 – 6 Months
 
 Role:
@@ -204,7 +204,7 @@ Stipend – ₹10,000 per month`,
   },
   {
     title: "Copywriter - Senior",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 4+ years
 
 Role:
@@ -230,7 +230,7 @@ Salary – Upto 7.2L per annum`,
   },
   {
     title: "SEO - Senior Specialist",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 2–4 years | Must have ranked content across competitive categories
 
 Role:
@@ -256,7 +256,7 @@ Salary – Upto 6.6L per annum`,
   },
   {
     title: "Graphic Designer (AI-First, Vision-Led)",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 2–4 years | Must have ranked content across competitive categories
 
 Role:
@@ -282,7 +282,7 @@ Salary – Upto 6.6L per annum`,
   },
   {
     title: "Content Creator",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : Portfolio beyond college assignments | Must include AI-generated or AI-assisted work
 
 Role:
@@ -310,7 +310,7 @@ Salary – Upto 6L per annum`,
   },
   {
     title: "Video Editor",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 1–2 years | Only short-format editors with viral instincts need apply
 No wedding reels. No trailers. Just punchy, scroll-stopping edits.
 
@@ -345,7 +345,7 @@ Salary – Upto 4.8L per annum`,
   },
   {
     title: "Accountant - Inhouse",
-     tag: "Immediate",
+    tag: "Immediate",
     details: `Minimum Experience : 2 years
 
 Role:
@@ -624,7 +624,9 @@ const SecondSection = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit application");
+        const errorData = await response.json();
+        console.error("API Error:", errorData);
+        throw new Error(errorData.error || "Failed to submit application");
       }
 
       setSubmitStatus("success");
@@ -872,42 +874,37 @@ const SecondSection = () => {
             Available Trains
           </h2>
           {jobs.map((job, i) => (
-<button 
-  key={i}
-  onClick={() => {
-    setActiveJob(job);
-    if (isFlipped) setIsFlipped(false);
-  }}
-  className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+            <button
+              key={i}
+              onClick={() => {
+                setActiveJob(job);
+                if (isFlipped) setIsFlipped(false);
+              }}
+              className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
     ${
       activeJob.title === job.title
         ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
         : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
     }`}
->
-  {/* Job Title */}
-  <div className="pr-20 whitespace-normal leading-snug break-words">
-    {job.title}
-  </div>
+            >
+              {/* Job Title */}
+              <div className="pr-20 whitespace-normal leading-snug break-words">
+                {job.title}
+              </div>
 
-  {/* 🚩 Tag */}
-  <span
-    className={`absolute top-2 right-3 px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 whitespace-nowrap
+              {/* 🚩 Tag */}
+              <span
+                className={`absolute top-2 right-3 px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 whitespace-nowrap
       ${
         activeJob.title === job.title
           ? "bg-black text-yellow-400"
           : "bg-[var(--color-highlight)] text-black"
       }`}
-  >
-    {job.tag}
-  </span>
-</button>
-
-
-))}
-
-
-
+              >
+                {job.tag}
+              </span>
+            </button>
+          ))}
         </div>
 
         {/* RIGHT – Details */}
@@ -1258,6 +1255,6 @@ const SecondSection = () => {
       </div>
     </section>
   );
-}; 
+};
 
 export default SecondSection;

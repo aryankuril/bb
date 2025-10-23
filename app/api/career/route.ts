@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendEmail } from "@/lib/email-sender";
+import { uploadFileToFirebase, base64ToBuffer } from "@/lib/firebase-upload";
 
 export async function POST(request: NextRequest) {
   try {
+    console.log("📝 Career API: Received application request");
     const body = await request.json();
     const {
       ticketName,
@@ -15,11 +17,60 @@ export async function POST(request: NextRequest) {
       availability,
     } = body;
 
+    console.log("📋 Application details:", {
+      ticketName,
+      email,
+      jobTitle,
+      hasCv: !!cv,
+    });
+
     if (!ticketName || !email || !phone) {
+      console.error("❌ Missing required fields");
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
+    }
+
+    // Upload CV to Firebase Storage if provided
+    let cvUrl = "";
+    let cvFilename = "";
+    let cvSize = 0;
+
+    if (cv && cv.data && cv.filename) {
+      console.log("📤 Uploading CV to Firebase:", cv.filename);
+      try {
+        const cvBuffer = base64ToBuffer(cv.data);
+        console.log(
+          "✓ Converted CV to buffer, size:",
+          cvBuffer.length,
+          "bytes"
+        );
+
+        const uploadedFile = await uploadFileToFirebase(
+          cvBuffer,
+          cv.filename,
+          "cvs"
+        );
+
+        cvUrl = uploadedFile.url;
+        cvFilename = uploadedFile.filename;
+        cvSize = uploadedFile.size;
+        console.log("✓ CV uploaded successfully:", cvUrl);
+      } catch (uploadError) {
+        console.error("❌ CV upload error:", uploadError);
+        const errorMessage =
+          uploadError instanceof Error ? uploadError.message : "Unknown error";
+        console.error("Error details:", errorMessage);
+        return NextResponse.json(
+          {
+            error: `Failed to upload CV: ${errorMessage}. Please check Firebase configuration.`,
+          },
+          { status: 500 }
+        );
+      }
+    } else {
+      console.log("ℹ️ No CV provided");
     }
 
     // Email template for career form
@@ -108,6 +159,7 @@ export async function POST(request: NextRequest) {
 </html>`;
 
     // Send email to applicant
+    console.log("📧 Sending confirmation email to:", email);
     const result = await sendEmail({
       to: email,
       subject: "You've made a smart choice. #BeABloke",
@@ -117,18 +169,20 @@ export async function POST(request: NextRequest) {
     });
 
     if (result.error) {
+      console.error("❌ Failed to send confirmation email:", result.error);
       return NextResponse.json(
-        { error: result.error.message },
+        { error: `Failed to send confirmation email: ${result.error.message}` },
         { status: 500 }
       );
     }
+    console.log("✓ Confirmation email sent successfully");
 
     // Prepare CV information for team notification
     let cvInfo = "Not provided";
-    if (cv && cv.filename) {
-      cvInfo = `<a href="${cv.data}" download="${cv.filename}">${
-        cv.filename
-      }</a> (${(cv.size / 1024).toFixed(2)} KB)`;
+    if (cvUrl && cvFilename) {
+      cvInfo = `<a href="${cvUrl}" download="${cvFilename}">${cvFilename}</a> (${(
+        cvSize / 1024
+      ).toFixed(2)} KB)`;
     }
 
     // Send notification to team
@@ -146,46 +200,37 @@ export async function POST(request: NextRequest) {
       }</p>
       <p><strong>Availability:</strong> ${availability || "Not specified"}</p>
       <p><strong>Message:</strong> ${message || "No message"}</p>
-      
-      ${
-        cv && cv.data
-          ? `
-      <hr style="margin: 20px 0;">
-      <p><strong>CV File Details:</strong></p>
-      <ul>
-        <li>Filename: ${cv.filename}</li>
-        <li>Type: ${cv.type}</li>
-        <li>Size: ${(cv.size / 1024).toFixed(2)} KB</li>
-      </ul>
-      <p style="margin-top: 15px;">
-        <a href="${cv.data}" download="${
-              cv.filename
-            }" style="display: inline-block; padding: 10px 20px; background-color: #FCB315; color: #000; text-decoration: none; border-radius: 5px; font-weight: bold;">
-          📄 Download CV
-        </a>
-      </p>
-      `
-          : ""
-      }
     `;
 
-    await sendEmail({
-      to: "careers@bombayblokes.com",
+    console.log("📧 Sending team notification email");
+    const teamResult = await sendEmail({
+      // to: "careers@bombayblokes.com",
+      to: "yashyerunkar8@gmail.com",
       subject: `New Application - ${ticketName} for ${jobTitle || "Position"}`,
       html: teamNotification,
       fromName: "Careers Form",
       fromAddress: "careers@bombayblokes.com",
     });
 
+    if (teamResult.error) {
+      console.error(
+        "⚠️ Failed to send team notification (non-critical):",
+        teamResult.error
+      );
+      // Don't fail the request if team email fails
+    } else {
+      console.log("✓ Team notification sent successfully");
+    }
+
+    console.log("✅ Application submitted successfully");
     return NextResponse.json({
       success: true,
       message: "Application submitted successfully",
     });
   } catch (error) {
-    console.error("Career form error:", error);
-    return NextResponse.json(
-      { error: "Failed to submit application" },
-      { status: 500 }
-    );
+    console.error("❌ Career form error:", error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Failed to submit application";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
