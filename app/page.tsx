@@ -13,6 +13,7 @@ import SixthSection from "./components/ServicesInternal/WebsiteDesign/SixthSecti
 import SeventhSection from "./components/ServicesInternal/WebsiteDesign/SeventhSection";
 import Footer from "./components/Footer";
 import Taxi from "./components/Taxi";
+import MobilePopup from "./components/MobilePopup";
 // import ClientScripts from "./components/ClientScripts";
 
 
@@ -22,6 +23,7 @@ export default function Home() {
     <div>
       {/* <ClientScripts/> */}
       <Taxi/>
+      <MobilePopup/>
       <Navbar />
       <Firstsection/>
       <SecondSection/>

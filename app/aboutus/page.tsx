@@ -9,11 +9,13 @@ import RubberSection from '../components/HomePage/RubberSection'
 import Footer from '../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../components/Taxi'
+import MobilePopup from '../components/MobilePopup'
 
 const Index = () => {
   return (
     <div>
         {/* <ClientScripts/> */}
+         <MobilePopup/>
         <Taxi/>
         <Navbar/>
         <Firstsection />

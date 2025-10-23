@@ -7,12 +7,14 @@ import SeventhSection from '../components/ServicesInternal/WebsiteDesign/Seventh
 import Footer from '../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../components/Taxi'
+import MobilePopup from '../components/MobilePopup'
 
 const Index = () => {
   return (
     <div>
       {/* <ClientScripts/> */}
       <Taxi/>
+       <MobilePopup/>
         <Navbar />
         <Firstsection/>
         <SecondSection/>

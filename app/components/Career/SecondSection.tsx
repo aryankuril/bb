@@ -872,33 +872,38 @@ const SecondSection = () => {
             Available Trains
           </h2>
           {jobs.map((job, i) => (
-  <button
-    key={i}
-    onClick={() => {
-      setActiveJob(job);
-      if (isFlipped) setIsFlipped(false);
-    }}
-    className={`relative text-left body2 px-3 py-2 sm:px-4 cursor-pointer sm:py-3 rounded-[6px] border transition-all duration-200
+<button 
+  key={i}
+  onClick={() => {
+    setActiveJob(job);
+    if (isFlipped) setIsFlipped(false);
+  }}
+  className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+    ${
+      activeJob.title === job.title
+        ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
+        : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+    }`}
+>
+  {/* Job Title */}
+  <div className="pr-20 whitespace-normal leading-snug break-words">
+    {job.title}
+  </div>
+
+  {/* 🚩 Tag */}
+  <span
+    className={`absolute top-2 right-3 px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 whitespace-nowrap
       ${
         activeJob.title === job.title
-          ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
-          : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+          ? "bg-black text-yellow-400"
+          : "bg-[var(--color-highlight)] text-black"
       }`}
   >
-    {job.title}
+    {job.tag}
+  </span>
+</button>
 
-    {/* 🚩 Tag */}
-    <span
-      className={`absolute top-1/2 -translate-y-1/2 right-2 px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200
-        ${
-          activeJob.title === job.title
-            ? "bg-black text-yellow-400" // ✅ Active state
-            : "bg-[var(--color-highlight)] text-black" // Default
-        }`}
-    >
-      {job.tag}
-    </span>
-  </button>
+
 ))}
 
 
@@ -934,7 +939,7 @@ const SecondSection = () => {
                 <div className="whitespace-pre-line  white-text body2 pr-1 sm:pr-2">
                   {activeJob.details}
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-center py-5">
                   <ContactButton
                     text="BOOK TICKET"
                     type="button"

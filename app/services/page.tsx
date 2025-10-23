@@ -7,11 +7,13 @@ import SecondSection from '../components/Services/SecondSection'
 import SeventhSection from '../components/ServicesInternal/WebsiteDesign/SeventhSection'
 import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
+import MobilePopup from '@/app/components/MobilePopup'
 
 const page = () => {
   return (
     <div>
       <Taxi/>
+       <MobilePopup/>
         <Navbar />
         <Firstsection />
         <SecondSection />

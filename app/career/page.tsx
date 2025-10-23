@@ -10,11 +10,13 @@ import Footer from '../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../components/Taxi'
 
+
 const Index = () => {
   return (
     <div>
       {/* <ClientScripts/> */}
       <Taxi/>
+
         <Navbar />
         <Firstsection/>
         <SecondSection/>

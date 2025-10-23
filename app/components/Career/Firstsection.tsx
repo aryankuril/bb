@@ -47,11 +47,11 @@ const Firstsection = () => {
               className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-74 h-auto"
             />
           </div> */}
-          <div className="lg:absolute lg:top-1 top-15 lg:right-15 right-5 flex justify-end w-full lg:w-auto">
+          <div className="lg:absolute lg:top-15 top-25 lg:right-15 right-5 flex justify-end  w-full lg:w-auto">
             <img
-              src="/images/carrer-station.svg"
+              src="/images/carrer-station.png"
               alt="Decorative element"
-              className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-86 h-auto"
+              className="w-20 sm:w-40 md:w-48 lg:w-56 xl:w-50 h-auto"
             />
           </div>
 
@@ -63,7 +63,7 @@ const Firstsection = () => {
           initial={{ x: "-120%" }}
           animate={
             isMobile
-              ? { x: 60 }             // 🚫 No movement on mobile
+              ? { x: 150 }             // 🚫 No movement on mobile
               : inView
               ? { x: 550 }           // ✅ Animate on larger screens
               : {}

@@ -61,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <PageLoader>
             {children}
             {/* <Taxi /> */}
-            <MobilePopup />
+            {/* <MobilePopup /> */}
           </PageLoader>
           <ScrollToTop />
           {/* <FloatingIcons /> */}

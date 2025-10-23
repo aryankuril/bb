@@ -12,21 +12,21 @@ const cards = [
 ];
 
 const RubberSection = () => {
-const throwInVariant: Variants = {
-  hidden: { x: 600, y: 0, rotate: 45, opacity: 0 },
-  visible: {
-    x: 0,
-    y: 0,
-    rotate: 0,
-    opacity: 1,
-    transition: {
-      type: "spring" as const, // ensure TS knows this is a valid spring type
-      stiffness: 80,
-      damping: 20,
-      mass: 0.8,
+  const throwInVariant: Variants = {
+    hidden: { x: 600, y: 0, rotate: 45, opacity: 0 },
+    visible: {
+      x: 0,
+      y: 0,
+      rotate: 0,
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 80,
+        damping: 20,
+        mass: 0.8,
+      },
     },
-  },
-};
+  };
 
   return (
     <section className="container w-full lg:h-[100vh] h-full relative py-10 sm:py-15 lg:py-20 overflow-x-hidden overflow-y-hidden">
@@ -34,15 +34,15 @@ const throwInVariant: Variants = {
         <span className="text-highlight">BB culture </span> - Ideate, innovate, create
       </h2>
 
-      {/* Cards container with overlapping */}
+      {/* ✅ Responsive Cards Container */}
       <motion.div
-        className="mt-16 flex justify-center items-center px-4"
+        className="mt-16 flex flex-col sm:flex-row sm:flex-wrap justify-center items-center sm:gap-0 gap-0 px-0"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
         variants={{
           hidden: {},
-          visible: { transition: { staggerChildren: 0.25 } }, // slightly more stagger
+          visible: { transition: { staggerChildren: 0.25 } },
         }}
       >
         {cards.map((card, idx) => {
@@ -60,9 +60,12 @@ const throwInVariant: Variants = {
             <motion.div
               key={idx}
               variants={throwInVariant}
-              className={`relative w-[220px] sm:w-[260px] md:w-[280px] lg:w-[350px] h-[220px] sm:h-[260px] md:h-[280px] lg:h-[330px] flex-shrink cursor-grab rounded-xl ${
-                idx !== 0 ? "-ml-10 sm:-ml-12 md:-ml-14 lg:-ml-10" : ""
-              }`} // negative margin for overlap
+              className={`relative w-[250px] sm:w-[260px] md:w-[280px] lg:w-[350px] h-[250px] sm:h-[260px] md:h-[280px] lg:h-[330px] flex-shrink-0 cursor-grab rounded-xl
+                ${
+                  idx !== 0
+                    ? "sm:-ml-12 md:-ml-14 lg:-ml-10" // overlap only on desktop
+                    : ""
+                }`}
             >
               <motion.div
                 style={{ x, y, rotate }}
