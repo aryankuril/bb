@@ -877,9 +877,17 @@ const SecondSection = () => {
             <button
               key={i}
               onClick={() => {
-                setActiveJob(job);
-                if (isFlipped) setIsFlipped(false);
-              }}
+    setActiveJob(job);
+    if (isFlipped) setIsFlipped(false);
+
+    // 👇 Scroll right section into view only on mobile
+    if (window.innerWidth < 768) {
+      const rightSection = document.getElementById("details-section");
+      if (rightSection) {
+        rightSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }}
               className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
     ${
       activeJob.title === job.title
@@ -908,7 +916,8 @@ const SecondSection = () => {
         </div>
 
         {/* RIGHT – Details */}
-        <div className="p-3 md:p-6 white-text flex flex-col relative">
+        <div
+         id="details-section" className="p-3 md:p-6 white-text flex flex-col relative">
           <h2
             className="
     white-text
@@ -938,7 +947,7 @@ const SecondSection = () => {
                 </div>
                 <div className="flex justify-center py-5">
                   <ContactButton
-                    text="BOOK TICKET"
+                    text="Apply Now"
                     type="button"
                     onClick={() => setIsFlipped(true)}
                     disabled={isFlipped}
@@ -978,7 +987,7 @@ const SecondSection = () => {
                         onChange={handleChange}
                         onFocus={() => handleFocus("ticketName")}
                         onBlur={handleBlur}
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-sm"
+                        className="bg-transparent w-full outline-none placeholder-gray-400 text-[10px]"
                       />
                     </div>
                     {errors.ticketName && (
