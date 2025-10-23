@@ -902,15 +902,16 @@ const SecondSection = () => {
 
               {/* 🚩 Tag */}
               <span
-                className={`absolute top-2 right-3 px-2 lg:px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 whitespace-nowrap
-      ${
-        activeJob.title === job.title
-          ? "bg-black text-yellow-400"
-          : "bg-[var(--color-highlight)] text-black"
-      }`}
-              >
-                {job.tag}
-              </span>
+  className={`absolute top-1/2 -translate-y-1/2 right-3 text-xs px-2 lg:px-3 py-1 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+    ${
+      activeJob.title === job.title
+        ? "bg-black text-yellow-400"
+        : "bg-[var(--color-highlight)] text-black"
+    }`}
+>
+  {job.tag}
+</span>
+
             </button>
           ))}
         </div>
@@ -987,7 +988,7 @@ const SecondSection = () => {
                         onChange={handleChange}
                         onFocus={() => handleFocus("ticketName")}
                         onBlur={handleBlur}
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-[10px]"
+                        className="bg-transparent w-full outline-none placeholder-gray-400 text-xs"
                       />
                     </div>
                     {errors.ticketName && (
@@ -1018,7 +1019,7 @@ const SecondSection = () => {
                         onChange={handleChange}
                         onFocus={() => handleFocus("email")}
                         onBlur={handleBlur}
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-sm"
+                        className="bg-transparent w-full outline-none placeholder-gray-400 text-xs"
                       />
                     </div>
                     {errors.email && (
@@ -1045,7 +1046,7 @@ const SecondSection = () => {
                         type="tel"
                         placeholder="Phone Number"
                         name="phone"
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-sm"
+                        className="bg-transparent w-full outline-none placeholder-gray-400 text-xs"
                         value={inputValues.phone}
                         onChange={handleChange}
                         onFocus={() => handleFocus("phone")}
@@ -1077,7 +1078,7 @@ const SecondSection = () => {
                           type="file"
                           name="cv"
                           accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-                          className="bg-transparent w-full text-sm text-gray-400 file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-[var(--color-highlight)] file:text-black file:cursor-pointer hover:file:opacity-90"
+                          className="bg-transparent w-full text-xs text-gray-400 file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-[var(--color-highlight)] file:text-black file:cursor-pointer hover:file:opacity-90"
                           onChange={handleFileChange}
                           onFocus={() => handleFocus("cv")}
                           onBlur={handleBlur}
@@ -1209,7 +1210,7 @@ const SecondSection = () => {
                       <textarea
                         placeholder="Message"
                         name="message"
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-sm"
+                        className="bg-transparent w-full outline-none placeholder-gray-400 text-xs"
                         value={inputValues.message}
                         onChange={handleChange}
                         onFocus={() => handleFocus("message")}
