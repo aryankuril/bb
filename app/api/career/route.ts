@@ -204,8 +204,7 @@ export async function POST(request: NextRequest) {
 
     console.log("📧 Sending team notification email");
     const teamResult = await sendEmail({
-      // to: "careers@bombayblokes.com",
-      to: "yashyerunkar8@gmail.com",
+      to: "careers@bombayblokes.com",
       subject: `New Application - ${ticketName} for ${jobTitle || "Position"}`,
       html: teamNotification,
       fromName: "Careers Form",
