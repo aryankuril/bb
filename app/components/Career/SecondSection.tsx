@@ -968,7 +968,7 @@ const SecondSection = () => {
                 >
                   {/* Ticket Name */}
                   <div>
-                    <label className="block mb-1 white-text capitalize body2">
+                    <label className="block  white-text capitalize body3">
                       Your Ticket Name
                     </label>
 
@@ -988,7 +988,7 @@ const SecondSection = () => {
                         onChange={handleChange}
                         onFocus={() => handleFocus("ticketName")}
                         onBlur={handleBlur}
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-xs"
+                        className="bg-transparent w-full flex justify-items-start outline-none placeholder-gray-400 text-xs"
                       />
                     </div>
                     {errors.ticketName && (
@@ -1000,7 +1000,7 @@ const SecondSection = () => {
 
                   {/* Email */}
                   <div>
-                    <label className="block mb-1 white-text capitalize body2">
+                    <label className="block mb-1 white-text capitalize body3">
                       Where Should We Mail Your Platform Details?
                     </label>
                     <div
@@ -1031,7 +1031,7 @@ const SecondSection = () => {
 
                   {/* Phone */}
                   <div>
-                    <label className="block mb-1 white-text capitalize body2">
+                    <label className="block mb-1 white-text capitalize body3">
                       Your Local Train Hotline
                     </label>
                     <div
@@ -1046,7 +1046,7 @@ const SecondSection = () => {
                         type="tel"
                         placeholder="Phone Number"
                         name="phone"
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-xs"
+                        className="bg-transparent w-full outline-none  placeholder-gray-400 text-xs"
                         value={inputValues.phone}
                         onChange={handleChange}
                         onFocus={() => handleFocus("phone")}
@@ -1062,7 +1062,7 @@ const SecondSection = () => {
 
                   {/* CV Upload */}
                   <div>
-                    <label className="block mb-1 white-text capitalize body2">
+                    <label className="block mb-1 white-text capitalize body3">
                       Show Your Travel Card (CV)
                     </label>
                     <div
@@ -1097,7 +1097,7 @@ const SecondSection = () => {
 
                   {/* Availability */}
                   <div>
-                    <label className="block mb-1 white-text capitalize body2">
+                    <label className="block mb-1 white-text capitalize body3">
                       When Will You Board The Train?
                     </label>
                     <div className="grid grid-cols-2 gap-3">
@@ -1165,7 +1165,7 @@ const SecondSection = () => {
 
                   {/* Portfolio */}
                   <div>
-                    <label className="block mb-1 white-text capitalize body2">
+                    <label className="block mb-1 white-text capitalize body3">
                       Show Your Window View Work
                     </label>
                     <div
@@ -1196,7 +1196,7 @@ const SecondSection = () => {
 
                   {/* Message */}
                   <div>
-                    <label className="block mb-1 white-text capitalize body2">
+                    <label className="block mb-1 white-text capitalize body3">
                       Convince Us Like A TT Checking Tickets
                     </label>
                     <div
