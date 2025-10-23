@@ -58,7 +58,7 @@ const Taxi = () => {
 
   const bottomOffset =
     viewportWidth < 480
-      ? Math.max(viewportHeight * 0.12, 60)
+      ? Math.max(viewportHeight * 0.08, 60)
       : viewportWidth < 768
       ? Math.max(viewportHeight * 0.08, 40)
       : 20;
