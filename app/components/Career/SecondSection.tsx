@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 import React, { useState, ChangeEvent } from "react";
 import ContactButton from "../ContactButton";
 
@@ -894,7 +894,7 @@ const SecondSection = () => {
 
               {/* 🚩 Tag */}
               <span
-                className={`absolute top-2 right-3 px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 whitespace-nowrap
+                className={`absolute top-2 right-3 px-2 lg:px-3 py-1 rounded-md text-xs font-medium transition-colors duration-200 whitespace-nowrap
       ${
         activeJob.title === job.title
           ? "bg-black text-yellow-400"
