@@ -2,7 +2,7 @@ import React from 'react';
 
 const Firstsection = () => {
   return (
-    <section className="lg:mt-0 -mt-35 relative isolate w-full overflow-hidden">
+    <section className="lg:mt-0 -mt-20 relative isolate w-full overflow-hidden">
       {/* Wrapper: 9:16 on mobile, fixed 880px on desktop */}
       <div className="relative w-full h-full aspect-[9/16] md:h-[850px]">
         {/* Desktop Video */}

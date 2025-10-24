@@ -1,4 +1,4 @@
- "use client";
+"use client";
 import React, { useState, ChangeEvent } from "react";
 import ContactButton from "../ContactButton";
 
@@ -902,7 +902,7 @@ const SecondSection = () => {
 
               {/* 🚩 Tag */}
               <span
-  className={`absolute top-1/2 -translate-y-1/2 right-3 text-xs px-2 lg:px-3 py-1 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+  className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
     ${
       activeJob.title === job.title
         ? "bg-black text-yellow-400"
@@ -988,7 +988,11 @@ const SecondSection = () => {
                         onChange={handleChange}
                         onFocus={() => handleFocus("ticketName")}
                         onBlur={handleBlur}
-                        className="bg-transparent w-full flex justify-items-start outline-none placeholder-gray-400 text-xs"
+                        className={`
+          w-full bg-transparent 
+          white-text placeholder-gray-400
+          focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs
+        `}
                       />
                     </div>
                     {errors.ticketName && (
@@ -1019,7 +1023,9 @@ const SecondSection = () => {
                         onChange={handleChange}
                         onFocus={() => handleFocus("email")}
                         onBlur={handleBlur}
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-xs"
+                        className="w-full bg-transparent 
+                        white-text placeholder-gray-400
+                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
                       />
                     </div>
                     {errors.email && (
@@ -1046,7 +1052,9 @@ const SecondSection = () => {
                         type="tel"
                         placeholder="Phone Number"
                         name="phone"
-                        className="bg-transparent w-full outline-none  placeholder-gray-400 text-xs"
+                        className="w-full bg-transparent 
+                        white-text placeholder-gray-400
+                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
                         value={inputValues.phone}
                         onChange={handleChange}
                         onFocus={() => handleFocus("phone")}
@@ -1180,7 +1188,9 @@ const SecondSection = () => {
                         type="url"
                         name="portfolio" // ✅ must match state key exactly
                         placeholder="Portfolio Link (optional)"
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-sm"
+                        className="w-full bg-transparent 
+                        white-text placeholder-gray-400
+                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
                         value={inputValues.portfolio}
                         onChange={handleChange}
                         onFocus={() => handleFocus("portfolio")}
@@ -1210,7 +1220,9 @@ const SecondSection = () => {
                       <textarea
                         placeholder="Message"
                         name="message"
-                        className="bg-transparent w-full outline-none placeholder-gray-400 text-xs"
+                        className="w-full bg-transparent 
+                        white-text placeholder-gray-400
+                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
                         value={inputValues.message}
                         onChange={handleChange}
                         onFocus={() => handleFocus("message")}
@@ -1251,7 +1263,7 @@ const SecondSection = () => {
                       onClick={() => setIsFlipped(false)}
                       className="mt- text-[#FAB31E] text-sm hover:underline"
                     >
-                      ⬅ Back to Job List
+                      ⬅ Back to JD
                     </button>
                   </div>
                 </form>
