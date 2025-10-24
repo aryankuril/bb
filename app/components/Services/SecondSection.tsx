@@ -12,7 +12,7 @@ interface Card {
   link: string;
   shape: "square" | "rectangle" | "circle";
 }
-
+// 
 const cards: Card[] = [
   {
     title: "Web Development",
