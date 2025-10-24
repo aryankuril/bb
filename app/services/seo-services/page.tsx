@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "../../components/Navbar";
 import FirstSection from "../../components/ServicesInternal/SEO/FirstSection";
 // import SecondSection from "../components/ServicesInternal/SEO/SecondSection";
@@ -10,6 +11,12 @@ import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../components/Taxi'
 import MobilePopup from "@/app/components/MobilePopup";
+
+
+export const metadata: Metadata = {
+  title: "Best SEO Agency in Mumbai | Bombay Blokes",
+  description: "Looking to elevate your website traffic organically? Bombay Blokes, a leading SEO agency in Mumbai, offers comprehensive SEO services to help your business rank higher and grow faster.",
+};
 const Index = () => {
   return (
     <div>
