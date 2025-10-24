@@ -19,7 +19,7 @@ const links = [
   { href: "/aboutus", label: "About" },
   { href: "/work", label: "Work" },
   { href: "/teams", label: "Team" },
-  { href: "/career", label: "Careers" },
+  { href: "/join-our-team", label: "Careers" },
 ];
 
 export default function DesktopNav() {

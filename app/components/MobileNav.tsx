@@ -14,7 +14,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "CLIENTS", href: "/clients" },
   { label: "TEAM", href: "/teams" },
   { label: "CONTACT", href: "/contactus" },
-  { label: "CAREERS", href: "/career" },
+  { label: "CAREERS", href: "/join-our-team" },
 ];
  
 const BOTTOM_BAR_H = 68; // height of the bottom bar

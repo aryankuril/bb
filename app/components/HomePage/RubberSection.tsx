@@ -94,7 +94,7 @@ const RubberSection = () => {
       </motion.div>
 
       <div className="flex items-center justify-center py-10 z-40">
-        <Button href="/career" text="Join Our Team" className="text-black font-semibold" />
+        <Button href="/join-our-team" text="Join Our Team" className="text-black font-semibold" />
       </div>
     </section>
   );
