@@ -973,7 +973,7 @@ const SecondSection = () => {
                     </label>
 
                     <div
-                      className={`flex items-center border-b ${
+                      className={`flex items-end border-b ${
                         errors.ticketName
                           ? "border-red-500"
                           : "border-[var(--color-highlight)]"
@@ -988,11 +988,9 @@ const SecondSection = () => {
                         onChange={handleChange}
                         onFocus={() => handleFocus("ticketName")}
                         onBlur={handleBlur}
-                        className={`
-          w-full bg-transparent 
-          white-text placeholder-gray-400
-          focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs
-        `}
+                        className="w-full bg-transparent 
+                        white-text placeholder-gray-400
+                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
                       />
                     </div>
                     {errors.ticketName && (
@@ -1008,7 +1006,7 @@ const SecondSection = () => {
                       Where Should We Mail Your Platform Details?
                     </label>
                     <div
-                      className={`flex items-center border-b ${
+                      className={`flex items-end border-b ${
                         errors.email
                           ? "border-red-500"
                           : "border-[var(--color-highlight)]"
@@ -1041,7 +1039,7 @@ const SecondSection = () => {
                       Your Local Train Hotline
                     </label>
                     <div
-                      className={`flex items-center border-b ${
+                      className={`flex items-end border-b ${
                         errors.phone
                           ? "border-red-500"
                           : "border-[var(--color-highlight)]"
@@ -1177,7 +1175,7 @@ const SecondSection = () => {
                       Show Your Window View Work
                     </label>
                     <div
-                      className={`flex items-center border-b ${
+                      className={`flex items-end border-b ${
                         errors.portfolio
                           ? "border-red-500"
                           : "border-[var(--color-highlight)]"
