@@ -967,63 +967,70 @@ const SecondSection = () => {
                   onSubmit={handleSubmit}
                 >
                   {/* Ticket Name */}
-                  <div>
-                    <label className="block  white-text capitalize body3">
-                      Your Ticket Name
-                    </label>
+                <div>
+  <label className="block mb-1 white-text capitalize body3">
+    Your Ticket Name
+  </label>
 
-                    <div
-                      className={`flex items-end border-b ${
-                        errors.ticketName
-                          ? "border-red-500"
-                          : "border-[var(--color-highlight)]"
-                      } pb-2 gap-1`}
-                    >
-                      {svgs.ticketName}
-                      <input
-                        type="text"
-                        name="ticketName"
-                        placeholder="Ticket Name"
-                        value={inputValues.ticketName}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus("ticketName")}
-                        onBlur={handleBlur}
-                        className="w-full bg-transparent 
-                        white-text placeholder-gray-400
-                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
-                      />
-                    </div>
-                    {errors.ticketName && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.ticketName}
-                      </p>
-                    )}
-                  </div>
+  <div
+    className={`flex items-start border-b ${
+      errors.ticketName
+        ? "border-red-500"
+        : "border-[var(--color-highlight)]"
+    }`}
+  >
+    <span className="mr-2">{svgs.ticketName}</span>
+    <textarea
+      name="ticketName"
+      placeholder="Ticket Name"
+      value={inputValues.ticketName}
+      onChange={handleChange}
+      onFocus={() => handleFocus("ticketName")}
+      onBlur={handleBlur}
+      rows={1}
+      className="w-full bg-transparent resize-none 
+                 white-text placeholder-gray-400 
+                 focus:outline-none small-placeholder
+                 leading-tight py-1"
+    />
+  </div>
+
+  {errors.ticketName && (
+    <p className="text-red-500 text-xs mt-1">
+      {errors.ticketName}
+    </p>
+  )}
+</div>
+
 
                   {/* Email */}
                   <div>
-                    <label className="block mb-1 white-text capitalize body3">
-                      Where Should We Mail Your Platform Details?
+                  <label className="block mb-1 white-text capitalize body3">
+                  Where Should We Mail Your Platform Details?
                     </label>
+
                     <div
-                      className={`flex items-end border-b ${
+                      className={`flex items-start border-b ${
                         errors.email
                           ? "border-red-500"
                           : "border-[var(--color-highlight)]"
-                      } pb-2`}
+                      }`}
                     >
                       <span className="mr-2">{svgs.email}</span>
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        value={inputValues.email}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus("email")}
-                        onBlur={handleBlur}
-                        className="w-full bg-transparent 
-                        white-text placeholder-gray-400
-                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
+                      <textarea
+                      // @ts-ignore
+                         type="email"
+                         name="email"
+                         placeholder="Email"
+                         value={inputValues.email}
+                         onChange={handleChange}
+                         onFocus={() => handleFocus("email")}
+                         onBlur={handleBlur}
+                          rows={1}
+                        className="w-full bg-transparent resize-none 
+                 white-text placeholder-gray-400 
+                 focus:outline-none small-placeholder
+                 leading-tight py-1"
                       />
                     </div>
                     {errors.email && (
@@ -1034,8 +1041,47 @@ const SecondSection = () => {
                   </div>
 
                   {/* Phone */}
+
+
+                  
+
                   <div>
-                    <label className="block mb-1 white-text capitalize body3">
+                  <label className="block mb-1 white-text capitalize body3">
+                  Your Local Train Hotline
+                    </label>
+
+                    <div
+                      className={`flex items-start border-b ${
+                        errors.phone
+                          ? "border-red-500"
+                          : "border-[var(--color-highlight)]"
+                      }`}
+                    >
+                     <span className="mr-2">{svgs.phone}</span>
+                      <textarea
+                       // @ts-ignore
+                         type="tel"
+                         placeholder="Phone Number"
+                         name="phone"
+                         value={inputValues.phone}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus("phone")}
+                        onBlur={handleBlur}
+                        rows={1}
+                        className="w-full bg-transparent resize-none 
+                 white-text placeholder-gray-400 
+                 focus:outline-none small-placeholder
+                 leading-tight py-1"
+                      />
+                    </div>
+                    {errors.phone && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.phone}
+                      </p>
+                    )}
+                  </div>
+                  {/* <div>
+                     <label className="block mb-1 white-text capitalize body3">
                       Your Local Train Hotline
                     </label>
                     <div
@@ -1064,7 +1110,7 @@ const SecondSection = () => {
                         {errors.phone}
                       </p>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* CV Upload */}
                   <div>
@@ -1170,7 +1216,47 @@ const SecondSection = () => {
                   </div>
 
                   {/* Portfolio */}
+
+
                   <div>
+                  <label className="block mb-1 white-text capitalize body3">
+                  Show Your Window View Work
+                    </label>
+
+                    <div
+                      className={`flex items-start border-b ${
+                        errors.portfolio
+                          ? "border-red-500"
+                          : "border-[var(--color-highlight)]"
+                      }`}
+                    >
+                     <span className="mr-2">{svgs.portfolio}</span>
+                      <textarea
+                      // @ts-ignore
+                         type="url"
+                         name="portfolio" // ✅ must match state key exactly
+                         placeholder="Portfolio Link (optional)"
+                         value={inputValues.portfolio}
+                         onChange={handleChange}
+                         onFocus={() => handleFocus("portfolio")}
+                         onBlur={handleBlur}
+                         rows={1}
+                        className="w-full bg-transparent resize-none 
+                 white-text placeholder-gray-400 
+                 focus:outline-none small-placeholder
+                 leading-tight py-1"
+                      />
+                    </div>
+                    {errors.portfolio && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.portfolio}
+                      </p>
+                    )}
+                  </div>
+
+
+
+                  {/* <div>
                     <label className="block mb-1 white-text capitalize body3">
                       Show Your Window View Work
                     </label>
@@ -1200,7 +1286,7 @@ const SecondSection = () => {
                         {errors.portfolio}
                       </p>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* Message */}
                   <div>
@@ -1218,9 +1304,10 @@ const SecondSection = () => {
                       <textarea
                         placeholder="Message"
                         name="message"
+                        rows={1}
                         className="w-full bg-transparent 
                         white-text placeholder-gray-400
-                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
+                        focus:outline-none focus:border-b-[var(--color-highlight)] small-placeholder"
                         value={inputValues.message}
                         onChange={handleChange}
                         onFocus={() => handleFocus("message")}

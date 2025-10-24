@@ -91,6 +91,13 @@ body {
    HEADINGS (Desktop Defaults)
    ========================================= */
 
+
+   .small-placeholder::placeholder {
+  font-size: 15px;
+}
+
+
+
 h1 {
   font-family: var(--font-bold-miso);
   font-size: var(--h1-size); /* ✅ Hero Section heading */

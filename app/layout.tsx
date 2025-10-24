@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
       <head>
-        
+        <meta name="robots" content="noindex, nofollow" />
         <meta name="google-site-verification" content="vcgYWAz5xbO_xhFBzKSTAJuBzaum2orDl7K2CaoMTPw" />
         <link rel="icon" href="images/favicon.png" type="image/png" />
       </head>
