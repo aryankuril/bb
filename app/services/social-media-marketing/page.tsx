@@ -21,6 +21,7 @@ const Index = () => {
   return (
     <div>
       {/* <ClientScripts/> */}
+      {/* all good */}
        <MobilePopup/>
       <Taxi/>
       <Navbar />
