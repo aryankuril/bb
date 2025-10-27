@@ -108,7 +108,7 @@ const SecondSection = () => {
 
         {/* ✅ Mobile SVG Path */}
         <svg
-          className="block lg:hidden absolute left-[30px] top-[300px] w-[359px] h-[700px] z-0 pointer-events-none"
+          className="block lg:hidden absolute left-[30px] top-[300px] w-[359px] h-[1000px] z-0 pointer-events-none"
           viewBox="0 0 359 2190"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

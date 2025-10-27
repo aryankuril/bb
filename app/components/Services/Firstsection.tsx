@@ -42,7 +42,7 @@ const Firstsection = () => {
             <img
               src="/images/service-station.png"
               alt="Decorative element"
-              className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-81 h-auto"
+              className="w-20 sm:w-40 md:w-48 lg:w-56 xl:w-53 h-auto"
             />
           </div>
         </div>
@@ -52,7 +52,7 @@ const Firstsection = () => {
           initial={{ x: "-120%" }}
           animate={
             isMobile
-              ? { x: 80 }             // 🚫 No movement on mobile
+              ? { x: 100 }             // 🚫 No movement on mobile
               : inView
               ? { x: 550 }           // ✅ Animate on larger screens
               : {}

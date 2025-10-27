@@ -358,7 +358,7 @@ const SecondSection = () => {
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
       <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
         {/* Left Side Image */}
-        <div className="lg:p-10 p-5  flex items-center justify-center">
+        <div className="lg:p-10 p-6  flex items-center justify-center">
           <img
             src="/images/panipuricart.png" // replace with your image path
             alt="Pani Puri Cart"
@@ -367,7 +367,7 @@ const SecondSection = () => {
         </div>
 
         {/* Right Side Form */}
-        <div className="p-4 sm:p-5 md:p-5 white-text relative">
+        <div className="p-6 sm:p-5 md:p-5 white-text relative">
           <div className="flex items-center justify-start gap-4">
             <h3
               className="
@@ -457,7 +457,7 @@ const SecondSection = () => {
                 And I’m Keen To Get A Taste Of Your
               </label>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {services.map((service, index) => {
                   const isActive = selectedServices.includes(service.name);
 
@@ -467,7 +467,7 @@ const SecondSection = () => {
                       type="button"
                       onClick={() => handleServiceToggle(service.name)}
                       className={`
-          flex gap-5 px-3 py-3 rounded-[10px] border 
+          flex lg:gap-5 gap-3 px-3 py-3 rounded-[10px] border 
           w-full transition cursor-pointer
           ${
             isActive

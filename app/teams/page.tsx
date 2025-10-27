@@ -15,7 +15,7 @@ const Index = () => {
   return (
     <div>
     {/* <ClientScripts/> */}
-     <MobilePopup/>
+     <MobilePopup/> 
       <Taxi/>
         <Navbar />
         <Firstsection />

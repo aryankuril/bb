@@ -1,34 +1,35 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
+import AnimatedButton from "../../AnimatedButton";
 
 const WorkflowSection: React.FC = () => {
-  const workflowSteps = [
-    {
-      title: "Improves Visibility",
-      description:
-        "SEO helps search engine crawlers easily find and index your site so it appears higher in search results.",
-      tags: ["Crawlers", "Indexing", "Search Results"],
-    },
-    {
-      title: "Targets the Right Audience",
-      description:
-        "By guiding crawlers with optimized keywords and content, SEO ensures your site reaches users who are actively searching for your services.",
-      tags: ["Keywords", "User Intent", "Relevance"],
-    },
-    {
-      title: "Optimizes User Experience",
-      description:
-        "SEO makes your site fast, mobile-friendly, and well-structured so both crawlers and people can navigate it with ease.",
-      tags: ["Speed", "Mobile-Friendly", "Site Structure"],
-    },
-    {
-      title: "Builds Authority & Trust",
-      description:
-        "When crawlers detect high-quality backlinks and strong content, they rank your site as more credible and trustworthy.",
-      tags: ["Backlinks", "Content Quality", "Authority"],
-    },
-  ];
+const workflowSteps = [
+  {
+    title: "Targets Precisely",
+    description:
+      "With data-driven insights, we reach the right audience at the right time with the right message.",
+    tags: ["Targeting", "Audience", "Personalization"],
+  },
+  {
+    title: "Optimizes Continuously",
+    description:
+      "Through A/B testing and real-time adjustments, campaigns get smarter and perform better every day.",
+    tags: ["A/B Testing", "Optimization", "Scaling"],
+  },
+  {
+    title: "Delivers Measurable Growth",
+    description:
+      "Every rupee spent is tracked, ensuring transparent performance, measurable ROI, and sustainable results.",
+    tags: ["ROI", "Analytics", "Transparency"],
+  },
+  {
+    title: "Strengthens Brand Recall",
+    description:
+      "By maintaining consistent visuals and messaging across channels, we create lasting impressions that drive loyalty.",
+    tags: ["Branding", "Consistency", "Engagement"],
+  },
+];
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -106,14 +107,24 @@ const WorkflowSection: React.FC = () => {
                 </div>
                 <p className="white-text body2">{step.description}</p>
                 <div className="flex flex-wrap gap-2">
-                  {step.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="bg-[var(--color-highlight)] black-text body3 px-3 capitalize sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {/* {step.tags.map((tag, tagIndex) => (
+                                     <span
+                                       key={tagIndex}
+                                       className=" bg-[var(--color-highlight)] black-text body3 px-3 capitalize sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
+                                     >
+                                       {tag}
+                                     </span>
+                                   ))} */}
+                 
+                                   {step.tags.map((tag, tagIndex) => (
+                                     <span
+                                       key={tagIndex}
+                                       className="  black-text body4 capitalize "
+                                     >
+                                         <AnimatedButton text={tag} href="/" index={tagIndex} />
+                                       {/* {tag} */}
+                                     </span>
+                                   ))}
                 </div>
               </div>
             </div>

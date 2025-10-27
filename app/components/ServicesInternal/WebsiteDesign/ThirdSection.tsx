@@ -1,6 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
+import AnimatedButton from "../../AnimatedButton";
 
 const WorkflowSection: React.FC = () => {
 const workflowSteps = [
@@ -131,12 +132,22 @@ const workflowSteps = [
                   {step.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {step.tags.map((tag, tagIndex) => (
+                  {/* {step.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
                       className=" bg-[var(--color-highlight)] black-text body3 px-3 capitalize sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
                     >
                       {tag}
+                    </span>
+                  ))} */}
+
+                  {step.tags.map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className="  black-text body4 capitalize "
+                    >
+                        <AnimatedButton text={tag} href="/" index={tagIndex} />
+                      {/* {tag} */}
                     </span>
                   ))}
                 </div>

@@ -146,7 +146,7 @@ export default function SecondSection() {
   return (
     <section id="second-section" className="relative container w-full py-10 sm:py-[60px] lg:py-20">
       {/* Section Heading */}
-      <div className="flex items-center justify-center w-full mx-auto lg:mb-50 ">
+      <div className="flex items-center justify-center w-full mx-auto lg:mb-50 lg:py-0 py-10">
         <h1 className="text-center black-text">
           Our Evolution: Designing the Future of Brands 
           <span className="text-highlight"> Since 2015</span>

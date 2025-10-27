@@ -401,7 +401,7 @@ const SecondSection = () => {
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
       <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
         {/* Left Side Image */}
-        <div className="flex items-stretch justify-center p-10">
+        <div className="flex items-stretch justify-center p-6">
           <img
             src="/images/panipuricart1.png"
             alt="Pani Puri Cart"
@@ -410,11 +410,11 @@ const SecondSection = () => {
         </div>
 
         {/* Right Side Form */}
-        <div className="p-4 sm:p-5 md:p-5 lg:mt-10 white-text relative">
+        <div className="p-6 sm:p-5 md:p-8 lg:mt-10 white-text relative">
           <div className="flex items-center justify-start gap-4">
             <h3
               className="
-      white-text
+      white-text lg:mb-0 mb-5
     "
             >
               Start Your <span className="text-highlight">Journey</span> now
@@ -436,8 +436,8 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-    block white-text body2
-    mb-1
+    block white-text  body3
+   
   "
               >
                 Registered Company Name <span className="text-red-500">*</span>
@@ -453,13 +453,13 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("companyName")}
                   onBlur={() => handleBlur("companyName")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-8 py-2 bg-transparent 
           border-0 border-b-2 ${
             errors.companyName
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -510,8 +510,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-    block white-text body2
-    mb-1
+    block white-text body3
   "
               >
                 Brand Name
@@ -527,13 +526,13 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("brandName")}
                   onBlur={() => handleBlur("brandName")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-8 py-2 bg-transparent 
           border-0 border-b-2 ${
             errors.brandName
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -565,8 +564,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-    block white-text body2
-    mb-1
+    block white-text  body3
   "
               >
                 Industry <span className="text-red-500">*</span>
@@ -582,13 +580,13 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("industry")}
                   onBlur={() => handleBlur("industry")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-8 py-2 bg-transparent 
           border-0 border-b-2 ${
             errors.industry
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -619,8 +617,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-    block white-text body2
-    mb-1
+    block white-text  body3
   "
               >
                 GSTIN
@@ -636,13 +633,13 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("gstin")}
                   onBlur={() => handleBlur("gstin")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-8 py-2 bg-transparent 
           border-0 border-b-2 ${
             errors.gstin
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400  small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -672,14 +669,14 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-          block white-text body2
-    mb-3
-        "
+          block white-text body3
+    mb-3 
+         "
               >
                 Select Service <span className="text-red-500">*</span>
               </label>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {services.map((service, index) => {
                   const isActive = selectedServices.includes(service.name);
 
@@ -689,8 +686,8 @@ const SecondSection = () => {
                       type="button"
                       onClick={() => handleServiceToggle(service.name)}
                       className={`
-          flex gap-5 px-3 py-3 rounded-[10px] border 
-          w-full transition cursor-pointer
+          flex lg:gap-5 gap-3 px-3 py-3 rounded-[10px] border 
+          w-full transition cursor-pointer 
           ${
             isActive
               ? "bg-[var(--color-highlight)] text-[var(--color-pirmary)] border-[var(--color-highlight)]"
@@ -716,8 +713,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-          block white-text body2
-          mb-1
+          block white-text  body3
         "
               >
                 Contact Person <span className="text-red-500">*</span>
@@ -732,13 +728,13 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("contactPerson")}
                   onBlur={() => handleBlur("contactPerson")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-8 py-2 bg-transparent 
           border-0 border-b-2 ${
             errors.contactPerson
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -781,8 +777,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-          block white-text body2
-          mb-1
+          block white-text  body3
         "
               >
                 You Can Send The Sukha Puri (Your Reply!) Over To{" "}
@@ -798,13 +793,13 @@ const SecondSection = () => {
                   onBlur={() => handleBlur("email")}
                   onChange={handleChange}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-8 py-2 bg-transparent 
           border-0 border-b-2 ${
             errors.email
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -832,8 +827,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-          block white-text body2
-          mb-1
+          block white-text  body3
         "
               >
                 Or Just Give Me A Call At{" "}
@@ -849,13 +843,13 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("phone")}
                   onBlur={() => handleBlur("phone")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-8 py-2 bg-transparent 
           border-0 border-b-2 ${
             errors.phone
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -895,8 +889,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-          block white-text body2
-          mb-1
+          block white-text  body3
         "
               >
                 Registered Address
@@ -911,13 +904,13 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("address")}
                   onBlur={() => handleBlur("address")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-8 py-2 bg-transparent 
           border-0 border-b-2 ${
             errors.address
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -961,8 +954,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-          block white-text body2
-          mb-1
+          block white-text  body3
         "
               >
                 Your Website
@@ -977,13 +969,13 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("website")}
                   onBlur={() => handleBlur("website")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-8 py-2 bg-transparent 
           border-0 border-b-2 ${
             errors.website
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />

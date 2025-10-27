@@ -1,6 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
+import AnimatedButton from "../../AnimatedButton";
 
 const WorkflowSection: React.FC = () => {
   const workflowSteps = [
@@ -13,19 +14,19 @@ const WorkflowSection: React.FC = () => {
     {
       title: "Targets the Right Audience",
       description:
-        "By guiding crawlers with optimized keywords and content, SEO ensures your site reaches users who are actively searching for your services.",
+      " SEO uses optimized keywords to help your site reach people actively searching for your services.",
       tags: ["Keywords", "User Intent", "Relevance"],
     },
     {
       title: "Optimizes User Experience",
       description:
-        "SEO makes your site fast, mobile-friendly, and well-structured so both crawlers and people can navigate it with ease.",
+        "SEO ensures your site is fast, mobile-friendly, and easy to navigate.",
       tags: ["Speed", "Mobile-Friendly", "Site Structure"],
     },
     {
       title: "Builds Authority & Trust",
       description:
-        "When crawlers detect high-quality backlinks and strong content, they rank your site as more credible and trustworthy.",
+        "High-quality backlinks and content make your site more credible to search engines.",
       tags: ["Backlinks", "Content Quality", "Authority"],
     },
   ];
@@ -106,14 +107,24 @@ const WorkflowSection: React.FC = () => {
                 </div>
                 <p className="white-text body2">{step.description}</p>
                 <div className="flex flex-wrap gap-2">
-                  {step.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="bg-[var(--color-highlight)] black-text body3 px-3 capitalize sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  {/* {step.tags.map((tag, tagIndex) => (
+                                     <span
+                                       key={tagIndex}
+                                       className=" bg-[var(--color-highlight)] black-text body3 px-3 capitalize sm:px-4 md:px-3 py-1 rounded-[20px] sm:rounded-[25px] md:rounded-[30px]"
+                                     >
+                                       {tag}
+                                     </span>
+                                   ))} */}
+                 
+                                   {step.tags.map((tag, tagIndex) => (
+                                     <span
+                                       key={tagIndex}
+                                       className="  black-text body4 capitalize "
+                                     >
+                                         <AnimatedButton text={tag} href="/" index={tagIndex} />
+                                       {/* {tag} */}
+                                     </span>
+                                   ))}
                 </div>
               </div>
             </div>

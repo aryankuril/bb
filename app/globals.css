@@ -336,7 +336,9 @@ h6 {
 }
 
 
-
+.small-placeholder::placeholder {
+  font-size: var(--body4-size);
+}
 
 
 /* servicesPage SeventhSection Text Animation */

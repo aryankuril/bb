@@ -40,11 +40,11 @@ const Firstsection = () => {
           </div>
 
           {/* Station Board */}
-          <div className="lg:absolute lg:top-10 top-15 lg:right-15 right-5 flex justify-end w-full lg:w-auto">
+          <div className="lg:absolute lg:top-14 top-26 lg:right-15 right-5 flex justify-end w-full lg:w-auto">
             <img
               src="/images/work-station.png"
               alt="Decorative element"
-              className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-81 h-auto"
+              className="w-20 sm:w-40 md:w-48 lg:w-56 xl:w-50 h-auto"
             />
           </div>
         </div>
