@@ -18,6 +18,7 @@ const cardsData = [
     url: "https://bbstudios.bombayblokes.com",
   },
   {
+
     title: "BomB AI",
     tags: ["Ai", "Analytics"],
     content:
@@ -194,12 +195,15 @@ export default function StackingCards() {
                 {/* ------- TRANSPARENT CLICK OVERLAY (non-invasive) ------- */}
                 {/* This overlay sits on top and makes the whole card clickable without changing layout or animations */}
                 <a
-                  href={card.url}
-                  aria-label={`Open ${card.title}`}
-                  className="absolute inset-0 z-50 block"
-                  style={{ pointerEvents: "auto", background: "transparent" }}
-                  tabIndex={0}
-                />
+  href={card.url}
+  aria-label={`Open ${card.title}`}
+  className="absolute inset-0 z-50 block"
+  style={{ pointerEvents: "auto", background: "transparent" }}
+  tabIndex={0}
+  target="_blank"
+  rel="noopener noreferrer"
+/>
+
               </div>
             ))}
           </div>

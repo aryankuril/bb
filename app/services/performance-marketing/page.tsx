@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Navbar from "../../components/Navbar";
-import FirstSection from "../../components/ServicesInternal/PerformanceMaketing/FirstSection";
+import FirstSection from "../../components/ServicesInternal/PerformanceMarketing/FirstSection";
 // import SecondSection from "../components/ServicesInternal/PerformanceMaketing/SecondSection";
-import ThirdSection from "../../components/ServicesInternal/PerformanceMaketing/ThirdSection";
-import FourthSection from "../../components/ServicesInternal/PerformanceMaketing/FourthSection";
-import FifthSection from "../../components/ServicesInternal/PerformanceMaketing/FifthSection";
-import SixthSection from "../../components/ServicesInternal/PerformanceMaketing/SixthSection";
-import SeventhSection from "../../components/ServicesInternal/PerformanceMaketing/SeventhSection";
+import ThirdSection from "../../components/ServicesInternal/PerformanceMarketing/ThirdSection";
+import FourthSection from "../../components/ServicesInternal/PerformanceMarketing/FourthSection";
+import FifthSection from "../../components/ServicesInternal/PerformanceMarketing/FifthSection";
+import SixthSection from "../../components/ServicesInternal/PerformanceMarketing/SixthSection";
+import SeventhSection from "../../components/ServicesInternal/PerformanceMarketing/SeventhSection";
 import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../components/Taxi'

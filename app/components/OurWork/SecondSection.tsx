@@ -87,7 +87,7 @@ const SecondSection = () => {
 
   return (
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
-      <h2 className="black-text mr-4 lg:mb-5 mb-4">Services</h2>
+      <h2 className="black-text mr-4 lg:mb-5 mb-4">Case Studies</h2>
 
       {/* Category Scroll Buttons */}
       <div

@@ -1,10 +1,9 @@
 "use client";
- 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "../Button";
- 
+import Image from "next/image";
 const images = [
   "/images/bomai1.webp",
   "/images/bomai2.webp",
@@ -13,19 +12,21 @@ const images = [
   "/images/bomai5.webp",
   "/images/bomai6.webp",
 ];
- 
 gsap.registerPlugin(ScrollTrigger);
- 
 export default function BombAISection() {
   const root = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const labelRef = useRef<HTMLSpanElement | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
- 
   const INITIAL_TEXT = "Click To Generate Your AI Images";
   const NEW_TEXT = "Future-ready content, crafted with AI at BB.";
   const [labelText, setLabelText] = useState(INITIAL_TEXT);
- 
+  const [showImages, setShowImages] = useState<boolean[]>(
+    new Array(images.length).fill(false)
+  );
+  const imageTimersRef = useRef<(NodeJS.Timeout | null)[]>(
+    new Array(images.length).fill(null)
+  );
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -35,11 +36,14 @@ export default function BombAISection() {
           once: true,
         },
       });
- 
-      tl.from(".bomb-card", { y: 50, opacity: 10, duration: 0.8, ease: "power3.out" })
+      tl.from(".bomb-card", {
+        y: 50,
+        opacity: 10,
+        duration: 0.8,
+        ease: "power3.out",
+      })
         .from(".bomb-strip", { x: 50, opacity: 10, duration: 0.2 }, "-=0.4")
         .from(".bomb-cta", { y: 20, opacity: 10, duration: 0.6 }, "-=0.2");
- 
       const proxy = { count: INITIAL_TEXT.length };
       tl.to(proxy, {
         count: 0,
@@ -49,17 +53,23 @@ export default function BombAISection() {
           const n = Math.floor(proxy.count);
           setLabelText(INITIAL_TEXT.slice(0, n));
           if (labelRef.current) {
-            gsap.to(labelRef.current, { opacity: n === 0 ? 0 : 0.6 + 0.4 * (n / INITIAL_TEXT.length), duration: 0.1 });
+            gsap.to(labelRef.current, {
+              opacity: n === 0 ? 0 : 0.6 + 0.4 * (n / INITIAL_TEXT.length),
+              duration: 0.1,
+            });
           }
         },
       });
- 
       tl.add(() => {
         setLabelText(NEW_TEXT);
         if (labelRef.current) gsap.set(labelRef.current, { opacity: 0, y: 20 });
       });
-      tl.to(labelRef.current, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
- 
+      tl.to(labelRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      });
       tl.add(() => {
         if (!cardRef.current) return;
         const target = cardRef.current.scrollHeight;
@@ -69,19 +79,29 @@ export default function BombAISection() {
           ease: "power2.out",
         });
       }, "+=0.0");
- 
-      tl.from(gridRef.current?.children || [], {
-        opacity: 0,
-        y: 40,
-        stagger: 0.11,
-        duration: 0.6,
-        ease: "power2.out",
-      }, "<");
+      tl.from(
+        gridRef.current?.children || [],
+        {
+          opacity: 0,
+          y: 40,
+          stagger: 0.11,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "<"
+      );
     }, root);
- 
     return () => ctx.revert();
   }, []);
- 
+  // Cleanup timers on unmount
+  useEffect(() => {
+    const timers = imageTimersRef.current;
+    return () => {
+      timers.forEach((timer) => {
+        if (timer) clearTimeout(timer);
+      });
+    };
+  }, []);
   return (
     <section
       ref={root}
@@ -100,7 +120,6 @@ export default function BombAISection() {
             /* #FAB31E -> var(--color-highlight) */
             style={{ backgroundColor: "var(--color-highlight)" }}
           />
- 
           <div className="relative z-10 flex flex-col items-center justify-start h-full px-5 py-10 sm:py-14 md:py-16">
             <h1
               /* heading text color */
@@ -108,7 +127,6 @@ export default function BombAISection() {
             >
               Bomb.AI
             </h1>
- 
             <button
               type="button"
               className="bomb-cta mt-8 w-full max-w-[900px] rounded-full border text-left outline-none transition focus-visible:ring-4 active:scale-[0.99]"
@@ -124,16 +142,27 @@ export default function BombAISection() {
                 <span
                   className="grid h-10 w-10 place-items-center rounded-full border"
                   /* border color */
-                  style={{ borderColor: "var(--color-highlight)", color: "var(--color-highlight)" }}
+                  style={{
+                    borderColor: "var(--color-highlight)",
+                    color: "var(--color-highlight)",
+                  }}
                 >
                   {/* stroke inherits currentColor from span */}
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M12 1a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
                     <path d="M19 10a7 7 0 0 1-14 0" />
                     <path d="M12 17v6" />
                   </svg>
                 </span>
- 
                 <span
                   ref={labelRef}
                   className="flex-1 text-sm sm:text-base font-['Poppins']"
@@ -142,41 +171,109 @@ export default function BombAISection() {
                 >
                   {labelText}
                 </span>
- 
                 <div className="flex items-center gap-2 sm:gap-3">
                   <span
                     className="grid h-9 w-9 place-items-center rounded-full border"
                     /* border + icon color */
-                    style={{ borderColor: "var(--color-highlight)", color: "var(--color-highlight)" }}
+                    style={{
+                      borderColor: "var(--color-highlight)",
+                      color: "var(--color-highlight)",
+                    }}
                   >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <path d="M12 5v14M5 12h14" />
                     </svg>
                   </span>
- 
                   <span
                     className="grid h-9 w-9 place-items-center rounded-full border"
                     /* border + bars color */
-                    style={{ borderColor: "var(--color-highlight)", color: "var(--color-highlight)" }}
+                    style={{
+                      borderColor: "var(--color-highlight)",
+                      color: "var(--color-highlight)",
+                    }}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 30 31" fill="none">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 30 31"
+                      fill="none"
+                    >
                       {/* fills use currentColor */}
-                      <path fillRule="evenodd" clipRule="evenodd" d="M5.97955 11.2258V19.7744C5.97955 20.5319 4.5918 20.5319 4.5918 19.7744V11.2258C4.5918 10.4684 5.97955 10.4684 5.97955 11.2258Z" fill="currentColor"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M8.75519 8.85276V22.1476C8.75519 22.905 7.36743 22.905 7.36743 22.1476V8.85276C7.36743 8.0953 8.75519 8.0953 8.75519 8.85276Z" fill="currentColor"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M11.5306 13.5251V17.4758C11.5306 18.2333 10.1428 18.2333 10.1428 17.4758V13.5251C10.1428 12.7677 11.5306 12.7677 11.5306 13.5251Z" fill="currentColor"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M14.3062 11.0744V19.9257C14.3062 20.6832 12.9185 20.6832 12.9185 19.9257V11.0744C12.9185 10.317 14.3062 10.317 14.3062 11.0744Z" fill="currentColor"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M17.0816 6.35618V24.6444C17.0816 25.4018 15.6938 25.4018 15.6938 24.6444V6.35618C15.6938 5.59872 17.0816 5.59872 17.0816 6.35618Z" fill="currentColor"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M19.857 8.85421V22.1464C19.857 22.9038 18.4692 22.9039 18.4692 22.1464V8.85423C18.4692 8.09678 19.857 8.09676 19.857 8.85421Z" fill="currentColor"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M22.6326 12.9885V18.0122C22.6326 18.7697 21.2449 18.7697 21.2449 18.0122V12.9885C21.2449 12.231 22.6326 12.231 22.6326 12.9885Z" fill="currentColor"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M25.4083 11.2263V19.7739C25.4083 20.5314 24.0205 20.5314 24.0205 19.7739V11.2263C24.0205 10.4688 25.4083 10.4688 25.4083 11.2263Z" fill="currentColor"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M28.1837 12.987V18.0135C28.1837 18.7709 26.7959 18.7709 26.7959 18.0135V12.987C26.7959 12.2296 28.1837 12.2296 28.1837 12.987Z" fill="currentColor"/>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M3.20416 12.987V18.0135C3.20416 18.7709 1.81641 18.7709 1.81641 18.0135V12.987C1.81641 12.2296 3.20416 12.2296 3.20416 12.987Z" fill="currentColor"/>
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M5.97955 11.2258V19.7744C5.97955 20.5319 4.5918 20.5319 4.5918 19.7744V11.2258C4.5918 10.4684 5.97955 10.4684 5.97955 11.2258Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M8.75519 8.85276V22.1476C8.75519 22.905 7.36743 22.905 7.36743 22.1476V8.85276C7.36743 8.0953 8.75519 8.0953 8.75519 8.85276Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M11.5306 13.5251V17.4758C11.5306 18.2333 10.1428 18.2333 10.1428 17.4758V13.5251C10.1428 12.7677 11.5306 12.7677 11.5306 13.5251Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M14.3062 11.0744V19.9257C14.3062 20.6832 12.9185 20.6832 12.9185 19.9257V11.0744C12.9185 10.317 14.3062 10.317 14.3062 11.0744Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M17.0816 6.35618V24.6444C17.0816 25.4018 15.6938 25.4018 15.6938 24.6444V6.35618C15.6938 5.59872 17.0816 5.59872 17.0816 6.35618Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M19.857 8.85421V22.1464C19.857 22.9038 18.4692 22.9039 18.4692 22.1464V8.85423C18.4692 8.09678 19.857 8.09676 19.857 8.85421Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M22.6326 12.9885V18.0122C22.6326 18.7697 21.2449 18.7697 21.2449 18.0122V12.9885C21.2449 12.231 22.6326 12.231 22.6326 12.9885Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M25.4083 11.2263V19.7739C25.4083 20.5314 24.0205 20.5314 24.0205 19.7739V11.2263C24.0205 10.4688 25.4083 10.4688 25.4083 11.2263Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M28.1837 12.987V18.0135C28.1837 18.7709 26.7959 18.7709 26.7959 18.0135V12.987C26.7959 12.2296 28.1837 12.2296 28.1837 12.987Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M3.20416 12.987V18.0135C3.20416 18.7709 1.81641 18.7709 1.81641 18.0135V12.987C1.81641 12.2296 3.20416 12.2296 3.20416 12.987Z"
+                        fill="currentColor"
+                      />
                     </svg>
                   </span>
                 </div>
               </div>
             </button>
- 
             <div
               ref={gridRef}
               className="mt-16 grid gap-4 w-full max-w-4xl grid-cols-2 sm:grid-cols-3 "
@@ -184,29 +281,54 @@ export default function BombAISection() {
               {images.map((src, i) => (
                 <div
                   key={i}
-                  className="aspect-square rounded-xl overflow-hidden flex items-center justify-center bg-gray-700/40"
+                  className="aspect-square rounded-xl overflow-hidden flex items-center justify-center bg-gray-700/40 relative"
                 >
-                  <img
+                  {/* Skeleton Loader */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r from-gray-700/60 via-gray-600/60 to-gray-700/60 bg-[length:200%_100%] animate-shimmer transition-opacity duration-500 ${
+                      showImages[i] ? "opacity-0" : "opacity-100"
+                    }`}
+                    style={{
+                      animation: showImages[i] ? "none" : "shimmer 2s infinite",
+                    }}
+                  />
+                  {/* Actual Image */}
+                  <Image
                     src={src}
-                    alt={`Image ${i + 1}`}
-                    className="w-full h-full object-cover"
+                    alt={`AI Generated Image ${i + 1}`}
+                    width={400}
+                    height={400}
+                    className={`w-full h-full object-cover transition-opacity duration-500 ${
+                      showImages[i] ? "opacity-100" : "opacity-0"
+                    }`}
+                    onLoad={() => {
+                      const baseDelay = 4200;
+                      const staggerDelay = i * 500;
+                      const minDisplayTime = baseDelay + staggerDelay;
+                      if (imageTimersRef.current[i]) {
+                        clearTimeout(imageTimersRef.current[i]!);
+                      }
+                      imageTimersRef.current[i] = setTimeout(() => {
+                        setShowImages((prev) => {
+                          const newState = [...prev];
+                          newState[i] = true;
+                          return newState;
+                        });
+                      }, minDisplayTime);
+                    }}
                   />
                 </div>
               ))}
-
-
             </div>
-          <div className="flex justify-center items-center py-10">
-  <Button
-    href="https://bbstudios.bombayblokes.com/bomb.ai"
-    text="Explore Our Work"
-    className="text-white font-semibold"
-    target="_blank"
-    rel="noopener noreferrer"
-  />
-</div>
-
-
+            <div className="flex justify-center items-center py-10">
+              <Button
+                href="https://bbstudios.bombayblokes.com/bomb.ai"
+                text="Explore Our Work"
+                className="text-white font-semibold"
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            </div>
           </div>
         </div>
       </div>

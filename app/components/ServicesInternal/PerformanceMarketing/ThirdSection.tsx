@@ -66,7 +66,7 @@ const workflowSteps = [
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
         {/* Title */}
         <div className="text-center lg:mb-5 px-4">
-          <h2 className="black-text">Branding workflow</h2>
+          <h2 className="black-text">Performance Marketing Workflow</h2>
         </div>
 
         {/* Train + Track */}

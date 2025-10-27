@@ -6,6 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 
 interface Card {
+  number?: string;
   title: string;
   subtitle: string;
   image: string;
@@ -15,7 +16,8 @@ interface Card {
 
 const cards: Card[] = [
   {
-    title: "Web Development",
+    number: "01",
+    title: "Web Development & UI UX",
     subtitle:
       "We build pixel-perfect websites and digital experiences that aren't just beautiful, but are engineered to convert.",
     image: "/images/servicespage/Development.png",
@@ -23,6 +25,7 @@ const cards: Card[] = [
     shape: "rectangle",
   },
   {
+     number: "02",
     title: "Performance Marketing",
     subtitle:
       "We create data-driven ad campaigns that deliver measurable results, turning clicks into customers and spend into revenue.",
@@ -31,7 +34,8 @@ const cards: Card[] = [
     shape: "square",
   },
   {
-    title: "SEO Optimization",
+     number: "03",
+    title: "SEO ",
     subtitle:
       "We put your brand at the top of Google, connecting you with customers who are already searching for you.",
     image: "/images/servicespage/SEO.png",
@@ -40,6 +44,7 @@ const cards: Card[] = [
   },
   // 
   {
+     number: "04",
     title: "Social Media Management",
     subtitle:
       "We build and nurture your online community, turning followers into loyal fans through creative content and authentic engagement.",
@@ -150,7 +155,13 @@ export default function SecondSection() {
                     backgroundRepeat: "no-repeat",
                   }}
                  >
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-highlight">
+
+                    <div className="text-highlight numbering">
+ {card.number}
+  </div>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-highlight gap-5">
+                  
+
                     {card.title}
                   </h3>
                   <p className="mt-2 text-sm sm:text-base md:text-lg white-text">

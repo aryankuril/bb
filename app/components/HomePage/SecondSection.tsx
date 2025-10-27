@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
@@ -7,30 +6,29 @@ import AnimatedHeading from "../AnimatedHeading";
 const services = [
   {
     id: 1,
-    title: " Branding – thecha to your vada pav",
+    title: " Branding - thecha to your vada pav",
     desc: "Branding adds flavor and personality to your brand, giving it a strong identity that everything else builds on.",
     img: "/images/Branding.png",
   },
   {
     id: 2,
-    title: "Digital marketing – spreading the aroma ",
-    desc: "Just like the aroma of a Vada Pav spreads and attracts people, digital marketing spreads your message to the audience, making your brand visible and enticing.",
-    img: "/images/Digital-Marketing.png",
+    title: "UI/UX The First Bite",
+    desc: "The first bite defines the entire experience. UI/UX design ensures the user's first interaction with your digital presence is enjoyable, intuitive, and memorable.",
+    img: "/images/Website.png",
   },
   {
     id: 3,
-    title: "Web development – the aftertaste",
+    title: "Web development - the aftertaste",
     desc: "The aftertaste is what lingers and leaves an impression. Web development ensures your website functions smoothly and leaves a lasting, reliable impression on your audience.",
     img: "/images/UI-UX.png",
   },
   {
     id: 4,
-    title: "UI/UX The First Bite",
-    desc: "The first bite defines the entire experience. UI/UX design ensures the user’s first interaction with your digital presence is enjoyable, intuitive, and memorable.",
-    img: "/images/Website.png",
+    title: "Digital marketing - spreading the aroma",
+    desc: "Just like the aroma of a Vada Pav spreads and attracts people, digital marketing spreads your message to the audience, making your brand visible and enticing.",
+    img: "/images/Digital-Marketing.png",
   },
 ];
-
 export default function SecondSection() {
   const [active, setActive] = useState<number | null>(null);
   const imgRef = useRef<HTMLDivElement>(null);
@@ -39,14 +37,11 @@ export default function SecondSection() {
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
   });
-
   useEffect(() => {
     if (!imgRef.current) return;
-
     const moveImage = (e: MouseEvent) => {
       lastMouse.current.x = e.clientX + 20;
       lastMouse.current.y = e.clientY + 20;
-
       gsap.to(imgRef.current, {
         x: lastMouse.current.x,
         y: lastMouse.current.y,
@@ -55,15 +50,12 @@ export default function SecondSection() {
         overwrite: "auto",
       });
     };
-
     if (active !== null) {
       if (lastMouse.current.x === 0 && lastMouse.current.y === 0) {
         lastMouse.current.x = window.innerWidth / 2;
         lastMouse.current.y = window.innerHeight / 2;
       }
-
       window.addEventListener("mousemove", moveImage);
-
       gsap.killTweensOf(imgRef.current);
       gsap.set(imgRef.current, {
         x: lastMouse.current.x,
@@ -72,7 +64,6 @@ export default function SecondSection() {
         willChange: "transform,opacity",
         force3D: true,
       });
-
       gsap.fromTo(
         imgRef.current,
         { scale: 0.5, autoAlpha: 0 },
@@ -93,21 +84,16 @@ export default function SecondSection() {
         clearProps: "willChange",
         overwrite: "auto",
       });
-
       window.removeEventListener("mousemove", moveImage);
     }
-
     return () => {
       window.removeEventListener("mousemove", moveImage);
     };
   }, [active]);
-
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
-
     serviceRefs.current.forEach((ref, index) => {
       if (!ref) return;
-
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -135,32 +121,29 @@ export default function SecondSection() {
           rootMargin: "0px 0px -50px 0px",
         }
       );
-
       observer.observe(ref);
       observers.push(observer);
     });
-
     return () => {
       observers.forEach((observer) => observer.disconnect());
     };
   }, []);
-
   return (
     <section
       id="second-section"
       className="relative container w-full py-10 sm:py-[60px] lg:py-20"
     >
-<div className="flex items-center justify-center w-full py-30 lg:mb-20">
-  {/* <AnimatedHeading> */}
-    <h1 className="text-center black-text" style={{ textTransform: "none" }}>
-      <span className="text-highlight">Born in Bombay,</span> crafting
-      digital experiences that connect and inspire.
-    </h1>
-  {/* </AnimatedHeading> */}
-</div>
-
-
-
+      <div className="flex items-center justify-center w-full py-30 lg:mb-20">
+        {/* <AnimatedHeading> */}
+        <h1
+          className="text-center black-text"
+          style={{ textTransform: "none" }}
+        >
+          <span className="text-highlight">Born in Bombay,</span> crafting
+          digital experiences that connect and inspire.
+        </h1>
+        {/* </AnimatedHeading> */}
+      </div>
       <div className="mx-auto flex flex-col lg:w-[70%] space-y-16 px-4 sm:px-6 md:px-8 lg:px-0">
         {services.map((s, index) => (
           <div
@@ -182,14 +165,12 @@ export default function SecondSection() {
             <h2 className="order-1 text-highlight numbering text-left flex items-center justify-center">
               {s.id.toString().padStart(2, "0")}
             </h2>
-
             {/* Title + Description + Mobile Image */}
             <div className="flex flex-col order-2 space-y-4 text-left max-w-120">
               <h3 className="black-text">{s.title}</h3>
-
               {/* Mobile-only image (hidden on desktop) */}
               <div className="block md:hidden">
-                <Image
+                <img
                   src={s.img}
                   alt={s.title}
                   width={600}
@@ -197,13 +178,11 @@ export default function SecondSection() {
                   className="rounded-[15px] shadow-lg w-full"
                 />
               </div>
-
               <p className="black-text max-w-120 body2">{s.desc}</p>
             </div>
           </div>
         ))}
       </div>
-
       {/* Floating Image (desktop only) */}
       {active !== null && (
         <div

@@ -88,7 +88,7 @@ const workflowSteps = [
         {/* Title stays fixed now */}
         <div className="text-center lg:mb-5 px-4">
           <h2 className="black-text">
-            Branding workflow
+            Website Development Workflow
           </h2>
         </div>
 

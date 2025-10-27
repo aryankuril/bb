@@ -5,10 +5,10 @@ import Button from "../../Button";
 
 const FirstSection = () => {
   const images = [
-    "/images/section1-img1.png",
-    "/images/section1-img2.png",
-    "/images/section1-img3.png",
-    "/images/section1-img4.png",
+    "/images/pm/chaterbox.png",
+    "/images/pm/Dancingleaf.png",
+    "/images/pm/Jk-diamonds.png",
+    "/images/pm/SCS.png",
   ];
 
   const [current, setCurrent] = useState(0);
@@ -44,7 +44,7 @@ const FirstSection = () => {
   {/* Right Side - Image Slider */}
 <div className="flex-1 w-full max-w-[600px] relative">
   {/* Wrapper with no overflow */}
-  <div className="aspect-[4/3] relative rounded-[20px] sm:rounded-[30px] overflow-hidden">
+  <div className="aspect-[4/3] relative rounded-[15px]  overflow-hidden">
     {/* Image slider */}
     {images.map((img, idx) => (
       <img

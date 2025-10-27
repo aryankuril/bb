@@ -7,19 +7,28 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
+import AnimatedButton from "./AnimatedButton";
 
 const YELLOW = "#FAB31E";
 const DARK = "#1D1D1D";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/clients", label: "Clients" },
-  { href: "/contactus", label: "Contact" },
   { href: "/aboutus", label: "About" },
-  { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
+  {
+    href: "https://bbstudios.bombayblokes.com",
+    label: "BB Studios",
+    logo: "/images/BBStudios2.png", // 👈 add your studio logo path
+  },
+  {
+    href: "https://bbstudios.bombayblokes.com/bomb.ai",
+    label: "Bomb Ai",
+    logo: "/images/bombai.jpg", // 👈 add your bomb.ai logo path
+  },
+  { href: "/clients", label: "Clients" },
+  { href: "/work", label: "Case Study" },
   { href: "/teams", label: "Team" },
-  { href: "/join-our-team", label: "Careers" },
+  { href: "/join-our-team", label: "Career" },
 ];
 
 export default function DesktopNav() {
@@ -205,14 +214,14 @@ export default function DesktopNav() {
           ref={shell}
           className="h-[90px] container bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center absolute inset-x-0 z-[100001]"
         >
-          <div className="flex items-center justify-between py-4 px-10 ">
+          <div className="flex items-center justify-between py-5 px-10 ">
             <Link href="/">
               <Image
                 src="/images/bblogo.webp"
                 alt="Bombay Blokes Logo"
-                width={160}
-                height={50}
-                className="object-contain transition-opacity duration-300"
+                width={210}
+                height={80}
+                className="object-cover transition-opacity duration-300"
               />
             </Link>
 
@@ -234,8 +243,10 @@ export default function DesktopNav() {
                   }
                 }}
                 aria-label="Toggle menu"
-                className="relative grid h-15 w-15 text-[26px] border-2 rounded-[5px] border-black leading-6 cursor-pointer font-miso place-items-center text-black"
+                className="relative grid h-12 w-12 text-[20px] border-2 rounded-[5px] border-black leading-5 cursor-pointer font-miso place-items-center text-black"
               >
+
+              
                 M E <br />N U
               </button>
             </div>
@@ -300,25 +311,39 @@ export default function DesktopNav() {
                   }`}
                 >
                   <Link
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (tl.current) tl.current.pause(0);
-                      setOpen(false);
+  href={link.href}
+  onClick={(e) => {
+    e.preventDefault();
+    if (tl.current) tl.current.pause(0);
+    setOpen(false);
 
-                      if (window.location.pathname === link.href) {
-                        router.refresh();
-                      } else {
-                        router.push(link.href);
-                      }
-                    }}
-                    ref={(el) => {
-                      if (el) textRefs.current[index] = el;
-                    }}
-                    className="text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+    if (window.location.pathname === link.href) {
+      router.refresh();
+    } else {
+      router.push(link.href);
+    }
+  }}
+  ref={(el) => {
+    if (el) textRefs.current[index] = el;
+  }}
+  className="flex items-center justify-center gap-3 text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
+>
+  {/* ✅ If logo exists, show it */}
+  {link.logo && (
+    <div className="w-[40px] h-[40px] rounded-[5px] overflow-hidden border border-white bg-white flex-shrink-0">
+      <Image
+        src={link.logo}
+        alt={`${link.label} Logo`}
+        width={30}
+        height={30}
+        className="object-contain w-full h-full"
+      />
+    </div>
+  )}
+
+  {link.label}
+</Link>
+
                 </div>
               ))}
             </div>
@@ -331,6 +356,12 @@ export default function DesktopNav() {
               <div className="flex flex-col items-center gap-2 text-center z-10 cursor-pointer">
                 <p className="text-white text-lg tracking-wide">FOLLOW US ON</p>
                 <div className="flex gap-8 relative z-50">
+                  <a
+                    href="/contactus"
+                    className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
+                  >
+                   Contact
+                  </a>
                   <a
                     href="https://www.instagram.com/bombay_blokes"
                     target="_blank"
@@ -346,14 +377,6 @@ export default function DesktopNav() {
                     className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
                   >
                     LINKEDIN
-                  </a>
-                  <a
-                    href="https://x.com/Bombay_Blokes"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
-                  >
-                    TWITTER
                   </a>
                 </div>
               </div>
