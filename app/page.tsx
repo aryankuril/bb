@@ -1,4 +1,5 @@
 
+import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
 import Firstsection from "./components/HomePage/Firstsection";
 import SecondSection from "./components/HomePage/SecondSection";
@@ -16,7 +17,10 @@ import Taxi from "./components/Taxi";
 import MobilePopup from "./components/MobilePopup";
 // import ClientScripts from "./components/ClientScripts";
 
-
+export const metadata: Metadata = {
+  title: "Mumbai’s leading Digital Marketing Agency | Bombay Blokes",
+  description: "Looking for a Digital Marketing agency in Mumbai? Want a partner that's dedicated to your success? Choose Bombay Blokes for customized and result-driven Digital Solutions. Visit us now!",
+};
 
 export default function Home() {
   return (

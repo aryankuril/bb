@@ -8,6 +8,11 @@ import Button from '../components/Button'
 // // import ClientScripts from '../components/ClientScripts'
 // import Taxi from '../components/Taxi'
 
+import { createPageMetadata } from "@/lib/metadata";
+
+
+export const metadata = createPageMetadata("Blogs");
+
 const page = () => {
   return (
     <div>

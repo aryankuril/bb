@@ -8,6 +8,7 @@ import Script from "next/script";
 import PageLoader from "./components/PageLoader";
 import SmoothScroll from "./components/SmoothScroll";
 import ScrollToTop from "./components/ScrollToTop";
+import DynamicHead from "./components/DynamicHead";
 
 // Local Miso font
 const miso = localFont({
@@ -23,8 +24,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Bombay Blokes",
-  description: "Integrated Digital Solutions in Mumbai | Marketing Agency in Mumbai - Bombay Blokes",
+  title: "Bombay Blokess ",
+  description:
+    "Integrated Digital Solutions in Mumbai | Marketing Agency in Mumbai - Bombay Blokes",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -37,6 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       <body>
+         <DynamicHead />
         {/* Facebook Pixel */}
         <Script id="fb-pixel" strategy="afterInteractive">
           {`

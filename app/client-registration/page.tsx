@@ -9,6 +9,10 @@ import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from '../components/MobilePopup'
 
+import { createPageMetadata } from "@/lib/metadata";
+
+
+export const metadata = createPageMetadata("Clinet-Registration");
 const Index = () => {
   return (
     <div>

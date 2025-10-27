@@ -9,6 +9,10 @@ import Footer from '@/app/components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '@/app/components/Taxi'
 
+import { createPageMetadata } from "@/lib/metadata";
+
+
+export const metadata = createPageMetadata("Case-Study");
 const Index = () => {
   return (
     <div>

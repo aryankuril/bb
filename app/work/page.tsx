@@ -8,6 +8,10 @@ import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from "@/app/components/MobilePopup";
 
+import { createPageMetadata } from "@/lib/metadata";
+
+
+export const metadata = createPageMetadata("Work");
 const Index = () => {
   return (
     <div>
