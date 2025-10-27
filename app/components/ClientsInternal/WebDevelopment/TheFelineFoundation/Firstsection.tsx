@@ -33,7 +33,7 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-[1000px] black-text">
-          Building a Digital Voice for Mumbai's Community Cats: The Feline Foundation Website
+         Building a Digital Voice for Mumbai’s.The Feline Foundation Website
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}
@@ -70,9 +70,9 @@ const Firstsection = () => {
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
         <p className="body2 black-text">
-          The Feline Foundation is a Mumbai-based NGO dedicated to the welfare of the city's vast stray cat population. They needed a professional and heartfelt digital platform to raise awareness, drive donations, and recruit volunteers. We partnered with them to design and develop a user-friendly website on WordPress that clearly communicates their mission and makes it easy for the community to get involved and support their vital work.
+  The Feline Foundation, a Mumbai-based NGO for stray cats, needed a warm and professional digital presence to raise awareness, attract donations, and engage volunteers. We built a user-friendly WordPress website that highlights their mission and encourages community support.
+</p>
 
-        </p>
       </div>
     </section>
   );

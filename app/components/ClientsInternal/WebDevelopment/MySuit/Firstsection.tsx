@@ -69,9 +69,10 @@ const Firstsection = () => {
 
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
-        <p className="body2 black-text">
-          My Suit Tailor brings the art of bespoke tailoring to the modern gentleman. Our challenge was to translate the highly personal experience of a tailor's shop into a seamless and elegant digital platform. We partnered with them to design and develop a comprehensive e-commerce solution that combines sophisticated style with intuitive functionality, allowing any man to become his own tailor.
-        </p>
+<p className="body2 black-text">
+  My Suit Tailor brings bespoke craftsmanship to the modern man. We transformed the personal tailoring experience into a refined digital platform—an elegant e-commerce solution blending style with simplicity, empowering every man to be his own tailor.
+</p>
+
       </div>
     </section>
   );

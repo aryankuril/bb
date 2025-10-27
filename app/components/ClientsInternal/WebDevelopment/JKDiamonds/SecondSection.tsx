@@ -7,31 +7,32 @@ const achievements = [
     number: "01",
     title: "Modern & Premium Design",
     description:
-      "We created a premium visual identity using a sophisticated color palette and elegant typography to reflect the institute's prestigious reputation and build immediate trust.",
+      "Crafted a sleek visual identity with refined colors and typography to reflect the institute’s prestige.",
     position: "left",
   },
   {
     number: "02",
     title: "Responsive Layout",
     description:
-      "A fully responsive layout was engineered to provide a seamless and accessible experience for all users, whether they are on a desktop, tablet, or mobile device.",
+      "Built a responsive layout ensuring a smooth experience across desktop, tablet, and mobile.",
     position: "right",
   },
   {
     number: "03",
     title: "Streamlined Navigation",
     description:
-      "An intuitive navigation system simplifies the user journey, making it effortless for prospective students to find essential information on courses and admissions.",
+      "Designed intuitive navigation for effortless access to key course and admission details.",
     position: "left",
   },
   {
     number: "04",
     title: "Comprehensive Information",
     description:
-      "We structured the website as a complete information hub, providing in-depth content that empowers students to make confident and well-informed decisions.",
+      "Organized content to serve as a complete hub, helping students make informed choices easily.",
     position: "right",
   },
 ];
+
 
 
   const desktopPathRef = useRef<SVGPathElement | null>(null);

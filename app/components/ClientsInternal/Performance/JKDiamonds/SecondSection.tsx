@@ -5,33 +5,34 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Complete Funnel Rework",
+    title: "Funnel Rework",
     description:
-      "Bombay Blokes came in to rework the entire lead generation funnel from top to bottom.",
+      "We restructured the entire lead funnel to improve conversions and efficiency.",
     position: "left",
   },
   {
     number: "02",
-    title: "Targeted Search Campaigns",
+    title: "Search Campaigns",
     description:
-      "We identified underutilized search intent and crafted tightly targeted campaigns on Google to capture relevant audiences.",
+      "Launched targeted Google campaigns to capture high-intent, relevant audiences.",
     position: "right",
   },
   {
     number: "03",
-    title: "Multi-Channel Brand Building",
+    title: "Brand Building",
     description:
-      "Brand credibility was boosted through consistent awareness campaigns on Meta and YouTube.",
+      "Enhanced credibility through consistent Meta and YouTube awareness campaigns.",
     position: "left",
   },
   {
     number: "04",
-    title: "High-Intent Webinar Funnel",
+    title: "Webinar Funnel",
     description:
-      "We built a fresh, webinar-based funnel specifically designed to attract and convert high-intent prospects.",
+      "Created a webinar-driven funnel to engage and convert quality prospects.",
     position: "right",
   },
 ];
+
 
 
 

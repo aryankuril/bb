@@ -7,31 +7,32 @@ const achievements = [
     number: "01",
     title: "End-to-End Partnership",
     description:
-      "Bombay Blokes partnered with SCS Sports from day one of their digital journey, providing end-to-end performance marketing expertise.",
+      "We partnered with SCS Sports from day one, managing their full digital journey.",
     position: "left",
   },
   {
     number: "02",
-    title: "Performance Engine Build",
+    title: "Performance Engine",
     description:
-      "We built their performance marketing engine from scratch, encompassing strategy development, creative conceptualization, and efficient media buying.",
+      "Built a complete marketing engine covering strategy, creatives, and media buying.",
     position: "right",
   },
   {
     number: "03",
-    title: "Data-Driven Optimization",
+    title: "Data Optimization",
     description:
-      "Our team focused on understanding dynamic demand patterns, seasonality, and customer behavior to continuously optimize campaigns for better results.",
+      "Used data insights on demand and behavior to refine campaigns for stronger results.",
     position: "left",
   },
   {
     number: "04",
     title: "Strategic Scaling",
     description:
-      "We maintained a healthy early ROAS of ~3x while strategically scaling advertising budgets to maximize reach and impact.",
+      "Sustained a strong 3x ROAS while scaling budgets to boost reach and performance.",
     position: "right",
   },
 ];
+
 
 
 

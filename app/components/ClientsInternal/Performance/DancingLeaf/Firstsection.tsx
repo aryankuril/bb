@@ -33,7 +33,7 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-[1000px] black-text">
-Dancing Leaf, a premium tea brand, was unable to scale beyond ₹5L in monthly sales.
+Dancing Leaf, a premium tea brand, struggled to scale past ₹5L in monthly sales.
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}
@@ -70,7 +70,7 @@ Dancing Leaf, a premium tea brand, was unable to scale beyond ₹5L in monthly s
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
         <p className="body2 black-text">
-Despite a strong product range, performance campaigns lacked consistency and momentum.
+Despite offering a strong and diverse product range, their performance campaigns struggled with consistency and lacked the sustained momentum needed to drive steady growth.
         </p>
       </div>
     </section>

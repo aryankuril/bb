@@ -70,8 +70,9 @@ Powering a Sports Retail Giant: A Strategic Shopify Launch for SCS Sports
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
         <p className="body2 black-text">
-With a legacy spanning over 37 years and 17 retail locations, Selection Centre Sports (SCS Sports) is a titan in the Indian sports industry. They required a powerful e-commerce platform that could handle their massive inventory of over 40 sports and 50+ international brands. Our mission was to bring their extensive catalog online quickly and efficiently. We chose the Shopify platform to build a robust, scalable, and user-friendly digital store that lives up to their sterling reputation.
-        </p>
+  With 37 years of legacy and 17 stores, Selection Centre Sports is a leader in India’s sports industry. We built a scalable Shopify e-commerce platform to bring their vast catalog of 40+ sports and 50+ global brands online—quickly, efficiently, and with a premium user experience.
+</p>
+
       </div>
     </section>
   );

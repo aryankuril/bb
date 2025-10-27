@@ -69,10 +69,10 @@ const Firstsection = () => {
 
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
-        <p className="body2 black-text">
-          With a rich family legacy in sock manufacturing, SuperSox offers a vast and colorful range of products for all ages. Their goal was to launch a stylish, user-friendly e-commerce store that could handle their extensive catalog, from official Disney and Marvel collections to premium office wear. We partnered with them to build and deploy a robust online store at speed, using the power and flexibility of the Shopify platform.
+       <p className="body2 black-text">
+  With a strong legacy in sock manufacturing, SuperSox wanted a stylish, user-friendly e-commerce store for their wide range—from Disney and Marvel collections to premium office wear. We built a fast, scalable Shopify platform to bring their vibrant catalog online.
+</p>
 
-        </p>
       </div>
     </section>
   );

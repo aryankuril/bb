@@ -5,33 +5,34 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Strategic Shopify Template",
+    title: "Strategic Shopify Setup",
     description:
-      "We used a high-performance Shopify template designed for large inventories, enabling a rapid launch with a feature-rich foundation.",
+      "Used a high-performance Shopify template for a fast, feature-rich launch.",
     position: "left",
   },
   {
     number: "02",
-    title: "User-Friendly Navigation",
+    title: "Easy Navigation",
     description:
-      "A logical navigation system with mega-menus and advanced filtering was implemented, allowing customers to easily browse thousands of products.",
+      "Added mega-menus and filters to help users browse thousands of products easily.",
     position: "right",
   },
   {
     number: "03",
-    title: "Showcasing Trust",
+    title: "Building Trust",
     description:
-      "We prominently displayed trust signals like the 'SCS Sports Seal of Authenticity' to assure customers of product quality and build online credibility.",
+      "Highlighted authenticity seals to boost confidence and credibility online.",
     position: "left",
   },
   {
     number: "04",
-    title: "Scalable E-Commerce",
+    title: "Scalable Platform",
     description:
-      "Leveraging Shopify's infrastructure provided a secure, reliable, and scalable platform ready to handle high traffic and future business growth.",
+      "Built on Shopify’s secure and scalable system to support future growth.",
     position: "right",
   },
 ];
+
 
 
 

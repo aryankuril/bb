@@ -2,36 +2,38 @@
 import React, { useEffect, useRef } from "react";
 
 const SecondSection = () => {
- const achievements = [
+const achievements = [
   {
     number: "01",
     title: "Elegant & Intuitive UI",
     description:
-      "A clean, sophisticated UI was designed to guide customers effortlessly through the bespoke process, reflecting the brand's luxury and attention to detail.",
+      "Crafted a sleek, user-friendly design that reflects luxury and ease of use.",
     position: "left",
   },
   {
     number: "02",
     title: "Interactive Suit Builder",
     description:
-      "We developed an interactive suit builder with real-time visualizations, allowing users to easily customize every detail of their suit from fabric to monogram.",
+      "Built a real-time suit builder for effortless customization and visualization.",
     position: "right",
   },
   {
     number: "03",
     title: "Guided Measurement Process",
     description:
-      "An integrated measurement guide with clear video tutorials empowers customers to provide accurate measurements with confidence, ensuring a perfect fit.",
+      "Added a step-by-step guide to help customers take accurate measurements.",
     position: "left",
   },
   {
     number: "04",
     title: "Seamless E-commerce Platform",
     description:
-      "A robust e-commerce platform was engineered to handle complex custom orders and provide a secure, seamless checkout experience.",
+      "Developed a secure platform for smooth custom orders and checkout.",
     position: "right",
   },
 ];
+
+
 
 
   const desktopPathRef = useRef<SVGPathElement | null>(null);

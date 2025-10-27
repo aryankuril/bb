@@ -7,31 +7,32 @@ const achievements = [
     number: "01",
     title: "React Rendering Optimization",
     description:
-      "We implemented server-side rendering (SSR) to ensure that search engine crawlers could easily read and index all of the website's content, overcoming the typical limitations of a client-side rendered React application.",
+      "Enabled server-side rendering to make all site content easily crawlable by search engines.",
     position: "left",
   },
   {
     number: "02",
-    title: "Dynamic Meta Tag Implementation",
+    title: "Dynamic Meta Tags",
     description:
-      "The React Helmet library was integrated to dynamically manage and serve unique title tags, meta descriptions, and Open Graph tags for every page, ensuring each one was properly optimized for search and social sharing.",
+      "Used React Helmet to add unique titles and meta tags for better SEO and sharing.",
     position: "right",
   },
   {
     number: "03",
-    title: "Indexing & Crawlability Fixes",
+    title: "Indexing Fixes",
     description:
-      "We resolved all indexing issues by creating and submitting a comprehensive sitemap, properly configuring the robots.txt file to guide crawlers, and implementing structured data (schema markup) to improve search engine understanding.",
+      "Fixed crawl issues with a sitemap, robots.txt, and structured data setup.",
     position: "left",
   },
   {
     number: "04",
-    title: "Performance & Speed Optimization",
+    title: "Speed Optimization",
     description:
-      "We focused on improving site speed and Core Web Vitals, which are critical ranking factors. This involved implementing code splitting, optimizing image assets, and leveraging browser caching to ensure a faster, more responsive user experience.",
+      "Improved Core Web Vitals with code splitting, image compression, and caching.",
     position: "right",
   },
 ];
+
 
 
 

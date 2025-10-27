@@ -5,33 +5,34 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Comprehensive Campaign Audit",
+    title: "Campaign Audit",
     description:
-      "Bombay Blokes stepped in to audit all existing campaigns and the overall digital strategy to identify roadblocks.",
+      "We audited existing campaigns to identify gaps and boost overall performance.",
     position: "left",
   },
   {
     number: "02",
-    title: "Untapped Channel Discovery",
+    title: "Channel Discovery",
     description:
-      "Our team discovered that Meta was an untapped channel with huge potential for reaching their target audience.",
+      "Found Meta as an untapped channel with strong audience growth potential.",
     position: "right",
   },
   {
     number: "03",
-    title: "Conversion Funnel Analysis",
+    title: "Funnel Optimization",
     description:
-      "We spotted key drop-off points and sources of friction in the website journey that were hurting conversion rates.",
+      "Identified drop-off points and refined user journeys to increase conversions.",
     position: "left",
   },
   {
     number: "04",
-    title: "Platform-Specific Creatives",
+    title: "Platform Creatives",
     description:
-      "We built a series of high-performing ad assets and creatives that were specifically tailored for each platform.",
+      "Created ad assets tailored to each platform for higher engagement and ROI.",
     position: "right",
   },
 ];
+
 
 
   const desktopPathRef = useRef<SVGPathElement | null>(null);

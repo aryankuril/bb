@@ -69,8 +69,9 @@ const Firstsection = () => {
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
         <p className="body2 black-text">
-          At Bombay Blokes, we blend timeless craftsmanship with modern expertise. In modeling the an Co-Promotional MUK work case study, we partnered with JK Diamonds Institute to overhaul their digital presence, creating an immersive and user-friendly platform. Our goal was to reflect their prestigious reputation in the gem and jewelry industry and to build a seamless online journey for every prospective student.
-        </p>
+  At Bombay Blokes, we merged craftsmanship with modern design to elevate JK Diamonds Institute’s digital identity. Our collaboration aimed to showcase their prestige in the gem and jewelry field while creating a smooth and engaging online experience for students.
+</p>
+
       </div>
     </section>
   );

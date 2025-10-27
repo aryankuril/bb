@@ -5,30 +5,30 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Empathetic & Trustworthy UI/UX",
+    title: "Trustworthy Design",
     description:
-      "We designed a clean and compassionate UI that uses warm imagery and clear storytelling to build trust and encourage community support.",
+      "Built a warm, compassionate interface that fosters trust and community connection.",
     position: "left",
   },
   {
     number: "02",
-    title: "Clear Pathways to Action",
+    title: "Easy Engagement",
     description:
-      "Prominent calls-to-action were strategically placed to make it simple for visitors to donate, volunteer, and get involved with the foundation's work.",
+      "Added clear actions so visitors can quickly donate, volunteer, or get involved.",
     position: "right",
   },
   {
     number: "03",
-    title: "Flexible WordPress CMS",
+    title: "Simple CMS",
     description:
-      "Built on WordPress, the site features an easy-to-use CMS that empowers the foundation's team to manage their own content and post updates effortlessly.",
+      "Developed an easy WordPress backend that lets the team update content anytime.",
     position: "left",
   },
   {
     number: "04",
-    title: "Integrated Donation & Wishlist System",
+    title: "Secure Donations",
     description:
-      "A secure donation gateway and an Amazon Wishlist integration were implemented to provide multiple, trustworthy ways for supporters to contribute.",
+      "Integrated a safe donation gateway and Amazon Wishlist for easy contributions.",
     position: "right",
   },
 ];

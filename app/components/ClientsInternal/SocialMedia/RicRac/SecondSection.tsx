@@ -5,30 +5,30 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Brand Introduction & Positioning",
+    title: "Brand Positioning",
     description:
-      "We began with a soft launch, highlighting a key market gap: the lack of a specialized innerwear brand for kids. This positioned RicRac Kids as a necessary, problem-solving brand.",
+      "Launched RicRac Kids to fill the gap for quality kids’ innerwear in India.",
     position: "left",
   },
   {
     number: "02",
-    title: "Founder-Driven Trust Building",
+    title: "Founder-Led Trust",
     description:
-      "We introduced the founder's story to explain why RicRac Kids matters. This built an authentic connection and positioned the brand as being 'By Indian parents, for Indian kids.'",
+      "Shared the founder’s story to build authenticity and connect with parents.",
     position: "right",
   },
   {
     number: "03",
-    title: "Strategic Influencer Outreach",
+    title: "Influencer Outreach",
     description:
-      "Influencer marketing was leveraged to quickly boost reach, generate visibility, and gain third-party validation from trusted parenting voices.",
+      "Partnered with parenting influencers to boost visibility and credibility fast.",
     position: "left",
   },
   {
     number: "04",
-    title: "Problem-Solving Content Series",
+    title: "Educational Content",
     description:
-      "A 'Founder Series' was launched to address everyday problems kids face with uncomfortable innerwear and to showcase how RicRac Kids's products provide the solution.",
+      "Created videos addressing kids’ comfort issues and how RicRac solves them.",
     position: "right",
   },
 ];

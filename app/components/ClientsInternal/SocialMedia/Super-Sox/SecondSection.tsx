@@ -5,33 +5,34 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Brand DNA Deep Dive",
+    title: "Brand Deep Dive",
     description:
-      "We started by diving deep into the brand’s core personality and USPs: quirky, colourful, comfort-first socks with a bold vibe that needed to shine online.",
+      "Explored the brand’s fun, comfort-first DNA to bring its bold vibe online.",
     position: "left",
   },
   {
     number: "02",
-    title: "Scroll-Stopping Creatives",
+    title: "Creative Ads",
     description:
-      "Our team crafted a series of scroll-stopping ad creatives that were not just visually appealing, but purpose-driven to convert viewers into customers.",
+      "Designed eye-catching, conversion-focused ads that instantly grab attention.",
     position: "right",
   },
   {
     number: "03",
-    title: "Multi-Format Content Strategy",
+    title: "Social Content",
     description:
-      "We implemented a dynamic content mix featuring catchy copy, on-trend Reels, and vibrant visuals that screamed “add to cart” to a social-first audience.",
+      "Rolled out catchy Reels, bold visuals, and crisp copy made for social media.",
     position: "left",
   },
   {
     number: "04",
-    title: "Data-Driven Optimization",
+    title: "Smart Optimization",
     description:
-      "We implemented a continuous A/B testing and optimization cycle, analyzing performance data daily to refine audience targeting and scale the best-performing ad creatives for maximum ROAS.",
+      "Used A/B testing and daily data insights to scale high-performing campaigns.",
     position: "right",
   },
 ];
+
 
   const desktopPathRef = useRef<SVGPathElement | null>(null);
   const mobilePathRef = useRef<SVGPathElement | null>(null);

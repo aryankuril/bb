@@ -5,30 +5,30 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Keyword & Content Gap Analysis",
+    title: "Keyword Analysis",
     description:
-      "We began with a comprehensive SEO audit to identify high-volume keywords and content gaps where Manba Finance was losing valuable organic traffic to competitors.",
+      "Identified high-value keywords and content gaps to boost organic traffic.",
     position: "left",
   },
   {
     number: "02",
-    title: "In-Depth Service Pages",
+    title: "Service Pages",
     description:
-      "We expanded the site’s authority by creating dedicated, detailed subpages for each loan category, designed to rank for specific, high-intent keywords.",
+      "Created detailed loan pages targeting high-intent, search-driven users.",
     position: "right",
   },
   {
     number: "03",
-    title: "Topical Blog Strategy",
+    title: "Blog Strategy",
     description:
-      "A seasonal and topical blog strategy was implemented to attract users earlier in their journey, capturing a broader range of informational search queries.",
+      "Launched topical blogs to attract users early in their search journey.",
     position: "left",
   },
   {
     number: "04",
-    title: "Lead Generation Optimization",
+    title: "Lead Optimization",
     description:
-      "All new content was optimized for conversion, with clear calls-to-action and integrated lead forms designed to turn organic traffic into qualified prospects.",
+      "Optimized content with CTAs and forms to turn traffic into leads.",
     position: "right",
   },
 ];

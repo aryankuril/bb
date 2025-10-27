@@ -18,15 +18,15 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <div>
-      <Taxi/>
-       <MobilePopup/>
-        <Navbar />
-        <Firstsection />
+      {/* <Taxi/> */}
+       {/* <MobilePopup/> */}
+        {/* <Navbar />
+        <Firstsection /> */}
         <SecondSection />
         {/* <ThirdSection/> */}
         {/* <WorkCard/> */}
-        <SeventhSection/>
-        <Footer />
+        {/* <SeventhSection/>
+        <Footer /> */}
     </div>
   )
 }

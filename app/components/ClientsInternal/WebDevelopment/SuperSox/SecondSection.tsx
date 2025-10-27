@@ -5,33 +5,34 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Rapid Launch with Shopify Templates",
+    title: "Fast Shopify Launch",
     description:
-      "We selected a premium Shopify template to accelerate development, enabling a rapid market launch while allowing us to focus resources on brand customization.",
+      "Used a premium Shopify template for quick setup and faster market entry.",
     position: "left",
   },
   {
     number: "02",
-    title: "Brand-Centric Customization",
+    title: "Custom Brand Experience",
     description:
-      "The template was fully customized to reflect the vibrant SuperSox brand, creating an engaging experience that showcases their diverse product collections.",
+      "Tailored the design to reflect SuperSox’s vibrant identity and product range.",
     position: "right",
   },
   {
     number: "03",
-    title: "Scalable E-commerce Functionality",
+    title: "Scalable Functionality",
     description:
-      "We leveraged Shopify’s powerful backend for secure payments, inventory management, and seamless handling of their extensive product catalog.",
+      "Leveraged Shopify’s backend for smooth payments and product management.",
     position: "left",
   },
   {
     number: "04",
-    title: "Mobile-Optimized Shopping",
+    title: "Mobile-First Design",
     description:
-      "The store is fully responsive and mobile-optimized, ensuring an intuitive and seamless shopping experience for customers on any device.",
+      "Optimized the store for a seamless and responsive mobile shopping experience.",
     position: "right",
   },
 ];
+
 
 
 
