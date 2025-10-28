@@ -145,7 +145,7 @@ export default function SecondSection() {
                     borderRadius: card.shape === "circle" ? "20%" : "20px",
                     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
                     backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    backgroundPosition: "top",
                     backgroundRepeat: "no-repeat",
                   }}
                 >

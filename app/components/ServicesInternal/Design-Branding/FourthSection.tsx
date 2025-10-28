@@ -2,11 +2,11 @@
 import React, { useEffect } from "react";
 
 const textBlock1 = [
-  "Your brand is the authentic experience you deliver.",
-  "Stand out and cut through the market noise.",
-  "We define your core purpose and unique story.",
-  "Turn your narrative into lifelong customer loyalty.",
-  "Let your promise lead your product.",
+  "Your brand is the experience you create.",
+  "Stand out from the crowd.",
+  "We shape your purpose and story.",
+  "Turn your story into loyalty.",
+  "Let your promise guide your product.",
   "",
 ];
 

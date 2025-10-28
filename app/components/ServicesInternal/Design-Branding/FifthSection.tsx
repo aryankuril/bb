@@ -16,9 +16,9 @@ const cardsData = [
     image: "/images/SocialMedia/ricrac.webp",
     url: "/work/social-media/ricrackids",
   },
-  {
+ {
     title: "SCS Sports",
-    tags: ["Meta Ads"],
+    tags: ["Meta Ads" ,"Social Media" ,"SEO"],
     content:
       "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue, a mission that culminated in a game-changing 12x ROAS.",
     image: "/images/SocialMedia/scs.webp",
@@ -26,7 +26,7 @@ const cardsData = [
   },
   {
     title: "J K Diamonds Institute",
-    tags: ["UI UX", "Framer", "Zoho CRM"],
+    tags: ["UI UX", "Framer", "Zoho", "SEO" ,"Meta Ads"],
     content:
       "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
     image: "/images/webdev/Jk-Diamonds.png",
@@ -34,7 +34,7 @@ const cardsData = [
   },
   {
     title: "My Suit Tailor",
-    tags: [" UI UX", "Shopify "],
+    tags: [" UI UX", "Shopify ", "SEO" ],
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
     image: "/images/webdev/MST.png",

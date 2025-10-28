@@ -2,8 +2,8 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Firstsection from '@/app/components/Career/Firstsection'
 import SecondSection from '../components/Career/SecondSection'
-// import ThirdSection from '../components/Career/ThirdSection'
-import RubberSection from '../components/HomePage/RubberSection'
+import ThirdSection from '../components/Career/ThirdSection'
+// import RubberSection from '../components/HomePage/RubberSection'
 
 import SeventhSection from '../components/ServicesInternal/WebsiteDesign/SeventhSection'
 import Footer from '../components/Footer'
@@ -23,8 +23,8 @@ const Index = () => {
         <Navbar />
         <Firstsection/>
         <SecondSection/>
-        <RubberSection/>
-        {/* <ThirdSection/> */}
+        {/* <RubberSection/> */}
+        <ThirdSection/>
         <SeventhSection/>
         <Footer />
         
