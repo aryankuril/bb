@@ -168,8 +168,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
-        </h3>
+By balancing trending content with brand consistency, we achieved viral reach with reels hitting ~2M views and built an engaged community that continues to grow.        </h3>
       </div>
   </section>
   )

@@ -52,8 +52,8 @@ const Firstsection: React.FC = () => {
   return (
     <section className="container  py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10">
       <h1 className="black-text text-center md:text-left">
-        The Squad That Turns <span className="text-highlight">What If</span>’
-        Into <br />‘<span className="text-highlight">What’s Next.</span>’
+        The Squad That Turns <span className="text-highlight">‘What If’ </span>
+        Into <br /><span className="text-highlight">‘What’s Next.’</span>
       </h1>
 
       {/* card */}

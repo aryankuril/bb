@@ -168,7 +168,8 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
+Our strategy was to inspire action by combining emotive design with a simple user experience. We built a powerful tool for fundraising and community building to support the foundation's vital work for animals in Mumbai.
+
         </h3>
       </div>
   </section>

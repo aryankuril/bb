@@ -169,8 +169,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
-        </h3>
+Sales scaled to ₹30L+ per month—sustainably. ROAS has consistently held above 3x, even at higher spends.        </h3>
       </div>
   </section>
   )

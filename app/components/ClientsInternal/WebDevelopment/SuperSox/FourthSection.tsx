@@ -168,7 +168,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
+Our strategy was centered on speed-to-market and reliability. By choosing Shopify, we empowered SuperSox to launch a full-featured e-commerce store quickly and cost-effectively.
         </h3>
       </div>
   </section>

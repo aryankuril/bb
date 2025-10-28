@@ -26,7 +26,7 @@ const links = [
     logo: "/images/bombai.jpg", // 👈 add your bomb.ai logo path
   },
   { href: "/clients", label: "Clients" },
-  { href: "/work", label: "Case Studys" },
+  { href: "/work", label: "Case Studies" },
   { href: "/teams", label: "Team" },
   { href: "/join-our-team", label: "Career" },
 ];

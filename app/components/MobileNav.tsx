@@ -21,7 +21,7 @@ const NAV_ITEMS: NavItem[] = [
   },
   { label: "SERVICES", href: "services" },
   { label: "CLIENTS", href: "/clients" },
-  { label: "CASE STUDYS", href: "/work" },
+  { label: "CASE STUDIES", href: "/work" },
   { label: "TEAM", href: "/teams" },
   { label: "CONTACT", href: "/contactus" },
   { label: "CAREERS", href: "/join-our-team" },

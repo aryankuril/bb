@@ -168,7 +168,8 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
+By aligning fun, high-performing creative with the brand’s DNA, we drove skyrocketing ROAS and boosted sales, successfully transforming Supersox from a retail presence to an e-commerce success.
+
         </h3>
       </div>
   </section>

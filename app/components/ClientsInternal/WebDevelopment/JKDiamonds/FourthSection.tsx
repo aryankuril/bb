@@ -167,7 +167,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
+Our strategy ignored trends to focus on the end-user. We transformed the brand's online presence from a simple brochure into a powerful enrollment tool, turning every interaction into a measurable result.
         </h3>
       </div>
   </section>

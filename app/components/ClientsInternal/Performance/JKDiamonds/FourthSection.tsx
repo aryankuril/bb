@@ -169,7 +169,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
+Our new webinar funnel boosted high-quality lead flow by 30%, with no extra budget, while keeping the junk lead ratio far below the category average at just 20%.
         </h3>
       </div>
   </section>

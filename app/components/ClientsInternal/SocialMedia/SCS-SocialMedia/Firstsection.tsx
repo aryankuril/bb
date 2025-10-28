@@ -33,9 +33,9 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-Putting the Fun First: <span className="text-highlight">
-          Creative Strategy
-            </span> for Supersox
+Putting the Fun First:  <span className="text-highlight">
+            Creative Strategy
+            </span> for SCS
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}
@@ -72,7 +72,8 @@ Putting the Fun First: <span className="text-highlight">
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
         <p className="body2 black-text">
-Supersox had already built a solid footprint in offline retail, but their online presence was still dusty. They needed a social media strategy that not only brought in traffic but consistently turned scrollers into shoppers.
+SCS Sports needed a consistent and regular posting strategy, not just showcasing equipment, but also sharing the latest sports news and information to engage their audience.
+
         </p>
       </div>
     </section>

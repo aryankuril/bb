@@ -28,7 +28,7 @@ const achievements = [
     number: "04",
     title: "Educational Content",
     description:
-      "Created videos addressing kids’ comfort issues and how RicRac solves them.",
+       " A Founder Series was launched to address everyday problems kids face with uncomfortable innerwear",
     position: "right",
   },
 ];

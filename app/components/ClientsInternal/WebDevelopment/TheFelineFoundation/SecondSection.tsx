@@ -5,33 +5,35 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Strategic Shopify Setup",
+    title: "Trust-Building UI/UX Design",
     description:
-      "Used a high-performance Shopify template for a fast, feature-rich launch.",
+      "Created a warm, clear interface that builds trust and encourages community support.",
     position: "left",
   },
   {
     number: "02",
-    title: "Easy Navigation",
+    title: "Streamlined User Actions",
     description:
-      "Added mega-menus and filters to help users browse thousands of products easily.",
+      "Added simple calls-to-action for easy donations, volunteering, and engagement.",
     position: "right",
   },
   {
     number: "03",
-    title: "Building Trust",
+    title: "Seamless WordPress CMS",
     description:
-      "Highlighted authenticity seals to boost confidence and credibility online.",
+      "Built an easy CMS so the team can manage and update content quickly.",
     position: "left",
   },
   {
     number: "04",
-    title: "Scalable Platform",
+    title: "Smart Donation & Wishlist Integration",
     description:
-      "Built on Shopify’s secure and scalable system to support future growth.",
+      "Integrated secure donations and an Amazon Wishlist for flexible giving.",
     position: "right",
   },
 ];
+
+
 
 
 

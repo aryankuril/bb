@@ -5,33 +5,35 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Brand Positioning",
+    title: "Balanced Content Strategy",
     description:
-      "Launched RicRac Kids to fill the gap for quality kids’ innerwear in India.",
+      "Planned content mixing trends with product education and reviews.",
     position: "left",
   },
   {
     number: "02",
-    title: "Founder-Led Trust",
+    title: "Trend-Driven Engagement",
     description:
-      "Shared the founder’s story to build authenticity and connect with parents.",
+      "Posted trend-based reels at key moments to boost reach and engagement.",
     position: "right",
   },
   {
     number: "03",
-    title: "Influencer Outreach",
+    title: "Consistent Visual Storytelling",
     description:
-      "Partnered with parenting influencers to boost visibility and credibility fast.",
+      "Kept a unified visual style to strengthen brand recognition.",
     position: "left",
   },
   {
     number: "04",
-    title: "Educational Content",
+    title: "Community-Focused Content",
     description:
-      "Created videos addressing kids’ comfort issues and how RicRac solves them.",
+      "Shared sports news and stories to build a loyal community.",
     position: "right",
   },
 ];
+
+
 
 
 

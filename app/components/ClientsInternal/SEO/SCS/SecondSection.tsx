@@ -5,33 +5,34 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "React Rendering Optimization",
+    title: "Expanded Category & Collection Pages",
     description:
-      "Enabled SSR to make all pages easily crawlable and SEO-friendly.",
+      "Added SEO-optimized pages for all major sports categories to boost visibility and rankings.",
     position: "left",
   },
   {
     number: "02",
-    title: "Dynamic Meta Tags",
+    title: 'Authoritative "How-To" Content',
     description:
-      "Used React Helmet to add unique titles and meta tags for better SEO.",
+      "Created useful tips and guides to position SCS Sports as a trusted sports resource.",
     position: "right",
   },
   {
     number: "03",
-    title: "Indexing Fixes",
+    title: "Unique Collection Page Content",
     description:
-      "Improved crawlability with sitemap, robots.txt, and structured data.",
+      "Added unique content to each collection page to improve relevance and avoid duplication.",
     position: "left",
   },
   {
     number: "04",
-    title: "Speed Optimization",
+    title: "Video Content Integration",
     description:
-      "Boosted site speed using code splitting, caching, and image optimization.",
+      "Embedded demos and tutorials to increase engagement and enhance user experience.",
     position: "right",
   },
 ];
+
 
 
 

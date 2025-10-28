@@ -5,33 +5,34 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Trustworthy Design",
+    title: "Rapid Launch with Shopify Templates",
     description:
-      "Built a warm, compassionate interface that fosters trust and community connection.",
+      "Used a premium template to speed up development and launch quickly with brand focus.",
     position: "left",
   },
   {
     number: "02",
-    title: "Easy Engagement",
+    title: "Brand-Centric Customization",
     description:
-      "Added clear actions so visitors can quickly donate, volunteer, or get involved.",
+      "Customized the template to match SuperSox’s vibrant style and product range.",
     position: "right",
   },
   {
     number: "03",
-    title: "Simple CMS",
+    title: "Scalable E-commerce Functionality",
     description:
-      "Developed an easy WordPress backend that lets the team update content anytime.",
+      "Used Shopify’s backend for secure payments and easy inventory control.",
     position: "left",
   },
   {
     number: "04",
-    title: "Secure Donations",
+    title: "Mobile-Optimized Shopping",
     description:
-      "Integrated a safe donation gateway and Amazon Wishlist for easy contributions.",
+      "Ensured a smooth, responsive shopping experience across all devices.",
     position: "right",
   },
 ];
+
 
 
 

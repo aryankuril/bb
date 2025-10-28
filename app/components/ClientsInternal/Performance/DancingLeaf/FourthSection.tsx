@@ -171,8 +171,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
-        </h3>
+In under 6 months, Dancing Leaf has crossed ₹10L+ in monthly sales. ROAS has held steady at 3x+, even with increased budgets. The brand is now building recall as a go-to for functional, wellness-first teas.        </h3>
       </div>
   </section>
   )

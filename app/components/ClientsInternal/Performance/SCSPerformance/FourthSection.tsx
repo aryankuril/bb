@@ -170,8 +170,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
-        </h3>
+In just 8 months, online sales grew from ₹0 to ₹40L+ per month. ROAS jumped to an impressive 12x in the last quarter, demonstrating significant efficiency and profitability.        </h3>
       </div>
   </section>
   )
