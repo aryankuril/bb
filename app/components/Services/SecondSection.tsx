@@ -74,6 +74,8 @@ export default function SecondSection() {
     target: containerRef,
     offset: ["start start", "end end"],
   });
+  const isMobile =
+  typeof window !== "undefined" && window.innerWidth <= 768;
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     return scrollYProgress.on("change", (v) => setProgress(v));
@@ -158,26 +160,38 @@ export default function SecondSection() {
                   <div
                     className="flex flex-col justify-end p-4 sm:p-6 border-[5px] border-[var(--color-primary)]"
                     style={{
-                      width:
-                        card.shape === "circle"
-                          ? "clamp(220px, 65vw, 480px)"
-                          : card.shape === "square"
-                          ? "clamp(220px, 75vw, 400px)"
-                          : "clamp(260px, 80vw, 650px)",
-                      height:
-                        card.shape === "circle"
-                          ? "clamp(220px, 65vw, 440px)"
-                          : card.shape === "square"
-                          ? "clamp(220px, 75vw, 400px)"
-                          : "clamp(260px, 60vh, 350px)",
-                      borderRadius: card.shape === "circle" ? "20%" : "20px",
-                      backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "top",
-                      backgroundRepeat: "no-repeat",
-                      WebkitTransform: "translate3d(0,0,0)",
-                      transform: "translate3d(0,0,0)",
-                    }}
+    width: isMobile
+      ? card.shape === "circle"
+        ? "330px"
+        : card.shape === "square"
+        ? "330px"
+        : "330px"
+      : card.shape === "circle"
+      ? "clamp(220px, 65vw, 480px)"
+      : card.shape === "square"
+      ? "clamp(220px, 75vw, 550px)"
+      : "clamp(260px, 80vw, 650px)",
+
+    height: isMobile
+      ? card.shape === "circle"
+        ? "250px"
+        : card.shape === "square"
+        ? "250px"
+        : "250px"
+      : card.shape === "circle"
+      ? "clamp(220px, 65vw, 480px)"
+      : card.shape === "square"
+      ? "clamp(220px, 75vw, 480px)"
+      : "clamp(260px, 60vh, 480px)",
+
+    borderRadius: card.shape === "circle" ? "20%" : "20px",
+    backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
+    backgroundSize: "cover",
+    backgroundPosition: "top",
+    backgroundRepeat: "no-repeat",
+    WebkitTransform: "translate3d(0,0,0)",
+    transform: "translate3d(0,0,0)",
+  }}
                   >
                     <div className="text-highlight numbering">
                       {card.number}
