@@ -16,24 +16,24 @@ interface Card {
 
 const cards: Card[] = [
   {
-    number: "01",
+     number: "01",
+    title: "Design & Branding",
+    subtitle:
+      "We translate your core purpose into an authentic experience that builds lifelong advocacy and market leadership.",
+    image: "/images/branding-cs/barnd3.jpg",
+    link: "/services/design-branding",
+    shape: "rectangle",
+  },
+  {
+    number: "02",
     title: "Web Development & UI UX",
     subtitle:
       "We build pixel-perfect websites and digital experiences that aren't just beautiful, but are engineered to convert.",
     image: "/images/servicespage/Development.png",
     link: "/services/website-development",
-    shape: "rectangle",
-  },
-  {
-     number: "02",
-    title: "Performance Marketing",
-    subtitle:
-      "We create data-driven ad campaigns that deliver measurable results, turning clicks into customers and spend into revenue.",
-    image: "/images/servicespage/Performance.png",
-    link: "/services/performance-marketing",
     shape: "square",
   },
-  {
+   {
      number: "03",
     title: "SEO ",
     subtitle:
@@ -42,26 +42,34 @@ const cards: Card[] = [
     link: "/services/seo-services",
     shape: "circle",
   },
-  // 
   {
      number: "04",
+    title: "GEO",
+    subtitle:
+      "We position your content for citation, connecting your brand directly with users who need a definitive, AI-validated answer.",
+    image: "/images/geo-cs/geo-1.jpg",
+    link: "/services/geo-services",
+    shape: "rectangle",
+  },
+   {
+     number: "05",
     title: "Social Media Management",
     subtitle:
       "We build and nurture your online community, turning followers into loyal fans through creative content and authentic engagement.",
     image: "/images/servicespage/Social-Media.png",
     link: "/services/social-media-marketing",
-    shape: "rectangle",
+    shape: "square",
   },
-
-  //   {
-  //    number: "05",
-  //   title: "GEO",
-  //   subtitle:
-  //     "We build and nurture your online community, turning followers into loyal fans through creative content and authentic engagement.",
-  //   image: "/images/servicespage/GEO.png",
-  //   link: "/services/social-media-marketing",
-  //   shape: "circle",
-  // },
+  {
+     number: "06",
+    title: "Performance Marketing",
+    subtitle:
+      "We create data-driven ad campaigns that deliver measurable results, turning clicks into customers and spend into revenue.",
+    image: "/images/servicespage/Performance.png",
+    link: "/services/performance-marketing",
+    shape: "circle",
+  },
+  
 ];
 
 export default function SecondSection() {

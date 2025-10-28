@@ -62,7 +62,7 @@ Quality Over Quantity: Reshaping the Lead Funnel for J.K. Diamonds
   alt="JK Diamonds Institute"
   width={1400}
   height={800}
-  className="object-cover w-full h-auto rounded-2xl"
+  className="object-cover w-full lg:h-[80vh] h-auto rounded-2xl"
 />
         </motion.div>
       </div>

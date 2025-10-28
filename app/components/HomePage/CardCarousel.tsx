@@ -1,48 +1,70 @@
 "use client";
- 
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "../Button";
- 
 type CardItem = {
   id: number;
   src: string;
   alt?: string;
   hoverText?: string;
 };
- 
 const CardCarousel: React.FC = () => {
   const cards: CardItem[] = [
-      { id: 1, src: "/images/unskippable-brands/cadini.webp", hoverText: "Cadini Italy" },
-      { id: 2, src: "/images/unskippable-brands/carron.webp", hoverText: "Carron Clothing" },
-      { id: 3, src: "/images/unskippable-brands/divine.webp", hoverText: "Divine Solitaires" },
-      { id: 4, src: "/images/unskippable-brands/manba.webp", hoverText: "Manba Finance" },
-      { id: 5, src: "/images/unskippable-brands/supersox.webp", hoverText: "Supersox" },
-      { id: 6, src: "/images/unskippable-brands/Mbmehta.webp", hoverText: "M. B. Mehta & Co." },
-    ];
- 
+    {
+      id: 1,
+      src: "/images/unskippable-brands/cadini.webp",
+      hoverText: "Cadini Italy",
+    },
+    {
+      id: 2,
+      src: "/images/unskippable-brands/carron.webp",
+      hoverText: "Carron Clothing",
+    },
+    {
+      id: 3,
+      src: "/images/unskippable-brands/divine.webp",
+      hoverText: "Divine Solitaires",
+    },
+    {
+      id: 4,
+      src: "/images/unskippable-brands/manba.webp",
+      hoverText: "Manba Finance",
+    },
+    {
+      id: 5,
+      src: "/images/unskippable-brands/supersox.webp",
+      hoverText: "Supersox",
+    },
+    {
+      id: 6,
+      src: "/images/unskippable-brands/Mbmehta.webp",
+      hoverText: "M. B. Mehta & Co.",
+    },
+  ];
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
- 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
- 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
- 
   const x = useTransform(
     scrollYProgress,
     [0, 1],
     isMobile ? ["80%", "-42%"] : ["82%", "-27%"]
   );
- 
+  const textScale = useTransform(
+    scrollYProgress,
+    [0, 0.3],
+    isMobile ? [1.25, 1] : [2, 1]
+  );
+  const textY = useTransform(scrollYProgress, [0, 0.3], ["35vh", "0vh"]);
   return (
     <section
       ref={containerRef}
@@ -50,9 +72,15 @@ const CardCarousel: React.FC = () => {
     >
       {/* Sticky wrapper keeps everything (title + cards) fixed */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden gap-5">
-      <h2 className="mb-3 text-center">
-        <span className="text-highlight">We </span>makes ideas real
-      </h2>
+        <motion.h2
+          className="mb-3 text-center px-4 max-w-[90vw] sm:max-w-none whitespace-normal break-words"
+          style={{
+            scale: textScale,
+            y: textY,
+          }}
+        >
+          <span className="text-highlight">We </span>makes ideas real
+        </motion.h2>
         {/* Title stays fixed at center */}
         {/* <div className="absolute text-center px-4 z-0">
           <h1 className="black-text">
@@ -60,7 +88,6 @@ const CardCarousel: React.FC = () => {
             <span className="black-text">BRANDS</span>
           </h1>
         </div> */}
- 
         {/* Horizontal cards */}
         <motion.div
           style={{ x }}
@@ -88,10 +115,8 @@ const CardCarousel: React.FC = () => {
                   priority={i < 3}
                 />
               </div>
- 
               {/* Subtle bottom gradient */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10" />
- 
               {/* Hover overlay */}
               <div
                 className="
@@ -104,7 +129,6 @@ const CardCarousel: React.FC = () => {
                   {card.hoverText ?? "Open"}
                 </span>
               </div>
- 
               {/* Click target */}
               <button
                 aria-label={card.hoverText ?? `Open Card ${i + 1}`}
@@ -117,14 +141,11 @@ const CardCarousel: React.FC = () => {
             </div>
           ))}
         </motion.div>
-
         <div className="flex justify-center items-center lg:mt-10 mt-5">
-      <Button href="/clients" text="Explore Our Brands " className="" />
-    </div>
+          <Button href="/clients" text="Explore Our Brands " className="" />
+        </div>
       </div>
-      
     </section>
   );
 };
- 
 export default CardCarousel;

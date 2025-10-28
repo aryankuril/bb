@@ -24,15 +24,20 @@ const Firstsection: React.FC = () => {
     const scaleY = containerRect.height / elementRect.height;
     const targetScale = Math.max(scaleX, scaleY);
 
+    // Responsive scroll trigger values
+    const isMobile = window.innerWidth < 768;
+    const startValue = isMobile ? "top 20%" : "top 50%";
+    const endValue = isMobile ? "top 10%" : "top 20%";
+
     const scrollTrigger = gsap.to(element, {
       scale: targetScale,
       zIndex: 10,
       ease: "power2.inOut",
       scrollTrigger: {
         trigger: container,
-        start: "top 50%",
-        end: "top 20%",
-        scrub: 1.5,
+        start: startValue,
+        end: endValue,
+        scrub: 2.5,
         toggleActions: "play reverse play reverse",
         // markers: true,
       },
@@ -111,7 +116,7 @@ const Firstsection: React.FC = () => {
               }}
             >
               <Image
-                src="/images/teams/5.png"
+                src="/images/teams/team5.webp"
                 alt="Hands Zoom"
                 fill
                 className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"

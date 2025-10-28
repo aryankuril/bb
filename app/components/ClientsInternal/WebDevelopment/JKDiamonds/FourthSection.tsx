@@ -156,7 +156,7 @@ const FourthSection = () => {
   return (
     <section className="container py-10 sm:py-15 lg:py-20 relative w-full">
 
-           <div className="sticky top-0 h-screen flex items-center justify-center px-2">
+           <div className="sticky top-0 h-[50vh] flex items-center justify-center px-2">
         <h3
           // style={{ color: serviceColor }}
           className="text-center select-none"

@@ -42,11 +42,12 @@ const workflowSteps = [
     tags: ["Code", "Responsive", "Performance"],
   },
   {
-    title: "Testing",
-    description:
-      "Rigorous quality checks across devices and browsers to ensure speed, security, and flawless usability.",
-    tags: ["QA", "Speed", "Security"],
-  },
+  title: "Maintenance of Website",
+  description:
+    "Regular updates, performance monitoring, and security checks to keep your website running smoothly, fast, and error-free.",
+  tags: ["Maintenance", "Updates", "Security", "Performance"],
+},
+
 ];
 
 

@@ -55,14 +55,14 @@ const Firstsection = () => {
           ref={ref}
           initial={{ scale: 0.8, opacity: 0, y: 80 }}
           animate={controls}
-          className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[1400px] "
+          className="relative overflow-hidden rounded-3xl w-full max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[1400px] "
         >
           <Image
  src="/images/performance/chatterbox.webp"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}
-  className="object-cover w-full h-auto rounded-2xl"
+  className="object-cover w-full lg:h-[80vh] h-auto rounded-2xl"
 />
         </motion.div>
       </div>
