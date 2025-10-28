@@ -60,7 +60,7 @@ const FirstSection = () => {
   {/* Label box (outside card, overlapping) */}
   <div className=" font-['Poppins'] absolute top-4 lg:-left-25 left-4 z-30 bg-[#FAB31E] rounded-[20px_20px_0px_20px] px-3 sm:px-5 py-1 sm:py-2 shadow-md">
     <span className="text-black text-xs sm:text-sm leading-[20px] sm:leading-[30px] tracking-[-0.36px] whitespace-nowrap">
-      Innovation, the street-smart style
+      Traffic, the intent-smart way
     </span>
   </div>
 </div>
