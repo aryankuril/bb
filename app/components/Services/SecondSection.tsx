@@ -52,6 +52,16 @@ const cards: Card[] = [
     link: "/services/social-media-marketing",
     shape: "rectangle",
   },
+
+  //   {
+  //    number: "05",
+  //   title: "GEO",
+  //   subtitle:
+  //     "We build and nurture your online community, turning followers into loyal fans through creative content and authentic engagement.",
+  //   image: "/images/servicespage/GEO.png",
+  //   link: "/services/social-media-marketing",
+  //   shape: "circle",
+  // },
 ];
 
 export default function SecondSection() {
@@ -151,7 +161,7 @@ export default function SecondSection() {
                     borderRadius: card.shape === "circle" ? "20%" : "20px",
                     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
                     backgroundSize: "cover",
-                    backgroundPosition: "center",
+                    backgroundPosition: "top",
                     backgroundRepeat: "no-repeat",
                   }}
                  >
