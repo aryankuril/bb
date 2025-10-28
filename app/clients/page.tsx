@@ -7,7 +7,7 @@ import SeventhSection from '../components/ServicesInternal/WebsiteDesign/Seventh
 import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from '../components/MobilePopup'
-
+import SmoothScroll from '../components/SmoothScroll'
 import { createPageMetadata } from "@/lib/metadata";
 
 
@@ -15,6 +15,8 @@ export const metadata = createPageMetadata("Clients");
 const Index = () => {
   return (
     <div>
+      <SmoothScroll> 
+
         <Taxi/>
          {/* <MobilePopup/> */}
         <Navbar />
@@ -23,6 +25,7 @@ const Index = () => {
         <SecondSection />
         <SeventhSection />
         <Footer />
+      </SmoothScroll>
     </div>
   )
 }

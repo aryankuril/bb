@@ -9,14 +9,15 @@ import Footer from '../../../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../../components/Taxi'
 import { createPageMetadata } from "@/lib/metadata";
+import SmoothScroll from '@/app/components/SmoothScroll'
 
-
-export const metadata = createPageMetadata("Case-Study");
+export const metadata = createPageMetadata("Case-Study-RicRac Kids");
 
 const Index = () => {
   return (
     <div>
       {/* <ClientScripts/> */}
+      <SmoothScroll> 
       <Taxi/>
       <Navbar />
       <Firstsection/>
@@ -25,6 +26,7 @@ const Index = () => {
       <FourthSection />
       <SeventhSection />
       <Footer />
+      </SmoothScroll>
       
     </div>
   )

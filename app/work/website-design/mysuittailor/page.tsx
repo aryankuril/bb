@@ -8,15 +8,16 @@ import SeventhSection from '../../../components/ServicesInternal/WebsiteDesign/S
 import Footer from '../../../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../../components/Taxi'
-
+import SmoothScroll from '@/app/components/SmoothScroll'
 import { createPageMetadata } from "@/lib/metadata";
 
 
-export const metadata = createPageMetadata("Case-Study");
+export const metadata = createPageMetadata("Case-Study-My Suit Tailor");
 const Index = () => {
   return (
     <div>
       {/* <ClientScripts/> */}
+      <SmoothScroll>
       <Taxi/>
       <Navbar />
       <Firstsection/>
@@ -25,6 +26,7 @@ const Index = () => {
       <FourthSection />
       <SeventhSection />
       <Footer />
+      </SmoothScroll>
       
     </div>
   )

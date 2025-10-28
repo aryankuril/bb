@@ -45,7 +45,7 @@ const workflowSteps = [
   title: "Maintenance of Website",
   description:
     "Regular updates, performance monitoring, and security checks to keep your website running smoothly, fast, and error-free.",
-  tags: ["Maintenance", "Updates", "Security", "Performance"],
+  tags: ["Maintenance", "Updates", "Security"],
 },
 
 ];

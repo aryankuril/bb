@@ -174,10 +174,10 @@ export default function SecondSection() {
 
     height: isMobile
       ? card.shape === "circle"
-        ? "250px"
+        ? "350px"
         : card.shape === "square"
-        ? "250px"
-        : "250px"
+        ? "350px"
+        : "350px"
       : card.shape === "circle"
       ? "clamp(220px, 65vw, 480px)"
       : card.shape === "square"

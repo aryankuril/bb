@@ -8,6 +8,7 @@ import Button from '../components/Button'
 // // import ClientScripts from '../components/ClientScripts'
 // import Taxi from '../components/Taxi'
 
+import SmoothScroll from '@/app/components/SmoothScroll'
 import { createPageMetadata } from "@/lib/metadata";
 
 
@@ -16,6 +17,7 @@ export const metadata = createPageMetadata("Blogs");
 const page = () => {
   return (
     <div>
+      <SmoothScroll> 
       {/* <ClientScripts/> */}
       {/* <Taxi/>
         <Navbar/>
@@ -38,7 +40,7 @@ const page = () => {
     />
   </div>
 </div>
-
+</SmoothScroll>
     </div>
   )
 }

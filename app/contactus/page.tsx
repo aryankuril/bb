@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../components/Taxi'
 import MobilePopup from '../components/MobilePopup'
-
+import SmoothScroll from '../components/SmoothScroll'
 import { createPageMetadata } from "@/lib/metadata";
 
 
@@ -16,6 +16,8 @@ export const metadata = createPageMetadata("Contact-Us");
 const Index = () => {
   return (
     <div>
+      <SmoothScroll> 
+
       {/* <ClientScripts/> */}
       <Taxi/>
        {/* <MobilePopup/> */}
@@ -25,6 +27,7 @@ const Index = () => {
         <SixthSection/>
         <SeventhSection/>
         <Footer />
+      </SmoothScroll>
     </div>
   )
 }

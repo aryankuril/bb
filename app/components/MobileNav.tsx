@@ -19,7 +19,7 @@ const NAV_ITEMS: NavItem[] = [
     label: "BOMB AI",
     // logo: "/images/bombai.jpg", // 👈 add your bomb.ai logo path
   },
-  { label: "SERVICES", href: "services" },
+  { label: "SERVICES", href: "/services" },
   { label: "CLIENTS", href: "/clients" },
   { label: "CASE STUDIES", href: "/work" },
   { label: "TEAM", href: "/teams" },

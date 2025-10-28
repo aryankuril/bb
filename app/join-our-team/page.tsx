@@ -9,8 +9,8 @@ import SeventhSection from '../components/ServicesInternal/WebsiteDesign/Seventh
 import Footer from '../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../components/Taxi'
+import SmoothScroll from '../components/SmoothScroll'
 import { createPageMetadata } from "@/lib/metadata";
-
 
 export const metadata = createPageMetadata("Join-Our-Team");
 
@@ -18,6 +18,8 @@ const Index = () => {
   return (
     <div>
       {/* <ClientScripts/> */}
+
+      <SmoothScroll>
       <Taxi/>
 
         <Navbar />
@@ -27,6 +29,7 @@ const Index = () => {
         <ThirdSection/>
         <SeventhSection/>
         <Footer />
+        </SmoothScroll>
         
 
     </div>

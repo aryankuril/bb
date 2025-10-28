@@ -11,7 +11,7 @@ import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../components/Taxi'
 import MobilePopup from "../../components/MobilePopup";
-
+import SmoothScroll from '../../components/SmoothScroll';
 
 export const metadata: Metadata = {
   title: " Dominate Social Media with Strategies That Spark Engagement",
@@ -23,6 +23,8 @@ const Index = () => {
       {/* <ClientScripts/> */}
       {/* all good */}
        {/* <MobilePopup/> */}
+
+      <SmoothScroll>
       <Taxi/>
       <Navbar />
       <FirstSection />
@@ -33,6 +35,7 @@ const Index = () => {
       <SixthSection />
       <SeventhSection />
       <Footer />
+      </SmoothScroll>
     </div>
   )
 }

@@ -108,12 +108,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </noscript>
 
         {/* App Content */}
-        <SmoothScroll>
+        {/* <SmoothScroll> */}
           <PageLoader>
             {children}
           </PageLoader>
           <ScrollToTop />
-        </SmoothScroll>
+        {/* </SmoothScroll> */}
       </body>
     </html>
   );

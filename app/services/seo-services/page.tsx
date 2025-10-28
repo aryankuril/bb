@@ -11,7 +11,7 @@ import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../components/Taxi'
 import MobilePopup from "@/app/components/MobilePopup";
-
+import SmoothScroll from '../../components/SmoothScroll';
 
 export const metadata: Metadata = {
   title: "Best SEO Agency in Mumbai | Bombay Blokes",
@@ -22,6 +22,7 @@ const Index = () => {
     <div>
       {/* <ClientScripts/> */}
        {/* <MobilePopup/> */}
+      <SmoothScroll>
       <Taxi/>
       <Navbar />
       <FirstSection />
@@ -32,6 +33,7 @@ const Index = () => {
       <SixthSection />
       <SeventhSection />
       <Footer />
+      </SmoothScroll>
     </div>
   )
 }

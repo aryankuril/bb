@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../components/Taxi'
 import MobilePopup from '../components/MobilePopup'
-
+import SmoothScroll from '../components/SmoothScroll'
 import { createPageMetadata } from "@/lib/metadata";
 
 
@@ -18,13 +18,15 @@ const Index = () => {
     <div>
       {/* <ClientScripts/> */}
        {/* <MobilePopup/> */}
-      <Taxi/>
+       <SmoothScroll> 
+        <Taxi/>
         <Navbar />
         <Firstsection/>
         <SecondSection/>
         <SixthSection/>
         <SeventhSection/>
         <Footer />
+       </SmoothScroll>
     </div>
   )
 }
