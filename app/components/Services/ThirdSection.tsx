@@ -7,18 +7,16 @@ import Button from "../Button";
 import AnimatedButton from "../AnimatedButton";
 gsap.registerPlugin(ScrollTrigger);
 // ------- Demo data (4 cards) -------
-
 const cardsData = [
   {
     title: "BB Studios",
-    tags: ["Branding", "Engagement", ],
+    tags: ["Branding", "Engagement"],
     content:
       "Our in-house production arm, where we create stunning, campaign-ready photos and videos that bring your brand's story to life.",
     image: "/images/servicespage/BB-Studios.png",
     url: "https://bbstudios.bombayblokes.com",
   },
   {
-
     title: "BomB AI",
     tags: ["Ai", "Analytics"],
     content:
@@ -27,7 +25,6 @@ const cardsData = [
     url: "https://bbstudios.bombayblokes.com/bomb.ai",
   },
 ];
-
 export default function StackingCards() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
@@ -62,7 +59,8 @@ export default function StackingCards() {
         filter: "blur(6px) brightness(0.7)",
       };
       const stepsPercent = (cards.length - 1) * 120; // each card step ~120% scroll
-      const extraBufferPercent = 80; // extra scroll after last card so next section doesn't jump in
+      const isMobile = window.innerWidth < 768;
+      const extraBufferPercent = isMobile ? 250 : 80;
       const tl = gsap.timeline({
         defaults: { ease: "power2.out", duration: 1.2 },
         scrollTrigger: {
@@ -72,6 +70,7 @@ export default function StackingCards() {
           scrub: 1.2,
           pin: true,
           anticipatePin: 1,
+          pinSpacing: true,
           // markers: true,
         },
       });
@@ -101,9 +100,12 @@ export default function StackingCards() {
       >
         {/* Title pinned at the top while cards stack below */}
         <div className="sticky top-0 z-30 pointer-events-none">
-         <div className="flex container items-center justify-center w-full mx-auto ">
-        <h2 className="text-center black-text">Always Enjoy Extra <span className="text-highlight">Chutney</span> With Your <span className="text-highlight">Vada Pav</span></h2>
-      </div>
+          <div className="flex container items-center justify-center w-full mx-auto ">
+            <h2 className="text-center black-text">
+              Always Enjoy Extra <span className="text-highlight">Chutney</span>{" "}
+              With Your <span className="text-highlight">Vada Pav</span>
+            </h2>
+          </div>
         </div>
         {/* Stacking canvas below the title */}
         <div className="relative w-full pt-20 sm:pt-24 lg:pt-32 mt-10">
@@ -170,10 +172,10 @@ export default function StackingCards() {
         </div>
       </section>
       {/* Tail spacer so after unpin there's breathing room before next section */}
-      <div aria-hidden className="h-[30vh] md:h-[50vh] lg:h-[60vh]"></div>
-        <div className="flex justify-center items-center">
-          <Button href="/work" text="Explore Our Work " className="" />
-        </div>
+      <div aria-hidden className="h-[70vh] md:h-[50vh] lg:h-[60vh]"></div>
+      <div className="flex justify-center items-center">
+        <Button href="/work" text="Explore Our Work " className="" />
+      </div>
     </div>
   );
 }

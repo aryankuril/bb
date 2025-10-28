@@ -5,10 +5,10 @@ import Button from "../../Button";
 
 const FirstSection = () => {
   const images = [
-    "/images/seo-cs/Manba.png",
-    "/images/seo-cs/Prosolv.png",
-    "/images/seo-cs/SCS.png",
-    "/images/seo-cs/Prosolv.png",
+    "/images/seo-cs/seo1.jpeg",
+    "/images/seo-cs/seo2.png",
+    "/images/seo-cs/seo3.webp",
+    "/images/seo-cs/seo4.webp",
   ];
 
   const [current, setCurrent] = useState(0);

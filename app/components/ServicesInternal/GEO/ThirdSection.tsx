@@ -7,29 +7,26 @@ const WorkflowSection: React.FC = () => {
 const workflowSteps = [
   {
     title: "Targeted Research & Intent Mapping",
-    description:
-      "Analyze the generative AI landscape and competitor citations to identify the specific long-tail, conversational queries that your content must be optimized to answer.",
+    description: "Find long-tail, conversational queries from AI and competitor insights.",
     tags: ["Long-tail", "Conversational Queries", "AI Landscape"],
   },
   {
     title: "Content Structuring for Synthesis",
-    description:
-      "Create content that leads with direct answers and utilizes structured data (Schema Markup, lists) to help AI models easily extract, synthesize, and accurately cite information.",
+    description: "Use Schema and clear answers for better AI understanding.",
     tags: ["Direct Answers", "Schema Markup", "Structured Data"],
   },
   {
     title: "Establish Trust and Authority",
-    description:
-      "Integrate expert quotes, original statistics, and authoritative citations to maximize credibility so AI models prioritize your content as a reliable source.",
+    description: "Add expert quotes and data to boost credibility.",
     tags: ["Original Statistics", "Expert Quotes", "Credibility"],
   },
   {
     title: "Technical Access and Agility",
-    description:
-      "Ensure optimal crawlability and allow AI crawlers access via robots.txt. Continuously monitor the Generative Appearance Score to adapt your strategy effectively.",
+    description: "Improve crawlability and track AI visibility score.",
     tags: ["Generative Appearance Score", "AI Crawlers", "Crawlability"],
   },
 ];
+
 
 
   const containerRef = useRef<HTMLDivElement>(null);

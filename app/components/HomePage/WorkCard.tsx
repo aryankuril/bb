@@ -18,7 +18,7 @@ const cardsData = [
   },
   {
     title: "SCS Sports",
-    tags: ["Meta Ads" ,"Social Media" ,"SEO"],
+    tags: ["Meta Ads"],
     content:
       "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue, a mission that culminated in a game-changing 12x ROAS.",
     image: "/images/SocialMedia/scs.webp",
@@ -26,7 +26,7 @@ const cardsData = [
   },
   {
     title: "J K Diamonds Institute",
-    tags: ["UI UX", "Framer", "Zoho", "SEO" ,"Meta Ads"],
+    tags: ["UI UX", "Framer", "Zoho CRM"],
     content:
       "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
     image: "/images/webdev/Jk-Diamonds.png",
@@ -34,7 +34,7 @@ const cardsData = [
   },
   {
     title: "My Suit Tailor",
-    tags: [" UI UX", "Shopify ", "SEO" ],
+    tags: [" UI UX", "Shopify "],
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
     image: "/images/webdev/MST.png",
@@ -181,12 +181,12 @@ export default function StackingCards() {
             </div>
           ))}
         </div>
+        <div className="flex justify-center items-center">
+          <Button href="/work" text="Explore Our Work " className="" />
+        </div>
       </section>
       {/* Tail spacer so after unpin there's breathing room before next section */}
       <div aria-hidden className="h-[30vh] md:h-[50vh] lg:h-[60vh]"></div>
-        {/* <div className="flex justify-center items-center">
-          <Button href="/work" text="Explore Our Work " className="" />
-        </div> */}
     </div>
   );
 }

@@ -186,9 +186,9 @@ export default function StackingCards() {
       </section>
       {/* Tail spacer so after unpin there's breathing room before next section */}
       <div aria-hidden className="h-[30vh] md:h-[50vh] lg:h-[60vh]"></div>
-        <div className="flex justify-center items-center">
+        {/* <div className="flex justify-center items-center">
           <Button href="/work" text="Explore Our Work " className="" />
-        </div>
+        </div> */}
     </div>
   );
 }

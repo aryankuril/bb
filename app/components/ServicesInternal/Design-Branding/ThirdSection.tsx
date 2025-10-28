@@ -8,28 +8,29 @@ const workflowSteps = [
   {
     title: "Define Core Identity",
     description:
-      "Establish your singular mission, core values, and ideal audience. This foundation dictates your positioning and informs every subsequent decision.",
-    tags: ["Singular Mission", "Core Values", "Ideal Audience"],
+      "Set your mission, values, and audience to shape your brand’s foundation.",
+    tags: ["Mission", "Values", "Audience"],
   },
   {
     title: "Craft Unified Messaging",
     description:
-      "Develop a clear, differentiated voice and tone. This ensures your story is instantly recognizable, compelling, and consistent across all platforms.",
-    tags: ["Clear Voice", "Differentiated Tone", "Consistent Story"],
+      "Build a clear, unique voice that stays consistent across all platforms.",
+    tags: ["Voice", "Tone", "Consistency"],
   },
   {
     title: "Ensure Experience Consistency",
     description:
-      "Align all physical, digital, and human touchpoints with your brand promise. Consistency is the primary driver of customer trust and retention.",
-    tags: ["Align Touchpoints", "Customer Trust", "Retention"],
+      "Match every touchpoint with your brand promise to build trust and loyalty.",
+    tags: ["Touchpoints", "Trust", "Loyalty"],
   },
   {
     title: "Measure and Evolve",
     description:
-      "Continuously track market perception, competitive differentiation, and audience relevance. The strategy must be agile, allowing the brand to grow and remain impactful over time.",
-    tags: ["Market Perception", "Competitive Differentiation", "Audience Relevance"],
+      "Track perception and adapt to stay relevant and competitive over time.",
+    tags: ["Perception", "Relevance", "Growth"],
   },
 ];
+
 
 
   const containerRef = useRef<HTMLDivElement>(null);
