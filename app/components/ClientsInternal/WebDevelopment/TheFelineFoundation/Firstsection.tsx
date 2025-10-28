@@ -33,7 +33,11 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-         Building a Digital Voice for Mumbai’s.The Feline Foundation Website
+       
+
+         <span className="text-highlight">
+             Building a Digital Voice
+            </span>   for Mumbai’s.The Feline Foundation Website
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}

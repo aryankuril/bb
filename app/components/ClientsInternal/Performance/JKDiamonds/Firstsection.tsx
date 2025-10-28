@@ -33,7 +33,9 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-Quality Over Quantity: Reshaping the Lead Funnel for J.K. Diamonds
+<span className="text-highlight">
+ Quality Over Quantity:
+            </span> Reshaping the Lead Funnel for J.K. Diamonds
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}

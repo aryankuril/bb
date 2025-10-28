@@ -33,7 +33,9 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-Dancing Leaf, a premium tea brand, struggled to scale past ₹5L in monthly sales.
+Dancing Leaf, a premium tea brand, struggled to scale past <span className="text-highlight">
+          ₹5L in monthly sales.
+            </span>
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}

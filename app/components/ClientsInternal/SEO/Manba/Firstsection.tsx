@@ -33,7 +33,9 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-Capturing the Market: How Manba Finance Secured High-Volume Keywords
+Capturing the Market: How Manba Finance Secured <span className="text-highlight">
+            High-Volume Keywords
+            </span>
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}

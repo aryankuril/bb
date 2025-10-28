@@ -62,13 +62,13 @@ const ThirdSection = () => {
   // Show logic:
   // Mobile → 9 visible
   // Desktop → 15 visible (~3 rows of 5)
-  const visibleCount = isMobile ? 9 : 15;
+  const visibleCount = isMobile ? 9 : 24;
   const visibleLogos = showAll ? logos : logos.slice(0, visibleCount);
 
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
       <div
-        className={`grid grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 max-w-full mx-auto transition-all duration-500 ease-in-out`}
+        className={`grid grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6 max-w-full mx-auto transition-all duration-500 ease-in-out`}
       >
         {visibleLogos.map((logo, index) => (
           <div

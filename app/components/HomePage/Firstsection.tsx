@@ -12,7 +12,7 @@ const Firstsection = () => {
           muted
           loop
           playsInline
-          className="hidden md:block absolute inset-0 w-full h-full object-cover"
+          className="hidden md:block absolute inset-0 w-full h-screen object-cover"
         />
 
         {/* Mobile Video */}

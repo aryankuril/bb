@@ -33,7 +33,9 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-2 Million Views and Counting: An Organic Reach Success Story
+2 Million Views and Counting: An <span className="text-highlight">
+            Organic Reach
+            </span> Success Story
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}

@@ -33,7 +33,9 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-        The Formula for Profitable Scaling: A Chatterbox Labels Case Study
+        The Formula for <span className="text-highlight">
+           Profitable Scaling:
+            </span> A Chatterbox Labels Case Study
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}

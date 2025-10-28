@@ -33,7 +33,9 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-Powering a Sports Retail Giant: A Strategic Shopify Launch for SCS Sports
+Powering a Sports Retail Giant: <span className="text-highlight">
+             Strategic Shopify Launch
+            </span> for SCS Sports
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}

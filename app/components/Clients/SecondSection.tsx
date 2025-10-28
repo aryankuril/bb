@@ -121,7 +121,7 @@ export default function SecondSection() {
           }}
           className="text-center single-title select-none"
         >
-         Clients
+         Fall of Frame
         </div>
       </div>
 

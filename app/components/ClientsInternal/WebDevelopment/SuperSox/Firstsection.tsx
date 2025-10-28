@@ -33,7 +33,9 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-          Putting The Best Foot Forward: A Rapid E-Commerce Launch for SuperSox
+          Putting The Best Foot Forward: <span className="text-highlight">
+           Rapid E-Commerce Launch
+            </span> for SuperSox
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
   {/* <span className="text-highlight">Attracts</span> and{" "}

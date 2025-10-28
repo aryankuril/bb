@@ -26,7 +26,7 @@ const links = [
     logo: "/images/bombai.jpg", // 👈 add your bomb.ai logo path
   },
   { href: "/clients", label: "Clients" },
-  { href: "/work", label: "Case Study" },
+  { href: "/work", label: "Case Studys" },
   { href: "/teams", label: "Team" },
   { href: "/join-our-team", label: "Career" },
 ];
@@ -330,7 +330,7 @@ export default function DesktopNav() {
 >
   {/* ✅ If logo exists, show it */}
   {link.logo && (
-    <div className="w-[40px] h-[40px] rounded-[5px] overflow-hidden border border-white bg-white flex-shrink-0">
+    <div className="w-[40px] h-[40px] rounded-[20px] overflow-hidden border border-white bg-white flex-shrink-0">
       <Image
         src={link.logo}
         alt={`${link.label} Logo`}
@@ -354,7 +354,7 @@ export default function DesktopNav() {
               className="absolute bottom-5 left-0 right-0 flex items-center justify-center px-6 text-xs uppercase tracking-wide"
             >
               <div className="flex flex-col items-center gap-2 text-center z-10 cursor-pointer">
-                <p className="text-white text-lg tracking-wide">CONNECT US ON</p>
+                <p className="text-white text-lg tracking-wide">REACH US ON</p>
                 <div className="flex gap-8 relative z-50">
                   <a
                     href="/contactus"

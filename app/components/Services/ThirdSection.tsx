@@ -10,15 +10,15 @@ gsap.registerPlugin(ScrollTrigger);
 const cardsData = [
   {
     title: "BB Studios",
-    tags: ["Branding", "Engagement"],
+    tags: ["Shoot", "Lighting" ,"Vfx" ,"Motion Graphic"],
     content:
       "Our in-house production arm, where we create stunning, campaign-ready photos and videos that bring your brand's story to life.",
     image: "/images/servicespage/BB-Studios.png",
     url: "https://bbstudios.bombayblokes.com",
   },
   {
-    title: "BomB AI",
-    tags: ["Ai", "Analytics"],
+    title: "Bomb AI",
+    tags: ["Generative Media", "AI Motion" ,"Prompt Engineering" ],
     content:
       "We leverage cutting-edge artificial intelligence to generate unique and compelling visuals at scale, moving at the speed of culture.",
     image: "/images/servicespage/Bomb-Ai.png",
