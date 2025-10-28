@@ -1152,7 +1152,7 @@ const SecondSection = () => {
                     <label className="block mb-1 white-text capitalize body3">
                       When Will You Board The Train?
                     </label>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-3 ">
                       {/* Immediate */}
                       {/* Immediate */}
                       <button
@@ -1161,8 +1161,8 @@ const SecondSection = () => {
                           setSelected("immediate");
                           setErrors((prev) => ({ ...prev, availability: "" }));
                         }}
-                        className={`flex items-center gap-2 rounded-md py-2 px-4 text-sm font-medium transition
-    border border-[var(--color-highlight)]
+                        className={`flex items-center gap-2 rounded-md py-2 px-4 text-sm font-medium transition small-placeholder 
+    border border-[var(--color-highlight)] cursor-pointer
     ${
       selected === "immediate"
         ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
@@ -1188,8 +1188,8 @@ const SecondSection = () => {
                           setSelected("0-2");
                           setErrors((prev) => ({ ...prev, availability: "" }));
                         }}
-                        className={`flex items-center gap-2 rounded-md py-2 px-4 body2 transition
-    border border-[var(--color-highlight)]
+                        className={`flex items-center gap-2 rounded-md py-2 px-4  transition small-placeholder
+    border border-[var(--color-highlight)] cursor-pointer
     ${
       selected === "0-2"
         ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
