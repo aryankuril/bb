@@ -32,7 +32,7 @@ const Firstsection = () => {
     <section className=" container py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10 ">
       {/* Headline */}
       <div className="mb-8 md:mb-12">
-        <h1 className="max-w-[1000px] black-text">
+        <h1 className="max-w-full black-text">
 Putting the Fun First: A Creative Strategy for Supersox
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
@@ -55,7 +55,7 @@ Putting the Fun First: A Creative Strategy for Supersox
           ref={ref}
           initial={{ scale: 0.8, opacity: 0, y: 80 }}
           animate={controls}
-          className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full max-w-[100%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[1400px] "
+          className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full  "
         >
           <Image
  src="/images/SocialMedia/scs.webp"

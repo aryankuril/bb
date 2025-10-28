@@ -68,7 +68,7 @@ const ThirdSection = () => {
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
       <div
-        className={`grid grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 max-w-7xl mx-auto transition-all duration-500 ease-in-out`}
+        className={`grid grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 max-w-full mx-auto transition-all duration-500 ease-in-out`}
       >
         {visibleLogos.map((logo, index) => (
           <div
