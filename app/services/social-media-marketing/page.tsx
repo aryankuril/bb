@@ -22,7 +22,7 @@ const Index = () => {
     <div>
       {/* <ClientScripts/> */}
       {/* all good */}
-       <MobilePopup/>
+       {/* <MobilePopup/> */}
       <Taxi/>
       <Navbar />
       <FirstSection />

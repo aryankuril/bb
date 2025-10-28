@@ -39,9 +39,9 @@ const Firstsection = () => {
   }, []);
 
   return (
-    <section className="lg:mt-0 -mt-20 relative isolate w-full overflow-hidden">
+    <section className="lg:mt-0 sm:-mt-20 relative isolate w-full xl:h-screen lg:h-full overflow-hidden">
       {/* Wrapper */}
-      <div className="relative w-full h-screen aspect-[9/16] ">
+      <div className="relative w-full xl:h-screen lg:h-full aspect-[9/16] ">
         {/* ========== DESKTOP ========== */}
         {!showSecond && (
           <video
@@ -50,7 +50,7 @@ const Firstsection = () => {
             autoPlay
             muted
             playsInline
-            className="hidden md:block absolute inset-0 w-full h-screen object-cover"
+            className="hidden md:block absolute inset-0 w-full xl:h-screen lg:h-full object-cover"
           />
         )}
         {showSecond && (
@@ -61,7 +61,7 @@ const Firstsection = () => {
             muted
             loop
             playsInline
-            className="hidden md:block absolute inset-0 w-full h-screen object-cover"
+            className="hidden md:block absolute inset-0 w-full xl:h-screen lg:h-full object-cover"
           />
         )}
 
@@ -73,7 +73,7 @@ const Firstsection = () => {
             autoPlay
             muted
             playsInline
-            className="block md:hidden absolute inset-0 w-full h-screen object-cover"
+            className="block md:hidden absolute inset-0 w-full xl:h-screen lg:h-full object-cover"
           />
         )}
         {showSecondMobile && (
@@ -84,7 +84,7 @@ const Firstsection = () => {
             muted
             loop
             playsInline
-            className="block md:hidden absolute inset-0 w-full h-screen object-cover"
+            className="block md:hidden absolute inset-0 w-full xl:h-screen lg:h-full object-cover"
           />
         )}
       </div>

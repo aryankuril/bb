@@ -27,7 +27,7 @@ export default function Home() {
     <div>
       {/* <ClientScripts/> */}
       <Taxi/>
-      <MobilePopup/>
+      {/* <MobilePopup/> */}
       <Navbar />
       <Firstsection/>
       <SecondSection/>

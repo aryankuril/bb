@@ -23,7 +23,7 @@ const Index = () => {
     <div>
       {/* <ClientScripts/> */}
       <Taxi/>
-       <MobilePopup/>
+       {/* <MobilePopup/> */}
       <Navbar />
       <FirstSection />
       {/* <SecondSection /> */}

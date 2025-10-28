@@ -18,7 +18,7 @@ const Index = () => {
     <div>
       {/* <ClientScripts/> */}
       <Taxi/>
-       <MobilePopup/>
+       {/* <MobilePopup/> */}
         <Navbar />
         <Firstsection/>
         <SecondSection/>

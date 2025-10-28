@@ -354,7 +354,7 @@ export default function DesktopNav() {
               className="absolute bottom-5 left-0 right-0 flex items-center justify-center px-6 text-xs uppercase tracking-wide"
             >
               <div className="flex flex-col items-center gap-2 text-center z-10 cursor-pointer">
-                <p className="text-white text-lg tracking-wide">FOLLOW US ON</p>
+                <p className="text-white text-lg tracking-wide">CONNECT US ON</p>
                 <div className="flex gap-8 relative z-50">
                   <a
                     href="/contactus"
