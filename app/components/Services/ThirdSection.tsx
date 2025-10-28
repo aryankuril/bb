@@ -101,9 +101,9 @@ export default function StackingCards() {
       >
         {/* Title pinned at the top while cards stack below */}
         <div className="sticky top-0 z-30 pointer-events-none">
-          <div className="flex items-center justify-center w-full">
-            <h2 className="text-center black-text">our best works</h2>
-          </div>
+         <div className="flex container items-center justify-center w-full mx-auto ">
+        <h2 className="text-center black-text">Always Enjoy Extra <span className="text-highlight">Chutney</span> With Your <span className="text-highlight">Vada Pav</span></h2>
+      </div>
         </div>
         {/* Stacking canvas below the title */}
         <div className="relative w-full pt-20 sm:pt-24 lg:pt-32 mt-10">

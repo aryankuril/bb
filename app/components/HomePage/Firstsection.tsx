@@ -41,7 +41,7 @@ const Firstsection = () => {
   return (
     <section className="lg:mt-0 -mt-20 relative isolate w-full overflow-hidden">
       {/* Wrapper */}
-      <div className="relative w-full h-full aspect-[9/16] md:h-[850px]">
+      <div className="relative w-full h-screen aspect-[9/16] ">
         {/* ========== DESKTOP ========== */}
         {!showSecond && (
           <video
@@ -50,7 +50,7 @@ const Firstsection = () => {
             autoPlay
             muted
             playsInline
-            className="hidden md:block absolute inset-0 w-full h-full object-fit"
+            className="hidden md:block absolute inset-0 w-full h-screen object-cover"
           />
         )}
         {showSecond && (
@@ -61,7 +61,7 @@ const Firstsection = () => {
             muted
             loop
             playsInline
-            className="hidden md:block absolute inset-0 w-full h-full object-contain"
+            className="hidden md:block absolute inset-0 w-full h-screen object-cover"
           />
         )}
 
@@ -73,7 +73,7 @@ const Firstsection = () => {
             autoPlay
             muted
             playsInline
-            className="block md:hidden absolute inset-0 w-full h-full object-cover"
+            className="block md:hidden absolute inset-0 w-full h-screen object-cover"
           />
         )}
         {showSecondMobile && (
@@ -84,7 +84,7 @@ const Firstsection = () => {
             muted
             loop
             playsInline
-            className="block md:hidden absolute inset-0 w-full h-full object-cover"
+            className="block md:hidden absolute inset-0 w-full h-screen object-cover"
           />
         )}
       </div>
