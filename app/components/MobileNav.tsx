@@ -9,9 +9,19 @@ type NavItem = { label: string; href?: string };
 const NAV_ITEMS: NavItem[] = [
   { label: "HOME", href: "/" },
   { label: "ABOUT", href: "/aboutus" },
+   {
+    href: "https://bbstudios.bombayblokes.com",
+    label: "BB STUDIOS",
+    // logo: "/images/BBStudios2.png", // 👈 add your studio logo path
+  },
+  {
+    href: "https://bbstudios.bombayblokes.com/bomb.ai",
+    label: "BOMB AI",
+    // logo: "/images/bombai.jpg", // 👈 add your bomb.ai logo path
+  },
   { label: "SERVICES", href: "services" },
-  { label: "WORK", href: "/work" },
   { label: "CLIENTS", href: "/clients" },
+  { label: "CASE STUDYS", href: "/work" },
   { label: "TEAM", href: "/teams" },
   { label: "CONTACT", href: "/contactus" },
   { label: "CAREERS", href: "/join-our-team" },

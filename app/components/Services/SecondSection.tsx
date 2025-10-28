@@ -99,7 +99,7 @@ export default function SecondSection() {
         </div>
       </div>
       {/* Scrollable Cards */}
-      <div ref={containerRef} className="relative h-[400vh] z-10">
+      <div ref={containerRef} className="relative h-[800vh] z-10">
         <div className="sticky top-0 h-screen overflow-hidden">
           {cards.map((card, i) => {
             const start = i * segment;
