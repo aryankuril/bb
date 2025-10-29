@@ -42,7 +42,7 @@ const Firstsection: React.FC = () => {
   }}
       className="relative h-3xl border-b-2 border-[var(--color-highlight)] container py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10 overflow-hidden px-4 sm:px-6 lg:px-8"
     >
-      <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-30">
+      <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-40">
         <div className="flex-1">
           <h1 className="black-text max-w-full lg:max-w-[1000px]">
             Ride the Mumbai spirit,{" "}
@@ -61,7 +61,7 @@ const Firstsection: React.FC = () => {
         <img
           src="/images/carrer-station.png"
           alt="Station board"
-          className="w-20 sm:w-40 md:w-48 lg:w-40 xl:w-50 h-auto"
+          className="w-28 sm:w-40 md:w-48 lg:w-40 xl:w-50 h-auto"
         />
       </div>
 
@@ -71,7 +71,7 @@ const Firstsection: React.FC = () => {
         initial={{ x: "-100%" }}
         animate={inView ? { x: stopPosition } : {}}
         transition={{ duration: 3, ease: "easeInOut" }}
-        className="absolute bottom-0 left-0 z-20 w-[240px] sm:w-[250px] md:w-[350px] lg:w-[500px] xl:w-[600px]"
+        className="absolute bottom-0 left-0 z-20 w-[800px] sm:w-[250px] md:w-[350px] lg:w-[500px] xl:w-[800px]"
       >
         <img
           src="/images/train.png"
