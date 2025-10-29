@@ -705,7 +705,7 @@ const SecondSection = () => {
           w-full transition cursor-pointer small-placeholder
           ${
             isActive
-              ? "bg-[var(--color-highlight)] text-[var(--color-pirmary)] border-[var(--color-highlight)]"
+              ? "bg-[var(--color-highlight)] text-black border-[var(--color-highlight)]"
               : errors.services
               ? "border-red-500 text-[var(--color-secondary)]"
               : "border-[var(--color-highlight)] text-[var(--color-secondary)]"

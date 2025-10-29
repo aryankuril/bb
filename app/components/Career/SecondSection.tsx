@@ -1152,61 +1152,62 @@ const SecondSection = () => {
                     <label className="block mb-1 white-text capitalize body3">
                       When Will You Board The Train?
                     </label>
-                    <div className="grid grid-cols-2 gap-3 ">
+                    <div className="grid lg:grid-cols-2  grid-cols-1 gap-3 ">
                       {/* Immediate */}
                       {/* Immediate */}
                       <button
-                        type="button"
-                        onClick={() => {
-                          setSelected("immediate");
-                          setErrors((prev) => ({ ...prev, availability: "" }));
-                        }}
-                        className={`flex items-center gap-2 rounded-md py-2 px-4 white-text transition small-placeholder 
-    border border-[var(--color-highlight)] cursor-pointer
-    ${
+  type="button"
+  onClick={() => {
+    setSelected("immediate");
+    setErrors((prev) => ({ ...prev, availability: "" }));
+  }}
+  className={`flex items-center gap-2 rounded-md py-2 px-4 transition small-placeholder
+  border border-[var(--color-highlight)] cursor-pointer
+  ${
+    selected === "immediate"
+      ? "bg-[var(--color-highlight)] text-black"
+      : "bg-transparent text-white hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+  }`}
+>
+  <span
+    className={
       selected === "immediate"
-        ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
-        : "bg-transparent text-[var(--color-text-muted)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-    }`}
-                      >
-                        <span
-                          className={
-                            selected === "immediate"
-                              ? "text-[var(--color-primary)]"
-                              : "text-[var(--color-text-muted)]"
-                          }
-                        >
-                          {svgs.immediately}
-                        </span>
-                        Immediate
-                      </button>
+        ? "text-black"
+        : "text-white"
+    }
+  >
+    {svgs.immediately}
+  </span>
+  Immediate
+</button>
 
-                      {/* 0–2 Months */}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSelected("0-2");
-                          setErrors((prev) => ({ ...prev, availability: "" }));
-                        }}
-                        className={`flex items-center gap-2 rounded-md py-2 px-4 white-text transition small-placeholder
-    border border-[var(--color-highlight)] cursor-pointer
-    ${
+{/* 0–2 Months */}
+<button
+  type="button"
+  onClick={() => {
+    setSelected("0-2");
+    setErrors((prev) => ({ ...prev, availability: "" }));
+  }}
+  className={`flex items-center gap-2 rounded-md py-2 px-4 transition small-placeholder
+  border border-[var(--color-highlight)] cursor-pointer
+  ${
+    selected === "0-2"
+      ? "bg-[var(--color-highlight)] text-black"
+      : "bg-transparent text-white hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+  }`}
+>
+  <span
+    className={
       selected === "0-2"
-        ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
-        : "bg-transparent text-[var(--color-text-muted)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-    }`}
-                      >
-                        <span
-                          className={
-                            selected === "0-2"
-                              ? "text-[var(--color-primary)]"
-                              : "text-[var(--color-text-muted)]"
-                          }
-                        >
-                          {svgs.Months}
-                        </span>
-                        0–2 Months
-                      </button>
+        ? "text-black"
+        : "text-white"
+    }
+  >
+    {svgs.Months}
+  </span>
+  0–2 Months
+</button>
+
                     </div>
                     {errors.availability && (
                       <p className="text-red-500 text-xs mt-1">

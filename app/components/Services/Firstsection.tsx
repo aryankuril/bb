@@ -24,8 +24,14 @@ const Firstsection: React.FC = () => {
       const stationRight =
         stationRef.current.offsetLeft + stationRef.current.offsetWidth;
 
-      // 🟢 Stop train right near station corner (pole bottom)
-      const stopX = stationRight - trainWidth * 1.23;
+      // 🟢 Desktop default stop position
+      let stopX = stationRight - trainWidth * 1.15;
+
+      // 📱 On mobile, stop a little earlier so it doesn’t hit the pole
+      if (window.innerWidth < 640) {
+        stopX = stationRight - trainWidth * 1.10;
+      }
+
       setStopPosition(stopX);
     };
 
@@ -36,10 +42,10 @@ const Firstsection: React.FC = () => {
 
   return (
     <section
-     ref={(el) => {
-    inViewRef(el);
-    containerRef.current = el as HTMLDivElement | null;
-  }}
+      ref={(el) => {
+        inViewRef(el);
+        containerRef.current = el as HTMLDivElement | null;
+      }}
       className="relative h-3xl border-b-2 border-[var(--color-highlight)] container py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10 overflow-hidden px-4 sm:px-6 lg:px-8"
     >
       <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-30">
@@ -59,9 +65,9 @@ const Firstsection: React.FC = () => {
         className="absolute bottom-0 right-4 sm:right-8 lg:right-16 flex justify-end"
       >
         <img
-        src="/images/service-station.png"
+          src="/images/service-station.png"
           alt="Station board"
-          className="w-20 sm:w-40 md:w-48 lg:w-40 xl:w-50 h-auto"
+          className="w-28 sm:w-40 md:w-45 lg:w-48 xl:w-50 h-auto"
         />
       </div>
 
@@ -71,7 +77,7 @@ const Firstsection: React.FC = () => {
         initial={{ x: "-100%" }}
         animate={inView ? { x: stopPosition } : {}}
         transition={{ duration: 3, ease: "easeInOut" }}
-        className="absolute bottom-0 left-0 z-20 w-[180px] sm:w-[250px] md:w-[350px] lg:w-[500px] xl:w-[600px]"
+        className="absolute bottom-0 left-0 z-20 w-[700px] sm:w-[710px] md:w-[750px] lg:w-[800px] xl:w-[800px]"
       >
         <img
           src="/images/train.png"
