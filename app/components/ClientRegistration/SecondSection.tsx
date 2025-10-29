@@ -692,7 +692,7 @@ const SecondSection = () => {
                 Select Service <span className="text-red-500">*</span>
               </label>
 
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {services.map((service, index) => {
                   const isActive = selectedServices.includes(service.name);
 
@@ -703,7 +703,7 @@ const SecondSection = () => {
                       onClick={() => handleServiceToggle(service.name)}
                       className={`
           flex lg:gap-5 gap-3 px-3 py-3 rounded-[10px] border 
-          w-full transition cursor-pointer 
+          w-full transition cursor-pointer small-placeholder
           ${
             isActive
               ? "bg-[var(--color-highlight)] text-[var(--color-pirmary)] border-[var(--color-highlight)]"

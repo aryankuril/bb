@@ -1161,7 +1161,7 @@ const SecondSection = () => {
                           setSelected("immediate");
                           setErrors((prev) => ({ ...prev, availability: "" }));
                         }}
-                        className={`flex items-center gap-2 rounded-md py-2 px-4  transition small-placeholder 
+                        className={`flex items-center gap-2 rounded-md py-2 px-4 white-text transition small-placeholder 
     border border-[var(--color-highlight)] cursor-pointer
     ${
       selected === "immediate"
@@ -1188,7 +1188,7 @@ const SecondSection = () => {
                           setSelected("0-2");
                           setErrors((prev) => ({ ...prev, availability: "" }));
                         }}
-                        className={`flex items-center gap-2 rounded-md py-2 px-4  transition small-placeholder
+                        className={`flex items-center gap-2 rounded-md py-2 px-4 white-text transition small-placeholder
     border border-[var(--color-highlight)] cursor-pointer
     ${
       selected === "0-2"

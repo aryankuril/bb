@@ -71,7 +71,7 @@ const Firstsection: React.FC = () => {
         initial={{ x: "-100%" }}
         animate={inView ? { x: stopPosition } : {}}
         transition={{ duration: 3, ease: "easeInOut" }}
-        className="absolute bottom-0 left-0 z-20 w-[180px] sm:w-[250px] md:w-[350px] lg:w-[500px] xl:w-[600px]"
+        className="absolute bottom-0 left-0 z-20 w-[240px] sm:w-[250px] md:w-[350px] lg:w-[500px] xl:w-[600px]"
       >
         <img
           src="/images/train.png"

@@ -421,7 +421,7 @@ const SecondSection = () => {
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -461,7 +461,7 @@ const SecondSection = () => {
                 And I’m Keen To Get A Taste Of Your
               </label>
 
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {services.map((service, index) => {
                   const isActive = selectedServices.includes(service.name);
 
@@ -472,10 +472,10 @@ const SecondSection = () => {
                       onClick={() => handleServiceToggle(service.name)}
                       className={`
           flex lg:gap-5 gap-3 px-3 py-3 rounded-[10px] border 
-          w-full transition cursor-pointer
+          w-full transition cursor-pointer small-placeholder
           ${
             isActive
-              ? "bg-[var(--color-highlight)] text-[var(--color-pirmary)] border-[var(--color-highlight)]"
+              ? "bg-[var(--color-highlight)] text-[var(--color-pirmary)] border-[var(--color-highlight)] small-placeholder"
               : errors.services
               ? "border-red-500 text-[var(--color-secondary)]"
               : "border-[var(--color-highlight)] text-[var(--color-secondary)]"
@@ -523,7 +523,7 @@ const SecondSection = () => {
           border-0 border-b-2 ${
             false ? "border-b-red-500" : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -582,7 +582,7 @@ const SecondSection = () => {
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
@@ -632,7 +632,7 @@ const SecondSection = () => {
               ? "border-b-red-500"
               : "border-b-[var(--color-highlight)]"
           }
-          white-text placeholder-gray-400
+          white-text placeholder-gray-400 small-placeholder
           focus:outline-none focus:border-b-[var(--color-highlight)]
         `}
                 />
