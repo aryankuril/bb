@@ -7,7 +7,7 @@ const Firstsection = () => {
       <div className="relative w-full h-screen  aspect-[9/16] ">
         {/* Desktop Video */}
         <video
-          src="/video/home.mp4"
+          src="/video/home-Trim.mp4"
           autoPlay
           muted
           loop

@@ -172,22 +172,30 @@ export default function SecondSection() {
               >
                 <div
                   className="flex flex-col justify-end p-4 sm:p-6 border-[5px] border-[var(--color-primary)]"
-                  style={{
-                    width: isMobile
-                      ? "330px"
-                      : card.shape === "circle"
-                      ? "clamp(220px, 65vw, 480px)"
-                      : card.shape === "square"
-                      ? "clamp(220px, 75vw, 550px)"
-                      : "clamp(260px, 80vw, 650px)",
+                   style={{
+    width: isMobile
+      ? card.shape === "circle"
+        ? "330px"
+        : card.shape === "square"
+        ? "330px"
+        : "330px"
+      : card.shape === "circle"
+      ? "clamp(220px, 65vw, 480px)"
+      : card.shape === "square"
+      ? "clamp(220px, 75vw, 550px)"
+      : "clamp(260px, 80vw, 650px)",
 
-                    height: isMobile
-                      ? "250px"
-                      : card.shape === "circle"
-                      ? "clamp(220px, 65vw, 480px)"
-                      : card.shape === "square"
-                      ? "clamp(220px, 75vw, 480px)"
-                      : "clamp(260px, 60vh, 480px)",
+    height: isMobile
+      ? card.shape === "circle"
+        ? "350px"
+        : card.shape === "square"
+        ? "350px"
+        : "350px"
+      : card.shape === "circle"
+      ? "clamp(220px, 65vw, 480px)"
+      : card.shape === "square"
+      ? "clamp(220px, 75vw, 480px)"
+      : "clamp(260px, 60vh, 480px)",
 
                     borderRadius: card.shape === "circle" ? "20%" : "20px",
                     backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,

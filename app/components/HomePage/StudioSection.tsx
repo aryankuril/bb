@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MuxPlayer from "@mux/mux-player-react";
@@ -15,13 +15,19 @@ export default function LightCameraAction() {
   const videoRef = useRef<HTMLDivElement | null>(null);
   const muxRef = useRef<any | null>(null);
 
+  // ✅ Detect mobile screen
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Optional: temporarily filter noisy mux/hls error logs coming from
-    // getErrorFromHlsErrorData() which is emitted by the mux/hls internals.
-    // We scope this wrapper to this component and restore the original
-    // console.error on cleanup.
     const _origConsoleError = console.error;
     console.error = (...args: any[]) => {
       try {
@@ -30,11 +36,9 @@ export default function LightCameraAction() {
           typeof first === "string" &&
           first.includes("getErrorFromHlsErrorData()")
         ) {
-          // swallow this specific noisy message — keep other error logs
           return;
         }
       } catch (e) {
-        // Fall back to original if anything goes wrong
         return _origConsoleError(...args);
       }
       _origConsoleError(...args);
@@ -48,11 +52,9 @@ export default function LightCameraAction() {
         headline.querySelectorAll<HTMLElement>("[data-word]")
       );
 
-      // Initial styles
       gsap.set(words, { color: "#1D1D1D" });
       gsap.set(frameRef.current, { opacity: 0, scale: 0.94 });
 
-      // ✅ Responsive shutter panel config
       mm = gsap.matchMedia();
       mm.add(
         {
@@ -86,8 +88,6 @@ export default function LightCameraAction() {
         scale: 0.16,
         transformOrigin: "50% 50%",
       });
-
-      // ...existing code...
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
@@ -155,10 +155,10 @@ export default function LightCameraAction() {
   }, []);
 
   return (
-    <div className="w-full container black-text  py-10 sm:py-15 lg:py-20">
+    <div className="w-full container black-text py-10 sm:py-15 lg:py-20">
       <section
         ref={rootRef}
-        className="relative w-full min-h-[100svh] flex items-center justify-center "
+        className="relative w-full min-h-[100svh] flex items-center justify-center"
       >
         {/* Headline */}
         <h2
@@ -168,13 +168,11 @@ export default function LightCameraAction() {
           <span data-word className="inline-block">
             Light.
           </span>
-          {/* {" "} */}
           <span data-word className="inline-block">
-          Camera.
+            Camera.
           </span>
-          {/* {" "} */}
           <span data-word className="inline-block">
-          Action
+            Action
           </span>
         </h2>
 
@@ -184,50 +182,48 @@ export default function LightCameraAction() {
             ref={videoRef}
             className="
               relative 
-              w-[86vw]  aspect-[9/16]
+              w-[86vw] aspect-[9/16]
               lg:w-full md:aspect-video
               overflow-hidden rounded-2xl
             "
           >
             <MuxPlayer
-              playbackId="vzvQQF6ubVWKOj8iM5C27pKCSwgI7xENHqxU7IbxR00w"
-              metadata={{
-                video_id: "video-id-54321",
-                video_title: "Test video title",
-                viewer_user_id: "user-id-007",
-              }}
-              autoPlay
-              loop
-              muted
-              playsInline
-              streamType="on-demand"
-              style={{
-                width: "100%",
-                height: "100%",
-                borderRadius: "1rem",
-                objectFit: "cover",
-              }}
-              ref={(el) => {
-                // store mux player element for later inspection or custom handling
-                muxRef.current = el;
-                // attach a basic error handler if the player exposes one
-                try {
-                  if (el && typeof el.addEventListener === "function") {
-                    el.addEventListener("error", (ev: Event) => {
-                      // ev may be a CustomEvent from mux/hls; log for debugging
-                      // You can replace this with a user-facing UI or telemetry call
-                      // eslint-disable-next-line no-console
-                      console.error("MuxPlayer error event:", ev);
-                    });
-                  }
-                } catch (e) {
-                  // ignore attach failures in older environments
-                }
-              }}
-            />
+  key={isMobile ? "mobile" : "desktop"} // ✅ force remount when switching
+  playbackId={
+    isMobile
+      ? "fa5n02yew4AvrKk3A02wvF22yyCWga2mNvnH26vItJvts" // 👈 mobile video
+      : "vzvQQF6ubVWKOj8iM5C27pKCSwgI7xENHqxU7IbxR00w" // 👈 desktop video
+  }
+  metadata={{
+    video_id: "video-id-54321",
+    video_title: "Test video title",
+    viewer_user_id: "user-id-007",
+  }}
+  autoPlay
+  loop
+  muted
+  playsInline
+  streamType="on-demand"
+  style={{
+    width: "100%",
+    height: "100%",
+    borderRadius: "1rem",
+    objectFit: "cover",
+  }}
+  ref={(el) => {
+    muxRef.current = el;
+    try {
+      if (el && typeof el.addEventListener === "function") {
+        el.addEventListener("error", (ev: Event) => {
+          console.error("MuxPlayer error event:", ev);
+        });
+      }
+    } catch (e) {}
+  }}
+/>
+
 
             {/* yellow accent line */}
-
             <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E] rounded-tr-2xl rounded-br-2xl"></div>
 
             <div className="absolute bottom-10 right-20 z-50">
@@ -236,13 +232,13 @@ export default function LightCameraAction() {
                 text="Explore Our Work"
                 className="white-text font-semibold transition-colors"
                 target="_blank"
-    rel="noopener noreferrer"
+                rel="noopener noreferrer"
               />
             </div>
           </div>
         </div>
 
-        {/* Frame + diagonal shutter panels */}
+        {/* Frame + shutter panels */}
         <div
           ref={frameRef}
           className="pointer-events-none absolute inset-0 flex items-center justify-center z-20"
@@ -254,7 +250,6 @@ export default function LightCameraAction() {
               w-[90vw] max-w-[560px] aspect-[9/16]
               md:w/full md:max-w-full md:aspect-video
               overflow-hidden rounded-2xl
- 
             "
           >
             <div
