@@ -17,7 +17,7 @@ const Firstsection = () => {
 
         {/* Mobile Video */}
         <video
-          src="/video/home-m-Trim.mp4"
+          src="/video/home-3.5.mov"
           autoPlay
           muted
           loop
