@@ -834,8 +834,8 @@ const SecondSection = () => {
     Months: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
+        width="18"
+        height="18"
         viewBox="0 0 22 24"
         fill="none"
       >
@@ -968,7 +968,7 @@ const SecondSection = () => {
                 >
                   {/* Ticket Name */}
                 <div>
-  <label className="block mb-1 white-text capitalize body3">
+  <label className="block mb-2 white-text capitalize body3">
     Your Ticket Name
   </label>
 

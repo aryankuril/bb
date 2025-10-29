@@ -10,8 +10,8 @@ const SecondSection = () => {
       icon: (isActive: boolean) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="23"
-          height="23"
+          width="20"
+          height="20"
           viewBox="0 0 23 23"
           fill="none"
         >
@@ -47,8 +47,8 @@ const SecondSection = () => {
       icon: (isActive: boolean) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="23"
-          height="23"
+          width="20"
+          height="20"
           viewBox="0 0 23 23"
           fill="none"
         >
@@ -65,9 +65,9 @@ const SecondSection = () => {
       name: "Social Media",
       icon: (isActive: boolean) => (
         <svg
-          height="23"
+          height="20"
           viewBox="0 1 511 511.99933"
-          width="23"
+          width="20"
           xmlns="http://www.w3.org/2000/svg"
           fill={isActive ? "black" : "#ABABAB"} // blue when active, gray when inactive
         >
@@ -86,8 +86,8 @@ const SecondSection = () => {
       icon: (isActive: boolean) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="25"
+          width="20"
+          height="20"
           viewBox="0 0 24 25"
           fill="none"
         >
@@ -103,8 +103,8 @@ const SecondSection = () => {
       icon: (isActive: boolean) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="25"
+          width="22"
+          height="22"
           viewBox="0 0 24 25"
           fill="none"
         >
@@ -121,8 +121,8 @@ const SecondSection = () => {
           <defs>
             <clipPath id="clip0_2217_5702">
               <rect
-                width="24"
-                height="24"
+                width="20"
+                height="20"
                 fill="white"
                 transform="translate(0 0.5)"
               />
@@ -136,8 +136,8 @@ const SecondSection = () => {
       icon: (isActive: boolean) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="25"
+          width="20"
+          height="20"
           viewBox="0 0 24 25"
           fill="none"
         >
@@ -398,8 +398,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-    block white-text body2
-    mb-1
+    block white-text body3
   "
               >
                 Hey There! My Khata Meetha Name Is,
@@ -415,7 +414,7 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("name")}
                   onBlur={() => handleBlur("name")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-7 py-1 bg-transparent 
           border-0 border-b-2 ${
             errors.name
               ? "border-b-red-500"
@@ -429,8 +428,8 @@ const SecondSection = () => {
                 <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill={getIconColor(formData.name, focused.name)} // changes color when typing
                   >
@@ -454,8 +453,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-          block white-text body2
-    mb-3
+          block white-text body3 mb-3 
         "
               >
                 And I’m Keen To Get A Taste Of Your
@@ -471,7 +469,7 @@ const SecondSection = () => {
                       type="button"
                       onClick={() => handleServiceToggle(service.name)}
                       className={`
-          flex lg:gap-5 gap-3 px-3 py-3 rounded-[10px] border 
+          flex items-center  lg:gap-5 gap-3 px-3 py-3 rounded-[10px] border 
           w-full transition cursor-pointer small-placeholder
           ${
             isActive
@@ -482,9 +480,9 @@ const SecondSection = () => {
           }
         `}
                     >
-                      <span className="w-5 h-5"> {service.icon(isActive)}</span>{" "}
+                      <span className="w-4 h-4  "> {service.icon(isActive)}</span>{" "}
                       {/* <-- call it here */}
-                      <span>{service.name}</span>
+                      <span className="items-center ">{service.name}</span>
                     </button>
                   );
                 })}
@@ -498,12 +496,10 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-          block white-text body2
-          mb-1
+          block white-text body3
         "
               >
-                To Get Our Chat Started, Here Are Some Of My Initial
-                Teekha-Khata Preferences:
+               Here’s What Excites My Taste Buds
               </label>
               <div className="relative w-full">
                 <input
@@ -519,7 +515,7 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("message")}
                   onBlur={() => handleBlur("message")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-7 py-1  bg-transparent 
           border-0 border-b-2 ${
             false ? "border-b-red-500" : "border-b-[var(--color-highlight)]"
           }
@@ -530,8 +526,8 @@ const SecondSection = () => {
                 <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
+                   width="20"
+                    height="20"
                     viewBox="0 0 24 25"
                     fill={getIconColor(message, focused.message)}
                   >
@@ -560,8 +556,7 @@ const SecondSection = () => {
             <div>
               <label
                 className="
-          block white-text body2
-          mb-1
+          block white-text body3
         "
               >
                 You Can Send The Sukha Puri (Your Reply!) Over To
@@ -576,7 +571,7 @@ const SecondSection = () => {
                   onBlur={() => handleBlur("email")}
                   onChange={handleChange}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-7 py-1 bg-transparent 
           border-0 border-b-2 ${
             errors.email
               ? "border-b-red-500"
@@ -589,8 +584,8 @@ const SecondSection = () => {
                 <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 25"
                     fill={getIconColor(formData.email, focused.email)}
                   >
@@ -611,7 +606,6 @@ const SecondSection = () => {
               <label
                 className="
           block white-text body2
-          mb-1
         "
               >
                 Or Just Give Me A Call At
@@ -626,7 +620,7 @@ const SecondSection = () => {
                   onFocus={() => handleFocus("phone")}
                   onBlur={() => handleBlur("phone")}
                   className={`
-          w-full px-8 py-3 bg-transparent 
+          w-full px-7 py-1 bg-transparent 
           border-0 border-b-2 ${
             errors.phone
               ? "border-b-red-500"
@@ -639,8 +633,8 @@ const SecondSection = () => {
                 <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 25"
                     fill={getIconColor(formData.phone, focused.phone)}
                   >
