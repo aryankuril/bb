@@ -159,7 +159,7 @@ const MobileNav = () => {
 
       {/* RIGHT: WhatsApp Icon */}
       <a
-        href="https://web.whatsapp.com/send?phone=919920207985" // 🔹 replace with your actual WhatsApp number
+        href="https://wa.me/919920207985" // 🔹 replace with your actual WhatsApp number
         target="_blank"
         rel="noopener noreferrer"
         className="text-black hover:text-[#FAB31E] transition-colors"

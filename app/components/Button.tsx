@@ -46,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
         {chars.map((char, idx) => (
           <span
             key={idx}
-            className="relative block overflow-hidden h-7 w-auto"
+            className="relative block overflow-hidden lg:h-7 h-6 w-auto"
             style={{ transitionDelay: `${idx * 30}ms` }}
           >
             <span

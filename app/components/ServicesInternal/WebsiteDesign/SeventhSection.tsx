@@ -11,7 +11,7 @@ const SeventhSection = () => {
             {/* Image */}
             <img
               src="/images/BB-web-chai-2.gif"
-              className="w-[180px] h-auto sm:w-[240px] sm:h-[160px] md:w-[250px] md:h-auto mx-auto mb-6 sm:mb-8"
+              className="w-[180px] h-auto sm:w-[240px] sm:h-[160px] md:w-[250px] md:h-auto mx-auto mb-4 sm:mb-8"
             />
 
             {/* Animated Heading */}
@@ -30,7 +30,7 @@ const SeventhSection = () => {
             </h2>
 
             {/* Contact Info */}
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 body3 white-text p-4 lg:p-0">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-5 body3 white-text px-4 lg:p-0">
               <a href="mailto:hello@bombayblokes.com">hello@bombayblokes.com</a>
               <span>|</span>
               <a href="tel:+919987558189">+91 99875 58189</a>

@@ -165,7 +165,7 @@ export default function LightCameraAction() {
         
     <div className="flex flex-col items-center justify-center text-center space-y-4">
   {/* Logo */}
- <div className="w-[50px] h-[50px] sm:w-[90px] sm:h-[90px] md:w-[110px] md:h-[110px] lg:w-[100px] lg:h-[100px] rounded-full overflow-hidden border border-white bg-white flex items-center justify-center mx-auto">
+ <div className="w-[70px] h-[70px] sm:w-[90px] sm:h-[90px] md:w-[110px] md:h-[110px] lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden border border-white bg-white flex items-center justify-center mx-auto">
   <Image
     src="/images/BBStudios2.png"
     alt="Logo"
@@ -244,15 +244,20 @@ export default function LightCameraAction() {
             {/* yellow accent line */}
             <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E] rounded-tr-2xl rounded-br-2xl"></div>
 
-            <div className="absolute bottom-10 right-20 z-50">
-              <Button
-                href="https://bbstudios.bombayblokes.com"
-                text="BB Studios"
-                className="white-text font-semibold transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            </div>
+            <div
+  className="absolute bottom-10 right-20 z-50
+  sm:right-20 sm:bottom-10          
+ translate-x-1/2 sm:translate-x-0 "
+>
+  <Button
+    href="https://bbstudios.bombayblokes.com"
+    text="BB Studios"
+    className="white-text font-semibold transition-colors"
+    target="_blank"
+    rel="noopener noreferrer"
+  />
+</div>
+
           </div>
         </div>
 

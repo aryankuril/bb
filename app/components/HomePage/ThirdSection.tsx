@@ -56,7 +56,7 @@ export default function ThirdSection() {
       style={{ backgroundImage: "url(/images/tech-we-use-bg.png)" }}
     >
       <div className="flex flex-col items-center justify-center h-full px-6 text-center">
-        <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 mb-6 flex items-center justify-center">
+        <div className="relative w-15 h-15 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-25 lg:h-25 mb-6 flex items-center justify-center">
   {images.map((img, i) => (
     <div
       key={i}

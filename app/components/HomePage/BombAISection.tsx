@@ -123,7 +123,7 @@ export default function BombAISection() {
           <div className="relative z-10 flex flex-col items-center justify-start h-full px-5 py-10 sm:py-14 md:py-16">
              <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5">
   {/* Logo */}
-  <div className="w-[30px] h-[30px] sm:w-[30px] sm:h-[30px] md:w-[50px] md:h-[50px] lg:w-[70px] lg:h-[70px] rounded-full overflow-hidden border border-white bg-white flex items-center justify-center">
+  {/* <div className=" w-[50px] h-[50px] sm:w-[30px] sm:h-[30px] md:w-[50px] md:h-[50px] lg:w-[90px] lg:h-[90px] rounded-full overflow-hidden border border-white bg-white flex items-center justify-center">
     <Image
       src="/images/bombai.jpg"
       alt="Logo"
@@ -131,10 +131,10 @@ export default function BombAISection() {
       height={30}
       className="object-contain w-full h-full"
     />
-  </div>
+  </div> */}
 
   {/* Text */}
-  <h1 className="text-highlight text-2xl sm:text-3xl md:text-4xl font-semibold">
+  <h1 className="text-highlight font-semibold">
     Bomb.AI
   </h1>
 </div>
@@ -161,19 +161,17 @@ export default function BombAISection() {
                 >
                   {/* stroke inherits currentColor from span */}
                   <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M12 1a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-                    <path d="M19 10a7 7 0 0 1-14 0" />
-                    <path d="M12 17v6" />
-                  </svg>
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
                 </span>
                 <span
                   ref={labelRef}
@@ -193,17 +191,19 @@ export default function BombAISection() {
                     }}
                   >
                     <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M12 5v14M5 12h14" />
-                    </svg>
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 1a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                    <path d="M19 10a7 7 0 0 1-14 0" />
+                    <path d="M12 17v6" />
+                  </svg>
                   </span>
                   <span
                     className="grid h-9 w-9 place-items-center rounded-full border"
