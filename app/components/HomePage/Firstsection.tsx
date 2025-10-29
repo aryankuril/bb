@@ -4,7 +4,7 @@ const Firstsection = () => {
   return (
     <section className="lg:mt-0 -mt-20 relative isolate w-full overflow-hidden">
       {/* Wrapper: 9:16 on mobile, fixed 880px on desktop */}
-      <div className="relative w-full h-screen  aspect-[9/16] ">
+      <div className="relative w-full h-screen  aspect-[3/4] ">
         {/* Desktop Video */}
         <video
           src="/video/home-Trim.mp4"
@@ -22,7 +22,7 @@ const Firstsection = () => {
           muted
           loop
           playsInline
-          className="block md:hidden absolute inset-0 w-full h-full object-cover"
+          className="block md:hidden absolute inset-0 w-full  object-cover"
         />
       </div>
     </section>

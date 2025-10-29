@@ -121,8 +121,7 @@ export default function SecondSection() {
           }}
           className="text-center single-title select-none"
         >
-         Fall of Frame
-        </div>
+         Wall of Fame        </div>
       </div>
 
       {/* Scrollable Cards */}

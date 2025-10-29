@@ -378,7 +378,7 @@ h6 {
 
 
 
-/* animtionbutton */
+/* animation button */
 :root {
   --border: 2px;
   --radius: 60px;
@@ -444,6 +444,7 @@ h6 {
   z-index: 2;
 }
 
+/* animation for spinning effect */
 @keyframes spin {
   0% {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -452,6 +453,24 @@ h6 {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+  .animated-border-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .animated-border-btn {
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 40px;
+  }
+}
+
 
 
 @keyframes shimmer {

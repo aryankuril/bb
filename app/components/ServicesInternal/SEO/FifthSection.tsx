@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const cardsData = [
   {
     title: "Ric Rac",
-    tags: ["Adobe illustrator", "AI"],
+         tags: ["Social Media", "Meta Ads"],
     content:
       "Our challenge was launching RicRac Kids from absolute zero, a new brand with no digital footprint, no awareness, and the critical need to build trust from scratch.",
     image: "/images/SocialMedia/ricrac.webp",

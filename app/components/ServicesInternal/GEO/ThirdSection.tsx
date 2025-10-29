@@ -117,7 +117,7 @@ const workflowSteps = [
                                    {step.tags.map((tag, tagIndex) => (
                                      <span
                                        key={tagIndex}
-                                       className="  black-text body4 capitalize "
+                                       className="  black-text   capitalize "
                                      >
                                          <AnimatedButton text={tag} href="/" index={tagIndex} />
                                        {/* {tag} */}

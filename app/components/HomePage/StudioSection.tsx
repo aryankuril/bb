@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MuxPlayer from "@mux/mux-player-react";
 import Button from "../Button";
+import Image from "next/image";
 
 export default function LightCameraAction() {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -161,7 +162,22 @@ export default function LightCameraAction() {
         className="relative w-full min-h-[100svh] flex items-center justify-center"
       >
         {/* Headline */}
-        <h2
+        
+    <div className="flex flex-col items-center justify-center text-center space-y-4">
+  {/* Logo */}
+ <div className="w-[50px] h-[50px] sm:w-[90px] sm:h-[90px] md:w-[110px] md:h-[110px] lg:w-[100px] lg:h-[100px] rounded-full overflow-hidden border border-white bg-white flex items-center justify-center mx-auto">
+  <Image
+    src="/images/BBStudios2.png"
+    alt="Logo"
+    width={130}
+    height={130}
+    className="object-contain w-full h-full"
+  />
+</div>
+
+
+  {/* Text */}
+  <h2
           ref={headlineRef}
           className="select-none relative -z-10 text-center flex flex-col md:flex-row gap-2"
         >
@@ -175,6 +191,8 @@ export default function LightCameraAction() {
             Action
           </span>
         </h2>
+</div>
+
 
         {/* Video container with Mux Player */}
         <div className="absolute inset-0 flex items-center justify-center">
@@ -229,7 +247,7 @@ export default function LightCameraAction() {
             <div className="absolute bottom-10 right-20 z-50">
               <Button
                 href="https://bbstudios.bombayblokes.com"
-                text="Explore Our Work"
+                text="BB Studios"
                 className="white-text font-semibold transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"

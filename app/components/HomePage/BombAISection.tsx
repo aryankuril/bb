@@ -19,7 +19,7 @@ export default function BombAISection() {
   const labelRef = useRef<HTMLSpanElement | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
   const INITIAL_TEXT = "Click To Generate Your AI Images";
-  const NEW_TEXT = "Future-ready content, crafted with AI at BB.";
+  const NEW_TEXT = "Generate High converting Image For Meta Ads.";
   const [labelText, setLabelText] = useState(INITIAL_TEXT);
   const [showImages, setShowImages] = useState<boolean[]>(
     new Array(images.length).fill(false)
@@ -121,12 +121,24 @@ export default function BombAISection() {
             style={{ backgroundColor: "var(--color-highlight)" }}
           />
           <div className="relative z-10 flex flex-col items-center justify-start h-full px-5 py-10 sm:py-14 md:py-16">
-            <h1
-              /* heading text color */
-              className="text-highlight"
-            >
-              Bomb.AI
-            </h1>
+             <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5">
+  {/* Logo */}
+  <div className="w-[30px] h-[30px] sm:w-[30px] sm:h-[30px] md:w-[50px] md:h-[50px] lg:w-[70px] lg:h-[70px] rounded-full overflow-hidden border border-white bg-white flex items-center justify-center">
+    <Image
+      src="/images/bombai.jpg"
+      alt="Logo"
+      width={30}
+      height={30}
+      className="object-contain w-full h-full"
+    />
+  </div>
+
+  {/* Text */}
+  <h1 className="text-highlight text-2xl sm:text-3xl md:text-4xl font-semibold">
+    Bomb.AI
+  </h1>
+</div>
+
             <button
               type="button"
               className="bomb-cta mt-8 w-full max-w-[900px] rounded-full border text-left outline-none transition focus-visible:ring-4 active:scale-[0.99]"
@@ -323,7 +335,7 @@ export default function BombAISection() {
             <div className="flex justify-center items-center py-10">
               <Button
                 href="https://bbstudios.bombayblokes.com/bomb.ai"
-                text="Explore Our Work"
+                text="Explore Our Ai Studios"
                 className="text-white font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -133,7 +133,7 @@ export default function StackingCards() {
                     {card.tags.map((t, idx) => (
                       <span
                         key={idx}
-                        className="body4 px-1 py-1 [text-wrap:balance] text-white"
+                        className=" px-1 py-1 [text-wrap:balance] text-white"
                       >
                         <AnimatedButton text={t} href="/" index={idx} />
                       </span>

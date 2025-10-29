@@ -3,12 +3,16 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
- 
+ import { FaWhatsapp } from "react-icons/fa";
 type NavItem = { label: string; href?: string };
  
 const NAV_ITEMS: NavItem[] = [
   { label: "HOME", href: "/" },
   { label: "ABOUT", href: "/aboutus" },
+  { label: "SERVICES", href: "/services" },
+  { label: "TEAM", href: "/teams" },
+  { label: "CLIENTS", href: "/clients" },
+  { label: "CASE STUDIES", href: "/work" },
    {
     href: "https://bbstudios.bombayblokes.com",
     label: "BB STUDIOS",
@@ -19,12 +23,8 @@ const NAV_ITEMS: NavItem[] = [
     label: "BOMB AI",
     // logo: "/images/bombai.jpg", // 👈 add your bomb.ai logo path
   },
-  { label: "SERVICES", href: "/services" },
-  { label: "CLIENTS", href: "/clients" },
-  { label: "CASE STUDIES", href: "/work" },
-  { label: "TEAM", href: "/teams" },
-  { label: "CONTACT", href: "/contactus" },
   { label: "CAREERS", href: "/join-our-team" },
+  { label: "CONTACT", href: "/contactus" },
 ];
  
 const BOTTOM_BAR_H = 68; // height of the bottom bar
@@ -131,31 +131,42 @@ const MobileNav = () => {
         style={{ height: BOTTOM_BAR_H }}
       >
         <div className="h-full flex items-center justify-between px-4">
-          {/* Brand placeholder (replace with your logo/wordmark) */}
-          <div className="flex items-center gap-2">
-            <Link href="/">
-            <Image
-              src="/images/bblogo.webp"
-              alt="Bombay Blokes Logo"
-              width={160}
-              height={50}
-              className="object-contain transition-opacity duration-300"
-            />
-          </Link>
-          </div>
- 
-          <button
-            onClick={() => setOpen((v) => !v)}
-            className="rounded-[10px] border-[2.5px] border-black px-3 py-1
-                       text-[13px] font-semibold tracking-wide bg-white
-                       transition-[opacity,transform] duration-200
-                       active:translate-y-[1px]"
-            aria-expanded={open}
-            aria-controls="mobile-nav-sheet"
-          >
-            {open ? "CLOSE" : "MENU"}
-          </button>
-        </div>
+      {/* LEFT: Menu / Close Button */}
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="rounded-[10px] border-[2.5px] border-black px-1 py-1
+                   text-[13px] font-semibold tracking-wide bg-white
+                   transition-[opacity,transform] duration-200
+                   active:translate-y-[1px]"
+        aria-expanded={open}
+        aria-controls="mobile-nav-sheet"
+      >
+        {open ? "CLOSE" : "MENU"}
+      </button>
+
+      {/* CENTER: Logo */}
+      <div className="flex-1 flex justify-center">
+        <Link href="/">
+          <Image
+            src="/images/bblogo.webp"
+            alt="Bombay Blokes Logo"
+            width={160}
+            height={50}
+            className="object-contain transition-opacity duration-300"
+          />
+        </Link>
+      </div>
+
+      {/* RIGHT: WhatsApp Icon */}
+      <a
+        href="https://web.whatsapp.com/send?phone=919920207985" // 🔹 replace with your actual WhatsApp number
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-black hover:text-[#FAB31E] transition-colors"
+      >
+        <FaWhatsapp size={30} />
+      </a>
+    </div>
       </div>
  
       {/* Safe-area spacer */}

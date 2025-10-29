@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const cardsData = [
   {
     title: "Ric Rac",
-    tags: ["Adobe illustrator", "AI"],
+    tags: ["Social Media", "Meta Ads"],
     content:
       "Our challenge was launching RicRac Kids from absolute zero, a new brand with no digital footprint, no awareness, and the critical need to build trust from scratch.",
     image: "/images/SocialMedia/ricrac.webp",
@@ -144,7 +144,7 @@ export default function StackingCards() {
                     {card.tags.map((t, idx) => (
                       <span
                         key={idx}
-                        className="body4 px-1 py-1 [text-wrap:balance] text-white"
+                        className="px-1 py-1 [text-wrap:balance] text-white"
                       >
                         <AnimatedButton text={t} href="/" index={idx} />
                       </span>
@@ -181,9 +181,9 @@ export default function StackingCards() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center items-center">
+        {/* <div className="flex justify-center items-center">
           <Button href="/work" text="Explore Our Work " className="" />
-        </div>
+        </div> */}
       </section>
       {/* Tail spacer so after unpin there's breathing room before next section */}
       <div aria-hidden className="h-[30vh] md:h-[50vh] lg:h-[60vh]"></div>
