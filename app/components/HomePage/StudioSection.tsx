@@ -165,7 +165,7 @@ export default function LightCameraAction() {
         
     <div className="flex flex-col items-center justify-center text-center space-y-4">
   {/* Logo */}
- <div className="w-[70px] h-[70px] sm:w-[90px] sm:h-[90px] md:w-[110px] md:h-[110px] lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden border border-white bg-white flex items-center justify-center mx-auto">
+ <div className="w-[90px] h-[90px] sm:w-[90px] sm:h-[90px] md:w-[110px] md:h-[110px] lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden border border-white bg-white flex items-center justify-center mx-auto">
   <Image
     src="/images/BBStudios2.png"
     alt="Logo"

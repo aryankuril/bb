@@ -158,14 +158,21 @@ const MobileNav = () => {
       </div>
 
       {/* RIGHT: WhatsApp Icon */}
-      <a
-        href="https://wa.me/919920207985" // 🔹 replace with your actual WhatsApp number
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-black hover:text-[#FAB31E] transition-colors"
-      >
-        <FaWhatsapp size={30} />
-      </a>
+<a
+  href="https://wa.me/919920207985"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="transition-transform hover:scale-105"
+>
+  <img
+    src="/images/whatsapp.svg" // 👈 your SVG file path
+    alt="WhatsApp"
+    className="w-10 h-10 "
+  />
+</a>
+
+
+
     </div>
       </div>
  

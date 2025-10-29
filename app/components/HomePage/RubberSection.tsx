@@ -31,7 +31,7 @@ const RubberSection = () => {
   return (
     <section className="container w-full lg:h-[100vh] h-full relative py-10 sm:py-15 lg:py-20 overflow-x-hidden overflow-y-hidden">
       <h2 className="mb-3 text-center">
-        <span className="text-highlight">Our</span> - Ideate, innovate, create
+        <span className="text-highlight">Our culture </span> - Ideate, innovate, create
       </h2>
 
       {/* ✅ Responsive Cards Container */}

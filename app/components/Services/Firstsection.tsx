@@ -48,7 +48,7 @@ const Firstsection: React.FC = () => {
       }}
       className="relative h-3xl border-b-2 border-[var(--color-highlight)] container py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10 overflow-hidden px-4 sm:px-6 lg:px-8"
     >
-      <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-30">
+      <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-40">
         <div className="flex-1">
             <h1
               className="text-highlight max-w-full lg:max-w-[1020px]"
