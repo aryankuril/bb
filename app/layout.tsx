@@ -109,9 +109,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* App Content */}
         {/* <SmoothScroll> */}
-          {/* <PageLoader> */}
+          <PageLoader>
             {children}
-          {/* </PageLoader> */}
+          </PageLoader>
           <ScrollToTop />
         {/* </SmoothScroll> */}
       </body>
