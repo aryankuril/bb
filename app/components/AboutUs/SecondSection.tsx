@@ -2,10 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-
-// ✅ Dynamically import GSAP only on the client (prevents window is not defined)
-const gsapPromise = import("gsap").then((mod) => mod.default);
+import gsap from "gsap";
 
 const services = [
   {
@@ -52,96 +49,96 @@ export default function SecondSection() {
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lastMouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
+  // ✅ Initialize safely after component mounts
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    lastMouse.current = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    if (typeof window !== "undefined") {
+      lastMouse.current = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+      };
+    }
   }, []);
 
+  // ✅ Handle floating image movement
   useEffect(() => {
-    let gsap: any;
-    const setup = async () => {
-      gsap = await gsapPromise;
+    if (typeof window === "undefined" || !imgRef.current) return;
 
-      if (!imgRef.current || typeof window === "undefined") return;
+    const moveImage = (e: MouseEvent) => {
+      lastMouse.current.x = e.clientX + 20;
+      lastMouse.current.y = e.clientY + 20;
 
-      const moveImage = (e: MouseEvent) => {
-        lastMouse.current.x = e.clientX + 20;
-        lastMouse.current.y = e.clientY + 20;
-        gsap.to(imgRef.current, {
-          x: lastMouse.current.x,
-          y: lastMouse.current.y,
-          duration: 0.3,
-          ease: "power3.out",
-          overwrite: "auto",
-        });
-      };
-
-      if (active !== null) {
-        window.addEventListener("mousemove", moveImage);
-
-        gsap.set(imgRef.current, {
-          x: lastMouse.current.x,
-          y: lastMouse.current.y,
-          transformOrigin: "50% 50%",
-          willChange: "transform,opacity",
-          force3D: true,
-        });
-
-        gsap.fromTo(
-          imgRef.current,
-          { scale: 0.5, autoAlpha: 0 },
-          { scale: 1, autoAlpha: 1, duration: 0.22, ease: "power2.out" }
-        );
-      } else {
-        gsap.to(imgRef.current, {
-          scale: 0.5,
-          autoAlpha: 0,
-          duration: 0.18,
-          ease: "power2.inOut",
-          clearProps: "willChange",
-        });
-
-        window.removeEventListener("mousemove", moveImage);
-      }
+      gsap.to(imgRef.current, {
+        x: lastMouse.current.x,
+        y: lastMouse.current.y,
+        duration: 0.3,
+        ease: "power3.out",
+        overwrite: "auto",
+      });
     };
 
-    setup();
-    return () => {};
-  }, [active]);
+    if (active !== null) {
+      window.addEventListener("mousemove", moveImage);
 
-  useEffect(() => {
-    let gsap: any;
-    const setup = async () => {
-      gsap = await gsapPromise;
-      if (typeof window === "undefined") return;
-
-      const observers: IntersectionObserver[] = [];
-
-      serviceRefs.current.forEach((ref, index) => {
-        if (!ref) return;
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                gsap.fromTo(
-                  entry.target,
-                  { opacity: 0, y: 50 },
-                  { opacity: 1, y: 0, duration: 1, delay: index * 0.15, ease: "power3.out" }
-                );
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
-        );
-        observer.observe(ref);
-        observers.push(observer);
+      gsap.set(imgRef.current, {
+        x: lastMouse.current.x,
+        y: lastMouse.current.y,
+        transformOrigin: "50% 50%",
+        willChange: "transform,opacity",
+        force3D: true,
       });
 
-      return () => observers.forEach((observer) => observer.disconnect());
-    };
+      gsap.fromTo(
+        imgRef.current,
+        { scale: 0.5, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: 0.22, ease: "power2.out" }
+      );
+    } else {
+      gsap.to(imgRef.current, {
+        scale: 0.5,
+        autoAlpha: 0,
+        duration: 0.18,
+        ease: "power2.inOut",
+        clearProps: "willChange",
+      });
 
-    setup();
+      window.removeEventListener("mousemove", moveImage);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", moveImage);
+    };
+  }, [active]);
+
+  // ✅ Animate cards on scroll
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const observers: IntersectionObserver[] = [];
+
+    serviceRefs.current.forEach((ref, index) => {
+      if (!ref) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              gsap.fromTo(
+                entry.target,
+                { opacity: 0, y: 50 },
+                { opacity: 1, y: 0, duration: 1, delay: index * 0.15, ease: "power3.out" }
+              );
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
+      );
+
+      observer.observe(ref);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
   const activeService = services.find((s) => s.id === active);
@@ -159,7 +156,7 @@ export default function SecondSection() {
         {services.map((s, index) => (
           <div
             key={s.id}
-            ref={(el: HTMLDivElement | null) => {
+           ref={(el: HTMLDivElement | null) => {
   serviceRefs.current[index] = el;
   return undefined;
 }}
@@ -181,7 +178,15 @@ export default function SecondSection() {
         <div
           ref={imgRef}
           className="hidden md:block fixed -top-40 -left-50 pointer-events-none z-50 w-[300px] h-[300px]"
-        />
+        >
+          {/* <Image
+            src={activeService.img}
+            alt={activeService.title}
+            width={300}
+            height={300}
+            className="rounded-[15px] shadow-lg w-full h-full object-contain"
+          /> */}
+        </div>
       )}
     </section>
   );

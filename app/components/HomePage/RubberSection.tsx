@@ -28,6 +28,9 @@ const RubberSection = () => {
     },
   };
 
+  // ✅ Safe width check for Next.js SSR
+  const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1000;
+
   return (
     <section className="container w-full lg:h-[100vh] h-full relative py-10 sm:py-15 lg:py-20 overflow-x-hidden overflow-y-hidden">
       <h2 className="mb-3 text-center">
@@ -61,18 +64,14 @@ const RubberSection = () => {
               key={idx}
               variants={throwInVariant}
               className={`relative w-[250px] sm:w-[260px] md:w-[280px] lg:w-[350px] h-[250px] sm:h-[260px] md:h-[280px] lg:h-[330px] flex-shrink-0 cursor-grab rounded-xl
-                ${
-                  idx !== 0
-                    ? "sm:-ml-12 md:-ml-14 lg:-ml-10" // overlap only on desktop
-                    : ""
-                }`}
+                ${idx !== 0 ? "sm:-ml-12 md:-ml-14 lg:-ml-10" : ""}`}
             >
               <motion.div
                 style={{ x, y, rotate }}
                 drag
                 dragConstraints={{
-                  left: -window.innerWidth / 2,
-                  right: window.innerWidth / 2,
+                  left: -windowWidth / 2,
+                  right: windowWidth / 2,
                   top: -100,
                   bottom: 100,
                 }}
