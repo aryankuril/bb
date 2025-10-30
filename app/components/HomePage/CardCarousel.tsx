@@ -70,8 +70,19 @@ const CardCarousel: React.FC = () => {
       ref={containerRef}
       className="relative h-[400vh] container "
     >
+
+
       {/* Sticky wrapper keeps everything (title + cards) fixed */}
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden gap-5">
+      <div className="absolute inset-0 -z-10 h-screen ">
+        <Image
+          src={isMobile ? "/images/cardbgm.svg" : "/images/cardbgd.svg"}
+          alt="Background"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
         <motion.h2
           className="mb-3 text-center px-4 max-w-[90vw] sm:max-w-none whitespace-normal break-words"
           style={{
