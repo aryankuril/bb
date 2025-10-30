@@ -1,28 +1,54 @@
-import React from 'react';
+"use client";
+
+import React from "react";
+import MuxPlayer from "@mux/mux-player-react";
 
 const Firstsection = () => {
   return (
-    <section className="lg:mt-0 -mt-20 relative isolate w-full overflow-hidden">
-      {/* Wrapper: 9:16 on mobile, fixed 880px on desktop */}
-      <div className="relative w-full h-full aspect-[9/16] md:h-[850px]">
+    <section className="overflow-hidden h-screen -mt-[82px] md:-mt-8">
+      <div className="relative w-full h-full">
         {/* Desktop Video */}
-        <video
-          src="/video/home.mp4"
+        <MuxPlayer
+          playbackId="4h2lgLpcOdBx3yCDYo8aOQkbHjjHU51tycqdHGJRi4s"
           autoPlay
           muted
           loop
           playsInline
-          className="hidden md:block absolute inset-0 w-full h-full object-cover"
+          streamType="on-demand"
+          preload="auto"
+          poster={`https://image.mux.com/4h2lgLpcOdBx3yCDYo8aOQkbHjjHU51tycqdHGJRi4s/thumbnail.jpg?time=0.8`}
+          className="hidden md:block absolute inset-0 w-full h-full"
+          style={
+            {
+              "--controls": "none",
+              "--media-object-fit": "cover",
+              "--media-object-position": "center",
+              width: "100%",
+              height: "100%",
+            } as React.CSSProperties
+          }
         />
 
         {/* Mobile Video */}
-        <video
-          src="/video/home-m.mp4"
+        <MuxPlayer
+          playbackId="rg2PyjG3QOsQCobdMgIlk3T02t66BMwOm1FkHScWabHM"
           autoPlay
           muted
           loop
           playsInline
+          streamType="on-demand"
+          preload="auto"
+          poster={`https://image.mux.com/rg2PyjG3QOsQCobdMgIlk3T02t66BMwOm1FkHScWabHM/thumbnail.jpg?time=0`}
           className="block md:hidden absolute inset-0 w-full h-full object-cover"
+          style={
+            {
+              "--controls": "none",
+              "--media-object-fit": "cover",
+              "--media-object-position": "center",
+              width: "100%",
+              height: "100%",
+            } as React.CSSProperties
+          }
         />
       </div>
     </section>
