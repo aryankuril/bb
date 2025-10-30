@@ -9,10 +9,12 @@ import Footer from '@/app/components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '@/app/components/Taxi'
 import SmoothScroll from '@/app/components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Case-Study-JK Diamonds Institute");
+export const metadata: Metadata = {
+  title: "Case Study - Digital Marketing for Educational Institutes | JK Diamonds Institute",
+  description: "Bombay Blokes designed ROI-focused digital campaigns for JK Diamonds Institute — combining paid ads, targeted strategies & analytics to maximize student engagement and enrollment.",
+};
 const Index = () => {
   return (
     <div>

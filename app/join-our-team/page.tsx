@@ -10,9 +10,12 @@ import Footer from '../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../components/Taxi'
 import SmoothScroll from '../components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-export const metadata = createPageMetadata("Join-Our-Team");
+export const metadata: Metadata = {
+  title: "Digital Marketing careers in Mumbai",
+  description: "Looking for Jobs and an opportunity in the field of digital marketing? Contact us to know more. ",
+};
 
 const Index = () => {
   return (

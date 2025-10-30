@@ -8,11 +8,16 @@ import SeventhSection from '../../../components/ServicesInternal/WebsiteDesign/S
 import Footer from '../../../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../../components/Taxi'
-import { createPageMetadata } from "@/lib/metadata";
 import SmoothScroll from './../../../components/SmoothScroll';
 
 
-export const metadata = createPageMetadata("Case-Study-Dancing Leaf");
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Case Study – Performance Marketing Dancing Leaf ",
+  description: " From strategy to scale — Bombay Blokes helped Dancing Leaf grow through data-led performance marketing, optimized campaigns & a blend of creativity and analytics.",
+};
+
 const Index = () => {
   return (
     <div>

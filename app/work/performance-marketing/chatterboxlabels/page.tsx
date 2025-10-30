@@ -8,12 +8,14 @@ import SeventhSection from '../../../components/ServicesInternal/WebsiteDesign/S
 import Footer from '../../../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../../components/Taxi'
-
 import SmoothScroll from '@/app/components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
 
+import { Metadata } from 'next'
 
-export const metadata = createPageMetadata("Case-Study-Chatterbox Labels");
+export const metadata: Metadata = {
+  title: "Case Study – Performance Marketing for Chatterbox Labels",
+  description: "Bombay Blokes crafted high-impact performance campaigns for Chatterbox Labels — driving traffic, conversions & measurable growth with strategic digital execution.",
+};
 const Index = () => {
   return (
     <div>

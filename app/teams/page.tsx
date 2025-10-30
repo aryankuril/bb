@@ -10,10 +10,12 @@ import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from "@/app/components/MobilePopup";
 
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Teams");
+export const metadata: Metadata = {
+  title: "Team | Bombay Blokes - Digital Agency",
+  description: "Meet our team of experts in the field of digital marketing and IT in Mumbai.",
+};
 
 const Index = () => {
   return (

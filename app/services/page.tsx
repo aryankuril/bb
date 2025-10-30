@@ -9,11 +9,12 @@ import SeventhSection from '../components/ServicesInternal/WebsiteDesign/Seventh
 import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from '@/app/components/MobilePopup'
+import { Metadata } from 'next'
 
-import { createPageMetadata } from "@/lib/metadata";
-
-
-export const metadata = createPageMetadata("Services");
+export const metadata: Metadata = {
+  title: "Digital Marketing Services in Mumbai | Bombay Blokes",
+  description: "Grow your brand with Bombay Blokes — Mumbai’s trusted digital marketing agency offering SEO, performance marketing, social media, web design & content strategy that drives results.",
+};
 
 const page = () => {
   return (

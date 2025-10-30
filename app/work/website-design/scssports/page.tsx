@@ -9,10 +9,12 @@ import Footer from '../../../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../../components/Taxi'
 import SmoothScroll from '@/app/components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Case-Study-SCS Sports");
+export const metadata: Metadata = {
+  title: "Case Study - Sports Brand | SCS Sports",
+  description: "Discover how Bombay Blokes crafted a high-performance website for SCS Sports — combining bold visuals, fast UX & modern design to elevate their digital game.",
+};
 const Index = () => {
   return (
     <div>

@@ -9,10 +9,12 @@ import Footer from '../../../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../../components/Taxi'
 import SmoothScroll from '@/app/components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Case-Study-My Suit Tailor");
+export const metadata: Metadata = {
+  title: "Case Study – Fashion Brand | My Suit Tailor",
+  description: " Discover how Bombay Blokes designed a sleek, responsive website for My Suit Tailor — blending premium aesthetics with performance to elevate their online brand presence.",
+};
 const Index = () => {
   return (
     <div>

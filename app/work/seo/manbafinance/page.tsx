@@ -9,10 +9,12 @@ import Footer from '../../../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../../components/Taxi'
 import SmoothScroll from '@/app/components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Case-Study-Manba Finance");
+export const metadata: Metadata = {
+  title: "Case Study – SEO for Manba Finance",
+  description: "Discover how Bombay Blokes enhanced Manba Finance’s search engine performance through keyword optimization, content strategy & link building for measurable ROI.",
+};
 
 const Index = () => {
   return (

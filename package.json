@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@mux/mux-player-react": "^3.6.1",
+    "@mux/mux-player-react": "^3.7.0",
     "@studio-freight/lenis": "^1.0.42",
     "firebase": "^12.4.0",
     "framer-motion": "^12.23.22",

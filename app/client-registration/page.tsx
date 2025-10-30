@@ -9,10 +9,12 @@ import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from '../components/MobilePopup'
 import SmoothScroll from '../components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Clinet-Registration");
+export const metadata: Metadata = {
+  title: "Connect with Us | Bombay Blokes",
+  description: "Can't reach us? Want to connect? Fill the form and we will reach out to you soon!",
+};
 const Index = () => {
   return (
     <div>

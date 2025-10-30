@@ -11,10 +11,12 @@ import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from '../components/MobilePopup'
 import SmoothScroll from '../components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("AboutUs");
+export const metadata: Metadata = {
+  title: "About Bombay Blokes | Growth-Focused Digital Marketing Agency In Mumbai",
+  description: "We’re Bombay Blokes — a digital agency in Mumbai built for bold brands. Explore our journey, creative approach & proven strategies that drive traffic, leads & long-term success.",
+};
 
 const Index = () => {
   return (

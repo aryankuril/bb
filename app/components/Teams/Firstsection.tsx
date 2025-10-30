@@ -52,8 +52,8 @@ const Firstsection: React.FC = () => {
   return (
     <section className="container  py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10">
       <h1 className="black-text text-center md:text-left">
-        The Squad That Turns <span className="text-highlight">‘What If’ </span>
-        Into <br /><span className="text-highlight">‘What’s Next.’</span>
+        The Squad That Turns <span className="text-highlight">What If</span>’
+        Into <br />‘<span className="text-highlight">What’s Next.</span>’
       </h1>
 
       {/* card */}
@@ -61,7 +61,7 @@ const Firstsection: React.FC = () => {
       <div className="mt-10 flex justify-center items-center">
         <div
           ref={containerRef}
-          className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-[250px] lg:w-[1295px] lg:h-[650px] lg:rounded-[30px] rounded-[20px] overflow-hidden  relative"
+          className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-[250px] lg:w-[1295px] lg:h-[650px]  rounded-[20px] overflow-hidden relative"
         >
           {/* Row 1 */}
           <div className="flex flex-wrap lg:gap-4 gap-1 justify-center lg:mt-20 mt-0">
@@ -125,7 +125,7 @@ const Firstsection: React.FC = () => {
 
             <div className="w-[32%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[120px] flex-shrink-0">
               <Image
-                src="/images/teams/5.png"
+                src="/images/teams/6.png"
                 alt="Hands"
                 width={250}
                 height={250}
@@ -135,10 +135,10 @@ const Firstsection: React.FC = () => {
           </div>
 
           {/* Row 3 */}
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap lg:gap-4 gap-1 justify-center">
             <div className="w-[30%] max-w-[350px] lg:w-[350px] flex-shrink-0">
               <Image
-                src="/images/teams/6.png"
+                src="/images/teams/7.png"
                 alt="Woman"
                 width={250}
                 height={250}
@@ -147,7 +147,7 @@ const Firstsection: React.FC = () => {
             </div>
             <div className="w-[30%] max-w-[350px] lg:w-[350px] flex-shrink-0">
               <Image
-                src="/images/teams/7.png"
+                src="/images/teams/8.png"
                 alt="Man"
                 width={250}
                 height={250}
@@ -156,7 +156,7 @@ const Firstsection: React.FC = () => {
             </div>
             <div className="w-[30%] max-w-[562px] lg:w-[562px]  flex-shrink-0">
               <Image
-                src="/images/teams/8.png"
+                src="/images/teams/9.png"
                 alt="Hands"
                 width={250}
                 height={250}

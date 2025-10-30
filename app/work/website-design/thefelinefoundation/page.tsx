@@ -9,10 +9,12 @@ import Footer from '../../../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../../components/Taxi'
 import SmoothScroll from '@/app/components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Case-Study-The Feline Foundation");
+export const metadata: Metadata = {
+  title: "Case Study - NGO | The Feline Foundation",
+  description: "See how Bombay Blokes built a heartwarming digital experience for The Feline Foundation — with a clean, responsive design that amplifies their mission for animal care.",
+};
 const Index = () => {
   return (
     <div>

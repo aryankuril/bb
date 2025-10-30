@@ -8,10 +8,12 @@ import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from "@/app/components/MobilePopup";
 import SmoothScroll from '@/app/components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Work");
+export const metadata: Metadata = {
+  title: "Our Work | Digital Marketing Case Studies & Success Stories – Bombay Blokes",
+  description: " Explore Bombay Blokes’ portfolio of digital marketing success stories — real campaigns, real results. See how we help brands grow with creativity, data & strategy.",
+};
 const Index = () => {
   return (
     <div>

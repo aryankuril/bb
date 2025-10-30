@@ -11,7 +11,12 @@ import Taxi from '../../../components/Taxi'
 import { createPageMetadata } from "@/lib/metadata";
 import SmoothScroll from '@/app/components/SmoothScroll'
 
-export const metadata = createPageMetadata("Case-Study-RicRac Kids");
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Case Study – Ricra Kids Social Media Marketing | Creative Campaigns by Bombay Blokes",
+  description: "Discover how Bombay Blokes crafted data-driven social media strategies for Ricra Kids, driving audience engagement, brand visibility & measurable growth across platforms.",
+};
 
 const Index = () => {
   return (

@@ -9,10 +9,12 @@ import Button from '../components/Button'
 // import Taxi from '../components/Taxi'
 
 import SmoothScroll from '@/app/components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Blogs");
+export const metadata: Metadata = {
+  title: "Blogs | Digital Agency | Bombay Blokes",
+  description: "Bombay Blokes is a leading digital marketing company in Mumbai, our blogs are well- researched in the field of digital marketing",
+};
 
 const page = () => {
   return (

@@ -14,8 +14,8 @@ import MobilePopup from "@/app/components/MobilePopup";
 import SmoothScroll from '../../components/SmoothScroll';
 
 export const metadata: Metadata = {
-  title: "Best GEO Agency in Mumbai | Bombay Blokes",
-  description: "Looking to elevate your website traffic organically? Bombay Blokes, a leading GEO agency in Mumbai, offers comprehensive GEO services to help your business rank higher and grow faster.",
+  title: "Local SEO & Geo Targeting Services | Bombay Blokes",
+  description: "Dominate local search results with Bombay Blokes’ Geo Marketing Services. From Google Maps optimization to hyperlocal SEO — we help customers find you first.",
 };
 const Index = () => {
   return (

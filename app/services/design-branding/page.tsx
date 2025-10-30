@@ -14,8 +14,8 @@ import MobilePopup from "@/app/components/MobilePopup";
 import SmoothScroll from '../../components/SmoothScroll';
 
 export const metadata: Metadata = {
-  title: "Best Design-Branding Agency in Mumbai | Bombay Blokes",
-  description: "Looking to elevate your website traffic organically? Bombay Blokes, a leading Design-Branding agency in Mumbai, offers comprehensive Design-Branding services to help your business rank higher and grow faster.",
+  title: "Branding & Design Agency in Mumbai | Bombay Blokes",
+  description: "Build a brand that stands out. Bombay Blokes offers creative design & branding services in Mumbai — from logo design to full brand identity strategy that drives recognition & trust.",
 };
 const Index = () => {
   return (

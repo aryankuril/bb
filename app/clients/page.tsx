@@ -8,10 +8,12 @@ import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from '../components/MobilePopup'
 import SmoothScroll from '../components/SmoothScroll'
-import { createPageMetadata } from "@/lib/metadata";
+import { Metadata } from 'next'
 
-
-export const metadata = createPageMetadata("Clients");
+export const metadata: Metadata = {
+  title: "Our Clients | Trusted by Leading Brands – Bombay Blokes",
+  description: "Discover how Bombay Blokes helped brands grow online through powerful SEO, ads & digital strategy. Real clients. Real results. Explore our success stories.",
+};
 const Index = () => {
   return (
     <div>
