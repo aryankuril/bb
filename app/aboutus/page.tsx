@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Firstsection from '../components/AboutUs/Firstsection'
-import SecondSection from '../components/AboutUs/SecondSection'
+// import SecondSection from '../components/AboutUs/SecondSection'
 import ThirdSection from '../components/AboutUs/ThirdSection'
 // import FourthSection from '../components/AboutUs/FourthSection'
 import SeventhSection from '../components/ServicesInternal/WebsiteDesign/SeventhSection'
@@ -27,7 +27,7 @@ const Index = () => {
         <Taxi/>
         <Navbar/>
         <Firstsection />
-        <SecondSection/>
+        {/* <SecondSection/> */}
         <ThirdSection />
         {/* <FourthSection /> */}
         <RubberSection/>
