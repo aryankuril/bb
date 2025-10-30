@@ -10,7 +10,7 @@ import Footer from '../components/Footer'
 import Taxi from '../components/Taxi'
 import MobilePopup from '@/app/components/MobilePopup'
 import { Metadata } from 'next'
-
+import SmoothScroll from '../components/SmoothScroll'
 export const metadata: Metadata = {
   title: "Digital Marketing Services in Mumbai | Bombay Blokes",
   description: "Grow your brand with Bombay Blokes — Mumbai’s trusted digital marketing agency offering SEO, performance marketing, social media, web design & content strategy that drives results.",
@@ -19,7 +19,11 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <div>
-      <Taxi/>
+
+       <SmoothScroll>
+
+
+       <Taxi/>
        {/* <MobilePopup/> */}
         <Navbar />
         <Firstsection />
@@ -28,6 +32,7 @@ const page = () => {
         {/* <WorkCard/> */}
         <SeventhSection/>
         <Footer />
+       </SmoothScroll>
     </div>
   )
 }

@@ -96,7 +96,7 @@ const achievements = [
       <div className="lg:px-30 px-2" >
       <div className="text-center mb-12">
 <h2 className="black-text text-center">
-  How we <span className="text-highlight">achieve</span> it
+  How we <span className="text-highlight">achieved</span> it
 </h2>
 
       </div>
