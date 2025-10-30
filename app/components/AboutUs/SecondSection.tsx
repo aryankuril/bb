@@ -49,17 +49,19 @@ export default function SecondSection() {
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const lastMouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // ✅ Initialize mouse position safely (after mount)
+  // ✅ Initialize safely after component mounts
   useEffect(() => {
     if (typeof window !== "undefined") {
-      lastMouse.current.x = window.innerWidth / 2;
-      lastMouse.current.y = window.innerHeight / 2;
+      lastMouse.current = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+      };
     }
   }, []);
 
-  // Handle floating image movement
+  // ✅ Handle floating image movement
   useEffect(() => {
-    if (!imgRef.current) return;
+    if (typeof window === "undefined" || !imgRef.current) return;
 
     const moveImage = (e: MouseEvent) => {
       lastMouse.current.x = e.clientX + 20;
@@ -77,7 +79,6 @@ export default function SecondSection() {
     if (active !== null) {
       window.addEventListener("mousemove", moveImage);
 
-      gsap.killTweensOf(imgRef.current);
       gsap.set(imgRef.current, {
         x: lastMouse.current.x,
         y: lastMouse.current.y,
@@ -89,7 +90,7 @@ export default function SecondSection() {
       gsap.fromTo(
         imgRef.current,
         { scale: 0.5, autoAlpha: 0 },
-        { scale: 1, autoAlpha: 1, duration: 0.22, ease: "power2.out", overwrite: "auto" }
+        { scale: 1, autoAlpha: 1, duration: 0.22, ease: "power2.out" }
       );
     } else {
       gsap.to(imgRef.current, {
@@ -98,7 +99,6 @@ export default function SecondSection() {
         duration: 0.18,
         ease: "power2.inOut",
         clearProps: "willChange",
-        overwrite: "auto",
       });
 
       window.removeEventListener("mousemove", moveImage);
@@ -109,8 +109,10 @@ export default function SecondSection() {
     };
   }, [active]);
 
-  // Animate cards on scroll
+  // ✅ Animate cards on scroll
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const observers: IntersectionObserver[] = [];
 
     serviceRefs.current.forEach((ref, index) => {
@@ -154,7 +156,7 @@ export default function SecondSection() {
         {services.map((s, index) => (
           <div
             key={s.id}
-            ref={(el: HTMLDivElement | null) => {
+           ref={(el: HTMLDivElement | null) => {
   serviceRefs.current[index] = el;
   return undefined;
 }}
@@ -173,7 +175,10 @@ export default function SecondSection() {
       </div>
 
       {activeService && (
-        <div ref={imgRef} className="hidden md:block fixed -top-40 -left-50 pointer-events-none z-50 w-[300px] h-[300px]">
+        <div
+          ref={imgRef}
+          className="hidden md:block fixed -top-40 -left-50 pointer-events-none z-50 w-[300px] h-[300px]"
+        >
           {/* <Image
             src={activeService.img}
             alt={activeService.title}

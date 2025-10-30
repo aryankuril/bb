@@ -21,8 +21,6 @@ const page = () => {
     <div>
 
        <SmoothScroll>
-
-
        <Taxi/>
        {/* <MobilePopup/> */}
         <Navbar />
