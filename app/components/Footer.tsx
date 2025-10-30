@@ -49,12 +49,12 @@ export default function Footer() {
   >
     Client Registration
   </Link>
-  <Link
+  {/* <Link
     href="/blogs"
     className="black-text transition-colors"
   >
     Blogs
-  </Link>
+  </Link> */}
 </div>
 
           {/* Copyright */}

@@ -36,41 +36,42 @@ export default function StackingCards() {
     const cards = cardsRef.current;
     if (!section || !cards.length) return;
     const ctx = gsap.context(() => {
-      // initial state
+      // initial state with better performance settings
       gsap.set(cards, {
         y: 120,
         opacity: 0,
         scale: 1,
-        filter: "blur(0px) brightness(1)",
-        willChange: "transform,opacity",
+        willChange: "transform, opacity, filter",
         force3D: true,
+        transformPerspective: 1000,
       });
       gsap.set(cards[0], { y: 0, opacity: 1, zIndex: 100 });
       const BEHIND_1 = {
         scale: 0.97,
         opacity: 0.55,
         y: -30,
-        filter: "blur(2px) brightness(0.9)",
       };
       const BEHIND_2 = {
         scale: 0.92,
         opacity: 0.28,
         y: -60,
-        filter: "blur(6px) brightness(0.7)",
       };
-      const stepsPercent = (cards.length - 1) * 120; // each card step ~120% scroll
-      const isMobile = window.innerWidth < 768;
-      const extraBufferPercent = isMobile ? 250 : 80;
+      const firstCardDuration = 20;
+      const otherCardsDuration = 100;
+      const stepsPercent =
+        firstCardDuration + (cards.length - 2) * otherCardsDuration;
+      const extraBufferPercent = 60;
       const tl = gsap.timeline({
-        defaults: { ease: "power2.out", duration: 1.2 },
+        defaults: { ease: "power1.inOut", duration: 0.8 },
         scrollTrigger: {
           trigger: section,
           start: "top top",
           end: "+=" + (stepsPercent + extraBufferPercent) + "%",
-          scrub: 1.2,
+          scrub: 0.3,
           pin: true,
           anticipatePin: 1,
-          pinSpacing: true,
+          fastScrollEnd: true,
+          preventOverlaps: true,
           // markers: true,
         },
       });
@@ -78,14 +79,14 @@ export default function StackingCards() {
         const curr = cards[i];
         const prev = cards[i - 1];
         const prev2 = i - 2 >= 0 ? cards[i - 2] : null;
-        const t = i * 1.2;
-        tl.to(curr, { y: 0, opacity: 1, duration: 1.2 }, t);
+        const t = i === 1 ? 0.6 : 0.6 + (i - 1) * 1;
+        tl.to(curr, { y: 0, opacity: 1, duration: 0.8 }, t);
         tl.set(curr, { zIndex: 100 + i }, t - 0.01);
-        tl.to(prev, { ...BEHIND_1, duration: 1.2 }, t);
-        if (prev2) tl.to(prev2, { ...BEHIND_2, duration: 1.2 }, t);
+        tl.to(prev, { ...BEHIND_1, duration: 0.8 }, t);
+        if (prev2) tl.to(prev2, { ...BEHIND_2, duration: 0.8 }, t);
         if (i - 3 >= 0) {
           const older = cards.slice(0, i - 2);
-          tl.to(older, { opacity: 0, duration: 0.6 }, t);
+          tl.to(older, { opacity: 0, duration: 0.4 }, t);
         }
       }
     }, section);
@@ -100,11 +101,8 @@ export default function StackingCards() {
       >
         {/* Title pinned at the top while cards stack below */}
         <div className="sticky top-0 z-30 pointer-events-none">
-          <div className="flex container items-center justify-center w-full mx-auto ">
-            <h2 className="text-center black-text">
-              Always Enjoy Extra <span className="text-highlight">Chutney</span>{" "}
-              With Your <span className="text-highlight">Vada Pav</span>
-            </h2>
+          <div className="flex items-center justify-center w-full">
+            <h2 className="text-center black-text">our best works</h2>
           </div>
         </div>
         {/* Stacking canvas below the title */}
@@ -114,7 +112,7 @@ export default function StackingCards() {
               key={i}
               ref={setCardRef(i)}
               style={{ zIndex: cardsData.length - i }}
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[clamp(440px,72vh,700px)] rounded-3xl white-text will-change-transform overflow-hidden"
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[clamp(440px,72vh,700px)] rounded-3xl white-text will-change-transform overflow-hidden transform-gpu"
             >
               <div
                 aria-hidden
@@ -133,7 +131,7 @@ export default function StackingCards() {
                     {card.tags.map((t, idx) => (
                       <span
                         key={idx}
-                        className=" px-1 py-1 [text-wrap:balance] text-white"
+                        className="px-1 py-1 [text-wrap:balance] text-white"
                       >
                         <AnimatedButton text={t} href="/" index={idx} />
                       </span>
@@ -172,10 +170,10 @@ export default function StackingCards() {
         </div>
       </section>
       {/* Tail spacer so after unpin there's breathing room before next section */}
-      <div aria-hidden className="h-[70vh] md:h-[50vh] lg:h-[60vh]"></div>
-      <div className="flex justify-center items-center">
-        <Button href="/work" text="Explore Our Work " className="" />
-      </div>
+      <div aria-hidden className="h-[60vh]"></div>
+        <div className="flex justify-center items-center lg:mt-0 mt-10">
+          <Button href="/work" text="Explore Our Work " className="" />
+        </div>
     </div>
   );
 }
