@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 
-export default function PageLoader({ children }: { children: React.ReactNode }) {
+interface PageLoaderProps {
+  children?: ReactNode; // 👈 make children optional
+}
+
+export default function PageLoader({ children }: PageLoaderProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // If the page has already loaded, hide loader immediately
     if (document.readyState === "complete") {
       setLoading(false);
     } else {
