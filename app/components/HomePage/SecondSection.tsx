@@ -1,12 +1,14 @@
 "use client";
+
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import AnimatedHeading from "../AnimatedHeading";
+
 const services = [
   {
     id: 1,
-    title: " Branding - thecha to your vada pav",
+    title: "Branding - thecha to your vada pav",
     desc: "Branding adds flavor and personality to your brand, giving it a strong identity that everything else builds on.",
     img: "/images/Branding.png",
   },
@@ -29,16 +31,26 @@ const services = [
     img: "/images/SocialMedia.png",
   },
 ];
+
 export default function SecondSection() {
   const [active, setActive] = useState<number | null>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const lastMouse = useRef<{ x: number; y: number }>({
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-  });
+
+  // 🧩 FIXED: Avoid using window during SSR
+  const lastMouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  // 🧠 Initialize coordinates safely after mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      lastMouse.current.x = window.innerWidth / 2;
+      lastMouse.current.y = window.innerHeight / 2;
+    }
+  }, []);
+
   useEffect(() => {
     if (!imgRef.current) return;
+
     const moveImage = (e: MouseEvent) => {
       lastMouse.current.x = e.clientX + 20;
       lastMouse.current.y = e.clientY + 20;
@@ -50,11 +62,13 @@ export default function SecondSection() {
         overwrite: "auto",
       });
     };
+
     if (active !== null) {
-      if (lastMouse.current.x === 0 && lastMouse.current.y === 0) {
+      if (lastMouse.current.x === 0 && lastMouse.current.y === 0 && typeof window !== "undefined") {
         lastMouse.current.x = window.innerWidth / 2;
         lastMouse.current.y = window.innerHeight / 2;
       }
+
       window.addEventListener("mousemove", moveImage);
       gsap.killTweensOf(imgRef.current);
       gsap.set(imgRef.current, {
@@ -86,24 +100,25 @@ export default function SecondSection() {
       });
       window.removeEventListener("mousemove", moveImage);
     }
+
     return () => {
       window.removeEventListener("mousemove", moveImage);
     };
   }, [active]);
+
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
+
     serviceRefs.current.forEach((ref, index) => {
       if (!ref) return;
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               gsap.fromTo(
                 entry.target,
-                {
-                  opacity: 0,
-                  y: 50,
-                },
+                { opacity: 0, y: 50 },
                 {
                   opacity: 1,
                   y: 0,
@@ -121,13 +136,16 @@ export default function SecondSection() {
           rootMargin: "0px 0px -50px 0px",
         }
       );
+
       observer.observe(ref);
       observers.push(observer);
     });
+
     return () => {
       observers.forEach((observer) => observer.disconnect());
     };
   }, []);
+
   return (
     <section
       id="second-section"
@@ -135,15 +153,12 @@ export default function SecondSection() {
     >
       <div className="flex items-center justify-center w-full py-30 lg:mb-20">
         {/* <AnimatedHeading> */}
-        <h1
-          className="text-center black-text"
-          style={{ textTransform: "none" }}
-        >
-          <span className="text-highlight">Born in Bombay,</span> crafting
-          digital experiences that connect and inspire.
+        <h1 className="text-center black-text" style={{ textTransform: "none" }}>
+          <span className="text-highlight">Born in Bombay,</span> crafting digital experiences that connect and inspire.
         </h1>
         {/* </AnimatedHeading> */}
       </div>
+
       <div className="mx-auto flex flex-col lg:w-[70%] space-y-16 px-4 sm:px-6 md:px-8 lg:px-0">
         {services.map((s, index) => (
           <div
@@ -165,10 +180,12 @@ export default function SecondSection() {
             <h2 className="order-1 text-highlight numbering text-left flex items-center justify-center">
               {s.id.toString().padStart(2, "0")}
             </h2>
+
             {/* Title + Description + Mobile Image */}
             <div className="flex flex-col order-2 space-y-4 text-left max-w-120">
               <h3 className="black-text">{s.title}</h3>
-              {/* Mobile-only image (hidden on desktop) */}
+
+              {/* Mobile-only image */}
               <div className="block md:hidden">
                 <img
                   src={s.img}
@@ -178,11 +195,13 @@ export default function SecondSection() {
                   className="rounded-[15px] shadow-lg w-full"
                 />
               </div>
+
               <p className="black-text max-w-120 body2">{s.desc}</p>
             </div>
           </div>
         ))}
       </div>
+
       {/* Floating Image (desktop only) */}
       {active !== null && (
         <div
