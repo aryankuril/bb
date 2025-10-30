@@ -2,7 +2,10 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import gsap from "gsap";
+import dynamic from "next/dynamic";
+
+// ✅ Dynamically import GSAP only on the client (prevents window is not defined)
+const gsapPromise = import("gsap").then((mod) => mod.default);
 
 const services = [
   {
@@ -47,165 +50,138 @@ export default function SecondSection() {
   const [active, setActive] = useState<string | null>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const lastMouse = useRef<{ x: number; y: number }>({
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-  });
+  const lastMouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // Handle floating image movement
   useEffect(() => {
-    if (!imgRef.current) return;
-
-    const moveImage = (e: MouseEvent) => {
-      lastMouse.current.x = e.clientX + 20;
-      lastMouse.current.y = e.clientY + 20;
-
-      gsap.to(imgRef.current, {
-        x: lastMouse.current.x,
-        y: lastMouse.current.y,
-        duration: 0.3,
-        ease: "power3.out",
-        overwrite: "auto",
-      });
-    };
-
-    if (active !== null) {
-      window.addEventListener("mousemove", moveImage);
-
-      gsap.killTweensOf(imgRef.current);
-      gsap.set(imgRef.current, {
-        x: lastMouse.current.x,
-        y: lastMouse.current.y,
-        transformOrigin: "50% 50%",
-        willChange: "transform,opacity",
-        force3D: true,
-      });
-
-      gsap.fromTo(
-        imgRef.current,
-        { scale: 0.5, autoAlpha: 0 },
-        {
-          scale: 1,
-          autoAlpha: 1,
-          duration: 0.22,
-          ease: "power2.out",
-          overwrite: "auto",
-        }
-      );
-    } else {
-      gsap.to(imgRef.current, {
-        scale: 0.5,
-        autoAlpha: 0,
-        duration: 0.18,
-        ease: "power2.inOut",
-        clearProps: "willChange",
-        overwrite: "auto",
-      });
-
-      window.removeEventListener("mousemove", moveImage);
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", moveImage);
-    };
-  }, [active]);
-
-  // Animate cards on scroll
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    serviceRefs.current.forEach((ref, index) => {
-      if (!ref) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              gsap.fromTo(
-                entry.target,
-                { opacity: 0, y: 50 },
-                { opacity: 1, y: 0, duration: 1, delay: index * 0.15, ease: "power3.out" }
-              );
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
-      );
-
-      observer.observe(ref);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((observer) => observer.disconnect());
+    if (typeof window === "undefined") return;
+    lastMouse.current = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   }, []);
 
-  // Find active service object
+  useEffect(() => {
+    let gsap: any;
+    const setup = async () => {
+      gsap = await gsapPromise;
+
+      if (!imgRef.current || typeof window === "undefined") return;
+
+      const moveImage = (e: MouseEvent) => {
+        lastMouse.current.x = e.clientX + 20;
+        lastMouse.current.y = e.clientY + 20;
+        gsap.to(imgRef.current, {
+          x: lastMouse.current.x,
+          y: lastMouse.current.y,
+          duration: 0.3,
+          ease: "power3.out",
+          overwrite: "auto",
+        });
+      };
+
+      if (active !== null) {
+        window.addEventListener("mousemove", moveImage);
+
+        gsap.set(imgRef.current, {
+          x: lastMouse.current.x,
+          y: lastMouse.current.y,
+          transformOrigin: "50% 50%",
+          willChange: "transform,opacity",
+          force3D: true,
+        });
+
+        gsap.fromTo(
+          imgRef.current,
+          { scale: 0.5, autoAlpha: 0 },
+          { scale: 1, autoAlpha: 1, duration: 0.22, ease: "power2.out" }
+        );
+      } else {
+        gsap.to(imgRef.current, {
+          scale: 0.5,
+          autoAlpha: 0,
+          duration: 0.18,
+          ease: "power2.inOut",
+          clearProps: "willChange",
+        });
+
+        window.removeEventListener("mousemove", moveImage);
+      }
+    };
+
+    setup();
+    return () => {};
+  }, [active]);
+
+  useEffect(() => {
+    let gsap: any;
+    const setup = async () => {
+      gsap = await gsapPromise;
+      if (typeof window === "undefined") return;
+
+      const observers: IntersectionObserver[] = [];
+
+      serviceRefs.current.forEach((ref, index) => {
+        if (!ref) return;
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                gsap.fromTo(
+                  entry.target,
+                  { opacity: 0, y: 50 },
+                  { opacity: 1, y: 0, duration: 1, delay: index * 0.15, ease: "power3.out" }
+                );
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
+        );
+        observer.observe(ref);
+        observers.push(observer);
+      });
+
+      return () => observers.forEach((observer) => observer.disconnect());
+    };
+
+    setup();
+  }, []);
+
   const activeService = services.find((s) => s.id === active);
 
   return (
     <section id="second-section" className="relative container w-full py-10 sm:py-[60px] lg:py-20">
-      {/* Section Heading */}
       <div className="flex items-center justify-center w-full mx-auto lg:mb-50 lg:py-0 py-10">
         <h1 className="text-center black-text">
-          Our Evolution: Designing the Future of Brands 
+          Our Evolution: Designing the Future of Brands
           <span className="text-highlight"> Since 2015</span>
         </h1>
       </div>
 
-      {/* Services List */}
       <div className="mx-auto flex flex-col lg:w-[70%] space-y-16 px-4 sm:px-6 md:px-8 lg:px-0">
         {services.map((s, index) => (
           <div
             key={s.id}
-            ref={(el) => {
+            ref={(el: HTMLDivElement | null) => {
   serviceRefs.current[index] = el;
+  return undefined;
 }}
 
-            // onMouseEnter={() => setActive(s.id)}
-            // onMouseLeave={() => setActive(null)}
             className="flex flex-col md:flex-row md:justify-between md:gap-12 group items-start opacity-0"
           >
-            {/* Number */}
             <h2 className="order-1 text-highlight numbering text-left flex items-center justify-center">
               {s.id.toString().padStart(2, "0")}
             </h2>
-
-            {/* Title + Description + Mobile Image */}
             <div className="flex flex-col order-2 space-y-4 text-left max-w-120">
               <h3 className="black-text">{s.title}</h3>
-
-              {/* Mobile Image */}
-              <div className="block md:hidden w-full">
-                {/* <Image
-                  src={s.img}
-                  alt={s.title}
-                  width={600}
-                  height={400}
-                  className="rounded-[15px] shadow-lg w-full h-[300px] object-contain"
-                /> */}
-              </div>
-
               <p className="black-text max-w-120 body2">{s.desc}</p>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Floating Image (desktop only) */}
       {activeService && (
         <div
           ref={imgRef}
           className="hidden md:block fixed -top-40 -left-50 pointer-events-none z-50 w-[300px] h-[300px]"
-        >
-          {/* <Image
-            src={activeService.img}
-            alt={activeService.title}
-            width={300}
-            height={300}
-            className="rounded-[15px]  shadow-lg w-full h-full object-contain"
-          /> */}
-        </div>
+        />
       )}
     </section>
   );
