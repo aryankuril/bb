@@ -22,7 +22,7 @@ const services = [
     id: 3,
     title: "Web development - the aftertaste",
     desc: "The aftertaste is what lingers and leaves an impression. Web development ensures your website functions smoothly and leaves a lasting, reliable impression on your audience.",
-    img: "/images/Website.png",
+    img: "/images/Website2.png",
   },
   {
     id: 4,

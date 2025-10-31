@@ -76,7 +76,7 @@ const CardCarousel: React.FC = () => {
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden gap-5">
       <div className="absolute inset-0 -z-10 h-screen ">
         <Image
-          src={isMobile ? "/images/cardbgm.svg" : "/images/cardbgd.svg"}
+          src={isMobile ? "/images/cardbgm1.svg" : "/images/cardbgd.svg"}
           alt="Background"
           fill
           className="object-cover"
@@ -132,13 +132,11 @@ const CardCarousel: React.FC = () => {
               <div
                 className="
                   absolute inset-0 flex items-center justify-center
-                  bg-[rgba(29,29,29,0.50)]
-                  opacity-0 group-hover:opacity-100 transition-opacity duration-300
                 "
               >
-                <span className="white-text body1 text-center px-4">
+                {/* <span className="white-text body1 text-center px-4">
                   {card.hoverText ?? "Open"}
-                </span>
+                </span> */}
               </div>
               {/* Click target */}
               <button

@@ -52,9 +52,13 @@ export default function ThirdSection() {
 
   return (
     <section
-      className="lg:h-screen h-100 relative bg-contain bg-center bg-no-repeat py-10 sm:py-15 lg:py-20"
-      style={{ backgroundImage: "url(/images/tech-we-use-bg.png)" }}
-    >
+  className="
+    lg:h-screen h-200 relative bg-center bg-no-repeat py-10 sm:py-15 lg:py-20
+    bg-[url('/images/tech-we-use-bg-m.svg')]
+    lg:bg-[url('/images/tech-we-use-bg.png')]
+    bg-contain lg:bg-cover w-full
+  "
+>
       <div className="flex flex-col items-center justify-center h-full px-6 text-center">
         <div className="relative w-20 h-20 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-25 lg:h-25 mb-6 flex items-center justify-center">
   {images.map((img, i) => (

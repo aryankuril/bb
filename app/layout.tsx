@@ -9,7 +9,6 @@ import PageLoader from "./components/PageLoader";
 import SmoothScroll from "./components/SmoothScroll";
 import ScrollToTop from "./components/ScrollToTop";
 import DynamicHead from "./components/DynamicHead";
-
 // Local Miso font
 const miso = localFont({
   src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400", style: "normal" }],
@@ -30,6 +29,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
       <head>
@@ -110,7 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* App Content */}
         {/* <SmoothScroll> */}
           <PageLoader>
-            {children}
+           {children}
           </PageLoader>
           <ScrollToTop />
         {/* </SmoothScroll> */}

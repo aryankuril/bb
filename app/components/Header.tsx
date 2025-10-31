@@ -29,6 +29,8 @@ const links = [
   { href: "/work", label: "Case Studies" },
   { href: "/teams", label: "Team" },
   { href: "/join-our-team", label: "Career" },
+  { href: "/contactus", label: "Contact" },
+  { href: "/estimates-calculator", label: "Calculator" },
 ];
 
 export default function DesktopNav() {
@@ -255,7 +257,7 @@ export default function DesktopNav() {
           {/* stage */}
           <div
             ref={stage}
-            className="relative mt-10 h-[500px] w-[650px] mx-auto flex justify-center items-center overflow-hidden rounded-xl z-[100002]"
+            className="relative mt-10 h-[550px] w-[650px] mx-auto flex justify-center items-center overflow-hidden rounded-xl z-[100002]"
           >
             <div ref={black} />
             <div ref={yellow} />
@@ -356,12 +358,12 @@ export default function DesktopNav() {
               <div className="flex flex-col items-center gap-2 text-center z-10 cursor-pointer">
                 <p className="text-white text-lg tracking-wide">REACH US ON</p>
                 <div className="flex gap-8 relative z-50">
-                  <a
-                    href="/contactus"
-                    className="body2 text-[#FAB31E] hover:underline hover:text-[#FAB31E] tracking-wide"
+                  {/* <a
+                    // href="/contactus"
+                    className="body2 text-[#FAB31E]  tracking-wide"
                   >
-                   Contact
-                  </a>
+                   Connect Us
+                  </a> */}
                   <a
                     href="https://www.instagram.com/bombay_blokes"
                     target="_blank"

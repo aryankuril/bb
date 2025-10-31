@@ -24,6 +24,17 @@ export async function GET() {
     "work/performance-marketing/dancingleaf",
     "work/performance-marketing/jkdiamondsinstitute",
     "work/performance-marketing/scssports",
+    "work/seo-services/manbafinance",
+    "work/seo-services/presolv360",
+    "work/seo-services/scssports",
+    "work/social-media-marketing/ricrackids",
+    "work/social-media-marketing/scssports",
+    "work/social-media-marketing/supersox",
+    "work/website-development/jkdiamondsinstitute",
+    "work/website-development/mysuittailor",
+    "work/website-development/scssports",
+    "work/website-development/supersox",
+    "work/website-development/thefelinefoundation",
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -32,7 +43,7 @@ export async function GET() {
     .map(
       (page) => `<url>
   <loc>${baseUrl}/${page}</loc>
-  <lastmod>${new Date().toISOString()}</lastmod>
+  <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
   <changefreq>monthly</changefreq>
   <priority>${page === "" ? "1.0" : "0.8"}</priority>
 </url>`
@@ -41,8 +52,6 @@ export async function GET() {
 </urlset>`;
 
   return new NextResponse(sitemap, {
-    headers: {
-      "Content-Type": "application/xml",
-    },
+    headers: { "Content-Type": "application/xml" },
   });
 }

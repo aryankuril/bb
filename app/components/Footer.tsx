@@ -45,7 +45,7 @@ export default function Footer() {
   </Link>
   <Link
     href="/client-registration"
-    className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
+    className="black-text transition-colors  hover:text-[var(--color-highlight)]"
   >
     Client Registration
   </Link>
@@ -58,9 +58,10 @@ export default function Footer() {
 </div>
 
           {/* Copyright */}
-          <p className="text-left md:order-1 mt-2 body4 ">
-            Copyright ©2023 Bombay Blokes. All rights reserved.
-          </p>
+          <p className="text-left md:order-1 mt-2 body4">
+  Copyright ©{new Date().getFullYear()} Bombay Blokes. All rights reserved.
+</p>
+
         </div>
       </div>
     </footer>
