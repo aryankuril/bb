@@ -12,11 +12,11 @@ type Step = {
 
 const allSteps: Step[] = [
   // 🟦 WEB DEVELOPMENT (5)
-  { number: "01", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/work/website-design/jkdiamondsinstitute" },
-  { number: "02", title: "My Suit Tailor", image: "/images/webdev/MST.png", category: "Web Development", link: "/work/website-design/mysuittailor" },
-  { number: "03", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/work/website-design/scssports" },
-  { number: "04", title: "The Feline Foundation", image: "/images/webdev/Foundation.png", category: "Web Development", link: "/work/website-design/thefelinefoundation" },
-  { number: "05", title: "Supersox", image: "/images/webdev/Super-Sox.png", category: "Web Development", link: "/work/website-design/supersox" },
+  { number: "01", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/work/website-development/jkdiamondsinstitute" },
+  { number: "02", title: "My Suit Tailor", image: "/images/webdev/MST.png", category: "Web Development", link: "/work/website-development/mysuittailor" },
+  { number: "03", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/work/website-development/scssports" },
+  { number: "04", title: "The Feline Foundation", image: "/images/webdev/Foundation.png", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
+  { number: "05", title: "Supersox", image: "/images/webdev/Super-Sox.png", category: "Web Development", link: "/work/website-development/supersox" },
 
   // 🟩 PERFORMANCE MARKETING (4)
   { number: "01", title: "Chatterbox Labels", image: "/images/pm/chaterbox.png", category: "Performance Marketing", link: "/work/performance-marketing/chatterboxlabels" },
@@ -25,14 +25,14 @@ const allSteps: Step[] = [
   { number: "04", title: "SCS Sports", image: "/images/pm/SCS.png", category: "Performance Marketing", link: "/work/performance-marketing/scssports" },
 
   // 🟥 SOCIAL MEDIA (3)
-  { number: "01", title: "RicRac Kids", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/work/social-media/ricrackids" },
-  { number: "02", title: "SCS Sports", image: "/images/sm/SCS.png", category: "Social Media", link: "/work/social-media/scssports" },
-  { number: "03", title: "Supersox", image: "/images/sm/Super-Sox.png", category: "Social Media", link: "/work/social-media/supersox" },
+  { number: "01", title: "RicRac Kids", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/work/social-media-marketing/ricrackids" },
+  { number: "02", title: "SCS Sports", image: "/images/sm/SCS.png", category: "Social Media", link: "/work/social-media-marketing/scssports" },
+  { number: "03", title: "Supersox", image: "/images/sm/Super-Sox.png", category: "Social Media", link: "/work/social-media-marketing/supersox" },
 
   // 🟨 SEO (3)
-  { number: "01", title: "Manba Finance", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/work/seo/manbafinance" },
-  { number: "02", title: "Presolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/work/seo/presolv360" },
-  { number: "03", title: "SCS Sports", image: "/images/seo-cs/SCS.png", category: "SEO", link: "/work/seo/scssports" },
+  { number: "01", title: "Manba Finance", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/work/seo-services/manbafinance" },
+  { number: "02", title: "Presolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/work/seo-services/presolv360" },
+  { number: "03", title: "SCS Sports", image: "/images/seo-cs/SCS.png", category: "SEO", link: "/work/seo-services/scssports" },
 ];
 
 const categories = ["Web Development", "Performance Marketing", "Social Media", "SEO"];
