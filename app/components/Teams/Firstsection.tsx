@@ -61,7 +61,7 @@ const Firstsection: React.FC = () => {
       <div className="mt-10 flex justify-center items-center">
         <div
           ref={containerRef}
-          className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-[250px] lg:w-[1295px] lg:h-[650px]  rounded-[20px] overflow-hidden relative"
+          className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-[300px] lg:w-[1295px] lg:h-[650px]  rounded-[20px] overflow-hidden relative"
         >
           {/* Row 1 */}
           <div className="flex flex-wrap lg:gap-4 gap-1 justify-center lg:mt-20 mt-0">
@@ -96,7 +96,7 @@ const Firstsection: React.FC = () => {
 
           {/* Row 2 */}
           <div className="flex flex-wrap lg:gap-4 gap-1 justify-center">
-            <div className="w-[32%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[120px] flex-shrink-0">
+            <div className="w-[32%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[200px] flex-shrink-0">
               <Image
                 src="/images/teams/4.png"
                 alt="Hands"
@@ -108,7 +108,7 @@ const Firstsection: React.FC = () => {
 
             <div
               ref={secondImgRef}
-              className="w-[32%] max-w-[562px] lg:w-[562px] lg:h-[370px] h-[120px] flex-shrink-0 relative"
+              className="w-[32%] max-w-[562px] lg:w-[562px] lg:h-[370px] h-[200px] flex-shrink-0 relative"
               style={{
                 transformOrigin: "center center",
                 position: "relative",
@@ -123,7 +123,7 @@ const Firstsection: React.FC = () => {
               />
             </div>
 
-            <div className="w-[32%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[120px] flex-shrink-0">
+            <div className="w-[30%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[200px] flex-shrink-0">
               <Image
                 src="/images/teams/6.png"
                 alt="Hands"

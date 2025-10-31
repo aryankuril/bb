@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
-
+import TaxiMobile from "./TaxiMobile";
 type NavItem = { label: string; href?: string };
 
 const NAV_ITEMS: NavItem[] = [
@@ -44,6 +44,7 @@ const MobileNav = () => {
 
   return (
     <>
+      {/* <TaxiMobile /> */}
       {/* Backdrop */}
       <div
         aria-hidden
