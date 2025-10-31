@@ -63,12 +63,6 @@ const Taxi = () => {
       ? Math.max(viewportHeight * 0.08, 40)
       : 20;
 
-
-        // ✅ Hide taxi on phones (below 768px)
-  if (viewportWidth < 768) {
-    return null;
-  }
-
   return (
     <motion.img
       src="/images/taxi.png"

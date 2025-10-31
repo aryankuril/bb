@@ -2,11 +2,13 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
+
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+
 import AnimatedButton from "./AnimatedButton";
 
 const YELLOW = "#FAB31E";
@@ -36,6 +38,7 @@ const links = [
 export default function DesktopNav() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+   const pathname = usePathname();
 
   // refs
   const root = useRef<HTMLDivElement | null>(null);
@@ -305,49 +308,56 @@ export default function DesktopNav() {
 
             {/* menu links */}
             <div className="relative z-10 grid grid-cols-2 grid-rows-4 gap-y-10 px-12 py-8 lg:mb-15 md:mb-10 mb-5 text-center place-items-center w-full">
-              {links.map((link, index) => (
-                <div
-                  key={index}
-                  className={`w-full flex justify-center items-center relative ${
-                    index % 2 === 0 ? "border-r border-white" : ""
-                  }`}
-                >
-                  <Link
-  href={link.href}
-  onClick={(e) => {
-    e.preventDefault();
-    if (tl.current) tl.current.pause(0);
-    setOpen(false);
+             {links.map((link, index) => {
+  const isActive = pathname === link.href;
 
-    if (window.location.pathname === link.href) {
-      router.refresh();
-    } else {
-      router.push(link.href);
-    }
-  }}
-  ref={(el) => {
-    if (el) textRefs.current[index] = el;
-  }}
-  className="flex items-center justify-center gap-3 text-white font-[Miso] text-[36px] font-normal uppercase leading-none hover:text-[#FAB31E] transition-colors"
->
-  {/* ✅ If logo exists, show it */}
-  {link.logo && (
-    <div className="w-[40px] h-[40px] rounded-[20px] overflow-hidden border border-white bg-white flex-shrink-0">
-      <Image
-        src={link.logo}
-        alt={`${link.label} Logo`}
-        width={30}
-        height={30}
-        className="object-contain w-full h-full"
-      />
+  return (
+    <div
+      key={index}
+      className={`w-full flex justify-center items-center relative ${
+        index % 2 === 0 ? "border-r border-white" : ""
+      }`}
+    >
+      <Link
+        href={link.href}
+        onClick={(e) => {
+          e.preventDefault();
+          if (tl.current) tl.current.pause(0);
+          setOpen(false);
+
+          if (window.location.pathname === link.href) {
+            router.refresh();
+          } else {
+            router.push(link.href);
+          }
+        }}
+        ref={(el) => {
+          if (el) textRefs.current[index] = el;
+        }}
+        className={`flex items-center justify-center gap-3 font-[Miso] text-[36px] font-normal uppercase leading-none transition-colors 
+          ${
+            isActive
+              ? "text-[#FAB31E]" // 👈 active color (yellow)
+              : "text-white hover:text-[#FAB31E]"
+          }`}
+      >
+        {link.logo && (
+          <div className="w-[40px] h-[40px] rounded-[20px] overflow-hidden border border-white bg-white flex-shrink-0">
+            <Image
+              src={link.logo}
+              alt={`${link.label} Logo`}
+              width={30}
+              height={30}
+              className="object-contain w-full h-full"
+            />
+          </div>
+        )}
+        {link.label}
+      </Link>
     </div>
-  )}
+  );
+})}
 
-  {link.label}
-</Link>
-
-                </div>
-              ))}
             </div>
 
             {/* bottom row social icons */}
