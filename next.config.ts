@@ -152,7 +152,7 @@ const nextConfig: NextConfig = {
       },
     ];
 
-
+// 
     return redirects;
   },
 };
