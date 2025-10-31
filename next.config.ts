@@ -153,13 +153,13 @@ const nextConfig: NextConfig = {
     ];
 
     // ✅ Only redirect root to main domain in PRODUCTION
-    if (isProd) {
-      redirects.push({
-        source: '/',
-        destination: 'https://bombayblokes.com',
-        permanent: true,
-      });
-    }
+    // if (isProd) {
+    //   redirects.push({
+    //     source: '/',
+    //     destination: 'https://bombayblokes.com',
+    //     permanent: true,
+    //   });
+    // }
 
     return redirects;
   },
