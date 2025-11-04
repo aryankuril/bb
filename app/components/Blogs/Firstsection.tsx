@@ -46,7 +46,7 @@ const Firstsection: React.FC = () => {
         inViewRef(el);
         containerRef.current = el as HTMLDivElement | null;
       }}
-      className="relative h-3xl border-b-2 border-[var(--color-highlight)] container py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10 overflow-hidden px-4 sm:px-6 lg:px-8"
+      className="relative h-3xl border-b-2 border-[var(--color-highlight)] container  py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10 overflow-hidden px-4 sm:px-6 lg:px-8"
     >
       <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-30">
         <div className="flex-1">
@@ -56,8 +56,7 @@ const Firstsection: React.FC = () => {
               "
             >
               Your one-stop station for 
-              <span className="text-highlight"> Ideas </span> {" "} ,
-              <span className="text-highlight"> Insights </span> {" "} , and
+              <span className="text-highlight"> Ideas,Insights,</span>and
               <span className="text-highlight"> Inspiration </span>
 
             </h1>
@@ -70,7 +69,7 @@ const Firstsection: React.FC = () => {
         className="absolute bottom-0 right-4 sm:right-8 lg:right-16 flex justify-end"
       >
         <img
-          src="/images/resources-station.svg"
+          src="/images/resources-station.png"
           alt="Station board"
           className="w-28 sm:w-40 md:w-45 lg:w-48 xl:w-50 h-auto"
         />

@@ -89,8 +89,8 @@ const CardCarousel: React.FC = () => {
             scale: textScale,
             y: textY,
           }}
-        >
-          <span className="text-highlight">We </span>makes ideas real
+        >We Bring Your
+          <span className="text-highlight"> Ideas</span> Alive
         </motion.h2>
         {/* Title stays fixed at center */}
         {/* <div className="absolute text-center px-4 z-0">

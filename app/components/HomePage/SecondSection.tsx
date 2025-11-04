@@ -14,7 +14,7 @@ const services = [
   },
   {
     id: 2,
-    title: "UI/UX The First Bite",
+    title: "UI/UX - The First Bite",
     desc: "The first bite defines the entire experience. UI/UX design ensures the user's first interaction with your digital presence is enjoyable, intuitive, and memorable.",
     img: "/images/UI-UX1.png",
   },
@@ -52,16 +52,22 @@ export default function SecondSection() {
     if (!imgRef.current) return;
 
     const moveImage = (e: MouseEvent) => {
-      lastMouse.current.x = e.clientX + 20;
-      lastMouse.current.y = e.clientY + 20;
-      gsap.to(imgRef.current, {
-        x: lastMouse.current.x,
-        y: lastMouse.current.y,
-        duration: 0.3,
-        ease: "power3.out",
-        overwrite: "auto",
-      });
-    };
+  // Limit the image movement to the left 50% of the screen
+  const maxX = window.innerWidth * 0.4; // Half width
+  const clampedX = Math.min(e.clientX, maxX); // Clamp X to 50% area
+
+  lastMouse.current.x = clampedX + 20;
+  lastMouse.current.y = e.clientY + 20;
+
+  gsap.to(imgRef.current, {
+    x: lastMouse.current.x,
+    y: lastMouse.current.y,
+    duration: 0.3,
+    ease: "power3.out",
+    overwrite: "auto",
+  });
+};
+
 
     if (active !== null) {
       if (lastMouse.current.x === 0 && lastMouse.current.y === 0 && typeof window !== "undefined") {
