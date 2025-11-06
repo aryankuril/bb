@@ -23,7 +23,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Bombay Blokess ",
+  title: "Bombay Blokes ",
   description:
     "Integrated Digital Solutions in Mumbai | Marketing Agency in Mumbai - Bombay Blokes",
 };

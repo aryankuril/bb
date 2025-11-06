@@ -1,10 +1,21 @@
-export default function AdminDashboard() {
+import React from 'react'
+import AdminDashboard from './components/AdminDashboard'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Bombay Blokes | Admin Dashboard",
+  description:
+    "View a complete overview of Bombay Blokes’ admin activities, including blog analytics, user insights, career submissions, and scheduled content. Manage operations efficiently from the central dashboard.",
+};
+
+
+
+const Index = () => {
   return (
-    <div className="p-8 bg-white rounded-lg shadow">
-      <h2 className="text-2xl font-semibold mb-2">Welcome, Admin!</h2>
-      <p className="text-gray-600">
-        Use the sidebar to manage Blogs, Careers, and Users.
-      </p>
+    <div>
+      <AdminDashboard/>
     </div>
-  );
+  )
 }
+
+export default Index

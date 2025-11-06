@@ -1,7 +1,15 @@
 import Sidebar from "./Sidebar";
-import Topbar from "./Topbar";
 import ProtectedRoute from "./ProtectedRoute";
 import { Toaster } from "react-hot-toast";
+import PageLoader from "../components/PageLoader";
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Bombay Blokes | Admin",
+  description:
+    "Access and manage all core operations of Bombay Blokes from the admin panel. Oversee blogs, users, career applications, analytics, scheduling, and content updates in one centralized dashboard.",
+};
+
 export default function AdminLayout({
   children,
 }: {
@@ -11,10 +19,12 @@ export default function AdminLayout({
     <ProtectedRoute>
       <div className="flex">
         <Sidebar />
-        <div className="flex-1 ml-64 min-h-screen bg-gray-50">
-          <Topbar />
-          <main className="p-6">{children}
-              <Toaster position="top-right" />
+        <div className="flex-1 ml-64 min-h-screen">
+          <main className="p-6">
+            <PageLoader>
+              {children}
+            </PageLoader>
+            <Toaster position="top-right" />
           </main>
         </div>
       </div>

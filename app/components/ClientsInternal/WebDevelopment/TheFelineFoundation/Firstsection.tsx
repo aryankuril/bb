@@ -62,11 +62,11 @@ const Firstsection = () => {
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full  "
         >
           <Image
- src="/images/webdev/Foundation.png"
+ src="/images/webdev/Foundation2.png"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}
-  className="object-cover w-full lg:h-[80vh] h-auto rounded-2xl"
+  className="object-fit bg-black w-full lg:h-[80vh] h-auto rounded-2xl"
 />
         </motion.div>
       </div>

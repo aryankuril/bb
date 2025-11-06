@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { logout } from "@/lib/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   LayoutDashboard,
   FileText,
@@ -13,17 +13,34 @@ import {
   ChevronUp,
   LogOut,
 } from "lucide-react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [confirm, setConfirm] = useState(false);
   const [careerOpen, setCareerOpen] = useState(false);
+  const [appCount, setAppCount] = useState<number>(0);
 
   async function handleLogout() {
     await logout();
     router.push("/login");
   }
+
+  // Fetch total application count
+  useEffect(() => {
+    const fetchCount = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "careerApplications"));
+        setAppCount(snapshot.size);
+      } catch (error) {
+        console.error("Error fetching application count:", error);
+      }
+    };
+
+    fetchCount();
+  }, []);
 
   const navItems = [
     { label: "Dashboard", icon: LayoutDashboard, href: "/admin" },
@@ -51,7 +68,7 @@ export default function Sidebar() {
           const Icon = item.icon;
           const active = pathname === item.href;
 
-          // If item has dropdown
+          // Careers dropdown
           if (item.children) {
             const isParentActive =
               pathname.startsWith("/admin/careers") || careerOpen;
@@ -62,7 +79,7 @@ export default function Sidebar() {
                   onClick={() => setCareerOpen(!careerOpen)}
                   className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition ${
                     isParentActive
-                      ? "bg-yellow-400 text-black"
+                      ? "bg-[var(--color-highlight)] text-black"
                       : "hover:bg-gray-800"
                   }`}
                 >
@@ -77,17 +94,32 @@ export default function Sidebar() {
                   <div className="ml-8 space-y-1">
                     {item.children.map((child) => {
                       const childActive = pathname === child.href;
+                      const isApplications = child.label === "Applications";
+
                       return (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className={`block px-3 py-2 rounded-lg text-sm transition ${
+                          className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm transition ${
                             childActive
-                              ? "bg-yellow-300 text-black"
+                              ? "bg-[var(--color-highlight)] text-black"
                               : "hover:bg-gray-800"
                           }`}
                         >
-                          {child.label}
+                          <span>{child.label}</span>
+
+                          {/* 🔵 Application Count Badge */}
+                          {isApplications && (
+                            <span
+                              className={`w-6 h-6 flex items-center justify-center rounded-full text-xs font-semibold ${
+                                childActive
+                                  ? "bg-black text-[var(--color-highlight)]"
+                                  : "bg-[var(--color-highlight)] text-black"
+                              }`}
+                            >
+                              {appCount}
+                            </span>
+                          )}
                         </Link>
                       );
                     })}
@@ -103,7 +135,7 @@ export default function Sidebar() {
               key={item.href}
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg transition ${
-                active ? "bg-yellow-400 text-black" : "hover:bg-gray-800"
+                active ? "bg-[var(--color-highlight)] text-black" : "hover:bg-gray-800"
               }`}
             >
               <Icon size={18} />

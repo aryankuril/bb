@@ -52,13 +52,14 @@ export default function EditBlogPage() {
     fetchItem();
   }, [id, router]);
 
-  if (loading) return <div className="text-gray-600">Loading...</div>;
-  if (!blog) return null;
+if (loading) return null;  // ✅ allow layout's PageLoader to show
+if (!blog) return null;
+
 
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-semibold">Edit Blog</h2>
+        <h3 className="text-2xl font-semibold">Edit Blog</h3>
         <button
           onClick={() => router.back()}
           className="px-3 py-1 border rounded"
@@ -68,17 +69,23 @@ export default function EditBlogPage() {
       </div>
 
       <BlogForm
-        initial={{
-          id: blog.id,
-          title: blog.title,
-          description: blog.description,
-          imageUrl: blog.imageUrl,
-        }}
-        onSuccess={() => {
-          alert("Blog updated");
-          router.push("/admin/blogs");
-        }}
-      />
+  initial={{
+    id: blog.id,
+    title: blog.title,
+    description: blog.description,
+    imageUrl: blog.imageUrl,
+    category: (blog as any).category ?? "",
+    scheduledAt: (blog as any).scheduledAt
+      ? new Date((blog as any).scheduledAt.seconds * 1000)
+      : undefined, // ✅ pass Firestore timestamp as JS Date
+  }}
+  onSuccess={() => {
+    alert("Blog updated");
+    router.push("/admin/blogs");
+  }}
+/>
+
+
     </div>
   );
 }

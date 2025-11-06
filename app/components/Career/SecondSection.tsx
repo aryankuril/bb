@@ -1,380 +1,19 @@
 "use client";
-import React, { useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent  } from "react";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import ContactButton from "../ContactButton";
 
-const jobs = [
-  {
-    title: "WordPress Developer - Senior",
-    tag: "Immediate",
-    details: `Minimum Experience : 2–3 years
+type Career = {
+  id: string;
+  title: string;
+  description: string;
+  isImmediate: boolean;
+  postedAt?: { seconds: number };
+  tag?: string; // ✅ added
+  details?: string; // ✅ added
+};
 
-Role:
-You’ll be hands-on with custom development, building and optimizing high-quality WordPress websites.
-From PHP to front-end, WooCommerce to SEO — you’ll own the technical execution.
-We’re looking for someone who codes clean, scalable, and performance-focused solutions.
-
-Key Responsibilities:
-● Develop and customize WordPress websites using PHP, MySQL, ACF, and page builders like Elementor
-● Build and maintain custom themes, plugins, and functionalities for scalable, well-tested solutions
-● Handle WooCommerce setups, payment integrations, performance and SEO optimization, and website security
-● Manage technical operations including website migrations, backups, and server/hosting configurations
-● Ensure websites are responsive, dynamic, and optimized for speed and usability
-
-Work Culture:
-This is not a remote gig.
-We work together from our Worli office, every day, with focus on quality and collaboration.
-
-Salary – Upto 4L per annum`,
-  },
-  {
-    title: "Shopify Developer - Senior",
-    tag: "Immediate",
-    details: `Minimum Experience : 2–3 years
-
-Role:
-You’ll be hands-on with Shopify theme customization, frontend development, and building custom features.
-From Liquid to JavaScript to Shopify APIs — you’ll develop high-quality, scalable, and optimized eCommerce websites.
-
-Key Responsibilities:
-● Design, develop, and maintain Shopify stores, customizing themes, templates, and sections using Liquid, HTML, CSS, and JavaScript
-● Implement advanced features and integrations through Shopify APIs, metafields, and third-party apps
-● Collaborate with designers and stakeholders to convert UI/UX designs into responsive, high-performing, and visually consistent stores
-● Optimize store performance for speed, SEO, and cross-browser compatibility
-● Manage technical operations including store migrations, backups, version updates, and troubleshooting
-
-Work Culture:
-This is not a remote role.
-We work together from our Worli office, every day, focusing on quality, collaboration, and seamless execution.
-
-Salary – Upto 4.5L per annum`,
-  },
-  {
-    title: "Performance Marketing - Specialist / Manager",
-    tag: "Immediate",
-    details: `Minimum Experience : 3+ years & worked on 25+ brands | D2C focus is non-negotiable
-
-Role:
-You’ll lead a sharp, fast-moving performance team.
-Strategy, execution, scaling — all on your plate.
-Meta, Google, Amazon — we play across the board.
-We’re not looking for media buyers. We want growth thinkers.
-
-You should know your numbers, trust your gut, and never hide behind jargon.
-
-Key Responsibilities:
-● Lead performance marketing strategy and execution across Meta Ads and Google Ads
-
-● Plan, launch, monitor, and scale campaigns with a strong focus on ROAS, CAC, and efficiency
-
-● Collaborate with creative teams to ensure ads are not just beautiful – but effective
-
-● Manage monthly budgets in the range of ₹20L – ₹30L (Monthly) 
-
-Work Culture:
-This is not a remote gig. We work from our Worli office, together, every day.
-
-Salary – Upto 10L per annum`,
-  },
-  {
-    title: "Performance Marketing - Executive",
-    tag: "Immediate",
-    details: `Minimum Experience : 1+ years & worked on 6+ brands
-
-Role:
-You’ll be hands-on with performance campaigns across Meta & Google.
-From ad setup to daily optimisations — you’ll be in the thick of it.
-We’re not looking for button-pushers.
-
-Key Responsibilities:
-● Plan and execute performance marketing campaigns across Google Ads (Search, Display, YouTube, PMax) and Meta Ads (Facebook & Instagram)
-● Optimize campaigns for CPC, CPA, CTR, ROAS, and conversions
-● Conduct regular A/B tests on ad creatives, copy, and landing pages
-● Manage and monitor daily budgets to ensure efficient spend and consistent delivery
-● Track, measure, and analyze performance data using Google Analytics, Meta Ads Manager, and other tools
-● Exposure to platforms – Meta, Google, Amazon
-
-Work Culture:
-This is not a remote role. We work together from our Worli office.
-We don’t micromanage, but we expect ownership.
-
-Salary – Upto 5.5L per annum`,
-  },
-  {
-    title: "Performance Marketing - Intern",
-    tag: "Immediate",
-    details: `Minimum Experience : 0 – 6 Months
-
-Role:
-You’ll dive into the world of performance marketing across Meta & Google.
-From campaign setup to audience research — you’ll get hands-on exposure.
-This isn’t just about watching from the sidelines — you’ll be learning by doing.
-
-Key Responsibilities:
-● Assist in campaign setup, tracking, and reporting across Meta Ads and Google Ads
-● Support audience research and performance analysis
-● Learn and apply optimisation concepts: CPC, CTR, ROAS, conversions
-● Work on Excel/Google Sheets for data tracking and insights
-● Collaborate with the team, stay curious, and adapt quickly in a digital-first environment
-
-What You’ll Gain:
-● Real-world experience in performance marketing campaigns
-● Exposure to agency culture and cross-functional collaboration
-● Mentorship from experienced digital marketers
-● Potential full-time opportunity based on performance
-
-Stipend – ₹10,000 per month`,
-  },
-  {
-    title: "Social Media Marketing - Specialist",
-    tag: "Immediate",
-    details: `Minimum Experience : 3–5 years | Proven results growing brands & communities on social platforms
-
-Role:
-This isn’t a posting job — it’s a growth role.
-You’ll own the strategy across Instagram, LinkedIn, YouTube — and whatever comes next.
-From brand-building to content planning to performance-driven campaigns — you’ll do it all.
-
-We want someone who can think brand, plan content, and deliver numbers — all at once.
-
-Key Responsibilities:
-● Plan and execute paid social media campaigns across multiple platforms
-● Manage budgets, targeting, and performance tracking to drive results
-● Test new formats and strategies to boost engagement and conversions
-● Monitor KPIs — reach, engagement, impressions, CTR, conversions
-● Generate performance reports with actionable insights
-● Recommend and implement improvements to optimise campaigns
-● Develop platform-specific strategies and create content calendars
-
-Work Culture:
-This is not a remote consultant gig.
-You’ll be in our Worli office, leading from the front, every day.
-It’s a leadership role — you’ll shape the work, not just follow instructions.
-
-Salary – Upto 6L per annum`,
-  },
-  {
-    title: "Social Media Marketing - Executive",
-    tag: "Immediate",
-    details: `Minimum Experience : 1+ year agency experience | No, running your own meme page doesn’t count (unless it’s really good)
-
-Role:
-You’ll plan, write, and execute content across Instagram, LinkedIn & beyond.
-From calendars to copy to campaigns — you’ll own the feed.
-We’re not looking for schedulers. We want storytellers who can make brands stand out.
-
-Key Responsibilities:
-● Develop and execute creative, platform-specific social media campaigns
-● Build compelling content calendars that keep brands consistent and engaging
-● Draft copy that hooks attention and makes people stop scrolling
-● Collaborate with designers and performance teams to bring ideas to life
-● Jump on trends with context — not just copy-paste
-● Be the voice behind brands, building community and engagement
-
-Work Culture:
-This isn’t hybrid, and it’s not remote.
-We work fast and together from our Worli office, every day.
-No babysitting — if you love owning the feed and seeing real impact, this is for you.
-
-Salary – Upto 4.2L per annum`,
-  },
-  {
-    title: "Social Media Marketing - Intern",
-    tag: "Immediate",
-    details: `Minimum Experience : 0 – 6 Months
-
-Role:
-You’ll jump into the world of content creation across Instagram, LinkedIn & more.
-From Reels to captions to carousels — you’ll get hands-on with it all.
-We’re not looking for passive scrollers — we want creators with fresh energy.
-
-Key Responsibilities:
-● Brainstorm and create content ideas tailored for social platforms
-● Assist with Reels, Stories, carousels, and the occasional meme
-● Write captions that sound human, not robotic
-● Research trends, hashtags, and what’s buzzing online
-● Help manage posting schedules and engagement
-● Bring new ideas and creativity to the table
-
-Work Culture:
-This is not hybrid. It’s not remote.
-We work fast and together from our Worli office, every day.
-No babysitting — if you love owning the feed and making an impact, this is for you.
-
-Stipend – ₹10,000 per month`,
-  },
-  {
-    title: "Copywriter - Senior",
-    tag: "Immediate",
-    details: `Minimum Experience : 4+ years
-
-Role:
-You’ll be the voice behind campaigns, brands, and stories.
-From 5-word headlines to 500-word blogs — you’ll craft copy that cuts through the noise.
-This isn’t about filler text — it’s about storytelling that drives impact.
-
-Key Responsibilities:
-● Write compelling, high-quality copy across social, websites, blogs, emails, ads & campaigns
-● Develop creative concepts aligned with brand voice and marketing objectives
-● Translate complex ideas into clear, engaging, and persuasive messaging
-● Collaborate with designers, art directors, marketers, and clients on integrated campaigns
-● Lead brainstorming sessions and contribute original ideas for campaigns & content strategies
-● Balance multiple projects without losing sharpness or punchlines
-● Bring humor, originality, and zero tolerance for boring copy
-
-Work Culture:
-This is not hybrid. It’s not remote.
-We work fast and together from our Worli office, every day.
-No babysitting — if you love owning the brand voice and making impact, this is for you.
-
-Salary – Upto 7.2L per annum`,
-  },
-  {
-    title: "SEO - Senior Specialist",
-    tag: "Immediate",
-    details: `Minimum Experience : 2–4 years | Must have ranked content across competitive categories
-
-Role:
-We don’t need someone to sprinkle keywords into blogs and call it SEO.
-We need a strategist who knows how to build traffic — consistently, and at scale.
-From keyword research to technical SEO — you’ll own the levers that drive growth.
-
-Key Responsibilities:
-● Develop and execute comprehensive SEO strategies focused on measurable growth in organic traffic, rankings, and leads
-● Perform in-depth keyword research, competitor analysis, and on-page/off-page optimisation
-● Manage technical SEO audits and coordinate with the dev team for timely fixes
-● Optimise web content, landing pages, and YouTube descriptions for search visibility
-● Track, monitor, and analyse performance using tools like Search Console, Google Analytics, SEMrush, Ahrefs, Screaming Frog, MOZ, etc.
-● Translate data into insights — know what’s working, what’s not, and why
-● Stay updated on industry shifts, including AI-driven SEO tools and strategies
-
-Work Culture:
-This is not a remote gig.
-We move fast, work hands-on, and expect ownership every day.
-You’ll be part of a team that values clarity, accountability, and results.
-
-Salary – Upto 6.6L per annum`,
-  },
-  {
-    title: "Graphic Designer (AI-First, Vision-Led)",
-    tag: "Immediate",
-    details: `Minimum Experience : 2–4 years | Must have ranked content across competitive categories
-
-Role:
-We don’t need someone to sprinkle keywords into blogs and call it SEO.
-We need a strategist who knows how to build traffic — consistently, and at scale.
-From keyword research to technical SEO — you’ll own the levers that drive growth.
-
-Key Responsibilities:
-● Develop and execute comprehensive SEO strategies focused on measurable growth in organic traffic, rankings, and leads
-● Perform in-depth keyword research, competitor analysis, and on-page/off-page optimisation
-● Manage technical SEO audits and coordinate with the dev team for timely fixes
-● Optimise web content, landing pages, and YouTube descriptions for search visibility
-● Track, monitor, and analyse performance using tools like Search Console, Google Analytics, SEMrush, Ahrefs, Screaming Frog, MOZ, etc.
-● Translate data into insights — know what’s working, what’s not, and why
-● Stay updated on industry shifts, including AI-driven SEO tools and strategies
-
-Work Culture:
-This is not a remote gig.
-We move fast, work hands-on, and expect ownership every day.
-You’ll be part of a team that values clarity, accountability, and results.
-
-Salary – Upto 6.6L per annum`,
-  },
-  {
-    title: "Content Creator",
-    tag: "Immediate",
-    details: `Minimum Experience : Portfolio beyond college assignments | Must include AI-generated or AI-assisted work
-
-Role:
-You won’t just make posts — you’ll shape creative direction and elevate the whole team.
-From social to branding to web, your designs will push boundaries and set standards.
-AI tools aren’t optional — they’re your creative accelerator.
-
-Key Responsibilities:
-● Create scroll-stopping design work for social, branding, and web
-● Collaborate closely with content, strategy, and performance teams
-● Use AI tools (MidJourney, Firefly, Runway, etc.) to scale output and innovate creatively
-● Lead the team in exploring what’s next in design, not just following trends
-
-Must-Have Skills:
-● Mastery of Illustrator, Photoshop, and Figma
-● Experience with AI tools for design innovation
-● Strong sense of layout, typography, and brand presence
-● Portfolio demonstrating clarity, creativity, and ambition
-
-Work Culture:
-This is not a remote role.
-We work from our Worli office, every day, fast-paced and collaborative.
-
-Salary – Upto 6L per annum`,
-  },
-  {
-    title: "Video Editor",
-    tag: "Immediate",
-    details: `Minimum Experience : 1–2 years | Only short-format editors with viral instincts need apply
-No wedding reels. No trailers. Just punchy, scroll-stopping edits.
-
-Role:
-You’ll edit videos for Instagram Reels, YouTube Shorts & more.
-We’re not looking for safe edits — we want content people watch twice.
-Pacing, hooks, retention — that’s where you shine.
-
-Key Responsibilities:
-● Edit addictive short-form videos for Instagram Reels & YouTube Shorts
-● Craft long-format DVCs that make brands stand out
-● Add motion graphics to keep content fresh, sharp, and exciting
-● Use AI tools (Runway, ElevenLabs, MidJourney, ChatGPT, etc.) to move faster and beat industry standards
-● Spot trends early — and make them better
-● Bring bold creative ideas and originality to every project
-
-Must-Have Skills:
-● Proficiency in CapCut, Premiere, or Final Cut Pro
-● Strong grasp of pacing, hooks, and storytelling for short-format content
-● Obsession with viral trends and what makes content click
-
-Application Requirement:
-Send only your best 3 short-form edits.
-No long portfolios. No full showreels.
-If the first 5 seconds don’t hit — we’re not watching the rest.
-
-Work Culture:
-This is not remote.
-We work 5 days a week from our Worli office — fast-paced, collaborative, and hands-on.
-
-Salary – Upto 4.8L per annum`,
-  },
-  {
-    title: "Accountant - Inhouse",
-    tag: "Immediate",
-    details: `Minimum Experience : 2 years
-
-Role:
-You’ll handle the numbers that keep the business running smoothly.
-From invoices to audits, reconciliations to returns — you’ll own end-to-end accounting processes with precision.
-
-Key Responsibilities:
-● Raise invoices and maintain proper documentation
-● Prepare journal entries and support month-end & year-end closing
-● Reconcile bank statements and resolve discrepancies
-● Prepare & file GST, TDS, and other statutory returns as per compliance requirements
-● Manage payments to vendors, freelancers, and contractual employees
-● Support preparation of financial statements and reports
-● Assist in audits (internal/external) with required documentation
-● Handle accounts payable and receivable processes
-
-Preferred Qualifications:
-● Minimum 2 years of relevant accounting experience
-● CA-Inter or pursuing a professional accounting course is a plus
-● Strong MS Excel skills (VLOOKUP, Pivot Tables, etc.)
-● Knowledge of Indian accounting standards and tax regulations
-
-Work Culture:
-This is not a remote role.
-We work 5 days a week from our Worli office — structured, collaborative, and fast-moving.
-
-Salary – Upto 3.6L per annum`,
-  },
-];
 
 type InputValues = {
   ticketName: string;
@@ -386,6 +25,7 @@ type InputValues = {
 };
 
 const SecondSection = () => {
+    const [jobs, setJobs] = useState<Career[]>([]);
   const [activeJob, setActiveJob] = useState(jobs[0]);
   const [isFlipped, setIsFlipped] = useState(false);
   const [focusedInput, setFocusedInput] = useState<keyof InputValues | "">("");
@@ -477,6 +117,31 @@ const SecondSection = () => {
     }
   };
 
+useEffect(() => {
+  const fetchCareers = async () => {
+    try {
+      const q = query(collection(db, "careers"), orderBy("postedAt", "desc"));
+      const snapshot = await getDocs(q);
+      const careersData: Career[] = snapshot.docs.map((doc) => {
+  const data = doc.data() as Omit<Career, "id" | "tag" | "details">;
+  return {
+    id: doc.id,
+    ...data,
+    tag: data.isImmediate ? "Immediate" : "", // ✅ show tag only if admin marked Immediate
+    details: data.description,
+  };
+});
+
+      setJobs(careersData);
+    } catch (err) {
+      console.error("Error fetching careers:", err);
+    }
+  };
+
+  fetchCareers();
+}, []);
+
+
   const handleFocus = (field: keyof InputValues) => setFocusedInput(field);
   const handleBlur = (
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -543,10 +208,15 @@ const SecondSection = () => {
   };
 
   // 🔥 Helper function to decide icon color
-  const getIconColor = (field: keyof InputValues) =>
-    focusedInput === field || inputValues[field].trim() !== ""
-      ? "#FAB31E"
-      : "#ABABAB";
+const getIconColor = (field: keyof InputValues) => {
+  if (focusedInput === field) return "#FAB31E";
+
+  // ✅ If CV file is uploaded, keep icon yellow
+  if (field === "cv" && cvFile) return "#FAB31E";
+
+  // ✅ For normal text fields
+  return inputValues[field].trim() !== "" ? "#FAB31E" : "#ABABAB";
+};
 
   // Convert file to base64
   const fileToBase64 = (file: File): Promise<string> => {
@@ -667,6 +337,14 @@ const SecondSection = () => {
       setIsSubmitting(false);
     }
   };
+
+
+  useEffect(() => {
+  if (jobs.length > 0 && !activeJob) {
+    setActiveJob(jobs[0]); // ✅ auto-select first job
+  }
+}, [jobs, activeJob]);
+
 
   const svgs = {
     ticketName: (
@@ -864,57 +542,54 @@ const SecondSection = () => {
       <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
         {/* LEFT – Job List */}
         <div className="p-4 md:p-6 flex flex-col lg:gap-3 gap-2 ">
-          <h2
-            className="
-          white-text
-          text-center
-          mb-6 md:mb-10
-        "
-          >
-            Available Trains
-          </h2>
-          {jobs.map((job, i) => (
-            <button
-              key={i}
-              onClick={() => {
-    setActiveJob(job);
-    if (isFlipped) setIsFlipped(false);
+  <h2 className="white-text text-center mb-6 md:mb-10">Available Trains</h2>
 
-    // 👇 Scroll right section into view only on mobile
-    if (window.innerWidth < 768) {
-      const rightSection = document.getElementById("details-section");
-      if (rightSection) {
-        rightSection.scrollIntoView({ behavior: "smooth", block: "start" });
+ {jobs.map((job, i) => (
+  <button
+    key={i}
+    onClick={() => {
+      setActiveJob(job);
+      if (isFlipped) setIsFlipped(false);
+
+      if (window.innerWidth < 768) {
+        const rightSection = document.getElementById("details-section");
+        if (rightSection) {
+          rightSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
       }
-    }
-  }}
-              className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
-    ${
-      activeJob.title === job.title
-        ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
-        : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-    }`}
-            >
-              {/* Job Title */}
-              <div className="pr-20 whitespace-normal leading-snug break-words">
-                {job.title}
-              </div>
+    }}
+    className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+      ${
+        activeJob?.title === job.title
+          ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
+          : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+      }`}
+  >
+    {/* Job Title */}
+    <div className="pr-20 whitespace-normal leading-snug break-words">
+      {job.title}
+    </div>
 
-              {/* 🚩 Tag */}
-              <span
-  className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
-    ${
-      activeJob.title === job.title
-        ? "bg-black text-yellow-400"
-        : "bg-[var(--color-highlight)] text-black"
-    }`}
->
-  {job.tag}
-</span>
+    {/* ✅ Show tag only if it exists */}
+    {job.tag && (
+      <span
+        className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+          ${
+            activeJob?.title === job.title
+              ? "bg-black text-yellow-400"
+              : "bg-[var(--color-highlight)] text-black"
+          }`}
+      >
+        {job.tag}
+      </span>
+    )}
+  </button>
+))}
 
-            </button>
-          ))}
-        </div>
+</div>
 
         {/* RIGHT – Details */}
         <div
@@ -943,9 +618,9 @@ const SecondSection = () => {
                   isFlipped ? "hidden" : "block"
                 } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-4 sm:px-5 py-6 flex flex-col justify-between min-h-[700px]`}
               >
-                <div className="whitespace-pre-line  white-text body2 pr-1 sm:pr-2">
-                  {activeJob.details}
-                </div>
+               <div className="whitespace-pre-line white-text body2 pr-1 sm:pr-2">
+          {activeJob ? activeJob.details || "No Details Available" : "Please select a train to view details"}
+        </div>
                 <div className="flex justify-center py-5">
                   <ContactButton
                     text="Apply Now"

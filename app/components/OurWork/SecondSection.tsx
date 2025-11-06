@@ -15,7 +15,7 @@ const allSteps: Step[] = [
   { number: "01", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/work/website-development/jkdiamondsinstitute" },
   { number: "02", title: "My Suit Tailor", image: "/images/webdev/MST.png", category: "Web Development", link: "/work/website-development/mysuittailor" },
   { number: "03", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/work/website-development/scssports" },
-  { number: "04", title: "The Feline Foundation", image: "/images/webdev/Foundation.png", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
+  { number: "04", title: "The Feline Foundation", image: "/images/webdev/Foundation2.png", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
   { number: "05", title: "Supersox", image: "/images/webdev/Super-Sox.png", category: "Web Development", link: "/work/website-development/supersox" },
 
   // 🟩 PERFORMANCE MARKETING (4)
@@ -128,7 +128,7 @@ const SecondSection = () => {
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="absolute inset-0 w-full h-full object-cover z-0"
+                    className="absolute inset-0 w-full h-full object-fit bg-black z-0"
                   />
                   <CardText number={step.number} title={step.title} />
                 </Link>

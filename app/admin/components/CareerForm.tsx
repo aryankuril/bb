@@ -58,7 +58,7 @@ export default function CareerForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white shadow p-6 rounded-md max-w-xl"
+      className="bg-white shadow p-6 rounded-md "
     >
       <div className="mb-4">
         <label className="block text-sm font-semibold mb-1">Title</label>

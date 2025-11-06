@@ -23,7 +23,7 @@ export default function EditCareerPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Edit Career</h1>
+      <h3 className="text-2xl font-bold mb-4">Edit Career</h3>
       {career ? (
         <CareerForm existingCareer={career} />
       ) : (
