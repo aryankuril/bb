@@ -6,17 +6,31 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
   images: {
     remotePatterns: [
+      // ✅ Unsplash (already added)
       {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+
+      // ✅ Firebase Storage URLs
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+      },
+
+      // ✅ Alternate Firebase CDN pattern
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+      },
     ],
   },
+
   async redirects() {
     const redirects = [
-      // 🌐 Old URLs → New URLs
       {
         source: '/about',
         destination: '/aboutus',
@@ -42,7 +56,8 @@ const nextConfig: NextConfig = {
         destination: '/teams',
         permanent: true,
       },
-      // Services Redirects
+
+      // ✅ Services Redirects
       {
         source: '/website-design',
         destination: '/services/website-development',
@@ -74,92 +89,23 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // Disabled / Removed Pages
-      {
-        source: '/project-details',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/case-study',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/performance-marketing-calculator',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/portfolio/the-untold-story-of-bombay',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/social-media/crafting-an-effective-social-media-strategy-unlocking-the-power-of-social-media-agencies',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/service-affiliates',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/category/social-media',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/category/brand-design',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/brand-design/portfolio3',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/category/website',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/website/portfolio4',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/category/portfolio',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/social-media/3-ways-to-keep-your-social-media-people-powered',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/portfolio/hello-world',
-        destination: '/404',
-        permanent: false,
-      },
-      {
-        source: '/portfolio/portfolio1',
-        destination: '/404',
-        permanent: false,
-      },
+      // ✅ Disabled Pages
+      { source: '/project-details', destination: '/404', permanent: false },
+      { source: '/case-study', destination: '/404', permanent: false },
+      { source: '/performance-marketing-calculator', destination: '/404', permanent: false },
+      { source: '/portfolio/the-untold-story-of-bombay', destination: '/404', permanent: false },
+      { source: '/social-media/crafting-an-effective-social-media-strategy-unlocking-the-power-of-social-media-agencies', destination: '/404', permanent: false },
+      { source: '/service-affiliates', destination: '/404', permanent: false },
+      { source: '/category/social-media', destination: '/404', permanent: false },
+      { source: '/category/brand-design', destination: '/404', permanent: false },
+      { source: '/brand-design/portfolio3', destination: '/404', permanent: false },
+      { source: '/category/website', destination: '/404', permanent: false },
+      { source: '/website/portfolio4', destination: '/404', permanent: false },
+      { source: '/category/portfolio', destination: '/404', permanent: false },
+      { source: '/social-media/3-ways-to-keep-your-social-media-people-powered', destination: '/404', permanent: false },
+      { source: '/portfolio/hello-world', destination: '/404', permanent: false },
+      { source: '/portfolio/portfolio1', destination: '/404', permanent: false },
     ];
-
-    // ✅ Only redirect root to main domain in PRODUCTION
-    // if (isProd) {
-    //   redirects.push({
-    //     source: '/',
-    //     destination: 'https://bombayblokes.com',
-    //     permanent: true,
-    //   });
-    // }
 
     return redirects;
   },

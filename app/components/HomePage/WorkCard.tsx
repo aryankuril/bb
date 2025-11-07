@@ -37,7 +37,7 @@ const cardsData = [
     tags: [" UI UX", "Shopify ", "SEO"],
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
-    image: "/images/webdev/MST.png",
+    image: "/images/webdev/Mysuite.png",
     url: "/work/website-development/mysuittailor",
   },
 ];

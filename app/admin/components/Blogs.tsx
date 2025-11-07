@@ -28,6 +28,7 @@ import {
 
 type Blog = {
   id: string;
+  slug: string;
   title: string;
   description: string;
   imageUrl?: string;
@@ -78,17 +79,10 @@ const Blogs = () => {
 
         <Button
       href="/admin/blogs/new"
-      text="New Blog"
+      text="Add Blog"
       className="text-black font-semibold"
     />
-        {/* <Button>
-        <Link
-          href="/admin/blogs/new"
-          className=" text-white"
-        >
-          New Blog
-        </Link>
-        </Button> */}
+
       </div>
 
       {/* Blogs List */}
@@ -190,12 +184,10 @@ const Blogs = () => {
 
                   {/* Actions */}
                   <div className="mt-4 flex gap-2">
-                    <Link
-                      href={`/admin/blogs/${b.id}`}
-                      className="px-3 py-1 border rounded text-sm"
-                    >
-                      Edit
-                    </Link>
+                    <Link href={`/admin/blogs/${b.slug}`} className="px-3 py-1 border rounded text-sm">
+  Edit
+</Link>
+
                     <button
                       onClick={() => handleDelete(b.id)}
                       disabled={deleting === b.id}
@@ -204,7 +196,7 @@ const Blogs = () => {
                       {deleting === b.id ? "Deleting..." : "Delete"}
                     </button>
                     <a
-                      href={`/blogs/${b.id}`}
+                      href={`/blogs/${b.slug}`}
                       target="_blank"
                       rel="noreferrer"
                       className="px-3 py-1 border rounded text-sm ml-auto"
