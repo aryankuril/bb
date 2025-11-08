@@ -19,6 +19,7 @@
     "@studio-freight/lenis": "^1.0.42",
     "@tiptap/core": "^3.10.2",
     "@tiptap/extension-image": "^3.10.2",
+    "@tiptap/extension-placeholder": "^3.10.4",
     "@tiptap/react": "^3.10.2",
     "@tiptap/starter-kit": "^3.10.2",
     "cookies-next": "^6.1.1",
