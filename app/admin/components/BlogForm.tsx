@@ -18,8 +18,11 @@ import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import ImageTool from "@editorjs/image";
-import Embed from "@editorjs/embed";
+const Embed = require("@editorjs/embed");
 
+
+
+// 
 const CATEGORY_OPTIONS = [
   "ALL",
   "WEB DEVELOPMENT",
