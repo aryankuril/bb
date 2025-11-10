@@ -2,12 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import CareerForm from "../../components/CareerForm";
+import Button from "@/app/components/Button";
 
 export default function EditCareerPage() {
   const { id } = useParams();
+    const router = useRouter();
   const [career, setCareer] = useState<any>(null);
 
   useEffect(() => {
@@ -23,7 +26,17 @@ export default function EditCareerPage() {
 
   return (
     <div className="p-6">
-      <h3 className="text-2xl font-bold mb-4">Edit Career</h3>
+
+      <div className="flex items-center justify-between mb-6">
+        <h3 className="text-2xl font-semibold">Edit Career</h3>
+        <Button
+  onClick={() => router.back()}
+ className="text-black"
+  text="Back"
+/>
+
+      </div>
+
       {career ? (
         <CareerForm existingCareer={career} />
       ) : (

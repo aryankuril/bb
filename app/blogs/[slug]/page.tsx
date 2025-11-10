@@ -5,33 +5,41 @@ import BlogInternal from "@/app/components/BlogInternal";
 
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-
-import { Metadata } from 'next'
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blogs | Digital Agency | Bombay Blokes",
-  description: "Bombay Blokes is a leading digital marketing company in Mumbai, our blogs are well- researched in the field of digital marketing",
+  description:
+    "Bombay Blokes is a leading digital marketing company in Mumbai, our blogs are well-researched in the field of digital marketing",
 };
 
 type BlogData = {
   title: string;
-  description: string;
+  description: any;
   imageUrl?: string;
   category?: string;
-  scheduledAt?: any;
+  scheduledAt?: number | null;
   slug: string;
+  postedAt?: number | null;
+  updatedAt?: number | null;
 };
 
+// ✅ Convert Firestore Timestamp → Number
 async function getBlog(slug: string): Promise<BlogData | null> {
-  if (!slug) return null;
-
   try {
     const q = query(collection(db, "blogs"), where("slug", "==", slug));
     const snap = await getDocs(q);
 
     if (snap.empty) return null;
 
-    return snap.docs[0].data() as BlogData;
+    const data = snap.docs[0].data();
+
+    return {
+      ...data,
+      postedAt: data.postedAt?.seconds || null,
+      scheduledAt: data.scheduledAt?.seconds || null,
+      updatedAt: data.updatedAt?.seconds || null,
+    } as BlogData;
   } catch (error) {
     console.error("Error fetching blog:", error);
     return null;
@@ -39,12 +47,13 @@ async function getBlog(slug: string): Promise<BlogData | null> {
 }
 
 export default async function BlogPage({ params }: { params: { slug: string } }) {
-  const blog = await getBlog(params.slug);
+  // ✅ fix — await params
+  const { slug } = await params;
+
+  const blog = await getBlog(slug);
 
   if (!blog) {
-    return (
-      <div className="p-10 text-center text-2xl">Blog not found</div>
-    );
+    return <div className="p-10 text-center text-2xl">Blog not found</div>;
   }
 
   return (

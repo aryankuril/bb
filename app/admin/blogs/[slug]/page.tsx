@@ -5,6 +5,7 @@ import BlogForm from "../../components/BlogForm";
 import { useRouter } from "next/navigation";
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import Button from "@/app/components/Button";
 
 export default function EditBlogPage({ params }: { params: { slug: string } }) {
   const router = useRouter();
@@ -31,11 +32,19 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
           return;
         }
 
-        const data = snap.docs[0];
+        const data = snap.docs[0].data();
 
+        // ✅ FIX: ensure description and scheduledAt are passed properly
         setBlog({
-          id: data.id,
-          ...data.data(),
+          id: snap.docs[0].id,
+          slug: data.slug,
+          title: data.title,
+          description: data.description ?? "", // ✅ will load in editor
+          imageUrl: data.imageUrl ?? "",
+          category: data.category ?? "",
+          scheduledAt: data.scheduledAt
+            ? new Date(data.scheduledAt.seconds * 1000) // ✅ will NOT reset
+            : null,
         });
       } catch (err) {
         console.error("Error loading blog:", err);
@@ -54,9 +63,12 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-2xl font-semibold">Edit Blog</h3>
-        <button onClick={() => router.back()} className="px-3 py-1 border rounded">
-          Back
-        </button>
+        <Button
+  onClick={() => router.back()}
+ className="text-black"
+  text="Back"
+/>
+
       </div>
 
       <BlogForm
@@ -64,12 +76,10 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
           id: blog.id,
           slug: blog.slug,
           title: blog.title,
-          description: blog.description,
+          description: blog.description, // ✅ FIXED
           imageUrl: blog.imageUrl,
-          category: blog.category ?? "",
-          scheduledAt: blog.scheduledAt
-            ? new Date(blog.scheduledAt.seconds * 1000)
-            : undefined,
+          category: blog.category,
+          scheduledAt: blog.scheduledAt, // ✅ FIXED
         }}
         onSuccess={() => {
           alert("Blog updated");

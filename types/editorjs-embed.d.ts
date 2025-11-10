@@ -1,4 +1,6 @@
-declare module "@editorjs/embed" {
-  const Embed: any;
-  export default Embed;
+declare module '@editorjs/raw'
+declare module "@editorjs/checklist";
+ {
+  const RawTool: any;
+  export default RawTool;
 }

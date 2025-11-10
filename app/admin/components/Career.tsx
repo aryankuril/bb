@@ -6,13 +6,14 @@ import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { toast } from "react-hot-toast";
 import CareerCard from "../components/CareerCard";
+import Button from "@/app/components/Button";
 
 interface Career {
   id: string;
   title: string;
   description: string;
   isImmediate: boolean;
-  postedAt: { seconds: number };
+  postedAt: any; // Firestore timestamp
 }
 
 export default function Career() {
@@ -23,10 +24,23 @@ export default function Career() {
     const fetchCareers = async () => {
       try {
         const snapshot = await getDocs(collection(db, "careers"));
-        const data = snapshot.docs.map((doc) => ({
+
+        let data = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         })) as Career[];
+
+        // ✅ Convert timestamp
+        const toSeconds = (ts: any) => {
+          if (!ts) return 0;
+          if (ts.seconds) return ts.seconds;
+          if (typeof ts.toMillis === "function") return ts.toMillis() / 1000;
+          return 0;
+        };
+
+        // ✅ Sort Newest → Oldest
+        data = data.sort((a, b) => toSeconds(b.postedAt) - toSeconds(a.postedAt));
+
         setCareers(data);
       } catch (err) {
         console.error(err);
@@ -35,6 +49,7 @@ export default function Career() {
         setLoading(false);
       }
     };
+
     fetchCareers();
   }, []);
 
@@ -49,12 +64,12 @@ export default function Career() {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-2xl font-bold">Careers Management</h3>
-        <Link
+
+        <Button
           href="/admin/careers/new"
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-        >
-          + Add Career
-        </Link>
+          text="Add Career"
+          className="text-black font-semibold"
+        />
       </div>
 
       {loading ? (

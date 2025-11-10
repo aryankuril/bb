@@ -108,16 +108,16 @@ const Users = () => {
 
               return (
                 <tr key={user.id}>
-                  <td className="px-6 py-3">{user.name || "—"}</td>
+                  <td className="px-6 py-3 capitalize">{user.name || "—"}</td>
                   <td className="px-6 py-3">{user.email}</td>
-                  <td className="px-6 py-3">{joinedDate}</td>
+                  <td className="px-6 py-3 capitalize">{joinedDate}</td>
                   <td className="px-6 py-3">
                     <select
                       value={user.role}
                       onChange={(e) =>
                         handleRoleChange(user.id, e.target.value)
                       }
-                      className="border border-gray-300 rounded-md px-2 py-1 text-sm"
+                      className="border border-gray-300 rounded-md px-2 py-1 text-sm capitalize"
                     >
                       <option value="user">User</option>
                       <option value="admin">Admin</option>

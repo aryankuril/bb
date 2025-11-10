@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import Button from "@/app/components/Button";
 
 export default function CareerForm({
   existingCareer,
@@ -106,7 +107,7 @@ export default function CareerForm({
         </div>
       </div>
 
-      <button
+      {/* <button
         type="submit"
         disabled={loading}
         className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50"
@@ -116,7 +117,14 @@ export default function CareerForm({
           : existingCareer
           ? "Update Career"
           : "Add Career"}
-      </button>
+      </button> */}
+
+
+      <Button
+  disabled={loading}
+  className="mt-4"
+  text={loading ? "Saving..."  : existingCareer?.id ? "Update Career" : "Add Career"}
+/>
     </form>
   );
 }

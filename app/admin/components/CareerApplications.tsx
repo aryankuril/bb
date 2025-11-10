@@ -335,9 +335,9 @@ export default function CareerApplications() {
             </thead>
             <tbody>
               {filteredApps.map((app) => (
-                <tr key={app.id} className="border-t">
-                  <td className="p-3">{app.name}</td>
-                  <td className="p-3">
+                <tr key={app.id} className="border-t ">
+                  <td className="p-3 capitalize">{app.name}</td>
+                  <td className="p-3 capitalize">
                     <a
                       href={`mailto:${app.email}`}
                       className="underline text-blue-500 hover:text-blue-700"
@@ -345,7 +345,7 @@ export default function CareerApplications() {
                       {app.email}
                     </a>
                   </td>
-                  <td className="p-3">
+                  <td className="p-3 capitalize">
                     <a
                       href={`tel:${app.phone}`}
                       className="underline text-blue-500 hover:text-blue-700"
@@ -353,7 +353,7 @@ export default function CareerApplications() {
                       {app.phone}
                     </a>
                   </td>
-                  <td className="p-3">{app.jobTitle}</td>
+                  <td className="p-3 capitalize">{app.jobTitle}</td>
                   <td className="p-3 capitalize">{app.availability}</td>
                   <td className="p-3">
                     {app.cvUrl ? (
@@ -364,7 +364,7 @@ export default function CareerApplications() {
                       "—"
                     )}
                   </td>
-                  <td className="p-3">
+                  <td className="p-3 capitalize" >
                     {app.portfolio ? (
                       <a href={app.portfolio} target="_blank" className="text-blue-500 underline">
                         Visit
@@ -373,16 +373,16 @@ export default function CareerApplications() {
                       "—"
                     )}
                   </td>
-                  <td className="p-3">
+                  <td className="p-3 capitalize">
                     {app.createdAt
                       ? new Date(app.createdAt.seconds * 1000).toLocaleDateString()
                       : "—"}
                   </td>
-                  <td className="p-3 max-w-[200px] truncate">{app.message}</td>
+                  <td className="p-3 max-w-[200px] truncate capitalize">{app.message}</td>
                   <td className="p-3">
                     <button
                       onClick={() => setViewApp(app)}
-                      className="bg-gray-800 text-white px-3 py-1 rounded hover:bg-gray-700"
+                      className="bg-gray-800 text-white px-3 py-1 rounded hover:bg-gray-700 capitalize"
                     >
                       View
                     </button>
@@ -406,9 +406,9 @@ export default function CareerApplications() {
           >
             <h2 className="text-xl font-semibold mb-4 text-center">Application Details</h2>
 
-            <div className="space-y-2 text-sm">
-              <p><strong>Name:</strong> {viewApp.name}</p>
-              <p>
+            <div className="space-y-2 text-sm ">
+              <p className="capitalize"><strong>Name:</strong> {viewApp.name}</p>
+              <p >
   <strong>Email:</strong>{" "}
   <a
     href={`mailto:${viewApp.email}`}
@@ -428,9 +428,9 @@ export default function CareerApplications() {
   </a>
 </p>
 
-              <p><strong>Job Title:</strong> {viewApp.jobTitle}</p>
-              <p><strong>Availability:</strong> {viewApp.availability}</p>
-              <p><strong>Date:</strong> {viewApp.createdAt ? new Date(viewApp.createdAt.seconds * 1000).toLocaleDateString() : "—"}</p>
+              <p className="capitalize"><strong>Job Title:</strong> {viewApp.jobTitle}</p>
+              <p className="capitalize"><strong>Availability:</strong> {viewApp.availability}</p>
+              <p className="capitalize"><strong>Date:</strong> {viewApp.createdAt ? new Date(viewApp.createdAt.seconds * 1000).toLocaleDateString() : "—"}</p>
               <p>
                 <strong>CV:</strong>{" "}
                 {viewApp.cvUrl ? (
@@ -451,7 +451,7 @@ export default function CareerApplications() {
                   "—"
                 )}
               </p>
-              <p><strong>Message:</strong> {viewApp.message || "—"}</p>
+              <p className="capitalize"><strong>Message:</strong> {viewApp.message || "—"}</p>
             </div>
 
             <button

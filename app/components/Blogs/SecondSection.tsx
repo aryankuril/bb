@@ -9,7 +9,7 @@ type BlogData = {
   id: string;
   slug:string;
   title: string;
-  description?: string;
+  description?: any;
   imageUrl?: string;
   category?: string;
   postedAt?: { seconds: number; nanoseconds: number };

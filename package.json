@@ -10,11 +10,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@editorjs/checklist": "^1.6.0",
     "@editorjs/editorjs": "^2.31.0",
     "@editorjs/embed": "^2.7.6",
     "@editorjs/header": "^2.8.8",
     "@editorjs/image": "^2.10.3",
     "@editorjs/list": "^2.0.8",
+    "@editorjs/paragraph": "^2.11.7",
+    "@editorjs/raw": "^2.5.1",
     "@mux/mux-player-react": "^3.7.0",
     "@studio-freight/lenis": "^1.0.42",
     "@tiptap/core": "^3.10.2",
@@ -24,6 +27,7 @@
     "@tiptap/starter-kit": "^3.10.2",
     "cookies-next": "^6.1.1",
     "date-fns": "^4.1.0",
+    "editorjs-html": "^4.0.5",
     "firebase": "^12.5.0",
     "framer-motion": "^12.23.24",
     "gsap": "^3.13.0",

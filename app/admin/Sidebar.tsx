@@ -59,9 +59,9 @@ export default function Sidebar() {
 
   return (
     <aside className="w-64 bg-black text-white h-screen fixed left-0 top-0 flex flex-col">
-      <div className="p-6 text-2xl font-bold border-b border-gray-800">
+      <h3 className="p-4  font-bold border-b border-gray-800">
         Admin Panel
-      </div>
+      </h3>
 
       <nav className="flex-1 p-4 space-y-1">
         {navItems.map((item) => {

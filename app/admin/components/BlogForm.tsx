@@ -14,15 +14,16 @@ import {
   doc as firestoreDoc,
   Timestamp,
 } from "firebase/firestore";
+
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import ImageTool from "@editorjs/image";
+import RawTool from "@editorjs/raw";
+import Checklist from "@editorjs/checklist";
+import Button from "@/app/components/Button";
 const Embed = require("@editorjs/embed");
 
-
-
-// 
 const CATEGORY_OPTIONS = [
   "ALL",
   "WEB DEVELOPMENT",
@@ -61,11 +62,22 @@ export default function BlogForm({ initial, onSuccess }: Props) {
   const [slug, setSlug] = useState(initial?.slug ?? "");
   const [category, setCategory] = useState(initial?.category ?? "");
   const [file, setFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | undefined>(
-    initial?.imageUrl
-  );
+  const [preview, setPreview] = useState<string | undefined>(initial?.imageUrl);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // ✅ Load date & time when editing
+  const defaultDate = initial?.scheduledAt
+    ? new Date(initial.scheduledAt)
+    : new Date();
+
+  const [publishDate, setPublishDate] = useState(
+    defaultDate.toISOString().split("T")[0]
+  );
+
+  const [publishTime, setPublishTime] = useState(
+    defaultDate.toTimeString().slice(0, 5)
+  );
 
   const editorRef = useRef<EditorJS | null>(null);
   const editorContainer = useRef<HTMLDivElement>(null);
@@ -74,47 +86,46 @@ export default function BlogForm({ initial, onSuccess }: Props) {
     setSlug(createSlug(title));
   }, [title]);
 
-  // Initialize Editor.js
-useEffect(() => {
-  if (!editorContainer.current) return;
+  // ✅ Initialize EditorJS ONLY once
+  useEffect(() => {
+    if (!editorContainer.current) return;
 
-  const editor = new EditorJS({
-    holder: editorContainer.current,
-    data: initial?.description || {},
-    autofocus: true,
-    onReady: () => {
-      editorRef.current = editor;
-    },
-    tools: {
-      header: Header,
-      list: List,
-      embed: Embed,
-      image: {
-        class: ImageTool,
-        config: {
-          uploader: {
-            async uploadByFile(file: File) {
-              const url = await uploadImageAndGetURL(file);
-              return { success: 1, file: { url } };
+    if (!editorRef.current) {
+      const editor = new EditorJS({
+        holder: editorContainer.current,
+        data: initial?.description || undefined,
+        autofocus: true,
+        tools: {
+          header: Header,
+          list: List,
+          checklist: {
+            class: Checklist,
+            inlineToolbar: true,
+          },
+          embed: Embed,
+          raw: RawTool,
+          image: {
+            class: ImageTool,
+            config: {
+              uploader: {
+                async uploadByFile(file: File) {
+                  const url = await uploadImageAndGetURL(file);
+                  return { success: 1, file: { url } };
+                },
+              },
             },
           },
         },
-      },
-    },
-    placeholder: "Write your blog content here...",
-    inlineToolbar: true,
-  });
-
-  // Cleanup function
-  return () => {
-    if (editorRef.current && typeof editorRef.current.destroy === "function") {
-      editorRef.current.destroy();
-      editorRef.current = null;
+        placeholder: "Write your blog content here...",
+        inlineToolbar: true,
+        onReady: () => {
+          editorRef.current = editor;
+        },
+      });
     }
-  };
-}, [editorContainer]);
+  }, []);
 
-
+  // ✅ Image preview
   useEffect(() => {
     if (!file) return;
     const reader = new FileReader();
@@ -155,20 +166,8 @@ useEffect(() => {
     setLoading(true);
     setError(null);
 
-    if (!title.trim()) {
-      setError("Title is required");
-      setLoading(false);
-      return;
-    }
-
-    if (!editorRef.current) {
-      setError("Editor not initialized");
-      setLoading(false);
-      return;
-    }
-
     try {
-      const editorData = await editorRef.current.save();
+      const editorData = await editorRef.current?.save();
 
       let imageUrl = initial?.imageUrl ?? "";
       if (file) imageUrl = await uploadImageAndGetURL(file);
@@ -176,7 +175,11 @@ useEffect(() => {
       const finalSlug = createSlug(title);
       const finalCategory = category?.trim() || "ALL";
 
+      const dt = new Date(`${publishDate}T${publishTime}:00`);
+      const scheduledAt = Timestamp.fromDate(dt);
+
       if (initial?.id) {
+        // ✅ Update blog
         const ref = firestoreDoc(db, "blogs", initial.id);
         await updateDoc(ref, {
           title,
@@ -184,15 +187,18 @@ useEffect(() => {
           description: editorData,
           imageUrl,
           category: finalCategory,
+          scheduledAt,
           updatedAt: serverTimestamp(),
         });
       } else {
+        // ✅ Create new blog
         await addDoc(collection(db, "blogs"), {
           title,
           slug: finalSlug,
           description: editorData,
           imageUrl,
           category: finalCategory,
+          scheduledAt,
           postedAt: serverTimestamp(),
           authorId: auth.currentUser?.uid ?? null,
         });
@@ -200,7 +206,6 @@ useEffect(() => {
 
       onSuccess?.();
     } catch (err: any) {
-      console.error(err);
       setError(err.message || "Failed to save blog");
     } finally {
       setLoading(false);
@@ -209,6 +214,7 @@ useEffect(() => {
 
   return (
     <div className="bg-white rounded shadow p-6 space-y-4">
+
       {/* Title */}
       <div>
         <label className="block text-sm font-medium mb-1">Title</label>
@@ -221,15 +227,14 @@ useEffect(() => {
       </div>
 
       {/* Description */}
-<div>
-  <label className="block text-sm font-medium mb-1">Description</label>
-  <div
-    ref={editorContainer}
-    className="border rounded  min-w-[550px] w-full prose max-w-full prose-img:rounded prose-img:max-h-80"
-    style={{ overflowY: "auto" }}
-  />
-</div>
-
+      <div>
+        <label className="block text-sm font-medium mb-1">Description</label>
+        <div
+          ref={editorContainer}
+          className="border rounded min-w-[550px] w-full prose max-w-full prose-img:rounded prose-img:max-h-80"
+          style={{ overflowY: "auto" }}
+        ></div>
+      </div>
 
       {/* Category */}
       <div>
@@ -245,6 +250,28 @@ useEffect(() => {
             </option>
           ))}
         </select>
+      </div>
+
+      {/* Publish Date */}
+      <div>
+        <label className="block text-sm font-medium mb-1">Publish Date</label>
+        <input
+          type="date"
+          value={publishDate}
+          onChange={(e) => setPublishDate(e.target.value)}
+          className="w-full border rounded px-3 py-2"
+        />
+      </div>
+
+      {/* Publish Time */}
+      <div>
+        <label className="block text-sm font-medium mb-1">Publish Time</label>
+        <input
+          type="time"
+          value={publishTime}
+          onChange={(e) => setPublishTime(e.target.value)}
+          className="w-full border rounded px-3 py-2"
+        />
       </div>
 
       {/* Image */}
@@ -265,13 +292,13 @@ useEffect(() => {
 
       {error && <div className="text-red-500 text-sm">{error}</div>}
 
-      <button
-        onClick={handleCreate}
-        disabled={loading}
-        className="bg-black text-white px-4 py-2 rounded disabled:opacity-60"
-      >
-        {loading ? "Saving..." : initial?.id ? "Update Blog" : "Create Blog"}
-      </button>
+     <Button
+  onClick={handleCreate}
+  disabled={loading}
+  className="mt-4"
+  text={loading ? "Saving..." : initial?.id ? "Update Blog" : "Create Blog"}
+/>
+
     </div>
   );
 }
