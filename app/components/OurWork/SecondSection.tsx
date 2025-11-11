@@ -129,7 +129,7 @@ const SecondSection = () => {
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="absolute inset-0 w-full h-full object-fit bg-black z-0"
+                    className="absolute inset-0 w-full h-full object-cover bg-black z-0"
                   />
                   <CardText number={step.number} title={step.title} />
                 </Link>
