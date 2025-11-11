@@ -12,20 +12,22 @@ type Step = {
 
 const allSteps: Step[] = [
   // 🟦 WEB DEVELOPMENT (5)
-  { number: "01", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/work/website-development/jkdiamondsinstitute" },
-  { number: "02", title: "My Suit Tailor", image: "/images/webdev/MST.png", category: "Web Development", link: "/work/website-development/mysuittailor" },
-  { number: "03", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/work/website-development/scssports" },
-  { number: "04", title: "The Feline Foundation", image: "/images/webdev/Foundation2.png", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
-  { number: "05", title: "Supersox", image: "/images/webdev/Super-Sox.png", category: "Web Development", link: "/work/website-development/supersox" },
+  { number: "01", title: "Supersox", image: "/images/webdev/SuperSoxnew.jpg", category: "Web Development", link: "/work/website-development/supersox" },
+  { number: "02", title: "Blancoran", image: "/images/webdev/Blancoranew.jpg", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
+  { number: "03", title: "Mr Blox", image: "/images/webdev/MrBloxnew.jpg", category: "Web Development", link: "/work/website-development/supersox" },
+  { number: "04", title: "My Suit Tailor", image: "/images/webdev/MSTnew.jpg", category: "Web Development", link: "/work/website-development/mysuittailor" },
+  { number: "05", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/work/website-development/jkdiamondsinstitute" },
+  { number: "06", title: "The Feline Foundation", image: "/images/webdev/Foundation2.png", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
+  { number: "07", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/work/website-development/scssports" },
 
   // 🟩 PERFORMANCE MARKETING (4)
-  { number: "01", title: "Chatterbox Labels", image: "/images/pm/chaterbox.png", category: "Performance Marketing", link: "/work/performance-marketing/chatterboxlabels" },
-  { number: "02", title: "Dancing Leaf", image: "/images/pm/Dancingleaf.png", category: "Performance Marketing", link: "/work/performance-marketing/dancingleaf" },
+  { number: "01", title: "Chatterbox Labels", image: "/images/pm/Chatterboxnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/chatterboxlabels" },
+  { number: "02", title: "Dancing Leaf", image: "/images/pm/Dancingleafnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/dancingleaf" },
   { number: "03", title: "JK Diamonds Institute", image: "/images/pm/Jk-diamonds.png", category: "Performance Marketing", link: "/work/performance-marketing/jkdiamondsinstitute" },
-  { number: "04", title: "SCS Sports", image: "/images/pm/SCS.png", category: "Performance Marketing", link: "/work/performance-marketing/scssports" },
+  { number: "04", title: "SCS Sports", image: "/images/pm/SCSnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/scssports" },
 
   // 🟥 SOCIAL MEDIA (3)
-  { number: "01", title: "RicRac Kids", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/work/social-media-marketing/ricrackids" },
+  { number: "01", title: "Mr Blox", image: "/images/sm/MrBloxnew.jpg", category: "Social Media", link: "/work/social-media-marketing/mrblox" },
   { number: "02", title: "SCS Sports", image: "/images/sm/SCSnew.jpg", category: "Social Media", link: "/work/social-media-marketing/scssports" },
   { number: "03", title: "Manba Finance", image: "/images/sm/Manbanew.jpg", category: "Social Media", link: "/work/social-media-marketing/manbafinance" },
   { number: "04", title: "Supersox", image: "/images/sm/SSnew.jpg", category: "Social Media", link: "/work/social-media-marketing/supersox" },

@@ -60,7 +60,7 @@ const Firstsection = () => {
           className="relative overflow-hidden rounded-3xl w-full  "
         >
           <Image
- src="/images/performance/chatterbox.webp"
+ src="/images/pm/Chatterboxnew.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

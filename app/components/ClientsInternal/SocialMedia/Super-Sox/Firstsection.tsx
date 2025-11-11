@@ -61,7 +61,7 @@ Putting the Fun First:
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full  "
         >
           <Image
-src="/images/SocialMedia/SuperSox.webp"
+src="/images/sm/SSnew.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

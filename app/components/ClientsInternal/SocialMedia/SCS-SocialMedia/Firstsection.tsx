@@ -60,7 +60,7 @@ Putting the Fun First:  <span className="text-highlight">
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full  "
         >
           <Image
- src="/images/SocialMedia/scs.webp"
+ src="/images/sm/SCSnew.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

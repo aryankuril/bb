@@ -60,7 +60,7 @@ Dancing Leaf, a premium tea brand, struggled to scale past <span className="text
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full "
         >
           <Image
- src="/images/performance/dancingleaf.webp"
+ src="/images/pm/Dancingleafnew.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}
