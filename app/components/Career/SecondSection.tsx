@@ -622,12 +622,16 @@ const getIconColor = (field: keyof InputValues) => {
           {activeJob ? activeJob.details || "No Details Available" : "Please select a train to view details"}
         </div>
                 <div className="flex justify-center py-5">
-                  <ContactButton
-                    text="Apply Now"
-                    type="button"
-                    onClick={() => setIsFlipped(true)}
-                    disabled={isFlipped}
-                  />
+                 {!isFlipped && (
+  <div className="flex justify-center py-5">
+    <ContactButton
+      text="Apply Now"
+      type="button"
+      onClick={() => setIsFlipped(true)}
+    />
+  </div>
+)}
+
                 </div>
               </div>
 

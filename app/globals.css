@@ -485,3 +485,27 @@ h6 {
 .animate-shimmer {
   animation: shimmer 2s infinite;
 }
+
+
+/* CLICKBORST */
+.global-burst-img {
+  position: absolute;
+  width: 70px; /* adjust size */
+  animation: global-burst-move 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes global-burst-move {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+        calc(-50% + (random() * 200px - 100px)),
+        calc(-50% + (random() * 200px - 100px))
+      )
+      scale(1.4) rotate(360deg);
+  }
+}

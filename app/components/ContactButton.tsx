@@ -9,34 +9,51 @@ interface ButtonProps {
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void; // click handler
   className?: string;
   disabled?: boolean; // disabled state
-  isSubmitting?: boolean; // ✅ new prop for your logic
-  type?: "button" | "submit" | "reset"; // ✅ added type prop
+  isSubmitting?: boolean; // form submission state
+  type?: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<ButtonProps> = ({
+const ContactButton: React.FC<ButtonProps> = ({
   text,
   href,
   onClick,
   className = "",
   disabled = false,
   isSubmitting = false,
-  type = "button", // default
+  type = "button",
 }) => {
   const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false);
   const textRef = useRef<HTMLSpanElement>(null);
   const [textWidth, setTextWidth] = useState(0);
 
+  // Measure button text width for background animation
   useEffect(() => {
-    if (textRef.current) {
-      setTextWidth(textRef.current.offsetWidth + 32);
-    }
+    if (textRef.current) setTextWidth(textRef.current.offsetWidth + 32);
   }, [text, isSubmitting]);
 
-  const displayText = isSubmitting ? "Sending..." : text;
+  // ✅ Automatically reset hover when the button becomes disabled/submitting
+  useEffect(() => {
+    if (disabled || isSubmitting) {
+      setHovered(false);
+      setActive(false);
+    }
+  }, [disabled, isSubmitting]);
 
-  const chars = (displayText ?? "").split("").map((char) =>
-    char === " " ? "\u00A0" : char
-  );
+  const displayText = isSubmitting ? "Sending..." : text;
+  const chars = (displayText ?? "").split("").map((char) => (char === " " ? "\u00A0" : char));
+
+  // ✅ Reset hover immediately before click disables it
+  const handleClick = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (disabled || isSubmitting) return;
+    setHovered(false);
+    setActive(true);
+    setTimeout(() => setActive(false), 160);
+    if (onClick) onClick(e);
+  };
+
+  const handleMouseEnter = () => !disabled && !isSubmitting && setHovered(true);
+  const handleMouseLeave = () => !disabled && !isSubmitting && setHovered(false);
 
   const content = (
     <div
@@ -45,67 +62,67 @@ const Button: React.FC<ButtonProps> = ({
       }`}
     >
       <span ref={textRef} className="flex items-center justify-center">
-  {chars.map((char, idx) => (
-    <span
-      key={idx}
-      className="relative block overflow-hidden h-6 w-auto"
-      style={{ transitionDelay: `${idx * 30}ms` }}
-    >
-      <span
-        className={`block transition-transform duration-400 ease-in-out ${
-          hovered && !disabled && !isSubmitting ? "-translate-y-6" : "translate-y-0"
-        }`}
-      >
-        {char}
-      </span>
-      <span
-        className={`block absolute left-0 top-0 transition-transform duration-400 ease-in-out ${
-          hovered && !disabled && !isSubmitting ? "translate-y-0" : "translate-y-6"
-        }`}
-      >
-        {char}
-      </span>
-    </span>
-  ))}
-  {/*  */}
+        {chars.map((char, idx) => (
+          <span
+            key={idx}
+            className="relative block overflow-hidden h-6 w-auto"
+            style={{ transitionDelay: `${idx * 30}ms` }}
+          >
+            <span
+              className={`block transform transition-transform duration-300 ease-in-out ${
+                hovered && !disabled && !isSubmitting ? "-translate-y-6" : "translate-y-0"
+              }`}
+            >
+              {char}
+            </span>
+            <span
+              className={`block absolute left-0 top-0 transform transition-transform duration-300 ease-in-out ${
+                hovered && !disabled && !isSubmitting ? "translate-y-0" : "translate-y-6"
+              }`}
+              aria-hidden
+            >
+              {char}
+            </span>
+          </span>
+        ))}
 
-  {/* ✅ Centered '+' icon */}
-  <span className="text-[18px] font-normal select-none flex items-center justify-center translate-y-[1px]">
-    +
-  </span>
-</span>
-
+        {/* '+' symbol */}
+        <span className="text-[18px] font-normal select-none flex items-center justify-center translate-y-[1px] ml-1">
+          +
+        </span>
+      </span>
     </div>
   );
 
   return (
     <div
       className={`relative inline-block select-none ${className}`}
-      onMouseEnter={() => !disabled && !isSubmitting && setHovered(true)}
-      onMouseLeave={() => !disabled && !isSubmitting && setHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Background animation */}
+      {/* Background bubble */}
       <div
-        className={`absolute top-1/2 -translate-y-1/2 cursor-pointer bg-[var(--color-highlight)] rounded-full transition-all duration-500 ease-in-out h-12`}
+        className={`absolute top-1/2 -translate-y-1/2 rounded-full transition-all duration-500 ease-in-out h-12 bg-[var(--color-highlight)] pointer-events-none`}
         style={{
           width: hovered && !disabled && !isSubmitting ? textWidth : 48,
           left: -1,
           opacity: disabled || isSubmitting ? 0.5 : 1,
+          transform: active ? "scale(0.96)" : "scale(1)",
         }}
-      ></div>
+      />
 
       {/* Render Link or Button */}
       {href ? (
         <Link
           href={disabled || isSubmitting ? "#" : href}
-          className={disabled || isSubmitting ? "pointer-events-none" : ""}
+          className={disabled || isSubmitting ? "pointer-events-none relative z-10" : "relative z-10"}
         >
           {content}
         </Link>
       ) : (
         <button
-          type={type} 
-          onClick={!disabled && !isSubmitting ? onClick : undefined}
+          type={type}
+          onClick={handleClick}
           disabled={disabled || isSubmitting}
           className="relative z-10"
         >
@@ -116,4 +133,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default ContactButton;

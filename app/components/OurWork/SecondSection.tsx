@@ -26,8 +26,9 @@ const allSteps: Step[] = [
 
   // 🟥 SOCIAL MEDIA (3)
   { number: "01", title: "RicRac Kids", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/work/social-media-marketing/ricrackids" },
-  { number: "02", title: "SCS Sports", image: "/images/sm/SCS.png", category: "Social Media", link: "/work/social-media-marketing/scssports" },
-  { number: "03", title: "Supersox", image: "/images/sm/Super-Sox.png", category: "Social Media", link: "/work/social-media-marketing/supersox" },
+  { number: "02", title: "SCS Sports", image: "/images/sm/SCSnew.jpg", category: "Social Media", link: "/work/social-media-marketing/scssports" },
+  { number: "03", title: "Manba Finance", image: "/images/sm/Manbanew.jpg", category: "Social Media", link: "/work/social-media-marketing/manbafinance" },
+  { number: "04", title: "Supersox", image: "/images/sm/SSnew.jpg", category: "Social Media", link: "/work/social-media-marketing/supersox" },
 
   // 🟨 SEO (3)
   { number: "01", title: "Manba Finance", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/work/seo-services/manbafinance" },
@@ -123,7 +124,7 @@ const SecondSection = () => {
                 <Link
                   key={i}
                   href={step.link}
-                  className={`col-span-1 md:col-span-${colSpan} relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[15px] overflow-hidden`}
+                  className={`col-span-1 md:col-span-${colSpan} relative h-[220px] sm:h-[300px] md:h-[340px] rounded-[15px] overflow-hidden`}
                 >
                   <img
                     src={step.image}

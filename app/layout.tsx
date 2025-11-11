@@ -9,6 +9,8 @@ import PageLoader from "./components/PageLoader";
 import SmoothScroll from "./components/SmoothScroll";
 import ScrollToTop from "./components/ScrollToTop";
 import DynamicHead from "./components/DynamicHead";
+import ClickBurst from "./components/ClickBurst";
+
 // Local Miso font
 const miso = localFont({
   src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400", style: "normal" }],
@@ -113,6 +115,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
            {children}
           </PageLoader>
           <ScrollToTop />
+
+          <ClickBurst burstImage="/images/star.png" />
+
         {/* </SmoothScroll> */}
       </body>
     </html>
