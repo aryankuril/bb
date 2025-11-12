@@ -35,7 +35,8 @@
      Specials - Numbers
      ========================= */
   --stats-size: 250px;       /* ✅ Stats numbers (highlighting data) */
-  --numbering-size: 120px;   /* ✅ Card number sequence (case study, service card, work) */
+  --numbering-size: 120px; 
+  --casenumbering-size: 120px;   /* ✅ Card number sequence (case study, service card, work) */
   --single-title-size: 120px; /* ✅ Single large title (e.g., 404 page) */
 
   /* =========================
@@ -179,6 +180,13 @@ h6 {
   line-height: 1em;
 }
 
+
+.casenumbering {
+  font-family: var(--font-regular-miso);
+  font-size: var(--numbering-size); /* ✅ Card number sequence */
+  font-weight: 400;
+  line-height: 0.9em;
+}
 /* / */
 
 .single-title {
@@ -234,6 +242,7 @@ h6 {
   /* ---------- Numbers ---------- */
   .stats-number { font-size: 60px; }
   .numbering { font-size: 60px; }
+  .casenumbering { font-size: 60px; }
   .single-title { font-size: 60px; }
 }
 
