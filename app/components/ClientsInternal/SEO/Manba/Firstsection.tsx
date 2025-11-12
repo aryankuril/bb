@@ -60,6 +60,7 @@ Capturing the Market: How Manba Finance Secured <span className="text-highlight"
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full "
         >
           <Image
+
  src="/images/SEO/Manba.png"
   alt="JK Diamonds Institute"
   width={1400}

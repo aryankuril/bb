@@ -15,14 +15,39 @@ import {
   Timestamp,
 } from "firebase/firestore";
 
-import EditorJS from "@editorjs/editorjs";
+import EditorJS, { OutputData } from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import ImageTool from "@editorjs/image";
 import RawTool from "@editorjs/raw";
 import Checklist from "@editorjs/checklist";
-import Button from "@/app/components/Button";
+
 const Embed = require("@editorjs/embed");
+
+// ✅ Helper — sanitize undefined/null recursively
+function sanitizeData(data: unknown): unknown {
+  if (Array.isArray(data)) {
+    return data
+      .map((item) => sanitizeData(item))
+      .filter((item) => item !== undefined && item !== null);
+  } else if (typeof data === "object" && data !== null) {
+    const cleanObj: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(data)) {
+      if (value !== undefined && value !== null) {
+        cleanObj[key] = sanitizeData(value);
+      }
+    }
+    return cleanObj;
+  }
+  return data;
+}
+
+const createSlug = (str: string): string =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
 
 const CATEGORY_OPTIONS = [
   "ALL",
@@ -35,58 +60,27 @@ const CATEGORY_OPTIONS = [
   "GEO",
 ];
 
-type BlogData = {
-  id?: string;
-  slug: string;
-  title: string;
-  description: any;
-  imageUrl?: string;
-  category?: string;
-  scheduledAt?: any;
-};
-
-type Props = {
-  initial?: BlogData;
-  onSuccess?: () => void;
-};
-
-const createSlug = (str: string) =>
-  str
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-");
-
-export default function BlogForm({ initial, onSuccess }: Props) {
+export default function BlogForm({ initial, onSuccess }: { initial?: any; onSuccess: () => void }) {
   const [title, setTitle] = useState(initial?.title ?? "");
   const [slug, setSlug] = useState(initial?.slug ?? "");
   const [category, setCategory] = useState(initial?.category ?? "");
   const [file, setFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | undefined>(initial?.imageUrl);
+  const [preview, setPreview] = useState<string | null>(initial?.imageUrl ?? null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // ✅ Load date & time when editing
   const defaultDate = initial?.scheduledAt
     ? new Date(initial.scheduledAt)
     : new Date();
 
-  const [publishDate, setPublishDate] = useState(
-    defaultDate.toISOString().split("T")[0]
-  );
-
-  const [publishTime, setPublishTime] = useState(
-    defaultDate.toTimeString().slice(0, 5)
-  );
+  const [publishDate, setPublishDate] = useState(defaultDate.toISOString().split("T")[0]);
+  const [publishTime, setPublishTime] = useState(defaultDate.toTimeString().slice(0, 5));
 
   const editorRef = useRef<EditorJS | null>(null);
-  const editorContainer = useRef<HTMLDivElement>(null);
+  const editorContainer = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    setSlug(createSlug(title));
-  }, [title]);
+  useEffect(() => setSlug(createSlug(title)), [title]);
 
-  // ✅ Initialize EditorJS ONLY once
   useEffect(() => {
     if (!editorContainer.current) return;
 
@@ -98,10 +92,7 @@ export default function BlogForm({ initial, onSuccess }: Props) {
         tools: {
           header: Header,
           list: List,
-          checklist: {
-            class: Checklist,
-            inlineToolbar: true,
-          },
+          checklist: Checklist,
           embed: Embed,
           raw: RawTool,
           image: {
@@ -117,7 +108,7 @@ export default function BlogForm({ initial, onSuccess }: Props) {
           },
         },
         placeholder: "Write your blog content here...",
-        inlineToolbar: true,
+        inlineToolbar: ["link", "bold", "italic"],
         onReady: () => {
           editorRef.current = editor;
         },
@@ -125,7 +116,6 @@ export default function BlogForm({ initial, onSuccess }: Props) {
     }
   }, []);
 
-  // ✅ Image preview
   useEffect(() => {
     if (!file) return;
     const reader = new FileReader();
@@ -167,7 +157,8 @@ export default function BlogForm({ initial, onSuccess }: Props) {
     setError(null);
 
     try {
-      const editorData = await editorRef.current?.save();
+      const editorData: OutputData | undefined = await editorRef.current?.save();
+      const cleanEditorData = sanitizeData(editorData);
 
       let imageUrl = initial?.imageUrl ?? "";
       if (file) imageUrl = await uploadImageAndGetURL(file);
@@ -178,35 +169,34 @@ export default function BlogForm({ initial, onSuccess }: Props) {
       const dt = new Date(`${publishDate}T${publishTime}:00`);
       const scheduledAt = Timestamp.fromDate(dt);
 
+      const blogData = {
+        title,
+        slug: finalSlug,
+        description: cleanEditorData,
+        imageUrl,
+        category: finalCategory,
+        scheduledAt,
+        ...(initial?.id
+          ? { updatedAt: serverTimestamp() }
+          : {
+              postedAt: serverTimestamp(),
+              authorId: auth.currentUser?.uid ?? null,
+            }),
+      };
+
       if (initial?.id) {
-        // ✅ Update blog
         const ref = firestoreDoc(db, "blogs", initial.id);
-        await updateDoc(ref, {
-          title,
-          slug: finalSlug,
-          description: editorData,
-          imageUrl,
-          category: finalCategory,
-          scheduledAt,
-          updatedAt: serverTimestamp(),
-        });
+        await updateDoc(ref, blogData);
       } else {
-        // ✅ Create new blog
-        await addDoc(collection(db, "blogs"), {
-          title,
-          slug: finalSlug,
-          description: editorData,
-          imageUrl,
-          category: finalCategory,
-          scheduledAt,
-          postedAt: serverTimestamp(),
-          authorId: auth.currentUser?.uid ?? null,
-        });
+        await addDoc(collection(db, "blogs"), blogData);
       }
 
       onSuccess?.();
-    } catch (err: any) {
-      setError(err.message || "Failed to save blog");
+      // alert("✅ Blog saved successfullg
+    } catch (err: unknown) {
+      console.error("🔥 Error creating blog:", err);
+      const errorMessage = err instanceof Error ? err.message : "Failed to save blog";
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -214,8 +204,6 @@ export default function BlogForm({ initial, onSuccess }: Props) {
 
   return (
     <div className="bg-white rounded shadow p-6 space-y-4">
-
-      {/* Title */}
       <div>
         <label className="block text-sm font-medium mb-1">Title</label>
         <input
@@ -226,17 +214,21 @@ export default function BlogForm({ initial, onSuccess }: Props) {
         />
       </div>
 
-      {/* Description */}
       <div>
         <label className="block text-sm font-medium mb-1">Description</label>
-        <div
-          ref={editorContainer}
-          className="border rounded min-w-[550px] w-full prose max-w-full prose-img:rounded prose-img:max-h-80"
-          style={{ overflowY: "auto" }}
-        ></div>
+       <div
+  ref={editorContainer}
+  className="border rounded w-full p-4 text-left"
+  style={{
+    overflowY: "auto",
+    minHeight: "300px",
+    lineHeight: "1.6",
+    fontSize: "16px",
+  }}
+></div>
+
       </div>
 
-      {/* Category */}
       <div>
         <label className="block text-sm font-medium mb-1">Category</label>
         <select
@@ -252,7 +244,6 @@ export default function BlogForm({ initial, onSuccess }: Props) {
         </select>
       </div>
 
-      {/* Publish Date */}
       <div>
         <label className="block text-sm font-medium mb-1">Publish Date</label>
         <input
@@ -263,7 +254,6 @@ export default function BlogForm({ initial, onSuccess }: Props) {
         />
       </div>
 
-      {/* Publish Time */}
       <div>
         <label className="block text-sm font-medium mb-1">Publish Time</label>
         <input
@@ -274,7 +264,6 @@ export default function BlogForm({ initial, onSuccess }: Props) {
         />
       </div>
 
-      {/* Image */}
       <div>
         <label className="block text-sm font-medium mb-1">Image</label>
         <input type="file" accept="image/*" onChange={handleFileChange} />
@@ -292,13 +281,13 @@ export default function BlogForm({ initial, onSuccess }: Props) {
 
       {error && <div className="text-red-500 text-sm">{error}</div>}
 
-     <Button
-  onClick={handleCreate}
-  disabled={loading}
-  className="mt-4"
-  text={loading ? "Saving..." : initial?.id ? "Update Blog" : "Create Blog"}
-/>
-
+      <button
+        onClick={handleCreate}
+        disabled={loading}
+        className="bg-black text-white px-4 py-2 rounded disabled:opacity-60"
+      >
+        {loading ? "Saving..." : initial?.id ? "Update Blog" : "Create Blog"}
+      </button>
     </div>
   );
 }

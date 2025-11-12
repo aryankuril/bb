@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-
+import Image from "next/image";
 const Firstsection: React.FC = () => {
   const { ref: inViewRef, inView } = useInView({
     triggerOnce: true,
@@ -66,7 +66,9 @@ const Firstsection: React.FC = () => {
         ref={stationRef}
         className="absolute bottom-0 right-4 sm:right-8 lg:right-16 flex justify-end"
       >
-        <img
+        <Image
+ width={100}
+        height={100}
           src="/images/work-station.png"
           alt="Station board"
           className="w-28 sm:w-40 md:w-45 lg:w-48 xl:w-50 h-auto"
@@ -81,7 +83,9 @@ const Firstsection: React.FC = () => {
         transition={{ duration: 3, ease: "easeInOut" }}
         className="absolute bottom-0 left-0 z-20 w-[700px] sm:w-[710px] md:w-[750px] lg:w-[800px] xl:w-[800px]"
       >
-        <img
+        <Image
+ width={100}
+        height={100}
           src="/images/train.png"
           alt="train"
           className="w-full h-auto object-contain"

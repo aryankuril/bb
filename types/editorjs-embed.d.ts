@@ -1,5 +1,4 @@
-declare module '@editorjs/raw'
-declare module "@editorjs/checklist";
+declare module '@editorjs/raw';
  {
   const RawTool: any;
   export default RawTool;

@@ -9,22 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 // ------- Demo data (4 cards) -------
 const cardsData = [
   {
-    title: "Ric Rac",
-    tags: ["Social Media", "Meta Ads"],
+    title: "Supersox",
+    tags: ["Social Media", "Meta Ads" ,"Shopihy"],
     content:
-      "Our challenge was launching RicRac Kids from absolute zero, a new brand with no digital footprint, no awareness, and the critical need to build trust from scratch.",
-    image: "/images/SocialMedia/ricrac.webp",
-    url: "/work/social-media-marketing/ricrackids",
+      "Supersox had already built a solid footprint in offline retail, but their online presence was still dusty. They needed a social media strategy that not only brought in traffic but consistently turned scrollers into shoppers.",
+    image: "/images/sm/SS.jpg",
+    url: "/work/social-media-marketing/supersox",
   },
-  {
-    title: "SCS Sports",
-    tags: ["Meta Ads", "Social Media", "SEO"],
-    content:
-      "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue, a mission that culminated in a game-changing 12x ROAS.",
-    image: "/images/SocialMedia/scs.webp",
-    url: "/work/social-media-marketing/scssports",
-  },
-  {
+   {
     title: "J K Diamonds Institute",
     tags: ["UI UX", "Framer", "Zoho", "SEO", "Meta Ads"],
     content:
@@ -33,11 +25,20 @@ const cardsData = [
     url: "/work/website-development/jkdiamondsinstitute",
   },
   {
+    title: "SCS Sports",
+    tags: ["Meta Ads", "Social Media", "SEO"],
+    content:
+      "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue, a mission that culminated in a game-changing 12x ROAS.",
+    image: "/images/sm/SCS.jpg",
+    url: "/work/social-media-marketing/scssports",
+  },
+ 
+  {
     title: "My Suit Tailor",
     tags: [" UI UX", "Shopify ", "SEO"],
     content:
       "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
-    image: "/images/webdev/Mysuite.png",
+    image: "/images/webdev/MSTnew.jpg",
     url: "/work/website-development/mysuittailor",
   },
 ];
@@ -165,13 +166,15 @@ export default function StackingCards() {
                   <div className="w-full h-full min-h-0 flex items-center justify-center py-6 sm:py-8 md:py-10">
                     <div className="relative w-full lg:h-[60vh] h-[30vh]">
                       <Image
-                        src={card.image}
-                        alt={card.title}
-                        fill
-                        className="object-cover rounded-3xl"
-                        sizes="(min-width: 1024px) 60vh, 30vh"
-                        priority={i === 0}
-                      />
+  src={card.image}
+  alt={card.title}
+  width={800}
+  height={600}
+  className="object-cover rounded-3xl w-full h-full"
+  quality={100}
+  priority={i === 0}
+/>
+
                     </div>
                   </div>
                 </div>

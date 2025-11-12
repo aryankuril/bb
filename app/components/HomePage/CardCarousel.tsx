@@ -80,7 +80,6 @@ const CardCarousel: React.FC = () => {
           alt="Background"
           fill
           className="object-cover"
-          priority
         />
       </div>
         <motion.h2

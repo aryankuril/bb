@@ -518,3 +518,25 @@ h6 {
       scale(1.4) rotate(360deg);
   }
 }
+
+
+
+/* linksaftycss */
+.prose a {
+  color: #2563eb; /* blue-600 */
+  text-decoration: underline;
+}
+.prose a:hover {
+  color: #1e40af; /* blue-800 */
+}
+
+
+.codex-editor__redactor {
+  padding: 0 !important;
+}
+.ce-block__content {
+  max-width: 100% !important;
+}
+.ce-toolbar__content {
+  max-width: 100% !important;
+}
