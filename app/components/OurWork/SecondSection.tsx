@@ -27,10 +27,10 @@ const allSteps: Step[] = [
   { number: "04", title: "SCS Sports", image: "/images/pm/SCSnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/scssports" },
 
   // 🟥 SOCIAL MEDIA (3)
-  { number: "01", title: "Mr Blox", image: "/images/sm/MrBloxnew.jpg", category: "Social Media", link: "/work/social-media-marketing/mrblox" },
-  { number: "02", title: "SCS Sports", image: "/images/sm/SCSnew.jpg", category: "Social Media", link: "/work/social-media-marketing/scssports" },
-  { number: "03", title: "Manba Finance", image: "/images/sm/Manbanew.jpg", category: "Social Media", link: "/work/social-media-marketing/manbafinance" },
-  { number: "04", title: "Supersox", image: "/images/sm/SSnew.jpg", category: "Social Media", link: "/work/social-media-marketing/supersox" },
+  { number: "01", title: "Supersox", image: "/images/sm/SS.jpg", category: "Social Media", link: "/work/social-media-marketing/supersox" },
+  { number: "02", title: "Manba Finance", image: "/images/sm/Manba.jpg", category: "Social Media", link: "/work/social-media-marketing/manbafinance" },
+  { number: "03", title: "Mr Blox", image: "/images/sm/MrBlox.jpg", category: "Social Media", link: "/work/social-media-marketing/mrblox" },
+  { number: "04", title: "SCS Sports", image: "/images/sm/SCS.jpg", category: "Social Media", link: "/work/social-media-marketing/scssports" },
 
   // 🟨 SEO (3)
   { number: "01", title: "Manba Finance", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/work/seo-services/manbafinance" },

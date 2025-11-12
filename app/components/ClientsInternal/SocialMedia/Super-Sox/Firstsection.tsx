@@ -61,11 +61,11 @@ Putting the Fun First:
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full  "
         >
           <Image
-src="/images/sm/SSnew.jpg"
+src="/images/sm/SS.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}
-  className="object-cover w-full lg:h-[80vh] h-auto rounded-2xl"
+className="object-fit w-full h-auto rounded-2xl"
 />
         </motion.div>
       </div>
