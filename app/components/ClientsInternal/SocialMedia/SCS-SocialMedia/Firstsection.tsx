@@ -64,7 +64,7 @@ Putting the Fun First:  <span className="text-highlight">
   alt="JK Diamonds Institute"
   width={1400}
   height={800}
-  className="object-cover w-full lg:h-[524px] h-auto rounded-2xl"
+  className="object-fit w-full h-auto rounded-2xl"
 />
         </motion.div>
       </div>
