@@ -16,10 +16,11 @@ const Firstsection = () => {
           streamType="on-demand"
           preload="none"
           crossOrigin="anonymous"
-          preferPlayback="m3u8"
+          // @ts-ignore
+preferPlayback="m3u8"
           poster="https://image.mux.com/4tdWrZysgvhfwL02vOUGtdL69Oqp5dGo9FPdUM02SxFNk/thumbnail.jpg?time=0.8"
           className="hidden md:block absolute inset-0 w-full h-full"
-          style={{
+          style={{ 
             "--controls": "none",
             "--media-object-fit": "cover",
             "--media-object-position": "center",
@@ -38,6 +39,7 @@ const Firstsection = () => {
           streamType="on-demand"
           preload="none"
           crossOrigin="anonymous"
+           // @ts-ignore
           preferPlayback="m3u8"
           poster="https://image.mux.com/RTxv016M5wWZTtHayQ1hMJlrpCnFItiONQc01yn7BZaGU/thumbnail.jpg?time=0"
           className="block md:hidden absolute inset-0 w-full h-full object-cover"
