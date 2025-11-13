@@ -1,4 +1,4 @@
-"use client";
+
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -9,16 +9,12 @@ import PageLoader from "./components/PageLoader";
 import SmoothScroll from "./components/SmoothScroll";
 import ScrollToTop from "./components/ScrollToTop";
 import DynamicHead from "./components/DynamicHead";
-import dynamic from "next/dynamic";
+import ClickBurst from "./components/ClickBurst";
 
-// Lazy load ClickBurst (Client Component)
-const ClickBurst = dynamic(() => import("./components/ClickBurst"), { ssr: false });
-
-// Local VAG-Regular2 font
+// Local Miso font
 const miso = localFont({
   src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400", style: "normal" }],
   variable: "--font-miso",
-  display: "swap",
 });
 
 // Google Poppins font
@@ -26,52 +22,28 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
-  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Bombay Blokes",
+  title: "Bombay Blokes ",
   description:
     "Integrated Digital Solutions in Mumbai | Marketing Agency in Mumbai - Bombay Blokes",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
       <head>
-        <meta
-          name="google-site-verification"
-          content="vcgYWAz5xbO_xhFBzKSTAJuBzaum2orDl7K2CaoMTPw"
-        />
-        <link rel="icon" href="/images/favicon.png" type="image/png" />
-
-        {/* Preconnect Google Fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-
-        {/* Preload local font */}
-        <link
-          rel="preload"
-          href="/fonts/VAG-Regular2.otf"
-          as="font"
-          type="font/otf"
-          crossOrigin="anonymous"
-        />
-
-        {/* Dynamic metadata */}
-        <DynamicHead />
+        
+        <meta name="google-site-verification" content="vcgYWAz5xbO_xhFBzKSTAJuBzaum2orDl7K2CaoMTPw" />
+        <link rel="icon" href="images/favicon.png" type="image/png" />
       </head>
 
       <body>
-        {/* Smooth scroll wrapper (optional) */}
-        <SmoothScroll>
-          <PageLoader>{children}</PageLoader>
-          <ScrollToTop />
-          <ClickBurst burstImage="/images/star.png" />
-        </SmoothScroll>
-
+         <DynamicHead />
         {/* Facebook Pixel */}
-        <Script id="fb-pixel" strategy="lazyOnload">
+        <Script id="fb-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s){
               if(f.fbq) return;
@@ -109,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
 
         {/* LinkedIn Insight */}
-        <Script id="linkedin-insight" strategy="lazyOnload">
+        <Script id="linkedin-insight" strategy="afterInteractive">
           {`
             _linkedin_partner_id = "7775762";
             window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -136,6 +108,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             src="https://px.ads.linkedin.com/collect/?pid=7775762&fmt=gif"
           />
         </noscript>
+
+        {/* App Content */}
+        {/* <SmoothScroll> */}
+          <PageLoader>
+           {children}
+          </PageLoader>
+          <ScrollToTop />
+
+          <ClickBurst burstImage="/images/star.png" />
+
+        {/* </SmoothScroll> */}
       </body>
     </html>
   );
