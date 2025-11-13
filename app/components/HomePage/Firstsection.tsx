@@ -26,7 +26,7 @@ const Firstsection = () => {
           muted
           loop
           playsInline
-          preload="none"
+           preload="metadata"
           // poster="/images/video-poster-mobile.jpg"
           className="block md:hidden absolute inset-0 w-full h-full object-cover"
         >
