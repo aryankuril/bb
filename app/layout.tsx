@@ -1,21 +1,20 @@
+"use client";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import PageLoader from "./components/PageLoader";
+import SmoothScroll from "./components/SmoothScroll";
 import ScrollToTop from "./components/ScrollToTop";
 import DynamicHead from "./components/DynamicHead";
-import ClickBurst from "./components/ClickBurst";
 import dynamic from "next/dynamic";
 
-// Lazy load heavy interactive components
-const LazyClickBurst = dynamic(() => import("./components/ClickBurst"), {
-  ssr: false,
-  loading: () => null,
-});
+// Lazy load ClickBurst (Client Component)
+const ClickBurst = dynamic(() => import("./components/ClickBurst"), { ssr: false });
 
-// Local Miso font
+// Local VAG-Regular2 font
 const miso = localFont({
   src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400", style: "normal" }],
   variable: "--font-miso",
@@ -46,7 +45,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <link rel="icon" href="/images/favicon.png" type="image/png" />
 
-        {/* Preload custom font */}
+        {/* Preconnect Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+
+        {/* Preload local font */}
         <link
           rel="preload"
           href="/fonts/VAG-Regular2.otf"
@@ -60,7 +63,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
 
       <body>
-        {/* Facebook Pixel (load lazily) */}
+        {/* Smooth scroll wrapper (optional) */}
+        <SmoothScroll>
+          <PageLoader>{children}</PageLoader>
+          <ScrollToTop />
+          <ClickBurst burstImage="/images/star.png" />
+        </SmoothScroll>
+
+        {/* Facebook Pixel */}
         <Script id="fb-pixel" strategy="lazyOnload">
           {`
             !function(f,b,e,v,n,t,s){
@@ -79,7 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <img
             height="1"
             width="1"
-            alt=""
             style={{ display: "none" }}
             src="https://www.facebook.com/tr?id=640480087760334&ev=PageView&noscript=1"
           />
@@ -99,7 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
 
-        {/* LinkedIn Insight (lazy loaded) */}
+        {/* LinkedIn Insight */}
         <Script id="linkedin-insight" strategy="lazyOnload">
           {`
             _linkedin_partner_id = "7775762";
@@ -122,16 +131,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <img
             height="1"
             width="1"
-            alt=""
             style={{ display: "none" }}
+            alt=""
             src="https://px.ads.linkedin.com/collect/?pid=7775762&fmt=gif"
           />
         </noscript>
-
-        {/* App content */}
-        <PageLoader>{children}</PageLoader>
-        <ScrollToTop />
-        <LazyClickBurst burstImage="/images/star.png" />
       </body>
     </html>
   );
