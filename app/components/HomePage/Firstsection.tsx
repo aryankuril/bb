@@ -9,14 +9,14 @@ const Firstsection = () => {
       <div className="relative w-full h-full">
         {/* Desktop Video */}
         <MuxPlayer
-          playbackId="xKFPixwl02Sgj2GS0102adUvMzcOlxk7mqpGSQgpQbH0001U"
+          playbackId="4h2lgLpcOdBx3yCDYo8aOQkbHjjHU51tycqdHGJRi4s"
           autoPlay
           muted
           loop
           playsInline
           streamType="on-demand"
           preload="metadata"
-          // poster={`https://image.mux.com/xKFPixwl02Sgj2GS0102adUvMzcOlxk7mqpGSQgpQbH0001U/thumbnail.jpg?time=0.8`}
+          poster={`https://image.mux.com/4h2lgLpcOdBx3yCDYo8aOQkbHjjHU51tycqdHGJRi4s/thumbnail.jpg?time=0.8`}
           className="hidden md:block absolute inset-0 w-full h-full"
           style={
             {
