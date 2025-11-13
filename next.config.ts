@@ -3,86 +3,85 @@ import type { NextConfig } from "next";
 const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
+  // ✅ Skip ESLint during production build
   eslint: {
     ignoreDuringBuilds: true,
   },
 
+  // ✅ Optimize images from trusted remote sources
   images: {
+    formats: ["image/avif", "image/webp"], // modern, smaller formats
+    minimumCacheTTL: 60 * 60 * 24 * 30, // cache for 30 days
     remotePatterns: [
-      // ✅ Unsplash
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-
-      // ✅ Firebase Storage URLs
-      {
-        protocol: "https",
-        hostname: "firebasestorage.googleapis.com",
-      },
-
-      // ✅ Alternate Firebase CDN pattern
-      {
-        protocol: "https",
-        hostname: "storage.googleapis.com",
-      },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "firebasestorage.googleapis.com" },
+      { protocol: "https", hostname: "storage.googleapis.com" },
     ],
   },
 
+  // ✅ Add global caching + security + compression headers
   async headers() {
     return [
       {
-        // ✅ Apply to all routes
         source: "/(.*)",
         headers: [
+          // ⚡ Performance / caching headers
           {
             key: "Cache-Control",
-            // ✅ Cache static assets for 1 year (browsers + CDN)
-            value: "public, max-age=31536000, immutable",
+            value: isProd
+              ? "public, max-age=31536000, s-maxage=31536000, immutable"
+              : "no-cache, no-store, must-revalidate",
           },
-        ],
-      },
-      {
-        // ✅ Apply short-term caching for HTML pages (so updates show quickly)
-        source: "/((?!_next/static|_next/image|favicon.ico).*)",
-        headers: [
           {
-            key: "Cache-Control",
-            // Cache HTML for 60 seconds only
-            value: "public, max-age=60, stale-while-revalidate=300",
+            key: "Vary",
+            value: "Accept-Encoding",
+          },
+
+          // ⚙️ Compression hints
+          {
+            key: "Content-Encoding",
+            value: "br, gzip",
+          },
+
+          // 🛡️ Security headers
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
           },
         ],
       },
     ];
   },
 
+  // ✅ Enable edge caching (especially useful on Vercel)
+  experimental: {
+    turbo: {
+      rules: {
+        "*.js": { cache: "force-cache" },
+        "*.css": { cache: "force-cache" },
+        "*.png": { cache: "force-cache" },
+        "*.jpg": { cache: "force-cache" },
+        "*.webp": { cache: "force-cache" },
+        "*.avif": { cache: "force-cache" },
+      },
+    },
+  },
+
+  // ✅ Redirects (from your existing configuration)
   async redirects() {
     const redirects = [
-      {
-        source: "/about",
-        destination: "/aboutus",
-        permanent: true,
-      },
-      {
-        source: "/career",
-        destination: "/join-our-team",
-        permanent: true,
-      },
-      {
-        source: "/contact",
-        destination: "/contactus",
-        permanent: true,
-      },
-      {
-        source: "/our-clients",
-        destination: "/clients",
-        permanent: true,
-      },
-      {
-        source: "/our-team",
-        destination: "/teams",
-        permanent: true,
-      },
+      { source: "/about", destination: "/aboutus", permanent: true },
+      { source: "/career", destination: "/join-our-team", permanent: true },
+      { source: "/contact", destination: "/contactus", permanent: true },
+      { source: "/our-clients", destination: "/clients", permanent: true },
+      { source: "/our-team", destination: "/teams", permanent: true },
 
       // ✅ Services Redirects
       {
@@ -143,8 +142,7 @@ const nextConfig: NextConfig = {
       { source: "/website/portfolio4", destination: "/404", permanent: false },
       { source: "/category/portfolio", destination: "/404", permanent: false },
       {
-        source:
-          "/social-media/3-ways-to-keep-your-social-media-people-powered",
+        source: "/social-media/3-ways-to-keep-your-social-media-people-powered",
         destination: "/404",
         permanent: false,
       },
