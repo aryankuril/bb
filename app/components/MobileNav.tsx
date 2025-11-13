@@ -154,7 +154,9 @@ const MobileNav = () => {
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105"
           >
-            <img
+            <Image
+            width={100}
+            height={100}
               src="/images/whatsapp.svg"
               alt="WhatsApp"
               className="w-10 h-10"

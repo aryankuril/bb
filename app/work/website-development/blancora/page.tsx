@@ -12,8 +12,8 @@ import SmoothScroll from '@/app/components/SmoothScroll';
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Case Study for Blancora",
-  description: "Discover how Bombay Blokes enhanced Blancora search engine performance through keyword optimization, content strategy & link building for measurable ROI.",
+  title: "Blancora Website Development Case Study | Bombay Blokes",
+  description: " Discover how Bombay Blokes helped Blancora launch a high-performance website with custom design and conversion-focused development. See the full results and strategy.",
 };
 
 const Index = () => {

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Button from "../../Button";
-
+import Image from "next/image";
 const FirstSection = () => {
   const images = [
     "/images/pm/chaterbox.png",
@@ -47,7 +47,7 @@ const FirstSection = () => {
   <div className="aspect-[4/3] relative rounded-[15px]  overflow-hidden">
     {/* Image slider */}
     {images.map((img, idx) => (
-      <img
+      <Image
         key={idx}
         src={img}
         alt={`Slide ${idx + 1}`}

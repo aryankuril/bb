@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+
 
 interface Burst {
   id: number;
@@ -42,7 +44,10 @@ export default function ClickBurst({
   return (
     <div className="pointer-events-none fixed inset-0 z-[999999]">
       {bursts.map((b) => (
-        <img
+        <Image
+          alt=""
+          width={40}
+          height={40}
           key={b.id}
           src={burstImage}
           className="global-burst-img"

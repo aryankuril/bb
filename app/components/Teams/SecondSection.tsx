@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 
 const SecondSection = () => {
   const achievements = [
@@ -161,7 +162,9 @@ const SecondSection = () => {
 
                   {/* ✅ Fixed-size image box */}
                   <div className="w-full h-[280px] lg:h-[350px] rounded-b-[20px] ">
-                    <img
+                    <Image
+ width={1000}
+        height={1000}
                       src={achievement.image}
                       alt={achievement.description}
                       className="w-full h-full object-cover"

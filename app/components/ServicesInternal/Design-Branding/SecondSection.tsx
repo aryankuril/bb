@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
   const processSteps = [
     {
       number: '01',
@@ -48,7 +48,9 @@ const SecondSection = () => {
     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
       {/* Left (wider) */}
       <div className="p-5 col-span-1 md:col-span-3 relative h-[220px] sm:h-[300px] md:h-[400px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
-        <img
+        <Image
+ width={100}
+        height={100}
           src={processSteps[0].image}
           alt={processSteps[0].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -65,7 +67,9 @@ const SecondSection = () => {
 
       {/* Right (smaller) */}
       <div className=" p-5 col-span-1 md:col-span-2 relative h-[220px] sm:h-[300px] md:h-[400px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
-        <img
+        <Image
+ width={100}
+        height={100}
           src={processSteps[1].image}
           alt={processSteps[1].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -85,7 +89,9 @@ const SecondSection = () => {
     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
       {/* Left (smaller) */}
       <div className="p-5 col-span-1 md:col-span-2 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
-        <img
+        <Image
+ width={100}
+        height={100}
           src={processSteps[2].image}
           alt={processSteps[2].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -102,7 +108,9 @@ const SecondSection = () => {
 
       {/* Right (bigger) */}
       <div className="p-5 col-span-1 md:col-span-3 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
-        <img
+        <Image
+ width={100}
+        height={100}
           src={processSteps[3].image}
           alt={processSteps[3].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -122,7 +130,9 @@ const SecondSection = () => {
     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
       {/* Left (wider) */}
       <div className="p-5 col-span-1 md:col-span-3 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
-        <img
+        <Image
+ width={100}
+        height={100}
           src={processSteps[4].image}
           alt={processSteps[4].title}
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -139,7 +149,9 @@ const SecondSection = () => {
 
       {/* Right (smaller) */}
       <div className="p-5 col-span-1 md:col-span-2 relative h-[220px] sm:h-[300px] md:h-[370px] rounded-[20px] sm:rounded-[30px] overflow-hidden bg-gradient-to-t from-black/100 to-black/0">
-        <img
+        <Image
+ width={100}
+        height={100}
           src={processSteps[5].image}
           alt={processSteps[5].title}
           className="absolute inset-0 w-full h-full object-cover z-0"

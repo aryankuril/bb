@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-
+import Image from "next/image";
 const Whatsapp = () => {
   const whatsappNumber = "911234567890"; // 👈 Replace with your WhatsApp number including country code
   const message = "Hello! I want to chat with you."; // Optional pre-filled message
@@ -23,7 +23,7 @@ const Whatsapp = () => {
         cursor: "pointer",
       }}
     >
-      <img
+      <Image
         src="/images/whatsapp.png" // 👈 put your WhatsApp icon in public/images/
         alt="WhatsApp"
         style={{

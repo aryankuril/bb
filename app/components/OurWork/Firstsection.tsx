@@ -84,8 +84,8 @@ const Firstsection: React.FC = () => {
         className="absolute bottom-0 left-0 z-20 w-[700px] sm:w-[710px] md:w-[750px] lg:w-[800px] xl:w-[800px]"
       >
         <Image
- width={100}
-        height={100}
+width={1000}
+          height={1000}
           src="/images/train.png"
           alt="train"
           className="w-full h-auto object-contain"

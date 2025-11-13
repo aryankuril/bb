@@ -19,7 +19,7 @@
     "@editorjs/list": "^2.0.8",
     "@editorjs/paragraph": "^2.11.7",
     "@editorjs/raw": "^2.5.1",
-    "@mux/mux-player-react": "^3.7.0",
+    "@mux/mux-player-react": "^3.8.0",
     "@studio-freight/lenis": "^1.0.42",
     "@tiptap/core": "^3.10.2",
     "@tiptap/extension-image": "^3.10.2",

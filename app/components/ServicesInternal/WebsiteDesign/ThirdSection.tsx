@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef, useState, useEffect } from "react";
 import AnimatedButton from "../../AnimatedButton";
+import Image from "next/image";
 
 const WorkflowSection: React.FC = () => {
 const workflowSteps = [
@@ -99,7 +100,9 @@ const workflowSteps = [
             style={{ x: trainX }}
             className="relative w-[250px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[20px] sm:h-[50px] z-20 lg:mt-0 mt-5"
           >
-            <img
+            <Image
+ width={100}
+        height={100}
               src="/images/train.png"
               alt="train"
               className="w-full h-full object-contain"

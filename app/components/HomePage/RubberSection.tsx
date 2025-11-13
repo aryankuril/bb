@@ -3,7 +3,7 @@
 import React from "react";
 import { motion, Variants, useMotionValue, useTransform, animate } from "framer-motion";
 import Button from "../Button";
-
+import Image from "next/image";
 const cards = [
   { img: "/images/rubberr1.jpg", label: "Young Passionate Crowd", rotate: 10 },
   { img: "/images/rubberr2.webp", label: "Jugged Masters", rotate: -10 },
@@ -81,11 +81,17 @@ const RubberSection = () => {
                 onDragEnd={resetPosition}
                 className="w-full h-full rounded-xl"
               >
-                <img
-                  src={card.img}
-                  alt={card.label}
-                  className="w-full h-full rounded-xl object-cover pointer-events-none"
-                />
+              <div className="relative w-full h-full rounded-xl overflow-hidden">
+  <Image
+    src={card.img}
+    alt={card.label}
+    fill
+    className="object-cover rounded-xl pointer-events-none"
+    quality={100}
+    sizes="(max-width: 768px) 100vw, 350px"
+  />
+</div>
+
               </motion.div>
             </motion.div>
           );

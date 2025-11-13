@@ -21,6 +21,7 @@ import List from "@editorjs/list";
 import ImageTool from "@editorjs/image";
 import RawTool from "@editorjs/raw";
 import Checklist from "@editorjs/checklist";
+import Image from "next/image";
 
 const Embed = require("@editorjs/embed");
 
@@ -214,16 +215,15 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
         />
       </div>
 
-      <div>
+      <div >
         <label className="block text-sm font-medium mb-1">Description</label>
        <div
   ref={editorContainer}
-  className="border rounded w-full p-4 text-left"
+  className="border rounded w-full p-4 text-left h-auto overflow-visible"
   style={{
-    overflowY: "auto",
-    minHeight: "300px",
     lineHeight: "1.6",
     fontSize: "16px",
+    zIndex : "999",
   }}
 ></div>
 
@@ -270,7 +270,7 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
         {preview && (
           <div className="mt-3">
             <div className="text-xs text-gray-500 mb-1">Preview</div>
-            <img
+            <Image
               src={preview}
               alt="preview"
               className="max-h-48 rounded object-cover"

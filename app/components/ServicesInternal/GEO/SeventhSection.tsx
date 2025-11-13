@@ -2,7 +2,7 @@
 
 
 import React from "react";
-
+import Image from "next/image";
 const SeventhSection = () => {
   return (
 <section className="container py-10 sm:py-15 lg:py-20">
@@ -10,7 +10,8 @@ const SeventhSection = () => {
     <div className="relative z-10 flex items-center justify-center py-10 sm:py-12 md:py-10">
       <div className="text-center space-y-6 sm:space-y-8">
         {/* Image */}
-        <img
+        <Image
+        alt=""
           src="/images/BB-web-chai-2.gif"
           className="w-[180px] h-auto sm:w-[240px] sm:h-[160px] md:w-[210px] md:h-auto mx-auto mb-6 sm:mb-8"
         />

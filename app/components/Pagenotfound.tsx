@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Button from "./Button";
-
+import Image from "next/image";
 const Pagenotfound = () => {
     const { ref: inViewRef, inView } = useInView({
     triggerOnce: true,
@@ -70,7 +70,9 @@ const Pagenotfound = () => {
           ref={stationRef}
           className="absolute bottom-0 right-4 sm:right-8 lg:right-16 flex justify-end"
         >
-          <img
+          <Image
+           width={1000}
+          height={1000}
             src="/images/wrong-stataion.png"
             alt="Station board"
             className="w-28 sm:w-40 md:w-45 lg:w-48 xl:w-50 h-auto"

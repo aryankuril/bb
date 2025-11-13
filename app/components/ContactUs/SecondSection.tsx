@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import ContactButton from "../ContactButton";
 import { number } from "framer-motion";
+import Image from "next/image";
 
 const SecondSection = () => {
   const services = [
@@ -363,7 +364,9 @@ const SecondSection = () => {
       <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
         {/* Left Side Image */}
         <div className="lg:p-10 p-6  flex items-center justify-center">
-          <img
+          <Image
+           width={1000}
+        height={1000}
             src="/images/panipuricart.png" // replace with your image path
             alt="Pani Puri Cart"
             className=" w-full h-full object-contain rounded-[15px]"
@@ -383,7 +386,9 @@ const SecondSection = () => {
             </h3>
 
             {/* ✅ Add Image */}
-            <img
+            <Image
+             width={1000}
+        height={1000}
               src="/images/panipuri.png" // replace with your actual path
               alt="Pani Puri"
               className="lg:w-[140] w-[70px] h-auto object-contain z-55 lg:-mr-18"

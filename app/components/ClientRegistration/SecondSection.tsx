@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import ContactButton from "../ContactButton";
-
+import Image from "next/image";
 const SecondSection = () => {
   const services = [
     {
@@ -405,7 +405,9 @@ const SecondSection = () => {
       <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
         {/* Left Side Image */}
         <div className="flex items-stretch justify-center p-6">
-          <img
+          <Image
+           width={1000}
+        height={1000}
             src="/images/panipuricart1.png"
             alt="Pani Puri Cart"
             className="w-full h-full object-cover rounded-[15px]"

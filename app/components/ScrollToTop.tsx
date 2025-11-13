@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
+import Image from "next/image";
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
@@ -50,7 +50,9 @@ export default function ScrollToTop() {
       }`}
       aria-label="Scroll to top"
     >
-      <img
+      <Image
+          width={40}
+          height={40}
         src="/images/ScrollToTop.svg"
         alt="ScrollToTop"
         className="w-5 h-5"

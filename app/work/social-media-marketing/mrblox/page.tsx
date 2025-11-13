@@ -12,8 +12,8 @@ import SmoothScroll from '@/app/components/SmoothScroll'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Case Study – SEO for Mr Blox",
-  description: "Discover how Bombay Blokes enhanced Mr Blox search engine performance through keyword optimization, content strategy & link building for measurable ROI.",
+  title: "MrBlox Social Media Marketing Case Study | Bombay Blokes",
+  description: "Explore how Bombay Blokes elevated MrBlox’s brand presence and amplified reach through creative social media marketing solutions. Read the full campaign insights.",
 };
 
 const Index = () => {

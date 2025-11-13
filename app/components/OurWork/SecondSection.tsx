@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Link from "next/link";
-
+import Image from "next/image";
 type Step = {
   number: string;
   title: string;
@@ -130,7 +130,9 @@ const SecondSection = () => {
             className={`col-span-1 md:col-span-${colSpan} relative h-[220px] sm:h-[300px] md:h-[340px] rounded-[15px] overflow-hidden group`}
           >
             {/* Background image */}
-            <img
+            <Image
+            width={1000}
+          height={1000}
               src={step.image}
               alt={step.title}
               className="absolute inset-0 w-full h-full object-cover bg-black z-0"

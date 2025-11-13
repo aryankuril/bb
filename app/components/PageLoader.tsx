@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import { useState, useEffect, ReactNode } from "react";
 
@@ -22,7 +23,9 @@ export default function PageLoader({ children }: PageLoaderProps) {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
-        <img
+        <Image
+          width={40}
+          height={40}
           src="/BB-web-chai-1.gif"
           alt="Loading..."
           className="w-100 h-100"

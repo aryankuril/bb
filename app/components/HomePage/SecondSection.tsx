@@ -193,7 +193,7 @@ export default function SecondSection() {
 
               {/* Mobile-only image */}
               <div className="block md:hidden">
-                <img
+                <Image
                   src={s.img}
                   alt={s.title}
                   width={600}
