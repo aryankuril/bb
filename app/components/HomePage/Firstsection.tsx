@@ -13,7 +13,7 @@ const Firstsection = () => {
           loop
           playsInline
           preload="metadata"
-          poster="/images/video-poster-desktop.jpg"
+          // poster="/images/video-poster-desktop.jpg"
           className="hidden md:block absolute inset-0 w-full h-full object-cover"
         >
           <source src="/video/hero.mp4" type="video/mp4" />
@@ -26,8 +26,8 @@ const Firstsection = () => {
           muted
           loop
           playsInline
-          preload="metadata"
-          poster="/images/video-poster-mobile.jpg"
+          preload="none"
+          // poster="/images/video-poster-mobile.jpg"
           className="block md:hidden absolute inset-0 w-full h-full object-cover"
         >
           <source src="/video/hero-m.mp4" type="video/mp4" />
