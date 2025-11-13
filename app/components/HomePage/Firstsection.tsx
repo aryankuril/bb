@@ -9,14 +9,14 @@ const Firstsection = () => {
       <div className="relative w-full h-full">
         {/* Desktop Video */}
         <MuxPlayer
-          playbackId="4h2lgLpcOdBx3yCDYo8aOQkbHjjHU51tycqdHGJRi4s"
+          playbackId="xKFPixwl02Sgj2GS0102adUvMzcOlxk7mqpGSQgpQbH0001U"
           autoPlay
           muted
           loop
           playsInline
           streamType="on-demand"
-          preload="auto"
-          poster={`https://image.mux.com/4h2lgLpcOdBx3yCDYo8aOQkbHjjHU51tycqdHGJRi4s/thumbnail.jpg?time=0.8`}
+          preload="metadata"
+          // poster={`https://image.mux.com/xKFPixwl02Sgj2GS0102adUvMzcOlxk7mqpGSQgpQbH0001U/thumbnail.jpg?time=0.8`}
           className="hidden md:block absolute inset-0 w-full h-full"
           style={
             {
@@ -37,7 +37,7 @@ const Firstsection = () => {
           loop
           playsInline
           streamType="on-demand"
-          preload="auto"
+          preload="metadata"
           poster={`https://image.mux.com/rg2PyjG3QOsQCobdMgIlk3T02t66BMwOm1FkHScWabHM/thumbnail.jpg?time=0`}
           className="block md:hidden absolute inset-0 w-full h-full object-cover"
           style={

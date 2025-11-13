@@ -222,12 +222,13 @@ export default function LightCameraAction() {
   muted
   playsInline
   streamType="on-demand"
-  style={{
-    width: "100%",
-    height: "100%",
-    borderRadius: "1rem",
-    objectFit: "cover",
-  }}
+  style={ {
+                "--controls": "none",
+                "--media-object-fit": "cover",
+                "--media-object-position": "center",
+                width: "100%",
+                height: "100%",
+              } as React.CSSProperties}
   ref={(el) => {
     muxRef.current = el;
     try {
