@@ -3,14 +3,14 @@ import type { NextConfig } from "next";
 const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
-  // ✅ Skip ESLint during production build
+  // ✅ Skip ESLint during production builds
   eslint: {
     ignoreDuringBuilds: true,
   },
 
-  // ✅ Optimize images from trusted remote sources
+  // ✅ Image optimization with caching
   images: {
-    formats: ["image/avif", "image/webp"], // modern, smaller formats
+    formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30, // cache for 30 days
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
@@ -19,13 +19,13 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // ✅ Add global caching + security + compression headers
+  // ✅ Global performance + security headers
   async headers() {
     return [
       {
         source: "/(.*)",
         headers: [
-          // ⚡ Performance / caching headers
+          // ⚡ Performance Caching
           {
             key: "Cache-Control",
             value: isProd
@@ -37,16 +37,13 @@ const nextConfig: NextConfig = {
             value: "Accept-Encoding",
           },
 
-          // ⚙️ Compression hints
-          {
-            key: "Content-Encoding",
-            value: "br, gzip",
-          },
-
-          // 🛡️ Security headers
+          // 🧱 Security Headers
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
@@ -60,23 +57,9 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // ✅ Enable edge caching (especially useful on Vercel)
-  experimental: {
-    turbo: {
-      rules: {
-        "*.js": { cache: "force-cache" },
-        "*.css": { cache: "force-cache" },
-        "*.png": { cache: "force-cache" },
-        "*.jpg": { cache: "force-cache" },
-        "*.webp": { cache: "force-cache" },
-        "*.avif": { cache: "force-cache" },
-      },
-    },
-  },
-
-  // ✅ Redirects (from your existing configuration)
+  // ✅ Your existing redirects
   async redirects() {
-    const redirects = [
+    return [
       { source: "/about", destination: "/aboutus", permanent: true },
       { source: "/career", destination: "/join-our-team", permanent: true },
       { source: "/contact", destination: "/contactus", permanent: true },
@@ -149,8 +132,6 @@ const nextConfig: NextConfig = {
       { source: "/portfolio/hello-world", destination: "/404", permanent: false },
       { source: "/portfolio/portfolio1", destination: "/404", permanent: false },
     ];
-
-    return redirects;
   },
 };
 
