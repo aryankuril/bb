@@ -24,7 +24,84 @@ type InputValues = {
   message: string;
 };
 
-const SecondSection = () => {
+
+
+function renderEditorJsHTML(data: any) {
+  if (!data || !data.blocks) return "";
+
+  return data.blocks
+    .map((block: any) => {
+      switch (block.type) {
+        // Header
+        case "header":
+          return `<h${block.data.level} class="my-4 font-bold">${block.data.text}</h${block.data.level}>`;
+
+        // Paragraph
+        case "paragraph":
+          return `<p class="my-3">${block.data.text}</p>`;
+
+        // List (ordered or unordered)
+        case "list":
+          const Tag = block.data.style === "ordered" ? "ol" : "ul";
+          return `<${Tag} class="list-inside my-4 pl-6 ${
+            Tag === "ol" ? "list-decimal" : "list-disc"
+          }">${block.data.items
+            .map((item: any) => {
+              // Some Editor.js versions use 'content', others 'text'
+              const text = item.content || item.text || "";
+              return `<li>${text}</li>`;
+            })
+            .join("")}</${Tag}>`;
+
+        // Checklist
+        case "checklist":
+          return `<ul class="my-4 space-y-2">${block.data.items
+            .map((item: any, i: number) => {
+              const text = item.content || item.text || "";
+              return `<li class="flex items-center gap-2">
+                        <input id="check-${i}" type="checkbox" ${
+                          item.checked ? "checked" : ""
+                        }/>
+                        <label for="check-${i}" class="cursor-pointer">${text}</label>
+                      </li>`;
+            })
+            .join("")}</ul>`;
+
+        // Image
+        case "image":
+          return `<figure class="my-6">
+                    <img src="${block.data.file?.url || ""}" alt="${
+            block.data.caption || ""
+          }" class="rounded-xl w-full"/>
+                    ${
+                      block.data.caption
+                        ? `<figcaption class="text-center text-sm text-gray-500 mt-2">${block.data.caption}</figcaption>`
+                        : ""
+                    }
+                  </figure>`;
+
+        // Embed (YouTube, etc.)
+        case "embed":
+          return `<div class="my-6">
+                    <iframe width="100%" height="400" src="${
+                      block.data.embed || ""
+                    }" frameborder="0" allowfullscreen></iframe>
+                  </div>`;
+
+        // Raw HTML
+        case "raw":
+          return block.data.html || "";
+
+        // Default fallback
+        default:
+          return "";
+      }
+    })
+    .join("");
+}
+
+
+const SecondSection = ({ career }: { career: Career })  => {
     const [jobs, setJobs] = useState<Career[]>([]);
   const [activeJob, setActiveJob] = useState(jobs[0]);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -65,6 +142,14 @@ const SecondSection = () => {
       /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/;
     return phoneRegex.test(phone);
   };
+
+
+useEffect(() => {
+  if (jobs.length > 0 && !activeJob) {
+    setActiveJob(jobs[0]); // auto-select first job
+  }
+}, [jobs, activeJob]);
+
 
   const validateURL = (url: string): boolean => {
     if (!url) return true;
@@ -116,6 +201,8 @@ const SecondSection = () => {
         return "";
     }
   };
+
+
 
 useEffect(() => {
   const fetchCareers = async () => {
@@ -612,14 +699,21 @@ const getIconColor = (field: keyof InputValues) => {
               }`}
               style={{ minHeight: isFlipped ? "auto" : "700px" }}
             >
-              {/* FRONT */}
+
+
               <div
                 className={`${
                   isFlipped ? "hidden" : "block"
                 } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-4 sm:px-5 py-6 flex flex-col justify-between min-h-[700px]`}
               >
-               <div className="whitespace-pre-line white-text body2 pr-1 sm:pr-2">
-          {activeJob ? activeJob.details || "No Details Available" : "Please select a train to view details"}
+               <div className="whitespace-pre-line white-text body2 pr-1 sm:pr-2 job-description">
+
+  {activeJob ? (
+    <div dangerouslySetInnerHTML={{ __html: renderEditorJsHTML(activeJob.details) }} />
+  ) : (
+    <p>Loading job description...</p>
+  )}
+
         </div>
                 <div className="flex justify-center py-5">
                  {!isFlipped && (
@@ -634,6 +728,10 @@ const getIconColor = (field: keyof InputValues) => {
 
                 </div>
               </div>
+              {/* FRONT */}
+
+
+
 
               {/* BACK – Ticket Form */}
               <div

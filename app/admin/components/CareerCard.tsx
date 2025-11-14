@@ -48,9 +48,7 @@ export default function CareerCard({
       </div>
 
       {/* ✅ Description (same clamped layout as blogs) */}
-      <p className="text-sm text-gray-600 line-clamp-3 mt-2">
-        {career.description}
-      </p>
+      
 
       {/* ✅ Bottom buttons (same layout as blogs) */}
       <div className="mt-4 flex gap-2">

@@ -21,9 +21,9 @@ const allSteps: Step[] = [
   { number: "07", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/work/website-development/scssports" },
 
   // 🟩 PERFORMANCE MARKETING (4)
-  { number: "01", title: "Chatterbox Labels", image: "/images/pm/Chatterboxnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/chatterboxlabels" },
+  { number: "01", title: "JK Diamonds Institute", image: "/images/pm/Jk-diamondsnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/jkdiamondsinstitute" },
   { number: "02", title: "Dancing Leaf", image: "/images/pm/Dancingleafnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/dancingleaf" },
-  { number: "03", title: "JK Diamonds Institute", image: "/images/pm/Jk-diamondsnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/jkdiamondsinstitute" },
+  { number: "03", title: "Chatterbox Labels", image: "/images/pm/Chatterboxnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/chatterboxlabels" },
   { number: "04", title: "SCS Sports", image: "/images/pm/SCSnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/scssports" },
 
   // 🟥 SOCIAL MEDIA (3)

@@ -25,6 +25,11 @@ import Image from "next/image";
 
 const Embed = require("@editorjs/embed");
 
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { ChevronDown } from "lucide-react";
+
 // ✅ Helper — sanitize undefined/null recursively
 function sanitizeData(data: unknown): unknown {
   if (Array.isArray(data)) {
@@ -74,11 +79,26 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
     ? new Date(initial.scheduledAt)
     : new Date();
 
-  const [publishDate, setPublishDate] = useState(defaultDate.toISOString().split("T")[0]);
   const [publishTime, setPublishTime] = useState(defaultDate.toTimeString().slice(0, 5));
 
   const editorRef = useRef<EditorJS | null>(null);
   const editorContainer = useRef<HTMLDivElement | null>(null);
+
+  // For Date Picker UI
+  const dateRef = useRef<HTMLDivElement>(null);
+  const [openDatePicker, setOpenDatePicker] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date>(defaultDate);
+
+  // Close picker on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dateRef.current && !dateRef.current.contains(event.target as Node)) {
+        setOpenDatePicker(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => setSlug(createSlug(title)), [title]);
 
@@ -167,7 +187,9 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
       const finalSlug = createSlug(title);
       const finalCategory = category?.trim() || "ALL";
 
-      const dt = new Date(`${publishDate}T${publishTime}:00`);
+      const dt = new Date(selectedDate);
+      dt.setHours(Number(publishTime.split(":")[0]));
+      dt.setMinutes(Number(publishTime.split(":")[1]));
       const scheduledAt = Timestamp.fromDate(dt);
 
       const blogData = {
@@ -193,7 +215,6 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
       }
 
       onSuccess?.();
-      // alert("✅ Blog saved successfullg
     } catch (err: unknown) {
       console.error("🔥 Error creating blog:", err);
       const errorMessage = err instanceof Error ? err.message : "Failed to save blog";
@@ -205,6 +226,7 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
 
   return (
     <div className="bg-white rounded shadow p-6 space-y-4">
+      {/* Title */}
       <div>
         <label className="block text-sm font-medium mb-1">Title</label>
         <input
@@ -215,21 +237,22 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
         />
       </div>
 
-      <div >
+      {/* Description */}
+      <div>
         <label className="block text-sm font-medium mb-1">Description</label>
-       <div
-  ref={editorContainer}
-  className="border rounded w-full p-4 text-left h-auto overflow-visible"
-  style={{
-    lineHeight: "1.6",
-    fontSize: "16px",
-    zIndex : "999",
-  }}
-></div>
-
+        <div
+          ref={editorContainer}
+          className="border rounded w-full p-4 text-left h-auto overflow-visible"
+          style={{
+            lineHeight: "1.6",
+            fontSize: "16px",
+            zIndex: "999",
+          }}
+        ></div>
       </div>
 
-      <div>
+      {/* Category */}
+      <div >
         <label className="block text-sm font-medium mb-1">Category</label>
         <select
           value={category}
@@ -237,23 +260,50 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
           className="w-full border rounded px-3 py-2"
         >
           {CATEGORY_OPTIONS.map((cat) => (
-            <option key={cat} value={cat}>
+            <option  key={cat} value={cat}>
               {cat}
             </option>
           ))}
         </select>
       </div>
 
-      <div>
+      {/* Publish Date Picker */}
+      <div className="relative" ref={dateRef}>
         <label className="block text-sm font-medium mb-1">Publish Date</label>
-        <input
-          type="date"
-          value={publishDate}
-          onChange={(e) => setPublishDate(e.target.value)}
-          className="w-full border rounded px-3 py-2"
-        />
+        <div
+          className="appearance-none w-full border rounded px-3 py-2 pr-10 focus:outline-none cursor-pointer flex justify-between items-center"
+          onClick={() => setOpenDatePicker(!openDatePicker)}
+        >
+          <span>{selectedDate.toDateString()}</span>
+          <ChevronDown className="w-4 h-4 text-gray-600" />
+        </div>
+
+        {openDatePicker && (
+          <div className="absolute z-50 mt-1 bg-white shadow-lg rounded-lg">
+            <DateRange
+              editableDateInputs
+              ranges={[
+                {
+                  startDate: selectedDate,
+                  endDate: selectedDate,
+                  key: "selection",
+                },
+              ]}
+              onChange={(item) => {
+                if (item.selection) {
+                  setSelectedDate(item.selection.startDate ?? new Date());
+                }
+              }}
+              moveRangeOnFirstSelection={false}
+              direction="horizontal"
+              months={1}
+              rangeColors={["#000"]}
+            />
+          </div>
+        )}
       </div>
 
+      {/* Publish Time */}
       <div>
         <label className="block text-sm font-medium mb-1">Publish Time</label>
         <input
@@ -264,6 +314,7 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
         />
       </div>
 
+      {/* Image */}
       <div>
         <label className="block text-sm font-medium mb-1">Image</label>
         <input type="file" accept="image/*" onChange={handleFileChange} />
