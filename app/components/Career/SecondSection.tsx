@@ -101,7 +101,7 @@ function renderEditorJsHTML(data: any) {
 }
 
 
-const SecondSection = ({ career }: { career: Career })  => {
+const SecondSection = ()  => {
     const [jobs, setJobs] = useState<Career[]>([]);
   const [activeJob, setActiveJob] = useState(jobs[0]);
   const [isFlipped, setIsFlipped] = useState(false);
