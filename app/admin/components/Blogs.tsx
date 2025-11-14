@@ -12,19 +12,7 @@ import {
 } from "firebase/firestore";
 import Link from "next/link";
 import Button from "@/app/components/Button";
-import {
-  FormInput,
-  FolderOpen,
-  Users,
-  LogOut,
-  ExternalLink,
-  Edit,
-  Trash,
-  ChevronDown,
-  ChevronRight,
-  Building,
-  BarChart3,
-} from "lucide-react";
+import { toast } from "react-hot-toast";
 
 type Blog = {
   id: string;
@@ -90,9 +78,10 @@ const Blogs = () => {
     setDeleting(id);
     try {
       await deleteDoc(doc(db, "blogs", id));
+      toast.success("Blog deleted successfully");
     } catch (err) {
       console.error(err);
-      alert("Failed to delete");
+      toast.error("Failed to delete blog");
     } finally {
       setDeleting(null);
     }

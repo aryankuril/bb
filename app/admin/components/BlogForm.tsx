@@ -22,13 +22,14 @@ import ImageTool from "@editorjs/image";
 import RawTool from "@editorjs/raw";
 import Checklist from "@editorjs/checklist";
 import Image from "next/image";
-
+import { toast } from "react-hot-toast";
 const Embed = require("@editorjs/embed");
 
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { ChevronDown } from "lucide-react";
+import Button from "@/app/components/Button";
 
 // ✅ Helper — sanitize undefined/null recursively
 function sanitizeData(data: unknown): unknown {
@@ -212,6 +213,7 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
         await updateDoc(ref, blogData);
       } else {
         await addDoc(collection(db, "blogs"), blogData);
+        toast.success("Blog created successfully");
       }
 
       onSuccess?.();
@@ -219,6 +221,7 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
       console.error("🔥 Error creating blog:", err);
       const errorMessage = err instanceof Error ? err.message : "Failed to save blog";
       setError(errorMessage);
+      toast.error("Error saving blog");
     } finally {
       setLoading(false);
     }
@@ -332,13 +335,13 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
 
       {error && <div className="text-red-500 text-sm">{error}</div>}
 
-      <button
-        onClick={handleCreate}
-        disabled={loading}
-        className="bg-black text-white px-4 py-2 rounded disabled:opacity-60"
-      >
-        {loading ? "Saving..." : initial?.id ? "Update Blog" : "Create Blog"}
-      </button>
+      <Button
+  onClick={handleCreate}
+  disabled={loading}
+  className=" text-black "
+  text={loading ? "Saving..." : initial?.id ? "Update Blog" : "Create Blog"}
+/>
+
     </div>
   );
 }

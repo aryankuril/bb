@@ -16,14 +16,14 @@ const allSteps: Step[] = [
   { number: "02", title: "Blancora", image: "/images/webdev/Blancoranew.jpg", category: "Web Development", link: "/work/website-development/blancora" },
   { number: "03", title: "Mr Blox", image: "/images/webdev/MrBloxnew.jpg", category: "Web Development", link: "/work/website-development/mrblox" },
   { number: "04", title: "My Suit Tailor", image: "/images/webdev/MSTnew.jpg", category: "Web Development", link: "/work/website-development/mysuittailor" },
-  { number: "05", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/work/website-development/jkdiamondsinstitute" },
-  { number: "06", title: "The Feline Foundation", image: "/images/webdev/Foundation2.png", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
-  { number: "07", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/work/website-development/scssports" },
+  // { number: "05", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/work/website-development/jkdiamondsinstitute" },
+  // { number: "06", title: "The Feline Foundation", image: "/images/webdev/Foundation2.png", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
+  // { number: "07", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/work/website-development/scssports" },
 
   // 🟩 PERFORMANCE MARKETING (4)
   { number: "01", title: "JK Diamonds Institute", image: "/images/pm/Jk-diamondsnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/jkdiamondsinstitute" },
-  { number: "02", title: "Dancing Leaf", image: "/images/pm/Dancingleafnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/dancingleaf" },
-  { number: "03", title: "Chatterbox Labels", image: "/images/pm/Chatterboxnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/chatterboxlabels" },
+  { number: "02", title: "Dancing Leaf", image: "/images/pm/Dancingleafnew2.jpg", category: "Performance Marketing", link: "/work/performance-marketing/dancingleaf" },
+  { number: "03", title: "Chatterbox Labels", image: "/images/pm/Chatterboxnew2.jpg", category: "Performance Marketing", link: "/work/performance-marketing/chatterboxlabels" },
   { number: "04", title: "SCS Sports", image: "/images/pm/SCSnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/scssports" },
 
   // 🟥 SOCIAL MEDIA (3)
@@ -31,12 +31,12 @@ const allSteps: Step[] = [
   { number: "02", title: "Manba Finance", image: "/images/sm/Manba.jpg", category: "Social Media", link: "/work/social-media-marketing/manbafinance" },
   { number: "03", title: "Mr Blox", image: "/images/sm/MrBlox.jpg", category: "Social Media", link: "/work/social-media-marketing/mrblox" },
   { number: "04", title: "SCS Sports", image: "/images/sm/SCS.jpg", category: "Social Media", link: "/work/social-media-marketing/scssports" },
-  { number: "05", title: "Ric Rac", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/work/social-media-marketing/ricrackids" },
+  // { number: "05", title: "Ric Rac", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/work/social-media-marketing/ricrackids" },
 
   // 🟨 SEO (3)
   { number: "01", title: "Manba Finance", image: "/images/seo-cs/Manba.png", category: "SEO", link: "/work/seo-services/manbafinance" },
-  { number: "02", title: "Presolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/work/seo-services/presolv360" },
-  { number: "03", title: "SCS Sports", image: "/images/seo-cs/SCS.png", category: "SEO", link: "/work/seo-services/scssports" },
+  // { number: "02", title: "Presolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/work/seo-services/presolv360" },
+  { number: "03", title: "SCS Sports", image: "/images/seo-cs/SCS-seo.png", category: "SEO", link: "/work/seo-services/scssports" },
 ];
 
 const categories = ["Web Development", "Performance Marketing", "Social Media", "SEO"];

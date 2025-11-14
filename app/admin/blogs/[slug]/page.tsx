@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import Button from "@/app/components/Button";
-
+import { toast } from "react-hot-toast"; 
 export default function EditBlogPage({ params }: { params: { slug: string } }) {
   const router = useRouter();
   const slug = params.slug;
@@ -82,7 +82,7 @@ export default function EditBlogPage({ params }: { params: { slug: string } }) {
           scheduledAt: blog.scheduledAt, // ✅ FIXED
         }}
         onSuccess={() => {
-          alert("Blog updated");
+         toast.success("Blog updated successfully");
           router.push("/admin/blogs");
         }}
       />

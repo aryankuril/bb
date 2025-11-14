@@ -23,7 +23,7 @@ export default function NewBlogPage() {
       <BlogForm
       initial={{}}
         onSuccess={() => {
-          alert("Blog created");
+          // alert("Blog created");
           router.push("/admin/blogs");
         }}
       />

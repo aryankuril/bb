@@ -231,20 +231,21 @@ export default function CareerApplications() {
 
           {/* 🎯 Job Filter */}
           <div className="relative">
-            <select
-              value={selectedJob}
-              onChange={(e) => setSelectedJob(e.target.value)}
-              className="appearance-none border border-gray-300 rounded-lg px-4 py-2 pr-10 focus:outline-none cursor-pointer"
-            >
-              <option value="">All Job Titles</option>
-              {jobTitles.map((title, idx) => (
-                <option key={idx} value={title}>
-                  {title}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-600 pointer-events-none" />
-          </div>
+  <select
+    value={selectedJob}
+    onChange={(e) => setSelectedJob(e.target.value)}
+    className="appearance-none border border-gray-300 rounded-lg px-1 py-2 pr-10 w-40 focus:outline-none cursor-pointer"
+  >
+    <option value="">All Job Titles</option>
+    {jobTitles.map((title, idx) => (
+      <option key={idx} value={title}>
+        {title}
+      </option>
+    ))}
+  </select>
+  <ChevronDown className="absolute right-3 top-3 w-4 h-4 text-gray-600 pointer-events-none" />
+</div>
+
 
           {/* 📤 Export CSV Inline */}
           <div className="flex flex-col gap-2">
@@ -322,8 +323,7 @@ export default function CareerApplications() {
             <thead className="bg-gray-100 text-gray-700 font-semibold">
               <tr>
                 <th className="p-3 text-left">Name</th>
-                <th className="p-3 text-left">Email</th>
-                <th className="p-3 text-left">Phone</th>
+                <th className="p-3 text-left">Contact</th>
                 <th className="p-3 text-left">Job Title</th>
                 <th className="p-3 text-left">Availability</th>
                 <th className="p-3 text-left">CV</th>
@@ -338,21 +338,23 @@ export default function CareerApplications() {
                 <tr key={app.id} className="border-t ">
                   <td className="p-3 capitalize">{app.name}</td>
                   <td className="p-3 capitalize">
-                    <a
-                      href={`mailto:${app.email}`}
-                      className="underline text-blue-500 hover:text-blue-700"
-                    >
-                      {app.email}
-                    </a>
-                  </td>
-                  <td className="p-3 capitalize">
-                    <a
-                      href={`tel:${app.phone}`}
-                      className="underline text-blue-500 hover:text-blue-700"
-                    >
-                      {app.phone}
-                    </a>
-                  </td>
+  <div className="flex flex-col">
+    <a
+      href={`mailto:${app.email}`}
+      className="underline text-blue-500 hover:text-blue-700"
+    >
+      {app.email}
+    </a>
+
+    <a
+      href={`tel:${app.phone}`}
+      className="underline text-blue-500 hover:text-blue-700 mt-1"
+    >
+      {app.phone}
+    </a>
+  </div>
+</td>
+
                   <td className="p-3 capitalize">{app.jobTitle}</td>
                   <td className="p-3 capitalize">{app.availability}</td>
                   <td className="p-3">

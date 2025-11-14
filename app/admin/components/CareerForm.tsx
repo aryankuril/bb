@@ -18,6 +18,7 @@ import List from "@editorjs/list";
 import Checklist from "@editorjs/checklist";
 import RawTool from "@editorjs/raw";
 import ImageTool from "@editorjs/image";
+import Button from "@/app/components/Button";
 
 const Embed = require("@editorjs/embed");
 
@@ -164,13 +165,13 @@ export default function CareerForm({ existingCareer }: { existingCareer?: any })
 
       {error && <div className="text-red-500 text-sm">{error}</div>}
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-black text-white px-4 py-2 rounded-md disabled:opacity-50"
-      >
-        {loading ? "Saving..." : existingCareer ? "Update Career" : "Add Career"}
-      </button>
+     <Button
+  type="submit"
+  disabled={loading}
+  className="text-black"
+  text={loading ? "Saving..." : existingCareer?.id ? "Update Career" : "Add Career"}
+/>
+
     </form>
   );
 }

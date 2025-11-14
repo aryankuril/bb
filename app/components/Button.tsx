@@ -12,6 +12,7 @@ interface ButtonProps {
   disabled?: boolean; 
   target?: string; // for external links
   rel?: string;    // for external links
+   type?: "button" | "submit" | "reset";
 }
 
 const Button: React.FC<ButtonProps> = ({
