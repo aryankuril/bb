@@ -29,7 +29,7 @@ const allSteps: Step[] = [
   // 🟥 SOCIAL MEDIA (3)
   { number: "01", title: "Supersox", image: "/images/sm/SS.jpg", category: "Social Media", link: "/work/social-media-marketing/supersox" },
   { number: "02", title: "Manba Finance", image: "/images/sm/Manba.jpg", category: "Social Media", link: "/work/social-media-marketing/manbafinance" },
-  { number: "03", title: "Mr Blox", image: "/images/sm/MrBlox.jpg", category: "Social Media", link: "/work/social-media-marketing/mrblox" },
+  { number: "03", title: "Parvez Damania", image: "/images/sm/Damania.jpg", category: "Social Media", link: "/work/social-media-marketing/damania" },
   { number: "04", title: "SCS Sports", image: "/images/sm/SCS.jpg", category: "Social Media", link: "/work/social-media-marketing/scssports" },
   // { number: "05", title: "Ric Rac", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/work/social-media-marketing/ricrackids" },
 

@@ -26,7 +26,7 @@ const cards: Card[] = [
     title: "Web Development & UI UX",
     subtitle:
       "We build pixel-perfect websites and digital experiences that aren't just beautiful, but are engineered to convert.",
-    image: "/images/servicespage/Development.png",
+    image: "/images/webdev/SuperSoxnew.jpg",
     link: "/services/website-development",
     shape: "square",
   },
@@ -35,7 +35,7 @@ const cards: Card[] = [
     title: "SEO ",
     subtitle:
       "We put your brand at the top of Google, connecting you with customers who are already searching for you.",
-    image: "/images/servicespage/SEO.png",
+    image: "/images/seo-cs/Manba.png",
     link: "/services/seo-services",
     shape: "circle",
   },
@@ -53,7 +53,7 @@ const cards: Card[] = [
     title: "Social Media Management",
     subtitle:
       "We build and nurture your online community, turning followers into loyal fans through creative content and authentic engagement.",
-    image: "/images/servicespage/Social-Media.png",
+    image: "/images/sm/Manba.jpg",
     link: "/services/social-media-marketing",
     shape: "square",
   },
@@ -62,7 +62,7 @@ const cards: Card[] = [
     title: "Performance Marketing",
     subtitle:
       "We create data-driven ad campaigns that deliver measurable results, turning clicks into customers and spend into revenue.",
-    image: "/images/servicespage/Performance.png",
+    image: "/images/pm/Chatterboxnew2.jpg",
     link: "/services/performance-marketing",
     shape: "circle",
   },

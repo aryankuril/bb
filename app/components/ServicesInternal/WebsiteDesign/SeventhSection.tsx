@@ -10,8 +10,8 @@ const SeventhSection = () => {
           <div className="text-center space-y-6 sm:space-y-8">
             {/* Image */}
             <Image
- width={100}
-        height={100}
+ width={1000}
+        height={1000}
             alt=""
               src="/images/BB-web-chai-2.gif"
               className="w-[180px] h-auto sm:w-[240px] sm:h-[160px] md:w-[250px] md:h-auto mx-auto mb-4 sm:mb-8"

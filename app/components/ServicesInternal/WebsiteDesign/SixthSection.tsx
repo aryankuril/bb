@@ -1,92 +1,83 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import { useEffect, useState } from "react";
 
 const testimonials = [
-  {
-    text: `A partner who understands business goals, deadlines, and the pulse of the audience.`,
-    name: "~ Naman Ajmera",
-    brand: "J K Diamonds Institute",
-    maintext: "“Better Understanding”",
-  },
-  {
-    text: `Ideas are fresh, relevant, and perfectly aligned with our audience.`,
-    name: "~ Keval Shah",
-    brand: "Selection Centre Sports (SCS Sports)",
-    maintext: "“Good Ideas”",
-  },
-  {
-    text: `From strategy to execution, their team understood our brand inside out.`,
-    name: "~ Shaurya Modi",
-    brand: "DNM Sports",
-    maintext: "“Best Strategy”",
-  },
-  {
-    text: `Data-driven campaigns that actually work. We finally see measurable results.`,
-    name: "~ Ankit Garg",
-    brand: "Dancing Leaf Tea",
-    maintext: "“Measurable Results”",
-  },
-  {
-    text: `Our digital presence is stronger than ever. Every campaign brings tangible results.`,
-    name: "~ Mickey Mehta",
-    brand: "Antar",
-    maintext: "“Tangible Results”",
-  },
+  { brand: "J K Diamonds Institute", text: "The brand started seeing more orders every single day.", name: "~ Naman Ajmera", maintext: "“Better Understanding”" },
+  { brand: "Selection Centre Sports (SCS Sports)", text: "Month-end stress disappeared because targets were hit early. Performance stayed consistent, and results improved.", name: "~ Keval Shah", maintext: "“Better Results”" },
+  { brand: "DNM Sports", text: "Customers found the brand through our content and felt connected.", name: "~ Shaurya Modi", maintext: "“Clearer Brand Communication”" },
+  { brand: "Dancing Leaf Tea", text: "Engagement increased and enquiries dropped less midway. The brand feels inviting.", name: "~ AW", maintext: "“Improved Enquiry Flow”" },
+  { brand: "Manba Finance", text: "Fresh ideas brought new attention and interactions increased across platforms.", name: "~ Manish Shah", maintext: "“Creative Idea Execution”" },
+  { brand: "CarronCothing", text: "Orders started increasing every day, showing clear growth.", name: "~ Rohit Chhedda", maintext: "“Growth in Orders'" },
+  { brand: "Supersox", text: "Month-end stress disappeared, performance stayed consistent, and results improved.", name: "~ Harsh Saraf", maintext: "“Better Results”" },
+  { brand: "FirstEdge", text: "Customers found the brand through our content and felt connected.", name: "~ Pranav Bimbhat", maintext: "“Clearer Brand Communication”" },
+  { brand: "Aditya Agarwal", text: "Engagement increased and enquiries dropped less midway. The brand feels inviting.", name: "~ AW", maintext: "“Improved Enquiry Flow”" },
 ];
 
-const SixthSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const delay = 5000; // 5 seconds
+const SixthSection: React.FC = () => {
+  const [currentGroup, setCurrentGroup] = useState(0);
 
-  const resetTimeout = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  };
+  const [sliderRef, instanceRef] = useKeenSlider({
+    loop: true,
+    slides: { perView: 3, spacing: 20 },
+    breakpoints: {
+      "(max-width: 1024px)": { slides: { perView: 2, spacing: 16 } },
+      "(max-width: 640px)": { slides: { perView: 1, spacing: 12 } },
+    },
+    slideChanged(slider) {
+      // Calculate current group (0,1,2) for 3 dots
+      const perGroup = Math.ceil(testimonials.length / 3);
+      const currentIdx = slider.track.details.rel;
+      setCurrentGroup(Math.floor(currentIdx / perGroup));
+    },
+  });
 
   useEffect(() => {
-    resetTimeout();
-    timeoutRef.current = setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, delay);
-    return () => resetTimeout();
-  }, [currentIndex]);
+    const interval = setInterval(() => {
+      instanceRef.current?.next();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [instanceRef]);
 
   return (
-    <div className="max-w-[960px] mx-auto py-10 sm:py-15 lg:py-20 font-poppins relative overflow-hidden">
-      {/* Slides */}
-      <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
-        }}
-      >
-        {testimonials.map(({ text, name, brand, maintext }, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 w-full flex justify-center items-center"
-          >
-            <div className="w-[95%] px-4 py-6 sm:py-8 lg:py-10 relative flex flex-col items-center text-center">
-              <h3 className="mb-6 sm:mb-8 lg:mb-10 text-black">{maintext}</h3>
-              <div className="body1 mb-6 sm:mb-8 lg:mb-10 text-black">
-                {text}
+    <div className="container py-10 sm:py-15 lg:py-20 relative">
+      <div className="text-center mb-8 sm:mb-12">
+        <h2 className="black-text lg:w-[950px] mx-auto">
+          Trusted By 200+ <span className="text-highlight"><br />Companies</span>
+        </h2>
+      </div>
+
+      <div ref={sliderRef} className="keen-slider ">
+        {testimonials.map((item, index) => (
+          <div key={index} className="keen-slider__slide overflow-hidden relative ">
+            <div className="flex flex-col justify-between h-full  w-90% bg-black shadow-lg rounded-[20px] p-6 relative overflow-hidden">
+              <div className="absolute -right-1 top-0 w-4 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
+              <h3 className="white-text font-bold text-lg text-left z-10 relative">{item.maintext}</h3>
+              <p className="white-text mt-2 text-sm leading-relaxed z-10 relative">{item.text}</p>
+              <div className="flex flex-col text-left z-10 relative mt-2">
+                <p className="font-medium white-text">{item.name}</p>
+                <p className="text-sm white-text">{item.brand}</p>
               </div>
-              <p className="body2 black-text">{brand}</p>
-              <p className="body3 black-text font-semibold">{name}</p>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Dots navigation */}
-      <div className="flex justify-center gap-3 mt-4">
-        {testimonials.map((_, idx) => (
+      {/* 3-dot Pagination */}
+      <div className="flex justify-center mt-6 gap-2">
+        {[0, 1, 2].map((dot) => (
           <button
-            key={idx}
+            key={dot}
             className={`w-3 h-3 rounded-full transition-colors ${
-              idx === currentIndex ? "bg-yellow-400" : "bg-gray-300"
+              currentGroup === dot ? "bg-yellow-400" : "bg-gray-400"
             }`}
-            onClick={() => setCurrentIndex(idx)}
-            aria-label={`Go to testimonial ${idx + 1}`}
+            onClick={() => {
+              // Move to the first slide of the group
+              const perGroup = Math.ceil(testimonials.length / 3);
+              instanceRef.current?.moveToIdx(dot * perGroup);
+            }}
           />
         ))}
       </div>

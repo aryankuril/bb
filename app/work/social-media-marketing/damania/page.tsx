@@ -1,9 +1,9 @@
 import React from 'react'
 import Navbar from '../../../components/Navbar'
-import Firstsection from '../../../components/ClientsInternal/SocialMedia/Manba/Firstsection'
-import SecondSection from '@/app/components/ClientsInternal/SocialMedia/Manba/SecondSection'
-// import ThirdSection from "@/app/components/ClientsInternal/SocialMedia/Manba/ThirdSection"
-import FourthSection from '../../../components/ClientsInternal/SocialMedia/Manba/FourthSection'
+import Firstsection from '../../../components/ClientsInternal/SocialMedia/Damania/Firstsection'
+import SecondSection from '@/app/components/ClientsInternal/SocialMedia/Damania/SecondSection'
+// import ThirdSection from "@/app/components/ClientsInternal/SocialMedia/Damania/ThirdSection"
+import FourthSection from '../../../components/ClientsInternal/SocialMedia/Damania/FourthSection'
 import SeventhSection from '../../../components/ServicesInternal/WebsiteDesign/SeventhSection'
 import Footer from '../../../components/Footer'
 import Taxi from '../../../components/Taxi'
@@ -11,8 +11,8 @@ import SmoothScroll from '@/app/components/SmoothScroll'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Manba Finance Social Media Marketing Case Study | Bombay Blokes",
-  description: " Learn how Bombay Blokes drove engagement and lead growth for Manba Finance via strategic social media campaigns, content planning and targeted ads. View the success story.",
+  title: "Parvez Aviation Digital Branding Case Study | Bombay Blokes",
+  description: "Discover how Bombay Blokes transformed Parvez’s iconic aviation legacy into a compelling online brand with strategic content, reels, and community engagement.",
 };
 
 const Index = () => {
@@ -27,7 +27,7 @@ const Index = () => {
       {/* <ThirdSection />  */}
        <FourthSection />
       <SeventhSection />
-      <Footer />
+      <Footer /> 
       </SmoothScroll>
       
     </div>

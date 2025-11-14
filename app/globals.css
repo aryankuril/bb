@@ -521,7 +521,7 @@ h6 {
 
 
 
-/* linksaftycss */
+/* BLOGS link css */
 .prose a {
   color: #2563eb; /* blue-600 */
   text-decoration: underline;
@@ -540,3 +540,19 @@ h6 {
 .ce-toolbar__content {
   max-width: 100% !important;
 }
+
+
+/* BLOGS ICONS */
+
+/* Hide default select dropdown arrow */
+select::-ms-expand {
+  display: none;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem; /* so text doesn't overlap custom icon */
+}
+

@@ -10,6 +10,79 @@ interface Career {
   postedAt: { seconds: number };
 }
 
+function renderEditorJsHTML(data: any) {
+  if (!data || !data.blocks) return "";
+
+  return data.blocks
+    .map((block: any) => {
+      switch (block.type) {
+        // Header
+        case "header":
+          return `<h${block.data.level} class="my-4 font-bold">${block.data.text}</h${block.data.level}>`;
+
+        // Paragraph
+        case "paragraph":
+          return `<p class="my-3">${block.data.text}</p>`;
+
+        // List (ordered or unordered)
+        case "list":
+          const Tag = block.data.style === "ordered" ? "ol" : "ul";
+          return `<${Tag} class="list-inside my-4 pl-6 ${
+            Tag === "ol" ? "list-decimal" : "list-disc"
+          }">${block.data.items
+            .map((item: any) => {
+              // Some Editor.js versions use 'content', others 'text'
+              const text = item.content || item.text || "";
+              return `<li>${text}</li>`;
+            })
+            .join("")}</${Tag}>`;
+
+        // Checklist
+        case "checklist":
+          return `<ul class="my-4 space-y-2">${block.data.items
+            .map((item: any, i: number) => {
+              const text = item.content || item.text || "";
+              return `<li class="flex items-center gap-2">
+                        <input id="check-${i}" type="checkbox" ${
+                          item.checked ? "checked" : ""
+                        }/>
+                        <label for="check-${i}" class="cursor-pointer">${text}</label>
+                      </li>`;
+            })
+            .join("")}</ul>`;
+
+        // Image
+        case "image":
+          return `<figure class="my-6">
+                    <img src="${block.data.file?.url || ""}" alt="${
+            block.data.caption || ""
+          }" class="rounded-xl w-full"/>
+                    ${
+                      block.data.caption
+                        ? `<figcaption class="text-center text-sm text-gray-500 mt-2">${block.data.caption}</figcaption>`
+                        : ""
+                    }
+                  </figure>`;
+
+        // Embed (YouTube, etc.)
+        case "embed":
+          return `<div class="my-6">
+                    <iframe width="100%" height="400" src="${
+                      block.data.embed || ""
+                    }" frameborder="0" allowfullscreen></iframe>
+                  </div>`;
+
+        // Raw HTML
+        case "raw":
+          return block.data.html || "";
+
+        // Default fallback
+        default:
+          return "";
+      }
+    })
+    .join("");
+}
 export default function CareerCard({
   career,
   onDelete,
@@ -48,7 +121,18 @@ export default function CareerCard({
       </div>
 
       {/* ✅ Description (same clamped layout as blogs) */}
-      
+      <div className="whitespace-pre-line text-sm text-gray-500 pr-1 sm:pr-2 job-description">
+
+<div
+  className="line-clamp-3"
+  dangerouslySetInnerHTML={{
+    __html: renderEditorJsHTML(career.description),
+  }}
+></div>
+
+  
+
+        </div>
 
       {/* ✅ Bottom buttons (same layout as blogs) */}
       <div className="mt-4 flex gap-2">

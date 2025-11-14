@@ -30,6 +30,21 @@ export default function CareerApplications() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedJob, setSelectedJob] = useState("");
   const [open, setOpen] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+const appsPerPage = 10;
+
+const indexOfLast = currentPage * appsPerPage;
+const indexOfFirst = indexOfLast - appsPerPage;
+const currentApps = filteredApps.slice(indexOfFirst, indexOfLast);
+
+const totalPages = Math.ceil(filteredApps.length / appsPerPage);
+
+const handlePageChange = (page: number) => {
+  if (page >= 1 && page <= totalPages) setCurrentPage(page);
+};
+
+
   const [dateRange, setDateRange] = useState<Range[]>([
     { startDate: undefined, endDate: undefined, key: "selection" },
   ]);
@@ -175,7 +190,7 @@ export default function CareerApplications() {
   };
 
   return (
-    <div className="p-6 relative">
+    <div className=" relative">
       <h3 className="text-2xl font-semibold mb-6">Career Applications</h3>
 
       {/* Filters */}
@@ -234,7 +249,7 @@ export default function CareerApplications() {
   <select
     value={selectedJob}
     onChange={(e) => setSelectedJob(e.target.value)}
-    className="appearance-none border border-gray-300 rounded-lg px-1 py-2 pr-10 w-40 focus:outline-none cursor-pointer"
+    className="appearance-none border border-gray-300 rounded-lg px-4 py-2 pr-10 w-60 focus:outline-none cursor-pointer"
   >
     <option value="">All Job Titles</option>
     {jobTitles.map((title, idx) => (
@@ -318,7 +333,7 @@ export default function CareerApplications() {
       ) : filteredApps.length === 0 ? (
         <p>No matching applications found.</p>
       ) : (
-        <div className="overflow-x-auto border rounded-lg shadow">
+<div className="overflow-x-auto overflow-y-auto max-h-[75vh] border rounded-lg shadow">
           <table className="min-w-full border border-gray-200 text-sm">
             <thead className="bg-gray-100 text-gray-700 font-semibold">
               <tr>
@@ -333,8 +348,8 @@ export default function CareerApplications() {
                 <th className="p-3 text-left">Action</th>
               </tr>
             </thead>
-            <tbody>
-              {filteredApps.map((app) => (
+            <tbody >
+              {currentApps.map((app) => (
                 <tr key={app.id} className="border-t ">
                   <td className="p-3 capitalize">{app.name}</td>
                   <td className="p-3 capitalize">
@@ -393,7 +408,40 @@ export default function CareerApplications() {
               ))}
             </tbody>
           </table>
-        </div>
+          {/* Pagination Controls */}
+{totalPages > 1 && (
+  <div className="flex justify-center items-center mt-4 gap-2 py-4">
+    <button
+      onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+      disabled={currentPage === 1}
+      className="px-3 py-1 border rounded disabled:opacity-50"
+    >
+      Prev
+    </button>
+
+    {[...Array(totalPages)].map((_, i) => (
+      <button
+        key={i}
+        onClick={() => setCurrentPage(i + 1)}
+        className={`px-3 py-1 border rounded ${
+          currentPage === i + 1 ? "bg-gray-800 text-white" : ""
+        }`}
+      >
+        {i + 1}
+      </button>
+    ))}
+
+    <button
+      onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+      disabled={currentPage === totalPages}
+      className="px-3 py-1 border rounded disabled:opacity-50"
+    >
+      Next
+    </button>
+  </div>
+)}
+
+        </div>       
       )}
 
       {/* 🔹 Popup Modal for View */}

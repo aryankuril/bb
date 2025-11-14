@@ -77,9 +77,9 @@ const workflowSteps = [
             transition={{ ease: "easeInOut", duration: 0.7 }}
             className="relative w-[250px] sm:w-[400px] md:w-[500px] lg:w-[600px] h-[20px] sm:h-[50px] z-20 lg:mt-0 mt-5"
           >
-            <Image
- width={100}
-        height={100}
+<Image
+      width={1000}
+          height={1000}
               src="/images/train.png"
               alt="train"
               className="w-full h-full object-contain"

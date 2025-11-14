@@ -17,12 +17,12 @@ const cardsData = [
     url: "/work/social-media-marketing/supersox",
   },
    {
-    title: "J K Diamonds Institute",
-    tags: ["UI UX", "Framer", "Zoho", "SEO", "Meta Ads"],
+    title: "Mr Blox",
+    tags: ["UI UX", "Shopihy", ],
     content:
-      "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
-    image: "/images/webdev/Jk-Diamonds.png",
-    url: "/work/website-development/jkdiamondsinstitute",
+      "Mr Blox is a toy brand for kids 3+, with a playful Panda mascot and a parent-friendly digital presence.",
+    image: "/images/webdev/MrBloxnew.jpg",
+    url: "/work/website-development/mrblox",
   },
   {
     title: "SCS Sports",

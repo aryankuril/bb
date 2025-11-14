@@ -48,6 +48,8 @@ const FirstSection = () => {
     {/* Image slider */}
     {images.map((img, idx) => (
       <Image
+      width={1000}
+          height={1000}
         key={idx}
         src={img}
         alt={`Slide ${idx + 1}`}

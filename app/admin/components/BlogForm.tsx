@@ -255,26 +255,30 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
       </div>
 
       {/* Category */}
-      <div >
-        <label className="block text-sm font-medium mb-1">Category</label>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="w-full border rounded px-3 py-2"
-        >
-          {CATEGORY_OPTIONS.map((cat) => (
-            <option  key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
-      </div>
+      <div className="relative ">
+  <label className="block text-sm font-medium mb-1">Category</label>
+
+  <select
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+    className="w-full border rounded px-3 py-2 cursor-pointer"
+  >
+    {CATEGORY_OPTIONS.map((cat) => (
+      <option key={cat} value={cat}>
+        {cat}
+      </option>
+    ))}
+  </select>
+
+  <ChevronDown className="absolute right-3 top-9 w-4 h-4 text-gray-600 pointer-events-none" />
+</div>
+
 
       {/* Publish Date Picker */}
       <div className="relative" ref={dateRef}>
         <label className="block text-sm font-medium mb-1">Publish Date</label>
         <div
-          className="appearance-none w-full border rounded px-3 py-2 pr-10 focus:outline-none cursor-pointer flex justify-between items-center"
+          className="appearance-none w-full border rounded px-3 py-2  focus:outline-none cursor-pointer flex justify-between items-center"
           onClick={() => setOpenDatePicker(!openDatePicker)}
         >
           <span>{selectedDate.toDateString()}</span>
@@ -307,30 +311,39 @@ export default function BlogForm({ initial, onSuccess }: { initial?: any; onSucc
       </div>
 
       {/* Publish Time */}
-      <div>
-        <label className="block text-sm font-medium mb-1">Publish Time</label>
-        <input
-          type="time"
-          value={publishTime}
-          onChange={(e) => setPublishTime(e.target.value)}
-          className="w-full border rounded px-3 py-2"
-        />
-      </div>
+     <div>
+  <label className="block text-sm font-medium mb-1">Publish Time</label>
+  <input
+    type="time"
+    value={publishTime}
+    onChange={(e) => setPublishTime(e.target.value)}
+    className="w-full border rounded px-3 py-2 cursor-pointer"
+    onClick={(e) => (e.target as HTMLInputElement).showPicker?.()}
+  />
+</div>
+
 
       {/* Image */}
       <div>
         <label className="block text-sm font-medium mb-1">Image</label>
         <input type="file" accept="image/*" onChange={handleFileChange} />
         {preview && (
-          <div className="mt-3">
-            <div className="text-xs text-gray-500 mb-1">Preview</div>
-            <Image
-              src={preview}
-              alt="preview"
-              className="max-h-48 rounded object-cover"
-            />
-          </div>
-        )}
+  <div className="mt-3">
+    <div className="text-xs text-gray-500 mb-1">Preview</div>
+
+    {/* FIXED IMAGE PREVIEW */}
+    <div className="relative w-full h-48 rounded overflow-hidden bg-gray-100">
+      <Image
+        src={preview}
+        alt="Preview Image"
+        fill
+        className="object-cover"
+        sizes="100vw"
+      />
+    </div>
+  </div>
+)}
+
       </div>
 
       {error && <div className="text-red-500 text-sm">{error}</div>}

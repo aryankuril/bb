@@ -3,6 +3,7 @@ import { useState } from "react";
 import { signupUser } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { setCookie } from "cookies-next";
+import Button from "../components/Button";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -18,18 +19,16 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      // ✅ Correct argument order
       const user = await signupUser(email, password, name);
 
-      // ✅ Get token and store cookie
       const idToken = await user.getIdToken();
       setCookie("firebase-auth", idToken, {
         path: "/",
-        maxAge: 60 * 60 * 24, // 1 day
+        maxAge: 60 * 60 * 24,
       });
 
       alert("Signup successful! Welcome!");
-      router.push("/"); // ✅ Redirect user directly to home
+      router.push("/");
     } catch (err: any) {
       console.error("Signup Error:", err.message);
       setError(err.message);
@@ -39,13 +38,21 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-100">
+    <div className="flex h-screen items-center justify-center">
       <form
         onSubmit={handleSignup}
-        className="bg-white p-6 rounded-lg shadow-md w-96 space-y-4"
+        className="relative bg-black p-10 shadow-md w-96 space-y-4 overflow-hidden rounded-[20px]"
       >
-        <h2 className="text-xl font-semibold text-center">Signup</h2>
-        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+        {/* Right yellow border */}
+        <div className="absolute -right-1 top-0 w-2 sm:w-2 md:w-5 h-full bg-[#FAB31E]"></div>
+
+        <h2 className="text-xl font-semibold text-white text-center">
+          Signup
+        </h2>
+
+        {error && (
+          <p className="text-red-500 text-sm text-center">{error}</p>
+        )}
 
         <input
           type="text"
@@ -53,7 +60,7 @@ export default function SignupPage() {
           onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
           required
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded text-white bg-black"
         />
 
         <input
@@ -62,7 +69,7 @@ export default function SignupPage() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           required
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded text-white bg-black"
         />
 
         <input
@@ -71,16 +78,23 @@ export default function SignupPage() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           required
-          className="w-full border p-2 rounded"
+          className="w-full border p-2 rounded text-white bg-black"
         />
 
-        <button
+        <Button
           type="submit"
           disabled={loading}
-          className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
-        >
-          {loading ? "Creating account..." : "Sign Up"}
-        </button>
+          className="white-text"
+          text={loading ? "Creating account..." : "Sign Up"}
+        />
+
+        {/* Login Link */}
+        <p className="text-center text-white text-sm mt-2">
+          Already have an account?{" "}
+          <a href="/login" className="text-[#FAB31E] underline">
+            Login
+          </a>
+        </p>
       </form>
     </div>
   );

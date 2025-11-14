@@ -16,70 +16,70 @@ type UserType = {
   name: string;
   email: string;
   role: string;
-  createdAt?: string | { seconds: number; nanoseconds: number }; // Firestore timestamp support
+  createdAt?: string | { seconds: number; nanoseconds: number };
 };
 
 const Users = () => {
-    const [users, setUsers] = useState<UserType[]>([]);
-      const [loading, setLoading] = useState(true);
-    
-      // Fetch all users
-      useEffect(() => {
-        const fetchUsers = async () => {
-          try {
-            const querySnapshot = await getDocs(collection(db, "users"));
-            const usersList: UserType[] = querySnapshot.docs.map((doc) => {
-              const data = doc.data();
-              return {
-                id: doc.id,
-                ...data,
-              };
-            }) as UserType[];
-            setUsers(usersList);
-          } catch (error) {
-            console.error(error);
-            toast.error("Failed to fetch users.");
-          } finally {
-            setLoading(false);
-          }
-        };
-    
-        fetchUsers();
-      }, []);
-    
-      // Handle role change (admin ↔ user)
-      const handleRoleChange = async (id: string, newRole: string) => {
-        try {
-          await updateDoc(doc(db, "users", id), { role: newRole });
-          setUsers((prev) =>
-            prev.map((u) => (u.id === id ? { ...u, role: newRole } : u))
-          );
-          toast.success(`Role updated to "${newRole}"`);
-        } catch (error) {
-          console.error(error);
-          toast.error("Error updating role.");
-        }
-      };
-    
-      // Delete user
-      const handleDelete = async (id: string) => {
-        if (!confirm("Are you sure you want to delete this user?")) return;
-    
-        try {
-          await deleteDoc(doc(db, "users", id));
-          setUsers((prev) => prev.filter((u) => u.id !== id));
-          toast.success("User deleted!");
-        } catch (error) {
-          console.error(error);
-          toast.error("Error deleting user.");
-        }
-      };
-    
-      if (loading) return <p className="text-center py-10">Loading users...</p>;
-    
+  const [users, setUsers] = useState<UserType[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch all users
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        const usersList: UserType[] = querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+          };
+        }) as UserType[];
+        setUsers(usersList);
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to fetch users.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  // Handle role change
+  const handleRoleChange = async (id: string, newRole: string) => {
+    try {
+      await updateDoc(doc(db, "users", id), { role: newRole });
+      setUsers((prev) =>
+        prev.map((u) => (u.id === id ? { ...u, role: newRole } : u))
+      );
+      toast.success(`Role updated to "${newRole}"`);
+    } catch (error) {
+      console.error(error);
+      toast.error("Error updating role.");
+    }
+  };
+
+  // Delete user
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this user?")) return;
+
+    try {
+      await deleteDoc(doc(db, "users", id));
+      setUsers((prev) => prev.filter((u) => u.id !== id));
+      toast.success("User deleted!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error deleting user.");
+    }
+  };
+
+  if (loading) return <p className="text-center py-10">Loading users...</p>;
+
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-6">User Management</h1>
+      <h3 className="text-2xl font-semibold mb-6">User Management</h3>
 
       <div className="overflow-x-auto border rounded-lg shadow">
         <table className="min-w-full divide-y divide-gray-200 text-sm">
@@ -92,17 +92,18 @@ const Users = () => {
               <th className="px-6 py-3 text-right">Actions</th>
             </tr>
           </thead>
+
           <tbody className="divide-y divide-gray-100">
             {users.map((user) => {
-              // Convert Firestore timestamp to readable date
+              // FORMAT DATE → DD/MM/YYYY
               let joinedDate = "—";
               if (user.createdAt) {
                 if (typeof user.createdAt === "string") {
-                  joinedDate = new Date(user.createdAt).toLocaleDateString();
+                  joinedDate = new Date(user.createdAt).toLocaleDateString("en-GB");
                 } else if ("seconds" in user.createdAt) {
                   joinedDate = new Date(
                     user.createdAt.seconds * 1000
-                  ).toLocaleDateString();
+                  ).toLocaleDateString("en-GB");
                 }
               }
 
@@ -111,18 +112,34 @@ const Users = () => {
                   <td className="px-6 py-3 capitalize">{user.name || "—"}</td>
                   <td className="px-6 py-3">{user.email}</td>
                   <td className="px-6 py-3 capitalize">{joinedDate}</td>
+
+                  {/* FIXED DROPDOWN UI */}
                   <td className="px-6 py-3">
-                    <select
-                      value={user.role}
-                      onChange={(e) =>
-                        handleRoleChange(user.id, e.target.value)
-                      }
-                      className="border border-gray-300 rounded-md px-2 py-1 text-sm capitalize"
-                    >
-                      <option value="user">User</option>
-                      <option value="admin">Admin</option>
-                    </select>
+                    <div className="relative w-32">
+                      <select
+                        value={user.role}
+                        onChange={(e) => handleRoleChange(user.id, e.target.value)}
+                        className="w-full border border-gray-300 rounded-md px-3 py-1 text-sm capitalize appearance-none pr-10"
+                      >
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                      </select>
+
+                      {/* Dropdown Arrow */}
+                      <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                        <svg
+                          className="w-4 h-4 text-gray-600"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M6 9l6 6 6-6" />
+                        </svg>
+                      </div>
+                    </div>
                   </td>
+
                   <td className="px-6 py-3 text-right">
                     <button
                       onClick={() => handleDelete(user.id)}
@@ -137,10 +154,7 @@ const Users = () => {
 
             {users.length === 0 && (
               <tr>
-                <td
-                  colSpan={5}
-                  className="text-center py-6 text-gray-500 italic"
-                >
+                <td colSpan={5} className="text-center py-6 text-gray-500 italic">
                   No users found.
                 </td>
               </tr>
@@ -149,7 +163,7 @@ const Users = () => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;

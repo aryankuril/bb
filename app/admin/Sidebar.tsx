@@ -50,8 +50,8 @@ export default function Sidebar() {
       icon: Briefcase,
       href: "/admin/careers",
       children: [
-        { label: "Manage Careers", href: "/admin/careers" },
-        { label: "Applications", href: "/admin/career-applications" },
+        { label: "Add Careers", href: "/admin/careers" },
+        { label: "Manage Applications", href: "/admin/career-applications" },
       ],
     },
     { label: "Users", icon: Users, href: "/admin/users" },

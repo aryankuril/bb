@@ -17,12 +17,12 @@ const cardsData = [
     url: "/work/social-media-marketing/supersox",
   },
    {
-    title: "J K Diamonds Institute",
-    tags: ["UI UX", "Framer", "Zoho", "SEO", "Meta Ads"],
+    title: "Mr Blox",
+    tags: ["UI UX", "Shopihy", ],
     content:
-      "We partnered with JK Diamonds Institute to create a seamless digital experience that reflects their prestigious brand for prospective students.",
-    image: "/images/webdev/Jk-Diamonds.png",
-    url: "/work/website-development/jkdiamondsinstitute",
+      "Mr Blox is a toy brand for kids 3+, with a playful Panda mascot and a parent-friendly digital presence.",
+    image: "/images/webdev/MrBloxnew.jpg",
+    url: "/work/website-development/mrblox",
   },
   {
     title: "SCS Sports",
@@ -43,6 +43,8 @@ const cardsData = [
   },
 ];
 
+
+// 
 export default function StackingCards() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
@@ -164,13 +166,15 @@ export default function StackingCards() {
                   <div className="w-full h-full min-h-0 flex items-center justify-center py-6 sm:py-8 md:py-10">
                     <div className="relative w-full lg:h-[60vh] h-[30vh]">
                       <Image
-                        src={card.image}
-                        alt={card.title}
-                        fill
-                        className="object-cover rounded-3xl"
-                        sizes="(min-width: 1024px) 60vh, 30vh"
-                        priority={i === 0}
-                      />
+  src={card.image}
+  alt={card.title}
+  width={800}
+  height={600}
+  className="object-cover rounded-3xl w-full h-full"
+  quality={100}
+  priority={i === 0}
+/>
+
                     </div>
                   </div>
                 </div>
