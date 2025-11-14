@@ -66,8 +66,9 @@ const Firstsection: React.FC = () => {
         className="absolute bottom-0 right-4 sm:right-8 lg:right-16 flex justify-end"
       >
         <Image
- width={100}
-        height={100}
+width={1000}
+          height={1000}
+           priority
           src="/images/pricing-stataion.png"
           alt="Station board"
           className="w-28 sm:w-40 md:w-45 lg:w-48 xl:w-50 h-auto"
