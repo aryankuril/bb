@@ -149,7 +149,7 @@ export default function SecondSection() {
                   ${i % 2 === 0 ? "md:left-0" : "md:right-0"} 
                   max-md:left-1/2 max-md:-translate-x-1/2`}
                 style={{
-                  cursor: "pointer",
+                  // cursor: "pointer",
                   willChange: visible ? "transform, opacity" : "auto",
                   WebkitBackfaceVisibility: "hidden",
                   backfaceVisibility: "hidden",

@@ -92,7 +92,7 @@ function renderEditorJsHTML(data: any) {
 
 export default function BlogInternal({ blog }: { blog: BlogData }) {
   return (
-    <div className="container py-10 sm:py-15 lg:py-40">
+    <div className="container py-0 sm:py-15 lg:py-40">
       {blog.imageUrl && (
         <img
           src={blog.imageUrl}

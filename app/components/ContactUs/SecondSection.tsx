@@ -617,7 +617,7 @@ const SecondSection = () => {
               </label>
               <div className="relative w-full">
                 <input
-                  type="number"
+                  type="tel"
                   name="phone"
                   placeholder="Phone"
                   value={formData.phone}
