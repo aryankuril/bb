@@ -63,23 +63,12 @@ const testimonials = [
 
 const SixthSection: React.FC = () => {
   const [currentGroup, setCurrentGroup] = useState(0);
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.innerWidth <= 1024 : false
-  );
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
     slides: {
       perView: 3,
       spacing: 20,
-      origin: "center",
     },
     breakpoints: {
       "(max-width: 1024px)": {
@@ -90,44 +79,9 @@ const SixthSection: React.FC = () => {
       },
     },
     slideChanged(slider) {
-      // Calculate current group (0,1,2) for 3 dots
       const perGroup = Math.ceil(testimonials.length / 3);
       const currentIdx = slider.track.details.rel;
       setCurrentGroup(Math.floor(currentIdx / perGroup));
-    },
-    animationEnded(slider) {
-      // Apply blur only on desktop
-      if (isMobile) return;
-      
-      const currentIdx = slider.track.details.rel;
-      const slides = slider.slides;
-
-      slides.forEach((slide, idx) => {
-        const relIdx = slider.track.absToRel(idx);
-        if (relIdx === currentIdx) {
-          slide.classList.remove("blur-sm", "opacity-60");
-        } else {
-          slide.classList.add("blur-sm", "opacity-60");
-        }
-      });
-    },
-    created(slider) {
-      // Set initial blur state on mount with a small delay, only on desktop
-      setTimeout(() => {
-        if (isMobile) return;
-        
-        const currentIdx = slider.track.details.rel;
-        const slides = slider.slides;
-
-        slides.forEach((slide, idx) => {
-          const relIdx = slider.track.absToRel(idx);
-          if (relIdx === currentIdx) {
-            slide.classList.remove("blur-sm", "opacity-60");
-          } else {
-            slide.classList.add("blur-sm", "opacity-60");
-          }
-        });
-      }, 50);
     },
   });
 
@@ -138,16 +92,6 @@ const SixthSection: React.FC = () => {
     return () => clearInterval(interval);
   }, [instanceRef]);
 
-  useEffect(() => {
-    // Remove all blur classes on mobile
-    if (isMobile && instanceRef.current) {
-      const slides = instanceRef.current.slides;
-      slides.forEach((slide) => {
-        slide.classList.remove('blur-sm', 'opacity-60');
-      });
-    }
-  }, [isMobile, instanceRef]);
-
   return (
     <div className="container py-10 sm:py-15 lg:py-20 relative">
       <div className="text-center mb-8 sm:mb-12">
@@ -156,14 +100,14 @@ const SixthSection: React.FC = () => {
         </h2>
       </div>
 
-      <div ref={sliderRef} className="keen-slider ">
+      <div ref={sliderRef} className="keen-slider">
         {testimonials.map((item, index) => {
           return (
             <div
               key={index}
-              className={`keen-slider__slide overflow-hidden relative transition-all duration-300 ${!isMobile ? 'blur-sm opacity-60' : ''}`}
+              className="keen-slider__slide overflow-hidden relative"
             >
-              <div className="flex flex-col justify-between h-full  w-90% bg-black shadow-lg rounded-[20px] p-6 relative overflow-hidden">
+              <div className="flex flex-col justify-between h-full w-90% bg-black shadow-lg rounded-[20px] p-6 relative overflow-hidden">
                 <div className="absolute -right-1 top-0 w-4 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
                 <h3 className="white-text font-bold text-lg text-left z-10 relative">
                   {item.maintext}
@@ -190,7 +134,6 @@ const SixthSection: React.FC = () => {
               currentGroup === dot ? "bg-yellow-400" : "bg-gray-400"
             }`}
             onClick={() => {
-              // Move to the first slide of the group
               const perGroup = Math.ceil(testimonials.length / 3);
               instanceRef.current?.moveToIdx(dot * perGroup);
             }}
