@@ -63,6 +63,16 @@ const testimonials = [
 
 const SixthSection: React.FC = () => {
   const [currentGroup, setCurrentGroup] = useState(0);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth <= 1024 : false
+  );
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
@@ -73,10 +83,10 @@ const SixthSection: React.FC = () => {
     },
     breakpoints: {
       "(max-width: 1024px)": {
-        slides: { perView: 2, spacing: 16, origin: "center" },
+        slides: { perView: 2, spacing: 16 },
       },
       "(max-width: 640px)": {
-        slides: { perView: 1, spacing: 12, origin: "center" },
+        slides: { perView: 1, spacing: 12 },
       },
     },
     slideChanged(slider) {
@@ -86,7 +96,9 @@ const SixthSection: React.FC = () => {
       setCurrentGroup(Math.floor(currentIdx / perGroup));
     },
     animationEnded(slider) {
-      // Apply blur only after animation completes
+      // Apply blur only on desktop
+      if (isMobile) return;
+      
       const currentIdx = slider.track.details.rel;
       const slides = slider.slides;
 
@@ -100,8 +112,10 @@ const SixthSection: React.FC = () => {
       });
     },
     created(slider) {
-      // Set initial blur state on mount with a small delay
+      // Set initial blur state on mount with a small delay, only on desktop
       setTimeout(() => {
+        if (isMobile) return;
+        
         const currentIdx = slider.track.details.rel;
         const slides = slider.slides;
 
@@ -124,6 +138,16 @@ const SixthSection: React.FC = () => {
     return () => clearInterval(interval);
   }, [instanceRef]);
 
+  useEffect(() => {
+    // Remove all blur classes on mobile
+    if (isMobile && instanceRef.current) {
+      const slides = instanceRef.current.slides;
+      slides.forEach((slide) => {
+        slide.classList.remove('blur-sm', 'opacity-60');
+      });
+    }
+  }, [isMobile, instanceRef]);
+
   return (
     <div className="container py-10 sm:py-15 lg:py-20 relative">
       <div className="text-center mb-8 sm:mb-12">
@@ -137,7 +161,7 @@ const SixthSection: React.FC = () => {
           return (
             <div
               key={index}
-              className="keen-slider__slide overflow-hidden relative transition-all duration-300 blur-sm opacity-60"
+              className={`keen-slider__slide overflow-hidden relative transition-all duration-300 ${!isMobile ? 'blur-sm opacity-60' : ''}`}
             >
               <div className="flex flex-col justify-between h-full  w-90% bg-black shadow-lg rounded-[20px] p-6 relative overflow-hidden">
                 <div className="absolute -right-1 top-0 w-4 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
