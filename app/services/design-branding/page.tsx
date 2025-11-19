@@ -5,7 +5,7 @@ import FirstSection from "../../components/ServicesInternal/Design-Branding/Firs
 import ThirdSection from "../../components/ServicesInternal/Design-Branding/ThirdSection";
 import FourthSection from "../../components/ServicesInternal/Design-Branding/FourthSection";
 import FifthSection from "../../components/ServicesInternal/Design-Branding/FifthSection";
-import SixthSection from "../../components/ServicesInternal/Design-Branding/SixthSection";
+import SixthSection from "../../components/ServicesInternal/WebsiteDesign/SixthSection";
 import SeventhSection from "../../components/ServicesInternal/Design-Branding/SeventhSection";
 import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'

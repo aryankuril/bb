@@ -10,15 +10,15 @@ gsap.registerPlugin(ScrollTrigger);
 const cardsData = [
   {
     title: "Supersox",
-    tags: ["Social Media", "Meta Ads" ,"Shopihy"],
+    tags: ["Social Media", "Meta Ads", "Shopify"],
     content:
       "Supersox had already built a solid footprint in offline retail, but their online presence was still dusty. They needed a social media strategy that not only brought in traffic but consistently turned scrollers into shoppers.",
     image: "/images/sm/SS.jpg",
     url: "/work/social-media-marketing/supersox",
   },
-   {
+  {
     title: "Mr Blox",
-    tags: ["UI UX", "Shopihy", ],
+    tags: ["UI UX", "Shopify"],
     content:
       "Mr Blox is a toy brand for kids 3+, with a playful Panda mascot and a parent-friendly digital presence.",
     image: "/images/webdev/MrBloxnew.jpg",
@@ -32,7 +32,7 @@ const cardsData = [
     image: "/images/sm/SCS.jpg",
     url: "/work/social-media-marketing/scssports",
   },
- 
+
   {
     title: "My Suit Tailor",
     tags: [" UI UX", "Shopify ", "SEO"],
@@ -43,8 +43,7 @@ const cardsData = [
   },
 ];
 
-
-// 
+//
 export default function StackingCards() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
@@ -166,15 +165,14 @@ export default function StackingCards() {
                   <div className="w-full h-full min-h-0 flex items-center justify-center py-6 sm:py-8 md:py-10">
                     <div className="relative w-full lg:h-[60vh] h-[30vh]">
                       <Image
-  src={card.image}
-  alt={card.title}
-  width={800}
-  height={600}
-  className="object-cover rounded-3xl w-full h-full"
-  quality={100}
-  priority={i === 0}
-/>
-
+                        src={card.image}
+                        alt={card.title}
+                        width={800}
+                        height={600}
+                        className="object-cover rounded-3xl w-full h-full"
+                        quality={100}
+                        priority={i === 0}
+                      />
                     </div>
                   </div>
                 </div>
@@ -193,9 +191,9 @@ export default function StackingCards() {
       </section>
       {/* Tail spacer so after unpin there's breathing room before next section */}
       <div aria-hidden className="h-[60vh]"></div>
-        <div className="flex justify-center items-center lg:mt-0 mt-15">
-          <Button href="/work" text="Explore Our Work " className="" />
-        </div>
+      <div className="flex justify-center items-center lg:mt-0 mt-15">
+        <Button href="/work" text="Explore Our Work " className="" />
+      </div>
     </div>
   );
 }

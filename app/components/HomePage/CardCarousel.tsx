@@ -62,7 +62,7 @@ const CardCarousel: React.FC = () => {
   const textScale = useTransform(
     scrollYProgress,
     [0, 0.3],
-    isMobile ? [1.25, 1] : [2, 1]
+    isMobile ? [1.1, 1] : [2, 1]
   );
   const textY = useTransform(scrollYProgress, [0, 0.3], ["35vh", "0vh"]);
   return (

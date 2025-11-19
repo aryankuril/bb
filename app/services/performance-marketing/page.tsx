@@ -5,7 +5,7 @@ import FirstSection from "../../components/ServicesInternal/PerformanceMarketing
 import ThirdSection from "../../components/ServicesInternal/PerformanceMarketing/ThirdSection";
 import FourthSection from "../../components/ServicesInternal/PerformanceMarketing/FourthSection";
 import FifthSection from "../../components/ServicesInternal/PerformanceMarketing/FifthSection";
-import SixthSection from "../../components/ServicesInternal/PerformanceMarketing/SixthSection";
+import SixthSection from "../../components/ServicesInternal/WebsiteDesign/SixthSection";
 import SeventhSection from "../../components/ServicesInternal/PerformanceMarketing/SeventhSection";
 import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'

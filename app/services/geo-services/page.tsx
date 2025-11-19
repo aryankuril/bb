@@ -5,7 +5,7 @@ import FirstSection from "../../components/ServicesInternal/GEO/FirstSection";
 import ThirdSection from "../../components/ServicesInternal/GEO/ThirdSection";
 import FourthSection from "../../components/ServicesInternal/GEO/FourthSection";
 import FifthSection from "../../components/ServicesInternal/GEO/FifthSection";
-import SixthSection from "../../components/ServicesInternal/GEO/SixthSection";
+import SixthSection from "../../components/ServicesInternal/WebsiteDesign/SixthSection";
 import SeventhSection from "../../components/ServicesInternal/GEO/SeventhSection";
 import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'

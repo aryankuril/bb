@@ -52,25 +52,28 @@ export default function SecondSection() {
     if (!imgRef.current) return;
 
     const moveImage = (e: MouseEvent) => {
-  // Limit the image movement to the left 50% of the screen
-  const maxX = window.innerWidth * 0.4; // Half width
-  const clampedX = Math.min(e.clientX, maxX); // Clamp X to 50% area
+      // Limit the image movement to the left 50% of the screen
+      const maxX = window.innerWidth * 0.4; // Half width
+      const clampedX = Math.min(e.clientX, maxX); // Clamp X to 50% area
 
-  lastMouse.current.x = clampedX + 20;
-  lastMouse.current.y = e.clientY + 20;
+      lastMouse.current.x = clampedX + 20;
+      lastMouse.current.y = e.clientY + 20;
 
-  gsap.to(imgRef.current, {
-    x: lastMouse.current.x,
-    y: lastMouse.current.y,
-    duration: 0.3,
-    ease: "power3.out",
-    overwrite: "auto",
-  });
-};
-
+      gsap.to(imgRef.current, {
+        x: lastMouse.current.x,
+        y: lastMouse.current.y,
+        duration: 0.3,
+        ease: "power3.out",
+        overwrite: "auto",
+      });
+    };
 
     if (active !== null) {
-      if (lastMouse.current.x === 0 && lastMouse.current.y === 0 && typeof window !== "undefined") {
+      if (
+        lastMouse.current.x === 0 &&
+        lastMouse.current.y === 0 &&
+        typeof window !== "undefined"
+      ) {
         lastMouse.current.x = window.innerWidth / 2;
         lastMouse.current.y = window.innerHeight / 2;
       }
@@ -159,8 +162,12 @@ export default function SecondSection() {
     >
       <div className="flex items-center justify-center w-full py-30 lg:mb-20">
         {/* <AnimatedHeading> */}
-        <h1 className="text-center black-text" style={{ textTransform: "none" }}>
-          <span className="text-highlight">Born in Bombay,</span> crafting digital experiences that connect and inspire.
+        <h1
+          className="text-center black-text"
+          style={{ textTransform: "none" }}
+        >
+          <span className="text-highlight">Born in Bombay,</span> crafting
+          digital experiences that connect and inspire.
         </h1>
         {/* </AnimatedHeading> */}
       </div>
@@ -192,13 +199,13 @@ export default function SecondSection() {
               <h3 className="black-text">{s.title}</h3>
 
               {/* Mobile-only image */}
-              <div className="block md:hidden">
-                <Image
+              <div className="md:hidden">
+                <img
                   src={s.img}
                   alt={s.title}
                   width={600}
                   height={400}
-                  className="rounded-[15px] shadow-lg w-full"
+                  className="rounded-[15px] shadow-lg"
                 />
               </div>
 

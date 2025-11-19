@@ -5,7 +5,7 @@ import FirstSection from "../../components/ServicesInternal/SocialMedia/FirstSec
 import ThirdSection from "../../components/ServicesInternal/SocialMedia/ThirdSection";
 import FourthSection from "../../components/ServicesInternal/SocialMedia/FourthSection";
 import FifthSection from "../../components/ServicesInternal/SocialMedia/FifthSection";
-import SixthSection from "../../components/ServicesInternal/SocialMedia/SixthSection";
+import SixthSection from "../../components/ServicesInternal/WebsiteDesign/SixthSection";
 import SeventhSection from "../../components/ServicesInternal/SocialMedia/SeventhSection";
 import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
