@@ -18,7 +18,7 @@ const SecondSection = () => {
     },
     {
       number: "03",
-      image: "/images/teams/team-page/img-3.jpg",
+      image: "/images/teams/team-page/img-3.JPG",
       description: "-",
       position: "left",
     },
