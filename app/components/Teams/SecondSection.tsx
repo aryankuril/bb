@@ -6,27 +6,26 @@ const SecondSection = () => {
   const achievements = [
     {
       number: "01",
-      image: "/images/teams/team-page/1.jpg",
-      description: "Modern & Premium Design that captivates every eye.",
+      image: "/images/teams/team-page/img-1.jpg",
+      description: "-",
       position: "left",
     },
     {
       number: "02",
-      image: "/images/teams/team-page/2.jpg",
-      description: "Responsive Layout – built to shine on every device.",
+      image: "/images/teams/team-page/img-2.jpg",
+      description: "-",
       position: "right",
     },
     {
       number: "03",
-      image: "/images/teams/team-page/3.jpg",
-      description: "Streamlined Navigation for smooth and effortless browsing.",
+      image: "/images/teams/team-page/img-3.jpg",
+      description: "-",
       position: "left",
     },
     {
       number: "04",
-      image: "/images/teams/team-page/4.jpg",
-      description:
-        "Comprehensive Course Pages that engage and inspire learners.",
+      image: "/images/teams/team-page/img-4.jpg",
+      description: "-",
       position: "right",
     },
   ];
