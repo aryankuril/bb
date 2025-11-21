@@ -6,26 +6,27 @@ const SecondSection = () => {
   const achievements = [
     {
       number: "01",
-      image: "/images/teams/team1.webp",
+      image: "/images/teams/team-page/1.jpg",
       description: "Modern & Premium Design that captivates every eye.",
       position: "left",
     },
     {
       number: "02",
-      image: "/images/teams/team2.webp",
+      image: "/images/teams/team-page/2.jpg",
       description: "Responsive Layout – built to shine on every device.",
       position: "right",
     },
     {
       number: "03",
-      image: "/images/teams/team3.webp",
+      image: "/images/teams/team-page/3.jpg",
       description: "Streamlined Navigation for smooth and effortless browsing.",
       position: "left",
     },
     {
       number: "04",
-      image: "/images/teams/team5.webp",
-      description: "Comprehensive Course Pages that engage and inspire learners.",
+      image: "/images/teams/team-page/4.jpg",
+      description:
+        "Comprehensive Course Pages that engage and inspire learners.",
       position: "right",
     },
   ];
@@ -147,24 +148,23 @@ const SecondSection = () => {
                   className={`relative transform ${tiltClass} rounded-[20px] overflow-hidden lg:w-[500px] w-[280px] bg-transparent`}
                 >
                   {/* Orange dot */}
-                 <div className="absolute top-10 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 lg:w-12 lg:h-12 rounded-full bg-[var(--color-secondary)] flex items-center justify-center">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="40"
-    height="40"
-    viewBox="0 0 31 30"
-    fill="none"
-  >
-    <circle cx="15.3" cy="15" r="15" fill="#FAB31E" />
-  </svg>
-</div>
-
+                  <div className="absolute top-10 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 lg:w-12 lg:h-12 rounded-full bg-[var(--color-secondary)] flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="40"
+                      height="40"
+                      viewBox="0 0 31 30"
+                      fill="none"
+                    >
+                      <circle cx="15.3" cy="15" r="15" fill="#FAB31E" />
+                    </svg>
+                  </div>
 
                   {/* ✅ Fixed-size image box */}
                   <div className="w-full h-[280px] lg:h-[350px] rounded-b-[20px] ">
                     <Image
- width={1000}
-        height={1000}
+                      width={1000}
+                      height={1000}
                       src={achievement.image}
                       alt={achievement.description}
                       className="w-full h-full object-cover"
