@@ -1,20 +1,21 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import Firstsection from '@/app/components/Career/Firstsection'
-import SecondSection from '../components/Career/SecondSection'
-import ThirdSection from '../components/Career/ThirdSection'
+import React from "react";
+import Navbar from "../components/Navbar";
+import Firstsection from "@/app/components/Career/Firstsection";
+import SecondSection from "../components/Career/SecondSection";
+import ThirdSection from "../components/Career/ThirdSection";
 // import RubberSection from '../components/HomePage/RubberSection'
 
-import SeventhSection from '../components/ServicesInternal/WebsiteDesign/SeventhSection'
-import Footer from '../components/Footer'
+import SeventhSection from "../components/ServicesInternal/WebsiteDesign/SeventhSection";
+import Footer from "../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
-import Taxi from '../components/Taxi'
-import SmoothScroll from '../components/SmoothScroll'
-import { Metadata } from 'next'
+import Taxi from "../components/Taxi";
+import SmoothScroll from "../components/SmoothScroll";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Digital Marketing careers in Mumbai",
-  description: "Looking for Jobs and an opportunity in the field of digital marketing? Contact us to know more. ",
+  description:
+    "Looking for Jobs and an opportunity in the field of digital marketing? Contact us to know more. ",
 };
 
 const Index = () => {
@@ -23,20 +24,18 @@ const Index = () => {
       {/* <ClientScripts/> */}
 
       <SmoothScroll>
-      <Taxi/>
+        <Taxi />
 
         <Navbar />
-        <Firstsection/>
-        <SecondSection/>
+        <Firstsection />
+        <SecondSection />
         {/* <RubberSection/> */}
-        <ThirdSection/>
-        <SeventhSection/>
+        <ThirdSection />
+        <SeventhSection />
         <Footer />
-        </SmoothScroll>
-        
-
+      </SmoothScroll>
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

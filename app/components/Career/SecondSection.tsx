@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, ChangeEvent  } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import ContactButton from "../ContactButton";
@@ -14,7 +14,6 @@ type Career = {
   details?: string; // ✅ added
 };
 
-
 type InputValues = {
   ticketName: string;
   email: string;
@@ -24,29 +23,39 @@ type InputValues = {
   message: string;
 };
 
+function renderEditorJsHTML(data: unknown) {
+  // Type guard to check if data has blocks array
+  if (
+    !data ||
+    typeof data !== "object" ||
+    !("blocks" in data) ||
+    !Array.isArray((data as { blocks?: unknown[] }).blocks)
+  ) {
+    return "";
+  }
 
+  const typedData = data as { blocks: Array<Record<string, unknown>> };
 
-function renderEditorJsHTML(data: any) {
-  if (!data || !data.blocks) return "";
-
-  return data.blocks
-    .map((block: any) => {
+  return typedData.blocks
+    .map((block: Record<string, unknown>) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const blockData = block.data as Record<string, any>;
       switch (block.type) {
         // Header
         case "header":
-          return `<h${block.data.level} class="my-4 font-bold">${block.data.text}</h${block.data.level}>`;
+          return `<h${blockData.level} class="my-2 font-bold">${blockData.text}</h${blockData.level}>`;
 
         // Paragraph
         case "paragraph":
-          return `<p class="my-3">${block.data.text}</p>`;
+          return `<p class="my-2.5">${blockData.text}</p>`;
 
         // List (ordered or unordered)
         case "list":
-          const Tag = block.data.style === "ordered" ? "ol" : "ul";
-          return `<${Tag} class="list-inside my-4 pl-6 ${
+          const Tag = blockData.style === "ordered" ? "ol" : "ul";
+          return `<${Tag} class="list-inside my-2 pl-1 ${
             Tag === "ol" ? "list-decimal" : "list-disc"
-          }">${block.data.items
-            .map((item: any) => {
+          }">${blockData.items
+            .map((item: Record<string, unknown>) => {
               // Some Editor.js versions use 'content', others 'text'
               const text = item.content || item.text || "";
               return `<li>${text}</li>`;
@@ -55,13 +64,13 @@ function renderEditorJsHTML(data: any) {
 
         // Checklist
         case "checklist":
-          return `<ul class="my-4 space-y-2">${block.data.items
-            .map((item: any, i: number) => {
+          return `<ul class="my-2 space-y-1">${blockData.items
+            .map((item: Record<string, unknown>, i: number) => {
               const text = item.content || item.text || "";
               return `<li class="flex items-center gap-2">
                         <input id="check-${i}" type="checkbox" ${
-                          item.checked ? "checked" : ""
-                        }/>
+                item.checked ? "checked" : ""
+              }/>
                         <label for="check-${i}" class="cursor-pointer">${text}</label>
                       </li>`;
             })
@@ -69,28 +78,28 @@ function renderEditorJsHTML(data: any) {
 
         // Image
         case "image":
-          return `<figure class="my-6">
-                    <img src="${block.data.file?.url || ""}" alt="${
-            block.data.caption || ""
+          return `<figure class="my-3">
+                    <img src="${blockData.file?.url || ""}" alt="${
+            blockData.caption || ""
           }" class="rounded-xl w-full"/>
                     ${
-                      block.data.caption
-                        ? `<figcaption class="text-center text-sm text-gray-500 mt-2">${block.data.caption}</figcaption>`
+                      blockData.caption
+                        ? `<figcaption class="text-center text-sm text-gray-500 mt-2">${blockData.caption}</figcaption>`
                         : ""
                     }
                   </figure>`;
 
         // Embed (YouTube, etc.)
         case "embed":
-          return `<div class="my-6">
+          return `<div class="my-3">
                     <iframe width="100%" height="400" src="${
-                      block.data.embed || ""
+                      blockData.embed || ""
                     }" frameborder="0" allowfullscreen></iframe>
                   </div>`;
 
         // Raw HTML
         case "raw":
-          return block.data.html || "";
+          return blockData.html || "";
 
         // Default fallback
         default:
@@ -100,9 +109,8 @@ function renderEditorJsHTML(data: any) {
     .join("");
 }
 
-
-const SecondSection = ()  => {
-    const [jobs, setJobs] = useState<Career[]>([]);
+const SecondSection = () => {
+  const [jobs, setJobs] = useState<Career[]>([]);
   const [activeJob, setActiveJob] = useState(jobs[0]);
   const [isFlipped, setIsFlipped] = useState(false);
   const [focusedInput, setFocusedInput] = useState<keyof InputValues | "">("");
@@ -130,6 +138,7 @@ const SecondSection = ()  => {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
 
   // Validation functions
   const validateEmail = (email: string): boolean => {
@@ -143,13 +152,11 @@ const SecondSection = ()  => {
     return phoneRegex.test(phone);
   };
 
-
-useEffect(() => {
-  if (jobs.length > 0 && !activeJob) {
-    setActiveJob(jobs[0]); // auto-select first job
-  }
-}, [jobs, activeJob]);
-
+  useEffect(() => {
+    if (jobs.length > 0 && !activeJob) {
+      setActiveJob(jobs[0]); // auto-select first job
+    }
+  }, [jobs, activeJob]);
 
   const validateURL = (url: string): boolean => {
     if (!url) return true;
@@ -202,32 +209,107 @@ useEffect(() => {
     }
   };
 
+  useEffect(() => {
+    const fetchCareers = async () => {
+      try {
+        const q = query(collection(db, "careers"), orderBy("postedAt", "desc"));
+        const snapshot = await getDocs(q);
+        const careersData: Career[] = snapshot.docs.map((doc) => {
+          const data = doc.data() as Omit<Career, "id" | "tag" | "details">;
+          return {
+            id: doc.id,
+            ...data,
+            tag: data.isImmediate ? "Immediate" : "", // ✅ show tag only if admin marked Immediate
+            details: data.description,
+          };
+        });
 
+        setJobs(careersData);
 
-useEffect(() => {
-  const fetchCareers = async () => {
-    try {
-      const q = query(collection(db, "careers"), orderBy("postedAt", "desc"));
-      const snapshot = await getDocs(q);
-      const careersData: Career[] = snapshot.docs.map((doc) => {
-  const data = doc.data() as Omit<Career, "id" | "tag" | "details">;
-  return {
-    id: doc.id,
-    ...data,
-    tag: data.isImmediate ? "Immediate" : "", // ✅ show tag only if admin marked Immediate
-    details: data.description,
-  };
-});
+        // Set the first job as active and open the first non-empty category
+        if (careersData.length > 0) {
+          setActiveJob(careersData[0]);
 
-      setJobs(careersData);
-    } catch (err) {
-      console.error("Error fetching careers:", err);
-    }
-  };
+          // Categorize jobs first
+          const tempCategories = {
+            performance: [] as Career[],
+            social: [] as Career[],
+            design: [] as Career[],
+            seo: [] as Career[],
+            tech: [] as Career[],
+            others: [] as Career[],
+          };
 
-  fetchCareers();
-}, []);
+          careersData.forEach((job) => {
+            const title = job.title.toLowerCase();
+            if (
+              title.includes("performance") ||
+              (title.includes("marketing") && title.includes("performance")) ||
+              title.includes("ppc") ||
+              title.includes("ads")
+            ) {
+              tempCategories.performance.push(job);
+            } else if (
+              title.includes("social media") ||
+              title.includes("smm") ||
+              title.includes("content creator") ||
+              title.includes("copywriter")
+            ) {
+              tempCategories.social.push(job);
+            } else if (
+              title.includes("design") ||
+              title.includes("graphic") ||
+              title.includes("video editor") ||
+              title.includes("editor") ||
+              title.includes("branding") ||
+              title.includes("creative")
+            ) {
+              tempCategories.design.push(job);
+            } else if (
+              title.includes("seo") ||
+              title.includes("search engine")
+            ) {
+              tempCategories.seo.push(job);
+            } else if (
+              title.includes("developer") ||
+              title.includes("development") ||
+              title.includes("website") ||
+              title.includes("tech") ||
+              title.includes("engineer") ||
+              title.includes("programmer") ||
+              title.includes("software")
+            ) {
+              tempCategories.tech.push(job);
+            } else {
+              tempCategories.others.push(job);
+            }
+          });
 
+          // Open the first non-empty category in order
+          if (tempCategories.performance.length > 0) {
+            setOpenAccordion("performance");
+          } else if (tempCategories.social.length > 0) {
+            setOpenAccordion("social");
+          } else if (tempCategories.design.length > 0) {
+            setOpenAccordion("design");
+          } else if (tempCategories.seo.length > 0) {
+            setOpenAccordion("seo");
+          } else if (tempCategories.tech.length > 0) {
+            setOpenAccordion("tech");
+          } else if (tempCategories.others.length > 0) {
+            setOpenAccordion("others");
+          }
+        } else {
+          // If no jobs, open the first available category
+          setOpenAccordion(null);
+        }
+      } catch (err) {
+        console.error("Error fetching careers:", err);
+      }
+    };
+
+    fetchCareers();
+  }, []);
 
   const handleFocus = (field: keyof InputValues) => setFocusedInput(field);
   const handleBlur = (
@@ -295,15 +377,15 @@ useEffect(() => {
   };
 
   // 🔥 Helper function to decide icon color
-const getIconColor = (field: keyof InputValues) => {
-  if (focusedInput === field) return "#FAB31E";
+  const getIconColor = (field: keyof InputValues) => {
+    if (focusedInput === field) return "#FAB31E";
 
-  // ✅ If CV file is uploaded, keep icon yellow
-  if (field === "cv" && cvFile) return "#FAB31E";
+    // ✅ If CV file is uploaded, keep icon yellow
+    if (field === "cv" && cvFile) return "#FAB31E";
 
-  // ✅ For normal text fields
-  return inputValues[field].trim() !== "" ? "#FAB31E" : "#ABABAB";
-};
+    // ✅ For normal text fields
+    return inputValues[field].trim() !== "" ? "#FAB31E" : "#ABABAB";
+  };
 
   // Convert file to base64
   const fileToBase64 = (file: File): Promise<string> => {
@@ -425,13 +507,11 @@ const getIconColor = (field: keyof InputValues) => {
     }
   };
 
-
   useEffect(() => {
-  if (jobs.length > 0 && !activeJob) {
-    setActiveJob(jobs[0]); // ✅ auto-select first job
-  }
-}, [jobs, activeJob]);
-
+    if (jobs.length > 0 && !activeJob) {
+      setActiveJob(jobs[0]); // ✅ auto-select first job
+    }
+  }, [jobs, activeJob]);
 
   const svgs = {
     ticketName: (
@@ -611,6 +691,78 @@ const getIconColor = (field: keyof InputValues) => {
       </svg>
     ),
   };
+
+  // Helper function to categorize jobs
+  const categorizeJobs = () => {
+    const categories = {
+      performance: [] as Career[],
+      social: [] as Career[],
+      design: [] as Career[],
+      seo: [] as Career[],
+      tech: [] as Career[],
+      others: [] as Career[],
+    };
+
+    jobs.forEach((job) => {
+      const title = job.title.toLowerCase();
+      // Performance Marketing category
+      if (
+        title.includes("performance") ||
+        (title.includes("marketing") && title.includes("performance")) ||
+        title.includes("ppc") ||
+        title.includes("ads")
+      ) {
+        categories.performance.push(job);
+      }
+      // Social Media category
+      else if (
+        title.includes("social media") ||
+        title.includes("smm") ||
+        title.includes("content creator") ||
+        title.includes("copywriter")
+      ) {
+        categories.social.push(job);
+      }
+      // Design & Editing category
+      else if (
+        title.includes("design") ||
+        title.includes("graphic") ||
+        title.includes("video editor") ||
+        title.includes("editor") ||
+        title.includes("branding") ||
+        title.includes("creative")
+      ) {
+        categories.design.push(job);
+      }
+      // SEO category
+      else if (title.includes("seo") || title.includes("search engine")) {
+        categories.seo.push(job);
+      }
+      // Tech/Development category
+      else if (
+        title.includes("developer") ||
+        title.includes("development") ||
+        title.includes("website") ||
+        title.includes("tech") ||
+        title.includes("engineer") ||
+        title.includes("programmer") ||
+        title.includes("software")
+      ) {
+        categories.tech.push(job);
+      }
+      // Others
+      else {
+        categories.others.push(job);
+      }
+    });
+
+    return categories;
+  };
+
+  const toggleAccordion = (category: string) => {
+    setOpenAccordion(openAccordion === category ? null : category);
+  };
+
   return (
     <section
       id="second-section"
@@ -627,163 +779,550 @@ const getIconColor = (field: keyof InputValues) => {
       </h2>
 
       <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
-        {/* LEFT – Job List */}
-        <div className="p-4 md:p-6 flex flex-col lg:gap-3 gap-2 ">
-  <h2 className="white-text text-center mb-6 md:mb-10">Available Trains</h2>
+        {/* LEFT – Job List with Accordion */}
+        <div className="p-4 md:p-6 md:pt-4 flex flex-col lg:gap-3 gap-2 ">
+          <h2 className="white-text text-center mb-6 md:mb-6">
+            Available Trains
+          </h2>
 
- {jobs.map((job, i) => (
-  <button
-    key={i}
-    onClick={() => {
-      setActiveJob(job);
-      if (isFlipped) setIsFlipped(false);
+          {/* Performance Marketing */}
+          {categorizeJobs().performance.length > 0 && (
+            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
+              <button
+                onClick={() => toggleAccordion("performance")}
+                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+              >
+                <span className="font-semibold body2">
+                  Performance Marketing
+                </span>
+                <svg
+                  className={`w-5 h-5 transition-transform ${
+                    openAccordion === "performance" ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openAccordion === "performance" && (
+                <div className="flex flex-col gap-2 p-3 pt-0">
+                  {categorizeJobs().performance.map((job, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setActiveJob(job);
+                        if (isFlipped) setIsFlipped(false);
+                        if (window.innerWidth < 768) {
+                          const rightSection =
+                            document.getElementById("details-section");
+                          if (rightSection) {
+                            rightSection.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                          }
+                        }
+                      }}
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                ${
+                  activeJob?.title === job.title
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
+                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                }`}
+                    >
+                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                        {job.title}
+                      </div>
+                      {job.tag && (
+                        <span
+                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+                  ${
+                    activeJob?.title === job.title
+                      ? "bg-black text-yellow-400"
+                      : "bg-[var(--color-highlight)] text-black"
+                  }`}
+                        >
+                          {job.tag}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
-      if (window.innerWidth < 768) {
-        const rightSection = document.getElementById("details-section");
-        if (rightSection) {
-          rightSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
-      }
-    }}
-    className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
-      ${
-        activeJob?.title === job.title
-          ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
-          : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-      }`}
-  >
-    {/* Job Title */}
-    <div className="pr-20 whitespace-normal leading-snug break-words">
-      {job.title}
-    </div>
+          {/* Social Media */}
+          {categorizeJobs().social.length > 0 && (
+            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
+              <button
+                onClick={() => toggleAccordion("social")}
+                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+              >
+                <span className="font-semibold body2">Social Media</span>
+                <svg
+                  className={`w-5 h-5 transition-transform ${
+                    openAccordion === "social" ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openAccordion === "social" && (
+                <div className="flex flex-col gap-2 p-3 pt-0">
+                  {categorizeJobs().social.map((job, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setActiveJob(job);
+                        if (isFlipped) setIsFlipped(false);
+                        if (window.innerWidth < 768) {
+                          const rightSection =
+                            document.getElementById("details-section");
+                          if (rightSection) {
+                            rightSection.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                          }
+                        }
+                      }}
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                ${
+                  activeJob?.title === job.title
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
+                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                }`}
+                    >
+                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                        {job.title}
+                      </div>
+                      {job.tag && (
+                        <span
+                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+                  ${
+                    activeJob?.title === job.title
+                      ? "bg-black text-yellow-400"
+                      : "bg-[var(--color-highlight)] text-black"
+                  }`}
+                        >
+                          {job.tag}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
-    {/* ✅ Show tag only if it exists */}
-    {job.tag && (
-      <span
-        className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
-          ${
-            activeJob?.title === job.title
-              ? "bg-black text-yellow-400"
-              : "bg-[var(--color-highlight)] text-black"
-          }`}
-      >
-        {job.tag}
-      </span>
-    )}
-  </button>
-))}
+          {/* Design & Editing */}
+          {categorizeJobs().design.length > 0 && (
+            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
+              <button
+                onClick={() => toggleAccordion("design")}
+                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+              >
+                <span className="font-semibold body2">Design & Editing</span>
+                <svg
+                  className={`w-5 h-5 transition-transform ${
+                    openAccordion === "design" ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openAccordion === "design" && (
+                <div className="flex flex-col gap-2 p-3 pt-0">
+                  {categorizeJobs().design.map((job, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setActiveJob(job);
+                        if (isFlipped) setIsFlipped(false);
+                        if (window.innerWidth < 768) {
+                          const rightSection =
+                            document.getElementById("details-section");
+                          if (rightSection) {
+                            rightSection.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                          }
+                        }
+                      }}
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                ${
+                  activeJob?.title === job.title
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
+                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                }`}
+                    >
+                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                        {job.title}
+                      </div>
+                      {job.tag && (
+                        <span
+                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+                  ${
+                    activeJob?.title === job.title
+                      ? "bg-black text-yellow-400"
+                      : "bg-[var(--color-highlight)] text-black"
+                  }`}
+                        >
+                          {job.tag}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
-</div>
+          {/* SEO */}
+          {categorizeJobs().seo.length > 0 && (
+            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
+              <button
+                onClick={() => toggleAccordion("seo")}
+                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+              >
+                <span className="font-semibold body2">SEO</span>
+                <svg
+                  className={`w-5 h-5 transition-transform ${
+                    openAccordion === "seo" ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openAccordion === "seo" && (
+                <div className="flex flex-col gap-2 p-3 pt-0">
+                  {categorizeJobs().seo.map((job, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setActiveJob(job);
+                        if (isFlipped) setIsFlipped(false);
+                        if (window.innerWidth < 768) {
+                          const rightSection =
+                            document.getElementById("details-section");
+                          if (rightSection) {
+                            rightSection.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                          }
+                        }
+                      }}
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                ${
+                  activeJob?.title === job.title
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
+                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                }`}
+                    >
+                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                        {job.title}
+                      </div>
+                      {job.tag && (
+                        <span
+                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+                  ${
+                    activeJob?.title === job.title
+                      ? "bg-black text-yellow-400"
+                      : "bg-[var(--color-highlight)] text-black"
+                  }`}
+                        >
+                          {job.tag}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Tech/Development */}
+          {categorizeJobs().tech.length > 0 && (
+            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
+              <button
+                onClick={() => toggleAccordion("tech")}
+                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+              >
+                <span className="font-semibold body2">Tech & Development</span>
+                <svg
+                  className={`w-5 h-5 transition-transform ${
+                    openAccordion === "tech" ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openAccordion === "tech" && (
+                <div className="flex flex-col gap-2 p-3 pt-0">
+                  {categorizeJobs().tech.map((job, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setActiveJob(job);
+                        if (isFlipped) setIsFlipped(false);
+                        if (window.innerWidth < 768) {
+                          const rightSection =
+                            document.getElementById("details-section");
+                          if (rightSection) {
+                            rightSection.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                          }
+                        }
+                      }}
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                ${
+                  activeJob?.title === job.title
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
+                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                }`}
+                    >
+                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                        {job.title}
+                      </div>
+                      {job.tag && (
+                        <span
+                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+                  ${
+                    activeJob?.title === job.title
+                      ? "bg-black text-yellow-400"
+                      : "bg-[var(--color-highlight)] text-black"
+                  }`}
+                        >
+                          {job.tag}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Others */}
+          {categorizeJobs().others.length > 0 && (
+            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
+              <button
+                onClick={() => toggleAccordion("others")}
+                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+              >
+                <span className="font-semibold body2">Others</span>
+                <svg
+                  className={`w-5 h-5 transition-transform ${
+                    openAccordion === "others" ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {openAccordion === "others" && (
+                <div className="flex flex-col gap-2 p-3 pt-0">
+                  {categorizeJobs().others.map((job, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setActiveJob(job);
+                        if (isFlipped) setIsFlipped(false);
+                        if (window.innerWidth < 768) {
+                          const rightSection =
+                            document.getElementById("details-section");
+                          if (rightSection) {
+                            rightSection.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                          }
+                        }
+                      }}
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                ${
+                  activeJob?.title === job.title
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
+                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                }`}
+                    >
+                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                        {job.title}
+                      </div>
+                      {job.tag && (
+                        <span
+                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+                  ${
+                    activeJob?.title === job.title
+                      ? "bg-black text-yellow-400"
+                      : "bg-[var(--color-highlight)] text-black"
+                  }`}
+                        >
+                          {job.tag}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
 
         {/* RIGHT – Details */}
         <div
-         id="details-section" className="p-3 md:p-6 white-text flex flex-col relative">
+          id="details-section"
+          className="p-3 md:p-4 md:pr-8 white-text flex flex-col relative"
+        >
           <h2
             className="
     white-text
     text-center
-    mb-6 md:mb-12
+    mb-4 md:mb-6 text-xl md:text-2xl
   "
           >
             {isFlipped ? "Book ticket" : "Train details"}
           </h2>
 
           {/* Job Details / Flip Card */}
-          <div className="relative perspective pr-0 sm:pr-5">
+          <div className="relative perspective pr-0 sm:pr-3">
             <div
               className={`relative w-full duration-700 transform-style-preserve-3d ${
                 isFlipped ? "rotate-y-180" : ""
               }`}
-              style={{ minHeight: isFlipped ? "auto" : "700px" }}
+              style={{ minHeight: isFlipped ? "auto" : "600px" }}
             >
-
-
               <div
                 className={`${
                   isFlipped ? "hidden" : "block"
-                } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-4 sm:px-5 py-6 flex flex-col justify-between min-h-[700px]`}
+                } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4 flex flex-col justify-between min-h-[600px]`}
               >
-               <div className="whitespace-pre-line white-text body2 pr-1 sm:pr-2 job-description">
-
-  {activeJob ? (
-    <div dangerouslySetInnerHTML={{ __html: renderEditorJsHTML(activeJob.details) }} />
-  ) : (
-    <p>Loading job description...</p>
-  )}
-
-        </div>
-                <div className="flex justify-center py-5">
-                 {!isFlipped && (
-  <div className="flex justify-center py-5">
-    <ContactButton
-      text="Apply Now"
-      type="button"
-      onClick={() => setIsFlipped(true)}
-    />
-  </div>
-)}
-
+                <div className="whitespace-pre-line white-text text-sm md:text-base leading-normal pr-1 sm:pr-2 job-description">
+                  {activeJob ? (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: renderEditorJsHTML(activeJob.details),
+                      }}
+                    />
+                  ) : (
+                    <p>Loading job description...</p>
+                  )}
+                </div>
+                <div className="flex justify-center py-3">
+                  {!isFlipped && (
+                    <div className="flex justify-center py-2">
+                      <ContactButton
+                        text="Apply Now"
+                        type="button"
+                        onClick={() => setIsFlipped(true)}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
               {/* FRONT */}
-
-
-
 
               {/* BACK – Ticket Form */}
               <div
                 className={`${
                   !isFlipped ? "hidden" : "block"
-                } backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[6px] px-4 sm:px-6 py-6`}
+                } backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4`}
               >
                 <form
-                  className="flex flex-col gap-4 white-text"
+                  className="flex flex-col gap-3 white-text"
                   onSubmit={handleSubmit}
                 >
                   {/* Ticket Name */}
-                <div>
-  <label className="block mb-2 white-text capitalize body3">
-    Your Ticket Name
-  </label>
+                  <div>
+                    <label className="block mb-2 white-text capitalize body3">
+                      Your Ticket Name
+                    </label>
 
-  <div
-    className={`flex items-start border-b ${
-      errors.ticketName
-        ? "border-red-500"
-        : "border-[var(--color-highlight)]"
-    }`}
-  >
-    <span className="mr-2">{svgs.ticketName}</span>
-    <textarea
-      name="ticketName"
-      placeholder="Ticket Name"
-      value={inputValues.ticketName}
-      onChange={handleChange}
-      onFocus={() => handleFocus("ticketName")}
-      onBlur={handleBlur}
-      rows={1}
-      className="w-full bg-transparent resize-none 
+                    <div
+                      className={`flex items-start border-b ${
+                        errors.ticketName
+                          ? "border-red-500"
+                          : "border-[var(--color-highlight)]"
+                      }`}
+                    >
+                      <span className="mr-2">{svgs.ticketName}</span>
+                      <textarea
+                        name="ticketName"
+                        placeholder="Ticket Name"
+                        value={inputValues.ticketName}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus("ticketName")}
+                        onBlur={handleBlur}
+                        rows={1}
+                        className="w-full bg-transparent resize-none 
                  white-text placeholder-gray-400 
                  focus:outline-none small-placeholder
                  leading-tight py-1"
-    />
-  </div>
+                      />
+                    </div>
 
-  {errors.ticketName && (
-    <p className="text-red-500 text-xs mt-1">
-      {errors.ticketName}
-    </p>
-  )}
-</div>
-
+                    {errors.ticketName && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.ticketName}
+                      </p>
+                    )}
+                  </div>
 
                   {/* Email */}
                   <div>
-                  <label className="block mb-1 white-text capitalize body3">
-                  Where Should We Mail Your Platform Details?
+                    <label className="block mb-1 white-text capitalize body3">
+                      Where Should We Mail Your Platform Details?
                     </label>
 
                     <div
@@ -795,15 +1334,15 @@ const getIconColor = (field: keyof InputValues) => {
                     >
                       <span className="mr-2">{svgs.email}</span>
                       <textarea
-                      // @ts-ignore
-                         type="email"
-                         name="email"
-                         placeholder="Email"
-                         value={inputValues.email}
-                         onChange={handleChange}
-                         onFocus={() => handleFocus("email")}
-                         onBlur={handleBlur}
-                          rows={1}
+                        // @ts-expect-error - textarea doesn't have type attribute but works fine
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={inputValues.email}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus("email")}
+                        onBlur={handleBlur}
+                        rows={1}
                         className="w-full bg-transparent resize-none 
                  white-text placeholder-gray-400 
                  focus:outline-none small-placeholder
@@ -819,12 +1358,9 @@ const getIconColor = (field: keyof InputValues) => {
 
                   {/* Phone */}
 
-
-                  
-
                   <div>
-                  <label className="block mb-1 white-text capitalize body3">
-                  Your Local Train Hotline
+                    <label className="block mb-1 white-text capitalize body3">
+                      Your Local Train Hotline
                     </label>
 
                     <div
@@ -834,13 +1370,13 @@ const getIconColor = (field: keyof InputValues) => {
                           : "border-[var(--color-highlight)]"
                       }`}
                     >
-                     <span className="mr-2">{svgs.phone}</span>
+                      <span className="mr-2">{svgs.phone}</span>
                       <textarea
-                       // @ts-ignore
-                         type="tel"
-                         placeholder="Phone Number"
-                         name="phone"
-                         value={inputValues.phone}
+                        // @ts-expect-error - textarea doesn't have type attribute but works fine
+                        type="tel"
+                        placeholder="Phone Number"
+                        name="phone"
+                        value={inputValues.phone}
                         onChange={handleChange}
                         onFocus={() => handleFocus("phone")}
                         onBlur={handleBlur}
@@ -933,58 +1469,55 @@ const getIconColor = (field: keyof InputValues) => {
                       {/* Immediate */}
                       {/* Immediate */}
                       <button
-  type="button"
-  onClick={() => {
-    setSelected("immediate");
-    setErrors((prev) => ({ ...prev, availability: "" }));
-  }}
-  className={`flex items-center gap-2 rounded-md py-2 px-4 transition small-placeholder
+                        type="button"
+                        onClick={() => {
+                          setSelected("immediate");
+                          setErrors((prev) => ({ ...prev, availability: "" }));
+                        }}
+                        className={`flex items-center gap-2 rounded-md py-2 px-4 transition small-placeholder
   border border-[var(--color-highlight)] cursor-pointer
   ${
     selected === "immediate"
       ? "bg-[var(--color-highlight)] text-black"
       : "bg-transparent text-white hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
   }`}
->
-  <span
-    className={
-      selected === "immediate"
-        ? "text-black"
-        : "text-white"
-    }
-  >
-    {svgs.immediately}
-  </span>
-  Immediate
-</button>
+                      >
+                        <span
+                          className={
+                            selected === "immediate"
+                              ? "text-black"
+                              : "text-white"
+                          }
+                        >
+                          {svgs.immediately}
+                        </span>
+                        Immediate
+                      </button>
 
-{/* 0–2 Months */}
-<button
-  type="button"
-  onClick={() => {
-    setSelected("0-2");
-    setErrors((prev) => ({ ...prev, availability: "" }));
-  }}
-  className={`flex items-center gap-2 rounded-md py-2 px-4 transition small-placeholder
+                      {/* 0–2 Months */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelected("0-2");
+                          setErrors((prev) => ({ ...prev, availability: "" }));
+                        }}
+                        className={`flex items-center gap-2 rounded-md py-2 px-4 transition small-placeholder
   border border-[var(--color-highlight)] cursor-pointer
   ${
     selected === "0-2"
       ? "bg-[var(--color-highlight)] text-black"
       : "bg-transparent text-white hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
   }`}
->
-  <span
-    className={
-      selected === "0-2"
-        ? "text-black"
-        : "text-white"
-    }
-  >
-    {svgs.Months}
-  </span>
-  0–2 Months
-</button>
-
+                      >
+                        <span
+                          className={
+                            selected === "0-2" ? "text-black" : "text-white"
+                          }
+                        >
+                          {svgs.Months}
+                        </span>
+                        0–2 Months
+                      </button>
                     </div>
                     {errors.availability && (
                       <p className="text-red-500 text-xs mt-1">
@@ -995,10 +1528,9 @@ const getIconColor = (field: keyof InputValues) => {
 
                   {/* Portfolio */}
 
-
                   <div>
-                  <label className="block mb-1 white-text capitalize body3">
-                  Show Your Window View Work
+                    <label className="block mb-1 white-text capitalize body3">
+                      Show Your Window View Work
                     </label>
 
                     <div
@@ -1008,17 +1540,17 @@ const getIconColor = (field: keyof InputValues) => {
                           : "border-[var(--color-highlight)]"
                       }`}
                     >
-                     <span className="mr-2">{svgs.portfolio}</span>
+                      <span className="mr-2">{svgs.portfolio}</span>
                       <textarea
-                      // @ts-ignore
-                         type="url"
-                         name="portfolio" // ✅ must match state key exactly
-                         placeholder="Portfolio Link (optional)"
-                         value={inputValues.portfolio}
-                         onChange={handleChange}
-                         onFocus={() => handleFocus("portfolio")}
-                         onBlur={handleBlur}
-                         rows={1}
+                        // @ts-expect-error - textarea doesn't have type attribute but works fine
+                        type="url"
+                        name="portfolio" // ✅ must match state key exactly
+                        placeholder="Portfolio Link (optional)"
+                        value={inputValues.portfolio}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus("portfolio")}
+                        onBlur={handleBlur}
+                        rows={1}
                         className="w-full bg-transparent resize-none 
                  white-text placeholder-gray-400 
                  focus:outline-none small-placeholder
@@ -1031,8 +1563,6 @@ const getIconColor = (field: keyof InputValues) => {
                       </p>
                     )}
                   </div>
-
-
 
                   {/* <div>
                     <label className="block mb-1 white-text capitalize body3">
