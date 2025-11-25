@@ -793,7 +793,7 @@ const SecondSection = () => {
                 className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
                 <span className="font-semibold body2">
-                  Performance Marketing
+                  Performance Marketing ({categorizeJobs().performance.length})
                 </span>
                 <svg
                   className={`w-5 h-5 transition-transform ${
@@ -830,14 +830,17 @@ const SecondSection = () => {
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
-                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
+                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
                 }`}
                     >
-                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                      <span className="flex-shrink-0 font-semibold">
+                        {i + 1}.
+                      </span>
+                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
                         {job.title}
                       </div>
                       {job.tag && (
@@ -866,7 +869,9 @@ const SecondSection = () => {
                 onClick={() => toggleAccordion("social")}
                 className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
-                <span className="font-semibold body2">Social Media</span>
+                <span className="font-semibold body2">
+                  Social Media ({categorizeJobs().social.length})
+                </span>
                 <svg
                   className={`w-5 h-5 transition-transform ${
                     openAccordion === "social" ? "rotate-180" : ""
@@ -902,14 +907,17 @@ const SecondSection = () => {
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
-                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
+                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
                 }`}
                     >
-                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                      <span className="flex-shrink-0 font-semibold">
+                        {i + 1}.
+                      </span>
+                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
                         {job.title}
                       </div>
                       {job.tag && (
@@ -938,7 +946,9 @@ const SecondSection = () => {
                 onClick={() => toggleAccordion("design")}
                 className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
-                <span className="font-semibold body2">Design & Editing</span>
+                <span className="font-semibold body2">
+                  Design & Editing ({categorizeJobs().design.length})
+                </span>
                 <svg
                   className={`w-5 h-5 transition-transform ${
                     openAccordion === "design" ? "rotate-180" : ""
@@ -974,14 +984,17 @@ const SecondSection = () => {
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
-                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
+                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
                 }`}
                     >
-                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                      <span className="flex-shrink-0 font-semibold">
+                        {i + 1}.
+                      </span>
+                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
                         {job.title}
                       </div>
                       {job.tag && (
@@ -1010,7 +1023,9 @@ const SecondSection = () => {
                 onClick={() => toggleAccordion("seo")}
                 className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
-                <span className="font-semibold body2">SEO</span>
+                <span className="font-semibold body2">
+                  SEO ({categorizeJobs().seo.length})
+                </span>
                 <svg
                   className={`w-5 h-5 transition-transform ${
                     openAccordion === "seo" ? "rotate-180" : ""
@@ -1046,14 +1061,17 @@ const SecondSection = () => {
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
-                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
+                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
                 }`}
                     >
-                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                      <span className="flex-shrink-0 font-semibold">
+                        {i + 1}.
+                      </span>
+                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
                         {job.title}
                       </div>
                       {job.tag && (
@@ -1082,7 +1100,9 @@ const SecondSection = () => {
                 onClick={() => toggleAccordion("tech")}
                 className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
-                <span className="font-semibold body2">Tech & Development</span>
+                <span className="font-semibold body2">
+                  Tech & Development ({categorizeJobs().tech.length})
+                </span>
                 <svg
                   className={`w-5 h-5 transition-transform ${
                     openAccordion === "tech" ? "rotate-180" : ""
@@ -1118,14 +1138,17 @@ const SecondSection = () => {
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
-                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
+                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
                 }`}
                     >
-                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                      <span className="flex-shrink-0 font-semibold">
+                        {i + 1}.
+                      </span>
+                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
                         {job.title}
                       </div>
                       {job.tag && (
@@ -1154,7 +1177,9 @@ const SecondSection = () => {
                 onClick={() => toggleAccordion("others")}
                 className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
-                <span className="font-semibold body2">Others</span>
+                <span className="font-semibold body2">
+                  Others ({categorizeJobs().others.length})
+                </span>
                 <svg
                   className={`w-5 h-5 transition-transform ${
                     openAccordion === "others" ? "rotate-180" : ""
@@ -1190,14 +1215,17 @@ const SecondSection = () => {
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] border transition-all duration-200
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)] border-[var(--color-highlight)]"
-                    : "border-[var(--color-highlight)] text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
+                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
+                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
                 }`}
                     >
-                      <div className="pr-20 whitespace-normal leading-snug break-words">
+                      <span className="flex-shrink-0 font-semibold">
+                        {i + 1}.
+                      </span>
+                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
                         {job.title}
                       </div>
                       {job.tag && (
@@ -1248,6 +1276,11 @@ const SecondSection = () => {
                   isFlipped ? "hidden" : "block"
                 } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4 flex flex-col justify-between min-h-[600px]`}
               >
+                {activeJob && (
+                  <h5 className="white-text text-md md:text-md mb-4 pb-3 border-b border-[var(--color-highlight)]">
+                    {activeJob.title}
+                  </h5>
+                )}
                 <div className="whitespace-pre-line white-text text-sm md:text-base leading-normal pr-1 sm:pr-2 job-description">
                   {activeJob ? (
                     <div
