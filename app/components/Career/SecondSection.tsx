@@ -774,16 +774,15 @@ const SecondSection = () => {
       mb-8 md:mb-10
     "
       >
-        This Train’s Departing:{" "}
-        <span className="text-highlight">Open Roles</span>
+        This Train’s Departing
+        {/* :{" "}
+        <span className="text-highlight">Open Roles</span> */}
       </h2>
 
       <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
         {/* LEFT – Job List with Accordion */}
         <div className="p-4 md:p-6 md:pt-4 flex flex-col lg:gap-3 gap-2 ">
-          <h2 className="white-text text-center mb-6 md:mb-6">
-            Available Trains
-          </h2>
+          <h2 className="white-text text-center mb-6 md:mb-6">Open Roles</h2>
 
           {/* Performance Marketing */}
           {categorizeJobs().performance.length > 0 && (
