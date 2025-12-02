@@ -1,12 +1,11 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Miso:wght@300;400;700&family=Poppins:wght@400;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Miso:wght@300;400;700&family=Poppins:wght@400;700&display=swap"); */
 @import "tailwindcss";
 
 /* =========================================
    FONT VARIABLES & COLORS
    ========================================= */
 
-   
 :root {
   --font-miso: "Miso", sans-serif;
   --font-poppins: "Poppins", sans-serif;
@@ -37,7 +36,7 @@
   --stats-size: 250px;       /* ✅ Stats numbers (highlighting data) */
   --numbering-size: 120px; 
   --casenumbering-size: 120px;   /* ✅ Card number sequence (case study, service card, work) */
-  --single-title-size: 120px; /* ✅ Single large title (e.g., 404 page) */
+  --single-title-size: 100px; /* ✅ Single large title (e.g., 404 page) */
 
   /* =========================
      Colors
@@ -52,45 +51,11 @@
 body {
   font-family: var(--font-poppins);
  @apply relative w-full min-h-screen overflow-x-hidden;
-  background: url("/images/bg.svg") center center;
+background-image: url("/images/bg.svg");
+background-size: cover;
+background-attachment: fixed;
   color: var(--color-primary);
 }
-
-/* body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("/images/bg.svg") no-repeat center center;
-  background-size: cover;
-  z-index: -2;
-}
-
-/* Shine animation */
-/* body::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;   /* reduce width here */
-  /* height: 100%;
-  background: url("/images/bg-shine.svg") no-repeat center top;
-  background-size: contain; /* keeps aspect ratio */
-  /* animation: moveShine 3s infinite ease-in-out alternate;
-  z-index: -1; */
-/* } */ 
-
-/* @keyframes moveShine {
-  from {
-    transform: translate(-50%, -5px);
-  }
-  to {
-    transform: translate(-50%, 1000px);
-  }
-} */ 
-/* =========================================
-   HEADINGS (Desktop Defaults)
-   ========================================= */
 
 h1 {
   font-family: var(--font-bold-miso);
@@ -226,18 +191,19 @@ h6 {
    ========================================= */
 @media screen and (max-width: 768px) {
   /* ---------- Headings ---------- */
-  h1 { font-size: 32px; }  
-  h2 { font-size: 30px; }
-  h3 { font-size: 24px; }
-  h4 { font-size: 25px; }
-  h5 { font-size: 20px; }
-  h6 { font-size: 16px; }
+  h1 { font-size: 32px !important; }  
+  h2 { font-size: 30px !important; }
+  h3 { font-size: 24px !important; }
+  h4 { font-size: 25px !important; }
+  h4 { font-size: 25px !important; }
+  h5 { font-size: 20px !important; }
+  h6 { font-size: 16px !important; }
 
   /* ---------- Body ---------- */
-  .body1 { font-size: 20px; }
-  .body2 { font-size: 15px; }
-  .body3 { font-size: 16px; }
-  .body4 { font-size: 14px; }
+  .body1 { font-size: 20px !important; }
+  .body2 { font-size: 15px !important; }
+  .body3 { font-size: 16px !important; }
+  .body4 { font-size: 14px !important; }
 
   /* ---------- Numbers ---------- */
   .stats-number { font-size: 50px; }

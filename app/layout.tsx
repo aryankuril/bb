@@ -6,7 +6,6 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import PageLoader from "./components/PageLoader";
-import SmoothScroll from "./components/SmoothScroll";
 import ScrollToTop from "./components/ScrollToTop";
 import DynamicHead from "./components/DynamicHead";
 import ClickBurst from "./components/ClickBurst";
@@ -111,7 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </noscript>
 
         {/* App Content */}
-        {/* <SmoothScroll> */}
+
           <PageLoader>
             <FallingFlowers />
            {children}
@@ -120,7 +119,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <ClickBurst burstImage="/images/star.png" />
 
-        {/* </SmoothScroll> */}
+
       </body>
     </html>
   );
