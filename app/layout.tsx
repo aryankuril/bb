@@ -1,12 +1,30 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import dynamic from "next/dynamic";
 import AnalyticsScripts from "./components/AnalyticsScripts";
-import AnimatedEffects from "./components/AnimatedEffects";
 
+const PageLoader = dynamic(() => import("./components/PageLoader"), {
+  ssr: false,
+});
+const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), {
+  ssr: false,
+});
+const FallingFlowers = dynamic(() => import("./components/FallingFlowers"), {
+  ssr: false,
+});
+const ClickBurst = dynamic(() => import("./components/ClickBurst"), {
+  ssr: false,
+});
+const DynamicHead = dynamic(() => import("./components/DynamicHead"), {
+  ssr: false,
+});
+
+// Local fonts
 const miso = localFont({
-  src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400", style: "normal" }],
+  src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400" }],
   variable: "--font-miso",
 });
 
@@ -18,28 +36,29 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Bombay Blokes",
-  description:
-    "Integrated Digital Solutions in Mumbai | Marketing Agency in Mumbai - Bombay Blokes",
+  description: "Integrated Digital Solutions in Mumbai - Bombay Blokes",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+type RootLayoutProps = {
+  children: React.ReactNode;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
-      <head>
-        <meta
-          name="google-site-verification"
-          content="vcgYWAz5xbO_xhFBzKSTAJuBzaum2orDl7K2CaoMTPw"
-        />
-        <link rel="icon" href="images/favicon.png" type="image/png" />
-      </head>
+      <body>
+        <DynamicHead />
 
-     <body>
-        {/* Effects + Page Loader */}
-        <AnimatedEffects>{children}</AnimatedEffects>
+        <PageLoader>
+          {/* Lazy animation components - load only when visible */}
+          <FallingFlowers />
+          {children}
+        </PageLoader>
 
+        <ScrollToTop />
+        <ClickBurst burstImage="/images/star.png" />
 
-
-        {/* All Heavy External Scripts → Moved to separate file */}
+        {/* Load analytics LAST (non-blocking) */}
         <AnalyticsScripts />
       </body>
     </html>

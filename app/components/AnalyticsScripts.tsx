@@ -1,3 +1,4 @@
+// app/components/AnalyticsScripts.tsx
 "use client";
 
 import Script from "next/script";
@@ -5,8 +6,8 @@ import Script from "next/script";
 export default function AnalyticsScripts() {
   return (
     <>
-      {/* Facebook Pixel */}
-      <Script id="fb-pixel" strategy="afterInteractive">
+      {/* Facebook Pixel (lazy) */}
+      <Script id="fb-pixel" strategy="lazyOnload">
         {`
           !function(f,b,e,v,n,t,s){
             if(f.fbq) return;
@@ -27,15 +28,16 @@ export default function AnalyticsScripts() {
           width="1"
           style={{ display: "none" }}
           src="https://www.facebook.com/tr?id=640480087760334&ev=PageView&noscript=1"
+          alt="fb"
         />
       </noscript>
 
       {/* Google Analytics */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-E86THEZTKX"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id="google-analytics" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -45,7 +47,7 @@ export default function AnalyticsScripts() {
       </Script>
 
       {/* LinkedIn Insight */}
-      <Script id="linkedin-insight" strategy="afterInteractive">
+      <Script id="linkedin-insight" strategy="lazyOnload">
         {`
           _linkedin_partner_id = "7775762";
           window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
@@ -69,7 +71,7 @@ export default function AnalyticsScripts() {
           height="1"
           width="1"
           style={{ display: "none" }}
-          alt=""
+          alt="linkedin"
           src="https://px.ads.linkedin.com/collect/?pid=7775762&fmt=gif"
         />
       </noscript>
