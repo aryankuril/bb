@@ -2,11 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import PageLoader from "./components/PageLoader";
-import FallingFlowers from "./components/FallingFlowers";
-import ScrollToTop from "./components/ScrollToTop";
-import ClickBurst from "./components/ClickBurst";
 import AnalyticsScripts from "./components/AnalyticsScripts";
+import AnimatedEffects from "./components/AnimatedEffects";
 
 const miso = localFont({
   src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400", style: "normal" }],
@@ -36,20 +33,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="images/favicon.png" type="image/png" />
       </head>
 
-      <body>
+     <body>
+        {/* Effects + Page Loader */}
+        <AnimatedEffects>{children}</AnimatedEffects>
 
 
-  <PageLoader>
-    <FallingFlowers />
-    {children}
-  </PageLoader>
 
-  <ScrollToTop />
-  <ClickBurst burstImage="/images/star.png" />
-
-  {/* Load analytics LAST (non-blocking) */}
-  <AnalyticsScripts />
-</body>
+        {/* All Heavy External Scripts → Moved to separate file */}
+        <AnalyticsScripts />
+      </body>
     </html>
   );
 }
