@@ -8,17 +8,30 @@ export default function Footer() {
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 items-start lg:gap-8 gap-4 text-left">
           {/* Logo */}
-          <div className="hidden sm:flex  justify-start">
-            <Link href="/">
-            <Image
-              src="/images/bblogo.webp"
-              alt="Bombay Blokes Logo"
-              width={250}
-              height={60}
-              className="object-contain"
-            />
-            </Link>
-          </div>
+          <div className="hidden sm:flex justify-start relative">
+
+  {/* CAP IMAGE */}
+  <Image
+    src="/images/hat.png"     // your cap image
+    alt="Cap"
+    width={60}
+    height={60}
+    className="absolute top-[-30] left-[-30] z-20 pointer-events-none"
+  />
+
+  {/* LOGO */}
+  <Link href="/">
+    <Image
+      src="/images/bblogo.webp"
+      alt="Bombay Blokes Logo"
+      width={250}
+      height={60}
+      className="object-contain"
+    />
+  </Link>
+
+</div>
+
         </div>
 
         {/* Bottom Section */}

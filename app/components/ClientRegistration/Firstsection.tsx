@@ -50,7 +50,7 @@ const Firstsection: React.FC = () => {
     >
       <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-40">
         <div className="flex-1">
-        <h1 className="black-text max-w-full lg:max-w-[1200px]">
+        <h1 className="black-text max-w-full lg:max-w-[1000px]">
   Big Ideas Deserve Bold Execution.{" "}
   <span className="text-highlight">Let’s Create something amazing.</span>
 </h1>

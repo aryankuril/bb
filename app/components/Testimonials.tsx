@@ -61,39 +61,38 @@ const testimonials = [
   },
 ];
 
-const SixthSection: React.FC = () => {
-  const [currentGroup, setCurrentGroup] = useState(0);
-
-  const [sliderRef, instanceRef] = useKeenSlider({
-    loop: true,
-    slides: {
-      perView: 3,
-      spacing: 20,
-    },
-    breakpoints: {
-      "(max-width: 1024px)": {
-        slides: { perView: 2, spacing: 16 },
-      },
-      "(max-width: 640px)": {
-        slides: { perView: 1, spacing: 12 },
-      },
-    },
-    slideChanged(slider) {
-      const perGroup = Math.ceil(testimonials.length / 3);
-      const currentIdx = slider.track.details.rel;
-      setCurrentGroup(Math.floor(currentIdx / perGroup));
-    },
-  });
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      instanceRef.current?.next();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [instanceRef]);
-
+const Testimonials = () => {
+    const [currentGroup, setCurrentGroup] = useState(0);
+    
+      const [sliderRef, instanceRef] = useKeenSlider({
+        loop: true,
+        slides: {
+          perView: 3,
+          spacing: 20,
+        },
+        breakpoints: {
+          "(max-width: 1024px)": {
+            slides: { perView: 2, spacing: 16 },
+          },
+          "(max-width: 640px)": {
+            slides: { perView: 1, spacing: 12 },
+          },
+        },
+        slideChanged(slider) {
+          const perGroup = Math.ceil(testimonials.length / 3);
+          const currentIdx = slider.track.details.rel;
+          setCurrentGroup(Math.floor(currentIdx / perGroup));
+        },
+      });
+    
+      useEffect(() => {
+        const interval = setInterval(() => {
+          instanceRef.current?.next();
+        }, 5000);
+        return () => clearInterval(interval);
+      }, [instanceRef]);
   return (
-    <div className="container py-10 sm:py-15 lg:py-20 relative">
+ <div className="container py-10 sm:py-15 lg:py-20 relative">
       <div className="text-center mb-8 sm:mb-12">
         <h2 className="black-text lg:w-[950px] mx-auto">
           Trusted By <span className="text-highlight">200+ </span> Companies  
@@ -108,7 +107,9 @@ const SixthSection: React.FC = () => {
               className="keen-slider__slide overflow-hidden relative"
             >
               <div className="flex flex-col justify-between h-full w-90% bg-black shadow-lg rounded-[20px] p-6 relative overflow-hidden">
-                <div className="absolute -right-1 top-0 w-4 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
+                
+                {/* <div className="absolute -right-1 top-0 w-4 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div> */}
+                <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
                 <h3 className="white-text font-bold text-lg text-left z-10 relative">
                   {item.maintext}
                 </h3>
@@ -141,7 +142,7 @@ const SixthSection: React.FC = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SixthSection;
+export default Testimonials

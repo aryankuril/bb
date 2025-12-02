@@ -693,7 +693,8 @@ const SecondSection = () => {
 
           {/* Yellow Stripe */}
         </div>
-        <div className="absolute right-0 top-0 w-2 sm:w-5 md:w-7 h-full bg-[var(--color-highlight)]"></div>
+        {/* <div className="absolute right-0 top-0 w-2 sm:w-5 md:w-7 h-full bg-[var(--color-highlight)]"></div> */}
+        <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
       </div>
     </section>
   );

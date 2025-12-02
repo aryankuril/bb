@@ -22,7 +22,6 @@ import Button from "@/app/components/Button";
 
 const Embed = require("@editorjs/embed");
 
-// ✅ sanitize undefined/null recursively
 function sanitizeData(data: unknown): unknown {
   if (Array.isArray(data)) {
     return data
@@ -42,15 +41,14 @@ function sanitizeData(data: unknown): unknown {
 
 export default function CareerForm({ existingCareer }: { existingCareer?: any }) {
   const [title, setTitle] = useState(existingCareer?.title || "");
+  const [category, setCategory] = useState(existingCareer?.category || "");
   const [isImmediate, setIsImmediate] = useState(existingCareer?.isImmediate || false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const editorRef = useRef<EditorJS | null>(null);
   const editorContainer = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
 
-  // Init EditorJS
   useEffect(() => {
     if (!editorContainer.current) return;
     if (!editorRef.current) {
@@ -58,8 +56,6 @@ export default function CareerForm({ existingCareer }: { existingCareer?: any })
         holder: editorContainer.current,
         data: existingCareer?.description || undefined,
         autofocus: true,
-        placeholder: "Write career details here...",
-        inlineToolbar: ["link", "bold", "italic"],
         tools: {
           header: Header,
           list: List,
@@ -71,7 +67,6 @@ export default function CareerForm({ existingCareer }: { existingCareer?: any })
             config: {
               uploader: {
                 async uploadByFile(file: File) {
-                  // optional: handle image upload
                   return { success: 1, file: { url: URL.createObjectURL(file) } };
                 },
               },
@@ -88,7 +83,6 @@ export default function CareerForm({ existingCareer }: { existingCareer?: any })
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
       const editorData: OutputData | undefined = await editorRef.current?.save();
@@ -97,13 +91,13 @@ export default function CareerForm({ existingCareer }: { existingCareer?: any })
       const careerData = {
         title,
         description: cleanData,
+        category,
         isImmediate,
         ...(existingCareer ? { updatedAt: serverTimestamp() } : { postedAt: serverTimestamp() }),
       };
 
       if (existingCareer) {
-        const ref = doc(db, "careers", existingCareer.id);
-        await updateDoc(ref, careerData);
+        await updateDoc(doc(db, "careers", existingCareer.id), careerData);
         toast.success("Career updated successfully");
       } else {
         await addDoc(collection(db, "careers"), careerData);
@@ -112,8 +106,6 @@ export default function CareerForm({ existingCareer }: { existingCareer?: any })
 
       router.push("/admin/careers");
     } catch (err) {
-      console.error(err);
-      setError("Failed to save career details");
       toast.error("Error saving career");
     } finally {
       setLoading(false);
@@ -122,6 +114,7 @@ export default function CareerForm({ existingCareer }: { existingCareer?: any })
 
   return (
     <form onSubmit={handleSubmit} className="bg-white shadow p-6 rounded-md space-y-4">
+
       <div>
         <label className="block text-sm font-semibold mb-1">Title</label>
         <input
@@ -133,45 +126,31 @@ export default function CareerForm({ existingCareer }: { existingCareer?: any })
         />
       </div>
 
+      {/* CATEGORY DROPDOWN */}
+      <div>
+        <label className="block text-sm font-semibold mb-1">Category</label>
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          required
+          className="w-full border rounded-md px-3 py-2"
+        >
+          <option value="">Select Category</option>
+          <option value="performance">Performance Marketing</option>
+          <option value="social">Social Media</option>
+          <option value="design">Design & Editing</option>
+          <option value="seo">SEO</option>
+          <option value="tech">Tech / Development</option>
+          <option value="others">Others</option>
+        </select>
+      </div>
+
       <div>
         <label className="block text-sm font-semibold mb-1">Description</label>
-        <div
-          ref={editorContainer}
-          className="border rounded-md p-4 min-h-[200px]"
-        />
+        <div ref={editorContainer} className="border rounded-md p-4 min-h-[200px]" />
       </div>
 
-      <div>
-        <label className="block text-sm font-semibold mb-2">Is Immediate Hiring?</label>
-        <div className="flex items-center gap-4">
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              checked={isImmediate === true}
-              onChange={() => setIsImmediate(true)}
-            />
-            Yes
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              checked={isImmediate === false}
-              onChange={() => setIsImmediate(false)}
-            />
-            No
-          </label>
-        </div>
-      </div>
-
-      {error && <div className="text-red-500 text-sm">{error}</div>}
-
-     <Button
-  type="submit"
-  disabled={loading}
-  className="text-black"
-  text={loading ? "Saving..." : existingCareer?.id ? "Update Career" : "Add Career"}
-/>
-
+      <Button type="submit" disabled={loading} text={loading ? "Saving..." : "Save Career"} />
     </form>
   );
 }

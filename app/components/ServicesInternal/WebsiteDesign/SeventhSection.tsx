@@ -42,7 +42,9 @@ const SeventhSection = () => {
         </div>
 
         {/* Yellow Stripe */}
-        <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E]"></div>
+        {/* <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E]"></div> */}
+        <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
+
       </div>
     </section>
   );

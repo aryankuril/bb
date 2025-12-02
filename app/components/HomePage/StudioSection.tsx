@@ -256,7 +256,8 @@ export default function LightCameraAction() {
             />
 
             {/* yellow accent line */}
-            <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E] rounded-tr-2xl rounded-br-2xl"></div>
+            {/* <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E] rounded-tr-2xl rounded-br-2xl"></div> */}
+            <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
 
             <div
               className="absolute bottom-10 right-20 z-50

@@ -10,6 +10,7 @@ import SmoothScroll from "./components/SmoothScroll";
 import ScrollToTop from "./components/ScrollToTop";
 import DynamicHead from "./components/DynamicHead";
 import ClickBurst from "./components/ClickBurst";
+import FallingFlowers from "./components/FallingFlowers";
 
 // Local Miso font
 const miso = localFont({
@@ -112,6 +113,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* App Content */}
         {/* <SmoothScroll> */}
           <PageLoader>
+            <FallingFlowers />
            {children}
           </PageLoader>
           <ScrollToTop />

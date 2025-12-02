@@ -52,7 +52,7 @@ const Firstsection: React.FC = () => {
         <div className="flex-1">
             <h1
               className="
-                black-text max-w-full lg:max-w-[1020px]
+                black-text max-w-full lg:max-w-[1000px]
               "
             >
               Your one-stop station for 

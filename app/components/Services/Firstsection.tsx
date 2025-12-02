@@ -51,7 +51,7 @@ const Firstsection: React.FC = () => {
       <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-40">
         <div className="flex-1">
             <h1
-              className="text-highlight max-w-full lg:max-w-[1020px]"
+              className="text-highlight max-w-full lg:max-w-[1000px]"
             >
               Empowering Creative Brands{" "}
               <span className="black-text">to Thrive in the Digital World</span>

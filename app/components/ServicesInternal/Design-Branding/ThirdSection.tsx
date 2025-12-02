@@ -98,19 +98,21 @@ const workflowSteps = [
         >
           {workflowSteps.map((step, index) => (
             <div
-              key={index}
-              className="bg-black rounded-[20px] sm:rounded-[30px] p-4 sm:p-6 md:p-8 relative 
-              w-[250px] sm:w-[350px] md:w-[400px] lg:w-[450px] 
-              h-[380px] sm:h-[450px] md:h-[500px] lg:h-[540px] flex-shrink-0"
-            >
-              <div className="absolute right-0 top-0 w-4 sm:w-6 md:w-7 h-full bg-[var(--color-highlight)] rounded-r-[20px] sm:rounded-r-[30px]" />
+  key={index}
+  className="bg-black rounded-[20px] sm:rounded-[30px] p-4 sm:p-6 md:p-8 relative 
+  w-[250px] sm:w-[350px] md:w-[400px] lg:w-[450px] 
+  h-[380px] sm:h-[450px] md:h-[500px] lg:h-[540px] flex-shrink-0"
+>
+  {/* Candy Border Right Side */}
+  <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5 candy-border rounded-r-[20px] sm:rounded-r-[30px]"></div>
+              <div className="absolute right-0 top-0 w-4 sm:w-6 md:w-7 h-full " />
 
               <div className="space-y-4 sm:space-y-6 md:space-y-8">
                 <div className="border-b border-[var(--color-highlight)] pb-4 sm:pb-6 md:pb-8">
                   <h3 className="white-text">{step.title}</h3>
                 </div>
                 <p className="white-text body2">{step.description}</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 body3">
                   {/* {step.tags.map((tag, tagIndex) => (
                                      <span
                                        key={tagIndex}

@@ -4,15 +4,38 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import ContactButton from "../ContactButton";
 
-type Career = {
+type CareerCategoryType =
+  | "performance"
+  | "social"
+  | "design"
+  | "seo"
+  | "tech"
+  | "others";
+
+interface Career {
   id: string;
   title: string;
   description: string;
   isImmediate: boolean;
   postedAt?: { seconds: number };
-  tag?: string; // ✅ added
-  details?: string; // ✅ added
+  tag?: string;
+  details?: string;
+  category: CareerCategoryType;
+}
+
+
+type CareerCategoryMap = Record<CareerCategoryType, Career[]>;
+
+const careerCategories: CareerCategoryMap = {
+  performance: [],
+  social: [],
+  design: [],
+  seo: [],
+  tech: [],
+  others: [],
 };
+
+
 
 type InputValues = {
   ticketName: string;
@@ -110,8 +133,9 @@ function renderEditorJsHTML(data: unknown) {
 }
 
 const SecondSection = () => {
-  const [jobs, setJobs] = useState<Career[]>([]);
-  const [activeJob, setActiveJob] = useState(jobs[0]);
+const [jobs, setJobs] = useState<Career[]>([]);
+const [activeJob, setActiveJob] = useState<Career | null>(null);
+
   const [isFlipped, setIsFlipped] = useState(false);
   const [focusedInput, setFocusedInput] = useState<keyof InputValues | "">("");
   const [inputValues, setInputValues] = useState<InputValues>({
@@ -152,11 +176,12 @@ const SecondSection = () => {
     return phoneRegex.test(phone);
   };
 
-  useEffect(() => {
-    if (jobs.length > 0 && !activeJob) {
-      setActiveJob(jobs[0]); // auto-select first job
-    }
-  }, [jobs, activeJob]);
+useEffect(() => {
+  if (jobs.length > 0 && !activeJob) {
+    setActiveJob(jobs[0]);
+  }
+}, [jobs]);
+
 
   const validateURL = (url: string): boolean => {
     if (!url) return true;
@@ -211,102 +236,27 @@ const SecondSection = () => {
 
   useEffect(() => {
     const fetchCareers = async () => {
-      try {
-        const q = query(collection(db, "careers"), orderBy("postedAt", "desc"));
-        const snapshot = await getDocs(q);
-        const careersData: Career[] = snapshot.docs.map((doc) => {
-          const data = doc.data() as Omit<Career, "id" | "tag" | "details">;
-          return {
-            id: doc.id,
-            ...data,
-            tag: data.isImmediate ? "Immediate" : "", // ✅ show tag only if admin marked Immediate
-            details: data.description,
-          };
-        });
+  try {
+    const q = query(collection(db, "careers"), orderBy("postedAt", "desc"));
+    const snapshot = await getDocs(q);
 
-        setJobs(careersData);
+    const careersData: Career[] = snapshot.docs.map((doc) => {
+      const data = doc.data() as Omit<Career, "id" | "tag" | "details">;
+      return {
+        id: doc.id,
+        ...data,
+        tag: data.isImmediate ? "Immediate" : "",
+        details: data.description,
+      };
+    });
 
-        // Set the first job as active and open the first non-empty category
-        if (careersData.length > 0) {
-          setActiveJob(careersData[0]);
+    setJobs(careersData);
 
-          // Categorize jobs first
-          const tempCategories = {
-            performance: [] as Career[],
-            social: [] as Career[],
-            design: [] as Career[],
-            seo: [] as Career[],
-            tech: [] as Career[],
-            others: [] as Career[],
-          };
+  } catch (err) {
+    console.error("Error fetching careers:", err);
+  }
+};
 
-          careersData.forEach((job) => {
-            const title = job.title.toLowerCase();
-            if (
-              title.includes("performance") ||
-              (title.includes("marketing") && title.includes("performance")) ||
-              title.includes("ppc") ||
-              title.includes("ads")
-            ) {
-              tempCategories.performance.push(job);
-            } else if (
-              title.includes("social media") ||
-              title.includes("smm") ||
-              title.includes("content creator") ||
-              title.includes("copywriter")
-            ) {
-              tempCategories.social.push(job);
-            } else if (
-              title.includes("design") ||
-              title.includes("graphic") ||
-              title.includes("video editor") ||
-              title.includes("editor") ||
-              title.includes("branding") ||
-              title.includes("creative")
-            ) {
-              tempCategories.design.push(job);
-            } else if (
-              title.includes("seo") ||
-              title.includes("search engine")
-            ) {
-              tempCategories.seo.push(job);
-            } else if (
-              title.includes("developer") ||
-              title.includes("development") ||
-              title.includes("website") ||
-              title.includes("tech") ||
-              title.includes("engineer") ||
-              title.includes("programmer") ||
-              title.includes("software")
-            ) {
-              tempCategories.tech.push(job);
-            } else {
-              tempCategories.others.push(job);
-            }
-          });
-
-          // Open the first non-empty category in order
-          if (tempCategories.performance.length > 0) {
-            setOpenAccordion("performance");
-          } else if (tempCategories.social.length > 0) {
-            setOpenAccordion("social");
-          } else if (tempCategories.design.length > 0) {
-            setOpenAccordion("design");
-          } else if (tempCategories.seo.length > 0) {
-            setOpenAccordion("seo");
-          } else if (tempCategories.tech.length > 0) {
-            setOpenAccordion("tech");
-          } else if (tempCategories.others.length > 0) {
-            setOpenAccordion("others");
-          }
-        } else {
-          // If no jobs, open the first available category
-          setOpenAccordion(null);
-        }
-      } catch (err) {
-        console.error("Error fetching careers:", err);
-      }
-    };
 
     fetchCareers();
   }, []);
@@ -457,7 +407,7 @@ const SecondSection = () => {
           cv: cvData,
           portfolio: inputValues.portfolio,
           message: inputValues.message,
-          jobTitle: activeJob.title,
+          jobTitle: activeJob?.title ?? "",
           availability: selected,
         }),
       });
@@ -507,11 +457,12 @@ const SecondSection = () => {
     }
   };
 
-  useEffect(() => {
-    if (jobs.length > 0 && !activeJob) {
-      setActiveJob(jobs[0]); // ✅ auto-select first job
-    }
-  }, [jobs, activeJob]);
+useEffect(() => {
+  if (jobs.length > 0 && !activeJob) {
+    setActiveJob(jobs[0]);
+  }
+}, [jobs]);
+
 
   const svgs = {
     ticketName: (
@@ -692,72 +643,25 @@ const SecondSection = () => {
     ),
   };
 
-  // Helper function to categorize jobs
-  const categorizeJobs = () => {
-    const categories = {
-      performance: [] as Career[],
-      social: [] as Career[],
-      design: [] as Career[],
-      seo: [] as Career[],
-      tech: [] as Career[],
-      others: [] as Career[],
-    };
-
-    jobs.forEach((job) => {
-      const title = job.title.toLowerCase();
-      // Performance Marketing category
-      if (
-        title.includes("performance") ||
-        (title.includes("marketing") && title.includes("performance")) ||
-        title.includes("ppc") ||
-        title.includes("ads")
-      ) {
-        categories.performance.push(job);
-      }
-      // Social Media category
-      else if (
-        title.includes("social media") ||
-        title.includes("smm") ||
-        title.includes("content creator") ||
-        title.includes("copywriter")
-      ) {
-        categories.social.push(job);
-      }
-      // Design & Editing category
-      else if (
-        title.includes("design") ||
-        title.includes("graphic") ||
-        title.includes("video editor") ||
-        title.includes("editor") ||
-        title.includes("branding") ||
-        title.includes("creative")
-      ) {
-        categories.design.push(job);
-      }
-      // SEO category
-      else if (title.includes("seo") || title.includes("search engine")) {
-        categories.seo.push(job);
-      }
-      // Tech/Development category
-      else if (
-        title.includes("developer") ||
-        title.includes("development") ||
-        title.includes("website") ||
-        title.includes("tech") ||
-        title.includes("engineer") ||
-        title.includes("programmer") ||
-        title.includes("software")
-      ) {
-        categories.tech.push(job);
-      }
-      // Others
-      else {
-        categories.others.push(job);
-      }
-    });
-
-    return categories;
+// Helper function to categorize jobs
+const categorizeJobs = (): CareerCategoryMap => {
+  const categories: CareerCategoryMap = {
+    performance: [],
+    social: [],
+    design: [],
+    seo: [],
+    tech: [],
+    others: [],
   };
+
+  jobs.forEach((job) => {
+    const cat = (job.category || "others") as CareerCategoryType;
+    categories[cat].push(job);
+  });
+
+  return categories;
+};
+
 
   const toggleAccordion = (category: string) => {
     setOpenAccordion(openAccordion === category ? null : category);
@@ -1697,7 +1601,8 @@ const SecondSection = () => {
           </div>
 
           {/* Yellow strip stays fixed on the right */}
-          <div className="hidden md:block absolute top-0 right-0 h-full w-2 sm:w-3 md:w-7 bg-[var(--color-highlight)]"></div>
+          {/* <div className="hidden md:block absolute top-0 right-0 h-full w-2 sm:w-3 md:w-7 bg-[var(--color-highlight)]"></div> */}
+          <div className="hidden md:block absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
         </div>
       </div>
     </section>

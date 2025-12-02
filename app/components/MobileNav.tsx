@@ -136,6 +136,13 @@ const MobileNav = () => {
 
           {/* CENTER: Logo */}
           <div className="flex-1 flex justify-center">
+            <Image
+                src="/images/hat.png"     // your cap image
+                alt="Cap"
+                width={60}
+                height={60}
+                className="absolute top-[-30] left-[-30] z-20 pointer-events-none"
+              />
             <Link href="/">
               <Image
                 src="/images/bblogo.webp"

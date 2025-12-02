@@ -211,6 +211,38 @@ export default function DesktopNav() {
     };
   }, [open]);
 
+
+
+
+    const hatRef = useRef(null);
+
+ useEffect(() => {
+  const tl = gsap.timeline({ repeat: -1, repeatDelay: 5 }); 
+  // repeat: -1 → infinite loop
+  // repeatDelay: 5 → wait 5 sec before coming again
+
+  tl.fromTo(
+    hatRef.current,
+    { y: -80, opacity: 0, rotate: -20 },
+    {
+      y: -10,
+      opacity: 1,
+      rotate: 0,
+      duration: 1.2,
+      ease: "power3.out",
+    }
+  );
+
+  tl.to(hatRef.current, {
+    opacity: 0,
+    y: -40,
+    duration: 0.8,
+    delay: 20, // hat stays on logo for 2 sec
+    ease: "power2.inOut",
+  });
+}, []);
+
+
   return (
     <div className="">
       <div ref={root} className="py-5 px-10  inset-x-0 z-[100000]">
@@ -219,17 +251,49 @@ export default function DesktopNav() {
           ref={shell}
           className="h-[90px] container bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center absolute inset-x-0 z-[100001]"
         >
-          <div className="flex items-center justify-between py-5 px-10 ">
-            <Link href="/">
-              <Image
-                src="/images/bblogo.webp"
-                alt="Bombay Blokes Logo"
-                width={210}
-                height={80}
-                className="object-cover transition-opacity duration-300"
-              />
-            </Link>
+          {/* ⭐⭐ ADDED CHRISTMAS DECORATION ⭐⭐ */}
+          <div className="pointer-events-none">
+            {/* Top center wreath */}
+            <Image
+              src="/images/decore2.png"
+              alt="wreath"
+              width={200}
+              height={200}
+              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            />
 
+            {/* Bottom-right candy */}
+            <Image
+              src="/images/candy.png"
+              alt="candy cane"
+              width={40}
+              height={40}
+              className="absolute bottom-0 right-0   translate-y-1/4 translate-x-1/4"
+            />
+          </div>
+          {/* ⭐⭐ END DECOR ⭐⭐ */}
+          <div className="flex items-center justify-between py-5 px-10 ">
+            <div className="relative inline-block">
+      {/* Your Logo */}
+      <Link href="/">
+        <Image
+          src="/images/bblogo.webp"
+          alt="Bombay Blokes Logo"
+          width={210}
+          height={80}
+          className="object-cover transition-opacity duration-300"
+        />
+      </Link>
+
+      {/* Santa Hat */}
+      <img
+        ref={hatRef}
+        src="/images/hat.png"     // put file in public/
+        alt="Santa Hat"
+        className="absolute w-[50px] h-[50px] left-[-30px] top-[-15px]"
+        style={{ pointerEvents: "none" }}
+      />
+    </div>
             {/* HAMBURGER */}
             <div className="flex items-center gap-4">
               <Button
@@ -351,6 +415,7 @@ export default function DesktopNav() {
               className="object-contain w-full h-full"
             />
           </div>
+          
         )}
         {link.label}
       </Link>

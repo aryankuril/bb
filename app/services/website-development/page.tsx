@@ -4,8 +4,8 @@ import FirstSection from "../../components/ServicesInternal/WebsiteDesign/FirstS
 // import SecondSection from "../components/ServicesInternal/WebsiteDesign/SecondSection";
 import ThirdSection from "../../components/ServicesInternal/WebsiteDesign/ThirdSection";
 import FourthSection from "../../components/ServicesInternal/WebsiteDesign/FourthSection";
-import FifthSection from "../../components/ServicesInternal/WebsiteDesign/FifthSection";
-import SixthSection from "../../components/ServicesInternal/WebsiteDesign/SixthSection";
+import WorkCard from '@/app/components/HomePage/WorkCard';
+import Testimonials from "@/app/components/Testimonials";
 import SeventhSection from "../../components/ServicesInternal/WebsiteDesign/SeventhSection";
 import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
@@ -29,8 +29,8 @@ const Index = () => {
       {/* <SecondSection /> */}
       <FourthSection />
       <ThirdSection />
-      <FifthSection />
-      <SixthSection />
+      <WorkCard/>
+      <Testimonials />
       <SeventhSection />
       <Footer />
       </SmoothScroll>

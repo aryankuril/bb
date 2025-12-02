@@ -118,8 +118,9 @@ export default function BombAISection() {
           <div
             className="bomb-strip absolute top-0 right-0 h-full w-3 sm:w-5 md:w-7 z-0 pointer-events-none"
             /* #FAB31E -> var(--color-highlight) */
-            style={{ backgroundColor: "var(--color-highlight)" }}
+            // style={{ backgroundColor: "var(--color-highlight)" }}
           />
+          <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
           <div className="relative z-10 flex flex-col items-center justify-start h-full px-5 py-10 sm:py-14 md:py-16">
              <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5">
   {/* Logo */}

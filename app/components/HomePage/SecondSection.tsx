@@ -172,7 +172,7 @@ export default function SecondSection() {
         {/* </AnimatedHeading> */}
       </div>
 
-      <div className="mx-auto flex flex-col lg:w-[70%] space-y-16 px-4 sm:px-6 md:px-8 lg:px-0">
+      <div className="mx-auto flex flex-col lg:w-[70%] space-y-16 ">
         {services.map((s, index) => (
           <div
             key={s.id}

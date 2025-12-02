@@ -16,7 +16,7 @@ const text =
   });
 
   return (
-    <section
+    <section id="second-section"
       ref={sectionRef}
       className="relative min-h-[200vh] container py-0 sm:py-15 lg:py-20 flex justify-center items-center"
     >

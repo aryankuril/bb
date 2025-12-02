@@ -3,7 +3,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import PageLoader from "../components/PageLoader";
 import { Metadata } from 'next'
-
+import FallingFlowers from "../components/FallingFlowers";
 export const metadata: Metadata = {
   title: "Bombay Blokes | Admin",
   description:
@@ -22,6 +22,7 @@ export default function AdminLayout({
         <div className="flex-1 ml-64 min-h-screen">
           <main className="p-6">
             <PageLoader>
+              {/* <FallingFlowers /> */}
               {children}
             </PageLoader>
             <Toaster position="top-right" />

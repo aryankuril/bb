@@ -4,9 +4,9 @@ import FirstSection from "../../components/ServicesInternal/SEO/FirstSection";
 // import SecondSection from "../components/ServicesInternal/SEO/SecondSection";
 import ThirdSection from "../../components/ServicesInternal/SEO/ThirdSection";
 import FourthSection from "../../components/ServicesInternal/SEO/FourthSection";
-import FifthSection from "../../components/ServicesInternal/SEO/FifthSection";
-import SixthSection from "../../components/ServicesInternal/WebsiteDesign/SixthSection";
-import SeventhSection from "../../components/ServicesInternal/SEO/SeventhSection";
+import WorkCard from '@/app/components/HomePage/WorkCard';
+import Testimonials from "@/app/components/Testimonials";
+import SeventhSection from "@/app/components/ServicesInternal/WebsiteDesign/SeventhSection";
 import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
 import Taxi from '../../components/Taxi'
@@ -29,8 +29,8 @@ const Index = () => {
       {/* <SecondSection /> */}
       <FourthSection />
       <ThirdSection />
-      <FifthSection />
-      <SixthSection />
+      <WorkCard/>
+      <Testimonials />
       <SeventhSection />
       <Footer />
       </SmoothScroll>

@@ -52,7 +52,7 @@ const Firstsection: React.FC = () => {
         <div className="flex-1">
             <h1
               className="
-                text-highlight max-w-full lg:max-w-[1020px]
+                text-highlight max-w-full lg:max-w-[1000px]
               "
             >
               Transforming Creative Brands Into{" "}

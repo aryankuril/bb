@@ -102,7 +102,8 @@ const workflowSteps = [
               w-[250px] sm:w-[350px] md:w-[400px] lg:w-[450px] 
               h-[380px] sm:h-[450px] md:h-[500px] lg:h-[540px] flex-shrink-0"
             >
-              <div className="absolute right-0 top-0 w-4 sm:w-6 md:w-7 h-full bg-[var(--color-highlight)] rounded-r-[20px] sm:rounded-r-[30px]" />
+              <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5 candy-border rounded-r-[20px] sm:rounded-r-[30px]"></div>
+              <div className="absolute right-0 top-0 w-4 sm:w-6 md:w-7 h-full " />
 
               <div className="space-y-4 sm:space-y-6 md:space-y-8">
                 <div className="border-b border-[var(--color-highlight)] pb-4 sm:pb-6 md:pb-8">

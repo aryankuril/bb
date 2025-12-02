@@ -223,7 +223,7 @@ const SecondSection = () => {
               className="relative bg-black text-white rounded-3xl overflow-hidden shadow-lg"
             >
               {/* Yellow right strip */}
-              <div className="absolute top-0 right-0 w-3 h-full bg-[#FAB31E]" />
+              <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
 
               {/* Image */}
              <div className=" p-5 relative w-full h-auto mx-auto mt-4">

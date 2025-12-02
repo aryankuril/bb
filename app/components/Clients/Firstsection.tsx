@@ -51,7 +51,7 @@ const Firstsection: React.FC = () => {
       <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-40">
         <div className="flex-1">
             <h1
-              className="black-text max-w-full lg:max-w-[1200px]"
+              className="black-text max-w-full lg:max-w-[1000px]"
             >
               Take a look at the brands we’ve transformed,{" "}
               <span className="text-highlight">your name could be next</span>
