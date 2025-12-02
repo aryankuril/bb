@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import AnalyticsScripts from "./components/AnalyticsScripts";
+
 import AnimatedEffects from "./components/AnimatedEffects";
 import DynamicHead from "./components/DynamicHead";
 
@@ -37,8 +37,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <DynamicHead />
 
-        {/* All Heavy External Scripts → Moved to separate file */}
-        <AnalyticsScripts />
 
         {/* Effects + Page Loader */}
         <AnimatedEffects>{children}</AnimatedEffects>
