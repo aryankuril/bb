@@ -286,7 +286,9 @@ export default function DesktopNav() {
       </Link>
 
       {/* Santa Hat */}
-      <img
+       <Image
+        width={210}
+        height={80}
         ref={hatRef}
         src="/images/hat.png"     // put file in public/
         alt="Santa Hat"

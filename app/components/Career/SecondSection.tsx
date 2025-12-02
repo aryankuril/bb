@@ -1160,14 +1160,14 @@ const categorizeJobs = (): CareerCategoryMap => {
             className="
     white-text
     text-center
-    mb-4 md:mb-6 text-xl md:text-2xl
+   mb-6 md:mb-6 
   "
           >
             {isFlipped ? "Book ticket" : "Train details"}
           </h2>
 
           {/* Job Details / Flip Card */}
-          <div className="relative perspective pr-0 sm:pr-3">
+          <div className="relative perspective pr-0 sm:pr-3 lg:mt-3 mt-0">
             <div
               className={`relative w-full duration-700 transform-style-preserve-3d ${
                 isFlipped ? "rotate-y-180" : ""

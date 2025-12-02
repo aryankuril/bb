@@ -87,7 +87,9 @@ const Pagenotfound = () => {
           transition={{ duration: 3, ease: "easeInOut" }}
           className="absolute bottom-0 left-0 z-20 w-[700px] sm:w-[710px] md:w-[750px] lg:w-[800px] xl:w-[800px]"
         >
-          <img
+          <Image
+                  width={210}
+                  height={80}
             src="/images/train.png"
             alt="train"
             className="w-full h-auto object-contain"
