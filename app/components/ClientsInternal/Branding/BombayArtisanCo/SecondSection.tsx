@@ -5,30 +5,30 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Rapid Launch with Shopify Templates",
+    title: "Sharpening Their Brand Foundation",
     description:
-      "Used a premium template to speed up development and launch quickly with brand focus.",
+      "We defined a refined identity that blends heritage craftsmanship with modern ethical principles.",
     position: "left",
   },
   {
     number: "02",
-    title: "Brand-Centric Customization",
+    title: "Crafting an Ethical-Luxury Narrative",
     description:
-      "Customized the template to match SuperSox’s vibrant style and product range.",
+      "We shaped messaging that spotlights conscious design while preserving a premium luxury tone.",
     position: "right",
   },
   {
     number: "03",
-    title: "Scalable E-commerce Functionality",
+    title: "Showcasing “Mastery Redefined”",
     description:
-      "Used Shopify’s backend for secure payments and easy inventory control.",
+      "We highlighted how the brand merges traditional craftsmanship with contemporary minimalist aesthetics.",
     position: "left",
   },
   {
     number: "04",
-    title: "Mobile-Optimized Shopping",
+    title: "Elevating Product Storytelling",
     description:
-      "Ensured a smooth, responsive shopping experience across all devices.",
+      "We showcased their vegan leather accessories with clean, detail-rich, premium communication.",
     position: "right",
   },
 ];

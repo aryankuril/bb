@@ -154,7 +154,8 @@ const achievements = [
             >
               <div className={`relative transform overflow-hidden ${tilt}`}>
                 <div className="relative lg:w-[450px] w-[250px] lg:h-[550px] h-[300px] bg-[var(--color-primary)] overflow-hidden rounded-[30px] lg:p-8 p-6 flex flex-col justify-center items-center shadow-lg">
-                  <div className="absolute inset-y-0 right-0 w-[18px] bg-[var(--color-highlight)] rounded-r-[30px] overflow-hidden" />
+                  <div className="absolute inset-y-0 right-0 w-[18px]  overflow-hidden" />
+                   <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
                   <div className="absolute top-8 w-5 lg:w-12 lg:h-12 h-5 rounded-full bg-[var(--color-secondary)] flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 31 30" fill="none">
                       <circle cx="15.3" cy="15" r="15" fill="#FAB31E" />

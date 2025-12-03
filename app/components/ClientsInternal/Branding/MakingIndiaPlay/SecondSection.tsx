@@ -5,35 +5,33 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Rapid Launch with Shopify Templates",
+    title: "Defining the Brand Foundation",
     description:
-      "Used a premium template to speed up development and launch quickly with brand focus.",
+      "We shaped a purpose-led direction grounded in the emotional core of their mission.",
     position: "left",
   },
   {
     number: "02",
-    title: "Brand-Centric Customization",
+    title: "Establishing Branding Guidelines",
     description:
-      "Customized the template to match SuperSox’s vibrant style and product range.",
+      "We developed cohesive guidelines to align all talent, school, and sponsorship touchpoints.",
     position: "right",
   },
   {
     number: "03",
-    title: "Scalable E-commerce Functionality",
+    title: "Crafting a Strong Positioning",
     description:
-      "Used Shopify’s backend for secure payments and easy inventory control.",
+      "We anchored the initiative around the idea: “Unlocking India’s sporting future, one player at a time.”",
     position: "left",
   },
   {
     number: "04",
-    title: "Mobile-Optimized Shopping",
+    title: "Designing a Youthful Visual Language",
     description:
-      "Ensured a smooth, responsive shopping experience across all devices.",
+      "We created a bold identity using pop colors and dynamic, movement-inspired elements.",
     position: "right",
   },
 ];
-
-
 
 
 
@@ -146,7 +144,6 @@ const achievements = [
   cardRefs.current[index] = el;
   // ✅ no return
 }}
-
               className={`flex items-center ${
                 achievement.position === "right" ? "justify-end" : "justify-start"
               } mt-20 lg:mt-0`}

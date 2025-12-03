@@ -35,13 +35,13 @@ const cards: Card[] = [
     title: "SEO ",
     subtitle:
       "We put your brand at the top of Google, connecting you with customers who are already searching for you.",
-    image: "/images/seo-cs/Manba.png",
+    image: "/images/seo-cs/manbaaa.png",
     link: "/services/seo-services",
     shape: "circle",
   },
   {
     number: "04",
-    title: "GEO",
+    title: "GEO", 
     subtitle:
       "We position your content for citation, connecting your brand directly with users who need a definitive, AI-validated answer.",
     image: "/images/geo-cs/geo-1.jpg",
@@ -65,7 +65,7 @@ const cards: Card[] = [
     image: "/images/pm/Chatterboxnew2.jpg",
     link: "/services/performance-marketing",
     shape: "circle",
-  },
+  }, 
 ];
 export default function SecondSection() {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -5,37 +5,33 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Rapid Launch with Shopify Templates",
+    title: "Building a Purpose-Led Brand Foundation",
     description:
-      "Used a premium template to speed up development and launch quickly with brand focus.",
+      "We aligned their mission with an identity rooted in accessibility, culture-building, and modern sport.",
     position: "left",
   },
   {
     number: "02",
-    title: "Brand-Centric Customization",
+    title: "Crafting an Energetic Visual Identity",
     description:
-      "Customized the template to match SuperSox’s vibrant style and product range.",
+      "We designed a vibrant system using pop colors and motion-inspired graphics to reflect the energy of padel.",
     position: "right",
   },
   {
     number: "03",
-    title: "Scalable E-commerce Functionality",
+    title: "Strengthening Digital Storytelling",
     description:
-      "Used Shopify’s backend for secure payments and easy inventory control.",
+      "We delivered clear, cohesive communication that positioned them as a lively, culture-first sports destination.",
     position: "left",
   },
   {
     number: "04",
-    title: "Mobile-Optimized Shopping",
+    title: "Applying the BB Effect Framework",
     description:
-      "Ensured a smooth, responsive shopping experience across all devices.",
+      "We amplified their presence through belief-driven storytelling and strong, unified design.",
     position: "right",
   },
 ];
-
-
-
-
 
   const desktopPathRef = useRef<SVGPathElement | null>(null);
   const mobilePathRef = useRef<SVGPathElement | null>(null);

@@ -37,9 +37,17 @@ const allSteps: Step[] = [
   { number: "01", title: "Manba Finance", image: "/images/seo-cs/manbaaa.png", category: "SEO", link: "/work/seo-services/manbafinance" },
   // { number: "02", title: "Presolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/work/seo-services/presolv360" },
   { number: "03", title: "SCS Sports", image: "/images/seo-cs/SCS1.png", category: "SEO", link: "/work/seo-services/scssports" },
+
+
+  // 🟨 Branding (3)
+  { number: "01", title: "Padel Park", image: "/images/Branding/Padel-Park.jpg", category: "Branding", link: "/work/design-branding/padelpark" },
+  { number: "02", title: "Bombay Artisan Co", image: "/images/Branding/BomBay-Artisan-Co.jpg", category: "Branding", link: "/work/design-branding/bombayartisanco" },
+  // { number: "03", title: "Manba Finance", image: "/images/Branding/Manba-Bus.jpg", category: "Branding", link: "/work/design-branding/manbafinance" },
+  { number: "03", title: "Making India Play", image: "/images/Branding/Making-India-Play.jpg", category: "Branding", link: "/work/design-branding/makingindiaplay" },
+
 ];
 
-const categories = ["Web Development", "Performance Marketing", "Social Media", "SEO"];
+const categories = ["Web Development", "Performance Marketing", "Social Media", "SEO" ,"Branding"];
 
 const SecondSection = () => {
   const [activeCategory, setActiveCategory] = useState("Web Development");
