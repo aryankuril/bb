@@ -14,6 +14,7 @@ const Firstsection = () => {
           autoPlay
           muted
           loop
+          
           playsInline
           preload="auto"
           poster="/images/video-poster-desktop.png"            // 👈 Poster for desktop

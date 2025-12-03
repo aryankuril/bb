@@ -68,7 +68,6 @@ const Firstsection: React.FC = () => {
         <Image
           width={1000}
           height={1000}
-           priority
           src="/images/carrer-station.png"
           alt="Station board"
           className="w-28 sm:w-40 md:w-45 lg:w-48 xl:w-50 h-auto"

@@ -70,7 +70,7 @@ const Firstsection: React.FC = () => {
           height={1000}
           src="/images/client-station.png"
           alt="Station board"
-          priority
+       
           className="w-28 sm:w-40 md:w-45 lg:w-48 xl:w-50 h-auto"
         />
       </div>
