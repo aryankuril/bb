@@ -35,6 +35,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </AnimatedEffects>
 
+
+        {/* LOAD ANALYTICS LAST (Best for speed) */}
+        {/* <AnalyticsWrapper /> */}
+
       </body>
     </html>
   );
