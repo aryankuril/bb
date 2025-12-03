@@ -15,7 +15,7 @@ import SeventhSection from "./components/ServicesInternal/WebsiteDesign/SeventhS
 import Footer from "./components/Footer";
 import Taxi from "./components/Taxi";
 import MobilePopup from "./components/MobilePopup";
-import AnalyticsWrapper from "./components/analytics-wrapper";
+// import ClientScripts from "./components/ClientScripts";
 import SmoothScroll from "./components/SmoothScroll";
 export const metadata: Metadata = {
   title: "Mumbai’s leading Digital Marketing Agency | Bombay Blokes",
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-      <AnalyticsWrapper />
        <SmoothScroll>
+      {/* <ClientScripts/> */}
       <Taxi/>
       {/* <MobilePopup/> */}
       <Navbar />

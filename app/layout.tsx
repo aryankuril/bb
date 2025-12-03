@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 
 // Dynamic Components (Client-only)
 const AnimatedEffects = dynamic(() => import("./components/AnimatedEffects"), { ssr: false });
-
+const AnalyticsWrapper = dynamic(() => import("./components/analytics-wrapper"), { ssr: false });
 
 const miso = localFont({
   src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400" }],
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 
         {/* LOAD ANALYTICS LAST (Best for speed) */}
-        {/* <AnalyticsWrapper /> */}
+        <AnalyticsWrapper />
 
       </body>
     </html>
