@@ -10,7 +10,6 @@ const PageLoader = dynamic(() => import("./components/PageLoader"), { ssr: false
 const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), { ssr: false });
 const FallingFlowers = dynamic(() => import("./components/FallingFlowers"), { ssr: false });
 const ClickBurst = dynamic(() => import("./components/ClickBurst"), { ssr: false });
-const DynamicHead = dynamic(() => import("./components/DynamicHead"), { ssr: false });
 const AnalyticsWrapper = dynamic(() => import("./components/analytics-wrapper"), { ssr: false });
 
 const miso = localFont({
@@ -28,7 +27,13 @@ const poppins = Poppins({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
+       <head>
+        
+        <meta name="google-site-verification" content="vcgYWAz5xbO_xhFBzKSTAJuBzaum2orDl7K2CaoMTPw" />
+        <link rel="icon" href="images/favicon.png" type="image/png" />
+      </head>
       <body>
+
         <PageLoader>
           {children}
         </PageLoader>
