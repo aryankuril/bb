@@ -34,9 +34,9 @@ const allSteps: Step[] = [
   // { number: "05", title: "Ric Rac", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/work/social-media-marketing/ricrackids" },
 
   // 🟨 SEO (3)
-  { number: "01", title: "Manba Finance", image: "/images/seo-cs/manba.png", category: "SEO", link: "/work/seo-services/manbafinance" },
+  { number: "01", title: "Manba Finance", image: "/images/seo-cs/manbaaa.png", category: "SEO", link: "/work/seo-services/manbafinance" },
   // { number: "02", title: "Presolv 360", image: "/images/seo-cs/Prosolv.png", category: "SEO", link: "/work/seo-services/presolv360" },
-  { number: "03", title: "SCS Sports", image: "/images/seo-cs/SCS2.png", category: "SEO", link: "/work/seo-services/scssports" },
+  { number: "03", title: "SCS Sports", image: "/images/seo-cs/SCS1.png", category: "SEO", link: "/work/seo-services/scssports" },
 ];
 
 const categories = ["Web Development", "Performance Marketing", "Social Media", "SEO"];

@@ -61,7 +61,7 @@ From Clicks to Cash: Driving Massive <span className="text-highlight">
         >
           <Image
 
- src="/images/seo-cs/SCS2.png"
+ src="/images/seo-cs/SCS1.png"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}
