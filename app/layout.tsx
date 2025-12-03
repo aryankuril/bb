@@ -1,6 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -30,16 +29,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
       <body>
-
-        {/* Loads SEO head dynamically - client safe */}
-        <DynamicHead />
-
-        {/* Page loader wrapper */}
         <PageLoader>
-          <FallingFlowers />
           {children}
         </PageLoader>
 
+        <FallingFlowers />
         <ScrollToTop />
         <ClickBurst burstImage="/images/star.png" />
 
