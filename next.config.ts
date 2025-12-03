@@ -3,12 +3,24 @@ import type { NextConfig } from "next";
 const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
-  // ✅ Skip ESLint during production builds
+  // ---------------------------------------------------------
+  // ✅ SPEED IMPROVEMENTS
+  // ---------------------------------------------------------
+
+  // Skip ESLint during builds (faster Vercel deploy)
   eslint: {
     ignoreDuringBuilds: true,
   },
 
-  // ✅ Image optimization with caching
+  // Enable SWC minification (already default but keeping explicit)
+  swcMinify: true,
+
+  // Enable compression (gzip + brotli)
+  compress: true,
+
+  // ---------------------------------------------------------
+  // ✅ IMAGE OPTIMIZATION
+  // ---------------------------------------------------------
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
@@ -16,15 +28,18 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "firebasestorage.googleapis.com" },
       { protocol: "https", hostname: "storage.googleapis.com" },
+      { protocol: "https", hostname: "*.bombayblokes.com" }, // Optional
     ],
   },
 
-  // ✅ Optimized Headers (includes Point 7 fix)
+  // ---------------------------------------------------------
+  // ✅ HTTP HEADERS (PERFORMANCE + SECURITY)
+  // ---------------------------------------------------------
   async headers() {
     return [
-      // --------------------------------------------
-      // 1️⃣ Static Next.js Files — Long-term cache
-      // --------------------------------------------
+      // ---------------------------------------------------
+      // 1️⃣ Cache static Next.js assets for 1 year
+      // ---------------------------------------------------
       {
         source: "/_next/static/(.*)",
         headers: [
@@ -35,22 +50,36 @@ const nextConfig: NextConfig = {
         ],
       },
 
-      // --------------------------------------------
-      // 2️⃣ All Other Routes — Fresh HTML cache
-      // Point 7: HTML should NOT be cached for 1 year
-      // --------------------------------------------
+      // ---------------------------------------------------
+      // 2️⃣ Cache images: 30 days
+      // ---------------------------------------------------
+      {
+        source: "/(.*).(png|jpg|jpeg|gif|webp|avif|svg)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=2592000, immutable",
+          },
+        ],
+      },
+
+      // ---------------------------------------------------
+      // 3️⃣ HTML should NOT be long-cached (IMPORTANT!)
+      // ---------------------------------------------------
       {
         source: "/(.*)",
         headers: [
           {
             key: "Cache-Control",
             value: isProd
-              ? "public, max-age=3600" // 1 hour only
+              ? "public, max-age=3600" // 1 hour for dynamic pages
               : "no-cache, no-store, must-revalidate",
           },
           { key: "Vary", value: "Accept-Encoding" },
 
-          // 🧱 Security Headers
+          // ----------------------
+          // Security Headers
+          // ----------------------
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "X-Content-Type-Options", value: "nosniff" },
           {
@@ -70,7 +99,9 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // ✅ Your existing redirects (unchanged)
+  // ---------------------------------------------------------
+  // ✅ REDIRECTS (YOUR ORIGINAL, CLEANED)
+  // ---------------------------------------------------------
   async redirects() {
     return [
       { source: "/about", destination: "/aboutus", permanent: true },
@@ -111,7 +142,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // Disabled Pages
+      // Disabled
       { source: "/project-details", destination: "/404", permanent: false },
       { source: "/case-study", destination: "/404", permanent: false },
       {
@@ -130,7 +161,6 @@ const nextConfig: NextConfig = {
         destination: "/404",
         permanent: false,
       },
-
       { source: "/service-affiliates", destination: "/404", permanent: false },
       { source: "/category/social-media", destination: "/404", permanent: false },
       { source: "/category/brand-design", destination: "/404", permanent: false },
@@ -138,13 +168,11 @@ const nextConfig: NextConfig = {
       { source: "/category/website", destination: "/404", permanent: false },
       { source: "/website/portfolio4", destination: "/404", permanent: false },
       { source: "/category/portfolio", destination: "/404", permanent: false },
-
       {
         source: "/social-media/3-ways-to-keep-your-social-media-people-powered",
         destination: "/404",
         permanent: false,
       },
-
       { source: "/portfolio/hello-world", destination: "/404", permanent: false },
       { source: "/portfolio/portfolio1", destination: "/404", permanent: false },
     ];
