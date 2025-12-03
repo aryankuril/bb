@@ -32,7 +32,7 @@ const links = [
   { href: "/teams", label: "Team" },
   { href: "/join-our-team", label: "Career" },
   { href: "/contactus", label: "Contact" },
-  { href: "/estimates-calculator", label: "Calculator" },
+  { href: "/estimates-calculator", label: "Cost Estimator" },
 ];
 
 export default function DesktopNav() {

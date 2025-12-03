@@ -50,7 +50,7 @@ export default function FallingFlowers() {
       setActive(false);             // Stop creating new flowers
       setFlowers([]);               // Remove everything from DOM
       if (intervalRef.current) clearInterval(intervalRef.current);
-    }, 20000); // 20 sec
+    }, 100000); // 20 sec
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);

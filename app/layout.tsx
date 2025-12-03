@@ -6,10 +6,7 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 
 // Dynamic Components (Client-only)
-const PageLoader = dynamic(() => import("./components/PageLoader"), { ssr: false });
-const ScrollToTop = dynamic(() => import("./components/ScrollToTop"), { ssr: false });
-const FallingFlowers = dynamic(() => import("./components/FallingFlowers"), { ssr: false });
-const ClickBurst = dynamic(() => import("./components/ClickBurst"), { ssr: false });
+const AnimatedEffects = dynamic(() => import("./components/AnimatedEffects"), { ssr: false });
 const AnalyticsWrapper = dynamic(() => import("./components/analytics-wrapper"), { ssr: false });
 
 const miso = localFont({
@@ -34,13 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
 
-        <PageLoader>
+        <AnimatedEffects>
           {children}
-        </PageLoader>
+        </AnimatedEffects>
 
-        <FallingFlowers />
-        <ScrollToTop />
-        <ClickBurst burstImage="/images/star.png" />
 
         {/* LOAD ANALYTICS LAST (Best for speed) */}
         <AnalyticsWrapper />
