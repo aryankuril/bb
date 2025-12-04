@@ -12,8 +12,8 @@ import SmoothScroll from '@/app/components/SmoothScroll'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Case Study – PadelPark360 Branding | Organic Growth",
-  description: "Bombay Blokes implemented advanced Branding strategies for PadelPark360 — improving search rankings, boosting organic traffic & generating high-quality B2B leads.",
+  title: "PadelPark360 Branding | Case Study | Bombay Blokes",
+  description: "See how Bombay Blokes transformed PadelPark360’s identity with bold sports-branding, logo design and brand strategy — a powerful case study in turning courtside energy into a remarkable brand.",
 };
 
 const Index = () => {

@@ -42,7 +42,7 @@ const allSteps: Step[] = [
   // 🟨 Branding (3)
   { number: "01", title: "Padel Park", image: "/images/Branding/Padel-Park.jpg", category: "Branding", link: "/work/design-branding/padelpark" },
   { number: "02", title: "Bombay Artisan Co", image: "/images/Branding/BomBay-Artisan-Co.jpg", category: "Branding", link: "/work/design-branding/bombayartisanco" },
-  // { number: "03", title: "Manba Finance", image: "/images/Branding/Manba-Bus.jpg", category: "Branding", link: "/work/design-branding/manbafinance" },
+  { number: "03", title: "Manba Finance", image: "/images/Branding/Manba-Bus.jpg", category: "Branding", link: "/work/design-branding/manbafinance" },
   { number: "03", title: "Making India Play", image: "/images/Branding/Making-India-Play.jpg", category: "Branding", link: "/work/design-branding/makingindiaplay" },
 
 ];

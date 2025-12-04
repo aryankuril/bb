@@ -33,8 +33,8 @@ const Firstsection = () => {
       {/* Headline */}
       <div className="mb-8 md:mb-12">
         <h1 className="max-w-full black-text">
-Capturing the Market: How Manba Finance Secured <span className="text-highlight">
-            High-Volume Keywords
+Driving Visibility & Trust: Manba Finance  <span className="text-highlight">
+            Festive Impact
             </span>
   {/* Turning JK Diamonds&apos; Digital Touch points Into a{" "}
   <span className="text-highlight">Seamless Student</span> Experience{" "} */}
@@ -73,8 +73,7 @@ className="object-fit w-full h-auto rounded-2xl"
       {/* Paragraph */}
       <div className="max-w-full md:max-w-[1250px] ">
         <p className="body2 black-text">
-Manba Finance's website had a limited content structure, causing them to miss out on valuable organic traffic. They weren't ranking for high-volume keywords and failed to capture a wider range of user search queries beyond generic loan pages.
-        </p>
+Manba Finance Aiming to grow brand trust and borrower confidence, Manba Finance executed a high-visibility, multi-channel push across digital and offline platforms—delivering strong festive-season results.        </p>
       </div>
     </section>
   );

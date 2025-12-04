@@ -12,8 +12,8 @@ import SmoothScroll from '@/app/components/SmoothScroll'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Case Study – Branding for Manba Finance",
-  description: "Discover how Bombay Blokes enhanced Manba Finance’s search engine performance through keyword optimization, content strategy & link building for measurable ROI.",
+  title: "Manba Finance Branding | Fintech Case Study | Bombay Blokes",
+  description: "See Bombay Blokes’ branding success with Manba Finance — a sleek, trust-focused identity crafted to convey reliability and modern finance professionalism in the fintech space.",
 };
 
 const Index = () => {

@@ -5,38 +5,33 @@ const SecondSection = () => {
 const achievements = [
   {
     number: "01",
-    title: "Keyword Analysis",
+    title: "Clear, Consistent Financial Content",
     description:
-      "Identified high-value keywords and content gaps to boost organic traffic.",
+      "Short, relatable finance posts boosted daily visibility and engagement.",
     position: "left",
   },
   {
     number: "02",
-    title: "Service Pages",
+    title: "High-Recall Brand Film (DVC)",
     description:
-      "Created detailed loan pages targeting high-intent, search-driven users.",
+      "A new film launched online and in theatres, driving strong brand recall.",
     position: "right",
   },
   {
     number: "03",
-    title: "Blog Strategy",
+    title: "Festive Presence Across Channels",
     description:
-      "Launched topical blogs to attract users early in their search journey.",
+      "Navratri & Diwali campaigns grew the community to 10K+ followers.",
     position: "left",
   },
   {
     number: "04",
-    title: "Lead Optimization",
+    title: "Offline Impact for IPO",
     description:
-      "Optimized content with CTAs and forms to turn traffic into leads.",
+      "Truck branding and hoardings built mass-market trust during the IPO phase.",
     position: "right",
   },
 ];
-
-
-
-
-
 
   const desktopPathRef = useRef<SVGPathElement | null>(null);
   const mobilePathRef = useRef<SVGPathElement | null>(null);

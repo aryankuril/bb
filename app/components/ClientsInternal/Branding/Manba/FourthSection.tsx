@@ -168,8 +168,7 @@ const FourthSection = () => {
           <span style={{ color: spanColor }}>Turning</span> Every{" "}
           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
           <span style={{ color: spanColor }}>Measurable Results</span> */}
-By strengthening the site's content depth, we achieved rankings for high-volume keywords, attracted a wider audience from new search queries, and increased overall user engagement.
-        </h3>
+Manba Finance aimed to strengthen brand trust and borrower confidence through a high-visibility, multi-channel campaign. The brand activated both digital and offline platforms to maximise reach and recall.     </h3>
       </div>
   </section>
   )
