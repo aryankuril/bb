@@ -1716,22 +1716,24 @@ const filled = idx < progress / 25;
 
 
 
- <div
-  className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+<div
+  className={`flex items-center justify-center transition-all duration-500 py-10 ${
     submitStatus === "success"
       ? "opacity-100 translate-y-0"
       : "opacity-0 translate-y-8 pointer-events-none"
   }`}
 >
   {submitStatus === "success" && (
-    <div className="text-center">
+    <div className="flex flex-col items-center justify-center text-center w-full">
       <h3 className="text-highlight mb-3">Thank you! 🎉</h3>
-      <p className="text-gray-300 max-w-xl mx-auto">
+      <p className="text-gray-300 max-w-xl">
         An email from us is on the way, don’t forget to check your inbox
       </p>
     </div>
   )}
 </div>
+
+
 
 
 
