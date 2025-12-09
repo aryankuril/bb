@@ -3,6 +3,7 @@ import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
+import Button from "@/app/components/Button";
 
 const Firstsection = () => {
   const controls = useAnimation();
@@ -41,6 +42,9 @@ const Firstsection = () => {
   {/* <span className="text-highlight">Attracts</span> and{" "}
   <span className="text-highlight">Retains Students</span> */}
 </h1>
+  <div className=" lg:mt-10 mt-5 pl-2">
+                      <Button href="/estimates-calculator" text="Get Estimates " className="" />
+                    </div>
 
       </div>
 

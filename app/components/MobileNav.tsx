@@ -19,7 +19,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: "https://bbstudios.bombayblokes.com/bomb.ai", label: "BOMB AI" },
   { label: "CAREERS", href: "/join-our-team" },
   { label: "CONTACT", href: "/contactus" },
-  { href: "/estimates-calculator", label: "Cost Estimator" },
+  { href: "/estimates-calculator", label: "COST ESTIMATOR" },
 ];
 
 const BOTTOM_BAR_H = 68;

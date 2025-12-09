@@ -2,6 +2,7 @@
 import React, { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+
 type Step = {
   number: string;
   title: string;
@@ -16,9 +17,9 @@ const allSteps: Step[] = [
   { number: "02", title: "Blancora", image: "/images/webdev/Blancoranew.jpg", category: "Web Development", link: "/work/website-development/blancora" },
   { number: "03", title: "Mr Blox", image: "/images/webdev/MrBloxnew.jpg", category: "Web Development", link: "/work/website-development/mrblox" },
   { number: "04", title: "My Suit Tailor", image: "/images/webdev/MSTnew.jpg", category: "Web Development", link: "/work/website-development/mysuittailor" },
-  // { number: "05", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds.png", category: "Web Development", link: "/work/website-development/jkdiamondsinstitute" },
-  // { number: "06", title: "The Feline Foundation", image: "/images/webdev/Foundation2.png", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
-  // { number: "07", title: "SCS Sports", image: "/images/webdev/SCS.png", category: "Web Development", link: "/work/website-development/scssports" },
+  { number: "05", title: "JK Diamonds Institute", image: "/images/webdev/Jk-Diamonds2.jpg", category: "Web Development", link: "/work/website-development/jkdiamondsinstitute" },
+  { number: "06", title: "The Feline Foundation", image: "/images/webdev/FelineFoundation2.jpg", category: "Web Development", link: "/work/website-development/thefelinefoundation" },
+  { number: "07", title: "SCS Sports", image: "/images/webdev/SCS2.jpg", category: "Web Development", link: "/work/website-development/scssports" },
 
   // 🟩 PERFORMANCE MARKETING (4)
   { number: "01", title: "JK Diamonds Institute", image: "/images/pm/Jk-diamondsnew.jpg", category: "Performance Marketing", link: "/work/performance-marketing/jkdiamondsinstitute" },
@@ -31,7 +32,7 @@ const allSteps: Step[] = [
   { number: "02", title: "Manba Finance", image: "/images/sm/Manba.jpg", category: "Social Media", link: "/work/social-media-marketing/manbafinance" },
   { number: "03", title: "Parvez Damania", image: "/images/sm/Damania.jpg", category: "Social Media", link: "/work/social-media-marketing/damania" },
   { number: "04", title: "SCS Sports", image: "/images/sm/SCS.jpg", category: "Social Media", link: "/work/social-media-marketing/scssports" },
-  // { number: "05", title: "Ric Rac", image: "/images/sm/Ric-Rac.png", category: "Social Media", link: "/work/social-media-marketing/ricrackids" },
+  { number: "05", title: "Ric Rac", image: "/images/sm/Ricrac2.jpg", category: "Social Media", link: "/work/social-media-marketing/ricrackids" },
 
   // 🟨 SEO (3)
   { number: "01", title: "Manba Finance", image: "/images/seo-cs/manbaaa.png", category: "SEO", link: "/work/seo-services/manbafinance" },
@@ -40,10 +41,10 @@ const allSteps: Step[] = [
 
 
   // 🟨 Branding (3)
-  { number: "01", title: "Padel Park", image: "/images/Branding/Padel-Park.jpg", category: "Branding", link: "/work/design-branding/padelpark" },
-  { number: "02", title: "Bombay Artisan Co", image: "/images/Branding/BomBay-Artisan-Co.jpg", category: "Branding", link: "/work/design-branding/bombayartisanco" },
-  { number: "03", title: "Manba Finance", image: "/images/Branding/Manba-Bus.jpg", category: "Branding", link: "/work/design-branding/manbafinance" },
-  { number: "03", title: "Making India Play", image: "/images/Branding/Making-India-Play.jpg", category: "Branding", link: "/work/design-branding/makingindiaplay" },
+  { number: "01", title: "Padel Park", image: "/images/Branding/Padel-Park2.jpg", category: "Branding", link: "/work/design-branding/padelpark" },
+  { number: "02", title: "Bombay Artisan Co", image: "/images/Branding/BomBay-Artisan-Co2.jpg", category: "Branding", link: "/work/design-branding/bombayartisanco" },
+  { number: "03", title: "Manba Finance", image: "/images/Branding/Manba-Bus2.jpg", category: "Branding", link: "/work/design-branding/manbafinance" },
+  { number: "03", title: "Making India Play", image: "/images/Branding/Making-India-Play2.jpg", category: "Branding", link: "/work/design-branding/makingindiaplay" },
 
 ];
 

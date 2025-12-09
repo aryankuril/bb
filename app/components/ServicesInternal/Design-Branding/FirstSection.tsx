@@ -37,7 +37,7 @@ const FirstSection = () => {
     </p>
 
     <div className="mt-6 lg:mt-10 z-50">
-      <Button href="/contactus" text="BOOK FREE AUDIT " className="lg:mt-10" />
+       <Button href="/estimates-calculator" text="Get Estimates " className="" />
     </div>
   </div>
 

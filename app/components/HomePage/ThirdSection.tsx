@@ -5,11 +5,11 @@ import Image from "next/image";
 import gsap from "gsap";
 
 const images = [
-  "/images/wordpress-logo.svg",
-  "/images/framer-motion-logo2.webp",
-  "/images/tailwind-logo.svg",
-  "/images/nextjs-logo.svg",
-  "/images/react-logo.svg",
+  "/images/shopify2.png",
+  "/images/figma2.png",
+  "/images/framer2.png",
+  "/images/nextjs-logo2.webp",
+  "/images/Wordpress2.png",
 ];
 
 export default function ThirdSection() {
@@ -60,7 +60,7 @@ export default function ThirdSection() {
   "
 >
       <div className="flex flex-col items-center justify-center h-full px-6 text-center">
-        <div className="relative w-20 h-20 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-25 lg:h-25 mb-6 flex items-center justify-center">
+        <div className="relative w-20 h-20 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-35 lg:h-25 mb-6 flex items-center justify-center">
   {images.map((img, i) => (
     <div
       key={i}
@@ -75,7 +75,7 @@ export default function ThirdSection() {
       <Image
         src={img}
         alt={`icon-${i}`}
-        width={250}
+        width={350}
         height={220}
         className="object-contain w-full h-full"
       />

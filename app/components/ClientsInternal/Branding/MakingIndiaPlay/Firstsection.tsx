@@ -60,7 +60,7 @@ DNM Sports Curating an identity and  <span className="text-highlight"> adding co
         >
           <Image
 
- src="/images/Branding/Making-India-Play.jpg"
+ src="/images/Branding/Making-India-Play2.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

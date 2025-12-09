@@ -61,7 +61,7 @@ Driving Visibility & Trust: Manba Finance  <span className="text-highlight">
         >
           <Image
 
- src="/images/Branding/Manba-Bus.jpg"
+ src="/images/Branding/Manba-Bus2.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

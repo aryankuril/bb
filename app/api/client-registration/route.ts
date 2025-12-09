@@ -31,85 +31,351 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const htmlTemplate = `
+
+        const formattedServices = services && services.length
+  ? services.length === 1
+    ? services[0]
+    : services.slice(0, -1).join(", ") + " & " + services[services.length - 1]
+  : "None";
+
+const htmlTemplate = `
 <!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Bombay Blokes — Onboarding Started</title>
   </head>
-  <body>
-    <p>Hi ${contactPerson || companyName}!</p>
-    <p>Welcome to the Bombay Blokes Family. We have got all the details required to start the initiation process. Thank You.</p>
 
-    <hr class="solid">
-    <table cellspacing="0" cellpadding="0" border="0">
-      <tbody>
-        <tr>
-          <td valign="top" style="padding-left: 0px; padding-top: 0px; padding-bottom: 0px; padding-right: 0px;">
-            <span style="text-align: left; color: #000000; font-family: 'Arial', sans-serif; font-size: 10pt; font-weight: bold">Bombay Blokes</span><br />
-            <span style="text-align: left; margin-top: 0px; margin-bottom: 0px; color: #000000; font-family: 'Arial', sans-serif; font-weight: normal; font-size: 9pt;">Digital Solutions LLP</span><br />
-          </td>
-        </tr>
+  <body style="margin:0; padding:0; background-color:#ffffff; -webkit-font-smoothing:antialiased;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="background-color:#ffffff;">
+      <tr>
+        <td align="center">
 
-        <tr>
-          <td valign="top" style="padding-left: 0px; padding-top: 7px; padding-bottom: 4px; padding-right: 0px;">
-            <a href="http://www.bombayblokes.com/">
-              <img src="https://bombayblokes.com/wp-content/uploads/2021/12/bblogo.png" nosend="1" border="0" width="148" height="26" alt="Bombay Blokes" title="Bombay Blokes" />
-            </a>
-          </td>
-        </tr>
+          <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" style="
+            width:600px;
+            max-width:600px;
+            font-family: 'Miso', 'Poppins', sans-serif;
+            color:#222222;
+            border: #fab31e 2px solid;
+            border-top-left-radius:20px;
+            border-top-right-radius:20px;
+          ">
 
-        <tr>
-          <td valign="top" style="padding-left: 0px; padding-top: 0px; padding-bottom: 0px; padding-right: 0px;">
-            <span style="text-align: left; color: #000000; font-family: Arial; font-size: 9pt; font-style: normal; font-weight: normal;">
-              21 B, Madhu Estate, 1st Floor, Pandurang Budhkar Marg, Next to Ikea, <br />
-              Lower Parel <font size="1" color="#B9B9B9">|</font> Mumbai, Maharashtra 400013<br />
-              tel +91 981-916-7856<br />
-            </span>
-          </td>
-        </tr>
+            <tr>
+              <td background="https://blokesarea.com/wp-content/uploads/2025/12/Email-Background.png"
+                style="background-position: top center; background-repeat: no-repeat; background-size: cover; padding:30px 16px 20px 16px;">
 
-        <tr>
-          <td valign="top" style="padding-left: 0px; padding-top: 5px; padding-bottom: 0px; padding-right: 0px;">
-            <span style="text-align: left; margin-top: 0px; color: #FCB315; font-size: 8pt; font-weight: bold; font-family: 'Calibri', sans-serif;">
-              <a style="text-decoration: none; color: #F77A1E" href="http://www.bombayblokes.com/"><font color="#FCB315">website</font></a>
-              <font size="1" color="#FCB315">|</font>
-              <a style="text-decoration: none; color: #F77A1E" href="http://maps.google.com/maps?q=Bombay+Blokes+Digital+Solutions+LLP/@18.9994787,72.8277556,17z/data=!4m9!1m2!2m1!1sbombay+blokes,+1041,+1B,+Benefice+Business+House,+Mathuradas+Mill+Compound,+126,+NM+Joshi+Marg,+Lower+Parel+%7C+Mumbai,+Maharashtra"><font color="#FCB315">map</font></a>
-              <font size="1" color="#FCB315">|</font>
-              <a style="text-decoration: none; color: #F77A1E" href="mailto:bdm@bombayblokes.com"><font color="#FCB315">email</font></a>
-            </span>
-          </td>
-        </tr>
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
 
-        <tr>
-          <td valign="top" style="padding-left:0px; padding-top: 7px; padding-bottom: 0px; padding-right: 0px; color: #FCB315;">
-            <a href="https://www.instagram.com/bombay_blokes/?hl=en"><img src="https://bombayblokes.com/wp-content/uploads/2022/12/Frame-1-1.png" nosend="1" border="0" width="25" height="25" alt="Instagram"/></a>
-            <a href="https://www.facebook.com/bombayblokes/"><img src="https://bombayblokes.com/wp-content/uploads/2022/12/Frame-2.png" nosend="1" border="0" width="25" height="25" alt="Facebook"/></a>
-            <a href="https://www.linkedin.com/company/bombay-blokes-digital-solutions-llp/?originalSubdomain=in"><img src="https://bombayblokes.com/wp-content/uploads/2022/12/Frame-3.png" nosend="1" border="0" width="25" height="25" alt="LinkedIn"/></a>
-          </td>
-        </tr>
+                   <style type="text/css">
+  @font-face {
+    font-family: 'Miso';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://fonts.cdnfonts.com/s/14095/Miso.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Miso';
+    font-style: normal;
+    font-weight: 700;
+    src: url('https://fonts.cdnfonts.com/s/14095/Miso-Bold.woff') format('woff');
+  }
 
-        <tr>
-          <td valign="top" style="padding-left: 0px; padding-top: 8px; padding-bottom: 0px; padding-right: 0px;">
-            <span style="color: #8A8A8A; font-family: 'Calibri', sans-serif; font-size: 8pt; font-weight: regular;">
-              <b>Confidentiality Note: </b> This email may contain confidential and/or private information. If you received this email in error please delete and notify sender.
-            </span>
-          </td>
-        </tr>
-      </tbody>
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfedA.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    src: url('https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6.woff2') format('woff2');
+  }
+</style>
+
+
+                  <!-- Heading -->
+                   <tr>
+  <td style="padding-bottom:10px;">
+    <span style="display:block; font-size:34px; line-height:36px; color:#F7B21A; font-weight:700; font-family: 'Miso', Arial, sans-serif;">
+      Hey!!
+    </span>
+
+    <span style="display:block; font-size:40px; line-height:44px; color:#000000; font-weight:700; letter-spacing:1px; font-family: 'Miso', 'Poppins', sans-serif;">
+      Bombay Blokes Here...
+    </span>
+  </td>
+</tr>
+
+                   <!-- dotted separator -->
+                  <tr>
+                    <td style="padding:6px 0;">
+                      <div style="border-top:2px dotted #F4C882; width:100%;"></div>
+                    </td>
+                  </tr>
+
+                  <!-- Intro -->
+                  <tr>
+                    <td style="padding-top:14px; padding-bottom:14px;">
+                      <p style="margin:0; font-size:14px; color:#333;">
+                        <strong>We’re excited to officially get started on your project.</strong><br/>
+                        Thanks for confirming. Your journey with us now begins for real.
+                      </p>
+                    </td>
+                  </tr>
+
+                  <!-- dotted separator -->
+                  <tr>
+                    <td style="padding:6px 0;">
+                      <div style="border-top:2px dotted #F4C882; width:100%;"></div>
+                    </td>
+                  </tr>
+
+                  <!-- Onboarding Summary -->
+                  <tr>
+                    <td style="padding:8px 0 6px 0;">
+                      <h3 style="margin:0; font-size:18px; font-weight:700;">Onboarding Summary</h3>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding-top:10px; padding-bottom:10px;">
+                      <table width="100%" style="font-size:14px;">
+  <tr>
+    <td style="padding:6px 0;">
+      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+      <strong>Registered Company Name:</strong>
+      <span style=" color:#555555 ; text-transform: capitalize;" >${companyName}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:6px 0;">
+      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+      <strong>Brand Name:</strong>
+      <span style=" color:#555555 ; text-transform: capitalize;" >${brandName || "N/A"}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:6px 0;">
+      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+      <strong>Industry:</strong>
+      <span style=" color:#555555 ; text-transform: capitalize;" >${industry}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:6px 0;">
+      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+      <strong>GSTIN:</strong>
+      <span style=" color:#555555 ; text-transform: capitalize;" >${gstin}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:6px 0;">
+      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+      <strong>Service Chosen:</strong>
+      <span style=" color:#555555 ; text-transform: capitalize;" >   ${formattedServices}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:6px 0;">
+      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+      <strong>Contact Person:</strong>
+      <span style=" color:#555555 ; text-transform: capitalize;" >${contactPerson || "N/A"}</span>
+    </td>
+  </tr>
+
+<tr>
+ <td style="padding:6px 0; vertical-align:top;">
+  <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+  <strong>Email:</strong>
+  <a style="color:#555555 !important; text-decoration:none !important; margin-left:6px;">
+    ${email}
+  </a>
+</td>
+</tr>
+
+
+
+  <tr>
+    <td style="padding:6px 0;">
+      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+      <strong>Phone:</strong>
+      <span style=" color:#555555 ; text-transform: capitalize;" >${phone}</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:6px 0;">
+      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+      <strong>Registered Address:</strong>
+      <span style=" color:#555555 ; text-transform: capitalize;" >${address || "N/A"}</span>
+    </td>
+  </tr>
+
+<tr>
+  <td style="padding:6px 0;">
+    <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+    <strong>Website:</strong>
+
+    <a 
+      href="${website || '#'}"
+      style="
+        color:#555555 !important;
+        text-decoration:underline !important;
+        font-weight:normal;
+      "
+      target="_blank"
+    >
+      ${website || "N/A"}
+    </a>
+  </td>
+</tr>
+
+</table>
+
+                    </td>
+                  </tr>
+
+                  <!-- dotted separator -->
+                  <tr>
+                    <td style="padding:6px 0;">
+                      <div style="border-top:2px dotted #F4C882; width:100%;"></div>
+                    </td>
+                  </tr>
+
+
+                  <!-- What Happens Next -->
+                  <tr>
+                     <td style="padding-top:14px; padding-bottom:10px;">
+                      <h4 style="font-size:16px; margin:0 0 6px;">What Happens Next?</h4>
+                      <table style="font-size:14px;">
+                        <tr><td style="padding:6px 0;"> <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span> A dedicated project manager will be assigned</td></tr>
+                        <tr><td style="padding:6px 0;"> <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span> You’ll receive a project timeline & milestones</td></tr>
+                        <tr><td style="padding:6px 0;"> <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span> Our team will schedule a kickoff call</td></tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                    <!-- dotted separator -->
+                  <tr>
+                    <td style="padding:6px 0;">
+                      <div style="border-top:2px dotted #F4C882; width:100%;"></div>
+                    </td>
+                  </tr>
+
+                  <!-- Work CTA -->
+                  <tr>
+                     <td style="padding-top:10px; padding-bottom:10px;">
+                      <p style="font-size:14px;">Relevant Work In   ${formattedServices} <br/> Until our kickoff call, you can explore similar projects we’ve executed</p>
+                      
+
+                      <table cellpadding="0" cellspacing="0" style="margin-top:6px;">
+                        <tr>
+                          <td style="background:#F9B31B; padding:0 3px 3px 0; border-radius:5px;">
+                            <a href="https://www.bombayblokes.com/work"
+                              style="display:block; width:130px; padding:10px 0; text-align:center; background:#000; color:#fff; text-decoration:none; border-radius:5px;">
+                              Explore Projects
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                    <!-- dotted separator -->
+                  <tr>
+                    <td style="padding:6px 0;">
+                      <div style="border-top:2px dotted #F4C882; width:100%;"></div>
+                    </td>
+                  </tr>
+
+                  
+
+                 <!-- contact quick -->
+                  <tr>
+                    <td style="padding-top:10px; padding-bottom:14px;">
+                      <p style="margin:12px 0 6px 0; font-size:14px; color:#222222;"><strong>Need Anything Before the Kickoff? <br/> Reach us anytime:</strong></p>
+
+                      <table cellpadding="0" cellspacing="0" border="0" style="font-size:14px; color:#444444;">
+                        <tr>
+                          <td style="vertical-align:top; padding-bottom:6px;">
+                            <span style="font-size:16px;">📞</span>
+                          </td>
+                          <td style="padding-left:8px; vertical-align:middle;">
+                            <a href="tel:\${phone || '+919819167856'}" style="color:#222222; text-decoration:none;">+91 981-916-7856</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="vertical-align:top; padding-bottom:6px;">
+                            <span style="font-size:16px;">✉️</span>
+                          </td>
+                          <td style="padding-left:8px; vertical-align:middle;">
+                            <a href="mailto:\${email || 'hello@bombayblokes.com'}" style="color:#222222; text-decoration:none;">hello@bombayblokes.com</a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                    <!-- dotted separator -->
+                  <tr>
+                    <td style="padding:6px 0;">
+                      <div style="border-top:2px dotted #F4C882; width:100%;"></div>
+                    </td>
+                  </tr>
+
+                  <!-- Footer Text -->
+                 <tr>
+                    <td style="padding-top:10px;">
+                      <p style="font-size:14px;">
+                        Welcome to the Bombay Blokes family. Let’s build something unforgettable.
+                      </p>
+                      <p style="font-size:14px;">
+                        Cheers,<br/>Team Bombay Blokes<br/>
+                        🌐 <a href="https://bombayblokes.com" style="color:#222222 !important; " >bombayblokes.com</a>
+                      </p>
+                       
+                      <span style="font-size:12px;">
+                        <a href="https://www.instagram.com/bombay_blokes/?hl=en" style=" color:#222222 !important;">Instagram</a> &nbsp; | &nbsp;
+                        <a href="https://www.facebook.com/bombayblokes/" style=" color:#222222 !important; ">Facebook</a> &nbsp; | &nbsp;
+                        <a href="https://www.linkedin.com/company/bombay-blokes-digital-solutions-llp/?originalSubdomain=in" style=" color:#222222 !important;">LinkedIn</a>
+                      </span>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer Banner -->
+            <tr>
+              <td>
+                <img src="https://blokesarea.com/wp-content/uploads/2025/12/Email-Signature.png"
+                     width="600" style="display:block; width:100%;">
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
     </table>
-
-    <style>
-      a { color: #f77a1e; }
-      hr.solid { border-top: 1px #bbb; }
-    </style>
   </body>
-</html>`;
+</html>
+`;
+
 
     // Send email to client
     const result = await sendEmail({
       to: email,
-      subject: "Welcome to the Bombay Blokes Family!",
+      subject: "Welcome To The Bombay Blokes Family!",
       html: htmlTemplate,
       fromName: "Bombay Blokes",
       fromAddress: "hello@bombayblokes.com",

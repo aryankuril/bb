@@ -61,7 +61,7 @@ Building India’s Next Sport Movement: <span className="text-highlight">
         >
           <Image
 
- src="/images/Branding/Padel-Park.jpg"
+ src="/images/Branding/Padel-Park2.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

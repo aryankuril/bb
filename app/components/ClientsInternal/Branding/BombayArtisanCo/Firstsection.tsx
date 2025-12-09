@@ -61,7 +61,7 @@ BOMBAY ARTISAN CO, Ethical Luxury Reimagined elevating their  <span className="t
         >
           <Image
 
- src="/images/Branding/BomBay-Artisan-Co.jpg"
+ src="/images/Branding/BomBay-Artisan-Co2.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

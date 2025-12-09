@@ -57,7 +57,7 @@ const Firstsection = () => {
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full  "
         >
           <Image
-  src="/images/webdev/J-KDiamonds.webp"
+  src="/images/webdev/Jk-Diamonds2.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

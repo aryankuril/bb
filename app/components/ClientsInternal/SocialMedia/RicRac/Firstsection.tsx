@@ -60,7 +60,7 @@ A brand-new name in the market with  <span className="text-highlight">
           className="relative overflow-hidden lg:rounded-4xl rounded-3xl w-full  "
         >
           <Image
- src="/images/SocialMedia/ricrac.webp"
+ src="/images/sm/Ricrac2.jpg"
   alt="JK Diamonds Institute"
   width={1400}
   height={800}

@@ -1,8 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import ContactButton from "../ContactButton";
 import { number } from "framer-motion";
 import Image from "next/image";
+import Button from "../Button";
+
+
+const initialFormState = {
+  name: "",
+  email: "",
+  phone: "",
+  company: "",
+};
 
 const SecondSection = () => {
   const services = [
@@ -169,6 +178,7 @@ const SecondSection = () => {
     name: "",
     email: "",
     phone: "",
+    company: "",
   });
   const [message, setMessage] = useState("");
   const [focused, setFocused] = useState({
@@ -176,6 +186,7 @@ const SecondSection = () => {
     email: false,
     phone: false,
     message: false,
+    company: false,
   });
   const [errors, setErrors] = useState({
     name: "",
@@ -188,6 +199,43 @@ const SecondSection = () => {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+    const [step, setStep] = useState(0);
+
+      // When submitStatus becomes success, show the Thank you step
+useEffect(() => {
+  if (submitStatus === "success") {
+    setStep(3);
+
+    const timer = setTimeout(() => {
+      setStep(0);
+      setSubmitStatus("idle");
+      setFormData(initialFormState);
+      setMessage("");
+      setSelectedServices([]);
+      setErrors({
+        name: "",
+        email: "",
+        phone: "",
+        services: "",
+      });
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }
+}, [submitStatus]);
+
+
+
+
+  const totalSteps = 3;
+
+  const goNext = () => {
+    // If on last step do nothing (submission handled by form)
+    if (step < totalSteps - 1) setStep((s) => s + 1);
+  };
+  const goBack = () => {
+    if (step > 0) setStep((s) => s - 1);
+  };
 
   // Validation functions
   const validateEmail = (email: string): boolean => {
@@ -326,7 +374,7 @@ const SecondSection = () => {
 
       setSubmitStatus("success");
       // Reset form
-      setFormData({ name: "", email: "", phone: "" });
+      setFormData({ name: "", email: "", phone: "" , company: ""});
       setMessage("");
       setSelectedServices([]);
       setErrors({
@@ -337,16 +385,11 @@ const SecondSection = () => {
         services: "",
       });
 
-      // Show success message for 3 seconds
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 3000);
+  
     } catch (error) {
       console.error("Form submission error:", error);
       setSubmitStatus("error");
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 3000);
+    
     } finally {
       setIsSubmitting(false);
     }
@@ -359,78 +402,90 @@ const SecondSection = () => {
   ) => {
     return fieldFocused || fieldValue ? "#FAB31E" : "#ABABAB";
   };
+ // progress helpers
+  const progressPercentage = Math.round(((step + 0) / totalSteps) * 100);
+
   return (
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
-      <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
-        {/* Left Side Image */}
-        <div className="lg:p-10 p-6  flex items-center justify-center">
-          <Image
-           width={1000}
-        height={1000}
-            src="/images/panipuricart.png" // replace with your image path
-            alt="Pani Puri Cart"
-            className=" w-full h-full object-contain rounded-[15px]"
-          />
-        </div>
+      <div className="bg-[#1D1D1D] rounded-[20px] relative overflow-hidden px-6 py-8">
+        {/* TOP: Title + progress bar */}
+       <div className="max-w-3xl mx-auto text-center mb-6 relative">
+  <h2 className="text-3xl font-medium white-text">
+    Connect <span className="text-highlight">With Us</span>
+  </h2>
 
-        {/* Right Side Form */}
-        <div className="p-6 sm:p-5 md:p-5 white-text relative">
-          <div className="flex items-center justify-start gap-4">
-            <h3
-              className="
-      white-text
-    "
-            >
-              Let’s Have A <span className="text-highlight">Pani Puri</span>{" "}
-              Date
-            </h3>
-
-            {/* ✅ Add Image */}
-            <Image
-             width={1000}
-        height={1000}
-              src="/images/panipuri.png" // replace with your actual path
-              alt="Pani Puri"
-              className="lg:w-[140] w-[70px] h-auto object-contain z-55 lg:-mr-18"
+  {/* Progress Bar visual */}
+  <div className="mt-6">
+    <div className="w-full">
+      <div className="flex gap-3 items-center">
+        {Array.from({ length: totalSteps }).map((_, idx) => {
+          const filled = idx < step;
+          return (
+            <div
+              key={idx}
+              className={`flex-1 h-2 rounded-full transition-all duration-500 ${
+                filled
+                  ? "bg-[var(--color-highlight)]"
+                  : "bg-transparent border border-gray-600/40"
+              }`}
             />
-          </div>
+          );
+        })}
+      </div>
 
-          <form
-            className="space-y-5 mt-10 lg:w-[600px] w-full"
-            onSubmit={handleSubmit}
-          >
-            {/* Name */}
-            <div>
-              <label
-                className="
-    block white-text body3
-  "
-              >
-                Hey There! My Khata Meetha Name Is,
-              </label>
+      <div className="mt-3 text-sm text-gray-300 flex items-center justify-between">
+        <div>Step {Math.min(step + 1, totalSteps)} of {totalSteps}</div>
+        <div className="text-[var(--color-highlight)]">
+          {progressPercentage}%
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-              <div className="relative w-full">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus("name")}
-                  onBlur={() => handleBlur("name")}
-                  className={`
-          w-full px-7 py-1 bg-transparent 
-          border-0 border-b-2 ${
-            errors.name
-              ? "border-b-red-500"
-              : "border-b-[var(--color-highlight)]"
-          }
-          white-text placeholder-gray-400 small-placeholder
-          focus:outline-none focus:border-b-[var(--color-highlight)]
-        `}
-                />
 
-                <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
+        {/* FORM CARD (centered) */}
+        <div className="max-w-3xl mx-auto bg-transparent rounded-lg relative">
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Step 0: Name & Brand */}
+
+            <div className="relative w-full h-[300px]">
+  <div
+    className={`absolute w-full transition-all duration-500 ease-in-out ${
+      step === 0
+        ? "opacity-100 translate-y-0"
+        : step > 0
+        ? "opacity-0 -translate-y-5 duration-500 pointer-events-none"
+        : "opacity-0  duration-50 pointer-events-none"
+    }`}
+  >
+                <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div> 
+              
+              <h3 className="text-left text-lg white-text py-7">1. Tell Us About You</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                {/* Full Name */}
+                <div>
+                  {/* <label className="block white-text body3 mb-2">Your Full Name</label> */}
+                  <div className="relative">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Full Name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      onFocus={() => handleFocus && handleFocus("name")}
+                      onBlur={() => handleBlur && handleBlur("name")}
+                      className={`w-full px-7 py-3 bg-transparent border-b-2 ${errors.name ? "border-b-red-500" : "border-b-[var(--color-highlight)]"} outline-none white-text`}
+                    />
+
+                     <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -448,195 +503,106 @@ const SecondSection = () => {
                     />
                   </svg>
                 </div>
-              </div>
-              {errors.name && (
-                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
-              )}
-            </div>
+                  </div>
+                  {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                </div>
 
-            {/* Services */}
-            <div>
-              <label
-                className="
-          block white-text body3 mb-3 
-        "
-              >
-                And I’m Keen To Get A Taste Of Your
-              </label>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {services.map((service, index) => {
-                  const isActive = selectedServices.includes(service.name);
-
-                  return (
-                    <button
-                      key={index}
-                      type="button"
-                      onClick={() => handleServiceToggle(service.name)}
-                      className={`
-          flex items-center  lg:gap-5 gap-3 px-3 py-3 rounded-[10px] border 
-          w-full transition cursor-pointer small-placeholder
-          ${
-            isActive
-              ? "bg-[var(--color-highlight)] text-black border-[var(--color-highlight)] small-placeholder"
-              : errors.services
-              ? "border-red-500 text-[var(--color-secondary)]"
-              : "border-[var(--color-highlight)] text-[var(--color-secondary)]"
-          }
-        `}
-                    >
-                      <span className="w-4 h-4  "> {service.icon(isActive)}</span>{" "}
-                      {/* <-- call it here */}
-                      <span className="items-center ">{service.name}</span>
-                    </button>
-                  );
-                })}
-              </div>
-              {errors.services && (
-                <p className="text-red-500 text-xs mt-2">{errors.services}</p>
-              )}
-            </div>
-
-            {/* Message */}
-            <div>
-              <label
-                className="
-          block white-text body3
-        "
-              >
-               Here’s What Excites My Taste Buds
-              </label>
-              <div className="relative w-full">
-                <input
-                  type="text"
-                  placeholder="Message"
-                  value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                    // if (errors.message) {
-                    //   setErrors((prev) => ({ ...prev, message: "" }));
-                    // }
-                  }}
-                  onFocus={() => handleFocus("message")}
-                  onBlur={() => handleBlur("message")}
-                  className={`
-          w-full px-7 py-1  bg-transparent 
-          border-0 border-b-2 ${
-            false ? "border-b-red-500" : "border-b-[var(--color-highlight)]"
-          }
-          white-text placeholder-gray-400 small-placeholder
-          focus:outline-none focus:border-b-[var(--color-highlight)]
-        `}
-                />
-                <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
+                {/* Company / Brand */}
+                <div>
+                  {/* <label className="block white-text body3 mb-2">Your Company / Brand Name</label> */}
+                  <div className="relative">
+                    <input
+                      type="text"
+                      name="company"
+                      placeholder="Your Company / Brand Name"
+                      value={formData.company}
+                      onChange={handleChange}
+                      onFocus={() => handleFocus && handleFocus("company")}
+                      onBlur={() => handleBlur && handleBlur("company")}
+                      className={`w-full px-7 py-3 bg-transparent border-b-2 outline-none white-text border-b-[var(--color-highlight)]`}
+                    />
+                      <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                   width="20"
-                    height="20"
-                    viewBox="0 0 24 25"
-                    fill={getIconColor(message, focused.message)}
-                  >
-                    <path d="M20.1449 2.11723H3.83162C2.12599 2.11723 0.738281 3.50467 0.738281 5.21057V15.194C0.738281 16.896 2.11995 18.2813 3.82063 18.2873V22.8177L10.3313 18.2873H20.1449C21.8506 18.2873 23.2383 16.8996 23.2383 15.194V5.21057C23.2383 3.50467 21.8506 2.11723 20.1449 2.11723ZM21.9199 15.194C21.9199 16.1726 21.1237 16.969 20.1449 16.969H9.91763L5.13899 20.2943V16.969H3.83162C2.85287 16.969 2.05664 16.1726 2.05664 15.194V5.21057C2.05664 4.23169 2.85287 3.43559 3.83162 3.43559H20.1449C21.1237 3.43559 21.9199 4.23169 21.9199 5.21057V15.194Z" />
-                    <path
-                      d="M6.76074 6.77557H17.2167V8.09393H6.76074V6.77557Z"
-                      fill={getIconColor(message, focused.message)}
-                    />
-                    <path
-                      d="M6.76074 9.58807H17.2167V10.9064H6.76074V9.58807Z"
-                      fill={getIconColor(message, focused.message)}
-                    />
-                    <path
-                      d="M6.76074 12.4006H17.2167V13.7189H6.76074V12.4006Z"
-                      fill={getIconColor(message, focused.message)}
-                    />
-                  </svg>
+    id="fi_4300058"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    width="20"
+    height="20"
+    fill={getIconColor(formData.company, focused.company)}
+  >
+    <g>
+      <path
+        d="m462.742 381.745c-3.997.047-3.558-.147-8.872.225v-124.321c0-13.305-10.825-24.13-24.13-24.13h-60.92c-.033 0-.064-.005-.097-.005h-70.152v-187.285l57.535 55.615c3.252 3.144 5.117 7.54 5.117 12.063v91.754c0 4.142 3.358 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-91.754c0-8.566-3.532-16.894-9.692-22.848l-70.248-67.903c-1.579-1.482-4.605-2.812-7.602-1.717l-126.021 42.36v-29.2c.095-12.759-11.353-23.864-24.67-23.09-12.737 0-23.1 10.358-23.1 23.09v45.257l-32.971 11.083c-12.951 4.354-21.653 16.458-21.653 30.122v260.725c-33.375.855-60.266 28.251-60.266 61.828v38.138c0 10.354 8.423 18.776 18.776 18.776h474.447c10.354 0 18.776-8.423 18.776-18.776v-50.75c.001-27.16-22.096-49.257-49.257-49.257zm0 15c18.89 0 34.258 15.368 34.258 34.258v7.868h-72.75v-7.868c.017-20.501 18.03-36.034 38.492-34.258zm-23.872-139.096v128.191c-17.414 7.602-29.62 24.979-29.62 45.162v7.868h-110.679v-190.351h131.169c5.034 0 9.13 4.096 9.13 9.13zm-308.98-223.05c0-4.461 3.634-8.09 8.1-8.09 4.011-.589 9.412 2.556 9.67 8.09v34.242l-17.77 5.973zm-69.623 362.173v42.099h-45.029c2.333-23.102 21.512-41.305 45.029-42.099zm-45.267 84.981v-27.882h45.267v31.658h-41.49c-2.083 0-3.777-1.694-3.777-3.776zm60.267-360.692c0-7.214 4.594-13.604 11.432-15.903l196.873-66.176v40.865l-163.572 54.983c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.792-53.375v38.155l-163.572 54.982c-3.926 1.32-6.039 5.573-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.792-53.376v38.155l-163.572 54.983c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.792-53.375v37.358c0 .01-.001.019-.001.029v.769l-163.571 54.981c-3.926 1.32-6.039 5.573-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.79-53.376v38.156l-102.137 34.332c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l97.357-32.726v173.936h-64.792v-77.933c0-5.108-2.334-9.81-6.403-12.898s-9.225-4.072-14.145-2.698l-69.807 19.488c-7.967 2.224-13.531 9.554-13.531 17.826v56.215h-39.625zm54.625 308.253c0-1.568 1.055-2.957 2.564-3.379l26.878-7.504v67.098h-29.443v-56.215zm44.442 56.215v-71.286l27.929-7.797c.377-.106.729-.04 1.042.199.313.238.472.558.472.951v77.933zm124.237 0v-31.658h110.679v31.658zm198.429-3.776c0 2.083-1.694 3.776-3.776 3.776h-68.974v-31.658h72.75z"
+        fill={getIconColor(formData.company, focused.company)}
+      />
+      <path
+        d="m122.389 365.361c.792 0 1.598-.126 2.391-.393l27.846-9.36c3.926-1.319 6.039-5.572 4.719-9.499s-5.573-6.041-9.499-4.719l-27.846 9.36c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.133 3.975 5.112 7.108 5.112z"
+        fill={getIconColor(formData.company, focused.company)}
+      />
+      <path
+        d="m331.417 310.379h73.551c6.975 0 12.649-5.674 12.649-12.648v-18.053c0-6.975-5.674-12.649-12.649-12.649h-73.551c-6.975 0-12.648 5.674-12.648 12.649v18.053c0 6.974 5.674 12.648 12.648 12.648zm2.352-28.35h68.848v13.35h-68.848z"
+        fill={getIconColor(formData.company, focused.company)}
+      />
+      <path
+        d="m331.417 367.409h73.551c6.975 0 12.649-5.674 12.649-12.649v-18.053c0-6.975-5.674-12.648-12.649-12.648h-73.551c-6.975 0-12.648 5.674-12.648 12.648v18.053c0 6.975 5.674 12.649 12.648 12.649zm2.352-28.35h68.848v13.35h-68.848z"
+        fill={getIconColor(formData.company, focused.company)}
+      />
+      <path
+        d="m331.417 425.022h24.328c6.975 0 12.649-5.674 12.649-12.648v-18.053c0-6.975-5.674-12.649-12.649-12.649h-24.328c-6.975 0-12.648 5.674-12.648 12.649v18.053c0 6.974 5.674 12.648 12.648 12.648zm2.352-28.35h19.625v13.35h-19.625z"
+        fill={getIconColor(formData.company, focused.company)}
+      />
+    </g>
+  </svg>
+                </div>
+                  </div>
+                  {/* {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>} */}
                 </div>
               </div>
-              {/* {errors.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.message}</p>
-              )} */}
             </div>
 
-            {/* Email */}
-            <div>
-              <label
-                className="
-          block white-text body3
-        "
-              >
-                You Can Send The Sukha Puri (Your Reply!) Over To
-              </label>
-              <div className="relative w-full">
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onFocus={() => handleFocus("email")}
-                  onBlur={() => handleBlur("email")}
-                  onChange={handleChange}
-                  className={`
-          w-full px-7 py-1 bg-transparent 
-          border-0 border-b-2 ${
-            errors.email
-              ? "border-b-red-500"
-              : "border-b-[var(--color-highlight)]"
-          }
-          white-text placeholder-gray-400 small-placeholder
-          focus:outline-none focus:border-b-[var(--color-highlight)]
-        `}
-                />
-                <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 25"
-                    fill={getIconColor(formData.email, focused.email)}
-                  >
-                    <path
-                      d="M21.8906 4.0625H2.10938C0.943922 4.0625 0 5.01228 0 6.17188V18.8281C0 19.9946 0.950859 20.9375 2.10938 20.9375H21.8906C23.0463 20.9375 24 19.9986 24 18.8281V6.17188C24 5.01434 23.0598 4.0625 21.8906 4.0625ZM21.5952 5.46875C21.1642 5.89742 13.7476 13.275 13.4916 13.5297C13.0931 13.9281 12.5634 14.1475 12 14.1475C11.4366 14.1475 10.9069 13.9281 10.5071 13.5284C10.3349 13.3571 3.00014 6.06097 2.40478 5.46875H21.5952ZM1.40625 18.5419V6.45898L7.48303 12.5037L1.40625 18.5419ZM2.40567 19.5312L8.48006 13.4955L9.51408 14.5241C10.1781 15.1881 11.061 15.5538 12 15.5538C12.939 15.5538 13.8219 15.1881 14.4846 14.5254L15.5199 13.4955L21.5943 19.5312H2.40567ZM22.5938 18.5419L16.517 12.5037L22.5938 6.45898V18.5419Z"
-                      fill={getIconColor(formData.email, focused.email)}
-                    />
-                  </svg>
-                </div>
-              </div>
-              {errors.email && (
-                <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-              )}
-            </div>
+            {/* Step 1: Phone & Email */}
+          
+<div
+    className={`absolute w-full transition-all duration-500 ease-in-out ${
+      step === 1
+        ? "opacity-100 translate-y-0"
+        : step < 1
+        ? "opacity-0 translate-y-5 duration-500 pointer-events-none"
+        : "opacity-0 -translate-y-5   duration-100 pointer-events-none"
+    }`}
+  >
 
-            {/* Phone */}
-            <div>
-              <label
-                className="
-          block white-text body2
-        "
-              >
-                Or Just Give Me A Call At
-              </label>
-              <div className="relative w-full">
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus("phone")}
-                  onBlur={() => handleBlur("phone")}
-                  className={`
-          w-full px-7 py-1 bg-transparent 
-          border-0 border-b-2 ${
-            errors.phone
-              ? "border-b-red-500"
-              : "border-b-[var(--color-highlight)]"
-          }
-          white-text placeholder-gray-400 small-placeholder
-          focus:outline-none focus:border-b-[var(--color-highlight)]
-        `}
-                />
-                <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
-                  <svg
+
+ <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div> 
+  <h3 className="text-left text-lg white-text py-7 ">2. Where  we can contact you</h3>
+
+  <div className="grid grid-cols-1 gap-6">
+
+    {/* PHONE */}
+    <div className="relative">
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone"
+        value={formData.phone}
+        onChange={handleChange}
+        onFocus={() => handleFocus && handleFocus("phone")}
+        onBlur={() => handleBlur && handleBlur("phone")}
+        className={`w-full px-7 py-3 bg-transparent border-b-2 ${
+          errors.phone
+            ? "border-b-red-500"
+            : "border-b-[var(--color-highlight)]"
+        } outline-none white-text`}
+      />
+
+        <div className="absolute left-0 top-[14px] pointer-events-none">
+       <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
                     height="20"
@@ -660,44 +626,191 @@ const SecondSection = () => {
                       </clipPath>
                     </defs>
                   </svg>
-                </div>
+      </div>
+
+      {errors.phone && (
+        <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+      )}
+    </div>
+
+    {/* EMAIL */}
+    <div className="relative">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
+        onFocus={() => handleFocus && handleFocus("email")}
+        onBlur={() => handleBlur && handleBlur("email")}
+        className={`w-full px-7 py-3 bg-transparent border-b-2 ${
+          errors.email
+            ? "border-b-red-500"
+            : "border-b-[var(--color-highlight)]"
+        } outline-none white-text`}
+      />
+
+        <div className="absolute left-0 top-[14px] pointer-events-none">
+       <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 25"
+                    fill={getIconColor(formData.email, focused.email)}
+                  >
+                    <path
+                      d="M21.8906 4.0625H2.10938C0.943922 4.0625 0 5.01228 0 6.17188V18.8281C0 19.9946 0.950859 20.9375 2.10938 20.9375H21.8906C23.0463 20.9375 24 19.9986 24 18.8281V6.17188C24 5.01434 23.0598 4.0625 21.8906 4.0625ZM21.5952 5.46875C21.1642 5.89742 13.7476 13.275 13.4916 13.5297C13.0931 13.9281 12.5634 14.1475 12 14.1475C11.4366 14.1475 10.9069 13.9281 10.5071 13.5284C10.3349 13.3571 3.00014 6.06097 2.40478 5.46875H21.5952ZM1.40625 18.5419V6.45898L7.48303 12.5037L1.40625 18.5419ZM2.40567 19.5312L8.48006 13.4955L9.51408 14.5241C10.1781 15.1881 11.061 15.5538 12 15.5538C12.939 15.5538 13.8219 15.1881 14.4846 14.5254L15.5199 13.4955L21.5943 19.5312H2.40567ZM22.5938 18.5419L16.517 12.5037L22.5938 6.45898V18.5419Z"
+                      fill={getIconColor(formData.email, focused.email)}
+                    />
+                  </svg>
+      </div>
+
+      {errors.email && (
+        <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+      )}
+    </div>
+
+  </div>
+</div>
+
+
+            {/* Step 2: Services */}
+            <div
+    className={`absolute w-full transition-all duration-500 ease-in-out ${
+      step === 2
+        ? "opacity-100 translate-y-0"
+        : step < 2
+        ? "opacity-0 translate-y-5 duration-500 pointer-events-none"
+        : "opacity-0 -translate-y-5 duration-100 pointer-events-none"
+    }`}
+  >
+               <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div> 
+
+              
+              <h3 className="text-left  white-text py-8">3. Which service you want from us</h3>
+
+              {/* <p className="white-text mb-3">And I’m Keen To Get A Taste Of Your</p> */}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {services.map((service: any, index: number) => {
+                  const isActive = selectedServices.includes(service.name);
+                  return (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => handleServiceToggle(service.name)}
+                      className={`flex items-center gap-3 px-4 py-3 rounded-[10px] border transition small-placeholder w-full ${
+                        isActive ? "bg-[var(--color-highlight)] text-black" : "border-[var(--color-highlight)] text-white"
+                      }`}
+                    >
+                      <span className="w-5 h-5">{service.icon ? service.icon(isActive) : null}</span>
+                      <span>{service.name}</span>
+                    </button>
+                  );
+                })}
               </div>
-              {errors.phone && (
-                <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
-              )}
+              {errors.services && <p className="text-red-500 text-xs mt-2">{errors.services}</p>}
+
+              {/* Message field under services (if you want it here) */}
+              <div className="mt-4 relative">
+  <input
+    type="text"
+    placeholder="Message"
+    value={message}
+    onChange={(e) => setMessage && setMessage(e.target.value)}
+    onFocus={() => handleFocus && handleFocus("message")}
+    onBlur={() => handleBlur && handleBlur("message")}
+    className="w-full px-7 py-3 bg-transparent border-b-2 border-[var(--color-highlight)] outline-none white-text"
+  />
+
+  {/* FIXED ICON */}
+  <div className="absolute left-0 top-[16px] pointer-events-none">
+   <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                   width="20"
+                    height="20"
+                    viewBox="0 0 24 25"
+                    fill={getIconColor(message, focused.message)}
+                  >
+                    <path d="M20.1449 2.11723H3.83162C2.12599 2.11723 0.738281 3.50467 0.738281 5.21057V15.194C0.738281 16.896 2.11995 18.2813 3.82063 18.2873V22.8177L10.3313 18.2873H20.1449C21.8506 18.2873 23.2383 16.8996 23.2383 15.194V5.21057C23.2383 3.50467 21.8506 2.11723 20.1449 2.11723ZM21.9199 15.194C21.9199 16.1726 21.1237 16.969 20.1449 16.969H9.91763L5.13899 20.2943V16.969H3.83162C2.85287 16.969 2.05664 16.1726 2.05664 15.194V5.21057C2.05664 4.23169 2.85287 3.43559 3.83162 3.43559H20.1449C21.1237 3.43559 21.9199 4.23169 21.9199 5.21057V15.194Z" />
+                    <path
+                      d="M6.76074 6.77557H17.2167V8.09393H6.76074V6.77557Z"
+                      fill={getIconColor(message, focused.message)}
+                    />
+                    <path
+                      d="M6.76074 9.58807H17.2167V10.9064H6.76074V9.58807Z"
+                      fill={getIconColor(message, focused.message)}
+                    />
+                    <path
+                      d="M6.76074 12.4006H17.2167V13.7189H6.76074V12.4006Z"
+                      fill={getIconColor(message, focused.message)}
+                    />
+                  </svg>
+  </div>
+</div>
+
             </div>
 
-            {/* Submit Button */}
+            {/* Step 3: Thank you */}
+            <div 
+  className={`transition-all duration-500 ${
+    step === 3 
+      ? "opacity-100 translate-y-0" 
+      : "opacity-0 pointer-events-none absolute left-0 right-0"
+  }`}
+>
+  <div className="text-center py-10">
+    {submitStatus === "success" && (
+      <>
+        <h3 className=" text-highlight mb-3">Thank you! 🎉</h3>
+        <p className="text-gray-300 max-w-xl mx-auto">
+          An email from us is on the way, don’t forget to check your inbox
+        </p>
+      </>
+    )}
+  </div>
+</div>
 
-            <div className="mt-6 lg:mt-10 flex flex-col items-center gap-3">
-              <ContactButton
-                text="DATE CONFIRM"
-                type="submit"
-                disabled={isSubmitting}
-                isSubmitting={isSubmitting}
-              />
+</div>
 
-              {submitStatus === "success" && (
-                <p className="text-green-500 text-sm">
-                  Message sent successfully! ✅
-                </p>
-              )}
+            {/* NAV / CTA area (visible always but buttons adapt) */}
+            <div className="flex justify-end items-center pt-6">
 
-              {submitStatus === "error" && (
-                <p className="text-red-500 text-sm">
-                  Failed to send message. Please try again. ❌
-                </p>
-              )}
-            </div>
+  {/* Step 1 */}
+  {step === 0 && (
+    <div onClick={goNext}>
+      <Button text="A step closer" type="button" disabled={isSubmitting} className="white-text" />
+    </div>
+  )}
+
+  {/* Step 2 */}
+  {step === 1 && (
+    <div onClick={goNext}>
+      <Button text="almost there" type="button" disabled={isSubmitting} className="white-text"/>
+    </div>
+  )}
+
+  {/* Step 3 */}
+  {step === 2 && submitStatus !== "success" && (
+    <Button text="Let’s Connect" type="submit" disabled={isSubmitting} className="white-text" />
+  )}
+
+</div>
+
           </form>
 
-          {/* Yellow Stripe */}
         </div>
-        {/* <div className="absolute right-0 top-0 w-2 sm:w-5 md:w-7 h-full bg-[var(--color-highlight)]"></div> */}
-        <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
+          {/* Right yellow stripe preserved */}
+          <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5 candy-border"></div>
       </div>
     </section>
   );
-};
+}
 
 export default SecondSection;

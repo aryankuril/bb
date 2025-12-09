@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
+import Button from "../Button";
 const Firstsection: React.FC = () => {
   const { ref: inViewRef, inView } = useInView({
     triggerOnce: true,
@@ -56,6 +57,9 @@ const Firstsection: React.FC = () => {
               Empowering Creative Brands{" "}
               <span className="black-text">to Thrive in the Digital World</span>
             </h1>
+            <div className=" lg:mt-10 mt-5 pl-2">
+                      <Button href="/estimates-calculator" text="Get Estimates " className="" />
+                    </div>
           </div>
       </div>
 
