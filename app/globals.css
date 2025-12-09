@@ -559,3 +559,32 @@ select {
   transform: translateY(0);
   opacity: 1;
 }
+
+
+
+
+
+/* Typeform style animations */
+.type-step {
+  position: absolute;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+.type-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.type-hidden-up {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.type-hidden-down {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}

@@ -3,7 +3,7 @@ import { useEffect, useState, ChangeEvent } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import ContactButton from "../ContactButton";
-
+import Button from "../Button";
 type CareerCategoryType =
   | "performance"
   | "social"
@@ -181,6 +181,11 @@ useEffect(() => {
     setActiveJob(jobs[0]);
   }
 }, [jobs]);
+
+
+  const goBack = () => {
+    if (step > 0) setStep((s) => s - 1);
+  };
 
 
   const validateURL = (url: string): boolean => {
@@ -464,6 +469,49 @@ useEffect(() => {
 }, [jobs]);
 
 
+
+const goNext = () => {
+  if (step < totalSteps - 1) {
+    setStep((s) => s + 1);
+  }
+};
+
+
+useEffect(() => {
+  if (submitStatus === "success") {
+    const timer = setTimeout(() => {
+      // reset everything
+      setStep(0);
+      setSubmitStatus("idle");
+      setInputValues({
+        ticketName: "",
+        email: "",
+        phone: "",
+        cv: "",
+        portfolio: "",
+        message: "",
+      });
+      setCvFile(null);
+      setCvFileName("");
+      setSelected("");
+      setErrors({
+        ticketName: "",
+        email: "",
+        phone: "",
+        cv: "",
+        portfolio: "",
+        message: "",
+        availability: "",
+      });
+    }, 10000); // ⏱️ 10 seconds
+
+    return () => clearTimeout(timer);
+  }
+}, [submitStatus]);
+
+
+
+
   const svgs = {
     ticketName: (
       <svg
@@ -666,6 +714,27 @@ const categorizeJobs = (): CareerCategoryMap => {
   const toggleAccordion = (category: string) => {
     setOpenAccordion(openAccordion === category ? null : category);
   };
+
+
+
+    const totalSteps = 4;
+  const [step, setStep] = useState(0);
+
+  const nextStep = () => {
+    if (step < totalSteps - 1) setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    if (step > 0) setStep(step - 1);
+  };
+
+const progress =
+  submitStatus === "success"
+    ? 100
+    : Math.round((step / totalSteps) * 100);
+
+
+
 
   return (
     <section
@@ -1177,8 +1246,10 @@ const categorizeJobs = (): CareerCategoryMap => {
               <div
                 className={`${
                   isFlipped ? "hidden" : "block"
-                } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4 flex flex-col justify-between min-h-[600px]`}
+                } backface-hidden border border-[var(--color-highlight)] px-3 sm:px-4 py-4 flex flex-col justify-between min-h-[600px]`}
               >
+
+                
                 {activeJob && (
                   <h5 className="white-text text-md md:text-md mb-4 pb-3 border-b border-[var(--color-highlight)]">
                     {activeJob.title}
@@ -1213,94 +1284,135 @@ const categorizeJobs = (): CareerCategoryMap => {
               <div
                 className={`${
                   !isFlipped ? "hidden" : "block"
-                } backface-hidden rotate-y-180 border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4`}
+                } backface-hidden rotate-y-180  border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4  `}
               >
-                <form
-                  className="flex flex-col gap-3 white-text"
-                  onSubmit={handleSubmit}
-                >
-                  {/* Ticket Name */}
-                  <div>
-                    <label className="block mb-2 white-text capitalize body3">
-                      Your Ticket Name
-                    </label>
 
-                    <div
-                      className={`flex items-start border-b ${
-                        errors.ticketName
-                          ? "border-red-500"
-                          : "border-[var(--color-highlight)]"
-                      }`}
-                    >
-                      <span className="mr-2">{svgs.ticketName}</span>
-                      <textarea
-                        name="ticketName"
-                        placeholder="Ticket Name"
-                        value={inputValues.ticketName}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus("ticketName")}
-                        onBlur={handleBlur}
-                        rows={1}
-                        className="w-full bg-transparent resize-none 
-                 white-text placeholder-gray-400 
-                 focus:outline-none small-placeholder
-                 leading-tight py-1"
-                      />
-                    </div>
+    <div className="bg-[#1D1D1D] rounded-xl relative overflow-hidden ">
+      {/* PROGRESS */}
+      <div className="mb-6 mt-10">
+       <div className="flex gap-2">
+  {Array.from({ length: totalSteps }).map((_, i) => (
+    <div
+      key={i}
+      className={`h-2 flex-1 rounded transition-all duration-300 ${
+        // ✅ Fill ONLY completed steps
+        i < step
+          ? "bg-[var(--color-highlight)]"
+          : "border border-gray-600"
+      }`}
+    />
+  ))}
+</div>
 
-                    {errors.ticketName && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.ticketName}
-                      </p>
-                    )}
-                  </div>
 
-                  {/* Email */}
-                  <div>
-                    <label className="block mb-1 white-text capitalize body3">
-                      Where Should We Mail Your Platform Details?
-                    </label>
 
-                    <div
-                      className={`flex items-start border-b ${
-                        errors.email
-                          ? "border-red-500"
-                          : "border-[var(--color-highlight)]"
-                      }`}
-                    >
-                      <span className="mr-2">{svgs.email}</span>
-                      <textarea
-                        // @ts-expect-error - textarea doesn't have type attribute but works fine
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        value={inputValues.email}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus("email")}
-                        onBlur={handleBlur}
-                        rows={1}
-                        className="w-full bg-transparent resize-none 
-                 white-text placeholder-gray-400 
-                 focus:outline-none small-placeholder
-                 leading-tight py-1"
-                      />
-                    </div>
-                    {errors.email && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.email}
-                      </p>
-                    )}
-                  </div>
+        <div className="flex justify-between text-sm text-white mt-2">
+          <span>Step {step + 0} of {totalSteps}</span>
+   <span className="text-[var(--color-highlight)]">{progress}%</span>
 
-                  {/* Phone */}
+        </div>
+      </div>
 
-                  <div>
-                    <label className="block mb-1 white-text capitalize body3">
+      <form onSubmit={handleSubmit} className="relative h-[380px]">
+
+        {/* STEP 1 */}
+        <div
+          className={`type-step  ${
+            step === 0 ? "type-active" : step > 0 ? "type-hidden-up" : "type-hidden-down"
+          }`}
+        >
+
+           <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 py-5 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div>
+          <h3 className="text-white mb-6">1. Tell Us about you          </h3>
+
+         <div>
+      <div
+        className={`flex items-start border-b ${
+          errors.ticketName
+            ? "border-red-500"
+            : "border-[var(--color-highlight)]"
+        }`}
+      >
+        <span className="mr-2">{svgs.ticketName}</span>
+        <textarea
+          name="ticketName"
+          placeholder="Your Full Name"
+          value={inputValues.ticketName}
+          onChange={handleChange}
+          onFocus={() => handleFocus("ticketName")}
+          onBlur={handleBlur}
+          rows={1}
+          className="w-full bg-transparent resize-none white-text placeholder-gray-400 focus:outline-none leading-tight py-2"
+        />
+      </div>
+      {errors.ticketName && (
+        <p className="text-red-500 text-xs mt-1">
+          {errors.ticketName}
+        </p>
+      )}
+    </div>
+
+    {/* Email */}
+    <div className="mt-6">
+      <div
+        className={`flex items-start border-b ${
+          errors.email
+            ? "border-red-500"
+            : "border-[var(--color-highlight)]"
+        }`}
+      >
+        <span className="mr-2">{svgs.email}</span>
+        <textarea
+          name="email"
+          placeholder="email"
+          value={inputValues.email}
+          onChange={handleChange}
+          onFocus={() => handleFocus("email")}
+          onBlur={handleBlur}
+          rows={1}
+          className="w-full bg-transparent resize-none white-text placeholder-gray-400 focus:outline-none leading-tight py-2"
+        />
+      </div>
+
+      {errors.email && (
+        <p className="text-red-500 text-xs mt-1">
+          {errors.email}
+        </p>
+      )}
+    </div>
+
+
+        </div>
+
+        {/* STEP 2 */}
+        <div
+          className={`type-step ${
+            step === 1 ? "type-active" : step > 1 ? "type-hidden-up" : "type-hidden-down"
+          }`}
+        >
+
+           <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 py-5 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div>
+          <h3 className="text-white mb-6">2. Where we can contact you</h3>
+
+          <div >
+                    {/* <label className="block mb-1 white-text capitalize body3">
                       Your Local Train Hotline
-                    </label>
+                    </label> */}
 
                     <div
-                      className={`flex items-start border-b ${
+                      className={`flex items-start border-b mb-10 ${
                         errors.phone
                           ? "border-red-500"
                           : "border-[var(--color-highlight)]"
@@ -1329,43 +1441,12 @@ const categorizeJobs = (): CareerCategoryMap => {
                       </p>
                     )}
                   </div>
-                  {/* <div>
-                     <label className="block mb-1 white-text capitalize body3">
-                      Your Local Train Hotline
-                    </label>
-                    <div
-                      className={`flex items-end border-b ${
-                        errors.phone
-                          ? "border-red-500"
-                          : "border-[var(--color-highlight)]"
-                      } pb-2`}
-                    >
-                      <span className="mr-2">{svgs.phone}</span>
-                      <input
-                        type="tel"
-                        placeholder="Phone Number"
-                        name="phone"
-                        className="w-full bg-transparent 
-                        white-text placeholder-gray-400
-                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
-                        value={inputValues.phone}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus("phone")}
-                        onBlur={handleBlur}
-                      />
-                    </div>
-                    {errors.phone && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.phone}
-                      </p>
-                    )}
-                  </div> */}
 
-                  {/* CV Upload */}
-                  <div>
-                    <label className="block mb-1 white-text capitalize body3">
+
+          <div>
+                    {/* <label className="block mb-1 white-text capitalize body3">
                       Show Your Travel Card (CV)
-                    </label>
+                    </label> */}
                     <div
                       className={`flex items-center border-b ${
                         errors.cv
@@ -1395,79 +1476,45 @@ const categorizeJobs = (): CareerCategoryMap => {
                       <p className="text-red-500 text-xs mt-1">{errors.cv}</p>
                     )}
                   </div>
+        </div>
 
-                  {/* Availability */}
-                  <div>
-                    <label className="block mb-1 white-text capitalize body3">
-                      When Will You Board The Train?
-                    </label>
-                    <div className="grid lg:grid-cols-2  grid-cols-1 gap-3 ">
-                      {/* Immediate */}
-                      {/* Immediate */}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSelected("immediate");
-                          setErrors((prev) => ({ ...prev, availability: "" }));
-                        }}
-                        className={`flex items-center gap-2 rounded-md py-2 px-4 transition small-placeholder
-  border border-[var(--color-highlight)] cursor-pointer
-  ${
-    selected === "immediate"
-      ? "bg-[var(--color-highlight)] text-black"
-      : "bg-transparent text-white hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-  }`}
-                      >
-                        <span
-                          className={
-                            selected === "immediate"
-                              ? "text-black"
-                              : "text-white"
-                          }
-                        >
-                          {svgs.immediately}
-                        </span>
-                        Immediate
-                      </button>
+        {/* STEP 3 */}
+        <div
+          className={`type-step ${
+            step === 2 ? "type-active" : step > 2 ? "type-hidden-up" : "type-hidden-down"
+          }`}
+        >
 
-                      {/* 0–2 Months */}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSelected("0-2");
-                          setErrors((prev) => ({ ...prev, availability: "" }));
-                        }}
-                        className={`flex items-center gap-2 rounded-md py-2 px-4 transition small-placeholder
-  border border-[var(--color-highlight)] cursor-pointer
-  ${
-    selected === "0-2"
-      ? "bg-[var(--color-highlight)] text-black"
-      : "bg-transparent text-white hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-  }`}
-                      >
-                        <span
-                          className={
-                            selected === "0-2" ? "text-black" : "text-white"
-                          }
-                        >
-                          {svgs.Months}
-                        </span>
-                        0–2 Months
-                      </button>
-                    </div>
-                    {errors.availability && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.availability}
-                      </p>
-                    )}
-                  </div>
+           <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 py-5 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div>
+          <h3 className="text-white mb-6">3. Availability</h3>
 
-                  {/* Portfolio */}
+          <div className="flex gap-3 mb-10">
+            {["immediate", "0-2"].map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => setSelected(opt)}
+                className={`border px-4 py-2 rounded-md ${
+                  selected === opt
+                    ? "bg-[var(--color-highlight)] text-black"
+                    : "text-white border-[var(--color-highlight)]"
+                }`}
+              >
+                {opt === "immediate" ? "Immediate" : "0–2 Months"}
+              </button>
+            ))}
+          </div>
 
-                  <div>
-                    <label className="block mb-1 white-text capitalize body3">
+         <div>
+                    {/* <label className="block mb-1 white-text capitalize body3">
                       Show Your Window View Work
-                    </label>
+                    </label> */}
 
                     <div
                       className={`flex items-start border-b ${
@@ -1499,44 +1546,39 @@ const categorizeJobs = (): CareerCategoryMap => {
                       </p>
                     )}
                   </div>
+        </div>
 
-                  {/* <div>
-                    <label className="block mb-1 white-text capitalize body3">
-                      Show Your Window View Work
-                    </label>
-                    <div
-                      className={`flex items-end border-b ${
-                        errors.portfolio
-                          ? "border-red-500"
-                          : "border-[var(--color-highlight)]"
-                      } pb-2`}
-                    >
-                      <span className="mr-2">{svgs.portfolio}</span>
-                      <input
-                        type="url"
-                        name="portfolio" // ✅ must match state key exactly
-                        placeholder="Portfolio Link (optional)"
-                        className="w-full bg-transparent 
-                        white-text placeholder-gray-400
-                        focus:outline-none focus:border-b-[var(--color-highlight)] text-[10px] lg:text-xs"
-                        value={inputValues.portfolio}
-                        onChange={handleChange}
-                        onFocus={() => handleFocus("portfolio")}
-                        onBlur={handleBlur}
-                      />
-                    </div>
-                    {errors.portfolio && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.portfolio}
-                      </p>
-                    )}
-                  </div> */}
+        {/* STEP 4 */}
+        <div
+  className={`type-step ${
+    submitStatus === "success"
+      ? "hidden"
+      : step === 3
+      ? "type-active"
+      : "type-hidden-up"
+  }`}
+>
+          <div>
+                {step > 0 && step < 4 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 py-5 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div>
 
-                  {/* Message */}
-                  <div>
-                    <label className="block mb-1 white-text capitalize body3">
+           <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div>
+          <h3 className="text-white mb-6">4. About you, your strengths, and your joining availability</h3>
+
+        <div>
+                    {/* <label className="block mb-1 white-text capitalize body3">
                       Convince Us Like A TT Checking Tickets
-                    </label>
+                    </label> */}
                     <div
                       className={`flex items-start border-b ${
                         errors.message
@@ -1565,37 +1607,90 @@ const categorizeJobs = (): CareerCategoryMap => {
                     )}
                   </div>
 
-                  {/* Confirm Button */}
-                  <div className="mt-6 lg:mt-3 flex flex-col items-center gap-3">
-                    <ContactButton
-                      text="CONFIRM TICKET"
-                      type="submit"
-                      disabled={isSubmitting}
-                      isSubmitting={isSubmitting}
-                    />
+          {submitStatus === "success" && (
+            <p className="text-green-500 mt-6">Submitted Successfully ✅</p>
+          )}
+        </div>
 
-                    {submitStatus === "success" && (
-                      <p className="text-green-500 text-sm">
-                        Application submitted successfully! ✅
-                      </p>
-                    )}
 
-                    {submitStatus === "error" && (
-                      <p className="text-red-500 text-sm">
-                        Failed to submit. Please try again. ❌
-                      </p>
-                    )}
 
-                    {/* Back to job link */}
-                    <button
-                      type="button"
-                      onClick={() => setIsFlipped(false)}
-                      className="mt- text-[#FAB31E] text-sm hover:underline"
-                    >
-                      ⬅ Back to JD
-                    </button>
-                  </div>
-                </form>
+ <div
+  className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+    submitStatus === "success"
+      ? "opacity-100 translate-y-0"
+      : "opacity-0 translate-y-8 pointer-events-none"
+  }`}
+>
+  {submitStatus === "success" && (
+    <div className="text-center">
+      <h3 className="text-highlight mb-3">Thank you! 🎉</h3>
+      <p className="text-gray-300 max-w-xl mx-auto">
+        An email from us is on the way, don’t forget to check your inbox
+      </p>
+    </div>
+  )}
+</div>
+
+
+
+        {/* NAV */}
+        <div className="absolute bottom-0 right-0 left-0 flex justify-end items-center pt-6">
+
+  {/* Step 1 */}
+  {step === 0 && (
+    <div onClick={nextStep}>
+      <Button
+        text="A step closer"
+        type="button"
+        disabled={isSubmitting}
+        className="white-text"
+      />
+    </div>
+  )}
+
+  {/* Step 2 */}
+  {step === 1 && (
+    <div onClick={nextStep}>
+      <Button
+        text="Almost there"
+        type="button"
+        disabled={isSubmitting}
+        className="white-text"
+      />
+    </div>
+  )}
+
+  {/* Step 3 */}
+  {step === 2 && (
+    <div onClick={nextStep}>
+      <Button
+        text="Just one more"
+        type="button"
+        disabled={isSubmitting}
+        className="white-text"
+      />
+    </div>
+  )}
+
+  {/* Step 4 – Final submit */}
+{step === 3 && (
+  <Button
+    text="Let’s Connect"
+    type="submit"
+    disabled={isSubmitting}
+    className="white-text"
+  />
+)}
+
+
+</div>
+
+      </form>
+
+      {/* <div className="absolute right-0 top-0 w-2 h-full bg-[var(--color-highlight)]" /> */}
+    </div>
+
+
               </div>
             </div>
           </div>
