@@ -397,7 +397,7 @@ export async function POST(request: NextRequest) {
     `;
 
     await sendEmail({
-      to: "careers@bombayblokes.com",
+      to: "aryan@bombayblokes.com",
       subject: `New Application - ${ticketName} for ${jobTitle}`,
       html: teamNotification,
       fromName: "Careers Form",

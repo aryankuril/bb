@@ -450,6 +450,7 @@ useEffect(() => {
       setTimeout(() => {
         setSubmitStatus("idle");
         setIsFlipped(false);
+        setStep(0); 
       }, 3000);
     } catch (error) {
       console.error("Application submission error:", error);
@@ -477,37 +478,37 @@ const goNext = () => {
 };
 
 
-useEffect(() => {
-  if (submitStatus === "success") {
-    const timer = setTimeout(() => {
-      // reset everything
-      setStep(0);
-      setSubmitStatus("idle");
-      setInputValues({
-        ticketName: "",
-        email: "",
-        phone: "",
-        cv: "",
-        portfolio: "",
-        message: "",
-      });
-      setCvFile(null);
-      setCvFileName("");
-      setSelected("");
-      setErrors({
-        ticketName: "",
-        email: "",
-        phone: "",
-        cv: "",
-        portfolio: "",
-        message: "",
-        availability: "",
-      });
-    }, 10000); // ⏱️ 10 seconds
+// useEffect(() => {
+//   if (submitStatus === "success") {
+//     const timer = setTimeout(() => {
+//       // reset everything
+//       setStep(0);
+//       setSubmitStatus("idle");
+//       setInputValues({
+//         ticketName: "",
+//         email: "",
+//         phone: "",
+//         cv: "",
+//         portfolio: "",
+//         message: "",
+//       });
+//       setCvFile(null);
+//       setCvFileName("");
+//       setSelected("");
+//       setErrors({
+//         ticketName: "",
+//         email: "",
+//         phone: "",
+//         cv: "",
+//         portfolio: "",
+//         message: "",
+//         availability: "",
+//       });
+//     }, 10000); // ⏱️ 10 seconds
 
-    return () => clearTimeout(timer);
-  }
-}, [submitStatus]);
+//     return () => clearTimeout(timer);
+//   }
+// }, [submitStatus]);
 
 
 
@@ -720,9 +721,81 @@ const categorizeJobs = (): CareerCategoryMap => {
     const totalSteps = 4;
   const [step, setStep] = useState(0);
 
-  const nextStep = () => {
-    if (step < totalSteps - 1) setStep(step + 1);
-  };
+const nextStep = () => {
+  let hasErrors = false;
+
+  // ✅ Clear old errors first
+  setErrors({
+    ticketName: "",
+    email: "",
+    phone: "",
+    cv: "",
+    portfolio: "",
+    message: "",
+    availability: "",
+  });
+
+  if (step === 0) {
+    const nameError = validateField("ticketName", inputValues.ticketName);
+    const emailError = validateField("email", inputValues.email);
+
+    if (nameError) {
+      setErrors((prev) => ({ ...prev, ticketName: nameError }));
+      hasErrors = true;
+    }
+    if (emailError) {
+      setErrors((prev) => ({ ...prev, email: emailError }));
+      hasErrors = true;
+    }
+  }
+
+  if (step === 1) {
+    const phoneError = validateField("phone", inputValues.phone);
+    const cvError = validateField("cv", cvFile);
+
+    if (phoneError) {
+      setErrors((prev) => ({ ...prev, phone: phoneError }));
+      hasErrors = true;
+    }
+
+    if (cvError) {
+      setErrors((prev) => ({ ...prev, cv: cvError }));
+      hasErrors = true;
+    }
+  }
+
+  if (step === 2) {
+    const availabilityError = validateField("availability", selected);
+    const portfolioError = validateField("portfolio", inputValues.portfolio);
+
+    if (availabilityError) {
+      setErrors((prev) => ({ ...prev, availability: availabilityError }));
+      hasErrors = true;
+    }
+
+    if (portfolioError) {
+      setErrors((prev) => ({ ...prev, portfolio: portfolioError }));
+      hasErrors = true;
+    }
+  }
+
+  if (step === 3) {
+    const messageError = validateField("message", inputValues.message);
+
+    if (messageError) {
+      setErrors((prev) => ({ ...prev, message: messageError }));
+      hasErrors = true;
+    }
+  }
+
+  if (hasErrors) return;
+
+  // ✅ Move only if current step is valid
+  if (step < totalSteps - 1) {
+    setStep((s) => s + 1);
+  }
+};
+
 
   const prevStep = () => {
     if (step > 0) setStep(step - 1);
@@ -731,8 +804,7 @@ const categorizeJobs = (): CareerCategoryMap => {
 const progress =
   submitStatus === "success"
     ? 100
-    : Math.round((step / totalSteps) * 100);
-
+    : step * 25;
 
 
 
@@ -1287,33 +1359,37 @@ const progress =
                 } backface-hidden rotate-y-180  border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4  `}
               >
 
-    <div className="bg-[#1D1D1D] rounded-xl relative overflow-hidden ">
+    <div className="bg-[#1D1D1D] rounded-xl relative overflow-hidden h-auto">
       {/* PROGRESS */}
       <div className="mb-6 mt-10">
-       <div className="flex gap-2">
-  {Array.from({ length: totalSteps }).map((_, i) => (
-    <div
-      key={i}
-      className={`h-2 flex-1 rounded transition-all duration-300 ${
-        // ✅ Fill ONLY completed steps
-        i < step
-          ? "bg-[var(--color-highlight)]"
-          : "border border-gray-600"
-      }`}
-    />
-  ))}
+<div className="flex gap-2">
+  {Array.from({ length: totalSteps }).map((_, idx) => {
+const filled = idx < progress / 25;
+
+// ✅ correct logic
+
+    return (
+      <div
+        key={idx}
+        className={`h-2 flex-1 rounded transition-all duration-300 ${
+          filled
+            ? "bg-[var(--color-highlight)]"
+            : "border border-gray-600"
+        }`}
+      />
+    );
+  })}
 </div>
 
+<div className="flex justify-between text-sm text-white mt-2">
+<span>Step {step + 1} of {totalSteps}</span>
+<span className="text-[var(--color-highlight)]">{progress}%</span>
 
+</div>
 
-        <div className="flex justify-between text-sm text-white mt-2">
-          <span>Step {step + 0} of {totalSteps}</span>
-   <span className="text-[var(--color-highlight)]">{progress}%</span>
-
-        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="relative h-[380px]">
+      <form onSubmit={handleSubmit} className="relative ">
 
         {/* STEP 1 */}
         <div
@@ -1331,61 +1407,76 @@ const progress =
               </div>
           <h3 className="text-white mb-6">1. Tell Us about you          </h3>
 
-         <div>
-      <div
-        className={`flex items-start border-b ${
-          errors.ticketName
-            ? "border-red-500"
-            : "border-[var(--color-highlight)]"
-        }`}
-      >
-        <span className="mr-2">{svgs.ticketName}</span>
-        <textarea
-          name="ticketName"
-          placeholder="Your Full Name"
-          value={inputValues.ticketName}
-          onChange={handleChange}
-          onFocus={() => handleFocus("ticketName")}
-          onBlur={handleBlur}
-          rows={1}
-          className="w-full bg-transparent resize-none white-text placeholder-gray-400 focus:outline-none leading-tight py-2"
-        />
-      </div>
-      {errors.ticketName && (
-        <p className="text-red-500 text-xs mt-1">
-          {errors.ticketName}
-        </p>
-      )}
-    </div>
+        <div>
+                    {/* <label className="block mb-2 white-text capitalize body3">
+                      Your Ticket Name
+                    </label> */}
+
+                    <div
+                      className={`flex items-start border-b mb-10 ${
+                        errors.ticketName
+                          ? "border-red-500"
+                          : "border-[var(--color-highlight)]"
+                      }`}
+                    >
+                      <span className="mr-2">{svgs.ticketName}</span>
+                      <textarea
+                        name="ticketName"
+                        placeholder="Ticket Name"
+                        value={inputValues.ticketName}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus("ticketName")}
+                        onBlur={handleBlur}
+                        rows={1}
+                        className="w-full bg-transparent resize-none 
+                 white-text placeholder-gray-400 
+                 focus:outline-none small-placeholder
+                 leading-tight py-1"
+                      />
+                    </div>
+
+                    {errors.ticketName && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.ticketName}
+                      </p>
+                    )}
+                  </div>
 
     {/* Email */}
-    <div className="mt-6">
-      <div
-        className={`flex items-start border-b ${
-          errors.email
-            ? "border-red-500"
-            : "border-[var(--color-highlight)]"
-        }`}
-      >
-        <span className="mr-2">{svgs.email}</span>
-        <textarea
-          name="email"
-          placeholder="email"
-          value={inputValues.email}
-          onChange={handleChange}
-          onFocus={() => handleFocus("email")}
-          onBlur={handleBlur}
-          rows={1}
-          className="w-full bg-transparent resize-none white-text placeholder-gray-400 focus:outline-none leading-tight py-2"
-        />
-      </div>
+   <div>
+                   
 
-      {errors.email && (
-        <p className="text-red-500 text-xs mt-1">
-          {errors.email}
-        </p>
-      )}
-    </div>
+                    <div
+                      className={`flex items-start border-b  ${
+                        errors.email
+                          ? "border-red-500"
+                          : "border-[var(--color-highlight)]"
+                      }`}
+                    >
+                      <span className="mr-2">{svgs.email}</span>
+                      <textarea
+                        // @ts-expect-error - textarea doesn't have type attribute but works fine
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={inputValues.email}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus("email")}
+                        onBlur={handleBlur}
+                        rows={1}
+                        className="w-full bg-transparent resize-none 
+                 white-text placeholder-gray-400 
+                 focus:outline-none small-placeholder
+                 leading-tight py-1"
+                      />
+                    </div>
+                    {errors.email && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+
 
 
         </div>
@@ -1494,17 +1585,18 @@ const progress =
               </div>
           <h3 className="text-white mb-6">3. Availability</h3>
 
-          <div className="flex gap-3 mb-10">
+          <div className="flex w-full gap-3 mb-10">
             {["immediate", "0-2"].map((opt) => (
               <button
                 key={opt}
                 type="button"
                 onClick={() => setSelected(opt)}
-                className={`border px-4 py-2 rounded-md ${
-                  selected === opt
-                    ? "bg-[var(--color-highlight)] text-black"
-                    : "text-white border-[var(--color-highlight)]"
-                }`}
+               className={`border px-4 py-3 rounded-md flex-1 text-center ${
+  selected === opt
+    ? "bg-[var(--color-highlight)] text-black"
+    : "text-white border-[var(--color-highlight)]"
+}`}
+
               >
                 {opt === "immediate" ? "Immediate" : "0–2 Months"}
               </button>
@@ -1553,10 +1645,20 @@ const progress =
   className={`type-step ${
     submitStatus === "success"
       ? "hidden"
-      : step === 3
+      :      step === 3
       ? "type-active"
-      : "type-hidden-up"
+      : step > 3
+      ? "type-hidden-up"
+      : "type-hidden-down"
   }`}
+
+  //  className={`type-step ${
+  //   step === 3
+  //     ? "type-active"
+  //     : step > 3
+  //     ? "type-hidden-up"
+  //     : "type-hidden-down"
+  // }`}
 >
           <div>
                 {step > 0 && step < 4 && (
@@ -1634,7 +1736,10 @@ const progress =
 
 
         {/* NAV */}
-        <div className="absolute bottom-0 right-0 left-0 flex justify-end items-center pt-6">
+{/* NAV – hidden on thank you */}
+{submitStatus !== "success" && (
+  <div className="relative bottom-0 right-0 left-0 flex justify-end items-center pt-6">
+
 
   {/* Step 1 */}
   {step === 0 && (
@@ -1672,7 +1777,8 @@ const progress =
     </div>
   )}
 
-  {/* Step 4 – Final submit */}
+
+{/* Step 4 – Final submit */}
 {step === 3 && (
   <Button
     text="Let’s Connect"
@@ -1683,7 +1789,11 @@ const progress =
 )}
 
 
-</div>
+
+
+  </div>
+)}
+
 
       </form>
 

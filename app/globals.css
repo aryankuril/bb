@@ -567,6 +567,7 @@ select {
 /* Typeform style animations */
 .type-step {
   position: absolute;
+  inset: 0;
   width: 100%;
   transition: all 0.5s ease-in-out;
 }
@@ -575,6 +576,7 @@ select {
   opacity: 1;
   transform: translateY(0);
   pointer-events: all;
+  position: relative; 
 }
 
 .type-hidden-up {

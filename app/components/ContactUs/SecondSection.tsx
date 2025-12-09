@@ -225,18 +225,6 @@ useEffect(() => {
 }, [submitStatus]);
 
 
-
-
-  const totalSteps = 3;
-
-  const goNext = () => {
-    // If on last step do nothing (submission handled by form)
-    if (step < totalSteps - 1) setStep((s) => s + 1);
-  };
-  const goBack = () => {
-    if (step > 0) setStep((s) => s - 1);
-  };
-
   // Validation functions
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -273,6 +261,63 @@ useEffect(() => {
         return "";
     }
   };
+
+
+  const totalSteps = 3;
+
+const goNext = () => {
+  let hasErrors = false;
+
+  // ✅ Clear previous errors before fresh validation
+  setErrors({
+    name: "",
+    email: "",
+    phone: "",
+    services: "",
+  });
+
+  if (step === 0) {
+    const nameError = validateField("name", formData.name);
+    if (nameError) {
+      setErrors((prev) => ({ ...prev, name: nameError }));
+      hasErrors = true;
+    }
+  }
+
+  if (step === 1) {
+    const phoneError = validateField("phone", formData.phone);
+    const emailError = validateField("email", formData.email);
+
+    if (phoneError) {
+      setErrors((prev) => ({ ...prev, phone: phoneError }));
+      hasErrors = true;
+    }
+
+    if (emailError) {
+      setErrors((prev) => ({ ...prev, email: emailError }));
+      hasErrors = true;
+    }
+  }
+
+  if (step === 2) {
+    if (selectedServices.length === 0) {
+      setErrors((prev) => ({
+        ...prev,
+        services: "Please select at least one service",
+      }));
+      hasErrors = true;
+    }
+  }
+
+  if (hasErrors) return;
+
+  setStep((prev) => prev + 1);
+};
+
+  const goBack = () => {
+    if (step > 0) setStep((s) => s - 1);
+  };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -449,15 +494,11 @@ useEffect(() => {
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Step 0: Name & Brand */}
 
-            <div className="relative w-full h-[300px]">
+            <div className="relative w-full h-auto min-h-[200px]">
+
   <div
-    className={`absolute w-full transition-all duration-500 ease-in-out ${
-      step === 0
-        ? "opacity-100 translate-y-0"
-        : step > 0
-        ? "opacity-0 -translate-y-5 duration-500 pointer-events-none"
-        : "opacity-0  duration-50 pointer-events-none"
-    }`}
+    className={`w-full ${step === 0 ? "block" : "hidden"}`}
+
   >
                 <div>
                 {step > 0 && step < 3 && (
@@ -485,7 +526,7 @@ useEffect(() => {
                       className={`w-full px-7 py-3 bg-transparent border-b-2 ${errors.name ? "border-b-red-500" : "border-b-[var(--color-highlight)]"} outline-none white-text`}
                     />
 
-                     <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
+                  <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -563,13 +604,8 @@ useEffect(() => {
             {/* Step 1: Phone & Email */}
           
 <div
-    className={`absolute w-full transition-all duration-500 ease-in-out ${
-      step === 1
-        ? "opacity-100 translate-y-0"
-        : step < 1
-        ? "opacity-0 translate-y-5 duration-500 pointer-events-none"
-        : "opacity-0 -translate-y-5   duration-100 pointer-events-none"
-    }`}
+    className={`w-full ${step === 1 ? "block" : "hidden"}`}
+
   >
 
 
@@ -676,13 +712,8 @@ useEffect(() => {
 
             {/* Step 2: Services */}
             <div
-    className={`absolute w-full transition-all duration-500 ease-in-out ${
-      step === 2
-        ? "opacity-100 translate-y-0"
-        : step < 2
-        ? "opacity-0 translate-y-5 duration-500 pointer-events-none"
-        : "opacity-0 -translate-y-5 duration-100 pointer-events-none"
-    }`}
+    className={`w-full ${step === 2 ? "block" : "hidden"}`}
+
   >
                <div>
                 {step > 0 && step < 3 && (

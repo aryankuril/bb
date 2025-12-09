@@ -60,7 +60,7 @@ export default function ThirdSection() {
   "
 >
       <div className="flex flex-col items-center justify-center h-full px-6 text-center">
-        <div className="relative w-20 h-20 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-35 lg:h-25 mb-6 flex items-center justify-center">
+        <div className="relative w-30 h-30 sm:w-35 sm:h-35 md:w-36 md:h-36 lg:w-35 lg:h-25 mb-6 flex items-center justify-center">
   {images.map((img, i) => (
     <div
       key={i}
