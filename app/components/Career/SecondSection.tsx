@@ -1338,17 +1338,36 @@ const progress =
                     <p>Loading job description...</p>
                   )}
                 </div>
-                <div className="flex justify-center py-3">
-                  {!isFlipped && (
-                    <div className="flex justify-center py-2">
-                      <ContactButton
-                        text="Apply Now"
-                        type="button"
-                        onClick={() => setIsFlipped(true)}
-                      />
-                    </div>
-                  )}
-                </div>
+               <div className="flex justify-center py-3">
+  {!isFlipped && (
+    <div className="flex justify-center py-2">
+      <ContactButton
+        text="Apply Now"
+        type="button"
+        onClick={() => {
+          // Flip the card
+          setIsFlipped(true);
+
+          // Delay scrolling slightly to wait for flip animation
+          setTimeout(() => {
+            const target = document.getElementById("froms");
+            if (target) {
+              // Scroll to top of viewport
+              const topPos = target.getBoundingClientRect().top + window.pageYOffset;
+              window.scrollTo({
+                top: topPos,
+                behavior: "smooth",
+              });
+            }
+          }, 300); // adjust delay according to your flip animation duration
+        }}
+      />
+    </div>
+  )}
+</div>
+
+
+
               </div>
               {/* FRONT */}
 
@@ -1359,7 +1378,7 @@ const progress =
                 } backface-hidden rotate-y-180  border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4  `}
               >
 
-    <div className="bg-[#1D1D1D] rounded-xl relative overflow-hidden h-auto">
+    <div id="froms" className="bg-[#1D1D1D] rounded-xl relative overflow-hidden h-auto">
       {/* PROGRESS */}
       <div className="mb-6 mt-10">
 <div className="flex gap-2">
