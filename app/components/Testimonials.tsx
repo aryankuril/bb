@@ -68,14 +68,14 @@ const Testimonials = () => {
         loop: true,
         slides: {
           perView: 3,
-          spacing: 20,
+          spacing: 30,
         },
         breakpoints: {
           "(max-width: 1024px)": {
             slides: { perView: 2, spacing: 16 },
           },
           "(max-width: 640px)": {
-            slides: { perView: 1, spacing: 12 },
+            slides: { perView: 1, spacing: 15 },
           },
         },
         slideChanged(slider) {
@@ -110,10 +110,10 @@ const Testimonials = () => {
                 
                 {/* <div className="absolute -right-1 top-0 w-4 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div> */}
                 <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
-                <h3 className="white-text font-bold text-lg text-left z-10 relative">
+                <h3 className="white-text text-left z-10 relative">
                   {item.maintext}
                 </h3>
-                <p className="white-text mt-2 text-sm leading-relaxed z-10 relative">
+                <p className="white-text mt-2 leading-relaxed z-10 relative">
                   {item.text}
                 </p>
                 <div className="flex flex-col text-left z-10 relative mt-2">

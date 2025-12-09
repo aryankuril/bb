@@ -135,24 +135,27 @@ const MobileNav = () => {
           </button>
 
           {/* CENTER: Logo */}
-          <div className="flex-1 flex justify-center">
-            <Image
-                src="/images/hat.png"     // your cap image
-                alt="Cap"
-                width={60}
-                height={60}
-                className="absolute top-[-30] left-[-30] z-20 pointer-events-none"
-              />
-            <Link href="/">
-              <Image
-                src="/images/bblogo.webp"
-                alt="Bombay Blokes Logo"
-                width={160}
-                height={50}
-                className="object-contain transition-opacity duration-300"
-              />
-            </Link>
-          </div>
+          <div className="flex-1 flex justify-center relative">
+  <Link href="/">
+    <Image
+      src="/images/bblogo.webp"
+      alt="Bombay Blokes Logo"
+      width={160}
+      height={50}
+      className="object-contain transition-opacity duration-300"
+    />
+  </Link>
+
+  {/* Hat Image */}
+  <Image
+    src="/images/hat.png"
+    alt="Cap"
+    width={30}
+    height={30}
+    className="absolute -top-4 left-5 z-20 pointer-events-none"
+  />
+</div>
+
 
           {/* RIGHT: WhatsApp Icon */}
           <a

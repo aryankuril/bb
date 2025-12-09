@@ -121,23 +121,33 @@ interface PageLoaderProps {
 
 export default function PageLoader({ children }: PageLoaderProps) {
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // ✅ Force loader to stay visible (for testing)
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000); // change time as needed (2000 = 2 seconds)
+    // Detect if mobile on mount
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
 
-    return () => clearTimeout(timer);
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+
+    // Loader timeout
+    const timer = setTimeout(() => setLoading(false), 2000);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   if (loading) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
         <Image
-          src="/video/loader3.gif"
+          src={isMobile ? "/video/loader3-mob.gif" : "/video/loader3.gif"}
           alt="Loading..."
-          className="w-full h-screen"
+          className="w-full h-screen object-cover"
           width={100}
           height={100}
           priority
