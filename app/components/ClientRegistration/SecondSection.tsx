@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState  ,useEffect} from "react";
 import ContactButton from "../ContactButton";
 import Image from "next/image";
+import Button from "../Button";
 const SecondSection = () => {
   const services = [
     {
@@ -201,6 +202,100 @@ const SecondSection = () => {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+const [step, setStep] = useState(0);
+
+const validateCurrentStep = (): boolean => {
+  let valid = true;
+  let newErrors = { ...errors };
+
+  const fieldsByStep: any = {
+    0: ["companyName", "brandName", "industry"],
+    1: ["contactPerson"],
+    2: ["email", "phone", "address", "website"],
+  };
+
+  // ✅ Validate ONLY fields of current step - DO NOT clear other steps
+  fieldsByStep[step]?.forEach((field: string) => {
+    const value = formData[field as keyof typeof formData];
+    const error = validateField(field, value);
+
+    if (error) {
+      newErrors[field as keyof typeof newErrors] = error;
+      valid = false;
+    }
+    // ❌ REMOVE else block completely
+  });
+
+  // ✅ Services validate ONLY on step 1
+  if (step === 1) {
+    if (selectedServices.length === 0) {
+      newErrors.services = "Please select at least one service";
+      valid = false;
+    }
+  }
+
+  setErrors(newErrors);
+  return valid;
+};
+
+
+
+const nextStep = () => {
+  const stepValid = validateCurrentStep();
+  if (stepValid) {
+    setStep((prev) => prev + 1);
+  } else {
+    console.log("Please fill all required fields for this step");
+    console.log(errors);
+  }
+};
+
+
+  
+        // When submitStatus becomes success, show the Thank you step
+useEffect(() => {
+  if (submitStatus === "success") {
+    // Show Thank You screen
+    setStep(3);
+
+    const timer = setTimeout(() => {
+      // Reset everything after 10 seconds
+      setStep(0);
+      setSubmitStatus("idle");
+
+      setFormData({
+        companyName: "",
+        brandName: "",
+        industry: "",
+        gstin: "",
+        contactPerson: "",
+        email: "",
+        phone: "",
+        address: "",
+        website: "",
+      });
+
+      setSelectedServices([]);
+
+      setErrors({
+        companyName: "",
+        brandName: "",
+        industry: "",
+        gstin: "",
+        contactPerson: "",
+        email: "",
+        phone: "",
+        address: "",
+        website: "",
+        services: "",
+      });
+    }, 10000); // ✅ 10 seconds
+
+    return () => clearTimeout(timer);
+  }
+}, [submitStatus]);
+
+  
 
   // Validation functions
   const validateEmail = (email: string): boolean => {
@@ -246,15 +341,28 @@ const SecondSection = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error when user starts typing
-    if (errors[name as keyof typeof errors]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    const totalSteps = 3;
+
+
+  const goBack = () => {
+    if (step > 0) setStep((s) => s - 1);
   };
+
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = e.target;
+
+  setFormData((prev) => ({ ...prev, [name]: value }));
+
+  // ✅ Only clear error when the value is actually valid
+  const error = validateField(name, value);
+
+  setErrors((prev) => ({
+    ...prev,
+    [name]: error || "",
+  }));
+};
+
 
   // Field is a string representing the field name
   const handleFocus = (field: string) => {
@@ -274,38 +382,41 @@ const SecondSection = () => {
     }
   };
 
-  const handleServiceToggle = (serviceName: string) => {
-    setSelectedServices((prev) =>
-      prev.includes(serviceName)
-        ? prev.filter((s) => s !== serviceName)
-        : [...prev, serviceName]
-    );
+const handleServiceToggle = (serviceName: string) => {
+  setSelectedServices((prev) =>
+    prev.includes(serviceName)
+      ? prev.filter((s) => s !== serviceName)
+      : [...prev, serviceName]
+  );
 
-    // Clear services error when user selects a service
-    if (errors.services) {
-      setErrors((prev) => ({ ...prev, services: "" }));
-    }
-  };
+  // ✅ Only clear services error when in step 1
+  if (step === 1 && errors.services) {
+    setErrors((prev) => ({ ...prev, services: "" }));
+  }
+};
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    console.log("Submitting form with data:", { ...formData, selectedServices });
+
     // Validate all required fields
-    const newErrors = {
-      companyName: validateField("companyName", formData.companyName),
-      brandName: validateField("brandName", formData.brandName),
-      industry: validateField("industry", formData.industry),
-      gstin: validateField("gstin", formData.gstin),
-      contactPerson: validateField("contactPerson", formData.contactPerson),
-      email: validateField("email", formData.email),
-      phone: validateField("phone", formData.phone),
-      address: validateField("address", formData.address),
-      website: validateField("website", formData.website),
-      services:
-        selectedServices.length === 0
-          ? "Please select at least one service"
-          : "",
-    };
+   const newErrors = {
+  ...errors, // keep previous ones
+
+  companyName: validateField("companyName", formData.companyName),
+  industry: validateField("industry", formData.industry),
+  contactPerson: validateField("contactPerson", formData.contactPerson),
+  email: validateField("email", formData.email),
+  phone: validateField("phone", formData.phone),
+
+  services:
+    selectedServices.length === 0
+      ? "Please select at least one service"
+      : "",
+};
+
 
     setErrors(newErrors);
 
@@ -378,16 +489,10 @@ const SecondSection = () => {
         services: "",
       });
 
-      // Show success message for 3 seconds
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 3000);
+
     } catch (error) {
       console.error("Form submission error:", error);
       setSubmitStatus("error");
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 3000);
     } finally {
       setIsSubmitting(false);
     }
@@ -400,53 +505,85 @@ const SecondSection = () => {
   ) => {
     return fieldFocused || fieldValue ? "#FAB31E" : "#ABABAB";
   };
+
+
+   // progress helpers
+  const progressPercentage = Math.round(((step + 0) / totalSteps) * 100);
   return (
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
-      <div className="bg-[#1D1D1D] rounded-[20px] relative  grid md:grid-cols-2 overflow-hidden ">
-        {/* Left Side Image */}
-        <div className="flex items-stretch justify-center p-6">
-          <Image
-           width={1000}
-        height={1000}
-            src="/images/panipuricart1.png"
-            alt="Pani Puri Cart"
-            className="w-full h-full object-cover rounded-[15px]"
-          />
+      <div className="bg-[#1D1D1D] rounded-[20px] relative overflow-hidden px-6 py-8">
+        {/* TOP: Title + progress bar */}
+       <div className="max-w-3xl mx-auto text-center mb-6 relative">
+  <h2 className="text-3xl font-medium white-text">
+    Start Your <span className="text-highlight">Journey</span> Now
+  </h2>
+
+  {/* Progress Bar visual */}
+  <div className="mt-6">
+    <div className="w-full">
+      <div className="flex gap-3 items-center">
+        {Array.from({ length: totalSteps }).map((_, idx) => {
+          const filled = idx < step;
+          return (
+            <div
+              key={idx}
+              className={`flex-1 h-2 rounded-full transition-all duration-500 ${
+                filled
+                  ? "bg-[var(--color-highlight)]"
+                  : "bg-transparent border border-gray-600/40"
+              }`}
+            />
+          );
+        })}
+      </div>
+
+      <div className="mt-3 text-sm text-gray-300 flex items-center justify-between">
+        <div>Step {Math.min(step + 1, totalSteps)} of {totalSteps}</div>
+        <div className="text-[var(--color-highlight)]">
+          {progressPercentage}%
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        {/* Right Side Form */}
-        <div className="p-6 sm:p-5 md:p-8 lg:mt-10 white-text relative">
-          <div className="flex items-center justify-start gap-4">
-            <h3
-              className="
-      white-text lg:mb-0 mb-5
-    "
-            >
-              Start Your <span className="text-highlight">Journey</span> now
-            </h3>
 
-            {/* ✅ Add Image */}
-            {/* <img
-              src="/images/panipuri.png" // replace with your actual path
-              alt="Pani Puri"
-              className="lg:w-[140] w-[70px] h-auto object-contain z-55 lg:-mr-18"
-            /> */}
-          </div>
+        {/* FORM CARD (centered) */}
+        <div className="max-w-3xl mx-auto bg-transparent rounded-lg relative">
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Step 0: company name , brand name ,  */}
 
-          <form
-            className="space-y-5 lg:mt-10 lg:w-[600px] w-full"
-            onSubmit={handleSubmit}
-          >
-            {/* company name  */}
-            <div>
-              <label
+            <div className="relative w-full h-auto min-h-[200px]">
+
+  <div
+className={`w-full type-step ${
+  step === 0 ? "type-active" : step > 0 ? "type-hidden-up" : "type-hidden-down"
+}`}
+
+
+  >
+                <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div> 
+              
+              <h3 className="text-left text-lg white-text py-7">1. Tell Us about your Business</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+
+                {/* companyName */}
+                <div>
+              {/* <label
                 className="
     block white-text  body3
    
   "
               >
                 Registered Company Name <span className="text-red-500">*</span>
-              </label>
+              </label> */}
 
               <div className="relative w-full">
                 <input
@@ -513,13 +650,13 @@ const SecondSection = () => {
 
             {/* Brand Name  */}
             <div>
-              <label
+              {/* <label
                 className="
     block white-text body3
   "
               >
                 Brand Name
-              </label>
+              </label> */}
 
               <div className="relative w-full">
                 <input
@@ -567,13 +704,13 @@ const SecondSection = () => {
 
             {/* industry  */}
             <div>
-              <label
+              {/* <label
                 className="
     block white-text  body3
   "
               >
                 Industry <span className="text-red-500">*</span>
-              </label>
+              </label> */}
 
               <div className="relative w-full">
                 <input
@@ -624,13 +761,13 @@ const SecondSection = () => {
 
             {/* GSTIN */}
             <div>
-              <label
+              {/* <label
                 className="
     block white-text  body3
   "
               >
                 GSTIN
-              </label>
+              </label> */}
 
               <div className="relative w-full">
                 <input
@@ -682,16 +819,40 @@ const SecondSection = () => {
               )}
             </div>
 
-            {/* Services */}
+              </div>
+            </div>
+
+            {/* Step 1: Services % ciontact person */}
+          
+<div
+className={`w-full type-step ${
+  step === 1 ? "type-active" : step > 1 ? "type-hidden-up" : "type-hidden-down"
+}`}
+
+  >
+
+
+ <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div> 
+  <h3 className="text-left text-lg white-text py-7 ">2. Contact person and service </h3>
+
+  <div className="grid grid-cols-1 gap-6">
+
+ {/* Services */}
             <div>
-              <label
+              {/* <label
                 className="
           block white-text body3
     mb-3 
          "
               >
                 Select Service <span className="text-red-500">*</span>
-              </label>
+              </label> */}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {services.map((service, index) => {
@@ -728,13 +889,13 @@ const SecondSection = () => {
 
             {/* Contact Person */}
             <div>
-              <label
+              {/* <label
                 className="
           block white-text  body3
         "
               >
                 Contact Person <span className="text-red-500">*</span>
-              </label>
+              </label> */}
               <div className="relative w-full">
                 <input
                   type="text"
@@ -790,16 +951,40 @@ const SecondSection = () => {
               )}
             </div>
 
-            {/* Email */}
+  </div>
+</div>
+
+
+            {/* Step 2: Services */}
+            <div
+className={`w-full type-step ${
+  step === 2 ? "type-active" : step > 2 ? "type-hidden-up" : "type-hidden-down"
+}`}
+
+  >
+               <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div> 
+
+              
+              <h3 className="text-left  white-text py-8">3. Your contact details</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+
+               {/* Email */}
             <div>
-              <label
+              {/* <label
                 className="
           block white-text  body3
         "
               >
                 You Can Send The Sukha Puri (Your Reply!) Over To{" "}
                 <span className="text-red-500">*</span>
-              </label>
+              </label> */}
               <div className="relative w-full">
                 <input
                   type="text"
@@ -842,14 +1027,14 @@ const SecondSection = () => {
 
             {/* Phone */}
             <div>
-              <label
+              {/* <label
                 className="
           block white-text  body3
         "
               >
                 Or Just Give Me A Call At{" "}
                 <span className="text-red-500">*</span>
-              </label>
+              </label> */}
               <div className="relative w-full">
                 <input
                   type="text"
@@ -904,13 +1089,13 @@ const SecondSection = () => {
 
             {/* Address */}
             <div>
-              <label
+              {/* <label
                 className="
           block white-text  body3
         "
               >
                 Registered Address
-              </label>
+              </label> */}
               <div className="relative w-full">
                 <input
                   type="text"
@@ -969,13 +1154,13 @@ const SecondSection = () => {
             </div>
 
             <div>
-              <label
+              {/* <label
                 className="
           block white-text  body3
         "
               >
                 Your Website
-              </label>
+              </label> */}
               <div className="relative w-full">
                 <input
                   type="text"
@@ -1021,34 +1206,58 @@ const SecondSection = () => {
               )}
             </div>
 
-            {/* Submit Button */}
-
-            <div className="mt-6 lg:mt-10 flex flex-col items-center gap-3">
-              <ContactButton
-                text="DATE CONFIRM"
-                type="submit"
-                disabled={isSubmitting}
-                isSubmitting={isSubmitting}
-              />
-
-              {submitStatus === "success" && (
-                <p className="text-green-500 text-sm">
-                  Message sent successfully! ✅
-                </p>
-              )}
-
-              {submitStatus === "error" && (
-                <p className="text-red-500 text-sm">
-                  Failed to send message. Please try again. ❌
-                </p>
-              )}
+</div>
             </div>
+
+            {/* Step 3: Thank you */}
+            <div 
+className={`w-full type-step ${
+  step === 3 ? "type-active" : step > 3 ? "type-hidden-up" : "type-hidden-down"
+}`}
+>
+  <div className="text-center py-10">
+    {submitStatus === "success" && (
+      <>
+        <h3 className=" text-highlight mb-3">Welcome to our family!</h3>
+        <p className="text-gray-300 max-w-xl mx-auto">
+         An email from us is on the way, don’t forget to check your inbox
+        </p>
+      </>
+    )}
+  </div>
+</div>
+
+</div>
+
+            {/* NAV / CTA area (visible always but buttons adapt) */}
+            <div className="flex justify-end items-center pt-6">
+
+  {/* Step 1 */}
+  {step === 0 && (
+    <div onClick={nextStep}>
+      <Button text="A step closer" type="button" disabled={isSubmitting} className="white-text" />
+    </div>
+  )}
+
+  {/* Step 2 */}
+  {step === 1 && (
+    <div onClick={nextStep   }>
+      <Button text="almost there" type="button" disabled={isSubmitting} className="white-text"/>
+    </div>
+  )}
+
+  {/* Step 3 */}
+  {step === 2 && submitStatus !== "success" && (
+    <Button text="Let’s Connect" type="submit" disabled={isSubmitting} className="white-text" />
+  )}
+
+</div>
+
           </form>
 
-          {/* Yellow Stripe */}
         </div>
-        {/* <div className="absolute right-0 top-0 w-2 sm:w-5 md:w-7 h-full bg-[var(--color-highlight)]"></div> */}
-        <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
+          {/* Right yellow stripe preserved */}
+          <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5 candy-border"></div>
       </div>
     </section>
   );
