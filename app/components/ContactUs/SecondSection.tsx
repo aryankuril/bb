@@ -497,7 +497,10 @@ const goNext = () => {
             <div className="relative w-full h-auto min-h-[200px]">
 
   <div
-    className={`w-full ${step === 0 ? "block" : "hidden"}`}
+className={`w-full type-step ${
+  step === 0 ? "type-active" : step > 0 ? "type-hidden-up" : "type-hidden-down"
+}`}
+
 
   >
                 <div>
@@ -604,7 +607,9 @@ const goNext = () => {
             {/* Step 1: Phone & Email */}
           
 <div
-    className={`w-full ${step === 1 ? "block" : "hidden"}`}
+className={`w-full type-step ${
+  step === 1 ? "type-active" : step > 1 ? "type-hidden-up" : "type-hidden-down"
+}`}
 
   >
 
@@ -712,7 +717,9 @@ const goNext = () => {
 
             {/* Step 2: Services */}
             <div
-    className={`w-full ${step === 2 ? "block" : "hidden"}`}
+className={`w-full type-step ${
+  step === 2 ? "type-active" : step > 2 ? "type-hidden-up" : "type-hidden-down"
+}`}
 
   >
                <div>
@@ -790,11 +797,9 @@ const goNext = () => {
 
             {/* Step 3: Thank you */}
             <div 
-  className={`transition-all duration-500 ${
-    step === 3 
-      ? "opacity-100 translate-y-0" 
-      : "opacity-0 pointer-events-none absolute left-0 right-0"
-  }`}
+className={`w-full type-step ${
+  step === 3 ? "type-active" : step > 3 ? "type-hidden-up" : "type-hidden-down"
+}`}
 >
   <div className="text-center py-10">
     {submitStatus === "success" && (

@@ -2,8 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import AnimatedHeading from "../AnimatedHeading";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const services = [
   {
@@ -34,108 +33,46 @@ const services = [
 
 export default function SecondSection() {
   const [active, setActive] = useState<number | null>(null);
-  const imgRef = useRef<HTMLDivElement>(null);
   const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // 🧩 FIXED: Avoid using window during SSR
-  const lastMouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  // Motion values for cursor-follow image
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  // 🧠 Initialize coordinates safely after mount
+  const smoothX = useSpring(mouseX, { stiffness: 300, damping: 30 });
+  const smoothY = useSpring(mouseY, { stiffness: 300, damping: 30 });
+
+  // Track cursor movement
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      lastMouse.current.x = window.innerWidth / 2;
-      lastMouse.current.y = window.innerHeight / 2;
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!imgRef.current) return;
-
     const moveImage = (e: MouseEvent) => {
-      // Limit the image movement to the left 50% of the screen
-      const maxX = window.innerWidth * 0.4; // Half width
-      const clampedX = Math.min(e.clientX, maxX); // Clamp X to 50% area
+      const maxX = window.innerWidth * 0.4; // limit to left 40%
+      const clampedX = Math.min(e.clientX, maxX);
 
-      lastMouse.current.x = clampedX + 20;
-      lastMouse.current.y = e.clientY + 20;
-
-      gsap.to(imgRef.current, {
-        x: lastMouse.current.x,
-        y: lastMouse.current.y,
-        duration: 0.3,
-        ease: "power3.out",
-        overwrite: "auto",
-      });
+      mouseX.set(clampedX);
+      mouseY.set(e.clientY);
     };
 
     if (active !== null) {
-      if (
-        lastMouse.current.x === 0 &&
-        lastMouse.current.y === 0 &&
-        typeof window !== "undefined"
-      ) {
-        lastMouse.current.x = window.innerWidth / 2;
-        lastMouse.current.y = window.innerHeight / 2;
-      }
-
       window.addEventListener("mousemove", moveImage);
-      gsap.killTweensOf(imgRef.current);
-      gsap.set(imgRef.current, {
-        x: lastMouse.current.x,
-        y: lastMouse.current.y,
-        transformOrigin: "50% 50%",
-        willChange: "transform,opacity",
-        force3D: true,
-      });
-      gsap.fromTo(
-        imgRef.current,
-        { scale: 0.5, autoAlpha: 0 },
-        {
-          scale: 1,
-          autoAlpha: 1,
-          duration: 0.22,
-          ease: "power2.out",
-          overwrite: "auto",
-        }
-      );
-    } else {
-      gsap.to(imgRef.current, {
-        scale: 0.5,
-        autoAlpha: 0,
-        duration: 0.18,
-        ease: "power2.inOut",
-        clearProps: "willChange",
-        overwrite: "auto",
-      });
-      window.removeEventListener("mousemove", moveImage);
     }
 
     return () => {
       window.removeEventListener("mousemove", moveImage);
     };
-  }, [active]);
+  }, [active, mouseX, mouseY]);
 
+  // Intersection fade-up animation
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
-    serviceRefs.current.forEach((ref, index) => {
+    serviceRefs.current.forEach((ref) => {
       if (!ref) return;
 
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              gsap.fromTo(
-                entry.target,
-                { opacity: 0, y: 50 },
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 1,
-                  delay: index * 0.15,
-                  ease: "power3.out",
-                }
-              );
+              entry.target.classList.add("animate-fadeup");
               observer.unobserve(entry.target);
             }
           });
@@ -150,9 +87,7 @@ export default function SecondSection() {
       observers.push(observer);
     });
 
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-    };
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   return (
@@ -160,19 +95,16 @@ export default function SecondSection() {
       id="second-section"
       className="relative container w-full py-10 sm:py-[60px] lg:py-20"
     >
+      {/* Heading */}
       <div className="flex items-center justify-center w-full py-30 lg:mb-20">
-        {/* <AnimatedHeading> */}
-        <h1
-          className="text-center black-text"
-          style={{ textTransform: "none" }}
-        >
+        <h1 className="text-center black-text" style={{ textTransform: "none" }}>
           <span className="text-highlight">Born in Bombay,</span> crafting
           digital experiences that connect and inspire.
         </h1>
-        {/* </AnimatedHeading> */}
       </div>
 
-      <div className="mx-auto flex flex-col lg:w-[70%] space-y-16 ">
+      {/* Services list */}
+      <div className="mx-auto flex flex-col lg:w-[70%] space-y-16">
         {services.map((s, index) => (
           <div
             key={s.id}
@@ -181,24 +113,18 @@ export default function SecondSection() {
             }}
             onMouseEnter={() => setActive(s.id)}
             onMouseLeave={() => setActive(null)}
-            className="
-              flex flex-col
-              md:flex-row md:justify-between
-              md:gap-12
-              cursor-pointer group items-start
-              opacity-0
-            "
+            className="flex flex-col md:flex-row md:justify-between md:gap-12 cursor-pointer group items-start opacity-0 fade-up"
           >
             {/* Number */}
             <h2 className="order-1 text-highlight numbering text-left flex items-center justify-center">
               {s.id.toString().padStart(2, "0")}
             </h2>
 
-            {/* Title + Description + Mobile Image */}
+            {/* Content */}
             <div className="flex flex-col order-2 space-y-4 text-left max-w-120">
               <h3 className="black-text">{s.title}</h3>
 
-              {/* Mobile-only image */}
+              {/* Mobile image */}
               <div className="md:hidden">
                 <img
                   src={s.img}
@@ -215,11 +141,23 @@ export default function SecondSection() {
         ))}
       </div>
 
-      {/* Floating Image (desktop only) */}
+      {/* Floating image (desktop only, follows cursor) */}
       {active !== null && (
-        <div
-          ref={imgRef}
-          className="hidden md:block fixed -top-40 -left-50 pointer-events-none z-50"
+        <motion.div
+          className="hidden md:block pointer-events-none z-50"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            x: smoothX,
+            y: smoothY,
+            translateX: "-50%",
+            translateY: "-50%",
+          }}
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.5, opacity: 0 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
         >
           <Image
             src={services[active - 1].img}
@@ -228,8 +166,26 @@ export default function SecondSection() {
             height={300}
             className="rounded-[15px] shadow-lg"
           />
-        </div>
+        </motion.div>
       )}
+
+      {/* Animations */}
+      <style jsx global>{`
+        .fade-up {
+          transform: translateY(50px);
+        }
+
+        .animate-fadeup {
+          animation: fadeUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }

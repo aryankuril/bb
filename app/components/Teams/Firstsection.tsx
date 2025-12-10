@@ -1,18 +1,17 @@
 "use client";
-import React, { useRef, useEffect } from "react";
-import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import React, { useRef, useLayoutEffect, useState } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform ,useSpring } from "framer-motion";
 
 const Firstsection: React.FC = () => {
-  const secondImgRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const secondImgRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  const [targetScale, setTargetScale] = useState(1);
+
+  /** 🔥 Calculate the required scale exactly like GSAP */
+  useLayoutEffect(() => {
     if (!secondImgRef.current || !containerRef.current) return;
 
     const element = secondImgRef.current;
@@ -20,76 +19,80 @@ const Firstsection: React.FC = () => {
 
     const containerRect = container.getBoundingClientRect();
     const elementRect = element.getBoundingClientRect();
+
     const scaleX = containerRect.width / elementRect.width;
     const scaleY = containerRect.height / elementRect.height;
-    const targetScale = Math.max(scaleX, scaleY);
+    const calculated = Math.max(scaleX, scaleY);
 
-    // Responsive scroll trigger values
-    const isMobile = window.innerWidth < 768;
-    const startValue = isMobile ? "top 20%" : "top 50%";
-    const endValue = isMobile ? "top 10%" : "top 20%";
-
-    const scrollTrigger = gsap.to(element, {
-      scale: targetScale,
-      zIndex: 10,
-      ease: "power2.inOut",
-      scrollTrigger: {
-        trigger: container,
-        start: startValue,
-        end: endValue,
-        scrub: 2.5,
-        toggleActions: "play reverse play reverse",
-        // markers: true,
-      },
-    });
-
-    return () => {
-      scrollTrigger.scrollTrigger?.kill();
-      scrollTrigger.kill();
-    };
+    setTargetScale(calculated);
   }, []);
 
+  /** 🔥 Framer Motion ScrollTrigger Replacement */
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: [
+      // same as startValue & endValue in GSAP (mobile vs desktop)
+      window.innerWidth < 768 ? "start 0.10" : "start 0.50",
+      window.innerWidth < 768 ? "start 0.10" : "start 0.20",
+    ],
+  });
+
+  /** GSAP-like scrub smoothing — THIS FIXES YOUR ISSUE */
+const smoothScroll = useSpring(scrollYProgress, {
+  stiffness: 90,   // smoothness
+  damping: 20,     // friction
+  mass: 0.2,
+});
+
+  /** Smooth scaling (exact GSAP behaviour) */
+ /** Smooth scaling with clamp */
+const scale = useTransform(
+  smoothScroll,
+  [0, 1],
+  [1, Math.max(1, targetScale - 0.01)]
+);
+
   return (
-    <section className="container  py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10">
+    <section className="container py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10">
       <h1 className="black-text text-center md:text-left">
         The Squad That Turns <span className="text-highlight">What If</span>’
         Into <br />‘<span className="text-highlight">What’s Next.</span>’
       </h1>
 
-      {/* card */}
-
       <div className="mt-10 flex justify-center items-center">
         <div
           ref={containerRef}
-          className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-[300px] lg:w-[1295px] lg:h-[650px]  rounded-[20px] overflow-hidden relative"
+          className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-[300px] lg:w-[1295px] lg:h-[650px] rounded-[20px] overflow-hidden relative"
         >
           {/* Row 1 */}
           <div className="flex flex-wrap lg:gap-4 gap-1 justify-center lg:mt-20 mt-0">
-            <div className="w-[32%] max-w-[562px] lg:w-[562px]  0">
+            <div className="w-[32%] max-w-[562px] lg:w-[562px]">
               <Image
                 src="/images/teams/1.png"
                 alt="Big Image"
                 width={250}
                 height={250}
-                className="lg:rounded-[30px]  rounded-[10px]  object-cover w-full h-full"
+                className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
               />
             </div>
-            <div className="w-[32%] max-w-[350px] lg:w-[350px] ">
+
+            <div className="w-[32%] max-w-[350px] lg:w-[350px]">
               <Image
                 src="/images/teams/2.png"
                 alt="Small 1"
                 width={250}
                 height={250}
-                className="lg:rounded-[30px]  rounded-[10px] object-cover w-full h-full"
+                className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
               />
             </div>
-            <div className="w-[32%] max-w-[350px] lg:w-[350px] ">
+
+            <div className="w-[32%] max-w-[350px] lg:w-[350px]">
               <Image
                 src="/images/teams/3.png"
                 alt="Small 2"
                 width={250}
                 height={250}
-                className="lg:rounded-[30px]  rounded-[10px] object-cover w-full h-full"
+                className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
               />
             </div>
           </div>
@@ -102,18 +105,19 @@ const Firstsection: React.FC = () => {
                 alt="Hands"
                 width={250}
                 height={250}
-                className="lg:rounded-[30px]  rounded-[10px] object-cover w-full h-full"
+                className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
               />
             </div>
 
-            <div
+            {/* 🔥 The animated center image */}
+            <motion.div
               ref={secondImgRef}
-              className="w-[32%] max-w-[562px] lg:w-[562px] lg:h-[370px] h-[200px] flex-shrink-0 relative"
               style={{
+                scale,
                 transformOrigin: "center center",
-                position: "relative",
-                zIndex: 1,
+                zIndex: 10,
               }}
+              className="w-[32%] max-w-[562px] lg:w-[562px] lg:h-[370px] h-[200px] flex-shrink-0 relative"
             >
               <Image
                 src="/images/teams/team5.webp"
@@ -121,7 +125,7 @@ const Firstsection: React.FC = () => {
                 fill
                 className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
               />
-            </div>
+            </motion.div>
 
             <div className="w-[30%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[200px] flex-shrink-0">
               <Image
@@ -145,22 +149,24 @@ const Firstsection: React.FC = () => {
                 className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
               />
             </div>
+
             <div className="w-[30%] max-w-[350px] lg:w-[350px] flex-shrink-0">
               <Image
                 src="/images/teams/8.png"
                 alt="Man"
                 width={250}
                 height={250}
-                className="lg:rounded-[30px]  rounded-[10px]object-cover w-full h-full"
+                className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
               />
             </div>
-            <div className="w-[30%] max-w-[562px] lg:w-[562px]  flex-shrink-0">
+
+            <div className="w-[30%] max-w-[562px] lg:w-[562px] flex-shrink-0">
               <Image
                 src="/images/teams/9.png"
                 alt="Hands"
                 width={250}
                 height={250}
-                className="lg:rounded-[30px]  rounded-[10px] object-cover w-full h-full"
+                className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
               />
             </div>
           </div>

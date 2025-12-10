@@ -123,6 +123,7 @@ const MobileNav = () => {
         <div className="h-full flex items-center justify-between px-4">
           {/* LEFT: Menu / Close Button */}
           <button
+          
             onClick={() => setOpen((v) => !v)}
             className="rounded-[10px] border-[2.5px] border-black px-1 py-1
                        text-[13px] font-semibold tracking-wide bg-white
@@ -137,23 +138,19 @@ const MobileNav = () => {
           {/* CENTER: Logo */}
           <div className="flex-1 flex justify-center relative">
   <Link href="/">
-    <Image
-      src="/images/bblogo.webp"
-      alt="Bombay Blokes Logo"
-      width={160}
-      height={50}
-      className="object-contain transition-opacity duration-300"
-    />
-  </Link>
+    <div className="relative inline-block">
+      {/* Logo */}
+      <Image
+        src="/images/bblogo.webp"
+        alt="Bombay Blokes Logo"
+        width={160}
+        height={50}
+        className="object-contain transition-opacity duration-300"
+      />
 
-  {/* Hat Image */}
-  <Image
-    src="/images/hat.png"
-    alt="Cap"
-    width={30}
-    height={30}
-    className="absolute -top-4 left-5 z-20 pointer-events-none"
-  />
+    
+    </div>
+  </Link>
 </div>
 
 

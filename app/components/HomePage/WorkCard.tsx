@@ -1,18 +1,27 @@
 "use client";
+
+import React, { useRef } from "react";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Button from "../Button";
+import { useRouter } from "next/navigation";
+import { motion, useScroll, useTransform, MotionStyle } from "framer-motion";
 import AnimatedButton from "../AnimatedButton";
-gsap.registerPlugin(ScrollTrigger);
-// ------- Demo data (4 cards) -------
-const cardsData = [
+import Button from "../Button";
+import Link from "next/link";
+
+type Card = {
+  title: string;
+  tags: string[];
+  content: string;
+  image: string;
+  url: string;
+};
+
+const cardsData: Card[] = [
   {
     title: "Supersox",
     tags: ["Social Media", "Meta Ads", "Shopify"],
     content:
-      "Supersox had already built a solid footprint in offline retail, but their online presence was still dusty. They needed a social media strategy that not only brought in traffic but consistently turned scrollers into shoppers.",
+      "Supersox had already built a solid footprint in offline retail, but their online presence was still dusty.",
     image: "/images/sm/SS.jpg",
     url: "/work/social-media-marketing/supersox",
   },
@@ -28,143 +37,202 @@ const cardsData = [
     title: "SCS Sports",
     tags: ["Meta Ads", "Social Media", "SEO"],
     content:
-      "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue, a mission that culminated in a game-changing 12x ROAS.",
+      "We took SCS Sports, a 37-year-old legacy brand and drove 12x ROAS digitally.",
     image: "/images/sm/SCS.jpg",
     url: "/work/social-media-marketing/scssports",
   },
-
   {
     title: "My Suit Tailor",
-    tags: [" UI UX", "Shopify ", "SEO"],
-    content:
-      "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
+    tags: ["UI UX", "Shopify", "SEO"],
+    content: "We crafted a seamless bespoke tailoring e-commerce experience.",
     image: "/images/webdev/MSTnew.jpg",
     url: "/work/website-development/mysuittailor",
   },
 ];
 
-//
 export default function StackingCards() {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
-  const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
-    if (el) cardsRef.current[i] = el;
-  };
-  useEffect(() => {
-    const section = sectionRef.current;
-    const cards = cardsRef.current;
-    if (!section || !cards.length) return;
-    const ctx = gsap.context(() => {
-      // initial state with better performance settings
-      gsap.set(cards, {
-        y: 120,
-        opacity: 0,
-        scale: 1,
-        willChange: "transform, opacity, filter",
-        force3D: true,
-        transformPerspective: 1000,
-      });
-      gsap.set(cards[0], { y: 0, opacity: 1, zIndex: 100 });
-      const BEHIND_1 = {
-        scale: 0.97,
-        opacity: 0.55,
-        y: -30,
-      };
-      const BEHIND_2 = {
-        scale: 0.92,
-        opacity: 0.28,
-        y: -60,
-      };
-      const firstCardDuration = 20;
-      const otherCardsDuration = 100;
-      const stepsPercent =
-        firstCardDuration + (cards.length - 2) * otherCardsDuration;
-      const extraBufferPercent = 60;
-      const tl = gsap.timeline({
-        defaults: { ease: "power1.inOut", duration: 0.8 },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=" + (stepsPercent + extraBufferPercent) + "%",
-          scrub: 0.3,
-          pin: true,
-          anticipatePin: 1,
-          fastScrollEnd: true,
-          preventOverlaps: true,
-          // markers: true,
-        },
-      });
-      for (let i = 1; i < cards.length; i++) {
-        const curr = cards[i];
-        const prev = cards[i - 1];
-        const prev2 = i - 2 >= 0 ? cards[i - 2] : null;
-        const t = i === 1 ? 0.6 : 0.6 + (i - 1) * 1;
-        tl.to(curr, { y: 0, opacity: 1, duration: 0.8 }, t);
-        tl.set(curr, { zIndex: 100 + i }, t - 0.01);
-        tl.to(prev, { ...BEHIND_1, duration: 0.8 }, t);
-        if (prev2) tl.to(prev2, { ...BEHIND_2, duration: 0.8 }, t);
-        if (i - 3 >= 0) {
-          const older = cards.slice(0, i - 2);
-          tl.to(older, { opacity: 0, duration: 0.4 }, t);
-        }
-      }
-    }, section);
-    return () => ctx.revert();
-  }, []);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
+
+  const router = useRouter();
+  const num = cardsData.length;
+
+  const lastCardStart = (num - 1) / num;
+const headingOpacity = useTransform(
+  scrollYProgress,
+  [lastCardStart - 0.05, lastCardStart + 0.05],
+  [1, 0]
+);
+
+
   return (
-    <div className="py-0 sm:py-10 lg:py-20">
-      {/* Pinned stack area */}
-      <section
-        ref={sectionRef}
-        className="relative container w-full py-0 sm:py-10 lg:py-10"
+    <section className=" min-h-screen container py-10 sm:py-15 lg:py-20">
+      {/* <header
+        className="text-center absloute z-20"
+        style={{
+          top: "6vh",
+          marginBottom: "2vh",
+        }}
       >
-        {/* Title pinned at the top while cards stack below */}
-        <div className="sticky top-0 z-30 pointer-events-none">
-          <div className="flex items-center justify-center w-full">
-            <h2 className="text-center black-text">Our Work</h2>
-          </div>
-        </div>
-        {/* Stacking canvas below the title */}
-        <div className="relative w-full pt-20 sm:pt-24 lg:pt-32 mt-10 p-5">
-          {cardsData.map((card, i) => (
-            <div
-              key={i}
-              ref={setCardRef(i)}
-              style={{ zIndex: cardsData.length - i }}
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[clamp(440px,72vh,700px)] rounded-3xl white-text will-change-transform overflow-hidden transform-gpu"
-            >
-              <div
-                aria-hidden
-                className="absolute inset-0 translate-y-3 translate-x-3 rounded-3xl bg-white/5 border border-white/10 pointer-events-none"
-                style={{ zIndex: 0 }}
-              />
-              <div
-                className="relative h-full rounded-3xl bg-black/95 border border-white/8 shadow-[0_20px_60px_rgba(0,0,0,0.45)] p-6 sm:p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
-                style={{ zIndex: 1 }}
+        <h2 className="black-text">Our Work</h2>
+      </header> */}
+
+      <div
+        ref={containerRef}
+        className="relative "
+        style={{ height: `${num * 80}vh` }}
+      >
+        <motion.header
+  className="text-center absloute z-20 sticky"
+  style={{
+    top: "6vh",
+    marginBottom: "5vh",
+    opacity: headingOpacity,
+  }}
+>
+  <h2 className="black-text">Our Work</h2>
+</motion.header>
+
+        <ul className="space-y-10">
+          {cardsData.map((card, i) => {
+            const gap = 1 / num;
+
+            const start = i * gap;
+            const mid = start + gap * 0.7;
+            const end = start + gap;
+
+            // Move card from bottom
+            // Move card from bottom with better delays for first 2 cards
+            let y: any;
+            if (i === 0) {
+              y = useTransform(scrollYProgress, [0, gap * 0.7], [200, 0]); // first card
+            } else if (i === 1) {
+              y = useTransform(
+                scrollYProgress,
+                [gap * 0.3, gap * 1],
+                [1000, 0]
+              ); // delay second card
+            } else {
+              const startY = i * gap;
+              const midY = startY + gap * 0.7;
+              y = useTransform(scrollYProgress, [startY, midY], [140, 0]);
+            }
+
+            // ⬇️ Trigger blur/scale ONLY when next card is coming
+            const nextStart = (i + 1) / num;
+            const nextMid = nextStart + 0.12;
+
+            // Only previous cards should blur/scale
+            const scale =
+              i === num - 1
+                ? 1
+                : useTransform(
+                    scrollYProgress,
+                    [nextStart, nextMid],
+                    [1, 0.94]
+                  );
+
+            const blur =
+              i === num - 1
+                ? 0
+                : useTransform(scrollYProgress, [nextStart, nextMid], [0, 3]);
+
+            const filter = useTransform(
+              blur instanceof Object ? blur : scrollYProgress,
+              blur instanceof Object
+                ? (b: number) => `blur(${b}px)`
+                : () => `blur(0px)`
+            );
+
+            // Only show top 3 cards
+            const shouldHide = i > 2;
+
+            // Background dimming
+            const bgColor = "#000000";
+
+            // Depth layering
+            const zIndex = num - i;
+
+            // When a card is going behind, apply scale/blur gradually
+            const behindScale = useTransform(
+              scrollYProgress,
+              [nextStart, nextMid],
+              [1, 0.94]
+            );
+            const behindBlur = useTransform(
+              scrollYProgress,
+              [nextStart, nextMid],
+              [0, 3]
+            );
+            const behindFilter = useTransform(
+              behindBlur,
+              (b) => `blur(${b}px)`
+            );
+
+            // Final motion style
+            const motionStyle: MotionStyle = {
+              y,
+              scale: i === num - 1 ? 1 : behindScale,
+              filter: i === num - 1 ? undefined : behindFilter,
+              zIndex,
+              pointerEvents: i === num - 1 ? "auto" : "none",
+            };
+
+            return (
+              <li
+                key={card.title}
+                className="sticky"
+                style={{
+                  top: "20vh", // start a bit lower
+                  height: "70vh", // leave space at the top/bottom
+                }}
               >
-                {/* <div className="absolute -right-1 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E]"></div> */}
-                <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
-                {/* Left content */}
-                <div className="flex flex-col justify-center min-h-0">
-                  <h3 className="white-text">{card.title}</h3>
-                  <div className="flex flex-wrap mt-4">
-                    {card.tags.map((t, idx) => (
-                      <span
-                        key={idx}
-                        className="px-1 py-1 [text-wrap:balance] text-white"
-                      >
-                        <AnimatedButton text={t} href="/" index={idx} />
-                      </span>
-                    ))}
-                  </div>
-                  <p className="mt-4 sm:mt-6 opacity-90 body2 white-text">
-                    {card.content}
-                  </p>
-                </div>
-                {/* Right visual */}
-                <div className="w-full min-h-0">
-                  <div className="w-full h-full min-h-0 flex items-center justify-center py-6 sm:py-8 md:py-10">
-                    <div className="relative w-full lg:h-[60vh] h-[30vh]">
+                <Link href={card.url}>
+                  <motion.article
+                    style={motionStyle}
+                    transition={{ type: "spring", stiffness: 180, damping: 20 }}
+                    className="
+
+                    
+                      w-full h-auto
+                      rounded-2xl overflow-hidden
+                      shadow-xl text-white
+                      grid grid-cols-1 md:grid-cols-2
+                      items-stretch p-6 md:p-8 gap-6
+                      cursor-pointer
+                      transform-gpu
+                      will-change-transform
+                      bg-black
+                    "
+                  >
+                    {/* Yellow border */}
+                   <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
+                    {/* Content */}
+                    <div className="flex flex-col justify-center gap-4 z-10">
+                      <h3 className="white-text">{card.title}</h3>
+
+                      <div className="flex flex-wrap gap-2 mt-3">
+                        {card.tags.map((t, idx) => (
+                          <button
+                            key={idx}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <AnimatedButton text={t} href="/" index={idx} />
+                          </button>
+                        ))}
+                      </div>
+
+                      <p className="mt-4 opacity-90 body2 white-text">
+                        {card.content}
+                      </p>
+                    </div>
+
+                    {/* Image */}
+                    <motion.div
+                      // style={{ filter }}
+                      className="relative w-full lg:h-[60vh] h-[30vh]"
+                    >
+                      {/* <div className="relative w-full lg:h-[60vh] h-[30vh]"> */}
                       <Image
                         src={card.image}
                         alt={card.title}
@@ -174,27 +242,28 @@ export default function StackingCards() {
                         quality={100}
                         priority={i === 0}
                       />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Click overlay */}
-              <a
-                href={card.url}
-                aria-label={`Open ${card.title}`}
-                className="absolute inset-0 z-50 block"
-                style={{ pointerEvents: "auto", background: "transparent" }}
-                tabIndex={0}
-              />
-            </div>
-          ))}
+                      {/* </div> */}
+                    </motion.div>
+                  </motion.article>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Button */}
+        <div className="flex justify-center items-center mt-20">
+          <Button href="/work" text="Explore Our Work" />
         </div>
-      </section>
-      {/* Tail spacer so after unpin there's breathing room before next section */}
-      <div aria-hidden className="h-[60vh]"></div>
-      <div className="flex justify-center items-center lg:mt-0 mt-15">
-        <Button href="/work" text="Explore Our Work " className="" />
+
+
+         <div className="h-[50vh]">
+          
+        </div>
+
+        {/* Spacer */}
+        <div style={{ height: `${num * 8}rem` }} />
       </div>
-    </div>
+    </section>
   );
 }

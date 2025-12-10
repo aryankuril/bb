@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import gsap from "gsap";
+import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
   "/images/shopify2.png",
@@ -14,80 +14,57 @@ const images = [
 
 export default function ThirdSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const imgRefs = useRef<Array<HTMLDivElement | null>>([]); // ✅ FIXED TYPE
-  const activeIndexRef = useRef(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    activeIndexRef.current = activeIndex;
-  }, [activeIndex]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const currentIndex = activeIndexRef.current;
-      const nextIndex = (currentIndex + 1) % images.length;
-
-      // Fade out current image
-      if (imgRefs.current[currentIndex]) {
-        gsap.to(imgRefs.current[currentIndex], {
-          opacity: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        });
-      }
-
-      // Fade in next image
-      if (imgRefs.current[nextIndex]) {
-        gsap.to(imgRefs.current[nextIndex], {
-          opacity: 1,
-          duration: 0.5,
-          ease: "power2.in",
-        });
-      }
-
-      setActiveIndex(nextIndex);
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % images.length);
     }, 1800);
 
-    return () => clearInterval(interval);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, []);
 
   return (
     <section
-  className="
-    lg:h-screen h-200 relative bg-center bg-no-repeat py-10 sm:py-15 lg:py-20
-    bg-[url('/images/tech-we-use-bg-m.svg')]
-    lg:bg-[url('/images/tech-we-use-bg.png')]
-    bg-contain lg:bg-cover w-full
-  "
->
-      <div className="flex flex-col items-center justify-center h-full px-6 text-center">
-        <div className="relative w-30 h-30 sm:w-35 sm:h-35 md:w-36 md:h-36 lg:w-35 lg:h-25 mb-6 flex items-center justify-center">
-  {images.map((img, i) => (
-    <div
-      key={i}
-      ref={(el: HTMLDivElement | null) => {
-        imgRefs.current[i] = el;
-      }}
-      className={`absolute inset-0 flex items-center justify-center ${
-        i === activeIndex ? "opacity-100" : "opacity-0"
-      }`}
-      style={{ transition: "opacity 0.5s ease-in-out" }}
+      className="
+        lg:h-screen h-200 relative bg-center bg-no-repeat py-10 sm:py-15 lg:py-20
+        bg-[url('/images/tech-we-use-bg-m.svg')]
+        lg:bg-[url('/images/tech-we-use-bg.png')]
+        bg-contain lg:bg-cover w-full
+      "
     >
-      <Image
-        src={img}
-        alt={`icon-${i}`}
-        width={350}
-        height={220}
-        className="object-contain w-full h-full"
-      />
-    </div>
-  ))}
-</div>
+      <div className="flex flex-col items-center justify-center h-full px-6 text-center">
+        {/* ✅ Animated Image Wrapper */}
+        <div className="relative w-30 h-30 sm:w-35 sm:h-35 md:w-36 md:h-36 lg:w-35 lg:h-25 mb-6 flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+              }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <Image
+                src={images[activeIndex]}
+                alt={`icon-${activeIndex}`}
+                width={350}
+                height={220}
+                className="object-contain w-full h-full"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-
+        {/* ✅ Title */}
         <h2 className="black-text text-center lg:w-[900px] w-full leading-snug">
           The <span className="text-highlight">Stack</span> That Powers{" "}
-          <span className="text-highlight">Innovation,</span> Performance,
-          And Growth{" "}
+          <span className="text-highlight">Innovation,</span> Performance, And Growth{" "}
           <span className="text-highlight">Across</span> Every{" "}
           <span className="text-highlight">Project</span>
         </h2>
