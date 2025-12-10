@@ -124,12 +124,12 @@ export default function PageLoader({ children }: PageLoaderProps) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Detect if mobile on mount
+    // Detect if mobile on mount and on resize
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    handleResize(); // initial check
+    handleResize(); // Initial check
     window.addEventListener("resize", handleResize);
 
     // Loader timeout
@@ -144,17 +144,29 @@ export default function PageLoader({ children }: PageLoaderProps) {
   if (loading) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
-        <Image
-          src={isMobile ? "/video/loader3-mob.gif" : "/video/loader3.gif"}
-          alt="Loading..."
-          className="w-full h-screen object-cover"
-          width={100}
-          height={100}
-          priority
-        />
+        {isMobile ? (
+          <Image
+            src="/video/loader3-mob.gif"
+            alt="Loading..."
+            className="w-full h-screen object-cover"
+            width={100}
+            height={100}
+            priority
+          />
+        ) : (
+          <Image
+            src="/video/loader3.gif"
+            alt="Loading..."
+            className="w-full h-screen object-cover"
+            width={100}
+            height={100}
+            priority
+          />
+        )}
       </div>
     );
   }
 
   return <>{children}</>;
 }
+

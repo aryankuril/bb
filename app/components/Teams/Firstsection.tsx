@@ -2,7 +2,7 @@
 
 import React, { useRef, useLayoutEffect, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform ,useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const Firstsection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,7 +10,7 @@ const Firstsection: React.FC = () => {
 
   const [targetScale, setTargetScale] = useState(1);
 
-  /** 🔥 Calculate the required scale exactly like GSAP */
+  /** 🔥 Calculate correct scale (GSAP-style) */
   useLayoutEffect(() => {
     if (!secondImgRef.current || !containerRef.current) return;
 
@@ -22,35 +22,30 @@ const Firstsection: React.FC = () => {
 
     const scaleX = containerRect.width / elementRect.width;
     const scaleY = containerRect.height / elementRect.height;
-    const calculated = Math.max(scaleX, scaleY);
 
-    setTargetScale(calculated);
+    const fitScale = Math.max(scaleX, scaleY);
+
+    // 🚫 Never let scale exceed the exact fit
+    setTargetScale(Math.max(1, fitScale));
   }, []);
 
-  /** 🔥 Framer Motion ScrollTrigger Replacement */
+  /** Smooth scroll */
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: [
-      // same as startValue & endValue in GSAP (mobile vs desktop)
-      window.innerWidth < 768 ? "start 0.10" : "start 0.50",
-      window.innerWidth < 768 ? "start 0.10" : "start 0.20",
+      window.innerWidth < 768 ? "start 0.15" : "start 0.50",
+      window.innerWidth < 768 ? "start 0.00" : "start 0.20",
     ],
   });
 
-  /** GSAP-like scrub smoothing — THIS FIXES YOUR ISSUE */
-const smoothScroll = useSpring(scrollYProgress, {
-  stiffness: 90,   // smoothness
-  damping: 20,     // friction
-  mass: 0.2,
-});
+  const smoothScroll = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 20,
+    mass: 0.2,
+  });
 
-  /** Smooth scaling (exact GSAP behaviour) */
- /** Smooth scaling with clamp */
-const scale = useTransform(
-  smoothScroll,
-  [0, 1],
-  [1, Math.max(1, targetScale - 0.01)]
-);
+  /** Clamp scale: 1 → targetScale, never more */
+  const scale = useTransform(smoothScroll, [0, 1], [1, targetScale]);
 
   return (
     <section className="container py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10">
@@ -109,7 +104,7 @@ const scale = useTransform(
               />
             </div>
 
-            {/* 🔥 The animated center image */}
+            {/* 🔥 Animated zoom image */}
             <motion.div
               ref={secondImgRef}
               style={{
