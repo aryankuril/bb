@@ -17,7 +17,7 @@ const cardsData = [
     title: "Supersox",
     tags: ["Social Media", "Meta Ads", "Shopify"],
     content:
-      "Supersox had already built a solid footprint in offline retail, but their online presence was still dusty.",
+      "Supersox had already built a solid footprint in offline retail, but their online presence was still dusty. They needed a social media strategy that not only brought in traffic but consistently turned scrollers into shoppers.",
     image: "/images/sm/SS.jpg",
     url: "/work/social-media-marketing/supersox",
   },
@@ -25,7 +25,7 @@ const cardsData = [
     title: "Mr Blox",
     tags: ["UI UX", "Shopify"],
     content:
-      "Mr Blox is a toy brand for kids 3+.",
+      "Mr Blox is a toy brand for kids 3+, with a playful Panda mascot and a parent-friendly digital presence.",
     image: "/images/webdev/MrBloxnew.jpg",
     url: "/work/website-development/mrblox",
   },
@@ -33,19 +33,21 @@ const cardsData = [
     title: "SCS Sports",
     tags: ["Meta Ads", "Social Media", "SEO"],
     content:
-      "Our challenge was to take SCS Sports digital.",
+      "Our challenge was to take SCS Sports, a 37-year-old legacy brand with zero online sales, and translate its offline success into digital revenue, a mission that culminated in a game-changing 12x ROAS.",
     image: "/images/sm/SCS.jpg",
     url: "/work/social-media-marketing/scssports",
   },
+
   {
     title: "My Suit Tailor",
     tags: [" UI UX", "Shopify ", "SEO"],
     content:
-      "Digital bespoke tailoring experience.",
+      "We partnered with My Suit Tailor to craft a translating the art of bespoke tailoring into a seamless digital experience. Our elegant e-commerce platform empowers any man to become his own tailor.",
     image: "/images/webdev/MSTnew.jpg",
     url: "/work/website-development/mysuittailor",
   },
 ];
+
 
 export default function StackingCards() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -169,6 +171,7 @@ const opacity = useTransform(
                     {/* Card */}
                     <div className="relative h-full rounded-3xl bg-black/95 border border-white/8 shadow-[0_20px_60px_rgba(0,0,0,0.45)] p-6 sm:p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
+<div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
                       {/* Left */}
                       <div className="flex flex-col justify-center">
                         <h3 className="white-text">{card.title}</h3>
