@@ -1297,7 +1297,7 @@ const progress =
           id="details-section"
           className="p-3 md:p-4 md:pr-8 white-text flex flex-col relative"
         >
-          <h2
+          <h2  id="froms"
             className="
     white-text
     text-center
@@ -1378,7 +1378,7 @@ const progress =
                 } backface-hidden rotate-y-180  border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4  `}
               >
 
-    <div id="froms" className="bg-[#1D1D1D] rounded-xl relative overflow-hidden h-auto">
+    <div  className="bg-[#1D1D1D] rounded-xl relative overflow-hidden h-auto">
       {/* PROGRESS */}
       <div className="mb-6 mt-10">
 <div className="flex gap-2">
