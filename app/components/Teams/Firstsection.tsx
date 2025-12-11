@@ -29,23 +29,20 @@ const Firstsection: React.FC = () => {
     setTargetScale(Math.max(1, fitScale));
   }, []);
 
-  /** Smooth scroll */
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: [
-      window.innerWidth < 768 ? "start 0.15" : "start 0.50",
-      window.innerWidth < 768 ? "start 0.00" : "start 0.20",
-    ],
-  });
+const { scrollYProgress } = useScroll({
+  target: containerRef,
+  offset: ["start start", "end start"],
+});
 
-  const smoothScroll = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 20,
-    mass: 0.2,
-  });
+const smoothScroll = useSpring(scrollYProgress, {
+  stiffness: 120,
+  damping: 20,
+  mass: 0.15,
+});
 
-  /** Clamp scale: 1 → targetScale, never more */
-  const scale = useTransform(smoothScroll, [0, 1], [1, targetScale]);
+// 🚀 FULL ZOOM on small scroll (0 → 0.02)
+const scale = useTransform(smoothScroll, [0, 0.01], [1, targetScale]);
+
 
   return (
     <section className="container py-0 sm:py-15 lg:py-20 lg:mt-10 -mt-10">
@@ -57,11 +54,11 @@ const Firstsection: React.FC = () => {
       <div className="mt-10 flex justify-center items-center">
         <div
           ref={containerRef}
-          className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-[300px] lg:w-[1295px] lg:h-[650px] rounded-[20px] overflow-hidden relative"
+          className="flex flex-col lg:gap-4 gap-1 justify-center items-center w-full h-auto  lg:w-[1295px] lg:h-[650px] rounded-[20px] overflow-hidden relative"
         >
           {/* Row 1 */}
-          <div className="flex flex-wrap lg:gap-4 gap-1 justify-center lg:mt-20 mt-0">
-            <div className="w-[32%] max-w-[562px] lg:w-[562px]">
+          <div className="flex flex-wrap lg:gap-4 gap-1 justify-center lg:mt-20 mt-0 ">
+            <div className="w-[32%] max-w-[562px] lg:w-[562px]  ">
               <Image
                 src="/images/teams/1.png"
                 alt="Big Image"
@@ -94,7 +91,7 @@ const Firstsection: React.FC = () => {
 
           {/* Row 2 */}
           <div className="flex flex-wrap lg:gap-4 gap-1 justify-center">
-            <div className="w-[32%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[200px] flex-shrink-0">
+            <div className="w-[32%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[250px] flex-shrink-0">
               <Image
                 src="/images/teams/4.png"
                 alt="Hands"
@@ -112,7 +109,7 @@ const Firstsection: React.FC = () => {
                 transformOrigin: "center center",
                 zIndex: 10,
               }}
-              className="w-[32%] max-w-[562px] lg:w-[562px] lg:h-[370px] h-[200px] flex-shrink-0 relative"
+              className="w-[32%] max-w-[562px] lg:w-[562px] lg:h-[370px] h-[250px] flex-shrink-0 relative"
             >
               <Image
                 src="/images/teams/team5.webp"
@@ -122,7 +119,7 @@ const Firstsection: React.FC = () => {
               />
             </motion.div>
 
-            <div className="w-[30%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[200px] flex-shrink-0">
+            <div className="w-[30%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[250px] flex-shrink-0">
               <Image
                 src="/images/teams/6.png"
                 alt="Hands"
@@ -135,7 +132,7 @@ const Firstsection: React.FC = () => {
 
           {/* Row 3 */}
           <div className="flex flex-wrap lg:gap-4 gap-1 justify-center">
-            <div className="w-[30%] max-w-[350px] lg:w-[350px] flex-shrink-0">
+            <div className="w-[30%] max-w-[350px] lg:w-[350px] flex-shrink-0 ">
               <Image
                 src="/images/teams/7.png"
                 alt="Woman"
