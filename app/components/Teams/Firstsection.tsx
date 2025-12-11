@@ -27,7 +27,7 @@ const Firstsection: React.FC = () => {
 
   const fitScale = Math.max(scaleX, scaleY);
 
-setTargetScale(Math.max(1, fitScale * 0.85));
+setTargetScale(Math.max(1, fitScale * 0.87));
 
 };
 
