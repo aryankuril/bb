@@ -125,48 +125,101 @@ const titleOpacity = useTransform(
 
 
             {/* Cards */}
-            <div className="relative w-full pt-20 sm:pt-24 lg:pt-32 mt-10 p-5">
+            <div className="relative w-full pt-20 sm:pt-24 lg:pt-32 mt-15 p-5">
               {cardsData.map((card, i) => {
                const start = i * step;
 const hold = start + step * 0.45;
 const fade = start + step * 0.9; // fade only when next card nearly visible
 const end = start + step * 1.2;
 
-// ✅ Card moves in and STOPS
-const y = useTransform(
+
+const activeCardIndex = useTransform(slowedProgress, (p) => {
+  return Math.min(Math.floor(p / step), totalCards - 1);
+});
+
+zIndex: useTransform(activeCardIndex, (active) => {
+  const distance = Math.abs(active - i);
+  return 100 - distance;   // closer cards are on top
+})
+
+// cards behind move UP (top stays visible)
+const stackOffset = useTransform(
   slowedProgress,
   [start, hold, fade, end],
-  [150, 0, 0, 0]  // STOPS at 0
+  i === totalCards - 1
+    ? [0, 0, 0, 0]
+    : [0, 0, -20 * (i + 1), -35 * (i + 1)]
 );
 
-// ✅ Scale locks at final position
+
+// ✅ Card moves in and STOPS
+const y = useTransform(
+  [slowedProgress, stackOffset],
+  (values: number[]) => {
+    const [p, stack] = values;
+
+    const base =
+      p < start ? 1000 :      // fully off-screen
+      p < hold ? 0 :
+      p < fade ? 0 :
+      -10;
+
+    return base + stack;
+  }
+);
+
+
+
+
+
 const scale = useTransform(
   slowedProgress,
   [start, hold, fade, end],
-  [0.96, 1, 1, 1]
+  i === totalCards - 1
+    ? [1, 1, 1, 1]
+    : [1, 1, 1 - 0.05 * (i + 1), 1 - 0.08 * (i + 1)]
 );
 
-// ✅ Fade only when NEXT card is ~50% visible
+
+  // Blur effect: ONLY cards behind get blurred
+  const blur = useTransform(activeCardIndex, (active) =>
+    active === i ? "blur(0px)" : "blur(10px)"
+  );
+
+
+// Opacity (reduce *just a little*, NOT disappear)
 const opacity = useTransform(
   slowedProgress,
   [start, hold, fade, end],
   i === totalCards - 1
-    ? [0, 1, 1, 1]          // last card never fades
-    : [0, 1, 1, 0.2]        // fade late
+    ? [1, 1, 1, 1]
+    : [1, 1, 0.85, 0.7] // softer but still visible
 );
 
+
+
+
                 return (
-                  <motion.div
-                    key={i}
-                    style={{
-                      zIndex: 100 + i,
-                      y,
-                      scale,
-                      opacity,
-                      willChange: "transform, opacity",
-                    }}
-                    className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[clamp(440px,72vh,700px)] rounded-3xl white-text overflow-hidden transform-gpu"
-                  >
+                 <motion.div
+  key={i}
+ style={{
+  zIndex: useTransform(activeCardIndex, (active) => {
+    const distance = Math.abs(active - i);
+    return 100 - distance;
+  }),
+  y,
+  scale,
+  opacity,
+  filter: blur
+}}
+
+
+
+  className="absolute top-0 left-1/2 -translate-x-1/2 w-full 
+             h-[clamp(440px,72vh,700px)] rounded-3xl 
+             white-text overflow-hidden transform-gpu"
+>
+
 
                     {/* Card */}
                     <div className="relative h-full rounded-3xl bg-black/95 border border-white/8 shadow-[0_20px_60px_rgba(0,0,0,0.45)] p-6 sm:p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
