@@ -103,21 +103,25 @@ const scale = useTransform(smoothScroll, [0, 0.01], [1, targetScale]);
 
             {/* 🔥 Animated zoom image */}
             <motion.div
-              ref={secondImgRef}
-              style={{
-                scale,
-                transformOrigin: "center center",
-                zIndex: 10,
-              }}
-              className="w-[32%] max-w-[562px] lg:w-[562px] lg:h-[370px] h-[250px] flex-shrink-0 relative"
-            >
-              <Image
-                src="/images/teams/team5.webp"
-                alt="Hands Zoom"
-                fill
-                className="lg:rounded-[30px] rounded-[10px] object-cover w-full h-full"
-              />
-            </motion.div>
+  ref={secondImgRef}
+  style={{
+    scale,
+    transformOrigin: "center center",
+    zIndex: 10,
+    willChange: "transform",
+    WebkitTransform: "translateZ(0)",
+  }}
+  className="w-[32%] max-w-[562px] lg:w-[562px] lg:h-[370px] h-[250px] flex-shrink-0 relative"
+>
+  <Image
+    src="/images/teams/team5.webp"
+    alt="Hands Zoom"
+    width={600}
+    height={400}
+    className="absolute inset-0 w-full h-full lg:rounded-[30px] rounded-[10px] object-cover"
+  />
+</motion.div>
+
 
             <div className="w-[30%] max-w-[350px] lg:w-[350px] lg:h-[370px] h-[250px] flex-shrink-0">
               <Image
