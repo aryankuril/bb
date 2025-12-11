@@ -10,24 +10,31 @@ const Firstsection: React.FC = () => {
 
   const [targetScale, setTargetScale] = useState(1);
 
+
+
+
+  const recalcScale = () => {
+  if (!secondImgRef.current || !containerRef.current) return;
+
+  const element = secondImgRef.current;
+  const container = containerRef.current;
+
+  const containerRect = container.getBoundingClientRect();
+  const elementRect = element.getBoundingClientRect();
+
+  const scaleX = containerRect.width / elementRect.width;
+  const scaleY = containerRect.height / elementRect.height;
+
+  const fitScale = Math.max(scaleX, scaleY);
+
+  setTargetScale(Math.max(1, fitScale));
+};
+
   /** 🔥 Calculate correct scale (GSAP-style) */
-  useLayoutEffect(() => {
-    if (!secondImgRef.current || !containerRef.current) return;
+useLayoutEffect(() => {
+  recalcScale(); // initial try
+}, []);
 
-    const element = secondImgRef.current;
-    const container = containerRef.current;
-
-    const containerRect = container.getBoundingClientRect();
-    const elementRect = element.getBoundingClientRect();
-
-    const scaleX = containerRect.width / elementRect.width;
-    const scaleY = containerRect.height / elementRect.height;
-
-    const fitScale = Math.max(scaleX, scaleY);
-
-    // 🚫 Never let scale exceed the exact fit
-    setTargetScale(Math.max(1, fitScale));
-  }, []);
 
 const { scrollYProgress } = useScroll({
   target: containerRef,
@@ -113,13 +120,15 @@ const scale = useTransform(smoothScroll, [0, 0.01], [1, targetScale]);
   }}
   className="w-[32%] max-w-[562px] lg:w-[562px] lg:h-[370px] h-[250px] flex-shrink-0 relative"
 >
-  <Image
-    src="/images/teams/team5.webp"
-    alt="Hands Zoom"
-    width={600}
-    height={400}
-    className="absolute inset-0 w-full h-full lg:rounded-[30px] rounded-[10px] object-cover"
-  />
+ <Image
+  src="/images/teams/team5.webp"
+  alt="Hands Zoom"
+  width={600}
+  height={400}
+  onLoadingComplete={recalcScale}   // ⭐ FIXES IPHONE BUG ⭐
+  className="absolute inset-0 w-full h-full lg:rounded-[30px] rounded-[10px] object-cover"
+/>
+
 </motion.div>
 
 
