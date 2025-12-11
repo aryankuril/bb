@@ -61,11 +61,13 @@ export default function StackingCards() {
     offset: ["start start", "end end"],
   });
 
-  // ✅ Add heavy resistance to scroll progress
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+  // Smooth scroll progress
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 35,   // lower = heavier
-    damping: 25,     // resistance
-    mass: 1.4,       // weight feeling
+    stiffness: isMobile ? 120 : 35,
+    damping: isMobile ? 25 : 25,
+    mass: 1,
   });
 
   // ✅ Slow it down even more
