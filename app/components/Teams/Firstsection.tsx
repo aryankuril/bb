@@ -14,10 +14,10 @@ export default function Firstsection() {
   rotationSpeed={25}
   frontImage="/images/teams/team1.webp"
   backImage="/images/teams/team2.webp"
-  rightImage="/images/teams/team3.webp"
-  leftImage="/images/teams/team4.webp"
-  topImage="/images/teams/team5.webp"
-  bottomImage="/images/teams/team6.webp" /> : <FirstsectionDesktop />}
+  rightImage="/images/teams/team5.webp"
+  leftImage="/images/teams/team8.jpg"
+  topImage="/images/teams/team8.jpg"
+  bottomImage="/images/teams/team10.jpg" /> : <FirstsectionDesktop />}
     </>
   );
 }
