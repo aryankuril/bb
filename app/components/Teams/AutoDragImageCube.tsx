@@ -83,7 +83,7 @@ export default function AutoDragImageCube(props: CubeProps) {
     backgroundSize: "cover",
     backgroundPosition: "center",
     borderRadius: 18,
-    boxShadow: "0 16px 40px rgba(0,0,0,0.2)",
+    // boxShadow: "0 16px 40px rgba(0,0,0,0.2)",
   };
   const face = (img?: string): React.CSSProperties => ({
     ...faceBase,
