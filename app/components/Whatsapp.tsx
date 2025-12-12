@@ -26,6 +26,7 @@ const Whatsapp = () => {
       <Image
         src="/images/whatsapp.png" // 👈 put your WhatsApp icon in public/images/
         alt="WhatsApp"
+          
         style={{
           width: "80%",
           height: "80%",

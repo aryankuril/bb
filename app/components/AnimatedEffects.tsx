@@ -9,7 +9,7 @@ export default function AnimatedEffects({ children }: any) {
   return (
     <>
       <PageLoader>
-        <FallingFlowers />
+        {/* <FallingFlowers /> */}
         {children}
       </PageLoader>
 
