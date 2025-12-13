@@ -19,7 +19,7 @@ export default function ThirdSection() {
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % images.length);
-    }, 1800);
+    }, 900);
 
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
@@ -45,8 +45,8 @@ export default function ThirdSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{
-                duration: 0.5,
-                ease: "easeInOut",
+                duration: 0.25, // ⬅️ faster fade
+    ease: "easeOut", // ⬅️ snappier feel
               }}
               className="absolute inset-0 flex items-center justify-center"
             >
