@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const images = [
   "/images/shopify2.png",
   "/images/figma2.png",
-  "/images/framer2.png",
+  "/images/framer-motion-logo2.webp",
   "/images/nextjs-logo2.webp",
   "/images/Wordpress2.png",
 ];
