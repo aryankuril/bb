@@ -592,87 +592,79 @@ select {
 }
 
 
-/* workcrad
-.cardContainer {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: sticky;
-  top: 0px;
-
-  .card {
-    display: flex;
-    flex-direction: row;   
-    gap: 50px;
+/* zoomparrlox */
+.containerr{
+    height: 300vh;
     position: relative;
-    top: -25%;
-    height: 500px;
-    width: 1000px;
-    border-radius: 25px;
-    padding: 50px;
-    transform-origin: top;
-
-    h2 {
-      text-align: center;
-      margin: 0px;
-      font-size: 28px;
-      width: 100%;
-    }
-
-    .body {
-      display: flex;
-      flex-direction: row;  
-      align-items: stretch;
-      justify-content: space-between;
-      height: 100%;
-      margin-top: 50px;
-      gap: 50px;
-
-      .description {
-        width: 40%;
-        position: relative;
-        top: 10%;
-      }
-
-      .imageContainer {
-        position: relative;
-        width: 60%;
-        height: 100%;
-        border-radius: 25px;
+    .sticky{
+        position: sticky;
         overflow: hidden;
+        top: 0;
+        height: 100vh;
 
-        .inner {
-          width: 100%;
-          height: 100%;
+        .el{
+            width: 100%;
+            height: 100%;
+            top: 0;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .imageContainer{
+                position: relative;
+                width: 25vw;
+                height: 25vh;
+                img{
+                    object-fit: cover;
+                }
+            }
+            &:nth-of-type(2){
+                .imageContainer{
+                    top: -30vh;
+                    left: 5vw;
+                    width: 35vw;
+                    height: 30vh;
+                }
+            }
+            &:nth-of-type(3){
+                .imageContainer{
+                    top: -10vh;
+                    left: -25vw;
+                    width: 20vw;
+                    height: 45vh;
+                }
+            }
+            &:nth-of-type(4){
+                .imageContainer{
+                    left: 27.5vw;
+                    width: 25vw;
+                    height: 25vh;
+                }
+            }
+            &:nth-of-type(5){
+                .imageContainer{
+                    top: 27.5vh;
+                    left: 5vw;
+                    width: 20vw;
+                    height: 25vh;
+                }
+            }
+            &:nth-of-type(6){
+                .imageContainer{
+                    top: 27.5vh;
+                    left: -22.5vw;
+                    width: 30vw;
+                    height: 25vh;
+                }
+            }
+            &:nth-of-type(7){
+                .imageContainer{
+                    top: 22.5vh;
+                    left: 25vw;
+                    width: 15vw;
+                    height: 15vh;
+                }
+            }
         }
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;  
-        }
-      }
     }
-  }
 }
-
-
-
-
-
-
-.motion-card {
-  isolation: isolate;
-}
-
-
-
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-.motion-card {
-  transform-style: preserve-3d;
-  isolation: isolate;
-} */
