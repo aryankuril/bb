@@ -6,7 +6,7 @@ const Firstsection = () => {
   const [mobileLoaded, setMobileLoaded] = useState(false);
 
   return (
-    <section className="relative overflow-hidden h-[85vh] md:h-screen -mt-[82px] md:-mt-8">
+    <section className="relative overflow-hidden h-[75vh] md:h-screen -mt-[82px] md:-mt-8">
       <div className="relative w-full h-full">
 
         {/* ✅ Desktop Video */}

@@ -70,6 +70,12 @@ const applyRotation = () => {
   });
 };
 
+const applyRotationInstant = () => {
+  rotateX.set(angleXRef.current);
+  rotateY.set(angleYRef.current);
+};
+
+
   /* ---------------- Auto rotate ---------------- */
   const [localAutoRotate, setLocalAutoRotate] = React.useState(autoRotate);
   const resumeAutoRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -187,13 +193,14 @@ const applyRotation = () => {
     angleYRef.current += dx * DRAG_SENSITIVITY;
     angleXRef.current -= dy * DRAG_SENSITIVITY;
 
-    applyRotation();
+    applyRotationInstant();
     lastPos.current = { x: e.clientX, y: e.clientY };
   };
 
   const onPointerUp = (e: React.PointerEvent) => {
     lastPos.current = null;
     pauseAutoRotate();
+    applyRotation();
     (e.target as Element).releasePointerCapture(e.pointerId);
   };
 
