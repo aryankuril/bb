@@ -226,7 +226,8 @@ const joystickY = useMotionValue(0);
         alignItems: "center",
         perspective: cubeSize * 4,
         gap: 40,
-        padding: 40,
+        padding: 30,
+         marginTop: "-70px",
       }}
     >
 
