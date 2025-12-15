@@ -10,19 +10,19 @@
 // const cards: Card[] = [
 //   {
 
-//     image: "/images/ss1.jpg",
+//     image: "/images/webdev/ss1.png",
 //   },
 //   {
 
-//     image: "/images/ss1.jpg",
+//     image: "/images/webdev/ss2.png",
 //   },
 //   {
 
-//     image: "/images/ss1.jpg",
+//     image: "/images/webdev/ss3.png",
 //   },
 //   {
     
-//     image: "/images/ss1.jpg",
+//     image: "/images/webdev/ss4.png",
 //   },
 // ];
 
@@ -81,7 +81,7 @@
 //           <span style={{ color: spanColor }}>Turning</span> Every{" "}
 //           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
 //           <span style={{ color: spanColor }}>Measurable Results</span> */}
-//           Our strategy was centered on speed-to-market and reliability. By choosing Shopify, we empowered SuperSox to launch a full-featured e-commerce store quickly and cost-effectively.
+//  Our strategy was centered on speed-to-market and reliability. By choosing Shopify, we empowered SuperSox to launch a full-featured e-commerce store quickly and cost-effectively.
 //         </h3>
 //       </div>
 
@@ -123,7 +123,7 @@
 //     <img
 //       src={card.image}
 //       alt=""
-//       className="absolute top-0 left-0 w-full h-full object-cover rounded-[20px] -z-10 overflow-visible"
+//       className="absolute top-0 left-0 w-full h-full object-fit rounded-[20px] -z-10 overflow-visible"
 //       style={{
 //         transform: "scale(0.9)", // 👉 makes image overflow visibly
 //       }}
