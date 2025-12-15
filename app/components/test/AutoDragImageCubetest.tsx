@@ -24,7 +24,7 @@ const defaultSize = 350;
 const FACE_ROTATION = 90;
 const HOLD_DELAY = 2000;
 const JOYSTICK_RADIUS = 45;
-const DRAG_SENSITIVITY = 3;
+const DRAG_SENSITIVITY = 5;
 
 /* ================== COMPONENT ================== */
 export default function AutoDragImageCubetest(props: CubeProps) {
@@ -282,7 +282,7 @@ const joystickY = useMotionValue(0);
           width: 120,
           height: 120,
           borderRadius: "50%",
-          border: "2px solid #ccc",
+          border: "2px solid #fab31e",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -306,7 +306,7 @@ const joystickY = useMotionValue(0);
     width: 40,
     height: 40,
     borderRadius: "50%",
-    background: "#111",
+    background: "#fab31e",
     cursor: "grab",
   }}
   onDrag={(e, info) => {
