@@ -24,9 +24,7 @@ const defaultSize = 350;
 const FACE_ROTATION = 90;
 const HOLD_DELAY = 2000;
 const JOYSTICK_RADIUS = 45;
-const getDragSensitivity = () =>
-  window.innerWidth < 768 ? 0.25 : 0.6;
-
+const DRAG_SENSITIVITY = 7;
 
 /* ================== COMPONENT ================== */
 export default function AutoDragImageCubetest(props: CubeProps) {
@@ -200,11 +198,8 @@ const applyRotationInstant = () => {
     const dx = e.clientX - lastPos.current.x;
     const dy = e.clientY - lastPos.current.y;
 
-const sensitivity = getDragSensitivity();
-
-angleYRef.current += dx * sensitivity;
-angleXRef.current -= dy * sensitivity;
-
+    angleYRef.current += dx * DRAG_SENSITIVITY;
+    angleXRef.current -= dy * DRAG_SENSITIVITY;
 
     applyRotationInstant();
     lastPos.current = { x: e.clientX, y: e.clientY };
