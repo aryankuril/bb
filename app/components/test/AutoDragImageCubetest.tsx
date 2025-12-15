@@ -24,7 +24,7 @@ const defaultSize = 350;
 const FACE_ROTATION = 90;
 const HOLD_DELAY = 2000;
 const JOYSTICK_RADIUS = 45;
-const DRAG_SENSITIVITY = 0.4;
+const DRAG_SENSITIVITY = 3;
 
 /* ================== COMPONENT ================== */
 export default function AutoDragImageCubetest(props: CubeProps) {
@@ -70,10 +70,18 @@ const applyRotation = () => {
   });
 };
 
+let rafId: number | null = null;
+
 const applyRotationInstant = () => {
-  rotateX.set(angleXRef.current);
-  rotateY.set(angleYRef.current);
+  if (rafId) cancelAnimationFrame(rafId);
+
+  rafId = requestAnimationFrame(() => {
+    rotateX.set(angleXRef.current);
+    rotateY.set(angleYRef.current);
+  });
 };
+
+
 
 
   /* ---------------- Auto rotate ---------------- */
