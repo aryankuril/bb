@@ -6,7 +6,7 @@ const Firstsection = () => {
   const [mobileLoaded, setMobileLoaded] = useState(false);
 
   return (
-    <section className="relative overflow-hidden h-[75vh] md:h-screen -mt-[82px] md:-mt-8">
+    <section className="relative overflow-hidden h-[80vh] md:h-screen -mt-[82px] md:-mt-8">
       <div className="relative w-full h-full">
 
         {/* ✅ Desktop Video */}
@@ -22,7 +22,7 @@ const Firstsection = () => {
             desktopLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
-          <source src="/video/hero-4.5.mp4" type="video/mp4" />
+          <source src="/video/hero.2.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
@@ -39,7 +39,7 @@ const Firstsection = () => {
             mobileLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
-          <source src="/video/hero-m.mp4" type="video/mp4" />
+          <source src="/video/hero.2-m.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 

@@ -1,8 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { motion, useMotionValue, Easing } from "framer-motion";
+import { motion, useMotionValue, Easing, animate } from "framer-motion";
 
+
+/* ================== TYPES ================== */
 type CubeProps = {
   size?: number;
   autoRotate?: boolean;
@@ -15,8 +17,16 @@ type CubeProps = {
   bottomImage?: string;
 };
 
-const defaultSize = 350;
+type Direction = "up" | "down" | "left" | "right" | null;
 
+/* ================== CONSTANTS ================== */
+const defaultSize = 350;
+const FACE_ROTATION = 90;
+const HOLD_DELAY = 2000;
+const JOYSTICK_RADIUS = 45;
+const DRAG_SENSITIVITY = 7;
+
+/* ================== COMPONENT ================== */
 export default function AutoDragImageCube(props: CubeProps) {
   const {
     size = defaultSize,
@@ -30,73 +40,125 @@ export default function AutoDragImageCube(props: CubeProps) {
     bottomImage,
   } = props;
 
-  /* -------------------- Responsive size -------------------- */
+  /* ---------------- Responsive size ---------------- */
   const [cubeSize, setCubeSize] = React.useState(size);
 
   React.useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setCubeSize(250);
-      } else {
-        setCubeSize(size);
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const resize = () => setCubeSize(window.innerWidth < 768 ? 250 : size);
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, [size]);
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
-  /* -------------------- Motion values -------------------- */
+  /* ---------------- Motion values ---------------- */
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
 
-  /* -------------------- Interaction state -------------------- */
+  /* ---------------- Explicit angles ---------------- */
+  const angleXRef = React.useRef(0);
+  const angleYRef = React.useRef(0);
+
+const applyRotation = () => {
+  animate(rotateX, angleXRef.current, {
+    duration: 0.7,
+    ease: "easeInOut",
+  });
+
+  animate(rotateY, angleYRef.current, {
+    duration: 0.7,
+    ease: "easeInOut",
+  });
+};
+
+let rafId: number | null = null;
+
+const applyRotationInstant = () => {
+  if (rafId) cancelAnimationFrame(rafId);
+
+  rafId = requestAnimationFrame(() => {
+    rotateX.set(angleXRef.current);
+    rotateY.set(angleYRef.current);
+  });
+};
+
+
+
+
+  /* ---------------- Auto rotate ---------------- */
   const [localAutoRotate, setLocalAutoRotate] = React.useState(autoRotate);
+  const resumeAutoRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  const isDraggingRef = React.useRef(false);
-  const lastPosRef = React.useRef<{ x: number; y: number } | null>(null);
-  const lastMoveTimeRef = React.useRef<number | null>(null);
+  const pauseAutoRotate = (delay = 2000) => {
+    if (resumeAutoRef.current) clearTimeout(resumeAutoRef.current);
 
-  const velocityRef = React.useRef({ vx: 0, vy: 0 });
-  const rafRef = React.useRef<number | null>(null);
+    setLocalAutoRotate(false);
 
-  /* -------------------- Tuned values -------------------- */
-  const DRAG_SENSITIVITY = isMobile ? 0.22 : 0.4;
-  const INERTIA_DECAY = isMobile ? 0.0045 : 0.0028;
+    resumeAutoRef.current = setTimeout(() => {
+      setLocalAutoRotate(autoRotate);
+    }, delay);
+  };
 
-  /* -------------------- Helpers -------------------- */
-  const stopInertia = () => {
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current);
-      rafRef.current = null;
+  /* ---------------- Hold control ---------------- */
+  const holdIntervalRef = React.useRef<NodeJS.Timeout | null>(null);
+  const activeDirectionRef = React.useRef<Direction>(null);
+
+  const stopHold = () => {
+    if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
+    holdIntervalRef.current = null;
+    activeDirectionRef.current = null;
+  };
+
+  const rotateOneFace = (dir: Direction) => {
+    if (!dir) return;
+
+    pauseAutoRotate();
+
+    switch (dir) {
+      case "up":
+        angleXRef.current -= FACE_ROTATION;
+        break;
+      case "down":
+        angleXRef.current += FACE_ROTATION;
+        break;
+      case "left":
+        angleYRef.current -= FACE_ROTATION;
+        break;
+      case "right":
+        angleYRef.current += FACE_ROTATION;
+        break;
     }
+
+    applyRotation();
   };
 
-  /* -------------------- Styles -------------------- */
-  const wrapperStyle: React.CSSProperties = {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    perspective: cubeSize * 4,
-    gap: 40,
-    paddingTop: 40,
-    paddingBottom: 40,
+  const startHold = (dir: Direction) => {
+    if (activeDirectionRef.current === dir) return;
+
+    stopHold();
+    activeDirectionRef.current = dir;
+
+    rotateOneFace(dir);
+
+    holdIntervalRef.current = setInterval(() => {
+      rotateOneFace(dir);
+    }, HOLD_DELAY);
   };
 
-  const cubeBaseStyle: React.CSSProperties = {
-    position: "relative",
-    width: cubeSize,
-    height: cubeSize,
-    transformStyle: "preserve-3d",
-    touchAction: "none",
-    userSelect: "none",
+  const getDirection = (x: number, y: number): Direction => {
+    if (Math.abs(x) < 10 && Math.abs(y) < 10) return null;
+    return Math.abs(x) > Math.abs(y)
+      ? x > 0
+        ? "right"
+        : "left"
+      : y > 0
+      ? "down"
+      : "up";
   };
 
-  const faceBase: React.CSSProperties = {
+  /* ---------------- Cube faces ---------------- */
+  const z = cubeSize / 2;
+
+  const faceStyle = (img?: string): React.CSSProperties => ({
     position: "absolute",
     width: "100%",
     height: "100%",
@@ -104,151 +166,172 @@ export default function AutoDragImageCube(props: CubeProps) {
     backgroundSize: "cover",
     backgroundPosition: "center",
     borderRadius: 18,
-  };
-
-  const face = (img?: string): React.CSSProperties => ({
-    ...faceBase,
     backgroundImage: img
       ? `url(${img})`
-      : "linear-gradient(135deg, #0EA5E9, #22C55E)",
+      : "linear-gradient(135deg,#0EA5E9,#22C55E)",
   });
 
-  const z = cubeSize / 2;
-
   const faces = [
-    { style: { ...face(frontImage), transform: `translateZ(${z}px)` } },
-    { style: { ...face(backImage), transform: `rotateY(180deg) translateZ(${z}px)` } },
-    { style: { ...face(rightImage), transform: `rotateY(90deg) translateZ(${z}px)` } },
-    { style: { ...face(leftImage), transform: `rotateY(-90deg) translateZ(${z}px)` } },
-    { style: { ...face(topImage), transform: `rotateX(90deg) translateZ(${z}px)` } },
-    { style: { ...face(bottomImage), transform: `rotateX(-90deg) translateZ(${z}px)` } },
+    { t: `translateZ(${z}px)`, img: frontImage },
+    { t: `rotateY(180deg) translateZ(${z}px)`, img: backImage },
+    { t: `rotateY(90deg) translateZ(${z}px)`, img: rightImage },
+    { t: `rotateY(-90deg) translateZ(${z}px)`, img: leftImage },
+    { t: `rotateX(90deg) translateZ(${z}px)`, img: topImage },
+    { t: `rotateX(-90deg) translateZ(${z}px)`, img: bottomImage },
   ];
 
-  /* -------------------- Auto rotate -------------------- */
-  const outerAnimate = localAutoRotate
-    ? { rotateX: 360, rotateY: 360 }
-    : { rotateX: 0, rotateY: 0 };
+  /* ---------------- Hand drag ---------------- */
+  const lastPos = React.useRef<{ x: number; y: number } | null>(null);
 
-  const outerTransition = localAutoRotate
-    ? { repeat: Infinity, duration: rotationSpeed, ease: "linear" as Easing }
-    : { duration: 0 };
-
-  /* -------------------- Pointer handlers -------------------- */
-  const handlePointerDown = (e: React.PointerEvent) => {
-    stopInertia();
-    isDraggingRef.current = true;
-    lastPosRef.current = { x: e.clientX, y: e.clientY };
-    lastMoveTimeRef.current = performance.now();
-    setLocalAutoRotate(false);
-
-    (e.target as Element).setPointerCapture?.(e.pointerId);
+  const onPointerDown = (e: React.PointerEvent) => {
+    pauseAutoRotate();
+    stopHold();
+    lastPos.current = { x: e.clientX, y: e.clientY };
+    (e.target as Element).setPointerCapture(e.pointerId);
   };
 
-  const handlePointerUp = (e: React.PointerEvent) => {
-    isDraggingRef.current = false;
-    lastPosRef.current = null;
-    lastMoveTimeRef.current = null;
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!lastPos.current) return;
 
-    (e.target as Element).releasePointerCapture?.(e.pointerId);
-    startInertia();
+    pauseAutoRotate();
+
+    const dx = e.clientX - lastPos.current.x;
+    const dy = e.clientY - lastPos.current.y;
+
+    angleYRef.current += dx * DRAG_SENSITIVITY;
+    angleXRef.current -= dy * DRAG_SENSITIVITY;
+
+    applyRotationInstant();
+    lastPos.current = { x: e.clientX, y: e.clientY };
   };
 
-  const handlePointerCancel = () => {
-    isDraggingRef.current = false;
-    startInertia();
+  const onPointerUp = (e: React.PointerEvent) => {
+    lastPos.current = null;
+    pauseAutoRotate();
+    applyRotation();
+    (e.target as Element).releasePointerCapture(e.pointerId);
   };
 
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (!isDraggingRef.current) return;
 
-    const now = performance.now();
-    const last = lastPosRef.current;
-    if (!last) return;
+  const joystickX = useMotionValue(0);
+const joystickY = useMotionValue(0);
 
-    const dx = e.clientX - last.x;
-    const dy = e.clientY - last.y;
-    const dt = Math.max(1, now - (lastMoveTimeRef.current ?? now));
 
-    rotateY.set(rotateY.get() + dx * DRAG_SENSITIVITY);
-    rotateX.set(rotateX.get() - dy * DRAG_SENSITIVITY);
-
-    velocityRef.current.vx = dx / dt;
-    velocityRef.current.vy = dy / dt;
-
-    lastPosRef.current = { x: e.clientX, y: e.clientY };
-    lastMoveTimeRef.current = now;
-  };
-
-  /* -------------------- Inertia -------------------- */
-  const startInertia = () => {
-    stopInertia();
-    const threshold = 0.0005;
-    let lastT = performance.now();
-
-    const step = (t: number) => {
-      if (isDraggingRef.current) return;
-
-      const dt = t - lastT;
-      lastT = t;
-
-      rotateY.set(rotateY.get() + velocityRef.current.vx * dt * DRAG_SENSITIVITY);
-      rotateX.set(rotateX.get() - velocityRef.current.vy * dt * DRAG_SENSITIVITY);
-
-      const decay = Math.exp(-INERTIA_DECAY * dt);
-      velocityRef.current.vx *= decay;
-      velocityRef.current.vy *= decay;
-
-      if (
-        Math.abs(velocityRef.current.vx) < threshold &&
-        Math.abs(velocityRef.current.vy) < threshold
-      ) {
-        setTimeout(() => setLocalAutoRotate(autoRotate), 80);
-        return;
-      }
-
-      rafRef.current = requestAnimationFrame(step);
-    };
-
-    rafRef.current = requestAnimationFrame(step);
-  };
-
-  React.useEffect(() => () => stopInertia(), []);
-
-  /* -------------------- Render -------------------- */
+  /* ---------------- Render ---------------- */
   return (
     <div
-      className="container py-0 sm:py-15 lg:py-20 lg:mt-20 -mt-20"
-      style={wrapperStyle}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        perspective: cubeSize * 4,
+        gap: 40,
+        padding: 40,
+      }}
     >
-      <h1 className="black-text md:text-left w-full mb-6">
+
+      <h1 className="black-text md:text-left w-full mb-15">
         The Squad That Turns <span className="text-highlight">What If</span>’ Into <br />
         ‘<span className="text-highlight">What’s Next.</span>’
       </h1>
 
-      {/* Mobile hint */}
-      <p className="text-sm text-gray-500 md:hidden mb-10">
-        Drag with your finger to rotate
-      </p>
-
-      <motion.div style={cubeBaseStyle} animate={outerAnimate} transition={outerTransition}>
+    
+      {/* ===== Cube ===== */}
+      <motion.div
+        style={{
+          width: cubeSize,
+          height: cubeSize,
+          position: "relative",
+          transformStyle: "preserve-3d",
+        }}
+        animate={
+          localAutoRotate
+            ? { rotateX: 360, rotateY: 360 }
+            : { rotateX: 0, rotateY: 0 }
+        }
+        transition={
+          localAutoRotate
+            ? { repeat: Infinity, duration: rotationSpeed, ease: "linear" as Easing }
+            : { duration: 0 }
+        }
+      >
         <motion.div
           style={{
-            ...cubeBaseStyle,
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            transformStyle: "preserve-3d",
             rotateX,
             rotateY,
-            cursor: isDraggingRef.current ? "grabbing" : "grab",
+            cursor: "grab",
           }}
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUp}
-          onPointerCancel={handlePointerCancel}
-          onPointerMove={handlePointerMove}
-          whileTap={{ scale: 1.03 }}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
         >
           {faces.map((f, i) => (
-            <div key={i} style={f.style} />
+            <div key={i} style={{ ...faceStyle(f.img), transform: f.t }} />
           ))}
         </motion.div>
       </motion.div>
+
+      {/* ===== Gyro Joystick ===== */}
+      <div
+        style={{
+          width: 120,
+          height: 120,
+          borderRadius: "50%",
+          border: "2px solid #fab31e",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          touchAction: "none",
+          marginTop: "90px",
+        }}
+      >
+        <motion.div
+  drag
+  dragMomentum={false}
+  dragConstraints={{
+    left: -JOYSTICK_RADIUS,
+    right: JOYSTICK_RADIUS,
+    top: -JOYSTICK_RADIUS,
+    bottom: JOYSTICK_RADIUS,
+  }}
+  dragElastic={0}
+  style={{
+    x: joystickX,
+    y: joystickY,
+    width: 40,
+    height: 40,
+    borderRadius: "50%",
+    background: "#fab31e",
+    cursor: "grab",
+  }}
+  onDrag={(e, info) => {
+    const dir = getDirection(info.offset.x, info.offset.y);
+
+    if (!dir) {
+      stopHold();
+      pauseAutoRotate();
+      return;
+    }
+
+    startHold(dir);
+  }}
+  onDragEnd={() => {
+    stopHold();
+    pauseAutoRotate();
+
+    // ✅ FORCE SNAP TO CENTER
+    joystickX.set(0);
+    joystickY.set(0);
+  }}
+/>
+
+
+      </div>
     </div>
   );
 }

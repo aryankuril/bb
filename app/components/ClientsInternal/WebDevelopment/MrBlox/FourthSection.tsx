@@ -3,31 +3,26 @@
 // import { useScroll } from "framer-motion";
 
 // interface Card {
-//   title: string;
-//   subtitle: string;
+
 //   image: string;
 // }
 
 // const cards: Card[] = [
 //   {
-//     title: "Branding Workflow",
-//     subtitle: "We dig deep into your business, audience and competitors.",
-//     image: "/images/section1-img1.png",
+
+//     image: "/images/webdev/mrblox1.jpg",
 //   },
 //   {
-//     title: "Creative Direction",
-//     subtitle: "Design-first approach to build memorable products.",
-//     image: "/images/section1-img2.png",
+
+//     image: "/images/webdev/mrblox5.jpg",
 //   },
 //   {
-//     title: "Strategy & Research",
-//     subtitle: "Market research to inform design & growth.",
-//     image: "/images/section1-img3.png",
+
+//     image: "/images/webdev/mrblox3.jpg",
 //   },
 //   {
-//     title: "Product Design",
-//     subtitle: "From concept to pixel-perfect interfaces.",
-//     image: "/images/section1-img4.png",
+    
+//     image: "/images/webdev/mrblox6.jpg",
 //   },
 // ];
 
@@ -86,7 +81,7 @@
 //           <span style={{ color: spanColor }}>Turning</span> Every{" "}
 //           <span style={{ color: spanColor }}>Interaction</span> Into{" "}
 //           <span style={{ color: spanColor }}>Measurable Results</span> */}
-//           Our strategy was to make bespoke tailoring accessible. We transformed a complex process into an enjoyable and interactive digital journey, creating a platform that guides users like a personal style consultant.
+// We created a playful digital space for Mr Blox that captures its Panda mascot&apos;s spirit of curiosity and fun, while making it easy for parents to discover toys that boost kids&apos; cognitive skills.
 //         </h3>
 //       </div>
 
@@ -115,27 +110,25 @@
 //                   transition: "transform 0.3s linear, opacity 0.3s linear",
 //                 }}
 //               >
-//                 <div
-//                   className="flex flex-col justify-end
-//                     p-4 sm:p-6 md:p-10
-//                     h-[300px] sm:h-[440px] md:h-[528px]
-//                     w-[70vw] sm:w-[420px] md:w-[480px]
-//                     rounded-[20px]
-//                     border-[5px] border-[var(--color-pirmary)]"
-//                   style={{
-//                     background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(${card.image})`,
-//                     backgroundSize: "cover",
-//                     backgroundPosition: "center",
-//                     backgroundRepeat: "no-repeat",
-//                   }}
-//                 >
-//                   <h3 className="text-highlight ">
-//                     {card.title}
-//                   </h3>
-//                   <p className="body2 white-text">
-//                     {card.subtitle}
-//                   </p>
-//                 </div>
+//                  <div
+//     className="relative
+//       p-4 sm:p-6 md:p-10
+//       h-[300px] sm:h-[440px] md:h-[450px]
+//       w-[70vw] sm:w-[420px] md:w-[480px]
+//       rounded-[20px]
+      
+//       overflow-visible"
+//   >
+//     {/* ⭐ REAL IMAGE (can overflow outside box) */}
+//     <img
+//       src={card.image}
+//       alt=""
+//       className="absolute top-0 left-0 w-full h-full object-fit rounded-[20px] -z-10 overflow-visible"
+//       style={{
+//         transform: "scale(0.9)", // 👉 makes image overflow visibly
+//       }}
+//     />
+//   </div>
 //               </div>
 //             );
 //           })}
@@ -146,6 +139,7 @@
 // };
 
 // export default FourthSection;
+
 
 
 
