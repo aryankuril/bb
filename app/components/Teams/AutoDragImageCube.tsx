@@ -24,7 +24,7 @@ const defaultSize = 350;
 const FACE_ROTATION = 90;
 const HOLD_DELAY = 2000;
 const JOYSTICK_RADIUS = 45;
-const DRAG_SENSITIVITY = 5;
+const DRAG_SENSITIVITY = 3;
 
 /* ================== COMPONENT ================== */
 export default function AutoDragImageCube(props: CubeProps) {
