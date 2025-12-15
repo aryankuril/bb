@@ -4,7 +4,7 @@ import AutoDragImageCubetest from "../components/test/AutoDragImageCubetest";
 export default function Page() {
   return (
     <>
-      <ZoomParallax />
+      {/* <ZoomParallax /> */}
 
       <AutoDragImageCubetest
         size={350}

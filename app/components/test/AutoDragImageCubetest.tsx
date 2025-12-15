@@ -65,6 +65,7 @@ export default function AutoDragImageCubetest(props: CubeProps) {
   /* -------------------- Tuned values -------------------- */
   const DRAG_SENSITIVITY = isMobile ? 0.22 : 0.4;
   const INERTIA_DECAY = isMobile ? 0.0045 : 0.0028;
+  const BUTTON_STEP = 25; // 👈 arrow control strength
 
   /* -------------------- Helpers -------------------- */
   const stopInertia = () => {
@@ -140,7 +141,6 @@ export default function AutoDragImageCubetest(props: CubeProps) {
     lastPosRef.current = { x: e.clientX, y: e.clientY };
     lastMoveTimeRef.current = performance.now();
     setLocalAutoRotate(false);
-
     (e.target as Element).setPointerCapture?.(e.pointerId);
   };
 
@@ -148,7 +148,6 @@ export default function AutoDragImageCubetest(props: CubeProps) {
     isDraggingRef.current = false;
     lastPosRef.current = null;
     lastMoveTimeRef.current = null;
-
     (e.target as Element).releasePointerCapture?.(e.pointerId);
     startInertia();
   };
@@ -214,6 +213,32 @@ export default function AutoDragImageCubetest(props: CubeProps) {
 
   React.useEffect(() => () => stopInertia(), []);
 
+  const resumeTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+const pauseAutoRotate = (delay = 2000) => {
+  // stop any existing timers
+  if (resumeTimeoutRef.current) {
+    clearTimeout(resumeTimeoutRef.current);
+  }
+
+  setLocalAutoRotate(false);
+
+  resumeTimeoutRef.current = setTimeout(() => {
+    setLocalAutoRotate(autoRotate);
+  }, delay);
+};
+
+
+  /* -------------------- Arrow controls -------------------- */
+const nudge = (dx: number, dy: number) => {
+  stopInertia();
+  pauseAutoRotate(2000); // ⏸ stop auto-rotation for 2 seconds
+
+  rotateY.set(rotateY.get() + dx);
+  rotateX.set(rotateX.get() + dy);
+};
+
+
   /* -------------------- Render -------------------- */
   return (
     <div
@@ -225,7 +250,6 @@ export default function AutoDragImageCubetest(props: CubeProps) {
         ‘<span className="text-highlight">What’s Next.</span>’
       </h1>
 
-      {/* Mobile hint */}
       <p className="text-sm text-gray-500 md:hidden mb-10">
         Drag with your finger to rotate
       </p>
@@ -249,6 +273,25 @@ export default function AutoDragImageCubetest(props: CubeProps) {
           ))}
         </motion.div>
       </motion.div>
+
+      {/* 🎮 Direction Controller */}
+      <div className="flex flex-col items-center gap-2 mt-6">
+        <button onClick={() => nudge(0, -BUTTON_STEP)} className="px-4 py-2 border rounded">
+          ↑
+        </button>
+        <div className="flex gap-3">
+          <button onClick={() => nudge(-BUTTON_STEP, 0)} className="px-4 py-2 border rounded">
+            ←
+          </button>
+          <button onClick={() => nudge(BUTTON_STEP, 0)} className="px-4 py-2 border rounded">
+            →
+          </button>
+        </div>
+        <button onClick={() => nudge(0, BUTTON_STEP)} className="px-4 py-2 border rounded">
+          ↓
+        </button>
+      </div>
     </div>
   );
 }
+ 
