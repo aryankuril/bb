@@ -22,7 +22,7 @@ const Firstsection = () => {
             desktopLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
-          <source src="/video/hero.2.mp4" type="video/mp4" />
+          <source src="/video/hero4.5-Trim.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
