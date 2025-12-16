@@ -171,10 +171,14 @@ const [activeJob, setActiveJob] = useState<Career | null>(null);
   };
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex =
-      /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/;
-    return phoneRegex.test(phone);
-  };
+  // Remove spaces, dashes, brackets etc before checking
+  const cleanedPhone = phone.replace(/[^0-9]/g, "");
+
+  // Must be exactly 10 digits and start with 6-9
+  const phoneRegex = /^[6-9][0-9]{9}$/;
+
+  return phoneRegex.test(cleanedPhone);
+};
 
 useEffect(() => {
   if (jobs.length > 0 && !activeJob) {
@@ -1426,13 +1430,13 @@ const filled = idx < progress / 25;
               </div>
           <h3 className="text-white mb-6">1. Tell Us about you          </h3>
 
-        <div>
+        <div className="mb-10" >
                     {/* <label className="block mb-2 white-text capitalize body3">
                       Your Ticket Name
                     </label> */}
 
                     <div
-                      className={`flex items-start border-b mb-10 ${
+                      className={`flex items-start border-b  ${
                         errors.ticketName
                           ? "border-red-500"
                           : "border-[var(--color-highlight)]"
@@ -1516,13 +1520,13 @@ const filled = idx < progress / 25;
               </div>
           <h3 className="text-white mb-6">2. Where we can contact you</h3>
 
-          <div >
+          <div className="mb-10" >
                     {/* <label className="block mb-1 white-text capitalize body3">
                       Your Local Train Hotline
                     </label> */}
 
                     <div
-                      className={`flex items-start border-b mb-10 ${
+                      className={`flex items-start border-b ${
                         errors.phone
                           ? "border-red-500"
                           : "border-[var(--color-highlight)]"

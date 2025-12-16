@@ -304,10 +304,14 @@ useEffect(() => {
   };
 
   const validatePhone = (phone: string): boolean => {
-    const phoneRegex =
-      /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/;
-    return phoneRegex.test(phone);
-  };
+  // Remove spaces, dashes, brackets etc before checking
+  const cleanedPhone = phone.replace(/[^0-9]/g, "");
+
+  // Must be exactly 10 digits and start with 6-9
+  const phoneRegex = /^[6-9][0-9]{9}$/;
+
+  return phoneRegex.test(cleanedPhone);
+};
 
   const validateField = (name: string, value: string): string => {
     switch (name) {
