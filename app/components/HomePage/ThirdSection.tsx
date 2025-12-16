@@ -5,11 +5,11 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
-  "/images/shopify2.png",
-  "/images/figma2.png",
-  "/images/framer-motion-logo2.webp",
-  "/images/nextjs-logo2.webp",
-  "/images/Wordpress2.png",
+  "/images/shopifylogo.png",
+  "/images/figmalogo.png",
+  "/images/framerlogo.png",
+  "/images/nextjslogo.png",
+  "/images/wordpresslogo.png",
 ];
 
 export default function ThirdSection() {
@@ -37,7 +37,7 @@ export default function ThirdSection() {
     >
       <div className="flex flex-col items-center justify-center h-full px-6 text-center">
         {/* ✅ Animated Image Wrapper */}
-        <div className="relative w-30 h-30 sm:w-35 sm:h-35 md:w-36 md:h-36 lg:w-35 lg:h-25 mb-6 flex items-center justify-center">
+        <div className="relative w-30 h-30 sm:w-35 sm:h-35 md:w-36 md:h-36 lg:w-25 lg:h-35 mb-6 flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
