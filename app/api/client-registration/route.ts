@@ -358,7 +358,7 @@ const htmlTemplate = `
             <!-- Footer Banner -->
             <tr>
               <td>
-                <img src="https://blokesarea.com/wp-content/uploads/2025/12/Email-Signature.png"
+                <img src="https://blokesarea.com/wp-content/uploads/2025/12/email-signature-2.png"
                      width="600" style="display:block; width:100%;">
               </td>
             </tr>

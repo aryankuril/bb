@@ -340,7 +340,7 @@ export async function POST(request: NextRequest) {
             <!-- footer banner image (big gold 10 years banner from site) -->
             <tr>
               <td style="padding:0; margin:0;">
-                <img src="https://blokesarea.com/wp-content/uploads/2025/12/Email-Signature.png"
+                <img src="https://blokesarea.com/wp-content/uploads/2025/12/email-signature-2.png"
                   alt="Bombay Blokes - 10 years" width="600" style="display:block; width:100%; max-width:600px; height:auto; border:0;"/>
               </td>
             </tr>
