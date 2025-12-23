@@ -150,6 +150,31 @@ export default function CareerForm({ existingCareer }: { existingCareer?: any })
         <div ref={editorContainer} className="border rounded-md p-4 min-h-[200px]" />
       </div>
 
+
+      <div>
+        <label className="block text-sm font-semibold mb-2">Is Immediate Hiring?</label>
+        <div className="flex items-center gap-4">
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              checked={isImmediate === true}
+              onChange={() => setIsImmediate(true)}
+            />
+            Yes
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              checked={isImmediate === false}
+              onChange={() => setIsImmediate(false)}
+            />
+            No
+          </label>
+        </div>
+      </div>
+
+      {/* {error && <div className="text-red-500 text-sm">{error}</div>} */}
+
       <Button type="submit" disabled={loading} text={loading ? "Saving..." : "Save Career"} />
     </form>
   );
