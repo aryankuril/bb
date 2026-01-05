@@ -251,26 +251,7 @@ export default function DesktopNav() {
           ref={shell}
           className="h-[90px] container bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center absolute inset-x-0 z-[100001]"
         >
-          {/* ⭐⭐ ADDED CHRISTMAS DECORATION ⭐⭐ */}
-          <div className="pointer-events-none">
-            {/* Top center wreath */}
-            <Image
-              src="/images/decore2.png"
-              alt="wreath"
-              width={200}
-              height={200}
-              className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            />
-
-            {/* Bottom-right candy */}
-            <Image
-              src="/images/candy.png"
-              alt="candy cane"
-              width={40}
-              height={40}
-              className="absolute bottom-0 right-0   translate-y-1/4 translate-x-1/4"
-            />
-          </div>
+          
           {/* ⭐⭐ END DECOR ⭐⭐ */}
           <div className="flex items-center justify-between py-5 px-10 ">
             <div className="relative inline-block">
@@ -285,16 +266,6 @@ export default function DesktopNav() {
         />
       </Link>
 
-      {/* Santa Hat */}
-       <Image
-        width={210}
-        height={80}
-        ref={hatRef}
-        src="/images/hat.png"     // put file in public/
-        alt="Santa Hat"
-        className="absolute w-[50px] h-[50px] left-[-30px] top-[-15px]"
-        style={{ pointerEvents: "none" }}
-      />
     </div>
             {/* HAMBURGER */}
             <div className="flex items-center gap-4">

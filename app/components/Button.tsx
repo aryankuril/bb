@@ -80,7 +80,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const content = (
     <div
-      className={`relative z-10 px-4 py-2 h-12 flex items-center uppercase body3 ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+      className={`relative z-10 px-4 py-2 h-12 flex items-center uppercase body3 cursor-pointer ${disabled ? "opacity-50 " : ""}`}
       // ensure children transforms work (Tailwind requires transform when using translate utilities in some setups)
       // adding `transform` to the parent makes translate utilities applied on children behave consistently.
     >

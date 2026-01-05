@@ -830,15 +830,15 @@ const progress =
 
       <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
         {/* LEFT – Job List with Accordion */}
-        <div className="p-4 md:p-6 md:pt-4 flex flex-col lg:gap-3 gap-2 ">
+        <div className="p-4 md:p-6 md:pt-4 flex flex-col lg:gap-3 gap-2  ">
           <h2 className="white-text text-center mb-6 md:mb-6">Open Roles</h2>
 
           {/* Performance Marketing */}
           {categorizeJobs().performance.length > 0 && (
-            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
+            <div className="border border-[var(--color-highlight)] rounded-[6px]  overflow-hidden">
               <button
                 onClick={() => toggleAccordion("performance")}
-                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+                className="w-full px-4 py-3 flex justify-between items-center cursor-pointer  bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
                 <span className="font-semibold body2">
                   Performance Marketing ({categorizeJobs().performance.length})
@@ -878,7 +878,7 @@ const progress =
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
                     ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
@@ -915,7 +915,7 @@ const progress =
             <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
               <button
                 onClick={() => toggleAccordion("social")}
-                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+                className="w-full px-4 py-3 flex justify-between items-center cursor-pointer bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
                 <span className="font-semibold body2">
                   Social Media ({categorizeJobs().social.length})
@@ -955,7 +955,7 @@ const progress =
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
                     ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
@@ -992,7 +992,7 @@ const progress =
             <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
               <button
                 onClick={() => toggleAccordion("design")}
-                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+                className="w-full px-4 py-3 flex justify-between items-center cursor-pointer bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
                 <span className="font-semibold body2">
                   Design & Editing ({categorizeJobs().design.length})
@@ -1032,7 +1032,7 @@ const progress =
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
                     ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
@@ -1069,7 +1069,7 @@ const progress =
             <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
               <button
                 onClick={() => toggleAccordion("seo")}
-                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+                className="w-full px-4 py-3 flex justify-between cursor-pointer items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
                 <span className="font-semibold body2">
                   SEO ({categorizeJobs().seo.length})
@@ -1109,7 +1109,7 @@ const progress =
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
                     ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
@@ -1146,7 +1146,7 @@ const progress =
             <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
               <button
                 onClick={() => toggleAccordion("tech")}
-                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+                className="w-full px-4 py-3 flex justify-between cursor-pointer items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
                 <span className="font-semibold body2">
                   Tech & Development ({categorizeJobs().tech.length})
@@ -1186,7 +1186,7 @@ const progress =
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
                     ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
@@ -1223,7 +1223,7 @@ const progress =
             <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
               <button
                 onClick={() => toggleAccordion("others")}
-                className="w-full px-4 py-3 flex justify-between items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+                className="w-full px-4 py-3 flex justify-between cursor-pointer items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
               >
                 <span className="font-semibold body2">
                   Others ({categorizeJobs().others.length})
@@ -1263,7 +1263,7 @@ const progress =
                           }
                         }
                       }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 rounded-[6px] transition-all duration-200 flex items-start gap-3
+                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
                 ${
                   activeJob?.title === job.title
                     ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
@@ -1299,7 +1299,7 @@ const progress =
         {/* RIGHT – Details */}
         <div
           id="details-section"
-          className="p-3 md:p-4 md:pr-8 white-text flex flex-col relative"
+          className="p-3 md:p-4 md:pr-8 white-text flex flex-col relative rounded-[6px]"
         >
           <h2  id="froms"
             className="
@@ -1312,7 +1312,7 @@ const progress =
           </h2>
 
           {/* Job Details / Flip Card */}
-          <div className="relative perspective pr-0 sm:pr-3 lg:mt-3 mt-0">
+          <div className="relative perspective pr-0 sm:pr-3 lg:mt-3 mt-0 ">
             <div
               className={`relative w-full duration-700 transform-style-preserve-3d ${
                 isFlipped ? "rotate-y-180" : ""
@@ -1322,7 +1322,7 @@ const progress =
               <div
                 className={`${
                   isFlipped ? "hidden" : "block"
-                } backface-hidden border border-[var(--color-highlight)] px-3 sm:px-4 py-4 flex flex-col justify-between min-h-[600px]`}
+                } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4 flex flex-col justify-between min-h-[600px]`}
               >
 
                 
@@ -1344,10 +1344,11 @@ const progress =
                 </div>
                <div className="flex justify-center py-3">
   {!isFlipped && (
-    <div className="flex justify-center py-2">
+    <div className="flex justify-center py-2 ">
       <ContactButton
         text="Apply Now"
         type="button"
+        className="white-text cursor-pointer"
         onClick={() => {
           // Flip the card
           setIsFlipped(true);
@@ -1763,7 +1764,7 @@ const filled = idx < progress / 25;
         {/* NAV */}
 {/* NAV – hidden on thank you */}
 {submitStatus !== "success" && (
-  <div className="relative bottom-0 right-0 left-0 flex justify-end items-center pt-6">
+  <div className="relative bottom-0 right-0 left-0 flex justify-end items-center pt-6 ">
 
 
   {/* Step 1 */}
@@ -1773,7 +1774,7 @@ const filled = idx < progress / 25;
         text="A step closer"
         type="button"
         disabled={isSubmitting}
-        className="white-text"
+        className="white-text cursor-pointer"
       />
     </div>
   )}
@@ -1785,7 +1786,7 @@ const filled = idx < progress / 25;
         text="Almost there"
         type="button"
         disabled={isSubmitting}
-        className="white-text"
+        className="white-text cursor-pointer"
       />
     </div>
   )}
@@ -1797,7 +1798,7 @@ const filled = idx < progress / 25;
         text="Just one more"
         type="button"
         disabled={isSubmitting}
-        className="white-text"
+        className="white-text cursor-pointer"
       />
     </div>
   )}
@@ -1809,7 +1810,7 @@ const filled = idx < progress / 25;
     text="Let’s Connect"
     type="submit"
     disabled={isSubmitting}
-    className="white-text"
+    className="white-text cursor-pointer"
   />
 )}
 

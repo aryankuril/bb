@@ -138,7 +138,7 @@ export default function StackingCards() {
                 className="relative h-full rounded-3xl bg-black/95 border border-white/8 shadow-[0_20px_60px_rgba(0,0,0,0.45)] p-6 sm:p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
                 style={{ zIndex: 1 }}
               >
-                 <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
+                 <div className="absolute -right-1 top-0 h-full w-3 sm:w-5 md:w-6  candy-border"></div>
                 {/* Left content */}
                 <div className="flex flex-col justify-center min-h-0">
                   <h3 className="white-text">{card.title}</h3>

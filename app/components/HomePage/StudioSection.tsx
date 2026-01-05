@@ -172,7 +172,7 @@ export default function LightCameraAction() {
               <motion.div
                 className="
                   relative
-                  w-[86vw] aspect-[9/16]
+                  w-[85vw] aspect-[9/16]
                   lg:w-full md:aspect-video
                   overflow-hidden rounded-2xl
                 "

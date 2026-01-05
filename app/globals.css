@@ -536,15 +536,8 @@ select {
 /* cadrdborder */
 .candy-border {
   background: repeating-linear-gradient(
-    -45deg,
-    #b51117 0px,
-    #b51117 20px,
-    #0b601c 20px,
-    #0b601c 40px,
-    #b51117 40px,
-    #b51117 60px,
-    white 60px,
-    white 80px
+    -40deg,
+    #fab31e
   );
 }
 

@@ -10,14 +10,6 @@ export default function Footer() {
           {/* Logo */}
           <div className="hidden sm:flex justify-start relative">
 
-  {/* CAP IMAGE */}
-  <Image
-    src="/images/hat.png"     // your cap image
-    alt="Cap"
-    width={60}
-    height={60}
-    className="absolute top-[-30] left-[-30] z-20 pointer-events-none"
-  />
 
   {/* LOGO */}
   <Link href="/">
