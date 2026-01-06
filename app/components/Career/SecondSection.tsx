@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, ChangeEvent } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import { db } from "@/lib/firebase";
 import ContactButton from "../ContactButton";
 import Button from "../Button";
@@ -133,6 +134,7 @@ function renderEditorJsHTML(data: unknown) {
 }
 
 const SecondSection = () => {
+const router = useRouter();
 const [jobs, setJobs] = useState<Career[]>([]);
 const [activeJob, setActiveJob] = useState<Career | null>(null);
 
@@ -356,116 +358,71 @@ useEffect(() => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    // Validate all fields
-    const newErrors = {
-      ticketName: validateField("ticketName", inputValues.ticketName),
-      email: validateField("email", inputValues.email),
-      phone: validateField("phone", inputValues.phone),
-      cv: validateField("cv", cvFile),
-      portfolio: validateField("portfolio", inputValues.portfolio),
-      message: validateField("message", inputValues.message),
-      availability: validateField("availability", selected),
-    };
+  if (isSubmitting) return;
 
-    setErrors(newErrors);
-
-    // Check if there are any errors
-    const hasErrors = Object.values(newErrors).some((error) => error !== "");
-
-    if (hasErrors) {
-      // Scroll to first error
-      const firstErrorField = Object.keys(newErrors).find(
-        (key) => newErrors[key as keyof typeof newErrors] !== ""
-      );
-      if (firstErrorField) {
-        const element = document.querySelector(`[name="${firstErrorField}"]`);
-        element?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    try {
-      let cvData = null;
-
-      // Convert CV file to base64 if uploaded
-      if (cvFile) {
-        const base64 = await fileToBase64(cvFile);
-        cvData = {
-          filename: cvFile.name,
-          data: base64,
-          type: cvFile.type,
-          size: cvFile.size,
-        };
-      }
-
-      const response = await fetch("/api/career", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ticketName: inputValues.ticketName,
-          email: inputValues.email,
-          phone: inputValues.phone,
-          cv: cvData,
-          portfolio: inputValues.portfolio,
-          message: inputValues.message,
-          jobTitle: activeJob?.title ?? "",
-          availability: selected,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("API Error:", errorData);
-        throw new Error(errorData.error || "Failed to submit application");
-      }
-
-      setSubmitStatus("success");
-      // Reset form
-      setInputValues({
-        ticketName: "",
-        email: "",
-        phone: "",
-        cv: "",
-        portfolio: "",
-        message: "",
-      });
-      setCvFile(null);
-      setCvFileName("");
-      setSelected("");
-      setErrors({
-        ticketName: "",
-        email: "",
-        phone: "",
-        cv: "",
-        portfolio: "",
-        message: "",
-        availability: "",
-      });
-
-      // Show success message for 3 seconds then go back to job list
-      setTimeout(() => {
-        setSubmitStatus("idle");
-        setIsFlipped(false);
-        setStep(0); 
-      }, 3000);
-    } catch (error) {
-      console.error("Application submission error:", error);
-      setSubmitStatus("error");
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 3000);
-    } finally {
-      setIsSubmitting(false);
-    }
+  const newErrors = {
+    ticketName: validateField("ticketName", inputValues.ticketName),
+    email: validateField("email", inputValues.email),
+    phone: validateField("phone", inputValues.phone),
+    cv: validateField("cv", cvFile),
+    portfolio: validateField("portfolio", inputValues.portfolio),
+    message: validateField("message", inputValues.message),
+    availability: validateField("availability", selected),
   };
+
+  setErrors(newErrors);
+  if (Object.values(newErrors).some(Boolean)) return;
+
+  setIsSubmitting(true);
+
+  try {
+    let cvData = null;
+
+    if (cvFile) {
+      const base64 = await fileToBase64(cvFile);
+      cvData = {
+        filename: cvFile.name,
+        data: base64,
+        type: cvFile.type,
+        size: cvFile.size,
+      };
+    }
+
+    const response = await fetch("/api/career", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ticketName: inputValues.ticketName,
+        email: inputValues.email,
+        phone: inputValues.phone,
+        cv: cvData,
+        portfolio: inputValues.portfolio,
+        message: inputValues.message,
+        jobTitle: activeJob?.title ?? "",
+        availability: selected,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Failed to submit application");
+    }
+
+    // 🔥 IMMEDIATE NAVIGATION — NO FLIP
+    router.replace("/thank-you");
+    return;
+
+  } catch (error) {
+    console.error("Application submission error:", error);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+  
 
 useEffect(() => {
   if (jobs.length > 0 && !activeJob) {
@@ -480,6 +437,7 @@ const goNext = () => {
     setStep((s) => s + 1);
   }
 };
+
 
 
 // useEffect(() => {
@@ -722,7 +680,7 @@ const categorizeJobs = (): CareerCategoryMap => {
 
 
 
-    const totalSteps = 4;
+    const totalSteps = 3;
   const [step, setStep] = useState(0);
 
 const nextStep = () => {
@@ -771,6 +729,7 @@ const nextStep = () => {
   if (step === 2) {
     const availabilityError = validateField("availability", selected);
     const portfolioError = validateField("portfolio", inputValues.portfolio);
+    const messageError = validateField("message", inputValues.message);
 
     if (availabilityError) {
       setErrors((prev) => ({ ...prev, availability: availabilityError }));
@@ -781,16 +740,14 @@ const nextStep = () => {
       setErrors((prev) => ({ ...prev, portfolio: portfolioError }));
       hasErrors = true;
     }
-  }
 
-  if (step === 3) {
-    const messageError = validateField("message", inputValues.message);
-
-    if (messageError) {
+     if (messageError) {
       setErrors((prev) => ({ ...prev, message: messageError }));
       hasErrors = true;
     }
   }
+
+ 
 
   if (hasErrors) return;
 
@@ -1446,7 +1403,7 @@ const filled = idx < progress / 25;
                       <span className="mr-2">{svgs.ticketName}</span>
                       <textarea
                         name="ticketName"
-                        placeholder="Ticket Name"
+                        placeholder="Full Name"
                         value={inputValues.ticketName}
                         onChange={handleChange}
                         onFocus={() => handleFocus("ticketName")}
@@ -1570,22 +1527,47 @@ const filled = idx < progress / 25;
                       } pb-2`}
                     >
                       <span className="mr-2">{svgs.cv}</span>
-                      <div className="flex-1">
-                        <input
-                          type="file"
-                          name="cv"
-                          accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-                          className="bg-transparent w-full text-xs text-gray-400 file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-[var(--color-highlight)] file:text-black file:cursor-pointer hover:file:opacity-90"
-                          onChange={handleFileChange}
-                          onFocus={() => handleFocus("cv")}
-                          onBlur={handleBlur}
-                        />
-                        {cvFileName && (
-                          <p className="text-xs text-green-500 mt-1">
-                            ✓ {cvFileName}
-                          </p>
-                        )}
-                      </div>
+                      <div className="flex-1 relative">
+  <input
+    type="file"
+    name="cv"
+    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+    onChange={handleFileChange}
+    onFocus={() => handleFocus("cv")}
+    onBlur={handleBlur}
+    className="
+      absolute inset-0 opacity-0 cursor-pointer z-10
+    "
+  />
+
+  {/* Fake input UI */}
+  <div
+    className="
+      flex items-center gap-3
+      text-xs text-gray-400
+    "
+  >
+    <span
+      className="
+        bg-[var(--color-highlight)]
+        text-black px-4 py-1 rounded-full text-sm
+      "
+    >
+      Choose File
+    </span>
+
+    <span>
+      {cvFileName ? cvFileName : "Upload your CV"}
+    </span>
+  </div>
+
+  {cvFileName && (
+    <p className="text-xs text-green-500 mt-1">
+      ✓ {cvFileName}
+    </p>
+  )}
+</div>
+
                     </div>
                     {errors.cv && (
                       <p className="text-red-500 text-xs mt-1">{errors.cv}</p>
@@ -1595,9 +1577,15 @@ const filled = idx < progress / 25;
 
         {/* STEP 3 */}
         <div
-          className={`type-step ${
-            step === 2 ? "type-active" : step > 2 ? "type-hidden-up" : "type-hidden-down"
-          }`}
+           className={`type-step ${
+    submitStatus === "success"
+      ? "hidden"
+      :      step === 2
+      ? "type-active"
+      : step > 2
+      ? "type-hidden-up"
+      : "type-hidden-down"
+  }`}
         >
 
            <div>
@@ -1662,51 +1650,14 @@ const filled = idx < progress / 25;
                       </p>
                     )}
                   </div>
-        </div>
 
-        {/* STEP 4 */}
-        <div
-  className={`type-step ${
-    submitStatus === "success"
-      ? "hidden"
-      :      step === 3
-      ? "type-active"
-      : step > 3
-      ? "type-hidden-up"
-      : "type-hidden-down"
-  }`}
 
-  //  className={`type-step ${
-  //   step === 3
-  //     ? "type-active"
-  //     : step > 3
-  //     ? "type-hidden-up"
-  //     : "type-hidden-down"
-  // }`}
->
-          <div>
-                {step > 0 && step < 4 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 py-5 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div>
-
-           <div>
-                {step > 0 && step < 3 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div>
-          <h3 className="text-white mb-6">4. About you, your strengths, and your joining availability</h3>
-
-        <div>
+                   <div>
                     {/* <label className="block mb-1 white-text capitalize body3">
                       Convince Us Like A TT Checking Tickets
                     </label> */}
                     <div
-                      className={`flex items-start border-b ${
+                      className={`flex items-start border-b mt-8 ${
                         errors.message
                           ? "border-red-500"
                           : "border-[var(--color-highlight)]"
@@ -1732,11 +1683,10 @@ const filled = idx < progress / 25;
                       </p>
                     )}
                   </div>
-
-          {submitStatus === "success" && (
-            <p className="text-green-500 mt-6">Submitted Successfully ✅</p>
-          )}
         </div>
+
+    
+      
 
 
 
@@ -1791,12 +1741,12 @@ const filled = idx < progress / 25;
     </div>
   )}
 
-  {/* Step 3 */}
+  {/* Step 3 Final submit*/}
   {step === 2 && (
-    <div onClick={nextStep}>
+    <div>
       <Button
-        text="Just one more"
-        type="button"
+        text="Apply Now"
+        type="submit"
         disabled={isSubmitting}
         className="white-text cursor-pointer"
       />
@@ -1804,15 +1754,7 @@ const filled = idx < progress / 25;
   )}
 
 
-{/* Step 4 – Final submit */}
-{step === 3 && (
-  <Button
-    text="Let’s Connect"
-    type="submit"
-    disabled={isSubmitting}
-    className="white-text cursor-pointer"
-  />
-)}
+
 
 
 
