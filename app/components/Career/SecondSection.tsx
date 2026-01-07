@@ -1557,7 +1557,7 @@ const filled = idx < progress / 25;
     </span>
 
     <span>
-      {cvFileName ? cvFileName : "Upload your CV"}
+      {cvFileName ? cvFileName : "Upload Your CV"}
     </span>
   </div>
 
@@ -1632,7 +1632,7 @@ const filled = idx < progress / 25;
                         // @ts-expect-error - textarea doesn't have type attribute but works fine
                         type="url"
                         name="portfolio" // ✅ must match state key exactly
-                        placeholder="Portfolio Link (optional)"
+                        placeholder="Portfolio Link (Optional)"
                         value={inputValues.portfolio}
                         onChange={handleChange}
                         onFocus={() => handleFocus("portfolio")}
@@ -1665,7 +1665,7 @@ const filled = idx < progress / 25;
                     >
                       <span className="mr-2">{svgs.message}</span>
                       <textarea
-                        placeholder="Message"
+                        placeholder="Why Should We Hire You?"
                         name="message"
                         rows={1}
                         className="w-full bg-transparent 
