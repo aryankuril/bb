@@ -32,6 +32,7 @@
     "date-fns": "^4.1.0",
     "editorjs-html": "^4.0.5",
     "firebase": "^12.5.0",
+    "firebase-admin": "^13.6.0",
     "framer-motion": "^12.23.24",
     "gsap": "^3.13.0",
     "keen-slider": "^6.8.6",

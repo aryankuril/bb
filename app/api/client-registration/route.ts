@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendEmail } from "@/lib/email-sender";
+import { adminDB } from "@/lib/firebase-admin";
+import { FieldValue } from "firebase-admin/firestore";
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,6 +39,21 @@ export async function POST(request: NextRequest) {
     ? services[0]
     : services.slice(0, -1).join(", ") + " & " + services[services.length - 1]
   : "None";
+
+    // 🔥 SAVE TO FIRESTORE
+    await adminDB.collection("clientApplications").add({
+      companyName,
+      brandName: brandName || "",
+      industry,
+      gstin: gstin || "",
+      services,
+      contactPerson,
+      email,
+      phone,
+      address: address || "",
+      website: website || "",
+      createdAt: FieldValue.serverTimestamp(),
+    });
 
 const htmlTemplate = `
 <!DOCTYPE html>

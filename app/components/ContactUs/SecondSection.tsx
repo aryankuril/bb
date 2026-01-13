@@ -369,81 +369,66 @@ const goNext = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Validate all fields
-    const newErrors = {
-      name: validateField("name", formData.name),
-      email: validateField("email", formData.email),
-      phone: validateField("phone", formData.phone),
-      message: validateField("message", message),
-      services:
-        selectedServices.length === 0
-          ? "Please select at least one service"
-          : "",
-    };
-
-    setErrors(newErrors);
-
-    // Check if there are any errors
-    const hasErrors = Object.values(newErrors).some((error) => error !== "");
-
-    if (hasErrors) {
-      // Scroll to first error
-      const firstErrorField = Object.keys(newErrors).find(
-        (key) => newErrors[key as keyof typeof newErrors] !== ""
-      );
-      if (firstErrorField) {
-        const element = document.querySelector(`[name="${firstErrorField}"]`);
-        element?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus("idle");
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: message,
-          services: selectedServices,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit form");
-      }
-
-      setSubmitStatus("success");
-      // Reset form
-      setFormData({ name: "", email: "", phone: "" , company: ""});
-      setMessage("");
-      setSelectedServices([]);
-      setErrors({
-        name: "",
-        email: "",
-        phone: "",
-        // message: "",
-        services: "",
-      });
-
-  
-    } catch (error) {
-      console.error("Form submission error:", error);
-      setSubmitStatus("error");
-    
-    } finally {
-      setIsSubmitting(false);
-    }
+  const newErrors = {
+    name: validateField("name", formData.name),
+    email: validateField("email", formData.email),
+    phone: validateField("phone", formData.phone),
+    company: validateField("company", formData.company),
+    message: validateField("message", message),
+    services:
+      selectedServices.length === 0
+        ? "Please select at least one service"
+        : "",
   };
+
+  setErrors(newErrors);
+
+  const hasErrors = Object.values(newErrors).some((e) => e !== "");
+  if (hasErrors) return;
+
+  setIsSubmitting(true);
+  setSubmitStatus("idle");
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company, // ✅ FIX HERE
+        message: message,
+        services: selectedServices,
+      }),
+    });
+
+    if (!response.ok) throw new Error("Failed to submit form");
+
+    setSubmitStatus("success");
+
+    setFormData({ name: "", email: "", phone: "", company: "" });
+    setMessage("");
+    setSelectedServices([]);
+    setErrors({
+      name: "",
+      email: "",
+      phone: "",
+      // company: "",
+      services: "",
+    });
+  } catch (error) {
+    console.error("Form submission error:", error);
+    setSubmitStatus("error");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   // fieldValue is a string (or undefined/null if empty), fieldFocused is boolean
   const getIconColor = (
