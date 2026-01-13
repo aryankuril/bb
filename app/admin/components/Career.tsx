@@ -13,6 +13,7 @@ interface Career {
   title: string;
   description: string;
   isImmediate: boolean;
+  isFeatured: boolean;
   postedAt: any; // Firestore timestamp
 }
 

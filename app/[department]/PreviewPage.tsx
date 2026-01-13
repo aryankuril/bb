@@ -19,6 +19,7 @@ type Option = {
 };
 
 type Question = {
+  question: any;
   isDependent: boolean;
   dependentOn?: Dependency;
   type: string;
@@ -179,6 +180,10 @@ const isQuestionVisible = useCallback(
   [questions]
 );
 
+const isCalculatorComplete =
+  visibleQuestions.length > 0 &&
+  costItems.length === visibleQuestions.length &&
+  totalEstimate > 0;
 
 
 
@@ -244,6 +249,7 @@ const updateCostItems = useCallback(() => {
 
     return {
       type: question.type,
+      question: question.question,
       label: question.questionText,
       value: option.title,
       price: typeof option.price === "string" ? parseFloat(option.price) : option.price,
@@ -271,22 +277,32 @@ useEffect(() => {
 
 
 useEffect(() => {
-  if (visibleQuestions.length === 0 || costItems.length === 0 || totalEstimate === 0) return;
+  const isCalculatorComplete =
+    visibleQuestions.length > 0 &&
+    costItems.length === visibleQuestions.length &&
+    totalEstimate > 0;
 
-  if (typeof window !== "undefined" && !localStorage.getItem("estimateId")) {
+  if (!isCalculatorComplete) return;
+
+  if (
+    typeof window !== "undefined" &&
+    !localStorage.getItem("estimateId")
+  ) {
     (async () => {
       try {
-        const res = await fetch("/api/submit-form", {
+        const res = await fetch("/api/calculator", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             serviceCalculator: department,
             finalPrice: totalEstimate,
-            name: "N/A",
-            phone: "N/A",
-            email: "N/A",
             quote: costItems,
             total: totalEstimate,
+
+            // 👇 IMPORTANT
+            name: null,
+            phone: null,
+            email: null,
           }),
         });
 
@@ -295,11 +311,18 @@ useEffect(() => {
           localStorage.setItem("estimateId", data.estimateId);
         }
       } catch (error) {
-        console.error("❌ Error saving placeholder estimate:", error);
+        console.error("❌ Draft save error:", error);
       }
     })();
   }
-}, [visibleQuestions.length, costItems, totalEstimate, department]);
+}, [
+  visibleQuestions.length,
+  costItems.length,
+  totalEstimate,
+  department,
+]);
+
+
 
 
 
@@ -367,7 +390,7 @@ const handleSubmit = async () => {
   setIsSubmitting(true);
 
   try {
-    const res = await fetch("/api/submit-form", {
+    const res = await fetch("/api/calculator", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -947,11 +970,11 @@ const handleSubmit = async () => {
           <div key={index} className="flex justify-between text-[15px] mb-3">
                                 <p>
 
-                       <span className="text-white text-center font-[Poppins] text-[14px] font-[700] leading-normal not-italic">
+                       <span className="text-white text-center capitalize font-[Poppins] text-[14px] font-[700] leading-normal not-italic">
 {item.type}:
 </span>
 {" "}
-                      <span className="text-white font-[Poppins] text-[14px] font-[300] not-italic  leading-normal">
+                      <span className="text-white font-[Poppins] capitalize text-[14px] font-[300] not-italic  leading-normal">
                            {item.value}
                       </span>
                     </p>

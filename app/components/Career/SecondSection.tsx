@@ -18,6 +18,7 @@ interface Career {
   title: string;
   description: string;
   isImmediate: boolean;
+  isFeatured: boolean;
   postedAt?: { seconds: number };
   tag?: string;
   details?: string;
@@ -249,19 +250,32 @@ useEffect(() => {
     const fetchCareers = async () => {
   try {
     const q = query(collection(db, "careers"), orderBy("postedAt", "desc"));
-    const snapshot = await getDocs(q);
+    const snapshot = await getDocs(collection(db, "careers"));
 
-    const careersData: Career[] = snapshot.docs.map((doc) => {
+  const careersData: Career[] = snapshot.docs.map((doc) => {
       const data = doc.data() as Omit<Career, "id" | "tag" | "details">;
-      return {
-        id: doc.id,
-        ...data,
-        tag: data.isImmediate ? "Immediate" : "",
-        details: data.description,
-      };
-    });
+  // const data = doc.data();
+  return {
+    id: doc.id,
+    ...data,
+    tag: data.isImmediate ? "Immediate" : "",
+    details: data.description,
+  };
+});
 
-    setJobs(careersData);
+// ⭐ Featured first
+careersData.sort((a, b) => {
+  if (a.isFeatured && !b.isFeatured) return -1;
+  if (!a.isFeatured && b.isFeatured) return 1;
+
+  // fallback: newest first
+  return (
+    (b.postedAt?.seconds || 0) - (a.postedAt?.seconds || 0)
+  );
+});
+
+setJobs(careersData);
+
 
   } catch (err) {
     console.error("Error fetching careers:", err);

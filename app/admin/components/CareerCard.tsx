@@ -7,6 +7,7 @@ interface Career {
   title: string;
   description: string;
   isImmediate: boolean;
+  isFeatured: boolean;
   postedAt: { seconds: number };
 }
 
