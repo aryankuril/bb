@@ -117,30 +117,7 @@ export async function POST(request: NextRequest) {
     /* =====================================================
        ADMIN DRAFT EMAIL (NO CONTACT DETAILS)
     ===================================================== */
-    if (!isFinalSubmit) {
-      const docSnap = await collectionRef.doc(docId).get();
-
-      if (!docSnap.data()?.draftEmailSent) {
-        await sendEmail({
-          to: "aryankuril09@gmail.com",
-          subject: `Inquiry - ${serviceNameTitle}`,
-          html: `
-            <p><strong>Name:</strong> ${name || 'N/A'} </p>
-            <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-            <p><strong>Email:</strong> ${email || 'N/A'}</p>
-            <p><strong>Service:</strong> ${serviceCalculator}</p>
-            <p><strong>Final Price:</strong> ₹${Number(finalPrice).toLocaleString('en-IN')}</p>
-            ${quotationTableHTML(quote, total)}
-          `,
-          fromName: "Calculator Draft",
-          fromAddress: "hello@bombayblokes.com",
-        });
-
-        await collectionRef.doc(docId).update({
-          draftEmailSent: true,
-        });
-      }
-    }
+   
 
     /* =====================================================
        USER EMAIL (FINAL SUBMIT ONLY)
@@ -526,7 +503,7 @@ export async function POST(request: NextRequest) {
     ===================================================== */
     if (isFinalSubmit) {
       await sendEmail({
-        to: "aryankuril09@gmail.com",
+         to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
         subject: `Inquiry - ${serviceNameTitle}`,
         html: `
           <p><strong>Name:</strong> ${name}</p>

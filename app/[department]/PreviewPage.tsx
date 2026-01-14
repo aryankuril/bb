@@ -982,7 +982,7 @@ const handleSubmit = async () => {
                     </p>
 
             <span className="font-[500] text-white">
-              ₹{item.price.toLocaleString()}
+             ₹{Number(item.price || 0).toLocaleString("en-IN")}
             </span>
           </div>
         ))}
