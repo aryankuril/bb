@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, Variants, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, Variants, useMotionValue, useTransform, animate, useSpring } from "framer-motion";
 import Button from "../Button";
 import Image from "next/image";
 const cards = [
@@ -12,6 +12,22 @@ const cards = [
 ];
 
 const RubberSection = () => {
+  const [showCursor, setShowCursor] = React.useState(false);
+const rawX = useMotionValue(0);
+const rawY = useMotionValue(0);
+
+const cursorX = useSpring(rawX, {
+  stiffness: 150,
+  damping: 20,
+  mass: 0.4,
+});
+
+const cursorY = useSpring(rawY, {
+  stiffness: 150,
+  damping: 30,
+  mass: 0.4,
+});
+
   const throwInVariant: Variants = {
     hidden: { x: 600, y: 0, rotate: 45, opacity: 0 },
     visible: {
@@ -32,7 +48,39 @@ const RubberSection = () => {
   const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1000;
 
   return (
-    <section className="container w-full lg:h-[100vh] h-full relative py-10 sm:py-15 lg:py-20 overflow-x-hidden overflow-y-hidden">
+    <div className="">
+      {showCursor && (
+  <motion.div
+    style={{
+      x: cursorX,
+      y: cursorY,
+    }}
+    className="fixed top-0 left-0 z-[9999] pointer-events-none"
+  >
+    <div
+      style={{
+        transform: "translate(-50%, -50%)",
+      }}
+      className="flex items-center justify-center px-4 py-2 rounded-full
+                 bg-black text-white text-xs font-medium tracking-wide"
+    >
+      Drag The Images
+    </div>
+  </motion.div>
+)}
+
+ <section
+  className="container w-full lg:h-[100vh] h-full relative cursor-pointer py-10 sm:py-15 lg:py-20 overflow-x-hidden overflow-y-hidden"
+  onMouseEnter={() => setShowCursor(true)}
+  onMouseLeave={() => setShowCursor(false)}
+  onMouseMove={(e) => {
+    rawX.set(e.clientX);
+rawY.set(e.clientY);
+
+  }}
+>
+
+      
       <h2 className="mb-3 text-center">
         <span className="text-highlight">Our culture </span> - Ideate, innovate, create
       </h2>
@@ -102,6 +150,7 @@ const RubberSection = () => {
         <Button href="/join-our-team" text="Join Our Team" className="text-black font-semibold" />
       </div>
     </section>
+    </div>
   );
 };
 

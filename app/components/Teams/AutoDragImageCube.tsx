@@ -278,61 +278,81 @@ const joystickY = useMotionValue(0);
       </motion.div>
 
       {/* ===== Gyro Joystick ===== */}
-      <div
-        style={{
-          width: 120,
-          height: 120,
-          borderRadius: "50%",
-          border: "2px solid #fab31e",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          touchAction: "none",
-          marginTop: "90px",
-        }}
-      >
-        <motion.div
-  drag
-  dragMomentum={false}
-  dragConstraints={{
-    left: -JOYSTICK_RADIUS,
-    right: JOYSTICK_RADIUS,
-    top: -JOYSTICK_RADIUS,
-    bottom: JOYSTICK_RADIUS,
-  }}
-  dragElastic={0}
+     <div
   style={{
-    x: joystickX,
-    y: joystickY,
-    width: 40,
-    height: 40,
-    borderRadius: "50%",
-    background: "#fab31e",
-    cursor: "grab",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    maxWidth: 420,
   }}
-  onDrag={(e, info) => {
-    const dir = getDirection(info.offset.x, info.offset.y);
+>
+  {/* LEFT */}
 
-    if (!dir) {
-      stopHold();
-      pauseAutoRotate();
-      return;
-    }
+  <div style={{ transform: "translateY(40px)" }}>
+    <h4>Cube</h4>
+      
+  </div>
 
-    startHold(dir);
-  }}
-  onDragEnd={() => {
-    stopHold();
-    pauseAutoRotate();
+  {/* CENTER → Gyro Joystick */}
+  <div
+    style={{
+      width: 120,
+      height: 120,
+      borderRadius: "50%",
+      border: "2px solid #fab31e",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      touchAction: "none",
+      marginTop: "90px",
+    }}
+  >
+    <motion.div
+      drag
+      dragMomentum={false}
+      dragConstraints={{
+        left: -JOYSTICK_RADIUS,
+        right: JOYSTICK_RADIUS,
+        top: -JOYSTICK_RADIUS,
+        bottom: JOYSTICK_RADIUS,
+      }}
+      dragElastic={0}
+      style={{
+        x: joystickX,
+        y: joystickY,
+        width: 40,
+        height: 40,
+        borderRadius: "50%",
+        background: "#fab31e",
+        cursor: "grab",
+      }}
+      onDrag={(e, info) => {
+        const dir = getDirection(info.offset.x, info.offset.y);
 
-    // ✅ FORCE SNAP TO CENTER
-    joystickX.set(0);
-    joystickY.set(0);
-  }}
-/>
+        if (!dir) {
+          stopHold();
+          pauseAutoRotate();
+          return;
+        }
 
+        startHold(dir);
+      }}
+      onDragEnd={() => {
+        stopHold();
+        pauseAutoRotate();
+        joystickX.set(0);
+        joystickY.set(0);
+      }}
+    />
+  </div>
 
-      </div>
+  {/* RIGHT */}
+  <div style={{ transform: "translateY(40px)" }}>
+   <h4>Controller</h4> 
+    </div>
+</div>
+
     </div>
   );
 }

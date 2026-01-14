@@ -86,9 +86,9 @@ export default function CalculatorTestimonials() {
           boxShadow: "2px 2px 0 0 #F9B31B",
         }}
       >
-                <h3 className=" text-[#F9B31B] font-medium mb-2 leading-snug text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+                <h4 className=" text-[#F9B31B] font-medium mb-2 leading-snug text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
   {maintext}
-</h3>
+</h4>
 
         <p className=" text-[#1E1E1E] text-base font-medium leading-snug items-start mb-5">
           {text}

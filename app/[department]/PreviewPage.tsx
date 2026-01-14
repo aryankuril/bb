@@ -489,10 +489,10 @@ const handleSubmit = async () => {
 </div>
 
 <div className="flex items-center justify-between text-sm text-gray-600 lg:mt-3 mt-1">
-            <span className="text-[#797474] text-center font-[Poppins] text-[20px] italic font-light leading-none tracking-[0.2px] capitalize">
+            <span className="text-[#797474] text-center  font-miso text-[20px] italic font-light leading-none tracking-[0.2px] capitalize">
               Progress
             </span>
-            <span className="text-[#797474] text-center font-[Poppins] text-[20px] not-italic font-light leading-none tracking-[0.2px] capitalize">
+            <span className="text-[#797474] text-center  font-miso text-[20px] not-italic font-light leading-none tracking-[0.2px] capitalize">
               {percent}%
             </span>
           </div>
@@ -582,9 +582,9 @@ const handleSubmit = async () => {
         {/* This div wraps the title, allowing you to control its overflow. */}
         <div className="w-full text-center">
           {/* We've added `truncate` to handle long titles. */}
-          <h4 className="md:text-[16px] lg:text-[16px] text-[12px] font-bold font-poppins text-black truncate">
+          <h6 className="md:text-[16px] lg:text-[16px] text-[12px] font-bold font-poppins text-black truncate">
             {opt.title}
-          </h4>
+          </h6>
         </div>
 
         {Number(opt.price) > 0 && (
@@ -778,9 +778,9 @@ const handleSubmit = async () => {
       )}
 
       {/* TITLE */}
-      <h4 className="flex-1 text-[#111827] font-poppins text-[13px] font-[600] ml-2">
+      <h6 className="flex-1 text-[#111827] font-poppins text-[13px] font-[600] ml-2">
         {opt.title}
-      </h4>
+      </h6>
 
       {/* PRICE */}
       <span
@@ -962,19 +962,19 @@ const handleSubmit = async () => {
           </p>
         </div>
 
-        <h2 className="text-[22px] font-[700] mb-4 flex items-center gap-2 mt-4">
+        <h4 className="text-[22px] font-[700] mb-4 flex items-center gap-2 mt-4">
           Cost Summary
-        </h2>
+        </h4>
 
         {costItems.map((item, index) => (
           <div key={index} className="flex justify-between text-[15px] mb-3">
                                 <p>
 
-                       <span className="text-white text-center capitalize font-[Poppins] text-[14px] font-[700] leading-normal not-italic">
+                       <span className="text-white text-center capitalize  font-miso text-[14px] font-[700] leading-normal not-italic">
 {item.type}:
 </span>
 {" "}
-                      <span className="text-white font-[Poppins] capitalize text-[14px] font-[300] not-italic  leading-normal">
+                      <span className="text-white  font-miso capitalize text-[14px] font-[300] not-italic  leading-normal">
                            {item.value}
                       </span>
                     </p>
@@ -1029,9 +1029,9 @@ const handleSubmit = async () => {
           ← <span  className="underline " > See Quotation </span>
         </button>
 
-        <h2 className="text-[22px] font-[700] mb-6 flex items-center gap-2">
+        <h4 className=" mb-6 flex items-center gap-2">
           Need Your Details 📒
-        </h2>
+        </h4>
 
         {/* INLINE FORM EXACTLY LIKE YOUR IMAGE */}
            <div className="grid grid-cols-1 gap-6 mb-6 w-full">
@@ -1143,10 +1143,7 @@ const handleSubmit = async () => {
   flex 
   items-center 
   gap-2
-  text-[20px]      /* mobile */
-  sm:text-[22px]   /* small screens */
-  md:text-[24px]   /* tablets */
-  lg:text-[26px]   /* desktop */
+
 ">
   What’s Always Included
 </h4>
