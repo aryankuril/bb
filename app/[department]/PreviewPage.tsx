@@ -520,9 +520,9 @@ const handleSubmit = async () => {
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="lg:text-[24px] text-[20px] font-poppins font-[700] text-black">
+                    <h5 className="lg:text-[24px] text-[20px] font-poppins font-[700] text-black">
                       {currentQuestion.questionText}
-                    </h3>
+                    </h5>
                     {currentQuestion.questionIcon?.startsWith("data:image") ? (
                       <img src={currentQuestion.questionIcon} alt="icon" className="w-6 h-6" />
                     ) : (
@@ -580,11 +580,12 @@ const handleSubmit = async () => {
         </div>
 
         {/* This div wraps the title, allowing you to control its overflow. */}
-        <div className="w-full text-center">
+        <div className="w-full text-center ">
           {/* We've added `truncate` to handle long titles. */}
-          <h6 className="md:text-[16px] lg:text-[16px] text-[12px] font-bold font-poppins text-black truncate">
-            {opt.title}
-          </h6>
+           <span style={{ fontFamily: "Poppins, sans-serif" }} 
+      className="font-poppins flex-1 text-[#111827] body3 font-[600] ml-2">
+        {opt.title}
+      </span>
         </div>
 
         {Number(opt.price) > 0 && (
@@ -699,9 +700,9 @@ const handleSubmit = async () => {
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2 lg:w-[700px]">
-                    <h3 className="lg:text-[24px] text-[20px] font-poppins font-[700] text-black">
+                    <h5 className="lg:text-[24px] text-[20px] font-poppins font-[700] text-black">
                       {currentQuestion.questionText}
-                    </h3>
+                    </h5>
                     {currentQuestion.questionIcon?.startsWith("data:image") ? (
                       <img src={currentQuestion.questionIcon} alt="icon" className="w-4 h-4" />
                     ) : (
@@ -778,13 +779,14 @@ const handleSubmit = async () => {
       )}
 
       {/* TITLE */}
-      <h6 className="flex-1 text-[#111827] font-poppins text-[13px] font-[600] ml-2">
+      <span style={{ fontFamily: "Poppins, sans-serif" }} 
+      className="font-poppins flex-1 text-[#111827] body3 font-[600] ml-2">
         {opt.title}
-      </h6>
+      </span>
 
       {/* PRICE */}
       <span
-        className={`text-[14px] font-[500] ${
+        className={`text-[14px] font-[500] px-2 text-start ${
           active ? "text-white" : "text-[#111827]"
         }`}
       >
