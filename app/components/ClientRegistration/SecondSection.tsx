@@ -319,6 +319,11 @@ useEffect(() => {
         if (!value.trim()) return "Company name is required";
         if (value.trim().length < 2)
           return "Company name must be at least 2 characters";
+        if (
+    typeof value === "string" &&
+    !/^[A-Za-z\s]+$/.test(value.trim())
+  )
+    return "Company name can contain only letters (no numbers or special characters)";
         return "";
       case "industry":
         if (!value.trim()) return "Industry is required";

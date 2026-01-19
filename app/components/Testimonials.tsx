@@ -8,7 +8,7 @@ const testimonials = [
   {
     brand: "J K Diamonds Institute",
     text: "The brand started seeing more orders every single day.",
-    name: "~ Naman Ajmera",
+    name: "~ Naman Ajmera ",
     maintext: "“Better Understanding”",
   },
   {
@@ -26,7 +26,7 @@ const testimonials = [
   {
     brand: "Dancing Leaf Tea",
     text: "Engagement increased and enquiries dropped less midway. The brand feels inviting.",
-    name: "~ AW",
+    name: "~ Aryan Kuril",
     maintext: "“Improved Enquiry Flow”",
   },
   {
@@ -36,7 +36,7 @@ const testimonials = [
     maintext: "“Creative Idea Execution”",
   },
   {
-    brand: "CarronCothing",
+    brand: "Carron Cothing",
     text: "Orders started increasing every day, showing clear growth.",
     name: "~ Rohit Chhedda",
     maintext: "“Growth in Orders'",
@@ -52,12 +52,6 @@ const testimonials = [
     text: "Customers found the brand through our content and felt connected.",
     name: "~ Pranav Bimbhat",
     maintext: "“Clearer Brand Communication”",
-  },
-  {
-    brand: "Aditya Agarwal",
-    text: "Engagement increased and enquiries dropped less midway. The brand feels inviting.",
-    name: "~ AW",
-    maintext: "“Improved Enquiry Flow”",
   },
 ];
 

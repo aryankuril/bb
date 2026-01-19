@@ -3,7 +3,6 @@
 import * as React from "react";
 import { motion, useMotionValue, Easing, animate } from "framer-motion";
 
-
 /* ================== TYPES ================== */
 type CubeProps = {
   size?: number;
@@ -25,6 +24,62 @@ const FACE_ROTATION = 90;
 const HOLD_DELAY = 2000;
 const JOYSTICK_RADIUS = 45;
 const DRAG_SENSITIVITY = 3;
+
+/* ================== NEW: Circular Text ================== */
+function CircularText({
+  text,
+  size = 180,
+  duration = 18,
+}: {
+  text: string;
+  size?: number;
+  duration?: number;
+}) {
+  const letters = text.split("");
+
+  return (
+    <motion.div
+      style={{
+        position: "relative",
+        width: size,
+        height: size,
+      }}
+      animate={{ rotate: 360 }}
+      transition={{
+        repeat: Infinity,
+        duration,
+        ease: "linear",
+      }}
+    >
+      {letters.map((char, i) => {
+        const angle = (360 / letters.length) * i;
+        return (
+          <span
+            key={i}
+            style={{
+              position: "absolute",
+              left: "50%",
+              top: "50%",
+              transform: `
+                rotate(${angle}deg)
+                translate(${size / 2 + 10}px)
+                rotate(${90}deg)
+              `,
+              transformOrigin: "0 0",
+              color: "#fab31e",
+              fontSize: 14,
+              fontWeight: 600,
+              letterSpacing: "5px",
+              whiteSpace: "pre",
+            }}
+          >
+            {char}
+          </span>
+        );
+      })}
+    </motion.div>
+  );
+}
 
 /* ================== COMPONENT ================== */
 export default function AutoDragImageCube(props: CubeProps) {
@@ -58,31 +113,28 @@ export default function AutoDragImageCube(props: CubeProps) {
   const angleXRef = React.useRef(0);
   const angleYRef = React.useRef(0);
 
-const applyRotation = () => {
-  animate(rotateX, angleXRef.current, {
-    duration: 0.7,
-    ease: "easeInOut",
-  });
+  const applyRotation = () => {
+    animate(rotateX, angleXRef.current, {
+      duration: 0.7,
+      ease: "easeInOut",
+    });
 
-  animate(rotateY, angleYRef.current, {
-    duration: 0.7,
-    ease: "easeInOut",
-  });
-};
+    animate(rotateY, angleYRef.current, {
+      duration: 0.7,
+      ease: "easeInOut",
+    });
+  };
 
-let rafId: number | null = null;
+  let rafId: number | null = null;
 
-const applyRotationInstant = () => {
-  if (rafId) cancelAnimationFrame(rafId);
+  const applyRotationInstant = () => {
+    if (rafId) cancelAnimationFrame(rafId);
 
-  rafId = requestAnimationFrame(() => {
-    rotateX.set(angleXRef.current);
-    rotateY.set(angleYRef.current);
-  });
-};
-
-
-
+    rafId = requestAnimationFrame(() => {
+      rotateX.set(angleXRef.current);
+      rotateY.set(angleYRef.current);
+    });
+  };
 
   /* ---------------- Auto rotate ---------------- */
   const [localAutoRotate, setLocalAutoRotate] = React.useState(autoRotate);
@@ -212,10 +264,8 @@ const applyRotationInstant = () => {
     (e.target as Element).releasePointerCapture(e.pointerId);
   };
 
-
   const joystickX = useMotionValue(0);
-const joystickY = useMotionValue(0);
-
+  const joystickY = useMotionValue(0);
 
   /* ---------------- Render ---------------- */
   return (
@@ -227,16 +277,18 @@ const joystickY = useMotionValue(0);
         perspective: cubeSize * 4,
         gap: 40,
         padding: 30,
-         marginTop: "-70px",
+        marginTop: "-70px",
       }}
     >
-
       <h1 className="black-text md:text-left w-full mb-15">
-        The Squad That Turns <span className="text-highlight">What If</span>’ Into <br />
+        The Squad That Turns <span className="text-highlight">What If</span>’ Into{" "}
+        <br />
         ‘<span className="text-highlight">What’s Next.</span>’
       </h1>
 
-    
+      {/* ===== TOP CIRCULAR TEXT (NEW) ===== */}
+      {/* <CircularText text=" DRAG • ROTATE • EXPLORE • DRAG • ROTATE • EXPLORE • " /> */}
+
       {/* ===== Cube ===== */}
       <motion.div
         style={{
@@ -278,80 +330,77 @@ const joystickY = useMotionValue(0);
       </motion.div>
 
       {/* ===== Gyro Joystick ===== */}
-     <div
+      <div
+        style={{
+          width: 120,
+          height: 120,
+          borderRadius: "50%",
+          border: "2px solid #fab31e",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          touchAction: "none",
+          marginTop: "90px",
+           position: "relative",
+        }}
+      >
+        <motion.div
+          drag
+          dragMomentum={false}
+          dragConstraints={{
+            left: -JOYSTICK_RADIUS,
+            right: JOYSTICK_RADIUS,
+            top: -JOYSTICK_RADIUS,
+            bottom: JOYSTICK_RADIUS,
+          }}
+          dragElastic={0}
+          style={{
+            x: joystickX,
+            y: joystickY,
+            width: 40,
+            height: 40,
+            borderRadius: "50%",
+            background: "#fab31e",
+            cursor: "grab",
+          }}
+          onDrag={(e, info) => {
+            const dir = getDirection(info.offset.x, info.offset.y);
+
+            if (!dir) {
+              stopHold();
+              pauseAutoRotate();
+              return;
+            }
+
+            startHold(dir);
+          }}
+          onDragEnd={() => {
+            stopHold();
+            pauseAutoRotate();
+            joystickX.set(0);
+            joystickY.set(0);
+          }}
+        />
+      {/* ===== BOTTOM CIRCULAR TEXT (NEW) ===== */}
+    <div
   style={{
+    position: "absolute",
+    inset: 0,
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
-    width: "100%",
-    maxWidth: 420,
+    justifyContent: "center",
+    pointerEvents: "none", // ✅ so dragging still works
   }}
 >
-  {/* LEFT */}
-
-  <div style={{ transform: "translateY(40px)" }}>
-    <h4>Cube</h4>
-      
-  </div>
-
-  {/* CENTER → Gyro Joystick */}
-  <div
-    style={{
-      width: 120,
-      height: 120,
-      borderRadius: "50%",
-      border: "2px solid #fab31e",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      touchAction: "none",
-      marginTop: "90px",
-    }}
-  >
-    <motion.div
-      drag
-      dragMomentum={false}
-      dragConstraints={{
-        left: -JOYSTICK_RADIUS,
-        right: JOYSTICK_RADIUS,
-        top: -JOYSTICK_RADIUS,
-        bottom: JOYSTICK_RADIUS,
-      }}
-      dragElastic={0}
-      style={{
-        x: joystickX,
-        y: joystickY,
-        width: 40,
-        height: 40,
-        borderRadius: "50%",
-        background: "#fab31e",
-        cursor: "grab",
-      }}
-      onDrag={(e, info) => {
-        const dir = getDirection(info.offset.x, info.offset.y);
-
-        if (!dir) {
-          stopHold();
-          pauseAutoRotate();
-          return;
-        }
-
-        startHold(dir);
-      }}
-      onDragEnd={() => {
-        stopHold();
-        pauseAutoRotate();
-        joystickX.set(0);
-        joystickY.set(0);
-      }}
-    />
-  </div>
-
-  {/* RIGHT */}
-  <div style={{ transform: "translateY(40px)" }}>
-   <h4>Controller</h4> 
-    </div>
+  <CircularText
+    text=" MOVE • CONTROL • INTERACT • MOVE • CONTROL • INTERACT • "
+    size={150}        // ✅ ring slightly bigger than joystick
+    duration={22}
+  />
 </div>
+
+
+      </div>
 
     </div>
   );

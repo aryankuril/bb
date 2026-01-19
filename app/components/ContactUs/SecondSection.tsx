@@ -248,6 +248,11 @@ const validatePhone = (phone: string): boolean => {
         if (!value.trim()) return "Name is required";
         if (value.trim().length < 2)
           return "Name must be at least 2 characters";
+        if (
+    typeof value === "string" &&
+    !/^[A-Za-z\s]+$/.test(value.trim())
+  )
+    return "Name can contain only letters (no numbers or special characters)";
         return "";
       case "email":
         if (!value.trim()) return "Email is required";

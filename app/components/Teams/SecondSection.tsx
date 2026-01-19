@@ -81,7 +81,7 @@ const SecondSection = () => {
   return (
     <section
       id="achievement-section"
-      className="container py-10 sm:py-15 lg:py-20 relative mb-[150px] mt-30"
+      className="container py-10 sm:py-15 lg:py-20 relative mb-[150px] mt-20"
     >
       <div className="lg:px-30 px-5">
         <div className="text-center mb-12">

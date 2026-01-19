@@ -212,6 +212,11 @@ useEffect(() => {
           return "Name is required";
         if (typeof value === "string" && value.trim().length < 2)
           return "Name must be at least 2 characters";
+        if (
+    typeof value === "string" &&
+    !/^[A-Za-z\s]+$/.test(value.trim())
+  )
+    return "Name can contain only letters (no numbers or special characters)";
         return "";
       case "email":
         if (!value || (typeof value === "string" && !value.trim()))
@@ -331,15 +336,15 @@ setJobs(careersData);
         "application/pdf",
         "application/msword",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "image/jpeg",
-        "image/jpg",
-        "image/png",
-      ];
+        // "image/jpeg",
+        // "image/jpg",
+        // "image/png",
+      ]; 
 
       if (!allowedTypes.includes(file.type)) {
         setErrors((prev) => ({
           ...prev,
-          cv: "Please upload a PDF, DOC, DOCX, or image file",
+          cv: "Please upload a PDF, DOC, DOCX",
         }));
         return;
       }
@@ -1571,7 +1576,7 @@ const filled = idx < progress / 25;
     </span>
 
     <span>
-      {cvFileName ? cvFileName : "Upload Your CV"}
+      {cvFileName ? cvFileName : "Upload Your CV ( PDF, DOC )"}
     </span>
   </div>
 
