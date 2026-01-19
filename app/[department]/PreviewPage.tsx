@@ -461,7 +461,7 @@ const handleSubmit = async () => {
 
       return (
         <div
-          key={visibleIdx}
+          // key={visibleIdx}
           className="flex-1 h-[10px] rounded-[20px] border border-[#1E1E1E] bg-transparent overflow-hidden"
         >
           <div
