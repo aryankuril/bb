@@ -453,15 +453,15 @@ const handleSubmit = async () => {
   {/* Progress Wrapper (relative so car is inside) */}
   <div className="flex gap-3 relative items-center">
     {/* Progress Bars */}
-    {visibleQuestions.map((_, visibleIdx) => {
-      const question = visibleQuestions[visibleIdx];
-      const realIndex = questions.findIndex(
-        (q) => q.questionText === question.questionText
-      );
+    {visibleQuestions.map((question) => {
+  const realIndex = questions.findIndex(
+    (q) => q.questionText === question.questionText
+  );
+
 
       return (
         <div
-          key={visibleIdx}
+          // key={visibleIdx}
           className="flex-1 h-[10px] rounded-[20px] border border-[#1E1E1E] bg-transparent overflow-hidden"
         >
           <div
