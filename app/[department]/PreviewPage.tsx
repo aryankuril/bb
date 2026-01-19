@@ -66,7 +66,7 @@ const answeredQuestions = Object.values(selectedOptions).filter(option => option
 const totalProgressPercentage = (answeredQuestions / totalQuestions) * 100;
 
 const firstSectionRef = useRef<HTMLDivElement | null>(null);
-const secondSectionRef = useRef<HTMLDivElement | null>(null);
+// const secondSectionRef = useRef<HTMLDivElement | null>(null);
 const footerRef = useRef<HTMLDivElement | null>(null);
 
 const [currentSection, setCurrentSection] = useState(0); 
@@ -120,16 +120,16 @@ useEffect(() => {
   };
 }, []);
 
-useEffect(() => {
-  // Now this effect actually uses currentSection!
-  if (currentSection === 0) {
-    firstSectionRef.current?.scrollIntoView({ behavior: "smooth" });
-  } else if (currentSection === 1) {
-    secondSectionRef.current?.scrollIntoView({ behavior: "smooth" });
-  } else if (currentSection === 2) {
-    footerRef.current?.scrollIntoView({ behavior: "smooth" });
-  }
-}, [currentSection]);
+// useEffect(() => {
+//   // Now this effect actually uses currentSection!
+//   if (currentSection === 0) {
+//     firstSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+//   } else if (currentSection === 1) {
+//     secondSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+//   } else if (currentSection === 2) {
+//     footerRef.current?.scrollIntoView({ behavior: "smooth" });
+//   }
+// }, [currentSection]);
 
 
 
