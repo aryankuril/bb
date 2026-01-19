@@ -448,20 +448,22 @@ const handleSubmit = async () => {
              <section 
                className="w-full px-4  flex flex-col items-center lg:mt-8 ">
        
-        <div ref={secondSectionRef} className="w-full  max-h-7xl lg:mt-12 mt-8">
+        <div 
+        // ref={secondSectionRef} 
+        className="w-full  max-h-7xl lg:mt-12 mt-8">
         <div className="flex flex-col gap-2">
   {/* Progress Wrapper (relative so car is inside) */}
   <div className="flex gap-3 relative items-center">
     {/* Progress Bars */}
-    {visibleQuestions.map((question) => {
-  const realIndex = questions.findIndex(
-    (q) => q.questionText === question.questionText
-  );
-
+    {visibleQuestions.map((_, visibleIdx) => {
+      const question = visibleQuestions[visibleIdx];
+      const realIndex = questions.findIndex(
+        (q) => q.questionText === question.questionText
+      );
 
       return (
         <div
-          // key={visibleIdx}
+          key={visibleIdx}
           className="flex-1 h-[10px] rounded-[20px] border border-[#1E1E1E] bg-transparent overflow-hidden"
         >
           <div
