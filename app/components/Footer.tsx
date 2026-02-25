@@ -56,10 +56,23 @@ export default function Footer() {
   </Link>
   <Link
     href="/blogs"
-    className="black-text transition-colors"
+    className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
   >
     Blogs
   </Link>
+  <Link
+    href="/privacy"
+    className="black-text transition-colors border-r border-gray-400 pr-2 hover:text-[var(--color-highlight)]"
+  >
+    Privacy Policy
+  </Link>
+  <Link
+    href="/terms"
+    className="black-text transition-colors"
+  >
+    Terms & Conditions 
+  </Link>
+
 </div>
 
           {/* Copyright */}
