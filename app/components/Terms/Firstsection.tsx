@@ -51,9 +51,9 @@ const Firstsection: React.FC = () => {
       <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-40">
         <div className="flex-1">
        <h1 className="black-text max-w-full lg:max-w-[1000px]">
-  Terms & Conditions.{" "}
+  Terms & Conditions.
   <span className="text-highlight">
-    Please Review the Rules and Guidelines.
+  Please Review the Rules and Guidelines.
   </span>
 </h1>
       </div>

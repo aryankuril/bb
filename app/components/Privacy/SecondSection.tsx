@@ -199,7 +199,7 @@ const SecondSection = () => {
             <h3 className="text-2xl font-bold black-text dark:text-white">
               {section.title}
             </h3>
-
+            <ul className=" space-y-1">
             {section.paragraphs?.map((para, i) => (
               <p
                 key={i}
@@ -208,6 +208,7 @@ const SecondSection = () => {
                 {para}
               </p>
             ))}
+            </ul>
 
             {section.list && (
               <ul className="list-disc pl-6 space-y-1">
