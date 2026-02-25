@@ -85,7 +85,7 @@ function renderEditorJsHTML(data: unknown) {
               const text = item.content || item.text || "";
               return `<li>${text}</li>`;
             })
-            .join("")}</${Tag}>`;
+            .join("")}</${Tag}>`; 
 
         // Checklist
         case "checklist":
