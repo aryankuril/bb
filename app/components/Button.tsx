@@ -80,7 +80,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const content = (
     <div
-      className={`relative z-10 px-4 py-2 h-12 flex items-center uppercase body3 cursor-pointer ${disabled ? "opacity-50 " : ""}`}
+      className={`relative z-10 px-4 h-12 flex items-center justify-center uppercase body3 cursor-pointer`}
       // ensure children transforms work (Tailwind requires transform when using translate utilities in some setups)
       // adding `transform` to the parent makes translate utilities applied on children behave consistently.
     >
@@ -88,7 +88,7 @@ const Button: React.FC<ButtonProps> = ({
         {chars.map((char, idx) => (
           <span
             key={idx}
-            className="relative block overflow-hidden lg:h-7 h-6 w-auto"
+            className="relative flex items-center overflow-hidden h-6 lg:h-7"
             style={{ transitionDelay: `${idx * 30}ms` }}
           >
             {/* top (outgoing) */}
@@ -105,7 +105,7 @@ const Button: React.FC<ButtonProps> = ({
             {/* bottom (incoming) */}
             <span
               className={`block absolute left-0 top-0 transform transition-transform duration-300 ease-in-out ${
-                hovered && !disabled ? "translate-y-0" : "translate-y-7"
+                hovered && !disabled ? "translate-y-1" : "translate-y-7"
               }`}
               aria-hidden
             >
@@ -122,7 +122,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <div
-      className={`relative inline-block select-none ${className}`}
+      className={`relative inline-flex items-center select-none ${className}`}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
       onPointerDown={handlePointerDown}
@@ -131,8 +131,8 @@ const Button: React.FC<ButtonProps> = ({
       // keep focusable container semantics if keyboard-used; but underlying button/link will receive focus
     >
       {/* Background animation. pointer-events-none prevents it from blocking mouse/pointer leave events. */}
-      <div
-        className={`absolute top-1/2 -translate-y-1/2 rounded-full transition-all duration-300 ease-in-out h-12 bg-[var(--color-highlight)] pointer-events-none`}
+     <div
+        className={`absolute inset-y-0 my-auto rounded-full transition-all duration-300 ease-in-out h-12 bg-[var(--color-highlight)] pointer-events-none`}
         style={{
           width: hovered && !disabled ? textWidth : 48,
           left: -5,

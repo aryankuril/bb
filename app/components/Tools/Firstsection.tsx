@@ -50,14 +50,14 @@ const Firstsection: React.FC = () => {
     >
       <div className="flex flex-col lg:flex-row items-end relative lg:mb-0 mb-40">
         <div className="flex-1">
-       <h1 className="black-text max-w-full lg:max-w-[1000px]">
-  Terms & Conditions.
-  <span className="text-highlight">
-  Please Review the Rules and Guidelines.
+         <h1 className="black-text max-w-full lg:max-w-[1000px]">
+  Discover Our Innovative <span className="text-highlight">
+     Tools
+  </span> Designed for <span className="text-highlight">
+    Real Results
   </span>
 </h1>
-
-      </div>
+        </div>
       </div>
 
       {/* Station Board */}
@@ -69,7 +69,7 @@ const Firstsection: React.FC = () => {
 width={1000}
           height={1000}
            
-          src="/images/T&C3.png"
+          src="/images/tools.png"
           alt="Station board"
           className="w-28 sm:w-40 md:w-45 lg:w-48 xl:w-50 h-auto"
         />
@@ -84,7 +84,7 @@ width={1000}
         className="absolute bottom-0 left-0 z-20 w-[700px] sm:w-[710px] md:w-[750px] lg:w-[800px] xl:w-[800px]"
       >
         <Image
- width={1000}
+         width={1000}
         height={1000}
           src="/images/train.png"
           alt="train"
