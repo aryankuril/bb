@@ -19,7 +19,7 @@ const cardsData: CardData[] = [
    description: "Bulk upload and match product images to Shopify SKUs.",
     image: "/images/calculator/Web-Development.png",
     buttonText: "Try Now",
-    href: "https://pix-6suf.vercel.app",
+    href: "https://www.tools.bombayblokes.com",
      icon:   (
         <svg 
         width="50"
@@ -38,7 +38,7 @@ const cardsData: CardData[] = [
     description: "Compress multiple images with customizable quality and size settings.",
     image: "/images/calculator/Web-Development.png",
     buttonText: "Try Now",
-    href: "https://pix-6suf.vercel.app",
+    href: "https://www.tools.bombayblokes.com/compress",
     icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +65,7 @@ const cardsData: CardData[] = [
     description: "Apply filters, adjust brightness, contrast,more to your images.",
     image: "/images/calculator/Web-Development.png",
      buttonText: "Try Now",
-    href: "https://pix-6suf.vercel.app",
+    href: "https://www.tools.bombayblokes.com/effects",
      icon:  (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@ const cardsData: CardData[] = [
     description: "Resize single or multiple images while maintaining aspect ratio.",
     image: "/images/calculator/Web-Development.png",
      buttonText: "Try Now",
-     href: "https://pix-6suf.vercel.app",
+     href: "https://www.tools.bombayblokes.com/resize",
      icon:  (
         <svg
           width="50"
@@ -117,7 +117,7 @@ const cardsData: CardData[] = [
     description: "Convert PDF files to high-quality images with customizable settings.",
     image: "/images/calculator/Web-Development.png",
      buttonText: "Try Now",
-     href: "https://pix-6suf.vercel.app",
+     href: "https://www.tools.bombayblokes.com/pdf-to-image",
     icon:  (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +167,7 @@ const cardsData: CardData[] = [
     description: "View and strip EXIF metadata from your images with fine-grained control.",
     image: "/images/calculator/Web-Development.png",
      buttonText: "Try Now",
-     href: "https://pix-6suf.vercel.app",
+     href: "https://www.tools.bombayblokes.com/metadata",
       icon:  (
         <svg
           xmlns="http://www.w3.org/2000/svg"
