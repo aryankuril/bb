@@ -22,7 +22,7 @@ const cardsData: CardData[] = [
    description: "Bulk upload and match product images to Shopify SKUs.",
     image: "/images/calculator/Web-Development.png",
     buttonText: "Try Now",
-    href: "https://tools.bombayblokes.com/pix",
+    href: "https://pix-swart-seven.vercel.app/pix",
       icon:   (
         <svg id="fi_4400290" enable-background="new 0 0 512 512" 
         height="50" 
@@ -38,7 +38,7 @@ const cardsData: CardData[] = [
     description: "Compress multiple images with customizable quality and size settings.",
     image: "/images/calculator/Web-Development.png",
     buttonText: "Try Now",
-    href: "https://tools.bombayblokes.com/compress",
+    href: "https://pix-swart-seven.vercel.app/compress",
     icon: (
   <img
     src="/images/Compress.svg"
@@ -53,7 +53,7 @@ const cardsData: CardData[] = [
     description: "Apply filters, adjust brightness, contrast,more to your images.",
     image: "/images/calculator/Web-Development.png",
      buttonText: "Try Now",
-    href: "https://tools.bombayblokes.com/effects",
+    href: "https://pix-swart-seven.vercel.app/effects",
     icon: (
   <img
     src="/images/Imageeffects.svg"
@@ -68,7 +68,7 @@ const cardsData: CardData[] = [
     description: "Resize single or multiple images while maintaining aspect ratio.",
     image: "/images/calculator/Web-Development.png",
      buttonText: "Try Now",
-     href: "https://tools.bombayblokes.com/resize",
+     href: "https://pix-swart-seven.vercel.app/resize",
       icon: (
   <img
     src="/images/Resizer.svg"
@@ -83,7 +83,7 @@ const cardsData: CardData[] = [
     description: "Convert PDF files to high-quality images with customizable settings.",
     image: "/images/calculator/Web-Development.png",
      buttonText: "Try Now",
-     href: "https://tools.bombayblokes.com/pdf-to-image",
+     href: "https://pix-swart-seven.vercel.app/pdf-to-image",
      icon: (
   <img
     src="/images/transfer-data.svg"
@@ -98,7 +98,7 @@ const cardsData: CardData[] = [
     description: "View and strip EXIF metadata from your images with fine-grained control.",
     image: "/images/calculator/Web-Development.png",
      buttonText: "Try Now",
-     href: "https://tools.bombayblokes.com/metadata",
+     href: "https://pix-swart-seven.vercel.app/metadata",
       icon: (
   <img
     src="/images/metadata.svg"
