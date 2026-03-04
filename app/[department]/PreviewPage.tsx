@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState,  useCallback,useMemo ,useRef} from 'react';
 import { useParams } from 'next/navigation';
-import CalculatorTestimonials from '../components/CalculatorTestimonials';
+// import CalculatorTestimonials from '../components/CalculatorTestimonials';
 import Button from "../components/Button"
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -1168,7 +1168,7 @@ const handleSubmit = async () => {
 <div className="w-full h-[2px] border-t border-dashed border-[#F9B31B] my-[6px]"></div>
 
    
-      <CalculatorTestimonials />
+      {/* <CalculatorTestimonials /> */}
 
   </div>
 </div>

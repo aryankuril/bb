@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Firstsection from '@/app/components/ContactUs/Firstsection'
 import SecondSection from '../components/ContactUs/SecondSection'
-import Testimonials from "@/app/components/Testimonials";
+// import Testimonials from "@/app/components/Testimonials";
 import SeventhSection from '../components/ServicesInternal/WebsiteDesign/SeventhSection'
 import Footer from '../components/Footer'
 // import ClientScripts from '../components/ClientScripts'
@@ -26,7 +26,7 @@ const Index = () => {
         <Navbar />
         <Firstsection/>
         <SecondSection/>
-        <Testimonials/>
+        {/* <Testimonials/> */}
         <SeventhSection/>
         <Footer />
       </SmoothScroll>

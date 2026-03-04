@@ -5,7 +5,7 @@ import FirstSection from "../../components/ServicesInternal/SocialMedia/FirstSec
 import ThirdSection from "../../components/ServicesInternal/SocialMedia/ThirdSection";
 import FourthSection from "../../components/ServicesInternal/SocialMedia/FourthSection";
 import WorkCard from '@/app/components/HomePage/WorkCard';
-import Testimonials from "@/app/components/Testimonials";
+// import Testimonials from "@/app/components/Testimonials";
 import SeventhSection from "@/app/components/ServicesInternal/WebsiteDesign/SeventhSection";
 import Footer from "../../components/Footer";
 // import ClientScripts from '../components/ClientScripts'
@@ -32,7 +32,7 @@ const Index = () => {
       <FourthSection />
       <ThirdSection />
       <WorkCard/>
-      <Testimonials />
+      {/* <Testimonials /> */}
       <SeventhSection />
       <Footer />
       </SmoothScroll>

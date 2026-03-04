@@ -10,7 +10,7 @@ import PerformanceROI from "./components/HomePage/PerformanceROI"
 import BombAISection from "./components/HomePage/BombAISection";
 import RubberSection from "./components/HomePage/RubberSection";
 import CardCarousel from "./components/HomePage/CardCarousel";
-import Testimonials from "@/app/components/Testimonials";
+// import Testimonials from "@/app/components/Testimonials";
 import SeventhSection from "./components/ServicesInternal/WebsiteDesign/SeventhSection";
 import Footer from "./components/Footer";
 import Taxi from "./components/Taxi";
@@ -39,7 +39,7 @@ export default function Home() {
       <BombAISection/>
       <RubberSection/>
       <CardCarousel/>
-      <Testimonials/>
+      {/* <Testimonials/> */}
       <SeventhSection/>
       <Footer />
       </SmoothScroll>
