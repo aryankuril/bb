@@ -16,7 +16,7 @@ const Index = () => {
   return (
     <div>
       <SmoothScroll> 
-      <Taxi/>
+        <Taxi/>
         <Navbar />
         <Firstsection/>
         <SecondSection/>
