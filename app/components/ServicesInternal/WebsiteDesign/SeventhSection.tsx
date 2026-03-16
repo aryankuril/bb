@@ -33,41 +33,49 @@ const SeventhSection = () => {
             </h2>
 
             {/* Contact Info */}
-        <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 body3 white-text px-4 lg:p-0">
+       <div className="flex flex-col items-center justify-center gap-4 body3 white-text px-4 lg:p-0">
 
-  <span>
-    For Projects and Gossip :
+  {/* Projects */}
+  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-1 text-center sm:text-left">
+    <span>For Projects and Gossip :</span>
+
     <a
       href="mailto:hello@bombayblokes.com"
-      className="text-highlight ml-1"
+      className="text-highlight sm:ml-1"
     >
       hello@bombayblokes.com
     </a>
-    {" | "}
+
+    <span className="hidden sm:inline"> | </span>
+
     <a
       href="tel:+919987558189"
       className="text-highlight"
     >
       9987558189
     </a>
-  </span>
+  </div>
 
-  <span>
-    For Careers / Jobs :
+  {/* Careers */}
+  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-1 text-center sm:text-left">
+    <span>For Careers / Jobs :</span>
+
     <a
       href="mailto:careers@bombayblokes.com"
-      className="text-highlight ml-1"
+      className="text-highlight sm:ml-1"
     >
       careers@bombayblokes.com
     </a>
-    {" | "}
+
+    <span className="hidden sm:inline"> | </span>
+
     <a
       href="tel:+917738551454"
       className="text-highlight"
     >
       7738551454
     </a>
-  </span>
+  </div>
 
 </div>
           </div>
