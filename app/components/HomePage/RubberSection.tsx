@@ -5,10 +5,10 @@ import { motion, Variants, useMotionValue, useTransform, animate, useSpring } fr
 import Button from "../Button";
 import Image from "next/image";
 const cards = [
-  { img: "/images/rubberr1.jpg", label: "Young Passionate Crowd", rotate: 10 },
+  { img: "/images/rubberr1.webp", label: "Young Passionate Crowd", rotate: 10 },
   { img: "/images/rubberr2.webp", label: "Jugged Masters", rotate: -10 },
-  { img: "/images/rubberr3.jpg", label: "Goldi-Cricket Champs", rotate: 10 },
-  { img: "/images/rubberr4.jpeg", label: "Creative Experts", rotate: 10 },
+  { img: "/images/rubberr3.webp", label: "Goldi-Cricket Champs", rotate: 10 },
+  { img: "/images/rubberr4.webp", label: "Creative Experts", rotate: 10 },
 ];
 
 const RubberSection = () => {

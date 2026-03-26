@@ -9,7 +9,7 @@ const services = [
     id: 1,
     title: "Branding - thecha to your vada pav",
     desc: "Branding adds flavor and personality to your brand, giving it a strong identity that everything else builds on.",
-    img: "/images/Branding.png",
+    img: "/images/Branding.webp",
   },
   {
     id: 2,
@@ -21,13 +21,13 @@ const services = [
     id: 3,
     title: "Web development - the aftertaste",
     desc: "The aftertaste is what lingers and leaves an impression. Web development ensures your website functions smoothly and leaves a lasting, reliable impression on your audience.",
-    img: "/images/Website2.png",
+    img: "/images/Website2.webp",
   },
   {
     id: 4,
     title: "Digital marketing - spreading the aroma",
     desc: "Just like the aroma of a Vada Pav spreads and attracts people, digital marketing spreads your message to the audience, making your brand visible and enticing.",
-    img: "/images/SocialMedia.png",
+    img: "/images/SocialMedia.webp",
   },
 ];
 

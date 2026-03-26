@@ -6,6 +6,21 @@
    FONT VARIABLES & COLORS
    ========================================= */
 
+
+   /* Prevent render blocking for animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+.animated-border-btn,
+.animated-word {
+  animation-delay: 1s;
+}
+
 :root {
   --font-miso: "Miso", sans-serif;
   --font-poppins: "Poppins", sans-serif;
@@ -50,11 +65,18 @@
 
 body {
   font-family: var(--font-poppins);
- @apply relative w-full min-h-screen overflow-x-hidden;
-background-image: url("/images/bg.svg");
-background-size: cover;
-background-attachment: fixed;
+  @apply relative w-full min-h-screen overflow-x-hidden;
   color: var(--color-primary);
+}
+
+/* Move background to a pseudo element (non-blocking) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("/images/bg.svg") center/cover no-repeat;
+  z-index: -1;
+  will-change: transform;
 }
 
 h1 {

@@ -1,10 +1,13 @@
 
+"use client";
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import AnimatedEffects from "./components/AnimatedEffects";
-import AnalyticsWrapper from "./components/analytics-wrapper";
+
+// Dynamic Components (Client-only)
+const AnimatedEffects = dynamic(() => import("./components/AnimatedEffects"), { ssr: false });
+const AnalyticsWrapper = dynamic(() => import("./components/analytics-wrapper"), { ssr: false });
 
 
 const miso = localFont({
@@ -14,37 +17,12 @@ const miso = localFont({
 
 const poppins = Poppins({
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
 });
 
-import type { Metadata } from "next";
-
-
-export const metadata: Metadata = {
-  title: "Bombay Blokes",
-  description:
-    "Mumbai’s leading Digital Marketing Agency | Bombay Blokes. Customized and result-driven digital solutions.",
-  openGraph: {
-    title: "Bombay Blokes",
-    description:
-      "Mumbai’s leading Digital Marketing Agency | Bombay Blokes.",
-    url: "https://bombayblokes.com",
-    siteName: "Bombay Blokes",
-    images: [
-      {
-        url: "https://blokesarea.com/wp-content/uploads/favicon.png", // IMPORTANT
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "en_IN",
-    type: "website",
-  },
-  icons: {
-    icon: "/images/favicon.png",
-  },
-};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -71,7 +71,7 @@ const Taxi = () => {
 
   return (
     <motion.img
-      src="/images/taxi.png"
+      src="/images/taxi.webp"
       alt="Taxi"
       style={{
         position: "fixed",

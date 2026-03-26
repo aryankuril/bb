@@ -5,11 +5,11 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const images = [
-  "/images/shopifylogo.png",
-  "/images/figmalogo.png",
-  "/images/framerlogo.png",
-  "/images/nextjslogo.png",
-  "/images/wordpresslogo.png",
+  "/images/shopifylogo.webp",
+  "/images/figmalogo.webp",
+  "/images/framerlogo.webp",
+  "/images/nextjslogo.webp",
+  "/images/wordpresslogo.webp",
 ];
 
 export default function ThirdSection() {
