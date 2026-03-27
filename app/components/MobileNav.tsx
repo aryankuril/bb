@@ -164,7 +164,7 @@ const MobileNav = () => {
             <Image
             width={100}
             height={100}
-              src="/images/whatsapp.svg"
+              src="/images/whatsapp.webp"
               alt="WhatsApp"
               className="w-10 h-10"
             />

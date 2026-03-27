@@ -1,7 +1,24 @@
 
-import LandingPage from "./components/LandingPage";
+import Navbar from "./components/Navbar";
+import Firstsection from "./components/HomePage/Firstsection";
+import SecondSection from "./components/HomePage/SecondSection";
+import StudioSection from "./components/HomePage/StudioSection"
+import ThirdSection from "./components/HomePage/ThirdSection";
+import WorkCard from "./components/HomePage/WorkCard";
+import PerformanceROI from "./components/HomePage/PerformanceROI"
+import BombAISection from "./components/HomePage/BombAISection";
+import RubberSection from "./components/HomePage/RubberSection";
+import CardCarousel from "./components/HomePage/CardCarousel";
+// import Testimonials from "@/app/components/Testimonials";
+import SeventhSection from "./components/ServicesInternal/WebsiteDesign/SeventhSection";
+import Footer from "./components/Footer";
+import Taxi from "./components/Taxi";
+import MobilePopup from "./components/MobilePopup";
+// import ClientScripts from "./components/ClientScripts";
+import SmoothScroll from "./components/SmoothScroll";  
 
 import type { Metadata } from "next";
+
 
 export const metadata: Metadata = {
   title: "Mumbai’s leading Digital Marketing Agency | Bombay Blokes",
@@ -26,9 +43,24 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-
-      <LandingPage/>
-      
+       <SmoothScroll>
+      {/* <ClientScripts/> */}
+      <Taxi/>
+      {/* <MobilePopup/> */}
+      <Navbar />
+      <Firstsection/>
+      <SecondSection/>
+      <ThirdSection/>
+      <WorkCard />
+      <StudioSection/>
+      <PerformanceROI/>
+      <BombAISection/>
+      <RubberSection/>
+      <CardCarousel/>
+      {/* <Testimonials/> */}
+      <SeventhSection/>
+      <Footer />
+      </SmoothScroll>
     </div>
     
   );

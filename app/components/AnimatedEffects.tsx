@@ -1,14 +1,18 @@
 "use client";
-import dynamic from "next/dynamic";
 
-const PageLoader = dynamic(() => import("./PageLoader"), { ssr: false });
-const ScrollToTop = dynamic(() => import("./ScrollToTop"), { ssr: false });
-const ClickBurst = dynamic(() => import("./ClickBurst"), { ssr: false });
+import PageLoader from "./PageLoader";
+import FallingFlowers from "./FallingFlowers";
+import ScrollToTop from "./ScrollToTop";
+import ClickBurst from "./ClickBurst";
 
-export default function AnimatedEffects() {
+export default function AnimatedEffects({ children }: any) {
   return (
     <>
-      <PageLoader />
+      <PageLoader>
+        {/* <FallingFlowers /> */}
+        {children}
+      </PageLoader>
+
       <ScrollToTop />
       <ClickBurst burstImage="/images/star.png" />
     </>
