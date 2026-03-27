@@ -15,7 +15,7 @@ const Firstsection = () => {
           muted
           loop
           playsInline
-          preload="auto"
+           preload="none"
           poster="/images/video-poster-desktop.png"
           onLoadedData={() => setDesktopLoaded(true)}
           className={`hidden md:block absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out ${
@@ -32,7 +32,7 @@ const Firstsection = () => {
           muted
           loop
           playsInline
-          preload="auto"
+           preload="none"
           poster="/images/video-poster-mobile.png"
           onLoadedData={() => setMobileLoaded(true)}
           className={`block md:hidden absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out ${

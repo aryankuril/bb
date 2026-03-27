@@ -1,13 +1,10 @@
 
-"use client";
+
 import localFont from "next/font/local";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-
-// Dynamic Components (Client-only)
-const AnimatedEffects = dynamic(() => import("./components/AnimatedEffects"), { ssr: false });
-const AnalyticsWrapper = dynamic(() => import("./components/analytics-wrapper"), { ssr: false });
+import ClientProviders from "./components/ClientProviders";
 
 
 const miso = localFont({
@@ -21,7 +18,7 @@ const poppins = Poppins({
   preload: true,
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
-});
+}); 
 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -34,13 +31,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
 
-        <AnimatedEffects>
+     
           {children}
-        </AnimatedEffects>
 
 
-        {/* LOAD ANALYTICS LAST (Best for speed) */}
-        <AnalyticsWrapper />
+        <ClientProviders />
 
       </body>
     </html>
