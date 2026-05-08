@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState, ChangeEvent } from "react";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { useRouter } from "next/navigation";
+import { collection, getDocs, query, orderBy ,getDoc, doc } from "firebase/firestore";
+import { useRouter ,useSearchParams} from "next/navigation";
 import { db } from "@/lib/firebase";
-import ContactButton from "../ContactButton";
-import Button from "../Button";
+import ContactButton from "@/app/components/ContactButton";
+import Button from "@/app/components/Button";
 type CareerCategoryType =
   | "performance"
   | "social"
@@ -136,6 +136,11 @@ function renderEditorJsHTML(data: unknown) {
 
 const SecondSection = () => {
 const router = useRouter();
+const searchParams = useSearchParams();
+const jobId =
+  searchParams.get("id") ||
+  searchParams.get("jobId") ||
+  searchParams.get("slug");
 const [jobs, setJobs] = useState<Career[]>([]);
 const [activeJob, setActiveJob] = useState<Career | null>(null);
 
@@ -183,11 +188,11 @@ const [activeJob, setActiveJob] = useState<Career | null>(null);
   return phoneRegex.test(cleanedPhone);
 };
 
-useEffect(() => {
-  if (jobs.length > 0 && !activeJob) {
-    setActiveJob(jobs[0]);
-  }
-}, [jobs]);
+// useEffect(() => {
+//   if (jobs.length > 0 && !activeJob) {
+//     setActiveJob(jobs[0]);
+//   }
+// }, [jobs]);
 
 
   const goBack = () => {
@@ -251,89 +256,70 @@ useEffect(() => {
     }
   };
 
-  useEffect(() => {
-    const fetchCareers = async () => {
-  try {
-    const q = query(collection(db, "careers"), orderBy("postedAt", "desc"));
-    const snapshot = await getDocs(q);
+useEffect(() => {
+  const fetchCareers = async () => {
+    try {
+      const q = query(
+        collection(db, "careers"),
+        orderBy("postedAt", "desc")
+      );
 
-const careersData: Career[] = snapshot.docs
-  .map((doc) => {
-    const data = doc.data() as Omit<
-      Career,
-      "id" | "tag" | "details"
-    >;
+      const snapshot = await getDocs(q);
 
-    return {
-      id: doc.id,
-      ...data,
-      tag: data.isImmediate ? "Immediate" : "",
-      details: data.description,
-    };
-  })
+      const careersData: Career[] = snapshot.docs.map((docItem) => {
+        const data = docItem.data() as Omit<
+          Career,
+          "id" | "tag" | "details"
+        > & {
+          status?: string;
+        };
 
-.filter((career: any) => {
+        return {
+          id: docItem.id,
+          ...data,
+          tag: data.isImmediate ? "Immediate" : "",
+          details: data.description,
+        };
+      });
 
-  // Explicitly hide drafts
-  if (career.status === "draft") {
-    return false;
-  }
+      // ✅ sort featured first
+      careersData.sort((a, b) => {
+        if (a.isFeatured && !b.isFeatured) return -1;
+        if (!a.isFeatured && b.isFeatured) return 1;
 
-  // Published jobs
-  if (
-    career.status === "published" ||
-    career.status === "live"
-  ) {
-    return true;
-  }
+        return (
+          (b.postedAt?.seconds || 0) -
+          (a.postedAt?.seconds || 0)
+        );
+      });
 
-  // Scheduled jobs
-  if (
-    career.status === "scheduled" &&
-    career.scheduledAt
-  ) {
-    const scheduledDate =
-      typeof career.scheduledAt.toDate === "function"
-        ? career.scheduledAt.toDate()
-        : new Date(career.scheduledAt);
+      // ✅ set all jobs
+      setJobs(careersData);
 
-    return scheduledDate <= new Date();
-  }
-
-  // Old jobs without status
-  if (
-    career.status === undefined ||
-    career.status === null ||
-    career.status === ""
-  ) {
-    return true;
-  }
-
-  return false;
-});
-
-// ⭐ Featured first
-careersData.sort((a, b) => {
-  if (a.isFeatured && !b.isFeatured) return -1;
-  if (!a.isFeatured && b.isFeatured) return 1;
-
-  // fallback: newest first
-  return (
-    (b.postedAt?.seconds || 0) - (a.postedAt?.seconds || 0)
+      // ✅ open JD according to URL
+      if (jobId) {
+  const matchedJob = careersData.find(
+    (job) => job.id === jobId
   );
-});
 
-setJobs(careersData);
-
-
-  } catch (err) {
-    console.error("Error fetching careers:", err);
+  if (matchedJob) {
+    setActiveJob(matchedJob);
+    return;
   }
-};
+}
 
+      // ✅ fallback first job
+      if (careersData.length > 0) {
+        setActiveJob(careersData[0]);
+      }
 
-    fetchCareers();
-  }, []);
+    } catch (err) {
+      console.error("Error fetching careers:", err);
+    }
+  };
+
+  fetchCareers();
+}, [jobId]);
 
   const handleFocus = (field: keyof InputValues) => setFocusedInput(field);
   const handleBlur = (
