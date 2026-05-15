@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import { db } from "@/lib/firebase";
 import ContactButton from "../ContactButton";
 import Button from "../Button";
-type CareerCategoryType =
-  | "performance"
-  | "social"
-  | "design"
-  | "seo"
-  | "tech"
-  | "others";
+
+interface CareerCategory {
+  id: string;
+  name: string;
+  slug: string;
+  position: number;
+}
 
 interface Career {
   id: string;
@@ -22,20 +22,9 @@ interface Career {
   postedAt?: { seconds: number };
   tag?: string;
   details?: string;
-  category: CareerCategoryType;
+  category: string;
 }
 
-
-type CareerCategoryMap = Record<CareerCategoryType, Career[]>;
-
-const careerCategories: CareerCategoryMap = {
-  performance: [],
-  social: [],
-  design: [],
-  seo: [],
-  tech: [],
-  others: [],
-};
 
 
 
@@ -137,6 +126,9 @@ function renderEditorJsHTML(data: unknown) {
 const SecondSection = () => {
 const router = useRouter();
 const [jobs, setJobs] = useState<Career[]>([]);
+const [categories, setCategories] = useState<
+  CareerCategory[]
+>([]);
 const [activeJob, setActiveJob] = useState<Career | null>(null);
 
   const [isFlipped, setIsFlipped] = useState(false);
@@ -188,6 +180,31 @@ useEffect(() => {
     setActiveJob(jobs[0]);
   }
 }, [jobs]);
+
+
+useEffect(() => {
+  const fetchCategories = async () => {
+    try {
+      const snapshot = await getDocs(
+        query(
+          collection(db, "careerCategories"),
+          orderBy("position", "asc")
+        )
+      );
+
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as CareerCategory[];
+
+      setCategories(data);
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+    }
+  };
+
+  fetchCategories();
+}, []);
 
 
   const goBack = () => {
@@ -536,7 +553,12 @@ const goNext = () => {
 // }, [submitStatus]);
 
 
-
+const groupedCareers = categories.map((cat) => ({
+  ...cat,
+  jobs: jobs.filter(
+    (job) => job.category === cat.slug
+  ),
+}));
 
   const svgs = {
     ticketName: (
@@ -718,23 +740,6 @@ const goNext = () => {
   };
 
 // Helper function to categorize jobs
-const categorizeJobs = (): CareerCategoryMap => {
-  const categories: CareerCategoryMap = {
-    performance: [],
-    social: [],
-    design: [],
-    seo: [],
-    tech: [],
-    others: [],
-  };
-
-  jobs.forEach((job) => {
-    const cat = (job.category || "others") as CareerCategoryType;
-    categories[cat].push(job);
-  });
-
-  return categories;
-};
 
 
   const toggleAccordion = (category: string) => {
@@ -841,7 +846,7 @@ const progress =
         className="
       text-center black-text
       mb-8 md:mb-10
-    "
+    "   
       >
         This Train’s Departing
         {/* :{" "}
@@ -850,11 +855,13 @@ const progress =
 
       <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
         {/* LEFT – Job List with Accordion */}
-        <div className="p-4 md:p-6 md:pt-4 flex flex-col lg:gap-3 gap-2  ">
+        <div className="p-4 md:p-6 md:pt-4 lg:mt-1 flex flex-col gap-2  ">
           <h2 className="white-text text-center mb-6 md:mb-6">Open Roles</h2>
 
-          {/* Performance Marketing */}
-          {categorizeJobs().performance.length > 0 && (
+
+
+{/* 
+           {categorizeJobs().performance.length > 0 && (
             <div className="border border-[var(--color-highlight)] rounded-[6px]  overflow-hidden">
               <button
                 onClick={() => toggleAccordion("performance")}
@@ -928,392 +935,144 @@ const progress =
                 </div>
               )}
             </div>
-          )}
+          )} */}
 
-          {/* Social Media */}
-          {categorizeJobs().social.length > 0 && (
-            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
+
+         
+
+         {groupedCareers.map((category) => {
+  if (category.jobs.length === 0) return null;
+
+  return (
+    <div
+      key={category.id}
+      className="mb-1"
+    >
+      <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
+
+        {/* HEADER */}
+        <button
+          onClick={() =>
+            setOpenAccordion(
+              openAccordion === category.id
+                ? null
+                : category.id
+            )
+          }
+          className="
+            w-full
+            px-4
+            py-4
+            flex
+            justify-between
+            items-center
+            cursor-pointer
+            bg-transparent
+            text-[var(--color-highlight)]
+            hover:bg-[color-mix(in_srgb,var(--color-highlight)_10%,transparent)]
+            transition-all
+          "
+        >
+          <span className="font-semibold body2">
+            {category.name} ({category.jobs.length})
+          </span>
+
+          <svg
+            className={`w-5 h-5 transition-transform duration-300 ${
+              openAccordion === category.id
+                ? "rotate-180"
+                : ""
+            }`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+
+        {/* CONTENT */}
+        {openAccordion === category.id && (
+          <div className="flex flex-col px-3 pb-3 pt-0 space-y-2">
+
+            {category.jobs.map((job, index) => (
               <button
-                onClick={() => toggleAccordion("social")}
-                className="w-full px-4 py-3 flex justify-between items-center cursor-pointer bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
-              >
-                <span className="font-semibold body2">
-                  Social Media ({categorizeJobs().social.length})
-                </span>
-                <svg
-                  className={`w-5 h-5 transition-transform ${
-                    openAccordion === "social" ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {openAccordion === "social" && (
-                <div className="flex flex-col gap-2 p-3 pt-0">
-                  {categorizeJobs().social.map((job, i) => (
-                    <button
-                      key={i}
-                      onClick={() => {
-                        setActiveJob(job);
-                        if (isFlipped) setIsFlipped(false);
-                        if (window.innerWidth < 768) {
-                          const rightSection =
-                            document.getElementById("details-section");
-                          if (rightSection) {
-                            rightSection.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
-                          }
-                        }
-                      }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
-                ${
-                  activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
-                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-                }`}
-                    >
-                      <span className="flex-shrink-0 font-semibold">
-                        {i + 1}.
-                      </span>
-                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
-                        {job.title}
-                      </div>
-                      {job.tag && (
-                        <span
-                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
+                key={job.id}
+                onClick={() => setActiveJob(job)}
+                className={`
+                  relative
+                  text-left
+                  body2
+                  px-4
+                  py-3
+                  cursor-pointer
+                  rounded-[6px]
+                  transition-all
+                  duration-200
+                  flex
+                  items-center
+                  gap-3
                   ${
                     activeJob?.title === job.title
-                      ? "bg-black text-yellow-400"
-                      : "bg-[var(--color-highlight)] text-black"
-                  }`}
-                        >
-                          {job.tag}
-                        </span>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Design & Editing */}
-          {categorizeJobs().design.length > 0 && (
-            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
-              <button
-                onClick={() => toggleAccordion("design")}
-                className="w-full px-4 py-3 flex justify-between items-center cursor-pointer bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
+                      ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
+                      : "text-[var(--color-highlight)] hover:bg-[color-mix(in_srgb,var(--color-highlight)_10%,transparent)]"
+                  }
+                `}
               >
-                <span className="font-semibold body2">
-                  Design & Editing ({categorizeJobs().design.length})
-                </span>
-                <svg
-                  className={`w-5 h-5 transition-transform ${
-                    openAccordion === "design" ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {openAccordion === "design" && (
-                <div className="flex flex-col gap-2 p-3 pt-0">
-                  {categorizeJobs().design.map((job, i) => (
-                    <button
-                      key={i}
-                      onClick={() => {
-                        setActiveJob(job);
-                        if (isFlipped) setIsFlipped(false);
-                        if (window.innerWidth < 768) {
-                          const rightSection =
-                            document.getElementById("details-section");
-                          if (rightSection) {
-                            rightSection.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
-                          }
-                        }
-                      }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
-                ${
-                  activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
-                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-                }`}
-                    >
-                      <span className="flex-shrink-0 font-semibold">
-                        {i + 1}.
-                      </span>
-                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
-                        {job.title}
-                      </div>
-                      {job.tag && (
-                        <span
-                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
-                  ${
-                    activeJob?.title === job.title
-                      ? "bg-black text-yellow-400"
-                      : "bg-[var(--color-highlight)] text-black"
-                  }`}
-                        >
-                          {job.tag}
-                        </span>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
 
-          {/* SEO */}
-          {categorizeJobs().seo.length > 0 && (
-            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
-              <button
-                onClick={() => toggleAccordion("seo")}
-                className="w-full px-4 py-3 flex justify-between cursor-pointer items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
-              >
-                <span className="font-semibold body2">
-                  SEO ({categorizeJobs().seo.length})
+                {/* NUMBER */}
+                <span className="flex-shrink-0 font-semibold">
+                  {index + 1}.
                 </span>
-                <svg
-                  className={`w-5 h-5 transition-transform ${
-                    openAccordion === "seo" ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {openAccordion === "seo" && (
-                <div className="flex flex-col gap-2 p-3 pt-0">
-                  {categorizeJobs().seo.map((job, i) => (
-                    <button
-                      key={i}
-                      onClick={() => {
-                        setActiveJob(job);
-                        if (isFlipped) setIsFlipped(false);
-                        if (window.innerWidth < 768) {
-                          const rightSection =
-                            document.getElementById("details-section");
-                          if (rightSection) {
-                            rightSection.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
-                          }
-                        }
-                      }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
-                ${
-                  activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
-                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-                }`}
-                    >
-                      <span className="flex-shrink-0 font-semibold">
-                        {i + 1}.
-                      </span>
-                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
-                        {job.title}
-                      </div>
-                      {job.tag && (
-                        <span
-                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
-                  ${
-                    activeJob?.title === job.title
-                      ? "bg-black text-yellow-400"
-                      : "bg-[var(--color-highlight)] text-black"
-                  }`}
-                        >
-                          {job.tag}
-                        </span>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
 
-          {/* Tech/Development */}
-          {categorizeJobs().tech.length > 0 && (
-            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
-              <button
-                onClick={() => toggleAccordion("tech")}
-                className="w-full px-4 py-3 flex justify-between cursor-pointer items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
-              >
-                <span className="font-semibold body2">
-                  Tech & Development ({categorizeJobs().tech.length})
-                </span>
-                <svg
-                  className={`w-5 h-5 transition-transform ${
-                    openAccordion === "tech" ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              {openAccordion === "tech" && (
-                <div className="flex flex-col gap-2 p-3 pt-0">
-                  {categorizeJobs().tech.map((job, i) => (
-                    <button
-                      key={i}
-                      onClick={() => {
-                        setActiveJob(job);
-                        if (isFlipped) setIsFlipped(false);
-                        if (window.innerWidth < 768) {
-                          const rightSection =
-                            document.getElementById("details-section");
-                          if (rightSection) {
-                            rightSection.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
-                          }
-                        }
-                      }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
-                ${
-                  activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
-                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-                }`}
-                    >
-                      <span className="flex-shrink-0 font-semibold">
-                        {i + 1}.
-                      </span>
-                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
-                        {job.title}
-                      </div>
-                      {job.tag && (
-                        <span
-                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
-                  ${
-                    activeJob?.title === job.title
-                      ? "bg-black text-yellow-400"
-                      : "bg-[var(--color-highlight)] text-black"
-                  }`}
-                        >
-                          {job.tag}
-                        </span>
-                      )}
-                    </button>
-                  ))}
+                {/* TITLE */}
+                <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
+                  {job.title}
                 </div>
-              )}
-            </div>
-          )}
 
-          {/* Others */}
-          {categorizeJobs().others.length > 0 && (
-            <div className="border border-[var(--color-highlight)] rounded-[6px] overflow-hidden">
-              <button
-                onClick={() => toggleAccordion("others")}
-                className="w-full px-4 py-3 flex justify-between cursor-pointer items-center bg-transparent text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)] transition-all"
-              >
-                <span className="font-semibold body2">
-                  Others ({categorizeJobs().others.length})
-                </span>
-                <svg
-                  className={`w-5 h-5 transition-transform ${
-                    openAccordion === "others" ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
+                {/* TAG */}
+                {job.tag && (
+                  <span
+                    className={`
+                      absolute
+                      top-1/2
+                      -translate-y-1/2
+                      right-3
+                      text-[10px]
+                      lg:text-xs
+                      px-1.5
+                      lg:px-3
+                      lg:py-1
+                      py-0
+                      rounded-md
+                      font-medium
+                      transition-colors
+                      duration-200
+                      whitespace-nowrap
+                      ${
+                        activeJob?.title === job.title
+                          ? "bg-black text-yellow-400"
+                          : "bg-[var(--color-highlight)] text-black"
+                      }
+                    `}
+                  >
+                    {job.tag}
+                  </span>
+                )}
+
               </button>
-              {openAccordion === "others" && (
-                <div className="flex flex-col gap-2 p-3 pt-0">
-                  {categorizeJobs().others.map((job, i) => (
-                    <button
-                      key={i}
-                      onClick={() => {
-                        setActiveJob(job);
-                        if (isFlipped) setIsFlipped(false);
-                        if (window.innerWidth < 768) {
-                          const rightSection =
-                            document.getElementById("details-section");
-                          if (rightSection) {
-                            rightSection.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
-                          }
-                        }
-                      }}
-                      className={`relative text-left body2 px-4 py-2 sm:py-3 cursor-pointer rounded-[6px] transition-all duration-200 flex items-start gap-3
-                ${
-                  activeJob?.title === job.title
-                    ? "bg-[var(--color-highlight)] text-[var(--color-primary)]"
-                    : "text-[var(--color-highlight)] hover:bg-[color-mix(in srgb, var(--color-highlight) 10%, transparent)]"
-                }`}
-                    >
-                      <span className="flex-shrink-0 font-semibold">
-                        {i + 1}.
-                      </span>
-                      <div className="flex-1 pr-16 whitespace-normal leading-snug break-words">
-                        {job.title}
-                      </div>
-                      {job.tag && (
-                        <span
-                          className={`absolute top-1/2 -translate-y-1/2 right-3 text-[10px] lg:text-xs px-1.5 lg:px-3 lg:py-1 py-0 rounded-md font-medium transition-colors duration-200 whitespace-nowrap
-                  ${
-                    activeJob?.title === job.title
-                      ? "bg-black text-yellow-400"
-                      : "bg-[var(--color-highlight)] text-black"
-                  }`}
-                        >
-                          {job.tag}
-                        </span>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+})}
         </div>
 
         {/* RIGHT – Details */}
