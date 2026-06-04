@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
 
             <!-- background area with subtle sketch (use a light artwork/bg image) -->
             <tr>
-            <td background="https://blokesarea.com/wp-content/uploads/2025/12/Email-Background.png"
+            <td background="https://firebasestorage.googleapis.com/v0/b/bombay-blokes-4c284.firebasestorage.app/o/blogimages%2FEmail-Background.png?alt=media&token=01ed6e19-5b99-4969-bcb3-578c02786d26"
     style="
       background-position: top center;
       background-repeat: no-repeat;
@@ -141,8 +141,8 @@ export async function POST(request: NextRequest) {
                   <tr>
                     <td style="padding-top:10px; padding-bottom:18px;">
                       <p style="margin:0; font-size:14px; line-height:20px; color:#333333;">
-                        <strong>Thank You For Reaching Out! 👋</strong><br />
-                        We’ve Received Your Message And Our Team Will Get Back To You Shortly.
+                        <strong>Thank you for reaching out! 👋</strong><br />
+                        We’ve received your message and our team will get back to you shortly.
                       </p>
                     </td>
                   </tr>
@@ -239,7 +239,7 @@ export async function POST(request: NextRequest) {
                   <tr>
                     <td style="padding:8px 0 18px 0;">
                       <p style="margin:0 0 8px 0; font-size:15px; color:#222222;">
-                        Since You’re Interested In <strong>  ${formattedServices}</strong>, Here Are Some Of Our Portfolio:
+                        Since you’re interested in <strong>  ${formattedServices}</strong>, Here are some of our portfolio:
                       </p>
 
                       <!-- button (pill) -->
@@ -283,8 +283,8 @@ export async function POST(request: NextRequest) {
                     <td style="padding:6px 0;">
                       <h4 style="margin:0 0 8px 0; font-size:18px; color:#222222;">What Happens Next?</h4>
                       <p style="margin:0; font-size:14px; color:#333333; line-height:20px;">
-                        Our Team Will Review Your Inquiry And Get Back To You Within 24 Hours.
-                        We May Reach Out For A Few More Details To Understand Your Requirements Better.
+                        Our team will review your inquiry and get back to you within 24 hours.
+                        We may reach out for a few more details to understand your requirements better.
                       </p>
                     </td>
                   </tr>
@@ -357,7 +357,7 @@ export async function POST(request: NextRequest) {
             <!-- footer banner image (big gold 10 years banner from site) -->
             <tr>
               <td style="padding:0; margin:0;">
-                <img src="https://blokesarea.com/wp-content/uploads/2025/12/email-signature-2.png"
+                <img src="https://firebasestorage.googleapis.com/v0/b/bombay-blokes-4c284.firebasestorage.app/o/blogimages%2Fbbsignature.png?alt=media&token=8bc93c2d-8a9c-4e1f-81dc-ef8d1cc90499"
                   alt="Bombay Blokes - 10 years" width="600" style="display:block; width:100%; max-width:600px; height:auto; border:0;"/>
               </td>
             </tr>
@@ -398,11 +398,13 @@ export async function POST(request: NextRequest) {
     `;
 
     await sendEmail({
+      //  to: "aryankuril09@gmail.com",
       to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
       subject: `New Contact Form - ${name}`,
       html: teamNotification,
       fromName: "Website Contact Form",
       fromAddress: "hello@bombayblokes.com",
+      replyTo: email,
     });
 
     return NextResponse.json({

@@ -80,7 +80,7 @@ const htmlTemplate = `
           ">
 
             <tr>
-              <td background="https://blokesarea.com/wp-content/uploads/2025/12/Email-Background.png"
+              <td background="https://firebasestorage.googleapis.com/v0/b/bombay-blokes-4c284.firebasestorage.app/o/blogimages%2FEmail-Background.png?alt=media&token=01ed6e19-5b99-4969-bcb3-578c02786d26"
                 style="background-position: top center; background-repeat: no-repeat; background-size: cover; padding:30px 16px 20px 16px;">
 
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -138,7 +138,7 @@ const htmlTemplate = `
                   <tr>
                     <td style="padding-top:14px; padding-bottom:14px;">
                       <p style="margin:0; font-size:14px; color:#333;">
-                        <strong>We’re excited to officially get started on your project.</strong><br/>
+                        <strong>We’re Excited To Officially Get Started On Your Project.</strong><br/>
                         Thanks for confirming. Your journey with us now begins for real.
                       </p>
                     </td>
@@ -291,7 +291,7 @@ const htmlTemplate = `
                   <!-- Work CTA -->
                   <tr>
                      <td style="padding-top:10px; padding-bottom:10px;">
-                      <p style="font-size:14px;">Relevant Work In   ${formattedServices} <br/> Until our kickoff call, you can explore similar projects we’ve executed</p>
+                      <p style="font-size:14px;">Relevant work in   ${formattedServices} <br/> Until our kickoff call, you can explore similar projects we’ve executed</p>
                       
 
                       <table cellpadding="0" cellspacing="0" style="margin-top:6px;">
@@ -375,7 +375,7 @@ const htmlTemplate = `
             <!-- Footer Banner -->
             <tr>
               <td>
-                <img src="https://blokesarea.com/wp-content/uploads/2025/12/email-signature-2.png"
+                <img src="https://firebasestorage.googleapis.com/v0/b/bombay-blokes-4c284.firebasestorage.app/o/blogimages%2Fbbsignature.png?alt=media&token=8bc93c2d-8a9c-4e1f-81dc-ef8d1cc90499"
                      width="600" style="display:block; width:100%;">
               </td>
             </tr>
@@ -421,11 +421,13 @@ const htmlTemplate = `
     `;
 
     await sendEmail({
+      // to: "aryankuril09@gmail.com",
       to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
       subject: `New Client Registration - ${companyName}`,
       html: teamNotification,
       fromName: "Website Client Registration",
       fromAddress: "hello@bombayblokes.com",
+      replyTo: email,
     });
 
     return NextResponse.json({

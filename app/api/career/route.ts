@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
 
             <!-- background area with subtle sketch (use a light artwork/bg image) -->
             <tr>
-            <td background="https://blokesarea.com/wp-content/uploads/2025/12/Email-Background.png"
+            <td background="https://firebasestorage.googleapis.com/v0/b/bombay-blokes-4c284.firebasestorage.app/o/blogimages%2FEmail-Background.png?alt=media&token=01ed6e19-5b99-4969-bcb3-578c02786d26"
     style="
       background-position: top center;
       background-repeat: no-repeat;
@@ -217,7 +217,8 @@ export async function POST(request: NextRequest) {
                   <!-- Portfolio CTA -->
                   <tr>
                     <td style="padding:8px 0 18px 0;">
-                      <p style="margin:0 0 8px 0; font-size:15px; color:#222222;">
+                      <p style="margin:0 0 8px 0; font-size:18px; color:#222222; font-weight:700;"
+                   >
                        While we review your profile, take a look at our work and culture:
                       </p>
 
@@ -260,13 +261,13 @@ export async function POST(request: NextRequest) {
                       <h4 style="margin:0 0 8px 0; font-size:16px; color:#222222;">What Happens Next?</h4>
                       <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-size:14px; color:#333333;">
                         <tr>
-                          <td style="padding:6px 0;">• &nbsp; Our Team Will Review Your Profile Carefully.</td>
+                          <td style="padding:6px 0;">• &nbsp; Our team will review your profile carefully.</td>
                         </tr>
                         <tr>
-                          <td style="padding:6px 0;">• &nbsp; Shortlisted Candidates Will Be Contacted Within 3–5 Working Days.</td>
+                          <td style="padding:6px 0;">• &nbsp; Shortlisted candidates will be contacted within 3–5 working days.</td>
                         </tr>
                         <tr>
-                          <td style="padding:6px 0;">• &nbsp; You May Be Asked For An Interview Task Or A Quick Video Call.</td>
+                          <td style="padding:6px 0;">• &nbsp; You may be asked for an interview task or a quick video call.</td>
                         </tr>
                       </table>
                     </td>
@@ -277,7 +278,7 @@ export async function POST(request: NextRequest) {
                     <td style="padding-top:14px; padding-bottom:14px;">
                       <div style="border-top:1px dashed #F2CFA0; padding-top:12px;"></div>
 
-                      <p style="margin:12px 0 6px 0; font-size:14px; color:#222222;"><strong>If you have any urgent updates regarding your application, feel free to <br/> Reach us at:</strong></p>
+                      <p style="margin:12px 0 6px 0; font-size:14px; color:#222222;  text-transform:capitalize;"><strong>If you have any urgent updates regarding your application, feel free to <br/> Reach us at:</strong></p>
 
                       <table cellpadding="0" cellspacing="0" border="0" style="font-size:14px; color:#444444;">
                         <tr>
@@ -340,7 +341,7 @@ export async function POST(request: NextRequest) {
             <!-- footer banner image (big gold 10 years banner from site) -->
             <tr>
               <td style="padding:0; margin:0;">
-                <img src="https://blokesarea.com/wp-content/uploads/2025/12/email-signature-2.png"
+                <img src="https://firebasestorage.googleapis.com/v0/b/bombay-blokes-4c284.firebasestorage.app/o/blogimages%2Fbbsignature.png?alt=media&token=8bc93c2d-8a9c-4e1f-81dc-ef8d1cc90499"
                   alt="Bombay Blokes - 10 years" width="600" style="display:block; width:100%; max-width:600px; height:auto; border:0;"/>
               </td>
             </tr>
@@ -397,11 +398,13 @@ export async function POST(request: NextRequest) {
     `;
 
     await sendEmail({
+      // to: "aryankuril09@gmail.com",
       to: "careers@bombayblokes.com",
       subject: `New Application - ${ticketName} for ${jobTitle}`,
       html: teamNotification,
       fromName: "Careers Form",
       fromAddress: "careers@bombayblokes.com",
+      replyTo: email,
     });
 
     // ===== Save to Firestore =====

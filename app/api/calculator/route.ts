@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
           ">
 
             <tr>
-              <td background="https://blokesarea.com/wp-content/uploads/2025/12/Email-Background.png"
+              <td background="https://firebasestorage.googleapis.com/v0/b/bombay-blokes-4c284.firebasestorage.app/o/blogimages%2FEmail-Background.png?alt=media&token=01ed6e19-5b99-4969-bcb3-578c02786d26"
                 style="background-position: top center; background-repeat: no-repeat; background-size: cover; padding:30px 16px 20px 16px;">
 
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -480,7 +480,7 @@ export async function POST(request: NextRequest) {
             <!-- Footer Banner -->
             <tr>
               <td>
-                <img src="https://blokesarea.com/wp-content/uploads/2025/12/email-signature-2.png"
+                <img src="https://firebasestorage.googleapis.com/v0/b/bombay-blokes-4c284.firebasestorage.app/o/blogimages%2Fbbsignature.png?alt=media&token=8bc93c2d-8a9c-4e1f-81dc-ef8d1cc90499"
                      width="600" style="display:block; width:100%;">
               </td>
             </tr>
