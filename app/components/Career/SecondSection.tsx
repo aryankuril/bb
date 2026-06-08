@@ -491,9 +491,11 @@ const handleSubmit = async (e: React.FormEvent) => {
       throw new Error(errorData.error || "Failed to submit application");
     }
 
+    setSubmitStatus("success");
+
     // 🔥 IMMEDIATE NAVIGATION — NO FLIP
-    router.replace("/thank-you");
-    return;
+    // router.replace("/thank-you");
+    // return;
 
   } catch (error) {
     console.error("Application submission error:", error);
