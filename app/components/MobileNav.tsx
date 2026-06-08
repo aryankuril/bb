@@ -155,12 +155,12 @@ const MobileNav = () => {
 
 
           {/* RIGHT: WhatsApp Icon */}
-          <a
+          {/* <a
             href="https://wa.me/919920207985"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105"
-          >
+           >
             <Image
             width={100}
             height={100}
@@ -168,7 +168,32 @@ const MobileNav = () => {
               alt="WhatsApp"
               className="w-10 h-10"
             />
-          </a>
+          </a> */}
+
+
+         <Link href="/contactus">
+  <button
+    className="
+      rounded-[10px]
+      border-[2.5px]
+      border-black
+      px-1
+      py-1
+      text-[13px]
+      font-semibold
+      tracking-wide
+      bg-[var(--color-highlight)]
+      transition-[opacity,transform]
+      duration-200
+      active:translate-y-[1px]
+    "
+    aria-expanded={open}
+    aria-controls="mobile-nav-sheet"
+  >
+    GET QUOTE
+  </button>
+</Link>
+
         </div>
       </div>
 
