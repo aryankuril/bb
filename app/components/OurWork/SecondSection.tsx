@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -55,6 +56,16 @@ const SecondSection = () => {
   const [showAll, setShowAll] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const pathname = usePathname();
+
+const leftHeading = pathname.startsWith("/work")
+  ? "Case Studies"
+  : "Our Work";
+
+const centerHeading = pathname.startsWith("/work")
+  ? "Case Studies"
+  : "Our Work";
+
   const processSteps =
     activeCategory === "All"
       ? allSteps
@@ -100,8 +111,23 @@ const SecondSection = () => {
 
   return (
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
-      <h2 className="black-text mr-4 lg:mb-5 mb-4">Case Studies</h2>
+{pathname.startsWith("/work") ? (
 
+  <h2 className="black-text mr-4 lg:mb-5 mb-4">
+    Case Studies
+  </h2>
+
+) : pathname.startsWith("/service") ? (
+
+
+    <div className="flex items-center justify-center w-full py-5">
+      <h2 className="text-center black-text">
+        Our Work
+      </h2>
+    </div>
+
+
+) : null}
       {/* Category Scroll Buttons */}
       <div
         ref={scrollRef}

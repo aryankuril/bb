@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import ClientProviders from "./components/ClientProviders";
 
 
+
 const miso = localFont({
   src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400" }],
   variable: "--font-miso",
@@ -21,6 +22,7 @@ const poppins = Poppins({
 }); 
 
 import type { Metadata } from "next";
+import Script from "next/script";
 
 
 export const metadata: Metadata = {
@@ -46,16 +48,85 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
-       <head>
+<head>
 
-        
-        <meta name="google-site-verification" content="vcgYWAz5xbO_xhFBzKSTAJuBzaum2orDl7K2CaoMTPw" />
-        <link rel="icon" href="images/favicon.png" type="image/png" />
 
-        <link rel="preload" as="image" href="/images/video-poster-mobile.png" media="(max-width: 768px)" />
-<link rel="preload" as="image" href="/images/video-poster-desktop.png" media="(min-width: 769px)" />
-      </head>
+<Script
+  src="https://www.googletagmanager.com/gtag/js?id=AW-18223300372"
+  strategy="afterInteractive"
+/>
+
+<Script
+  id="google-ads"
+  strategy="afterInteractive"
+>
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18223300372');
+  `}
+</Script>
+
+  <Script
+    id="gtm-script"
+    strategy="afterInteractive"
+  >
+    {`
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),
+        dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TG34FHLG');
+    `}
+  </Script>
+
+  <meta
+    name="google-site-verification"
+    content="vcgYWAz5xbO_xhFBzKSTAJuBzaum2orDl7K2CaoMTPw"
+  />
+
+  <link
+    rel="icon"
+    href="/images/favicon.png"
+    type="image/png"
+  />
+
+  <link
+    rel="preload"
+    as="image"
+    href="/images/video-poster-mobile.png"
+    media="(max-width: 768px)"
+  />
+
+  <link
+    rel="preload"
+    as="image"
+    href="/images/video-poster-desktop.png"
+    media="(min-width: 769px)"
+  />
+</head>
       <body>
+
+
+<noscript>
+  <iframe
+    src="https://www.googletagmanager.com/ns.html?id=GTM-TG34FHLG"
+    height="0"
+    width="0"
+    style={{
+      display: "none",
+      visibility: "hidden",
+    }}
+  />
+</noscript>
+
 
      
           {children}

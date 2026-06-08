@@ -4,6 +4,8 @@ import FirstSection from "../../components/ServicesInternal/Design-Branding/Firs
 // import SecondSection from "../components/ServicesInternal/Design-Branding/SecondSection";
 import ThirdSection from "../../components/ServicesInternal/Design-Branding/ThirdSection";
 import FourthSection from "../../components/ServicesInternal/Design-Branding/FourthSection";
+import SecondSection from '@/app/components/OurWork/SecondSection'
+import LogoSlider from "@/app/components/Services/LogoSlider";
 import WorkCard from '@/app/components/HomePage/WorkCard';
 // import Testimonials from "@/app/components/Testimonials";
 import SeventhSection from "@/app/components/ServicesInternal/WebsiteDesign/SeventhSection";
@@ -29,7 +31,9 @@ const Index = () => {
       {/* <SecondSection /> */}
       <FourthSection />
       <ThirdSection />
-      <WorkCard/>
+      {/* <WorkCard/> */}
+      <SecondSection />
+      <LogoSlider/>
       {/* <Testimonials /> */}
       <SeventhSection />
       <Footer />

@@ -4,6 +4,7 @@ import FirstSection from "../../components/ServicesInternal/WebsiteDesign/FirstS
 // import SecondSection from "../components/ServicesInternal/WebsiteDesign/SecondSection";
 import ThirdSection from "../../components/ServicesInternal/WebsiteDesign/ThirdSection";
 import FourthSection from "../../components/ServicesInternal/WebsiteDesign/FourthSection";
+import SecondSection from '@/app/components/OurWork/SecondSection'
 import WorkCard from '@/app/components/HomePage/WorkCard';
 // import Testimonials from "@/app/components/Testimonials";
 import SeventhSection from "../../components/ServicesInternal/WebsiteDesign/SeventhSection";
@@ -29,7 +30,8 @@ const Index = () => {
       {/* <SecondSection /> */}
       <FourthSection />
       <ThirdSection />
-      <WorkCard/>
+      {/* <WorkCard/> */}
+      <SecondSection />
       {/* <Testimonials /> */}
       <SeventhSection />
       <Footer />

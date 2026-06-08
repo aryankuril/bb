@@ -4,7 +4,7 @@ import ContactButton from "../ContactButton";
 import { number } from "framer-motion";
 import Image from "next/image";
 import Button from "../Button";
-
+import { useRouter } from "next/navigation";
 
 const initialFormState = {
   name: "",
@@ -173,6 +173,7 @@ const SecondSection = () => {
     // 👉 add other services with their respective inline SVGs here
   ];
 
+  const router = useRouter();
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -415,6 +416,7 @@ const goNext = () => {
     if (!response.ok) throw new Error("Failed to submit form");
 
     setSubmitStatus("success");
+    router.push("/thank-you");
 
     setFormData({ name: "", email: "", phone: "", company: "" });
     setMessage("");
