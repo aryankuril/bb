@@ -65,7 +65,7 @@ export default function ScrollToTop() {
 
     <button
   onClick={() => router.push("/contactus")}
-  className={`fixed bottom-8 right-8 z-50 w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
+  className={` hidden md:flex fixed bottom-8 right-8 z-50 w-20 h-20 rounded-full flex items-center justify-center transition-all duration-500 ${
     visible
       ? "opacity-100 translate-y-0"
       : "opacity-0 translate-y-4 pointer-events-none"
