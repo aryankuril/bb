@@ -17,6 +17,7 @@ export async function sendEmail(options: {
       html,
       fromName = "Bombay Blokes",
       fromAddress = "hello@bombayblokes.com",
+      replyTo,
     } = options;
 
     // Handle multiple recipients case
@@ -25,7 +26,7 @@ export async function sendEmail(options: {
     // Send to each recipient via OneSignal
     const results = await Promise.all(
       recipients.map((recipient) =>
-        sendOneSignalEmail(recipient, subject, html, fromName, fromAddress)
+        sendOneSignalEmail(recipient, subject, html, fromName, fromAddress, replyTo)
       )
     );
 
@@ -55,7 +56,8 @@ async function sendOneSignalEmail(
   subject: string,
   htmlBody: string,
   fromName: string = "Bombay Blokes",
-  fromAddress: string = "hello@bombayblokes.com"
+  fromAddress: string = "hello@bombayblokes.com",
+  replyTo?: string
 ) {
   try {
     const response = await fetch("https://onesignal.com/api/v1/notifications", {
@@ -71,6 +73,7 @@ async function sendOneSignalEmail(
         email_body: htmlBody,
         email_from_name: fromName,
         email_from_address: fromAddress,
+        ...(replyTo ? { email_reply_to_address: replyTo } : {}),
         name: subject,
       }),
     });
