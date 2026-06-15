@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useRef, useEffect, useCallback } from "react";
 
 interface ButtonProps {
+  id?: string;             // optional id for testing
   text: string;
   href?: string;           // optional link
   onClick?: () => void;    // click handler
@@ -16,6 +17,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
+  id,
   text,
   href,
   onClick,

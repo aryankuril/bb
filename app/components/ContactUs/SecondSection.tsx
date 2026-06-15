@@ -831,7 +831,7 @@ className={`w-full type-step ${
 
   {/* Step 3 */}
   {step === 2 && submitStatus !== "success" && (
-    <Button text="Let’s Connect" type="submit" disabled={isSubmitting} className="white-text" />
+    <Button id="lets-connect-btn" text="Let’s Connect" type="submit" disabled={isSubmitting} className="white-text" />
   )}
 
 </div>
