@@ -45,9 +45,15 @@ const cards = [
 ];
 const Thankyou = () => {
   // 🎉 fire confetti immediately when page loads
-  useEffect(() => {
-    shootBottomSideConfetti();
-  }, []);
+useEffect(() => {
+  shootBottomSideConfetti();
+
+  if (typeof window !== "undefined" && window.gtag) {
+    window.gtag("event", "conversion", {
+      send_to: "AW-18226112923/xXniCMTN67scEJvT8fJD",
+    });
+  }
+}, []);
       const throwInVariant: Variants = {
     hidden: { x: 600, y: 0, rotate: 45, opacity: 0 },
     visible: {

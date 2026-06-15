@@ -51,6 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 <head>
 
 
+
+
 <Script
   id="gtm-script"
   strategy="afterInteractive"
