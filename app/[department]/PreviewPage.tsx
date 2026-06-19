@@ -249,17 +249,35 @@ const visibleCustomFields = customFields.filter(isCustomFieldVisible);
 
 const workflowSteps: WorkflowStep[] = questions
   ? [
-      ...visibleQuestions.map((question) => ({
-        kind: "question" as const,
-        question,
-        originalIndex: questions.findIndex(
+      ...visibleQuestions.flatMap((question) => {
+        const originalIndex = questions.findIndex(
           (q) => q.questionText === question.questionText
-        ),
-      })),
-      ...visibleCustomFields.map((field) => ({
-        kind: "custom" as const,
-        field,
-      })),
+        );
+
+        return [
+          {
+            kind: "question" as const,
+            question,
+            originalIndex,
+          },
+          ...visibleCustomFields
+            .filter(
+              (field) =>
+                field.visibility.mode === "conditional" &&
+                field.visibility.questionIndex === originalIndex
+            )
+            .map((field) => ({
+              kind: "custom" as const,
+              field,
+            })),
+        ];
+      }),
+      ...visibleCustomFields
+        .filter((field) => field.visibility.mode === "always")
+        .map((field) => ({
+          kind: "custom" as const,
+          field,
+        })),
     ]
   : [];
 
