@@ -590,8 +590,8 @@ ${normalizedCustomFields
     ===================================================== */
     if (isFinalSubmit) {
       await sendEmail({
-           to: "aryankuril09@gmail.com",
-        //  to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
+          //  to: "aryankuril09@gmail.com",
+         to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
         subject: `Inquiry - ${serviceNameTitle}`,
         html: `
           <p><strong>Name:</strong> ${name}</p>
