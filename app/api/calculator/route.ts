@@ -3,6 +3,72 @@ import { adminDB } from "@/lib/firebase-admin";
 import { sendEmail } from "@/lib/email-sender";
 import quotationTableHTML from "@/lib/quotationTableHTML";
 
+
+type SubmittedCustomField = {
+  id?: string;
+  label?: string;
+  question?: string;
+  inputType?: "text" | "number" | "url";
+  value?: string;
+};
+
+const escapeHTML = (value: unknown) =>
+  String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+const normalizeCustomFields = (fields: unknown): SubmittedCustomField[] => {
+  if (!Array.isArray(fields)) return [];
+
+  return fields
+    .map((field) => {
+      if (!field || typeof field !== "object") return null;
+
+      const item = field as SubmittedCustomField;
+      const value = typeof item.value === "string" ? item.value.trim() : "";
+
+      if (!value) return null;
+
+      return {
+        id: typeof item.id === "string" ? item.id : "",
+        label:
+          typeof item.label === "string"
+            ? item.label
+            : typeof item.question === "string"
+              ? item.question
+              : "Custom Field",
+        inputType:
+          item.inputType === "number" || item.inputType === "url"
+            ? item.inputType
+            : "text",
+        value,
+      };
+    })
+    .filter(Boolean) as SubmittedCustomField[];
+};
+
+const customFieldsHTML = (fields: SubmittedCustomField[]) => {
+  if (!fields.length) return "";
+
+  return `
+    <div style="margin-top:16px;">
+      <h3>Additional Details</h3>
+      ${fields
+        .map(
+          (field) => `
+            <p>
+              <strong>${escapeHTML(field.label)}:</strong>
+              ${escapeHTML(field.value)}
+            </p>
+          `
+        )
+        .join("")}
+    </div>
+  `;
+};
 /* =====================================================
    POST: Calculator Form Submit (Draft + Final)
 ===================================================== */
@@ -10,16 +76,20 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    const {
-      name,
-      phone,
-      email,
-      quote,
-      total,
-      estimateId,
-      serviceCalculator,
-      finalPrice,
-    } = body;
+   const {
+  name,
+  phone,
+  email,
+  quote,
+  total,
+  estimateId,
+  serviceCalculator,
+  finalPrice,
+  customFields,
+} = body;
+
+const normalizedCustomFields = normalizeCustomFields(customFields);
+const additionalDetailsHTML = customFieldsHTML(normalizedCustomFields);
 
     /* =====================================================
        DETECT FINAL SUBMIT
@@ -72,6 +142,7 @@ export async function POST(request: NextRequest) {
         serviceCalculator,
         draftEmailSent: false,
         createdAt: new Date(),
+        customFields: normalizedCustomFields,
       });
       docId = docRef.id;
     } else {
@@ -89,6 +160,7 @@ export async function POST(request: NextRequest) {
           serviceCalculator,
           draftEmailSent: false,
           createdAt: new Date(),
+          customFields: normalizedCustomFields,
         });
         docId = newDoc.id;
       } else {
@@ -101,6 +173,7 @@ export async function POST(request: NextRequest) {
           finalPrice,
           serviceCalculator,
           updatedAt: new Date(),
+          customFields: normalizedCustomFields,
         });
       }
     }
@@ -261,6 +334,20 @@ export async function POST(request: NextRequest) {
   </a>
 </td>
 </tr>
+
+${normalizedCustomFields
+  .map(
+    (field) => `
+      <tr>
+        <td style="padding:6px 0;">
+          <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+          <strong>${escapeHTML(field.label)}:</strong>
+          <span style="color:#555555; text-transform: capitalize;">${escapeHTML(field.value)}</span>
+        </td>
+      </tr>
+    `
+  )
+  .join("")}
 
 </table>
 
@@ -503,13 +590,15 @@ export async function POST(request: NextRequest) {
     ===================================================== */
     if (isFinalSubmit) {
       await sendEmail({
-         to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
+           to: "aryankuril09@gmail.com",
+        //  to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
         subject: `Inquiry - ${serviceNameTitle}`,
         html: `
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Service:</strong> ${serviceNameTitle}</p>
+          ${additionalDetailsHTML}
           <p><strong>Final Price:</strong> ₹${Number(finalPrice).toLocaleString(
             "en-IN"
           )}</p>

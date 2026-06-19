@@ -19,7 +19,7 @@ type Option = {
 };
 
 type Question = {
-  question: any;
+  question: unknown;
   isDependent: boolean;
   dependentOn?: Dependency;
   type: string;
@@ -35,6 +35,43 @@ type CostItem = {
   value: string;
   price: number;
 };
+
+type CustomFieldInputType = "text" | "number" | "url";
+
+type CustomField = {
+  id: string;
+  question?: string;
+  label?: string;
+  subtitle?: string;
+  inputType: CustomFieldInputType;
+  placeholder?: string;
+  required: boolean;
+  visibility:
+    | { mode: "always" }
+    | {
+        mode: "conditional";
+        questionIndex: number;
+        optionIndex: number;
+      };
+};
+
+type SubmittedCustomField = {
+  id: string;
+  label: string;
+  inputType: CustomFieldInputType;
+  value: string;
+};
+
+type WorkflowStep =
+  | {
+      kind: "question";
+      question: Question;
+      originalIndex: number;
+    }
+  | {
+      kind: "custom";
+      field: CustomField;
+    };
 
 export default function PreviewPage() {
   const params = useParams() as { department: string };
@@ -61,10 +98,6 @@ export default function PreviewPage() {
   const [currentVisibleIdx, setCurrentVisibleIdx] = useState(0);
   const [showCallForm, setShowCallForm] = useState(false);
 
-  const totalQuestions = visibleQuestions.length;
-const answeredQuestions = Object.values(selectedOptions).filter(option => option !== null).length;
-const totalProgressPercentage = (answeredQuestions / totalQuestions) * 100;
-
 const firstSectionRef = useRef<HTMLDivElement | null>(null);
 // const secondSectionRef = useRef<HTMLDivElement | null>(null);
 const footerRef = useRef<HTMLDivElement | null>(null);
@@ -73,6 +106,11 @@ const [currentSection, setCurrentSection] = useState(0);
 // 0 = hero, 1 = second section, 2 = footer
 // const [_isSending, setIsSending] = useState(false);
 const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+const [customFields, setCustomFields] = useState<CustomField[]>([]);
+const [customFieldValues, setCustomFieldValues] = useState<Record<string, string>>({});
+const [customFieldErrors, setCustomFieldErrors] = useState<Record<string, string>>({});
 
 
 useEffect(() => {
@@ -192,13 +230,58 @@ useEffect(() => {
   if (!questions) return;
   const visible = questions.filter(q => isQuestionVisible(q, selectedOptions));
   setVisibleQuestions(visible);
+}, [questions, selectedOptions, isQuestionVisible]);
 
-  setCurrentVisibleIdx(prev => {
-    if (visible.length === 0) return 0;
-    if (prev >= visible.length) return visible.length - 1;
+const isCustomFieldVisible = (field: CustomField) => {
+  if (field.visibility.mode === "always") return true;
+
+  const selected = selectedOptions[field.visibility.questionIndex];
+  if (!selected || !questions?.[field.visibility.questionIndex]) return false;
+
+  const selectedIndex = questions[field.visibility.questionIndex].options.findIndex(
+    (opt) => opt.title === selected.title
+  );
+
+  return selectedIndex === field.visibility.optionIndex;
+};
+
+const visibleCustomFields = customFields.filter(isCustomFieldVisible);
+
+const workflowSteps: WorkflowStep[] = questions
+  ? [
+      ...visibleQuestions.map((question) => ({
+        kind: "question" as const,
+        question,
+        originalIndex: questions.findIndex(
+          (q) => q.questionText === question.questionText
+        ),
+      })),
+      ...visibleCustomFields.map((field) => ({
+        kind: "custom" as const,
+        field,
+      })),
+    ]
+  : [];
+
+const currentWorkflowStep = workflowSteps[currentVisibleIdx];
+const totalProgressPercentage =
+  workflowSteps.length === 0
+    ? 0
+    : (workflowSteps.filter((step) =>
+        step.kind === "question"
+          ? Boolean(selectedOptions[step.originalIndex])
+          : Boolean(customFieldValues[step.field.id]?.trim())
+      ).length /
+        workflowSteps.length) *
+      100;
+
+useEffect(() => {
+  setCurrentVisibleIdx((prev) => {
+    if (workflowSteps.length === 0) return 0;
+    if (prev >= workflowSteps.length) return workflowSteps.length - 1;
     return prev;
   });
-}, [questions, selectedOptions, isQuestionVisible]);
+}, [workflowSteps.length]);
 
 
 
@@ -226,6 +309,7 @@ useEffect(() => {
       }
 
       setQuestions(data.questions);
+      setCustomFields(Array.isArray(data.customFields) ? data.customFields : []);
       setSelectedOptions({});
     } catch (err) {
       console.error("❌ Firestore fetch error:", err);
@@ -265,15 +349,15 @@ useEffect(() => {
   // -------- Compute Progress & Totals ---------------
 useEffect(() => {
   if (!questions) return;
-  const visibleCount = visibleQuestions.length;
-  const answeredCount = visibleQuestions.reduce((acc, q) => {
-    const idx = questions.findIndex(qq => qq.questionText === q.questionText);
-    if (selectedOptions[idx]) return acc + 1;
-    return acc;
-  }, 0);
-  const newPercent = visibleCount === 0 ? 0 : Math.round((answeredCount / visibleCount) * 100);
-  setPercent(newPercent);
-}, [selectedOptions, visibleQuestions, currentVisibleIdx, questions]);
+  const total = workflowSteps.length;
+  const answeredCount = workflowSteps.filter((step) =>
+    step.kind === "question"
+      ? Boolean(selectedOptions[step.originalIndex])
+      : Boolean(customFieldValues[step.field.id]?.trim())
+  ).length;
+
+  setPercent(total === 0 ? 0 : Math.round((answeredCount / total) * 100));
+}, [selectedOptions, customFieldValues, visibleQuestions, customFields, questions]);
 
 
 useEffect(() => {
@@ -340,14 +424,20 @@ if (visibleQuestions.length === 0)
   );
 
 
-  const currentQuestion = visibleQuestions[currentVisibleIdx];
+  const currentQuestion =
+    currentWorkflowStep?.kind === "question" ? currentWorkflowStep.question : null;
+  const currentCustomField =
+    currentWorkflowStep?.kind === "custom" ? currentWorkflowStep.field : null;
   // The index in the original array for this question:
-  const originalIndex = questions.findIndex(
-    (q) => q.questionText === currentQuestion.questionText
-  );
+  const originalIndex =
+    currentWorkflowStep?.kind === "question"
+      ? currentWorkflowStep.originalIndex
+      : -1;
 
   // -------- Option selection (always write by original index) ----------
 const handleOptionSelect = (opt: Option) => {
+  if (originalIndex < 0) return;
+
   const updated = { ...selectedOptions, [originalIndex]: opt };
   const newVisible = questions.filter(q => isQuestionVisible(q, updated));
   const visibleIndexes = newVisible.map(q => questions.findIndex(qq => qq.questionText === q.questionText));
@@ -359,7 +449,57 @@ const handleOptionSelect = (opt: Option) => {
 };
 
 
-  const hasMultiLineSubtitle = currentQuestion.options.some(opt => opt.subtitle && opt.subtitle.includes('|'));
+  const hasMultiLineSubtitle = currentQuestion?.options.some(opt => opt.subtitle && opt.subtitle.includes('|')) || false;
+
+const getSubmittedCustomFields = (): SubmittedCustomField[] =>
+  visibleCustomFields
+    .map((field) => ({
+      id: field.id,
+      label: field.question || field.label || "Custom Field",
+      inputType: field.inputType,
+      value: (customFieldValues[field.id] || "").trim(),
+    }))
+    .filter((field) => field.value.length > 0);
+
+const validateCustomStep = (field: CustomField) => {
+  const value = (customFieldValues[field.id] || "").trim();
+  const label = field.question || field.label || "This field";
+
+  if (field.required && !value) {
+    setCustomFieldErrors((prev) => ({
+      ...prev,
+      [field.id]: `${label} is required.`,
+    }));
+    return false;
+  }
+
+  if (value && field.inputType === "url") {
+    try {
+      new URL(value);
+    } catch {
+      setCustomFieldErrors((prev) => ({
+        ...prev,
+        [field.id]: "Please enter a valid URL.",
+      }));
+      return false;
+    }
+  }
+
+  if (value && field.inputType === "number" && Number.isNaN(Number(value))) {
+    setCustomFieldErrors((prev) => ({
+      ...prev,
+      [field.id]: "Please enter a valid number.",
+    }));
+    return false;
+  }
+
+  setCustomFieldErrors((prev) => ({
+    ...prev,
+    [field.id]: "",
+  }));
+  return true;
+};
+
 
   const validate = () => {
     const tempErrors = { name: "", phone: "", email: "" };
@@ -375,6 +515,34 @@ else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
 }
 
     if (!formData.email.trim()) { tempErrors.email = "Email is required."; isValid = false; } else if (!/\S+@\S+\.\S+/.test(formData.email)) { tempErrors.email = "Email is not valid."; isValid = false; }
+    const nextCustomErrors: Record<string, string> = {};
+
+visibleCustomFields.forEach((field) => {
+  const value = (customFieldValues[field.id] || "").trim();
+
+  if (field.required && !value) {
+    nextCustomErrors[field.id] = `${field.question || field.label || "This field"} is required.`;
+    isValid = false;
+    return;
+  }
+
+  if (value && field.inputType === "url") {
+    try {
+      new URL(value);
+    } catch {
+      nextCustomErrors[field.id] = "Please enter a valid URL.";
+      isValid = false;
+    }
+  }
+
+  if (value && field.inputType === "number" && Number.isNaN(Number(value))) {
+    nextCustomErrors[field.id] = "Please enter a valid number.";
+    isValid = false;
+  }
+});
+
+setCustomFieldErrors(nextCustomErrors);
+    
     setErrors(tempErrors);
     return isValid;
   };
@@ -402,6 +570,7 @@ const handleSubmit = async () => {
         quote: costItems,
         total: totalEstimate,
         estimateId, // important: existing lead ID
+        customFields: getSubmittedCustomFields(),
       }),
     });
 
@@ -455,11 +624,11 @@ const handleSubmit = async () => {
   {/* Progress Wrapper (relative so car is inside) */}
   <div className="flex gap-3 relative items-center">
     {/* Progress Bars */}
-    {visibleQuestions.map((_, visibleIdx) => {
-      const question = visibleQuestions[visibleIdx];
-      const realIndex = questions.findIndex(
-        (q) => q.questionText === question.questionText
-      );
+    {workflowSteps.map((step, visibleIdx) => {
+      const isDone =
+        step.kind === "question"
+          ? Boolean(selectedOptions[step.originalIndex])
+          : Boolean(customFieldValues[step.field.id]?.trim());
 
       return (
         <div
@@ -469,7 +638,7 @@ const handleSubmit = async () => {
           <div
             className="h-full bg-[#F9B31B] transition-all duration-500"
             style={{
-              width: selectedOptions[realIndex] ? "100%" : "0%",
+              width: isDone ? "100%" : "0%",
             }}
           />
         </div>
@@ -505,7 +674,116 @@ const handleSubmit = async () => {
 
         {/* ... The rest of your component remains the same from the previous response ... */}
         {currentStep !== 99 ? (
-          hasMultiLineSubtitle ? (
+          currentWorkflowStep?.kind === "custom" && currentCustomField ? (
+            <div
+              className="
+                  flex flex-col gap-6
+                  lg:mt-5  mt-5 mb-5
+                  w-full
+                  p-5 md:p-[30px_30px]
+                  bg-white rounded-[8px] border border-[#1E1E1E]
+                  shadow-[6px_5px_0px_0px_#262626]
+                "
+            >
+              <div>
+                <h5 className="lg:text-[24px] text-[20px] font-poppins font-[700] text-black">
+                  {currentCustomField.question || currentCustomField.label}
+                </h5>
+                {currentCustomField.subtitle && (
+                  <p className="text-[#797474] font-poppins text-[16px] font-[400]">
+                    {currentCustomField.subtitle}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-1 w-full">
+                <input
+                  type={
+                    currentCustomField.inputType === "url"
+                      ? "url"
+                      : currentCustomField.inputType
+                  }
+                  value={customFieldValues[currentCustomField.id] || ""}
+                  required={currentCustomField.required}
+                  onChange={(e) =>
+                    setCustomFieldValues((prev) => ({
+                      ...prev,
+                      [currentCustomField.id]: e.target.value,
+                    }))
+                  }
+                  className={`px-3 py-3 border-b bg-transparent text-black placeholder:text-gray-500 focus:outline-none focus:ring-0 focus:border-[#F9B31B] ${
+                    customFieldErrors[currentCustomField.id]
+                      ? "border-red-500"
+                      : "border-[#F9B31B]"
+                  }`}
+                  placeholder={
+                    currentCustomField.placeholder ||
+                    currentCustomField.question ||
+                    currentCustomField.label ||
+                    ""
+                  }
+                />
+                {customFieldErrors[currentCustomField.id] && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {customFieldErrors[currentCustomField.id]}
+                  </p>
+                )}
+              </div>
+
+              <div className="w-full flex justify-between items-center gap-3">
+                <button
+                  onClick={() => {
+                    if (currentVisibleIdx > 0) {
+                      setCurrentVisibleIdx((prev) => prev - 1);
+                    }
+                  }}
+                  disabled={currentVisibleIdx === 0}
+                  className={`
+        cursor-pointer
+        w-[120px] sm:w-[130px] md:w-[150px]
+        py-2 sm:py-3
+        text-[14px] sm:text-[16px]
+        flex items-center justify-center gap-2 rounded-[5px] italic
+        border shadow-[2px_2px_0px_0px_#262626] transition-colors
+        ${
+          currentVisibleIdx > 0
+            ? "bg-[#F9B31B] border-[#262626] text-[#262626]"
+            : "bg-gray-200 border-gray-200 text-gray-400 cursor-not-allowed shadow-none"
+        }
+      `}
+                >
+                  Previous
+                </button>
+
+                <button
+                  onClick={() => {
+                    if (!validateCustomStep(currentCustomField)) return;
+
+                    if (currentVisibleIdx === workflowSteps.length - 1) {
+                      setCurrentStep(99);
+                    } else {
+                      setCurrentVisibleIdx((prev) =>
+                        Math.min(workflowSteps.length - 1, prev + 1)
+                      );
+                    }
+                  }}
+                  className="
+        cursor-pointer
+        w-[120px] sm:w-[130px] md:w-[150px]
+        py-2 sm:py-3
+        text-[14px] sm:text-[16px]
+        flex items-center justify-center gap-2 rounded-[5px] font-medium
+        border-2 transition-colors
+        bg-black border-black text-white hover:bg-[#1a1a1a] shadow-[2px_2px_0px_0px_#F9B31B]
+      "
+                >
+                  {currentVisibleIdx === workflowSteps.length - 1
+                    ? "See Estimate"
+                    : "Next"}
+                </button>
+              </div>
+            </div>
+          ) : hasMultiLineSubtitle && currentQuestion ? (
             <div
             
               className="
@@ -657,11 +935,11 @@ const handleSubmit = async () => {
     {/* Next Button */}
     <button
       onClick={() => {
-        if (currentVisibleIdx === visibleQuestions.length - 1) {
+        if (currentVisibleIdx === workflowSteps.length - 1) {
           setCurrentStep(99);
         } else {
           setCurrentVisibleIdx((prev) =>
-            Math.min(visibleQuestions.length - 1, prev + 1)
+            Math.min(workflowSteps.length - 1, prev + 1)
           );
         }
       }}
@@ -680,7 +958,7 @@ const handleSubmit = async () => {
         }
       `}
     >
-      {currentVisibleIdx === visibleQuestions.length - 1
+      {currentVisibleIdx === workflowSteps.length - 1
         ? "See Estimate"
         : "Next"}
     </button>
@@ -688,7 +966,7 @@ const handleSubmit = async () => {
   </div>
 )}
             </div>
-          ) : (
+          ) : currentQuestion ? (
             <div
               className="
                   flex flex-col gap-6
@@ -870,11 +1148,11 @@ const handleSubmit = async () => {
     {/* Next Button */}
     <button
       onClick={() => {
-        if (currentVisibleIdx === visibleQuestions.length - 1) {
+        if (currentVisibleIdx === workflowSteps.length - 1) {
           setCurrentStep(99);
         } else {
           setCurrentVisibleIdx((prev) =>
-            Math.min(visibleQuestions.length - 1, prev + 1)
+            Math.min(workflowSteps.length - 1, prev + 1)
           );
         }
       }}
@@ -893,7 +1171,7 @@ const handleSubmit = async () => {
         }
       `}
     >
-      {currentVisibleIdx === visibleQuestions.length - 1
+      {currentVisibleIdx === workflowSteps.length - 1
         ? "See Estimate"
         : "Next"}
     </button>
@@ -903,7 +1181,7 @@ const handleSubmit = async () => {
 
 
             </div>
-          )
+          ) : null
         ) : (
         <div
   className="
@@ -922,10 +1200,10 @@ const handleSubmit = async () => {
 
     {/* Cost Summary (Black card like reference) */}
 {/* FLIP WRAPPER */}
-<div className="relative w-full perspective">
+<div className="relative w-full perspective min-h-[400px]">
   <div
     className={`
-      duration-700 preserve-3d relative 
+      duration-700 preserve-3d relative  
       ${showCallForm ? "rotate-y-180" : ""}
     `}
   >
@@ -1173,6 +1451,8 @@ const handleSubmit = async () => {
   </div>
 </div>
 
+
+
         )}
 
 
@@ -1186,7 +1466,3 @@ const handleSubmit = async () => {
     </div>
   );
 }
-
-
-
-
