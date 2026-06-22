@@ -11,6 +11,7 @@ const initialFormState = {
   email: "",
   phone: "",
   company: "",
+  message: "",
 };
 
 const SecondSection = () => {
@@ -193,7 +194,7 @@ const SecondSection = () => {
     name: "",
     email: "",
     phone: "",
-    // message: "",
+    message: "",
     services: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -218,6 +219,7 @@ useEffect(() => {
         email: "",
         phone: "",
         services: "",
+        message: "",
       });
     }, 10000);
 
@@ -263,11 +265,11 @@ const validatePhone = (phone: string): boolean => {
         if (!value.trim()) return "Phone number is required";
         if (!validatePhone(value)) return "Please enter a valid phone number";
         return "";
-      // case "message":
-      //   if (!value.trim()) return "Message is required";
-      //   if (value.trim().length < 10)
-      //     return "Message must be at least 10 characters";
-      //   return "";
+      case "message":
+        if (!value.trim()) return "Message is required";
+        if (value.trim().length < 10)
+          return "Message must be at least 10 characters";
+        return "";
       default:
         return "";
     }
@@ -285,6 +287,7 @@ const goNext = () => {
     email: "",
     phone: "",
     services: "",
+    message: "",
   });
 
   if (step === 0) {
@@ -427,6 +430,7 @@ const goNext = () => {
       phone: "",
       // company: "",
       services: "",
+      message: "",
     });
   } catch (error) {
     console.error("Form submission error:", error);
@@ -758,11 +762,13 @@ className={`w-full type-step ${
     type="text"
     placeholder="Message"
     value={message}
-    onChange={(e) => setMessage && setMessage(e.target.value)}
+    onChange={(e) => setMessage(e.target.value)}
+    required
     onFocus={() => handleFocus && handleFocus("message")}
     onBlur={() => handleBlur && handleBlur("message")}
     className="w-full px-7 py-3 bg-transparent border-b-2 border-[var(--color-highlight)] outline-none white-text"
   />
+  {errors.message && <p className="text-red-500 text-xs mt-2">{errors.message}</p>}
 
   {/* FIXED ICON */}
   <div className="absolute left-0 top-[16px] pointer-events-none">
