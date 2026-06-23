@@ -400,7 +400,7 @@ export async function POST(request: NextRequest) {
     await sendEmail({
       //  to: "aryankuril09@gmail.com",
       to: ["hello@bombayblokes.com", "bdm@bombayblokes.com" , "siddique@bombayblokes.com"],
-      subject: `New Contact Form - ${name}`,
+      subject: `New Lead From - ${name}`,
       html: teamNotification,
       fromName: "Website Contact Form",
       fromAddress: "hello@bombayblokes.com",
