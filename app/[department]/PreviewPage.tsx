@@ -647,7 +647,7 @@ const handleSubmit = async () => {
   </div>
 )}
       <div
-        className="w-full h-full relative bg-no-repeat bg-center bg-cover  py-5 md:py-0 lg:px-15 px-0 "
+        className="w-full h-full relative bg-no-repeat bg-center bg-cover  pt-5 md:py-0 lg:px-15 px-0 "
       >
         <div 
         style={{ touchAction: "pan-y" /* allow vertical scroll gestures */ }}
@@ -712,7 +712,7 @@ const handleSubmit = async () => {
         </div>
 
 
-       <div className="flex flex-col lg:flex-row gap-8">
+       <div className="flex flex-col lg:flex-row lg:gap-8 gap-0">
 
      
 
