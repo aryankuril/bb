@@ -1103,7 +1103,7 @@ const progress =
               <div
                 className={`${
                   isFlipped ? "hidden" : "block"
-                } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4 flex flex-col justify-between min-h-[600px]`}
+                } backface-hidden border border-[var(--color-highlight)] rounded-[6px] px-3 sm:px-4 py-4 flex flex-col  min-h-[600px]`}
               >
 
                 
