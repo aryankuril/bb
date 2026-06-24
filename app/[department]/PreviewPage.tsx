@@ -5,6 +5,9 @@ import { useParams } from 'next/navigation';
 import Button from "../components/Button"
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { Mail, Phone } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+
 
 type Dependency = {
   questionIndex: number;
@@ -84,9 +87,7 @@ export default function PreviewPage() {
   // Ensure totals is always a number
   // const [totals, setTotals] = useState(0);
   const [costItems, setCostItems] = useState<CostItem[]>([]);
-  const [includedItems] = useState([
-    "Dedicated Project Manager", "Unlimited Revisions", " Expert Team Collaboration", "Quality Assurance Guaranteed" 
-  ]);
+
   const [formData, setFormData] = useState({ name: "", phone: "", email: "" });
   const [errors, setErrors] = useState({ name: "", phone: "", email: "" });
   const [toastMessage, setToastMessage] = useState("");
@@ -111,6 +112,28 @@ const [isSubmitting, setIsSubmitting] = useState(false);
 const [customFields, setCustomFields] = useState<CustomField[]>([]);
 const [customFieldValues, setCustomFieldValues] = useState<Record<string, string>>({});
 const [customFieldErrors, setCustomFieldErrors] = useState<Record<string, string>>({});
+  const [includedItems] = useState([
+    "Dedicated Project Manager", "Unlimited Revisions", " Expert Team Collaboration", "Quality Assurance Guaranteed" 
+  ]);
+
+const rotatingTexts = [
+  "Dedicated Project Manager",
+  "Unlimited Revisions",
+  "Expert Team Collaboration",
+  "Quality Guaranteed",
+];
+
+const [activeText, setActiveText] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setActiveText(
+      (prev) => (prev + 1) % rotatingTexts.length
+    );
+  }, 2500);
+
+  return () => clearInterval(interval);
+}, []);
 
 
 useEffect(() => {
@@ -619,12 +642,12 @@ const handleSubmit = async () => {
       {/* <Navbar/>
 <Firstsection/> */}
         {toastMessage && (
-          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded shadow-md z-50">
+          <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded shadow-md z-50 ">
     {toastMessage}
   </div>
 )}
       <div
-        className="w-full h-full relative bg-no-repeat bg-center bg-cover  py-10 md:py-0 lg:px-15 px-0 "
+        className="w-full h-full relative bg-no-repeat bg-center bg-cover  py-5 md:py-0 lg:px-15 px-0 "
       >
         <div 
         style={{ touchAction: "pan-y" /* allow vertical scroll gestures */ }}
@@ -633,7 +656,7 @@ const handleSubmit = async () => {
  
                               
              <section 
-               className="w-full px-4  flex flex-col items-center lg:mt-8 ">
+               className="w-full px-4  flex flex-col lg:mt-8 pb-10 sm:pb-15 lg:pb-20">
        
         <div 
         // ref={secondSectionRef} 
@@ -688,6 +711,9 @@ const handleSubmit = async () => {
 
         </div>
 
+
+       <div className="flex flex-col lg:flex-row gap-8">
+
      
 
         {/* ... The rest of your component remains the same from the previous response ... */}
@@ -696,7 +722,7 @@ const handleSubmit = async () => {
             <div
               className="
                   flex flex-col gap-6
-                  lg:mt-5  mt-5 mb-5
+                  lg:mt-5  mt-5 
                   w-full
                   p-5 md:p-[30px_30px]
                   bg-white rounded-[8px] border border-[#1E1E1E]
@@ -807,7 +833,7 @@ const handleSubmit = async () => {
               className="
               
                   flex flex-col gap-6
-                  lg:mt-5  mt-5 mb-5
+                  lg:mt-5  mt-5 
                   w-full
                    
                   p-5 md:p-[30px_30px]
@@ -832,7 +858,7 @@ const handleSubmit = async () => {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-1 sm:ml-10">
+                <div className="flex items-center gap-1 sm:ml-5">
                   <span className="font-poppins text-[14px] font-[400] capitalize text-[#1E1E1E]">
                     Pick One
                   </span>
@@ -988,7 +1014,7 @@ const handleSubmit = async () => {
             <div
               className="
                   flex flex-col gap-6
-                  lg:mt-5  mt-5 mb-5
+                  lg:mt-5  mt-5 
                   w-full  
                   p-5 md:p-[30px_30px]
                   bg-white rounded-[8px] border border-[#1E1E1E]
@@ -1014,7 +1040,7 @@ const handleSubmit = async () => {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-1 sm:ml-10">
+                <div className="flex items-center gap-1 sm:ml-5">
                   <span className="font-poppins text-[14px] capitalize font-[400] text-[#1E1E1E]">
                     Pick One
                   </span>
@@ -1032,7 +1058,10 @@ const handleSubmit = async () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+
+              
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {currentQuestion.options.map((opt, i) => {
             const active = selectedOptions[originalIndex]?.title === opt.title;
                   return (
@@ -1118,15 +1147,24 @@ const handleSubmit = async () => {
 </div>
 
 
+
+
+
+
 </button>
 
                   );
                 })}
 
+
+                
+
               
               </div>
 
              {currentStep !== 99 && (
+                <div >
+          
   <div className="w-full flex justify-between items-center  gap-3
     
   ">
@@ -1194,38 +1232,57 @@ const handleSubmit = async () => {
         : "Next"}
     </button>
 
+  
+  
+  
   </div>
+
+
+   <div className="text-center py-5 rounded-[20px] bg-[#F9B31B] mt-5 ">
+         <h3 className="
+  text-white 
+  font-poppins 
+  font-[700]
+  text-[22px]       /* mobile */
+  sm:text-[24px]    /* small screens */
+  md:text-[26px]    /* tablets */
+  lg:text-[28px]    /* desktop */
+">
+  ₹{totalEstimate.toLocaleString()}/-
+</h3>
+
+          <p className="text-[#1E1E1E] text-[15px] font-[300]">
+           Here What It Take to Build Your Vision
+          </p>
+        </div>
+
+  </div>
+
 )}
 
 
             </div>
           ) : null
         ) : (
+
         <div
   className="
     flex flex-col gap-10
     lg:flex-row
      lg:mt-5  mt-5
     w-full
-    p-4 md:p-8
-    bg-white border border-[#1E1E1E]
-    rounded-[12px]
-    shadow-[6px_6px_0px_0px_#262626]
+   
   "
 >
   {/* LEFT SECTION (Price + Cost Summary card) */}
-<div className="w-full lg:w-1/2 flex flex-col ">
+<div className="w-full  flex flex-col ">
 
     {/* Cost Summary (Black card like reference) */}
 {/* FLIP WRAPPER */}
-<div className="relative w-full perspective min-h-[400px]">
+<div className="relative w-full perspective ">
   <div
-    className={`
-      duration-700 preserve-3d relative  
-      ${showCallForm ? "rotate-y-180" : ""}
-    `}
+    
   >
-
     {/* FRONT SIDE (YOUR COST CARD) */}
     <div className="backface-hidden">
       <div 
@@ -1244,25 +1301,9 @@ const handleSubmit = async () => {
         <div className="absolute right-0 top-0 w-3 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
 
         {/* Yellow Price Box */}
-        <div className="text-center py-5 rounded-[12px] bg-[#F9B31B]">
-         <h3 className="
-  text-white 
-  font-poppins 
-  font-[700]
-  text-[22px]       /* mobile */
-  sm:text-[24px]    /* small screens */
-  md:text-[26px]    /* tablets */
-  lg:text-[28px]    /* desktop */
-">
-  ₹{totalEstimate.toLocaleString()}/-
-</h3>
 
-          <p className="text-[#1E1E1E] text-[15px] font-[300]">
-            Here&lsquos What It&lsquoll Take to Build Your Vision
-          </p>
-        </div>
 
-        <h4 className="text-[22px] font-[700] mb-4 flex items-center gap-2 mt-4">
+        <h4 className="text-[22px] font-[700] mb-4 flex items-center gap-2 ">
           Cost Summary
         </h4>
 
@@ -1292,49 +1333,95 @@ const handleSubmit = async () => {
           <p>₹{totalEstimate.toLocaleString()}</p>
         </div>
 
-        {/* SCHEDULE BUTTON → FLIPS CARD */}
-        {!showCallForm ? (
-
-
-
-
-
-          <div className="w-full flex justify-center mt-3">
-  <Button
-    onClick={() => setShowCallForm(true)}
-    disabled={disableCallBtn}
-    text="Schedule Free Call"
-    className="relative justify-center text-white transition-colors"
-  />
-</div>
-
-        ) : null}
+        
 
       
       </div>
+
+   <div className="text-center py-5 rounded-[20px] bg-[#F9B31B] mt-5 ">
+         <h3 className="
+  text-white 
+  font-poppins 
+  font-[700]
+  text-[22px]       /* mobile */
+  sm:text-[24px]    /* small screens */
+  md:text-[26px]    /* tablets */
+  lg:text-[28px]    /* desktop */
+">
+  ₹{totalEstimate.toLocaleString()}/-
+</h3>
+
+          <p className="text-[#1E1E1E] text-[15px] font-[300]">
+           Here What It Take to Build Your Vision
+          </p>
+        </div>
+      
     </div>
 
+
+      
+ 
+
+  </div>
+</div>
+
+  </div>
+
+
+</div>
+
+
+
+        )}
+
+
+
+        {/* formsection */}
+ <div
+  className="
+    flex flex-col gap-10
+    lg:flex-row
+     lg:mt-5  mt-5
+    w-full
+    py-0
+    px-0 
+
+    md:py-0
+    
+    rounded-[20px]
+
+  "
+>
+  {/* LEFT SECTION (Price + Cost Summary card) */}
+<div className="w-full  flex flex-col ">
+
+    {/* Cost Summary (Black card like reference) */}
+{/* FLIP WRAPPER */}
+<div className="relative w-full perspective min-h-[400px]">
+  <div
+    
+  >
+
+
+
     {/* BACK SIDE — YOUR FORM PAGE */}
-    <div className="absolute inset-0 rotate-y-180 backface-hidden ">
+    <div className="  ">
+
+              
+
   <div className="w-full h-auto min-h-full bg-[#1B1B1B] rounded-[20px] lg:p-8 p-5 text-white relative overflow-hidden">
 
 
          {/* RIGHT BORDER */}
 <div className="absolute right-0 top-0 w-3 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
 
-        <button
-          onClick={() => setShowCallForm(false)}
-          className="text-sm mb-3"
-        >
-          ← <span  className="underline " > See Quotation </span>
-        </button>
 
-        <h4 className=" mb-6 flex items-center gap-2">
-          Need Your Details 📒
+        <h4 className=" mb-4 flex items-center gap-2">
+          Too excited to get started? use this 
         </h4>
 
         {/* INLINE FORM EXACTLY LIKE YOUR IMAGE */}
-           <div className="grid grid-cols-1 gap-6 mb-6 w-full">
+           <div className="gap-6 mb-6 w-full">
 
   {/* First Name */}
   <div className="flex flex-col gap-1 w-full">
@@ -1411,7 +1498,7 @@ const handleSubmit = async () => {
       <p className="text-red-500 text-sm mt-1">{errors.email}</p>
     )}
   </div>
-</div>
+ </div>
 
 
        <div className="w-full flex justify-end mt-3">
@@ -1422,8 +1509,110 @@ const handleSubmit = async () => {
   >
   {isSubmitting ? "Submitting..." : "Submit"}
   </button>
+ </div>
+
+{/* CONTACT BLOCK */}
+<div className="mt-4 py-4  ">
+
+  <h5 className="text-[#F9B31B] font-semibold text-lg mb-4">
+    If you don't have patience, call us.
+  </h5>
+
+  <div className="space-y-2">
+
+    <a
+      href="tel:+919999999999"
+      className="
+        flex
+        items-center
+        gap-3
+
+      "
+    >
+      <Phone
+        size={18}
+        className="text-[#F9B31B]"
+      />
+
+      <span>
+        +91 9987558189
+      </span>
+    </a>
+
+    <a
+      href="mailto:hello@bombayblokes.com"
+      className="
+        flex
+        items-center
+        gap-3
+        
+        transition-all
+      "
+    >
+      <Mail
+        size={18}
+        className="text-[#F9B31B]"
+      />
+
+      <span>
+        hello@bombayblokes.com
+      </span>
+    </a>
+
+  </div>
 </div>
 
+{/* INCLUDED SECTION */}
+<div className="  border-t border-t-[#F9B31B] ">
+
+<div className="flex flex-col lg:flex-row lg:items-center gap-2 pt-4">
+
+  <h6
+    className="
+      font-[700]
+      whitespace-nowrap
+      leading-none
+    "
+  >
+    What's Always Included :
+  </h6>
+
+<div className="relative h-[28px] flex items-center lg:min-w-[150px]">
+    <AnimatePresence mode="wait">
+      <motion.span
+        key={activeText}
+        initial={{
+          y: 12,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+        }}
+        exit={{
+          y: -12,
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.35,
+          ease: "easeOut",
+        }}
+        className="
+          absolute
+          font-semibold
+          text-[#F9B31B]
+          whitespace-nowrap
+        "
+      >
+        {rotatingTexts[activeText]}
+      </motion.span>
+    </AnimatePresence>
+  </div>
+
+</div>
+
+
+</div>
 
       </div>
     </div>
@@ -1433,46 +1622,11 @@ const handleSubmit = async () => {
 
   </div>
 
-  {/* RIGHT SECTION */}
-<div className="w-full lg:w-1/2 flex flex-col p-2">
-    {/* What's Always Included */}
-    <div>
-    <h4 className="
-  font-[700] 
-  mb-4 
-  flex 
-  items-center 
-  gap-2
 
-">
-  What’s Always Included
-</h4>
-
-
-      <ul className="space-y-3 mb-5">
-        {includedItems.map((item, i) => (
-          <li key={i} className="flex items-start gap-3">
-            <span className="w-3 h-3 bg-[#76CA21] rounded-full mt-1"></span>
-            <span className="text-[15px] text-[#1E1E1E] leading-[22px]">
-              {item}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-<div className="w-full h-[2px] border-t border-dashed border-[#F9B31B] my-[6px]"></div>
-
-   
-      {/* <CalculatorTestimonials /> */}
-
-  </div>
 </div>
 
 
-
-        )}
-
+</div>
 
       </section>    
         </div>     
