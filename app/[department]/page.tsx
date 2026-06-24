@@ -4,17 +4,13 @@ import Preview from "./Preview";
 import { adminDB } from "@/lib/firebase-admin";
 
 type PageProps = {
-  params: { department?: string };
+  params: Promise<{ department: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const department = params.department;
-
-  if (!department) {
-    notFound();
-  }
+  const { department } = await params;
 
   const snap = await adminDB
     .collection("calculatorDepartments")
@@ -47,11 +43,7 @@ export async function generateMetadata({
 }
 
 export default async function DepartmentPage({ params }: PageProps) {
-  const department = params.department;
-
-  if (!department) {
-    notFound();
-  }
+  const { department } = await params;
 
   const snap = await adminDB
     .collection("calculatorDepartments")
@@ -59,8 +51,8 @@ export default async function DepartmentPage({ params }: PageProps) {
     .get();
 
   if (!snap.exists) {
-    notFound(); // ✅ THIS triggers the real 404 page
+    notFound();
   }
 
-  return <Preview />;
+  return <Preview department={department} />;
 }
