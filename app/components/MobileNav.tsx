@@ -136,16 +136,16 @@ const MobileNav = () => {
           </button>
 
           {/* CENTER: Logo */}
-          <div className="flex-1 flex justify-center relative">
+         <div className="flex-1 flex items-center justify-center h-full">
   <Link href="/">
     <div className="relative inline-block">
       {/* Logo */}
       <Image
         src="/images/bblogo.webp"
         alt="Bombay Blokes Logo"
-        width={160}
-        height={50}
-        className="object-contain transition-opacity duration-300"
+        width={180}
+        height={60}
+         className="object-contain translate-y-[4px]"
       />
 
     
@@ -155,7 +155,7 @@ const MobileNav = () => {
 
 
           {/* RIGHT: WhatsApp Icon */}
-          {/* <a
+          <a
             href="https://wa.me/919920207985"
             target="_blank"
             rel="noopener noreferrer"
@@ -168,10 +168,10 @@ const MobileNav = () => {
               alt="WhatsApp"
               className="w-10 h-10"
             />
-          </a> */}
+          </a>
 
 
-         <Link href="/contactus">
+         {/* <Link href="/contactus">
   <button
     className="
       rounded-[10px]
@@ -192,7 +192,7 @@ const MobileNav = () => {
   >
     GET QUOTE
   </button>
-</Link>
+</Link> */}
 
         </div>
       </div>

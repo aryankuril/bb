@@ -5,7 +5,10 @@ import Link from "next/link";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import type { StatsContent } from "./departmentConfig";
+
+import { motion} from "framer-motion";
 import Button from "../components/Button";
+import ContactButton from "../components/ContactButton";
 
 const AdsStatsSection = ({ content }: { content: StatsContent }) => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.25 });
@@ -19,7 +22,7 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
         <div className="lg:flex-1">
           <div className="inline-flex items-center gap-2 bg-[var(--color-primary)] rounded-full px-4 py-[9px] mb-5">
             <span className="w-[7px] h-[7px] rounded-full bg-[var(--color-highlight)] shrink-0" />
-            <span className="font-['Poppins'] font-bold text-[11px] tracking-[0.13em] uppercase text-[var(--color-highlight)]">
+            <span className="font-['Poppins'] font-bold text-[12px] tracking-[0.13em] font-medium uppercase text-[var(--color-highlight)]">
               {content.eyebrow}
             </span>
           </div>
@@ -30,50 +33,84 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
       </div>
 
       {/* Problem stat cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-[18px] mt-10">
-        {content.statCards.map((card) => {
-          const parts = card.boldWord
-            ? card.description.split(new RegExp(`(${card.boldWord})`, "i"))
-            : [card.description];
+      <div
+  className={`grid gap-[18px] mt-10 ${
+    content.statCards.length === 4
+      ? "grid-cols-2 lg:grid-cols-4"
+      : "grid-cols-2 lg:grid-cols-5"
+  }`}
+>
+  {content.statCards.map((card, index) => {
+    const parts = card.boldWord
+      ? card.description.split(new RegExp(`(${card.boldWord})`, "i"))
+      : [card.description];
 
-          return (
-            <div
-              key={card.value}
-              className="bg-white border border-[rgba(10,10,10,.07)] rounded-[20px] p-7"
-            >
-              <div className="font-['Poppins'] font-extrabold text-[52px] leading-none text-highlight">
-                {card.value}
-              </div>
-              <p className="mt-3 subtitle text-[#46463f]">
-                {parts.map((part, i) =>
-                  card.boldWord &&
-                  part.toLowerCase() === card.boldWord.toLowerCase() ? (
-                    <b key={i} className="text-[#0A0A0A] font-bold">
-                      {part}
-                    </b>
-                  ) : (
-                    part
-                  )
-                )}
-              </p>
-            </div>
-          );
-        })}
-      </div>
+    const isLastOdd =
+      content.statCards.length % 2 !== 0 &&
+      index === content.statCards.length - 1;
+
+    return (
+      <motion.div
+        key={card.value}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className={`
+          bg-white
+          border
+          border-[rgba(10,10,10,.07)]
+          rounded-[20px]
+          lg:p-6 p-4
+
+          flex
+          flex-col
+         
+          ${
+            isLastOdd
+              ? "col-span-2 lg:col-span-1"
+              : ""
+          }
+        `}
+      >
+        <div className="font-['Poppins'] font-extrabold text-[40px] leading-none text-highlight">
+          <CountUp
+  start={0}
+  end={parseInt(card.value.replace(/[^0-9,]/g, ""))}
+  duration={2}
+/>
+          {card.value.replace(/[0-9,]/g, "")}
+        </div>
+
+        <p className="mt-3 subtitle text-[#46463f]">
+          {parts.map((part, i) =>
+            card.boldWord &&
+            part.toLowerCase() === card.boldWord.toLowerCase() ? (
+              <b key={i} className="text-[#0A0A0A] font-bold">
+                {part}
+              </b>
+            ) : (
+              part
+            )
+          )}
+        </p>
+      </motion.div>
+    );
+  })}
+</div>
 
       {/* CTA banner */}
       <div className="mt-[18px] bg-[var(--color-primary)] rounded-[22px] p-6 sm:p-8 lg:p-9 flex flex-wrap gap-6 items-center justify-between">
-        <p className="font-['Poppins'] font-semibold text-[18px] sm:text-[20px] lg:text-[22px] leading-[1.35] text-white max-w-[720px]">
+        <p className="font-['Poppins'] font-semibold text-[18px] sm:text-[22px] lg:text-[22px] leading-[1.35] text-white max-w-[720px]">
           {content.ctaBanner.text}
         </p>
         <div>
-      <Button
-                href={content.ctaBanner.buttonHref}
-        text={content.ctaBanner.buttonText}
-        type="submit"
-
-        className="white-text cursor-pointer"
-      />
+          
+    <ContactButton
+  href="#contact-form"
+  text={content.ctaBanner.buttonText}
+  className="white-text cursor-pointer"
+/>
     </div>
        
       </div>

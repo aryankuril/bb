@@ -121,43 +121,37 @@ const testimonials = {
 
   
   "website-development": [
-    {
-      brand: "Lemonade India",
-      text: "Bombay Blokes transformed our vision into a modern, high-performing website that perfectly reflects our brand. Their expertise and attention to detail made the entire process seamless.",
-      name: "~ Gunjan Malhotra",
-      maintext: "★★★★★ 5/5",
-    },
-    {
-      brand: "Nurrish",
-      text: "The team built a fast, responsive website that not only looks great but also delivers an outstanding user experience across every device.",
-      name: "~ Sanaya Mehta",
-      maintext: "★★★★★ 5/5",
-    },
-    {
-      brand: "India Grooming Club",
-      text: "Their web development expertise helped us launch a scalable platform optimized for performance, user experience, and conversions.",
-      name: "~ Kaushik Shah",
-      maintext: "★★★★★ 5/5",
-    },
-    {
-      brand: "Client Success",
-      text: "From planning and UI/UX design to development and deployment, Bombay Blokes delivered every milestone with professionalism and precision.",
-      name: "~ Alex Kriplani",
-      maintext: "★★★★★ 5/5",
-    },
-    {
-      brand: "Client Success",
-      text: "Our new website has significantly improved customer engagement and strengthened our online presence. The team's technical expertise truly stands out.",
-      name: "~ Tilika Vispute",
-      maintext: "★★★★★ 5/5",
-    },
-    {
-      brand: "Client Review",
-      text: "Bombay Blokes builds websites that are beautiful, fast, SEO-friendly, and designed to help businesses grow. We couldn't have asked for a better development partner.",
-      name: "~ Client Review",
-      maintext: "★★★★★ 5/5",
-    },
-  ],
+  {
+    brand: "Client Review",
+    text: "Young, energetic team with a sharp eye for modern design. Creative, fresh ideas delivered with a smooth, collaborative process.",
+    name: "~ Monil Shah",
+    maintext: "★★★★★ 5.0",
+  },
+  {
+    brand: "The Feline Foundation",
+    text: "BB built The Feline Foundation's website and nailed the brief perfectly — warm, impactful, and nothing like a typical non-profit site. It drives real fundraising and volunteering results.",
+    name: "~ Pallavi Kamath",
+    maintext: "★★★★★ 5.0",
+  },
+  {
+    brand: "Client Review",
+    text: "Incredible work on our website, especially the complex mascot animations. Patient, skilled team — highly recommend for anything creative and technical.",
+    name: "~ Jash Chheda",
+    maintext: "★★★★★ 5.0",
+  },
+  {
+    brand: "Client Review",
+    text: "Transparent, fast, and high quality across both app development and marketing. A team that genuinely goes the extra mile and earns your trust.",
+    name: "~ Akshat Adani",
+    maintext: "★★★★★ 5.0",
+  },
+  {
+    brand: "Client Review",
+    text: "Helped us launch our e-commerce website from scratch with patience and expertise. Highly recommend Bombay Blokes for web development.",
+    name: "~ Chirag Vora",
+    maintext: "★★★★★ 5.0",
+  },
+],
 };
 type Testimonial = {
   brand: string;
@@ -226,7 +220,7 @@ const AdsTestimonialsSection = () => {
                 {item.maintext}
               </h5>
 
-              <p className="white-text mt-2 leading-relaxed z-10 relative">
+              <p className="white-text mt-2 subtitle z-10 relative">
                 {item.text}
               </p>
 

@@ -8,7 +8,7 @@ const pageContent = {
       <>
          Design That {" "}
         <span className="text-highlight">
-         Speaks Before You Do.
+         Speaks Before
         </span>{" "}
         You Do.{" "}
         
@@ -81,7 +81,7 @@ export default function Firstsection() {
             {content.title}
           </h1>
 
-          <p className="mt-4 max-w-2xl text-base md:text-lg text-[#666] leading-relaxed">
+          <p className="mt-4 max-w-4xl text-base md:text-lg text-[#666] leading-relaxed">
             {content.subtitle}
           </p>
         </div>

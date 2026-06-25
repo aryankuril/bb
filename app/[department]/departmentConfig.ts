@@ -107,24 +107,31 @@ const configs: Record<string, DepartmentConfig> = {
     stats: {
       eyebrow: "The uncomfortable truth",
       headline: "If you're not on page one, you're invisible. Your competitors are eating your lunch.",
-      statCards: [
-        {
-          value: "91%",
-          description: "of pages get zero Google traffic. Beautiful site, invisible to buyers.",
-          boldWord: "zero",
-        },
-        {
-          value: "7/10",
-          description: "clicks go to the top 3 results. Position 8 might as well be page 80.",
-        },
-        {
-          value: "₹0",
-          description: "is what SEO agencies report when they hide behind rankings instead of revenue.",
-        },
-      ],
+     statCards: [
+  {
+    value: "500+",
+    description: "First-Page Rankings",
+  },
+  {
+    value: "1M+",
+    description: "Organic Clicks Generated",
+  },
+  {
+    value: "100M+",
+    description: "Search Impressions Delivered",
+  },
+  {
+    value: "250+",
+    description: "Brands Optimized",
+  },
+  {
+    value: "10000+",
+    description: "Keywords Optimized",
+  },
+],
       ctaBanner: {
         text: "Every day you wait, a competitor ranks for a keyword that should've been yours. And keeps it.",
-        buttonText: "See what you're missing +",
+        buttonText: "See what you're missing ",
         buttonHref: "/contactus",
       },
       achievementStats: [
@@ -258,24 +265,31 @@ const configs: Record<string, DepartmentConfig> = {
     stats: {
       eyebrow: "The hard truth",
       headline: "A slow, dated website is costing you customers every single day.",
-      statCards: [
-        {
-          value: "53%",
-          description: "of visits are abandoned if a page takes more than 3 seconds to load.",
-          boldWord: "abandoned",
-        },
-        {
-          value: "88%",
-          description: "of users won't return after a bad experience. First impressions are permanent.",
-        },
-        {
-          value: "₹0",
-          description: "in conversions from a site that looks great but isn't built to sell.",
-        },
-      ],
+     statCards: [
+  {
+    value: "100+",
+    description: "Websites Designed",
+  },
+  {
+    value: "250+",
+    description: "Brands Empowered",
+  },
+  {
+    value: "95%",
+    description: "Client Satisfaction",
+  },
+  {
+    value: "50+",
+    description: "Industries Served",
+  },
+  {
+    value: "10,000+",
+    description: "Pages Designed",
+  },
+],
       ctaBanner: {
         text: "Every day without a fast, conversion-optimised site, you're handing business to your competitors.",
-        buttonText: "See what you're losing +",
+        buttonText: "See what you're losing ",
         buttonHref: "/contactus",
       },
       achievementStats: [
@@ -407,8 +421,8 @@ const configs: Record<string, DepartmentConfig> = {
     whyText:
       "Likes don't pay salaries. Bombay Blokes builds social media systems that grow the right audience, earn real engagement, create brand love that lasts, and convert social attention into business outcomes that show up in revenue.",
     stats: {
-      eyebrow: "The uncomfortable truth",
-      headline: "Posting without a strategy is just noise. And noise doesn't build brands.",
+      eyebrow: "Always Relevant",
+      headline: "Content That Stops The Scroll And Builds A Loyal Community.",
       statCards: [
         {
           value: "91%",
@@ -426,7 +440,7 @@ const configs: Record<string, DepartmentConfig> = {
       ],
       ctaBanner: {
         text: "Every post without a strategy is a missed opportunity to build real brand equity.",
-        buttonText: "See what you're missing +",
+        buttonText: "See what you're missing ",
         buttonHref: "/contactus",
       },
       achievementStats: [
@@ -561,23 +575,30 @@ const configs: Record<string, DepartmentConfig> = {
       eyebrow: "The expensive truth",
       headline: "You're spending on ads. Someone else is getting the customers.",
       statCards: [
-        {
-          value: "76%",
-          description: "of ad budgets are wasted on campaigns with no proper conversion tracking.",
-          boldWord: "wasted",
-        },
-        {
-          value: "40%",
-          description: "of clicks go to the top 3 ads. Position 5 might as well be invisible.",
-        },
-        {
-          value: "₹0",
-          description: "returns when ads drive traffic to pages that aren't built to convert.",
-        },
-      ],
+  {
+    value: "250+",
+    description: "Brands Trusted",
+  },
+  {
+    value: "500+",
+    description: "Campaigns Delivered",
+  },
+  {
+    value: "100M+",
+    description: "Impressions Generated",
+  },
+  {
+    value: "1M+",
+    description: "Leads Generated",
+  },
+  {
+    value: "95%",
+    description: "Client Retention",
+  },
+],
       ctaBanner: {
         text: "Every rupee spent without a strategy is a rupee earned for your competitor.",
-        buttonText: "See what you're losing +",
+        buttonText: "See what you're losing ",
         buttonHref: "/contactus",
       },
       achievementStats: [

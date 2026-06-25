@@ -755,7 +755,7 @@ if (res.ok) {
         </div>
 
 
-       <div className="flex flex-col lg:flex-row lg:gap-8 gap-0">
+       <div className="flex flex-col lg:flex-row lg:gap-6 gap-0">
 
      
 
@@ -1390,22 +1390,23 @@ if (res.ok) {
 
 
     {/* BACK SIDE — YOUR FORM PAGE */}
-    <div className="  ">
+    <div id="contact-form" className="  ">
 
               
 
-  <div className="w-full h-auto min-h-full bg-[#1B1B1B] rounded-[20px] lg:p-6 p-5 text-white relative overflow-hidden">
+  <div className="w-full h-auto min-h-full bg-[#1B1B1B] rounded-[20px] lg:p-8 p-5 text-white relative overflow-hidden">
 
 
          {/* RIGHT BORDER */}
 <div className="absolute right-0 top-0 w-3 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
 
 
-        <h4 className=" flex items-center gap-2">
-Get Expert Guidance for Your Project  </h4>
+        <h4 className="max-w-xs flex items-center gap-2">
+  Get Expert Guidance for Your Project
+</h4>
 
 
-   <p className=" max-w-2xl mb-4  text-base md:text-lg text-white leading-relaxed">
+   <p className=" max-w-2xl mb-4  subtitle text-white leading-relaxed">
            Expect a response within 24 hours.
           </p>
 
@@ -1497,7 +1498,7 @@ Get Expert Guidance for Your Project  </h4>
   <button
     onClick={handleSubmit}
     className="py-[8px] px-[23px] rounded-[5px]  cursor-pointer bg-[#F9B31B]
-    border shadow-[2px_2px_0px_0px_#FFFFFF]  text-white italic"
+    border shadow-[2px_2px_0px_0px_#FFFFFF]  text-black italic"
   >
   {isSubmitting ? "Submitting..." : "Submit"}
   </button>

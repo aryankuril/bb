@@ -74,19 +74,19 @@ const AdsWorkflowSection = ({ content }: { content: WorkflowContent }) => {
         <motion.div
           ref={rowRef}
           style={{ x }}
-          className="flex gap-4 sm:gap-8 px-4 sm:px-10 md:px-20 mt-3"
+          className="flex gap-4 sm:gap-8 px-4 sm:px-10 md:px-20 mt-3 overflow-hidden"
         >
           {content.steps.map((step) => (
             <div
               key={step.title}
-              className="bg-black rounded-[20px] sm:rounded-[30px] p-4 sm:p-6 md:p-8 relative w-[250px] sm:w-[350px] md:w-[400px] lg:w-[450px] h-[380px] sm:h-[450px] md:h-[500px] lg:h-[540px] flex-shrink-0"
+              className="bg-black rounded-[20px] sm:rounded-[30px] overflow-hidden p-4 sm:p-6 md:p-8 relative w-[250px] sm:w-[350px] md:w-[400px] lg:w-[450px] h-[380px] sm:h-[450px] md:h-[500px] lg:h-[540px] flex-shrink-0"
             >
               <div className="absolute right-0 top-0 h-full w-3 sm:w-5 candy-border rounded-r-[20px] sm:rounded-r-[30px]" />
               <div className="space-y-4 sm:space-y-6 md:space-y-8">
                 <div className="border-b border-[var(--color-highlight)] pb-4 sm:pb-6 md:pb-8">
                   <h3 className="white-text">{step.title}</h3>
                 </div>
-                <p className="white-text body2">{step.description}</p>
+                <p className="white-text subtitle">{step.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {step.tags.map((tag, tagIndex) => (
                     <span key={tag} className="black-text capitalize">

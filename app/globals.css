@@ -129,7 +129,7 @@ h6 {
   font-family: var(--font-poppins);
   font-size: var(--subtitle); /* ✅ Form labels, testimonials, our work cards */
   font-weight: 400;
-  line-height: 1.2em;
+  line-height: 1.4em;
 }
 
 .body1 {
@@ -743,4 +743,9 @@ select {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+html {
+  scroll-behavior: smooth;
 }
