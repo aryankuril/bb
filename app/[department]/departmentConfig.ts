@@ -105,8 +105,8 @@ const configs: Record<string, DepartmentConfig> = {
     whyText:
       "Rankings are easy. Revenue is harder. Bombay Blokes treats SEO as a long-term asset, not a checklist. We start with strategy, build technical foundations that scale, create content that converts, report transparently, and grow search visibility that compounds month after month.",
     stats: {
-      eyebrow: "The uncomfortable truth",
-      headline: "If you're not on page one, you're invisible. Your competitors are eating your lunch.",
+      eyebrow: "Organic Growth",
+      headline: "Rank Higher, Get Found, And Stay Ahead Of The Competition",
      statCards: [
   {
     value: "500+",
@@ -263,8 +263,8 @@ const configs: Record<string, DepartmentConfig> = {
     whyText:
       "A website is your best salesperson. Bombay Blokes builds digital experiences that load fast, rank well, and convert consistently. We combine sharp design with solid engineering, obsess over mobile performance, and build on foundations that scale as your business does.",
     stats: {
-      eyebrow: "The hard truth",
-      headline: "A slow, dated website is costing you customers every single day.",
+      eyebrow: "Beyond Beautiful",
+      headline: "Websites Built To Convert, Perform, And Leave A Lasting Impression",
      statCards: [
   {
     value: "100+",
@@ -572,8 +572,8 @@ const configs: Record<string, DepartmentConfig> = {
     whyText:
       "Performance marketing is not about spending more. It is about spending smarter. Bombay Blokes builds campaigns with precision targeting, compelling creative, continuous optimisation, and transparent reporting that connects every rupee to real business outcomes.",
     stats: {
-      eyebrow: "The expensive truth",
-      headline: "You're spending on ads. Someone else is getting the customers.",
+      eyebrow: "Real Results",
+      headline: "Growth-First Approach Focused On Revenue & ROI",
       statCards: [
   {
     value: "250+",

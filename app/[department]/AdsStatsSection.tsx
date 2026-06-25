@@ -27,6 +27,9 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
             </span>
           </div>
           <h6 className="black-text">{content.headline}</h6>
+           <p className="mt-3 text-[#666] subtitle">
+In a world full of agencies chasing metrics, Bombay Blokes focuses on what truly matters—business growth. As a leading digital marketing agency, we combine Performance Marketing, SEO, Web Development, Design & Branding, social media marketing and production with compelling creative execution and deep consumer insights to help brands increase visibility, generate qualified leads, strengthen their digital presence, and achieve measurable growth. Every strategy is tailored, every campaign is optimized, and every decision is driven by one goal: delivering results that create a lasting impact on your business. When you partner with Bombay Blokes, you gain a team that's as invested in your growth as you are.          </p>
+          
         </div>
 
       

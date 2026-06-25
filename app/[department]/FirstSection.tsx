@@ -81,7 +81,7 @@ export default function Firstsection() {
             {content.title}
           </h1>
 
-          <p className="mt-4 max-w-4xl text-base md:text-lg text-[#666] leading-relaxed">
+          <p className="mt-4 max-w-4xl  text-[#666] subtitle">
             {content.subtitle}
           </p>
         </div>
