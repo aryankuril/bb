@@ -6,52 +6,45 @@ const pageContent = {
   "/website-development": {
     title: (
       <>
-        Build High-Converting{" "}
+         Design That {" "}
         <span className="text-highlight">
-          Websites
+         Speaks Before You Do.
         </span>{" "}
-        That Drive{" "}
-        <span className="text-highlight">
-          Business Growth
-        </span>
+        You Do.{" "}
+        
       </>
     ),
     subtitle:
-      "From corporate websites to custom web applications, we build fast, scalable, and conversion-focused digital experiences tailored to your business goals.",
+      "We design modern, responsive websites with intuitive UI/UX, mobile-first experiences, and conversion-focused layouts that strengthen your brand, engage users, and drive business growth.",
   },
 
   "/social-media-marketing": {
     title: (
       <>
-        Grow Your Brand With{" "}
+       Making Brands {" "}
         <span className="text-highlight">
-          Social Media
+        Impossible To Ignore.
         </span>{" "}
-        That Creates{" "}
-        <span className="text-highlight">
-          Real Engagement
-        </span>
+        
       </>
     ),
     subtitle:
-      "Build a stronger online presence with content, strategy, and campaigns designed to increase reach, engagement, and customer loyalty.",
+      "We help brands grow through strategic social media marketing, engaging content, and data-driven campaigns that build awareness, strengthen communities, and drive measurable business growth.",
   },
 
   "/paid-marketing": {
     title: (
       <>
-        Maximize ROI With{" "}
+        Mumbai's Growth-Focused {" "}
         <span className="text-highlight">
-          Paid Marketing
+          Performance Marketing
         </span>{" "}
-        That Delivers{" "}
-        <span className="text-highlight">
-          Results
-        </span>
+       Agency{" "}
+       
       </>
     ),
     subtitle:
-      "Launch data-driven advertising campaigns across Google, Meta, LinkedIn, and more to generate qualified leads and measurable business growth.",
+      "Trusted by ambitious brands to drive customer acquisition, revenue growth, and industry-leading marketing performance.",
   },
 
   "/seo": {

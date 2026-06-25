@@ -14,7 +14,8 @@ import AdsLogoSection from "./AdsLogoSection";
 import AdsWorkSection from "./AdsWorkSection";
 import AdsWorkflowSection from "./AdsWorkflowSection";
 import AdsFAQSection from "./AdsFAQSection";
-import Testimonials from "../components/Testimonials";
+import AdsTestimonialsSection from './AdsTestimonialsSection';
+
 import Taxi from "../components/Taxi";
 import SmoothScroll from "../components/SmoothScroll";
 import { getDepartmentConfig } from "./departmentConfig";
@@ -44,7 +45,7 @@ if (!config) {
         <AdsStatsSection content={config.stats} />
         <AdsLogoSection content={config.logos} />
         <AdsWorkSection content={config.work} />
-        <Testimonials />
+        <AdsTestimonialsSection />
         <AdsWorkflowSection content={config.workflow} />
         <AdsFAQSection content={config.faq} />
 <SeventhSection/>

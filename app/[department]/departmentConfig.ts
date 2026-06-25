@@ -202,38 +202,38 @@ const configs: Record<string, DepartmentConfig> = {
       eyebrow: "Got questions",
       title: "SEO",
       highlightTitle: "FAQs",
-      faqs: [
-        {
-          question: "How long does SEO take?",
-          answer:
-            "Most brands start seeing directional movement in 3 to 6 months, depending on competition, site health, content depth, and authority.",
-        },
-        {
-          question: "Do you guarantee rankings?",
-          answer:
-            "No ethical SEO partner can guarantee exact rankings. We focus on controllable work: technical quality, content relevance, authority, reporting, and business growth.",
-        },
-        {
-          question: "What industries do you work with?",
-          answer:
-            "We work across consumer brands, finance, sports, B2B, local businesses, and service-led companies that want search to drive measurable demand.",
-        },
-        {
-          question: "How often will I receive reports?",
-          answer:
-            "You receive transparent recurring reports that cover traffic, rankings, content progress, technical fixes, and growth opportunities.",
-        },
-        {
-          question: "Do you handle local SEO?",
-          answer:
-            "Yes. We handle local SEO strategy, location pages, Google Business Profile improvements, citations, and local search visibility.",
-        },
-        {
-          question: "What is included in your SEO service?",
-          answer:
-            "SEO audits, research, technical fixes, on-page optimization, content planning, authority building, tracking, and growth reporting.",
-        },
-      ],
+    faqs: [
+  {
+    question: "Why is SEO important for my business?",
+    answer:
+      "SEO helps your business rank higher on search engines, attract qualified organic traffic, and generate consistent leads without relying solely on paid advertising. It's a long-term investment that builds credibility, increases visibility, and drives sustainable business growth.",
+  },
+  {
+    question: "What SEO services does Bombay Blokes offer?",
+    answer:
+      "We provide end-to-end SEO services, including keyword research, technical SEO, on-page optimization, content strategy, link building, local SEO, website audits, and ongoing performance monitoring to improve your search rankings and organic visibility.",
+  },
+  {
+    question: "How long does SEO take to show results?",
+    answer:
+      "SEO is a long-term strategy. While timelines vary depending on your industry, website, and competition, most businesses begin seeing measurable improvements within 3–6 months, with stronger and more sustainable results achieved over time through continuous optimization.",
+  },
+  {
+    question: "Do you provide Local SEO services?",
+    answer:
+      "Yes. We optimize your online presence to improve visibility in local search results through Google Business Profile optimization, local keyword targeting, citation management, and location-specific SEO strategies that help nearby customers discover your business.",
+  },
+  {
+    question: "How do you measure SEO success?",
+    answer:
+      "We measure SEO success through key performance metrics such as organic traffic, keyword rankings, search visibility, click-through rates (CTR), website conversions, lead generation, and overall business growth. You'll receive transparent reports with actionable insights.",
+  },
+  {
+    question: "Why choose Bombay Blokes for SEO?",
+    answer:
+      "Bombay Blokes combines technical expertise, data-driven strategies, and high-quality content to improve search rankings, increase organic traffic, and generate long-term business growth. We focus on ranking for the keywords that matter most to your business while delivering measurable results.",
+  },
+],
     },
   },
 
@@ -353,47 +353,47 @@ const configs: Record<string, DepartmentConfig> = {
       eyebrow: "Got questions",
       title: "Web Development",
       highlightTitle: "FAQs",
-      faqs: [
-        {
-          question: "How long does a website take to build?",
-          answer:
-            "A standard brochure website takes 4 to 6 weeks. More complex builds with custom functionality or e-commerce take 8 to 12 weeks depending on scope.",
-        },
-        {
-          question: "Do you build on WordPress or custom code?",
-          answer:
-            "Both. We choose the stack based on your needs — WordPress for content-heavy sites, Next.js or custom builds for high-performance, scalable products.",
-        },
-        {
-          question: "Will my website be mobile-friendly?",
-          answer:
-            "Yes, every site we build is fully responsive and tested across all major devices and screen sizes before launch.",
-        },
-        {
-          question: "Do you handle SEO during development?",
-          answer:
-            "We set up technical SEO foundations — site structure, metadata, schema, page speed, and indexing — so your site is search-ready from day one.",
-        },
-        {
-          question: "Can I update the website myself after launch?",
-          answer:
-            "Yes. We build on CMS platforms or headless setups that give you full content control without needing a developer for every change.",
-        },
-        {
-          question: "What is included in your web development service?",
-          answer:
-            "Strategy, UI/UX design, development, QA testing, SEO setup, CMS integration, launch support, and a post-launch handover session.",
-        },
-      ],
+    faqs: [
+  {
+    question: "Why does my business need a professionally designed website?",
+    answer:
+      "A professionally designed website builds credibility, enhances user experience, and helps convert visitors into customers. It's often the first impression your brand makes, so it should reflect your business while driving measurable results.",
+  },
+  {
+    question: "Do you create custom website designs?",
+    answer:
+      "Yes. Every website we design is fully customized to match your brand identity, business goals, and target audience. We don't use generic templates—we create unique digital experiences that help your brand stand out.",
+  },
+  {
+    question: "Will my website be mobile-friendly and responsive?",
+    answer:
+      "Absolutely. Every website we design is fully responsive, ensuring a seamless experience across desktops, tablets, and mobile devices for maximum engagement and performance.",
+  },
+  {
+    question: "Do you design websites with SEO in mind?",
+    answer:
+      "Yes. Our websites are built with SEO best practices, including clean site architecture, optimized page structure, fast loading speeds, and user-friendly navigation to improve search engine visibility.",
+  },
+  {
+    question: "Can you redesign my existing website?",
+    answer:
+      "Yes. Whether your website needs a visual refresh or a complete transformation, we redesign websites to improve performance, user experience, functionality, and conversion rates while keeping your business goals at the forefront.",
+  },
+  {
+    question: "Why choose Bombay Blokes for web design?",
+    answer:
+      "Bombay Blokes combines creative design, strategic thinking, and user-focused experiences to build websites that don't just look exceptional—they perform. We create conversion-focused, responsive, and SEO-friendly websites that help businesses strengthen their online presence and drive long-term growth.",
+  },
+],
     },
   },
 
   "social-media-marketing": {
     hero: {
-      headline: "Social media that",
-      highlightText: "builds brands and drives revenue.",
+      headline: "Making Brands",
+      highlightText: "Impossible To Ignore.",
       description:
-        "Scroll-stopping content is only half the job. We build social strategies that grow your audience, deepen brand loyalty, and turn followers into customers.",
+        "We help brands grow through strategic social media marketing, content creation, and community building. From Instagram and LinkedIn management to content strategy and performance-driven campaigns, we create meaningful engagement, strengthen brand awareness, and drive measurable business growth. ",
       ctaText: "BOOK FREE STRATEGY CALL",
       ctaHref: "/contactus",
       badgeText: "Content that earns attention",
@@ -505,37 +505,37 @@ const configs: Record<string, DepartmentConfig> = {
       title: "Social Media",
       highlightTitle: "FAQs",
       faqs: [
-        {
-          question: "Which platforms do you manage?",
-          answer:
-            "We manage Instagram, Facebook, LinkedIn, Twitter/X, YouTube, and Pinterest depending on where your audience lives.",
-        },
-        {
-          question: "How often will you post?",
-          answer:
-            "Posting frequency is set in your strategy based on platform and goals — typically 4 to 5 times per week on primary platforms.",
-        },
-        {
-          question: "Do you create the content or do we?",
-          answer:
-            "We handle full content creation — design, copywriting, video editing, and scheduling — so your team can focus on running the business.",
-        },
-        {
-          question: "How do you measure success?",
-          answer:
-            "We track reach, impressions, engagement rate, follower growth, story views, link clicks, and any conversion metrics tied to your goals.",
-        },
-        {
-          question: "Can you run paid ads alongside organic?",
-          answer:
-            "Yes. We offer integrated social media and paid advertising to amplify organic efforts and target new audiences precisely.",
-        },
-        {
-          question: "What is included in your social media service?",
-          answer:
-            "Strategy, content creation, scheduling, community management, monthly reporting, and ongoing optimisation based on performance data.",
-        },
-      ],
+  {
+    question: "Why is social media marketing important for my business?",
+    answer:
+      "Social media helps your brand increase visibility, engage the right audience, build credibility, and drive meaningful business growth. A strong social presence creates lasting customer relationships while generating valuable leads and conversions.",
+  },
+  {
+    question: "Which social media platforms do you manage?",
+    answer:
+      "We manage Instagram, Facebook, LinkedIn, X (Twitter), YouTube, and other leading social platforms, creating platform-specific strategies that maximize reach, engagement, and brand impact.",
+  },
+  {
+    question: "Do you create content for social media?",
+    answer:
+      "Yes. Our team handles everything from content strategy and creative design to copywriting, photography, videography, and short-form video production, ensuring your brand remains consistent and engaging across all platforms.",
+  },
+  {
+    question: "How do you measure the success of social media campaigns?",
+    answer:
+      "We track key performance metrics such as reach, engagement, audience growth, website traffic, lead generation, and conversions, providing transparent reports that clearly demonstrate your return on investment.",
+  },
+  {
+    question: "Can social media marketing help generate leads and sales?",
+    answer:
+      "Absolutely. Our social media strategies are designed to build brand awareness, generate qualified leads, drive website traffic, increase customer engagement, and support long-term business growth.",
+  },
+  {
+    question: "Why should I choose Bombay Blokes for social media marketing?",
+    answer:
+      "Bombay Blokes combines creative storytelling, data-driven strategy, and platform expertise to create impactful social media campaigns that build communities, strengthen brand presence, and deliver measurable business results. We don't just manage social media—we help brands grow through it.",
+  },
+],
     },
   },
 
@@ -588,7 +588,7 @@ const configs: Record<string, DepartmentConfig> = {
       ],
     },
     logos: {
-      eyebrow: "Trusted by 50+ brands",
+      eyebrow: "Trusted by 250+ brands",
       title: "Brands That",
       highlightTitle: "Trust The Work",
       subtitle: "From e-commerce to service businesses, 50+ brands have trusted us to make their ad spend work harder.",
@@ -655,38 +655,38 @@ const configs: Record<string, DepartmentConfig> = {
       eyebrow: "Got questions",
       title: "Paid Marketing",
       highlightTitle: "FAQs",
-      faqs: [
-        {
-          question: "Which ad platforms do you work with?",
-          answer:
-            "We run campaigns on Google Ads, Meta (Facebook & Instagram), LinkedIn, YouTube, and other platforms based on where your audience converts best.",
-        },
-        {
-          question: "What budget do I need to get started?",
-          answer:
-            "We work with brands across a range of budgets. We'll recommend a minimum based on your goals and category — enough to generate statistically meaningful data.",
-        },
-        {
-          question: "How do you measure campaign success?",
-          answer:
-            "We track ROAS, CPA, CPL, CTR, conversion rate, and revenue. Every metric is tied to your specific business goal, not just impressions.",
-        },
-        {
-          question: "How long before I see results?",
-          answer:
-            "Most campaigns start generating data within the first 2 weeks. Meaningful ROAS optimisation typically takes 4 to 8 weeks as the algorithm learns.",
-        },
-        {
-          question: "Do you handle ad creative?",
-          answer:
-            "Yes. We create ad copy, static visuals, and video creatives tailored to each platform and audience, then iterate based on performance.",
-        },
-        {
-          question: "What is included in your paid marketing service?",
-          answer:
-            "Strategy, audience research, campaign setup, creative production, ongoing optimisation, conversion tracking, and monthly performance reports.",
-        },
-      ],
+     faqs: [
+  {
+    question: "How can Performance Marketing help my business grow?",
+    answer:
+      "Performance Marketing helps you reach the right audience, generate qualified leads, increase conversions, and maximize your return on investment. Every campaign is continuously optimized using real-time data to drive measurable business growth and long-term profitability.",
+  },
+  {
+    question: "Which advertising platforms do you specialize in?",
+    answer:
+      "We specialize in Meta Ads (Facebook & Instagram), Google Ads, YouTube Ads, LinkedIn Ads, and other leading digital advertising platforms. Our team builds platform-specific strategies designed to maximize reach, engagement, and conversions.",
+  },
+  {
+    question: "How do you measure the success of a campaign?",
+    answer:
+      "We measure campaign performance using key metrics such as ROAS (Return on Ad Spend), Cost Per Acquisition (CPA), conversion rate, lead quality, website traffic, revenue generated, and overall return on investment.",
+  },
+  {
+    question: "How long does it take to see results from Performance Marketing?",
+    answer:
+      "Results vary depending on your industry, audience, competition, and campaign objectives. Most campaigns begin generating valuable insights within the first few weeks, with performance improving continuously through optimization and data-driven refinements.",
+  },
+  {
+    question: "What industries does Bombay Blokes work with?",
+    answer:
+      "We work with startups, D2C brands, e-commerce businesses, healthcare, hospitality, real estate, education, retail, lifestyle, and service-based businesses, creating customized performance marketing strategies for every industry.",
+  },
+  {
+    question: "Do you manage both Meta Ads and Google Ads?",
+    answer:
+      "Yes. We provide complete end-to-end management for both Meta Ads and Google Ads, including strategy, audience research, campaign setup, creative optimization, budget management, A/B testing, conversion tracking, and ongoing performance reporting to maximize leads, sales, and ROI.",
+  },
+],
     },
   },
 };

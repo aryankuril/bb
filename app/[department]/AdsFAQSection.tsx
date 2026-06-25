@@ -71,7 +71,7 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
                   </span>
                 </button>
                 {isOpen && (
-                  <p className="subtitle text-[rgba(255,255,255,0.7)] px-6 pb-6 max-w-[680px]">
+                  <p className="subtitle text-[rgba(255,255,255,0.7)] px-6 pb-6 ">
                     {item.answer}
                   </p>
                 )}

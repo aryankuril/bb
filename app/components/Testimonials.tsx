@@ -104,9 +104,9 @@ const Testimonials = () => {
                 
                 {/* <div className="absolute -right-1 top-0 w-4 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div> */}
                 <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
-                <h5 className="text-highlight text-left z-10 relative">
+                <h3 className="white-text text-left z-10 relative">
                   {item.maintext}
-                </h5>
+                </h3>
                 <p className="white-text mt-2 leading-relaxed z-10 relative">
                   {item.text}
                 </p>
