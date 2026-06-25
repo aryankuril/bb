@@ -39,12 +39,12 @@ const testimonials = {
       name: "~ Tilika Vispute",
       maintext: "★★★★★ 5/5",
     },
-    {
-      brand: "Client Feedback",
-      text: "Their combination of creativity, strategy, and performance marketing expertise helped us unlock new growth opportunities while maintaining complete transparency.",
-      name: "~ Client Feedback",
-      maintext: "★★★★★ 5/5",
-    },
+    // {
+    //   brand: "Client Feedback",
+    //   text: "Their combination of creativity, strategy, and performance marketing expertise helped us unlock new growth opportunities while maintaining complete transparency.",
+    //   name: "~ Client Feedback",
+    //   maintext: "★★★★★ 5/5",
+    // },
   ],
 
   seo: [
@@ -226,7 +226,7 @@ const AdsTestimonialsSection = () => {
 
               <div className="flex flex-col text-left z-10 relative mt-2">
                 <p className="font-medium white-text">{item.name}</p>
-                <p className="text-sm white-text">{item.brand}</p>
+                {/* <p className="text-sm white-text">{item.brand}</p> */}
               </div>
             </div>
           </div>

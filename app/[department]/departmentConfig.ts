@@ -423,21 +423,28 @@ const configs: Record<string, DepartmentConfig> = {
     stats: {
       eyebrow: "Always Relevant",
       headline: "Content That Stops The Scroll And Builds A Loyal Community.",
-      statCards: [
-        {
-          value: "91%",
-          description: "of brands post with no documented content strategy. Effort without direction.",
-          boldWord: "no",
-        },
-        {
-          value: "5%",
-          description: "average organic reach on Instagram. Most of your followers never see your content.",
-        },
-        {
-          value: "₹0",
-          description: "ROI from followers who never convert. Vanity metrics don't pay the bills.",
-        },
-      ],
+    statCards: [
+  {
+    value: "250+",
+    description: "Brands Managed",
+  },
+  {
+    value: "100M+",
+    description: "Social Impressions",
+  },
+  {
+    value: "10M+",
+    description: "Video Views",
+  },
+  {
+    value: "1M+",
+    description: "Engagements",
+  },
+  {
+    value: "500+",
+    description: "Campaigns Delivered",
+  },
+],
       ctaBanner: {
         text: "Every post without a strategy is a missed opportunity to build real brand equity.",
         buttonText: "See what you're missing ",
