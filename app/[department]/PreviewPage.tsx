@@ -1305,9 +1305,11 @@ if (res.ok) {
                       </span>
                     </p>
 
-            <span className="font-[500] text-white">
-             ₹{Number(item.price || 0).toLocaleString("en-IN")}
-            </span>
+           <span className="font-[500] text-white">
+  {item.price
+    ? `₹${Number(item.price).toLocaleString("en-IN")}`
+    : "Included"}
+</span>
           </div>
         ))}
 
