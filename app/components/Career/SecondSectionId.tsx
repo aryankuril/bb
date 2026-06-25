@@ -502,7 +502,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     }
 
     // 🔥 IMMEDIATE NAVIGATION — NO FLIP
-    router.replace("/thank-you");
+    // router.replace("/thank-you");
     return;
 
   } catch (error) {

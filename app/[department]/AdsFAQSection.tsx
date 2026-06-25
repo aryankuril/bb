@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import type { FAQContent } from "./departmentConfig";
+import Button from "../components/Button";
 
 const AdsFAQSection = ({ content }: { content: FAQContent }) => {
   const [openIndex, setOpenIndex] = useState(0);
@@ -19,22 +20,22 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
               {content.eyebrow}
             </span>
           </div>
-          <h2 className="black-text mb-4">
+          <h6 className="black-text mb-4">
             {content.title}{" "}
             <span className="text-highlight">{content.highlightTitle}</span>
-          </h2>
-          <p className="font-['Poppins'] text-[15px] leading-[1.65] text-[#46463f] mb-8">
+          </h6>
+          <p className=" subtitle text-[#46463f] mb-8">
             Can't find what you're looking for? We're happy to walk you through it directly.
           </p>
-          <Link
-            href="/contactus"
-            className="inline-flex items-center gap-2 bg-[var(--color-primary)] text-white font-['Poppins'] font-semibold text-[14px] px-6 py-[13px] rounded-full hover:brightness-110 transition-all"
-          >
-            Talk to us
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </Link>
+
+           <Button
+                href="/contactus"
+        text="Talk to us"
+        type="submit"
+
+        className="black-text cursor-pointer"
+      />
+         
         </div>
 
         {/* Right: accordion */}
@@ -70,7 +71,7 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
                   </span>
                 </button>
                 {isOpen && (
-                  <p className="font-['Poppins'] text-[14.5px] leading-[1.7] text-[rgba(255,255,255,0.7)] px-6 pb-6 max-w-[680px]">
+                  <p className="subtitle text-[rgba(255,255,255,0.7)] px-6 pb-6 max-w-[680px]">
                     {item.answer}
                   </p>
                 )}

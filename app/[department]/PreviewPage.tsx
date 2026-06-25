@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState,  useCallback,useMemo ,useRef} from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from "next/navigation";
 // import CalculatorTestimonials from '../components/CalculatorTestimonials';
 import Button from "../components/Button"
 import { doc, getDoc } from "firebase/firestore";
@@ -79,6 +79,7 @@ type WorkflowStep =
 export default function PreviewPage() {
   const params = useParams() as { department: string };
   const department = params.department;
+  const router = useRouter();
   const [questions, setQuestions] = useState<Question[] | null>(null);
   // const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<Record<number, Option | null>>({});
@@ -490,7 +491,7 @@ const handleOptionSelect = (opt: Option) => {
 };
 
 
-  const hasMultiLineSubtitle = currentQuestion?.options.some(opt => opt.subtitle && opt.subtitle.includes('|')) || false;
+const hasMultiLineSubtitle = currentQuestion?.options.some(opt => opt.subtitle && opt.subtitle.includes('|')) || false;
 
 const getSubmittedCustomFields = (): SubmittedCustomField[] =>
   visibleCustomFields
@@ -616,15 +617,44 @@ const handleSubmit = async () => {
     });
 
     const data = await res.json();
-    if (res.ok) {
-      console.log("✅ Form submitted:", formData);
-      setToastMessage("✅ Thank you! We'll connect with you soon.");
-      setTimeout(() => setToastMessage(""), 4000);
-      setShowCallForm(false);
-      setDisableCallBtn(true);
+if (res.ok) {
+  console.log("✅ Form submitted:", formData);
 
-      localStorage.removeItem("estimateId"); // cleanup after submission
-    } else {
+  // Remove draft
+  localStorage.removeItem("estimateId");
+
+  // Reset form
+  setFormData({
+    name: "",
+    phone: "",
+    email: "",
+  });
+
+  // Clear validation errors
+  setErrors({
+    name: "",
+    phone: "",
+    email: "",
+  });
+
+  // Reset calculator state (optional)
+  setSelectedOptions({});
+  setCostItems([]);
+  setCurrentVisibleIdx(0);
+  setCurrentStep(0);
+  setPercent(0);
+
+  // Reset any custom fields if you have them
+  setCustomFieldValues({});
+  setCustomFieldErrors({});
+
+  // Hide form
+  setShowCallForm(false);
+  setDisableCallBtn(false);
+
+  // Redirect
+  router.push("/thank-you");
+} else {
       alert(`❌ Error: ${data.message}`);
     }
   } catch (err) {
@@ -1416,9 +1446,16 @@ const handleSubmit = async () => {
 <div className="absolute right-0 top-0 w-3 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
 
 
-        <h4 className=" mb-4 flex items-center gap-2">
-          Too excited to get started? use this 
-        </h4>
+        <h4 className=" flex items-center gap-2">
+Let's Turn This Estimate Into a Plan      
+  </h4>
+
+
+   <p className=" max-w-2xl mb-4  text-base md:text-lg text-white leading-relaxed">
+            Expect a response within 24 hours.
+          </p>
+
+
 
         {/* INLINE FORM EXACTLY LIKE YOUR IMAGE */}
            <div className="gap-6 mb-6 w-full">
@@ -1502,10 +1539,11 @@ const handleSubmit = async () => {
 
 
        <div className="w-full flex justify-end mt-3">
+         
   <button
     onClick={handleSubmit}
-    className="py-[8px] px-[23px] rounded-[5px] bg-[#262626] 
-    shadow-[2px_2px_0px_0px_#F9B31B] text-white italic"
+    className="py-[8px] px-[23px] rounded-[5px]  cursor-pointer bg-[#F9B31B]
+    border shadow-[2px_2px_0px_0px_#FFFFFF]  text-white italic"
   >
   {isSubmitting ? "Submitting..." : "Submit"}
   </button>
@@ -1515,7 +1553,7 @@ const handleSubmit = async () => {
 <div className="mt-4 py-4  ">
 
   <h5 className="text-[#F9B31B] font-semibold text-lg mb-4">
-    If you don't have patience, call us.
+    Too excited to get started?
   </h5>
 
   <div className="space-y-2">
@@ -1567,15 +1605,16 @@ const handleSubmit = async () => {
 
 <div className="flex flex-col lg:flex-row lg:items-center gap-2 pt-4">
 
-  <h6
+  <a
     className="
+      body2
       font-[700]
       whitespace-nowrap
       leading-none
     "
   >
     What's Always Included :
-  </h6>
+  </a>
 
 <div className="relative h-[28px] flex items-center lg:min-w-[150px]">
     <AnimatePresence mode="wait">

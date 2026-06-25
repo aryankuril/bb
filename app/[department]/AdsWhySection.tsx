@@ -42,7 +42,7 @@ const AdsWhySection = ({ text }: { text: string }) => {
       className="relative min-h-[200vh] container py-0 sm:py-15 lg:py-20 flex justify-center items-center"
     >
       <div className="sticky top-[50%] -translate-y-1/2 text-center">
-        <motion.h2
+        <motion.h6
           className="font-['Poppins'] font-semibold flex flex-wrap justify-center"
           style={{ textTransform: "none" }}
         >
@@ -55,7 +55,7 @@ const AdsWhySection = ({ text }: { text: string }) => {
               scrollYProgress={scrollYProgress}
             />
           ))}
-        </motion.h2>
+        </motion.h6>
       </div>
     </section>
   );

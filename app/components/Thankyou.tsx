@@ -70,14 +70,13 @@ useEffect(() => {
   return (
     <div className=" "> 
     <div className=" flex items-end justify-center px-4 min-h-[60vh] lg:mt-0 -mt-60 py-10 sm:py-15 lg:py-10">
-      <div className="max-w-xl text-center">
+      <div className=" text-center">
         <h1 className=" font-semibold text-highlight mb-4">
-          Thank You! 
+          You're Officially on Our Radar!
         </h1>
 
         <p className="black-text mb-8">
-          Your application has been submitted successfully.  
-          Our team will review it and get back to you soon.
+          Your request has been received. Expect to hear from our team within 24 hours.
         </p>
 
          {/* <div className="flex items-center justify-center py-10 z-40">

@@ -81,7 +81,7 @@ const AdsWorkSection = ({ content }: { content: WorkContent }) => {
 
   return (
     <section id="our-work" className="container py-10 sm:py-15 lg:py-20">
-      <h2 className="black-text mb-6 lg:mb-8">Our Work</h2>
+      <h6 className="black-text mb-6 lg:mb-8">Our Work</h6>
 
       {/* Filter chips */}
       <div

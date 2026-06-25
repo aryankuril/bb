@@ -50,7 +50,7 @@ const AdsWorkflowSection = ({ content }: { content: WorkflowContent }) => {
     >
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
         <div className="text-center lg:mb-5 px-4">
-          <h2 className="black-text">{content.title}</h2>
+          <h6 className="black-text">{content.title}</h6>
         </div>
 
         {/* Train + track */}

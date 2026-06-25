@@ -419,7 +419,7 @@ const goNext = () => {
     if (!response.ok) throw new Error("Failed to submit form");
 
     setSubmitStatus("success");
-    router.push("/thank-you");
+    // router.push("/thank-you");
 
     setFormData({ name: "", email: "", phone: "", company: "" });
     setMessage("");

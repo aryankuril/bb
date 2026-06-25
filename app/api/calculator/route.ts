@@ -105,17 +105,20 @@ const additionalDetailsHTML = customFieldsHTML(normalizedCustomFields);
     /* =====================================================
        BASIC VALIDATION (ALLOW DRAFT)
     ===================================================== */
-    if (
-      !Array.isArray(quote) ||
-      quote.length === 0 ||
-      typeof total !== "number" ||
-      !serviceCalculator
-    ) {
-      return NextResponse.json(
-        { success: false, message: "Invalid data" },
-        { status: 400 }
-      );
+    const safeQuote = Array.isArray(quote) ? quote : [];
+const safeTotal = typeof total === "number" ? total : 0;
+
+if (!serviceCalculator) {
+  return NextResponse.json(
+    {
+      success: false,
+      message: "Service calculator is required",
+    },
+    {
+      status: 400,
     }
+  );
+}
 
     if (isFinalSubmit && !email) {
       return NextResponse.json(
@@ -136,8 +139,8 @@ const additionalDetailsHTML = customFieldsHTML(normalizedCustomFields);
         name: name || "N/A",
         phone: phone || "N/A",
         email: email || "N/A",
-        quote,
-        total,
+        quote: safeQuote,
+total: safeTotal,
         finalPrice,
         serviceCalculator,
         draftEmailSent: false,
@@ -154,8 +157,8 @@ const additionalDetailsHTML = customFieldsHTML(normalizedCustomFields);
           name: name || "N/A",
           phone: phone || "N/A",
           email: email || "N/A",
-          quote,
-          total,
+          quote: safeQuote,
+total: safeTotal,
           finalPrice,
           serviceCalculator,
           draftEmailSent: false,
@@ -168,8 +171,8 @@ const additionalDetailsHTML = customFieldsHTML(normalizedCustomFields);
           name: name || "N/A",
           phone: phone || "N/A",
           email: email || "N/A",
-          quote,
-          total,
+          quote: safeQuote,
+total: safeTotal,
           finalPrice,
           serviceCalculator,
           updatedAt: new Date(),
@@ -374,9 +377,9 @@ ${normalizedCustomFields
                     <td style="padding-top:5px; padding-bottom:10px;">
                       <table width="100%" style="font-size:14px;">
   <tbody>
-    ${quote
-      .map((item, index) => {
-        const isLast = index === quote.length - 1;
+    ${safeQuote
+      .map((item: { type: string; value: string; price: any; }, index: number) => {
+        const isLast = index === safeQuote.length - 1;
 
         return `
           <tr>
@@ -427,7 +430,7 @@ ${normalizedCustomFields
                       <table width="100%" style="font-size:14px;">
   <tr>
     <td style="padding:6px 0;">
-      <td style="padding:8px; text-align:left; font-weight:bold; font-size:20px;">₹${Number(total).toLocaleString(
+      <td style="padding:8px; text-align:left; font-weight:bold; font-size:20px;">₹${Number(safeTotal).toLocaleString(
               "en-IN"
             )}</td>
     </td>
@@ -590,8 +593,8 @@ ${normalizedCustomFields
     ===================================================== */
     if (isFinalSubmit) {
       await sendEmail({
-          //  to: "aryankuril09@gmail.com",
-         to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
+           to: "aryankuril09@gmail.com",
+        //  to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
         subject: `Inquiry - ${serviceNameTitle}`,
         html: `
           <p><strong>Name:</strong> ${name}</p>
@@ -602,7 +605,7 @@ ${normalizedCustomFields
           <p><strong>Final Price:</strong> ₹${Number(finalPrice).toLocaleString(
             "en-IN"
           )}</p>
-          ${quotationTableHTML(quote, total)}
+          ${quotationTableHTML(safeQuote, safeTotal)}
         `,
         fromName: "Calculator Submission",
         fromAddress: "hello@bombayblokes.com",

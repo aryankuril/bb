@@ -14,12 +14,12 @@ const AdsLogoSection = ({ content }: { content: LogoContent }) => {
               {content.eyebrow}
             </span>
           </div>
-          <h2 className="black-text">
+          <h6 className="black-text">
             {content.title}{" "}
             <span className="text-highlight">{content.highlightTitle}</span>
-          </h2>
+          </h6>
         </div>
-        <p className="body2 lg:max-w-[380px] lg:pb-1 text-[#46463f]">
+        <p className="subtitle lg:max-w-[380px] lg:pb-1 text-[#46463f]">
           {content.subtitle}
         </p>
       </div>
