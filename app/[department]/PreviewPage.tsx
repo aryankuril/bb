@@ -305,6 +305,9 @@ const workflowSteps: WorkflowStep[] = questions
     ]
   : [];
 
+const maxIdxRef = useRef(0);
+maxIdxRef.current = workflowSteps.length - 1;
+
 const currentWorkflowStep = workflowSteps[currentVisibleIdx];
 const totalProgressPercentage =
   workflowSteps.length === 0
@@ -488,6 +491,16 @@ const handleOptionSelect = (opt: Option) => {
     if (updated[idx]) cleaned[idx] = updated[idx];
   });
   setSelectedOptions(cleaned);
+
+  setTimeout(() => {
+    setCurrentVisibleIdx((prev) => {
+      if (prev >= maxIdxRef.current) {
+        setCurrentStep(99);
+        return prev;
+      }
+      return prev + 1;
+    });
+  }, 400);
 };
 
 
@@ -1006,36 +1019,7 @@ if (res.ok) {
       Previous
     </button>
 
-    {/* Next Button */}
-    <button
-      onClick={() => {
-        if (currentVisibleIdx === workflowSteps.length - 1) {
-          setCurrentStep(99);
-        } else {
-          setCurrentVisibleIdx((prev) =>
-            Math.min(workflowSteps.length - 1, prev + 1)
-          );
-        }
-      }}
-      disabled={!selectedOptions[originalIndex]}
-      className={`
-        cursor-pointer
-        w-[120px] sm:w-[130px] md:w-[150px]   /* responsive width */
-        py-2 sm:py-3                         /* responsive padding */
-        text-[14px] sm:text-[16px]           /* responsive font */
-        flex items-center justify-center gap-2 rounded-[5px] font-medium
-        border-2 transition-colors
-        ${
-          selectedOptions[originalIndex]
-            ? "bg-black border-black text-white hover:bg-[#1a1a1a] shadow-[2px_2px_0px_0px_#F9B31B]"
-            : "bg-gray-300 border-gray-300 text-gray-500 cursor-not-allowed"
-        }
-      `}
-    >
-      {currentVisibleIdx === workflowSteps.length - 1
-        ? "See Estimate"
-        : "Next"}
-    </button>
+    {/* Next Button Removed */}
 
   </div>
 )}
@@ -1231,36 +1215,7 @@ if (res.ok) {
       Previous
     </button>
 
-    {/* Next Button */}
-    <button
-      onClick={() => {
-        if (currentVisibleIdx === workflowSteps.length - 1) {
-          setCurrentStep(99);
-        } else {
-          setCurrentVisibleIdx((prev) =>
-            Math.min(workflowSteps.length - 1, prev + 1)
-          );
-        }
-      }}
-      disabled={!selectedOptions[originalIndex]}
-      className={`
-        cursor-pointer
-        w-[120px] sm:w-[130px] md:w-[150px]   /* responsive width */
-        py-2 sm:py-3                         /* responsive padding */
-        text-[14px] sm:text-[16px]           /* responsive font */
-        flex items-center justify-center gap-2 rounded-[5px] font-medium
-        border-2 transition-colors
-        ${
-          selectedOptions[originalIndex]
-            ? "bg-black border-black text-white hover:bg-[#1a1a1a] shadow-[2px_2px_0px_0px_#F9B31B]"
-            : "bg-gray-300 border-gray-300 text-gray-500 cursor-not-allowed"
-        }
-      `}
-    >
-      {currentVisibleIdx === workflowSteps.length - 1
-        ? "See Estimate"
-        : "Next"}
-    </button>
+    {/* Next Button Removed */}
 
   
   
@@ -1439,7 +1394,7 @@ if (res.ok) {
 
               
 
-  <div className="w-full h-auto min-h-full bg-[#1B1B1B] rounded-[20px] lg:p-8 p-5 text-white relative overflow-hidden">
+  <div className="w-full h-auto min-h-full bg-[#1B1B1B] rounded-[20px] lg:p-6 p-5 text-white relative overflow-hidden">
 
 
          {/* RIGHT BORDER */}
@@ -1447,12 +1402,11 @@ if (res.ok) {
 
 
         <h4 className=" flex items-center gap-2">
-Let's Turn This Estimate Into a Plan      
-  </h4>
+Get Expert Guidance for Your Project  </h4>
 
 
    <p className=" max-w-2xl mb-4  text-base md:text-lg text-white leading-relaxed">
-            Expect a response within 24 hours.
+           Expect a response within 24 hours.
           </p>
 
 

@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 import ClientProviders from "./components/ClientProviders";
+import PageLoader from "./components/PageLoader";
 
 
 
@@ -115,7 +116,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 
      
-          {children}
+          <PageLoader>
+            {children}
+          </PageLoader>
 
 
         <ClientProviders />
