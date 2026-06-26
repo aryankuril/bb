@@ -22,7 +22,7 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
         <div className="lg:flex-1">
           
 <div className="w-full text-center mb-2">
- <h6 className="inline-block text-center font-black leading-tight text-black">
+ <h6 className="inline-block text-center  text-black">
   We operate on{" "}
   <span className="text-highlight">
     results.

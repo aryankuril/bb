@@ -236,13 +236,16 @@ h6 {
   h5 { font-size: 20px !important; }
   h6 { font-size: 30px !important; }
 
+
   /* ---------- Body ---------- */
   .body1 { font-size: 20px !important; }
   .body2 { font-size: 15px !important; }
   .body3 { font-size: 16px !important; }
   .body4 { font-size: 14px !important; }
 
+
   /* ---------- Numbers ---------- */
+  .subtitle { font-size: 13px !important; }
   .stats-number { font-size: 50px; }
   .numbering { font-size: 50px; }
   .casenumbering { font-size: 60px; }

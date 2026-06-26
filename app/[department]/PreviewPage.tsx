@@ -819,9 +819,9 @@ const currentQuestionNumber =
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h6 className="font-poppins font-[700] text-black">
+                   <a className="lg:text-[24px] text-[15px] font-outfit font-[500] text-black">
                       {currentQuestion.questionText}
-                    </h6>
+                    </a>
                     {currentQuestion.questionIcon?.startsWith("data:image") ? (
                       <img src={currentQuestion.questionIcon} alt="icon" className="w-6 h-6" />
                     ) : (
@@ -986,10 +986,87 @@ p-6 md:p-8 lg:p-10
 
 "
             >
+
+              <div className="flex items-center justify-between w-full  border-b border-[#2E2E2E]">
+
+  {/* Left */}
+<button
+  onClick={() => {
+    if (currentVisibleIdx > 0 && questions && visibleQuestions.length > 0) {
+      const newSelectedOptions = { ...selectedOptions };
+      const origIdx = questions.findIndex(
+        (q) =>
+          q.questionText === visibleQuestions[currentVisibleIdx].questionText
+      );
+      newSelectedOptions[origIdx] = null;
+      setSelectedOptions(newSelectedOptions);
+      setCurrentVisibleIdx((prev) => prev - 1);
+    }
+  }}
+  disabled={currentVisibleIdx === 0}
+  className={`flex flex-col items-center gap-1 mb-2 transition-all ${
+    currentVisibleIdx > 0
+      ? "cursor-pointer"
+      : "cursor-not-allowed opacity-40"
+  }`}
+>
+  <div
+    className="
+      w-8 h-8
+      lg:w-10 lg:h-10
+
+      rounded-full
+      border-2 border-[#F9B31B]
+
+      flex items-center justify-center
+
+      bg-[#F9B31B]
+      text-black
+
+      transition-all
+      duration-300
+    "
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-4 h-4 lg:w-[18px] lg:h-[18px]"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M15 18l-6-6 6-6" />
+    </svg>
+  </div>
+
+  <span className="text-[11px] lg:text-[13px] font-medium text-[#F9B31B] leading-none">
+    Back
+  </span>
+</button>
+
+  {/* Right */}
+  <div className="text-right">
+    <p className="text-black  subtitle uppercase tracking-wider">
+      Total
+    </p>
+
+    <a
+      className="
+        text-black
+        subtitle
+      "
+    >
+      ₹{totalEstimate.toLocaleString()}/-
+    </a>
+  </div>
+
+</div>
               <div className="flex flex-row sm:items-start sm:justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2 lg:w-[700px]">
-                    <a className="lg:text-[24px] text-[20px] font-outfit  font-[700] text-black">
+                    <a className="lg:text-[24px] text-[15px] font-outfit font-[500] text-black">
                       {currentQuestion.questionText}
                     </a>
                     {currentQuestion.questionIcon?.startsWith("data:image") ? (
@@ -1013,51 +1090,7 @@ p-6 md:p-8 lg:p-10
 
 
               </div>
- <button
-  onClick={() => {
-    if (currentVisibleIdx > 0 && questions && visibleQuestions.length > 0) {
-      const newSelectedOptions = { ...selectedOptions };
-      const origIdx = questions.findIndex(
-        (q) =>
-          q.questionText === visibleQuestions[currentVisibleIdx].questionText
-      );
-      newSelectedOptions[origIdx] = null;
-      setSelectedOptions(newSelectedOptions);
-      setCurrentVisibleIdx((prev) => prev - 1);
-    }
-  }}
-  disabled={currentVisibleIdx === 0}
-  className={`
-    flex items-center gap-2
-    text-[16px]
-    font-medium
-    underline
-    underline-offset-4
-    transition-all
-    ${
-      currentVisibleIdx > 0
-        ? "text-[#F9B31B] hover:opacity-80 cursor-pointer"
-        : "text-gray-400 cursor-not-allowed no-underline"
-    }
-  `}
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M19 12H5" />
-    <path d="M12 19l-7-7 7-7" />
-  </svg>
 
-  <span>Previous</span>
-</button>
   
 
               
@@ -1169,27 +1202,6 @@ p-6 md:p-8 lg:p-10
                 <div >
           
 
-
-
-   <div className="text-center py-5 rounded-[20px] bg-[#F9B31B] lg:mt-5 mt-0 ">
-<a
-  className="
-    text-white
-   font-outfit 
-    font-[700]
-    text-[24px]      /* Mobile */
-    lg:text-[36px]   /* Desktop */
-    leading-[1.2em]
-  "
->
-  ₹{totalEstimate.toLocaleString()}/-
-</a>
-
-          <p className="text-[#1E1E1E] text-[15px] font-[300]">
-           Here What It Take to Build Your Vision
-          </p>
-        </div>
-
   </div>
 
 )}
@@ -1281,29 +1293,13 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)]
           <p>₹{totalEstimate.toLocaleString()}</p>
         </div>
 
-        
+         <p className="text-[#1E1E1E] text-[13px] text-center font-[500] py-1">
+           Here What It Take to Build Your Vision
+          </p>
 
       
       </div>
 
-   <div className="text-center py-5 rounded-[20px] bg-[#F9B31B] mt-5 ">
-<a
-  className="
-    text-white
-   font-outfit 
-    font-[700]
-    text-[24px]      /* Mobile */
-    lg:text-[36px]   /* Desktop */
-    leading-[1.2em]
-  "
->
-  ₹{totalEstimate.toLocaleString()}/-
-</a>
-
-          <p className="text-[#1E1E1E] text-[15px] font-[300]">
-           Here What It Take to Build Your Vision
-          </p>
-        </div>
       
     </div>
 
@@ -1366,10 +1362,23 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-5 text-black relative overflow-hi
 
 
 
-        <h6 className="max-w-l flex items-center gap-2">
-  Get Expert Guidance for Your Project
-</h6>
+        <a
+  className="
+    max-w-xl
+    flex items-center gap-2
 
+    font-outfit
+    font-[500]
+
+    text-[18px]      /* Mobile */
+    lg:text-[25px]   /* Desktop */
+
+    leading-[1.2em]
+    mb-2
+  "
+>
+  Get Expert Guidance for Your Project
+</a>
 
    <p className=" max-w-2xl mb-4  subtitle text-black leading-relaxed">
            Expect a response within 24 hours.
@@ -1389,7 +1398,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-5 text-black relative overflow-hi
      name="name" 
      value={formData.name}
       onChange={(e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value, })) }
-      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black font-[13px] focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B] ${
         errors.name
@@ -1463,7 +1472,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-5 text-black relative overflow-hi
   <button
     onClick={handleSubmit}
     className="py-[8px] px-[23px] rounded-[5px]  cursor-pointer bg-[#F9B31B]
-    border shadow-[2px_2px_0px_0px_#000000]  text-black italic"
+    border shadow-[2px_2px_0px_0px_#000000]  text-black "
   >
   {isSubmitting ? "Submitting..." : "Submit"}
   </button>
@@ -1472,14 +1481,20 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-5 text-black relative overflow-hi
 {/* CONTACT BLOCK */}
 <div className="mt-4 py-4  ">
 
-<a
+          <a
   className="
-    text-[#F9B31B]
-    font-semibold
-    text-[20px]
-    lg:text-[22px]
-    leading-[1.5em]
-    mb-4
+  text-[#F9B31B]
+    max-w-xl
+    flex items-center gap-2
+
+    font-outfit
+    font-[500]
+
+    text-[18px]      /* Mobile */
+    lg:text-[25px]   /* Desktop */
+
+    leading-[1.2em]
+    mb-2
   "
 >
   Too excited to get started?
@@ -1566,9 +1581,22 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-5 text-black relative overflow-hi
           ease: "easeOut",
         }}
         className="
-          absolute
-          font-semibold
           text-[#F9B31B]
+    max-w-xl
+    flex items-center gap-2
+
+    font-outfit
+    font-[500]
+
+    text-[18px]      /* Mobile */
+    lg:text-[25px]   /* Desktop */
+
+    leading-[1.2em]
+
+
+
+          absolute
+      
           whitespace-nowrap
         "
       >
