@@ -176,7 +176,7 @@ const content =
           >
              {content.heading}
           </motion.h6>
-          <p className="lg:mt-4 mt-1 max-w-2xl mx-auto text-primary/60 subtitle">{content.subtitle}   </p>
+          <p className="lg:mt-4 mt-1 max-w-2xl mx-auto text-black subtitle">{content.subtitle}   </p>
 
 
 

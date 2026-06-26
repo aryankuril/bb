@@ -801,14 +801,17 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)]
         py-2 sm:py-3
         text-[14px] sm:text-[16px]
         flex items-center justify-center gap-2 rounded-[5px] font-medium
-        border-2 transition-colors
-        bg-black border-black text-white hover:bg-[#1a1a1a] shadow-[2px_2px_0px_0px_#F9B31B]
+        transition-colors
+        bg-[#F9B31B] text-black border shadow-[2px_2px_0px_0px_#000000]
       "
                 >
                   {currentVisibleIdx === workflowSteps.length - 1
                     ? "See Estimate"
                     : "Next"}
                 </button>
+
+
+               
               </div>
             </div>
           ) : hasMultiLineSubtitle && currentQuestion ? (
@@ -1266,7 +1269,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)]
   className="
     flex items-center gap-2
     mb-4
-    font-[700]
+    font-[500]
     text-[25px]
     lg:text-[35px]
     leading-[1.2em]
@@ -1299,7 +1302,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)]
 
         <hr className="my-3 border-[#F9B31B]" />
 
-        <div className="flex justify-between font-[700] text-[16px]">
+        <div className="flex justify-between font-[500] text-[16px]">
           <p>Estimated Cost:</p>
           <p>₹{totalEstimate.toLocaleString()}</p>
         </div>
@@ -1596,7 +1599,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
   <a
     className="
       body2
-      font-[700]
+      font-[500]
       whitespace-nowrap
       leading-none
     "
@@ -1633,7 +1636,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
     font-[500]
 
     text-[18px]      /* Mobile */
-    lg:text-[25px]   /* Desktop */
+    lg:text-[20px]   /* Desktop */
 
     leading-[1.2em]
 

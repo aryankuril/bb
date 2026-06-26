@@ -81,13 +81,14 @@ const AdsWorkSection = ({ content }: { content: WorkContent }) => {
 
   return (
     <section id="our-work" className="container py-10 sm:py-15 lg:py-20">
-      <h6 className="black-text mb-6 lg:mb-8 font-outfit">Our Work</h6>
+      <h6 className="black-text mb-6 lg:mb-8 font-outfit text-center">Our Work</h6>
       
 
       {/* Filter chips */}
+      <div className="flex justify-center w-full">
       <div
         ref={scrollRef}
-        className="flex flex-nowrap gap-2 lg:gap-3 overflow-x-auto no-scrollbar mb-5 lg:mb-10 scroll-smooth"
+        className="flex flex-nowrap  justify-center gap-2 lg:gap-3 overflow-x-auto text-center no-scrollbar mb-5 lg:mb-10 scroll-smooth"
       >
         {categories.map((cat) => (
           <button
@@ -102,6 +103,7 @@ const AdsWorkSection = ({ content }: { content: WorkContent }) => {
             {cat}
           </button>
         ))}
+      </div>
       </div>
 
       {/* Projects grid */}

@@ -155,7 +155,7 @@ const MobileNav = () => {
 
 
           {/* RIGHT: WhatsApp Icon */}
-          <a
+          {/* <a
             href="https://wa.me/919920207985"
             target="_blank"
             rel="noopener noreferrer"
@@ -168,7 +168,7 @@ const MobileNav = () => {
               alt="WhatsApp"
               className="w-10 h-10"
             />
-          </a>
+          </a> */}
 
 
          {/* <Link href="/contactus">

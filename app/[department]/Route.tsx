@@ -53,9 +53,9 @@ if (!config) {
         <AboutUs/>
         <Problems/>
         <AdsWorkSection content={config.work} />
-        {/* <ProcessCombined/> */}
         <AdsTestimonialsSection />
-        <AdsWorkflowSection content={config.workflow} />
+        <ProcessCombined/>
+        {/* <AdsWorkflowSection content={config.workflow} /> */}
         <AdsFAQSection content={config.faq} />
 <SeventhSection/>
   <Footer />

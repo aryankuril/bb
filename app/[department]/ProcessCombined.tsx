@@ -1,13 +1,10 @@
 'use client';
 import { Outfit, Poppins } from 'next/font/google';
+import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 const outfit = Outfit({ subsets: ['latin'], weight: ['400', '700', '900'] });
 const poppins = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] });
-
-
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
 
 const webProcess = [
   { num: '01', title: 'Discovery Call', desc: 'Aligning on business goals and requirements.' },
@@ -29,105 +26,158 @@ const pmProcess = [
   { num: '07', title: 'Scaling', desc: 'Vertical scaling constraints unlocked.' },
 ];
 
-export default function ProcessCombined() {
-  const [activeTab, setActiveTab] = useState<'web' | 'pm'>('pm');
+const smmProcess = [
+  { num: '01', title: 'Brand Audit', desc: 'Evaluating current social presence and voice.' },
+  { num: '02', title: 'Strategy Dev', desc: 'Platform-specific content pillars & planning.' },
+  { num: '03', title: 'Content Creation', desc: 'Designing eye-catching posts and videos.' },
+  { num: '04', title: 'Scheduling', desc: 'Automated publishing at peak engagement times.' },
+  { num: '05', title: 'Community', desc: 'Active engagement with followers and leads.' },
+  { num: '06', title: 'Analytics', desc: 'Tracking reach, engagement, and conversions.' },
+  { num: '07', title: 'Iteration', desc: 'Refining approach based on data insights.' },
+];
 
-  const currentProcess = activeTab === 'web' ? webProcess : pmProcess;
+const seoProcess = [
+  { num: '01', title: 'Tech Audit', desc: 'Identifying crawl errors and speed bottlenecks.' },
+  { num: '02', title: 'Keyword Research', desc: 'Finding high-intent, low-competition terms.' },
+  { num: '03', title: 'On-Page SEO', desc: 'Optimizing titles, meta descriptions, and content.' },
+  { num: '04', title: 'Content Strategy', desc: 'Planning blog posts and pillar pages.' },
+  { num: '05', title: 'Link Building', desc: 'Securing high-quality backlinks from niche sites.' },
+  { num: '06', title: 'Local SEO', desc: 'Optimizing GMB and local citations.' },
+  { num: '07', title: 'Tracking', desc: 'Monitoring rankings and organic traffic growth.' },
+];
+
+const pageContent: Record<string, any> = {
+  "/website-development": {
+    title: (
+      <>
+         Design That {" "}
+        <span className="text-highlight">
+         Speaks Before
+        </span>{" "}
+        You Do.{" "}
+      </>
+    ),
+    subtitle: "Modern, responsive websites with intuitive UI/UX that engage users and drive business growth.",
+    process: webProcess
+  },
+  "/social-media-marketing": {
+    title: (
+      <>
+       Making Brands {" "}
+        <span className="text-highlight">
+        Impossible To Ignore.
+        </span>{" "}
+      </>
+    ),
+    subtitle: "We help brands grow through strategic social media marketing, engaging content, and data-driven campaigns that build awareness, strengthen communities, and drive measurable business growth.",
+    process: smmProcess
+  },
+  "/paid-marketing": {
+    title: (
+      <>
+        Mumbai's Growth-Focused {" "}
+        <span className="text-highlight">
+          Performance Marketing
+        </span>{" "}
+       Agency{" "}
+      </>
+    ),
+    subtitle: "Trusted by ambitious brands to drive customer acquisition, revenue growth, and industry-leading marketing performance.",
+    process: pmProcess
+  },
+  "/seo": {
+    title: (
+      <>
+        Improve Rankings With{" "}
+        <span className="text-highlight">
+          SEO
+        </span>{" "}
+        That Drives{" "}
+        <span className="text-highlight">
+          Organic Growth
+        </span>
+      </>
+    ),
+    subtitle: "Increase visibility, traffic, and leads through comprehensive SEO strategies focused on long-term growth and sustainable search performance.",
+    process: seoProcess
+  },
+  "default": {
+    title: (
+      <>
+        How We <span className="text-highlight">Execute.</span>
+      </>
+    ),
+    subtitle: "Transparency is everything. Here is the exact playbook we use to generate predictable results.",
+    process: pmProcess
+  }
+};
+
+export default function ProcessCombined() {
+  const pathname = usePathname();
+  const currentContent = pageContent[pathname as string] || pageContent["default"];
 
   return (
-    <section className="py-24 lg:py-32 px-6 lg:px-16 bg-[#f7f7f7] relative">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="text-center mb-16">
-          <motion.h2 
+    <section className="container py-0 sm:py-15 lg:py-20 relative">
+      <div className="">
+    
+        <div className="text-center ">
+          <motion.h6 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[clamp(2.5rem,5vw,4.5rem)] font-black text-primary mb-6 tracking-tight leading-none"
-          >
-            How We <span className="text-highlight">Execute.</span>
-          </motion.h2>
-          <span className={`block ${poppins.className} text-lg text-primary/60 max-w-2xl mx-auto mb-10`}>
-            Transparency is everything. Here is the exact playbook we use to generate predictable results.
-          </span>
+             className=" inline-block text-center font-outfit  text-black"
 
-          {/* Custom Toggle Switch */}
-          <div className="inline-flex bg-white p-2 rounded-full border border-primary/10 shadow-sm relative z-10 w-full max-w-md mx-auto h-[60px] md:h-16">
-            <button
-               onClick={() => setActiveTab('web')}
-               className={clsx(
-                 "flex-1 rounded-full font-bold text-sm md:text-base relative z-10 transition-colors duration-300",
-                 activeTab === 'web' ? "text-secondary" : "text-primary/60 hover:text-primary"
-               )}
-            >
-               Website Dev
-            </button>
-            <button
-               onClick={() => setActiveTab('pm')}
-               className={clsx(
-                 "flex-1 rounded-full font-bold text-sm md:text-base relative z-10 transition-colors duration-300",
-                 activeTab === 'pm' ? "text-secondary" : "text-primary/60 hover:text-primary"
-               )}
-            >
-               Performance Marketing
-            </button>
-            
-            {/* Sliding Pill */}
-            <motion.div 
-               animate={{ x: activeTab === 'web' ? 0 : '100%' }}
-               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-               className="absolute top-2 bottom-2 left-2 w-[calc(50%-8px)] bg-primary rounded-full shadow-lg z-0"
-            />
-          </div>
+          >
+             {currentContent.title}
+          </motion.h6>
+          <p className="lg:mt-4 mt-1 max-w-2xl mx-auto text-black subtitle">
+           {currentContent.subtitle}
+           </p>
+
+
+
+
         </div>
 
-        <div className="relative mt-24">
-          <AnimatePresence mode="wait">
+        <div className="relative lg:mt-10 mt-5">
+           {/* Horizontal Line Desktop */}
+           <div className="absolute top-6 left-0 right-0 h-1 bg-[#fab31e]  hidden lg:block rounded-full">
              <motion.div 
-               key={activeTab}
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               exit={{ opacity: 0, y: -20 }}
-               transition={{ duration: 0.4 }}
-               className="relative"
-             >
-                {/* Horizontal Line Desktop */}
-                <div className="absolute top-6 left-0 right-0 h-1 bg-primary/5 hidden lg:block rounded-full">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: '100%' }}
-                    transition={{ duration: 2, ease: "easeOut" }}
-                    className="h-full bg-highlight relative rounded-full"
-                  />
-                </div>
+               initial={{ width: 0 }}
+               whileInView={{ width: '100%' }}
+               viewport={{ once: true, amount: 0.5 }}
+               transition={{ duration: 2, ease: "easeOut" }}
+               className="h-full bg-[#fab31e]  relative rounded-full"
+             />
+           </div>
 
-                {/* Vertical Line Mobile */}
-                <div className="absolute left-3.5 top-0 bottom-0 w-1 bg-highlight lg:hidden rounded-full opacity-30"></div>
+           {/* Vertical Line Mobile */}
+           <div className="absolute left-3.5 top-0 bottom-0 w-1 bg-[#fab31e] lg:hidden rounded-full opacity-30"></div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:gap-4 relative z-10 pl-12 lg:pl-0">
-                  {currentProcess.map((step, i) => (
-                    <div key={i} className="relative group">
-                      {/* Mobile Node */}
-                      <div className="absolute -left-[45px] top-1 w-8 h-8 rounded-full border-4 border-[#f7f7f7] bg-highlight lg:hidden shadow-sm"></div>
-                      
-                      {/* Desktop Node */}
-                      <div className="hidden lg:flex w-12 h-12 bg-white rounded-full border border-primary/10 shadow-sm items-center justify-center font-black text-primary/30 mx-auto mb-6 group-hover:border-highlight group-hover:text-highlight transition-all relative z-10 bg-clip-padding group-hover:-translate-y-1 group-hover:shadow-lg">
-                        {step.num}
-                      </div>
+           <div className="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:gap-4 relative z-10 pl-12 lg:pl-0">
+             {currentContent.process.map((step: any, i: number) => (
+               <div key={i} className="relative group">
+                 {/* Mobile Node */}
+                 <div className="absolute -left-[47px] top-1 w-8 h-8 rounded-full border-4 border-[#f7f7f7] bg-[#fab31e] lg:hidden shadow-sm"></div>
+                 
+                 {/* Desktop Node */}
+                 <div className="hidden lg:flex w-12 h-12 bg-white rounded-full border-4 border-[#f7f7f7] bg-[#fab31e] text-[#fab31e] /30 shadow-sm items-center justify-center font-black  mx-auto mb-6 group-hover:border-[#fab31e]  group-hover:text-highlight transition-all relative z-10 bg-clip-padding group-hover:-translate-y-1 group-hover:shadow-lg">
+                   {step.num}
+                 </div>
 
-                      <div className="lg:text-center mt-2 lg:mt-0 bg-white lg:bg-transparent p-5 lg:p-0 rounded-2xl shadow-sm lg:shadow-none border border-primary/5 lg:border-none">
-                        <span className={`block ${outfit.className} text-xl lg:text-lg font-bold text-primary mb-2 flex items-center gap-2 lg:justify-center`}>
-                          <span className="lg:hidden text-highlight font-black text-sm">{step.num}</span> 
-                          {step.title}
-                        </span>
-                        <span className={`block ${poppins.className} text-sm text-primary/60`}>{step.desc}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-             </motion.div>
-          </AnimatePresence>
+                 <div className="lg:text-center mt-2 lg:mt-0 bg-white lg:bg-transparent p-5 lg:p-0 rounded-2xl shadow-sm lg:shadow-none border border-[#111111]/5 lg:border-none">
+                   <span className={`block ${outfit.className} text-xl lg:text-lg font-[500] text-black mb-2 flex items-center gap-2 lg:justify-center`}>
+                     <span className="lg:hidden text-highlight font-black text-2xl">{step.num}</span> 
+                     {step.title}
+                   </span>
+                   <span className={`block ${poppins.className} subtitle text-black`}>{step.desc}</span>
+                 </div>
+               </div>
+             ))}
+           </div>
         </div>
       </div>
     </section>
   );
 }
+

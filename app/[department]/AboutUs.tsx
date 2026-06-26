@@ -36,7 +36,7 @@ export default function AboutUs() {
           
               We engineer <span className="text-[var(--color-highlight)] bg-clip-text bg-gradient-to-r from-secondary to-secondary/50">digital outcomes</span>, not just websites.
             </h6>
-            
+
             <div className="space-y-3 subtitle text-white ">
               <p>
                 Founded by performance marketers and elite developers, we bridge the gap between stunning visual aesthetics and ruthless conversion rate optimization.
@@ -46,6 +46,19 @@ export default function AboutUs() {
                 Whether it’s an Awwwards-worthy WebGL experience or a complex Meta Ads funnel scaling past ₹10L/day, our dedicated experts operate as an extension of your growth team. No fluff. Just data, design, and revenue.
               </p>
             </div>
+
+             <div className="w-full mt-3">
+  <button
+    onClick={() => {
+      document
+        .getElementById("contact-form")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }}
+    className="py-[8px] px-[23px] rounded-[5px] cursor-pointer bg-[#F9B31B] border shadow-[2px_2px_0px_0px_#FFFFFF] text-black"
+  >
+    Ready to Get Started?
+  </button>
+</div>
           </motion.div>
         </div>
 

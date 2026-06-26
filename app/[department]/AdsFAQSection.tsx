@@ -24,17 +24,22 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
             {content.title}{" "}
             <span className="text-highlight">{content.highlightTitle}</span>
           </h6>
-          <p className=" subtitle text-[#46463f] lg:mb-8 mb-6 lg:mt-4 mt-1">
+          <p className=" subtitle text-black lg:mb-8 mb-6 lg:mt-4 mt-1">
             Can't find what you're looking for? We're happy to walk you through it directly.
           </p>
 
-           <Button
-                href="/contactus"
-        text="Talk to us"
-        type="submit"
-
-        className="black-text cursor-pointer"
-      />
+<div className="w-full mt-3">
+  <button
+    onClick={() => {
+      document
+        .getElementById("contact-form")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }}
+    className="py-[8px] px-[23px] rounded-[5px] cursor-pointer bg-[#F9B31B] border shadow-[2px_2px_0px_0px_#000000] text-black"
+  >
+    Talk to us
+  </button>
+</div>
          
         </div>
 
