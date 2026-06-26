@@ -20,11 +20,11 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
               {content.eyebrow}
             </span>
           </div>
-          <h6 className="black-text mb-4">
+          <h6 className="black-text ">
             {content.title}{" "}
             <span className="text-highlight">{content.highlightTitle}</span>
           </h6>
-          <p className=" subtitle text-[#46463f] mb-8">
+          <p className=" subtitle text-[#46463f] lg:mb-8 mb-6 lg:mt-4 mt-1">
             Can't find what you're looking for? We're happy to walk you through it directly.
           </p>
 
@@ -57,7 +57,7 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
                   className="w-full cursor-pointer text-left px-6 py-5 flex items-center justify-between gap-4"
                   aria-expanded={isOpen}
                 >
-                  <span className={`font-['Poppins'] font-semibold text-[16px] sm:text-[17px] leading-[1.4] transition-colors ${
+                  <span className={`font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] transition-colors ${
                     isOpen ? "text-white" : "text-[#0a0a0a]"
                   }`}>
                     {item.question}

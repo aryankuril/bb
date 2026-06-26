@@ -208,13 +208,17 @@ const AdsTestimonialsSection = () => {
 
   return (
     <div className="container py-10 sm:py-15 lg:py-20 relative">
-      <div className="text-center mb-6 sm:mb-12">
-        <h2 className="black-text lg:w-[950px] mx-auto text-[clamp(28px,5vw,40px)] leading-[1.2]">
-         What <span className="text-highlight">Brand says </span>Abouts us
-        </h2>
+      <div className="text-center ">
+        
+
+         <h6 className="inline-block lg:w-[950px] mx-auto text-center font-outfit text-black">
+     What <span className="text-highlight">Brand says </span>Abouts us
+  </h6>
+
+
       </div>
 
-      <div ref={sliderRef} className="keen-slider py-4">
+      <div ref={sliderRef} className="keen-slider lg:mt-10 mt-5">
         {testimonialList.map((item, index) => (
           <div
             key={index}
@@ -247,11 +251,11 @@ const AdsTestimonialsSection = () => {
         ))}
       </div>
 
-      <div className="flex justify-center mt-8 gap-3">
+      <div className="flex justify-center mt-8 gap-1">
         {[0, 1, 2].map((dot) => (
           <button
             key={dot}
-            className="flex items-center justify-center p-2 cursor-pointer group"
+            className="flex items-center justify-center cursor-pointer group"
             onClick={() => {
               const perGroup = Math.ceil(testimonialList.length / 3);
               instanceRef.current?.moveToIdx(dot * perGroup);

@@ -81,7 +81,8 @@ const AdsWorkSection = ({ content }: { content: WorkContent }) => {
 
   return (
     <section id="our-work" className="container py-10 sm:py-15 lg:py-20">
-      <h6 className="black-text mb-6 lg:mb-8">Our Work</h6>
+      <h6 className="black-text mb-6 lg:mb-8 font-outfit">Our Work</h6>
+      
 
       {/* Filter chips */}
       <div
@@ -128,7 +129,7 @@ const AdsWorkSection = ({ content }: { content: WorkContent }) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-[1]" />
                   <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 z-[2] flex items-end gap-2 sm:gap-4">
                     <span className="text-highlight casenumbering">{step.number}</span>
-                    <h3 className="white-text leading-tight">{step.title}</h3>
+                    <h6 className="white-text leading-tight">{step.title}</h6>
                   </div>
                 </Link>
               );

@@ -27,9 +27,9 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
   <span className="text-highlight">
     results.
   </span>
-</h6>
+ </h6>
 
-  <p className="mt-4 max-w-4xl mx-auto text-center text-[#666] subtitle">
+  <p className="lg:mt-4 mt-1 max-w-4xl mx-auto text-center text-black subtitle">
     Stop guessing with your digital strategy. Our proven frameworks deliver measurable growth and scale.
   </p>
 </div>
@@ -43,7 +43,7 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
 
       {/* Problem stat cards */}
       <div
-  className={`grid gap-[18px] mt-10 ${
+  className={`grid gap-[18px] lg:mt-10 mt-5 ${
     content.statCards.length === 4
       ? "grid-cols-2 lg:grid-cols-4"
       : "grid-cols-2 lg:grid-cols-5"
@@ -82,7 +82,7 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
           }
         `}
       >
-        <div className="font-['Poppins'] font-extrabold text-[40px] leading-none text-highlight">
+        <div className="font-['Poppins'] text-[40px] font-[600] text-highlight">
           <CountUp
   start={0}
   end={parseInt(card.value.replace(/[^0-9,]/g, ""))}
@@ -91,7 +91,7 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
           {card.value.replace(/[0-9,]/g, "")}
         </div>
 
-        <p className="mt-3 subtitle text-[#46463f]">
+        <p className="lg:mt-3 mt-0 subtitle text-[#46463f]">
           {parts.map((part, i) =>
             card.boldWord &&
             part.toLowerCase() === card.boldWord.toLowerCase() ? (

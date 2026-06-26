@@ -40,23 +40,26 @@ export default function CaseStudies() {
   return (
     <section id="work" className="container py-10 sm:py-15 lg:py-20">
       <div className="">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl"
-          >
-            <h6 className={`block ${outfit.className} text-4xl md:text-5xl font-black text-primary mb-6`}>
-              Proof Is In The <span className="text-highlight">Metrics.</span>
-            </h6>
-            <span className={`block ${poppins.className} text-lg text-primary/60`}>
-              We don't hide behind fluffy branding metrics. We show you exactly how much money we make for our partners.
-            </span>
-          </motion.div>
-        </div>
+        <div className="flex justify-center items-center">
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="w-full"
+  >
+    <div className="w-full text-center mb-2">
+      <h6 className="inline-block text-black">
+        Proof Is In The <span className="text-highlight">Metrics.</span>
+      </h6>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <p className="lg:mt-4 mt-1 max-w-4xl mx-auto text-black subtitle">
+        We don't hide behind fluffy branding metrics. We show you exactly how much money we make for our partners.
+      </p>
+    </div>
+  </motion.div>
+</div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:mt-10 mt-5 ">
           {cases.map((cs, i) => (
             <motion.div 
               key={i}
@@ -64,7 +67,7 @@ export default function CaseStudies() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`rounded-[32px] p-10 md:p-12 relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-primary/5 ${cs.bg}`}
+              className={`rounded-[32px] p-5 md:p-12 relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 shadow-xl shadow-primary/5 ${cs.bg}`}
             >
               <div className="absolute top-8 right-8 w-12 h-12 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                 <ArrowUpRight className="w-5 h-5 text-primary" />
@@ -74,8 +77,8 @@ export default function CaseStudies() {
                 <span className="inline-block px-4 py-1.5 bg-white rounded-full text-xs font-bold text-primary/60 uppercase tracking-wider mb-6">
                   {cs.industry}
                 </span>
-                <span className={`block ${outfit.className} text-3xl md:text-4xl font-bold text-primary mb-4`}>{cs.brand}</span>
-                <span className={`block ${poppins.className} text-lg text-primary/70 max-w-md`}>{cs.description}</span>
+                <h6 className={`block ${outfit.className}  text-primary lg:mb-4 mb-2`}>{cs.brand}</h6>
+                <span className={`block ${poppins.className} subtitle text-black max-w-md`}>{cs.description}</span>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-6 rounded-2xl">

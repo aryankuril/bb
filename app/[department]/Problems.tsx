@@ -7,7 +7,7 @@ const pageContent = {
     heading: (
       <>
         Why Most{" "}
-        <span className="text-red-500">
+        <span className="text-highlight">
           Websites Fail
         </span>
       </>
@@ -39,7 +39,7 @@ const pageContent = {
     heading: (
       <>
         Why Brands{" "}
-        <span className="text-red-500">
+        <span className="text-highlight">
           Stop Growing
         </span>
       </>
@@ -71,7 +71,7 @@ const pageContent = {
     heading: (
       <>
         What Happens When Ads Are{" "}
-        <span className="text-red-500">
+        <span className="text-highlight">
           Managed Incorrectly?
         </span>
       </>
@@ -103,7 +103,7 @@ const pageContent = {
     heading: (
       <>
         Why Websites{" "}
-        <span className="text-red-500">
+        <span className="text-highlight">
           Never Rank
         </span>
       </>
@@ -166,29 +166,33 @@ const content =
     <section className="container py-10 sm:py-15 lg:py-20 relative overflow-hidden">
       <div className=" relative z-10">
         
-        <div className="text-center mb-20">
+        <div className="text-center ">
           <motion.h6 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className=" font-black text-primary mb-6"
+             className=" inline-block text-center font-outfit  text-black"
+
           >
              {content.heading}
           </motion.h6>
-          <span className={`block ${poppins.className} text-lg text-primary/60 max-w-2xl mx-auto`}>
-{content.subtitle}          </span>
+          <p className="lg:mt-4 mt-1 max-w-2xl mx-auto text-primary/60 subtitle">{content.subtitle}   </p>
+
+
+
+
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
+        <div className="flex flex-col lg:flex-row gap-12 items-center justify-center lg:mt-10 mt-5" >
           
           {/* BAD SIDE */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-red-50/50 border border-red-100 rounded-[30px] p-8 md:p-12 w-full lg:w-1/2"
+            className="bg-red-50/50 border border-red-100 rounded-[30px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2"
           >
-            <span className={`block ${outfit.className} text-2xl font-bold text-red-600 mb-8 border-b border-red-100 pb-4`}>{content.leftTitle}</span>
+            <span className={`block ${outfit.className} text-2xl font-bold text-black mb-8 border-b border-red-100 pb-4`}>{content.leftTitle}</span>
             <ul className="space-y-6">
               {content.problems.map((prob, i) => (
   <motion.li
@@ -216,8 +220,8 @@ const content =
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-secondary border border-primary/10 rounded-[30px] p-8 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors shadow-2xl shadow-primary/5"
-          >
+            className="bg-secondary border border-primary/10 rounded-[30px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors shadow-2xl shadow-primary/5"
+           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
             
             <span className={`block ${outfit.className} text-2xl font-bold text-primary mb-8 border-b border-primary/10 pb-4 relative z-10`}>{content.rightTitle}</span>

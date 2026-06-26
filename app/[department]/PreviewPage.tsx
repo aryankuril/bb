@@ -723,7 +723,10 @@ const currentQuestionNumber =
                   lg:mt-5  mt-5 
                   w-full
                   p-5 md:p-[30px_30px]
-                  bg-white rounded-[8px] border border-gray
+                  rounded-[20px]
+                  border border-[#E8E4DD]
+bg-[#FCFAF7]
+shadow-[0_20px_60px_rgba(0,0,0,0.06)]
                   
                 "
             >
@@ -813,7 +816,10 @@ const currentQuestionNumber =
                   w-full
                    
                   p-5 md:p-[30px_30px]
-                  bg-white rounded-[8px] border border-gray
+                  rounded-[20px]
+                  border border-[#E8E4DD]
+bg-[#FCFAF7]
+shadow-[0_20px_60px_rgba(0,0,0,0.06)]
                 "
             >
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
@@ -982,7 +988,7 @@ border border-[#E8E4DD]
 bg-[#FCFAF7]
 shadow-[0_20px_60px_rgba(0,0,0,0.06)]
 
-p-6 md:p-8 lg:p-10
+p-4 md:p-8 lg:p-10
 
 "
             >
@@ -1357,7 +1363,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)]
   <div className="w-full h-auto min-h-full rounded-[20px]
 border border-[#E8E4DD]
 bg-[#FCFAF7]
-shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-5 text-black relative overflow-hidden">
+shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hidden">
 
 
 

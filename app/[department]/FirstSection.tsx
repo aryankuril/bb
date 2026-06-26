@@ -77,12 +77,12 @@ export default function Firstsection() {
       <div className="flex flex-col">
         <div className="flex-1">
            <a
-  className="black-text max-w-full lg:max-w-[1300px] font-outfit text-[22px] lg:text-[60px] leading-[1em] "
+  className="black-text max-w-full lg:max-w-[1300px] font-outfit text-[28px] lg:text-[60px] leading-[1em] "
 >
   {content.title}
 </a>
 
-          <p className="mt-4 max-w-4xl  text-[#666] subtitle">
+          <p className="mt-4 max-w-4xl  text-black subtitle">
             {content.subtitle}
           </p>
         </div>
