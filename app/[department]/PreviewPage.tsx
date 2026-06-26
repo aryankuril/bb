@@ -723,8 +723,8 @@ const currentQuestionNumber =
                   lg:mt-5  mt-5 
                   w-full
                   p-5 md:p-[30px_30px]
-                  bg-white rounded-[8px] border border-[#1E1E1E]
-                  shadow-[6px_5px_0px_0px_#262626]
+                  bg-white rounded-[8px] border border-gray
+                  
                 "
             >
               <div>
@@ -813,16 +813,15 @@ const currentQuestionNumber =
                   w-full
                    
                   p-5 md:p-[30px_30px]
-                  bg-white rounded-[8px] border border-[#1E1E1E]
-                  shadow-[6px_5px_0px_0px_#262626]
+                  bg-white rounded-[8px] border border-gray
                 "
             >
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2">
-                    <h5 className="lg:text-[24px] text-[20px] font-poppins font-[700] text-black">
+                    <h6 className="font-poppins font-[700] text-black">
                       {currentQuestion.questionText}
-                    </h5>
+                    </h6>
                     {currentQuestion.questionIcon?.startsWith("data:image") ? (
                       <img src={currentQuestion.questionIcon} alt="icon" className="w-6 h-6" />
                     ) : (
@@ -973,21 +972,26 @@ const currentQuestionNumber =
             </div>
           ) : currentQuestion ? (
             <div
-              className="
-                  flex flex-col lg:gap-6 gap-4
-                  lg:mt-5  mt-5 
-                  w-full  
-                  p-5 md:p-[30px_30px]
-                  bg-white rounded-[8px] border border-[#1E1E1E]
-                  shadow-[6px_5px_0px_0px_#262626]
-                "
+             className="
+flex flex-col gap-5 lg:gap-6
+w-full
+mt-5
+
+rounded-[20px]
+border border-[#E8E4DD]
+bg-[#FCFAF7]
+shadow-[0_20px_60px_rgba(0,0,0,0.06)]
+
+p-6 md:p-8 lg:p-10
+
+"
             >
               <div className="flex flex-row sm:items-start sm:justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2 lg:w-[700px]">
-                    <h5 className="lg:text-[24px] text-[20px] font-poppins font-[700] text-black">
+                    <a className="lg:text-[24px] text-[20px] font-outfit  font-[700] text-black">
                       {currentQuestion.questionText}
-                    </h5>
+                    </a>
                     {currentQuestion.questionIcon?.startsWith("data:image") ? (
                       <img src={currentQuestion.questionIcon} alt="icon" className="w-4 h-4" />
                     ) : (
@@ -1168,17 +1172,18 @@ const currentQuestionNumber =
 
 
    <div className="text-center py-5 rounded-[20px] bg-[#F9B31B] lg:mt-5 mt-0 ">
-         <h3 className="
-  text-white 
-  font-poppins 
-  font-[700]
-  text-[22px]       /* mobile */
-  sm:text-[24px]    /* small screens */
-  md:text-[26px]    /* tablets */
-  lg:text-[28px]    /* desktop */
-">
+<a
+  className="
+    text-white
+   font-outfit 
+    font-[700]
+    text-[24px]      /* Mobile */
+    lg:text-[36px]   /* Desktop */
+    leading-[1.2em]
+  "
+>
   ₹{totalEstimate.toLocaleString()}/-
-</h3>
+</a>
 
           <p className="text-[#1E1E1E] text-[15px] font-[300]">
            Here What It Take to Build Your Vision
@@ -1220,36 +1225,48 @@ const currentQuestionNumber =
           flex flex-col
           w-full
           lg:p-8 p-5
-          bg-[#1B1B1B]
+          border border-[#E8E4DD]
+bg-[#FCFAF7]
+shadow-[0_20px_60px_rgba(0,0,0,0.06)]
           rounded-[20px] 
           overflow-hidden
-          text-white
+          text-black
         "
       >
         {/* RIGHT BORDER */}
-        <div className="absolute right-0 top-0 w-3 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
+        {/* <div className="absolute right-0 top-0 w-3 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div> */}
 
         {/* Yellow Price Box */}
 
 
-        <h4 className="text-[22px] font-[700] mb-4 flex items-center gap-2 ">
-          Cost Summary
-        </h4>
+        <a
+  className="
+    flex items-center gap-2
+    mb-4
+    font-[700]
+    text-[25px]
+    lg:text-[35px]
+    leading-[1.2em]
+    font-outfit 
+  "
+>
+  Cost Summary
+</a>
 
         {costItems.map((item, index) => (
           <div key={index} className="flex justify-between text-[15px] mb-3">
                                 <p>
 
-                       <span className="text-white text-center capitalize  font-miso text-[14px] font-[700] leading-normal not-italic">
+                       <span className="text-black text-center capitalize  font-miso text-[14px] font-[700] leading-normal not-italic">
 {item.type}:
 </span>
 {" "}
-                      <span className="text-white  font-miso capitalize text-[14px] font-[300] not-italic  leading-normal">
+                      <span className="text-black  font-miso capitalize text-[14px] font-[300] not-italic  leading-normal">
                            {item.value}
                       </span>
                     </p>
 
-           <span className="font-[500] text-white">
+           <span className="font-[500] text-black">
   {item.price
     ? `₹${Number(item.price).toLocaleString("en-IN")}`
     : "Included"}
@@ -1270,17 +1287,18 @@ const currentQuestionNumber =
       </div>
 
    <div className="text-center py-5 rounded-[20px] bg-[#F9B31B] mt-5 ">
-         <h3 className="
-  text-white 
-  font-poppins 
-  font-[700]
-  text-[22px]       /* mobile */
-  sm:text-[24px]    /* small screens */
-  md:text-[26px]    /* tablets */
-  lg:text-[28px]    /* desktop */
-">
+<a
+  className="
+    text-white
+   font-outfit 
+    font-[700]
+    text-[24px]      /* Mobile */
+    lg:text-[36px]   /* Desktop */
+    leading-[1.2em]
+  "
+>
   ₹{totalEstimate.toLocaleString()}/-
-</h3>
+</a>
 
           <p className="text-[#1E1E1E] text-[15px] font-[300]">
            Here What It Take to Build Your Vision
@@ -1340,19 +1358,20 @@ const currentQuestionNumber =
 
               
 
-  <div className="w-full h-auto min-h-full bg-[#1B1B1B] rounded-[20px] lg:p-8 p-5 text-white relative overflow-hidden">
+  <div className="w-full h-auto min-h-full rounded-[20px]
+border border-[#E8E4DD]
+bg-[#FCFAF7]
+shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-5 text-black relative overflow-hidden">
 
 
-         {/* RIGHT BORDER */}
-<div className="absolute right-0 top-0 w-3 sm:w-4 md:w-5 h-full bg-[#FAB31E]"></div>
 
 
-        <h4 className="max-w-xs flex items-center gap-2">
+        <h6 className="max-w-l flex items-center gap-2">
   Get Expert Guidance for Your Project
-</h4>
+</h6>
 
 
-   <p className=" max-w-2xl mb-4  subtitle text-white leading-relaxed">
+   <p className=" max-w-2xl mb-4  subtitle text-black leading-relaxed">
            Expect a response within 24 hours.
           </p>
 
@@ -1370,7 +1389,7 @@ const currentQuestionNumber =
      name="name" 
      value={formData.name}
       onChange={(e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value, })) }
-      className={`px-3 py-2 border-b bg-transparent text-white placeholder:text-white focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B] ${
         errors.name
@@ -1398,7 +1417,7 @@ const currentQuestionNumber =
           [e.target.name]: e.target.value,
         }))
       }
-      className={`px-3 py-2 border-b bg-transparent text-white placeholder:text-white focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B]  ${
         errors.phone
@@ -1423,7 +1442,7 @@ const currentQuestionNumber =
       name="email"
       value={formData.email}
       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-      className={`px-3 py-2 border-b bg-transparent text-white placeholder:text-white focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B] ${
         errors.email
@@ -1444,7 +1463,7 @@ const currentQuestionNumber =
   <button
     onClick={handleSubmit}
     className="py-[8px] px-[23px] rounded-[5px]  cursor-pointer bg-[#F9B31B]
-    border shadow-[2px_2px_0px_0px_#FFFFFF]  text-black italic"
+    border shadow-[2px_2px_0px_0px_#000000]  text-black italic"
   >
   {isSubmitting ? "Submitting..." : "Submit"}
   </button>
@@ -1453,9 +1472,18 @@ const currentQuestionNumber =
 {/* CONTACT BLOCK */}
 <div className="mt-4 py-4  ">
 
-  <h5 className="text-[#F9B31B] font-semibold text-lg mb-4">
-    Too excited to get started?
-  </h5>
+<a
+  className="
+    text-[#F9B31B]
+    font-semibold
+    text-[20px]
+    lg:text-[22px]
+    leading-[1.5em]
+    mb-4
+  "
+>
+  Too excited to get started?
+</a>
 
   <div className="space-y-2">
 

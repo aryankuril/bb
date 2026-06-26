@@ -21,10 +21,17 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
         {/* Left: badge + headline */}
         <div className="lg:flex-1">
           
-<div className="w-full flex justify-center mb-2">
-  <a className="inline-block text-center text-4xl md:text-5xl lg:text-5xl font-black leading-tight text-black">
-    {content.headline}
-  </a>
+<div className="w-full text-center mb-2">
+ <h6 className="inline-block text-center font-black leading-tight text-black">
+  We operate on{" "}
+  <span className="text-highlight">
+    results.
+  </span>
+</h6>
+
+  <p className="mt-4 max-w-4xl mx-auto text-center text-[#666] subtitle">
+    Stop guessing with your digital strategy. Our proven frameworks deliver measurable growth and scale.
+  </p>
 </div>
 
         

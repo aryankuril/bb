@@ -31,9 +31,9 @@ export default function AdsLogoSection() {
     <div className="overflow-hidden space-y-6 container py-10 sm:py-15 lg:py-20">
 
 <div className="w-full flex justify-center mb-8">
-  <a className="inline-block text-center text-4xl md:text-5xl lg:text-5xl font-black leading-tight text-black">
+  <h6 className="inline-block text-center font-outfit leading-tight text-black">
     Brands That Trust Our Work
-  </a>
+  </h6>
 </div>
 
 

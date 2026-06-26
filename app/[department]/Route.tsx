@@ -53,7 +53,7 @@ if (!config) {
         <AboutUs/>
         <Problems/>
         <AdsWorkSection content={config.work} />
-        <ProcessCombined/>
+        {/* <ProcessCombined/> */}
         <AdsTestimonialsSection />
         <AdsWorkflowSection content={config.workflow} />
         <AdsFAQSection content={config.faq} />
