@@ -89,8 +89,8 @@ export default function PreviewPage() {
   // const [totals, setTotals] = useState(0);
   const [costItems, setCostItems] = useState<CostItem[]>([]);
 
-  const [formData, setFormData] = useState({ name: "", phone: "", email: "" });
-  const [errors, setErrors] = useState({ name: "", phone: "", email: "" });
+  const [formData, setFormData] = useState({ name: "", phone: "", email: "", message: "" });
+  const [errors, setErrors] = useState({ name: "", phone: "", email: "", message: "" });
   const [toastMessage, setToastMessage] = useState("");
   // const [_showEmailInput, setShowEmailInput] = useState(false);
   // const [email, setEmail] = useState("");
@@ -432,6 +432,7 @@ useEffect(() => {
             name: null,
             phone: null,
             email: null,
+            message: null,
           }),
         });
 
@@ -557,7 +558,7 @@ const validateCustomStep = (field: CustomField) => {
 
 
   const validate = () => {
-    const tempErrors = { name: "", phone: "", email: "" };
+    const tempErrors = { name: "", phone: "", email: "", message: "" };
     let isValid = true;
     if (!formData.name.trim()) { tempErrors.name = "Name is required."; isValid = false; }
     if (!formData.phone.trim()) {
@@ -570,6 +571,7 @@ else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
 }
 
     if (!formData.email.trim()) { tempErrors.email = "Email is required."; isValid = false; } else if (!/\S+@\S+\.\S+/.test(formData.email)) { tempErrors.email = "Email is not valid."; isValid = false; }
+    if (!formData.message.trim()) { tempErrors.message = "Message is required."; isValid = false; }
     const nextCustomErrors: Record<string, string> = {};
 
 visibleCustomFields.forEach((field) => {
@@ -607,7 +609,7 @@ setCustomFieldErrors(nextCustomErrors);
 const handleSubmit = async () => {
   if (!validate()) return;
 
-  const { name, phone, email } = formData;
+  const { name, phone, email, message } = formData;
   const estimateId = typeof window !== "undefined" ? localStorage.getItem("estimateId") : null;
 
   setIsSubmitting(true);
@@ -620,6 +622,7 @@ const handleSubmit = async () => {
         name,
         phone,
         email,
+        message,
         serviceCalculator: department,
         finalPrice: totalEstimate,
         quote: costItems,
@@ -641,6 +644,7 @@ if (res.ok) {
     name: "",
     phone: "",
     email: "",
+    message: "",
   });
 
   // Clear validation errors
@@ -648,6 +652,7 @@ if (res.ok) {
     name: "",
     phone: "",
     email: "",
+    message: "",
   });
 
   // Reset calculator state (optional)
@@ -1470,6 +1475,39 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
       <p className="text-red-500 text-sm mt-1">{errors.email}</p>
     )}
   </div>
+
+  {/* Message */}
+  <div className="flex flex-col gap-1 w-full">
+    {/* <label htmlFor="email" className="text-sm font-medium text-white">
+      Email
+    </label> */}
+    <input
+      id="message"
+      name="message"
+      value={formData.message}
+      onChange={(e) =>
+        setFormData((prev) => ({
+          ...prev,
+          [e.target.name]: e.target.value,
+        }))
+      }
+     
+      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black focus:outline-none 
+      focus:ring-0 
+      focus:border-[#F9B31B] ${
+          errors.message
+          ? "border-red-500 focus:ring-red-300"
+          : "border-[#F9B31B] focus:ring-[#F9B31B]"
+      }`}
+      placeholder="Message / Link "
+    />
+    {errors.message && (
+      <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+    )}
+  </div>
+
+
+  
  </div>
 
 

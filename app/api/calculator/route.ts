@@ -80,6 +80,7 @@ export async function POST(request: NextRequest) {
   name,
   phone,
   email,
+  message,
   quote,
   total,
   estimateId,
@@ -139,6 +140,7 @@ if (!serviceCalculator) {
         name: name || "N/A",
         phone: phone || "N/A",
         email: email || "N/A",
+        message: message || "N/A",
         quote: safeQuote,
 total: safeTotal,
         finalPrice,
@@ -157,6 +159,7 @@ total: safeTotal,
           name: name || "N/A",
           phone: phone || "N/A",
           email: email || "N/A",
+          message: message || "N/A",
           quote: safeQuote,
 total: safeTotal,
           finalPrice,
@@ -171,6 +174,7 @@ total: safeTotal,
           name: name || "N/A",
           phone: phone || "N/A",
           email: email || "N/A",
+          message: message || "N/A",
           quote: safeQuote,
 total: safeTotal,
           finalPrice,
@@ -337,6 +341,18 @@ total: safeTotal,
   </a>
 </td>
 </tr>
+
+<tr>
+ <td style="padding:6px 0; vertical-align:top;">
+  <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+  <strong>Message/Link:</strong>
+  <a style="color:#555555 !important; text-decoration:none !important; margin-left:6px;">
+     ${escapeHTML(message || 'N/A')}
+  </a>
+</td>
+
+</tr>
+
 
 ${normalizedCustomFields
   .map(
@@ -600,6 +616,7 @@ ${normalizedCustomFields
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message/Link:</strong> ${escapeHTML(message || "N/A")}</p>
           <p><strong>Service:</strong> ${serviceNameTitle}</p>
           ${additionalDetailsHTML}
           <p><strong>Final Price:</strong> ₹${Number(finalPrice).toLocaleString(
