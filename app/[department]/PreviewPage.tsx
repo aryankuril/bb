@@ -677,7 +677,16 @@ if (res.ok) {
     setIsSubmitting(false);
   }
 };
-   
+
+
+const totalQuestions = workflowSteps.filter(
+  (step) => step.kind === "question"
+).length;
+
+const currentQuestionNumber =
+  workflowSteps
+    .slice(0, currentVisibleIdx + 1)
+    .filter((step) => step.kind === "question").length;
 
   return (
 
@@ -690,73 +699,19 @@ if (res.ok) {
   </div>
 )}
       <div
-        className="w-full h-full relative bg-no-repeat bg-center bg-cover  pt-5 md:py-0 lg:px-15 px-0 "
+        className="w-full h-full relative bg-no-repeat bg-center bg-cover  lg:pt-5 pt-0 md:py-0 container "
       >
         <div 
         style={{ touchAction: "pan-y" /* allow vertical scroll gestures */ }}
-         className=" max-w-8xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-between gap-8 relative z-10 ">
+         className=" mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-between gap-8 relative z-10 ">
           
  
                               
              <section 
-               className="w-full px-4  flex flex-col lg:mt-8 pb-10 sm:pb-15 lg:pb-20">
+               className="w-full flex flex-col lg:mt-8 pb-10 sm:pb-15 lg:pb-20">
        
-        <div 
-        // ref={secondSectionRef} 
-        className="w-full  max-h-7xl lg:mt-12 mt-8">
-        <div className="flex flex-col gap-2">
-  {/* Progress Wrapper (relative so car is inside) */}
-  <div className="flex gap-3 relative items-center">
-    {/* Progress Bars */}
-    {workflowSteps.map((step, visibleIdx) => {
-      const isDone =
-        step.kind === "question"
-          ? Boolean(selectedOptions[step.originalIndex])
-          : Boolean(customFieldValues[step.field.id]?.trim());
 
-      return (
-        <div
-          key={visibleIdx}
-          className="flex-1 h-[10px] rounded-[20px] border border-[#1E1E1E] bg-transparent overflow-hidden"
-        >
-          <div
-            className="h-full bg-[#F9B31B] transition-all duration-500"
-            style={{
-              width: isDone ? "100%" : "0%",
-            }}
-          />
-        </div>
-      );
-    })}
-
-    {/* Car Image */}
-    <div
-      className="absolute transition-all duration-500 "
-      style={{
-        left: `${totalProgressPercentage}%`,
-        transform: "translateX(-20%)", // keeps it centered
-        bottom: '1px',
-      }}
-    >
-      <img src="/images/flyinglady.png" alt="Car" className="lg:h-[65px] h-[45px] lg:w-[70px] w-[50px]" />
-    </div>
-  </div>
-</div>
-
-<div className="flex items-center justify-between text-sm text-gray-600 lg:mt-3 mt-1">
-            <span className="text-[#797474] text-center  font-miso text-[20px] italic font-light leading-none tracking-[0.2px] capitalize">
-              Progress
-            </span>
-            <span className="text-[#797474] text-center  font-miso text-[20px] not-italic font-light leading-none tracking-[0.2px] capitalize">
-              {percent}%
-            </span>
-          </div>
-
-        </div>
-
-
-       <div className="flex flex-col lg:flex-row lg:gap-6 gap-0">
-
+         <div className="flex flex-col xl:flex-row lg:flex-col gap-6">
      
 
         {/* ... The rest of your component remains the same from the previous response ... */}
@@ -764,7 +719,7 @@ if (res.ok) {
           currentWorkflowStep?.kind === "custom" && currentCustomField ? (
             <div
               className="
-                  flex flex-col gap-6
+                  flex flex-col lg:gap-6 gap-4
                   lg:mt-5  mt-5 
                   w-full
                   p-5 md:p-[30px_30px]
@@ -818,29 +773,7 @@ if (res.ok) {
               </div>
 
               <div className="w-full flex justify-between items-center gap-3">
-                <button
-                  onClick={() => {
-                    if (currentVisibleIdx > 0) {
-                      setCurrentVisibleIdx((prev) => prev - 1);
-                    }
-                  }}
-                  disabled={currentVisibleIdx === 0}
-                  className={`
-        cursor-pointer
-        w-[120px] sm:w-[130px] md:w-[150px]
-        py-2 sm:py-3
-        text-[14px] sm:text-[16px]
-        flex items-center justify-center gap-2 rounded-[5px] italic
-        border shadow-[2px_2px_0px_0px_#262626] transition-colors
-        ${
-          currentVisibleIdx > 0
-            ? "bg-[#F9B31B] border-[#262626] text-[#262626]"
-            : "bg-gray-200 border-gray-200 text-gray-400 cursor-not-allowed shadow-none"
-        }
-      `}
-                >
-                  Previous
-                </button>
+
 
                 <button
                   onClick={() => {
@@ -875,7 +808,7 @@ if (res.ok) {
             
               className="
               
-                  flex flex-col gap-6
+                  flex flex-col lg:gap-6 gap-4
                   lg:mt-5  mt-5 
                   w-full
                    
@@ -895,28 +828,74 @@ if (res.ok) {
                     ) : (
                       <span>{currentQuestion.questionIcon}</span>
                     )}
-                  </div>
+                   </div>
                   <p className="text-[#797474] font-poppins text-[16px] font-[400]">
                     {currentQuestion.questionSubText}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-1 sm:ml-5">
-                  <span className="font-poppins text-[14px] font-[400] capitalize text-[#1E1E1E]">
-                    Pick One
-                  </span>
-                  <svg
-                    className="w-[15px] h-[10px] mt-[2px]"
-                    viewBox="0 0 6 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M3.3 1C3.3 0.834315 3.16569 0.7 3 0.7C2.83431 0.7 2.7 0.834315 2.7 1H3.3ZM2.78787 9.21213C2.90503 9.32929 3.09497 9.32929 3.21213 9.21213L5.12132 7.30294C5.23848 7.18579 5.23848 6.99584 5.12132 6.87868C5.00416 6.76152 4.81421 6.76152 4.69706 6.87868L3 8.57574L1.30294 6.87868C1.18579 6.76152 0.995837 6.76152 0.87868 6.87868C0.761522 6.99584 0.761522 7.18579 0.87868 7.30294L2.78787 9.21213ZM3 1H2.7L2.7 9H3H3.3L3.3 1H3Z"
-                      fill="#1E1E1E"
-                    />
-                  </svg>
-                </div>
+               <div
+  // ref={secondSectionRef}
+  className="w-full max-h-7xl lg:mt-12 mt-8"
+>
+  <div className="flex justify-end">
+    <span className="text-[#797474] font-miso text-[24px] italic font-light leading-none tracking-[0.2px]">
+      {currentQuestionNumber}/{totalQuestions}
+    </span>
+
+  
+                  <button
+  onClick={() => {
+    if (currentVisibleIdx > 0 && questions && visibleQuestions.length > 0) {
+      const newSelectedOptions = { ...selectedOptions };
+      const origIdx = questions.findIndex(
+        (q) =>
+          q.questionText === visibleQuestions[currentVisibleIdx].questionText
+      );
+      newSelectedOptions[origIdx] = null;
+      setSelectedOptions(newSelectedOptions);
+      setCurrentVisibleIdx((prev) => prev - 1);
+    }
+  }}
+  disabled={currentVisibleIdx === 0}
+  className={`
+    flex items-center gap-2
+    text-[16px]
+    font-medium
+    underline
+    underline-offset-4
+    transition-all
+    ${
+      currentVisibleIdx > 0
+        ? "text-[#F9B31B] hover:opacity-80 cursor-pointer"
+        : "text-gray-400 cursor-not-allowed no-underline"
+    }
+  `}
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M19 12H5" />
+    <path d="M12 19l-7-7 7-7" />
+  </svg>
+
+  <span>Previous</span>
+</button>
+  
+
+  </div>
+
+</div>
+
+
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-4 lg:gap-10 gap-5">
@@ -950,7 +929,7 @@ if (res.ok) {
         <div className="w-full text-center ">
           {/* We've added `truncate` to handle long titles. */}
            <span style={{ fontFamily: "Poppins, sans-serif" }} 
-      className="font-poppins flex-1 text-[#111827] body3 font-[600] ml-2">
+        className="font-poppins flex-1 text-[#111827] ml-2 text-[12px] lg:text-[16px] font-[500] leading-[1.2]">
         {opt.title}
       </span>
         </div>
@@ -987,38 +966,6 @@ if (res.ok) {
     
   ">
 
-    {/* Previous Button */}
-    <button
-      onClick={() => {
-        if (currentVisibleIdx > 0 && questions && visibleQuestions.length > 0) {
-          const newSelectedOptions = { ...selectedOptions };
-          const origIdx = questions.findIndex(
-            (q) =>
-              q.questionText === visibleQuestions[currentVisibleIdx].questionText
-          );
-          newSelectedOptions[origIdx] = null;
-          setSelectedOptions(newSelectedOptions);
-          setCurrentVisibleIdx((prev) => prev - 1);
-        }
-      }}
-      disabled={currentVisibleIdx === 0}
-      className={`
-        cursor-pointer
-        w-[120px] sm:w-[130px] md:w-[150px] /* responsive width */
-        py-2 sm:py-3                      /* responsive height */
-        text-[14px] sm:text-[16px]        /* responsive text */
-        flex items-center justify-center gap-2 rounded-[5px] italic
-        border shadow-[2px_2px_0px_0px_#262626] transition-colors
-        ${
-          currentVisibleIdx > 0
-            ? "bg-[#F9B31B] border-[#262626] text-[#262626]"
-            : "bg-gray-200 border-gray-200 text-gray-400 cursor-not-allowed shadow-none"
-        }
-      `}
-    >
-      Previous
-    </button>
-
     {/* Next Button Removed */}
 
   </div>
@@ -1027,7 +974,7 @@ if (res.ok) {
           ) : currentQuestion ? (
             <div
               className="
-                  flex flex-col gap-6
+                  flex flex-col lg:gap-6 gap-4
                   lg:mt-5  mt-5 
                   w-full  
                   p-5 md:p-[30px_30px]
@@ -1035,7 +982,7 @@ if (res.ok) {
                   shadow-[6px_5px_0px_0px_#262626]
                 "
             >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+              <div className="flex flex-row sm:items-start sm:justify-between gap-2">
                 <div>
                   <div className="flex items-center gap-2 lg:w-[700px]">
                     <h5 className="lg:text-[24px] text-[20px] font-poppins font-[700] text-black">
@@ -1054,24 +1001,60 @@ if (res.ok) {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-1 sm:ml-5">
-                  <span className="font-poppins text-[14px] capitalize font-[400] text-[#1E1E1E]">
-                    Pick One
-                  </span>
-                  <svg
-                    className="w-[15px] h-[10px] mt-[2px]"
-                    viewBox="0 0 6 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M3.3 1C3.3 0.834315 3.16569 0.7 3 0.7C2.83431 0.7 2.7 0.834315 2.7 1H3.3ZM2.78787 9.21213C2.90503 9.32929 3.09497 9.32929 3.21213 9.21213L5.12132 7.30294C5.23848 7.18579 5.23848 6.99584 5.12132 6.87868C5.00416 6.76152 4.81421 6.76152 4.69706 6.87868L3 8.57574L1.30294 6.87868C1.18579 6.76152 0.995837 6.76152 0.87868 6.87868C0.761522 6.99584 0.761522 7.18579 0.87868 7.30294L2.78787 9.21213ZM3 1H2.7L2.7 9H3H3.3L3.3 1H3Z"
-                      fill="#1E1E1E"
-                    />
-                  </svg>
-                </div>
-              </div>
+                <div className="flex justify-end ">
+  <span className="font-poppins text-[16px] capitalize font-[400] text-[#1E1E1E]">
+    {currentQuestionNumber}/{totalQuestions}
+  </span>
+</div>
 
+
+              </div>
+ <button
+  onClick={() => {
+    if (currentVisibleIdx > 0 && questions && visibleQuestions.length > 0) {
+      const newSelectedOptions = { ...selectedOptions };
+      const origIdx = questions.findIndex(
+        (q) =>
+          q.questionText === visibleQuestions[currentVisibleIdx].questionText
+      );
+      newSelectedOptions[origIdx] = null;
+      setSelectedOptions(newSelectedOptions);
+      setCurrentVisibleIdx((prev) => prev - 1);
+    }
+  }}
+  disabled={currentVisibleIdx === 0}
+  className={`
+    flex items-center gap-2
+    text-[16px]
+    font-medium
+    underline
+    underline-offset-4
+    transition-all
+    ${
+      currentVisibleIdx > 0
+        ? "text-[#F9B31B] hover:opacity-80 cursor-pointer"
+        : "text-gray-400 cursor-not-allowed no-underline"
+    }
+  `}
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M19 12H5" />
+    <path d="M12 19l-7-7 7-7" />
+  </svg>
+
+  <span>Previous</span>
+</button>
+  
 
               
 
@@ -1121,17 +1104,19 @@ if (res.ok) {
 
       {/* TITLE */}
       <span style={{ fontFamily: "Poppins, sans-serif" }} 
-      className="font-poppins flex-1 text-[#111827] body3 font-[600] ml-2">
+      className="font-poppins flex-1 text-[#111827] ml-2 text-[12px] lg:text-[16px] font-[500] leading-[1.2]">
         {opt.title}
       </span>
 
       {/* PRICE */}
       <span
-        className={`text-[14px] font-[500] px-2 text-start ${
+        className={`lg:text-[14px] text-[10px] font-[500] px-2 text-start ${
           active ? "text-white" : "text-[#111827]"
         }`}
       >
-        {Number(opt.price) > 0 ? `₹${Number(opt.price).toLocaleString("en-IN")}` : ""}
+       {Number(opt.price) > 0
+  ? `₹${Number(opt.price).toLocaleString("en-IN")}`
+  : "Included"}
       </span>
     </div>
 
@@ -1179,51 +1164,10 @@ if (res.ok) {
              {currentStep !== 99 && (
                 <div >
           
-  <div className="w-full flex justify-between items-center  gap-3
-    
-  ">
-
-    {/* Previous Button */}
-    <button
-      onClick={() => {
-        if (currentVisibleIdx > 0 && questions && visibleQuestions.length > 0) {
-          const newSelectedOptions = { ...selectedOptions };
-          const origIdx = questions.findIndex(
-            (q) =>
-              q.questionText === visibleQuestions[currentVisibleIdx].questionText
-          );
-          newSelectedOptions[origIdx] = null;
-          setSelectedOptions(newSelectedOptions);
-          setCurrentVisibleIdx((prev) => prev - 1);
-        }
-      }}
-      disabled={currentVisibleIdx === 0}
-      className={`
-        cursor-pointer
-        w-[120px] sm:w-[130px] md:w-[150px] /* responsive width */
-        py-2 sm:py-3                      /* responsive height */
-        text-[14px] sm:text-[16px]        /* responsive text */
-        flex items-center justify-center gap-2 rounded-[5px] italic
-        border shadow-[2px_2px_0px_0px_#262626] transition-colors
-        ${
-          currentVisibleIdx > 0
-            ? "bg-[#F9B31B] border-[#262626] text-[#262626]"
-            : "bg-gray-200 border-gray-200 text-gray-400 cursor-not-allowed shadow-none"
-        }
-      `}
-    >
-      Previous
-    </button>
-
-    {/* Next Button Removed */}
-
-  
-  
-  
-  </div>
 
 
-   <div className="text-center py-5 rounded-[20px] bg-[#F9B31B] mt-5 ">
+
+   <div className="text-center py-5 rounded-[20px] bg-[#F9B31B] lg:mt-5 mt-0 ">
          <h3 className="
   text-white 
   font-poppins 
@@ -1368,7 +1312,7 @@ if (res.ok) {
   className="
     flex flex-col gap-10
     lg:flex-row
-     lg:mt-5  mt-5
+     xl:mt-5  lg:mt-0 mt-0
     w-full
     py-0
     px-0 

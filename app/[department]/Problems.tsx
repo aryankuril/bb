@@ -1,0 +1,245 @@
+'use client';
+import { Outfit, Poppins } from 'next/font/google';
+import { usePathname } from "next/navigation";
+
+const pageContent = {
+  "/website-development": {
+    heading: (
+      <>
+        Why Most{" "}
+        <span className="text-red-500">
+          Websites Fail
+        </span>
+      </>
+    ),
+    subtitle:
+      "A beautiful website means nothing if it doesn't generate leads, build trust, or convert visitors into customers.",
+
+    leftTitle: "Common Website Problems",
+    rightTitle: "How We Solve Them",
+
+    problems: [
+      "Outdated design that hurts credibility",
+      "Slow loading speeds increasing bounce rates",
+      "Poor mobile responsiveness across devices",
+      "Confusing navigation reducing conversions",
+      "Weak calls-to-action that fail to generate leads",
+    ],
+
+    solutions: [
+      "Modern UI/UX designed for conversions",
+      "Lightning-fast performance optimization",
+      "Mobile-first responsive development",
+      "Clear user journeys with intuitive navigation",
+      "Strategic CTAs that turn visitors into customers",
+    ],
+  },
+
+  "/social-media-marketing": {
+    heading: (
+      <>
+        Why Brands{" "}
+        <span className="text-red-500">
+          Stop Growing
+        </span>
+      </>
+    ),
+    subtitle:
+      "Posting consistently isn't enough. Without strategy, content rarely delivers meaningful business growth.",
+
+    leftTitle: "Common Social Media Mistakes",
+    rightTitle: "How We Grow Your Brand",
+
+    problems: [
+      "Low engagement despite regular posting",
+      "No consistent brand identity",
+      "Content that doesn't connect with audiences",
+      "Weak community engagement",
+      "No measurable business results",
+    ],
+
+    solutions: [
+      "Content strategies built around your audience",
+      "Strong, consistent brand positioning",
+      "Creative content that drives engagement",
+      "Active community management",
+      "Performance tracking with clear growth metrics",
+    ],
+  },
+
+  "/paid-marketing": {
+    heading: (
+      <>
+        What Happens When Ads Are{" "}
+        <span className="text-red-500">
+          Managed Incorrectly?
+        </span>
+      </>
+    ),
+    subtitle:
+      "Most businesses waste a significant portion of their ad budget because campaigns aren't optimized for performance.",
+
+    leftTitle: "The Amateur Approach",
+    rightTitle: "Here's How We Fix It",
+
+    problems: [
+      "Poor audience targeting wasting ad spend",
+      "High CPC due to weak ad copy",
+      "Low landing page conversion rates",
+      "No accurate tracking or attribution",
+      "Creative fatigue reducing performance",
+    ],
+
+    solutions: [
+      "Laser-focused audience targeting",
+      "High-converting ad copy",
+      "Landing pages optimized for conversions",
+      "Transparent ROAS & CPA reporting",
+      "Continuous creative testing and optimization",
+    ],
+  },
+
+  "/seo": {
+    heading: (
+      <>
+        Why Websites{" "}
+        <span className="text-red-500">
+          Never Rank
+        </span>
+      </>
+    ),
+    subtitle:
+      "Without a solid SEO strategy, even the best websites remain invisible on Google.",
+
+    leftTitle: "SEO Mistakes",
+    rightTitle: "Our SEO Strategy",
+
+    problems: [
+      "Poor keyword targeting",
+      "Technical SEO issues",
+      "Thin or duplicate content",
+      "Slow website performance",
+      "Weak backlink profile",
+    ],
+
+    solutions: [
+      "Comprehensive keyword research",
+      "Technical SEO optimization",
+      "High-quality content strategy",
+      "Core Web Vitals optimization",
+      "Authority-building link strategy",
+    ],
+  },
+};
+
+const outfit = Outfit({ subsets: ['latin'], weight: ['400', '700', '900'] });
+const poppins = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] });
+
+
+import { motion } from 'framer-motion';
+import { XCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+
+const problems = [
+  "Poor audience targeting wasting 60% of budget",
+  "High CPCs due to irrelevant ad copy",
+  "Low conversion rates on landing pages",
+  "Zero accurate attribution or reporting",
+  "Stale creatives blinding your audience"
+];
+
+const solutions = [
+  "Laser-focused audience segmentation & retargeting",
+  "A/B tested ad copy driving high CTRs",
+  "CRO optimized landing pages built to convert",
+  "100% transparent ROAS & CPA dashboarding",
+  "Rapid creative testing to combat ad fatigue"
+];
+
+export default function Problems() {
+
+  const pathname = usePathname();
+
+const content =
+  pageContent[pathname as keyof typeof pageContent] ??
+  pageContent["/website-development"];
+  return (
+    <section className="container py-10 sm:py-15 lg:py-20 relative overflow-hidden">
+      <div className=" relative z-10">
+        
+        <div className="text-center mb-20">
+          <motion.h6 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className=" font-black text-primary mb-6"
+          >
+             {content.heading}
+          </motion.h6>
+          <span className={`block ${poppins.className} text-lg text-primary/60 max-w-2xl mx-auto`}>
+{content.subtitle}          </span>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-12 items-center justify-center">
+          
+          {/* BAD SIDE */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-red-50/50 border border-red-100 rounded-[30px] p-8 md:p-12 w-full lg:w-1/2"
+          >
+            <span className={`block ${outfit.className} text-2xl font-bold text-red-600 mb-8 border-b border-red-100 pb-4`}>{content.leftTitle}</span>
+            <ul className="space-y-6">
+              {content.problems.map((prob, i) => (
+  <motion.li
+    key={i}
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: i * 0.1 }}
+    viewport={{ once: true }}
+    className="flex items-center gap-4 text-primary/80 font-medium"
+  >
+    <XCircle className="w-6 h-6 text-red-400 flex-shrink-0" />
+    {prob}
+  </motion.li>
+))}
+            </ul>
+          </motion.div>
+
+          {/* ARROW */}
+          <div className="hidden lg:flex items-center justify-center -mx-4 z-10 bg-white p-4 rounded-full border border-primary/10 shadow-lg">
+            <ArrowRight className="w-8 h-8 text-primary" />
+          </div>
+
+          {/* GOOD SIDE */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-secondary border border-primary/10 rounded-[30px] p-8 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors shadow-2xl shadow-primary/5"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+            
+            <span className={`block ${outfit.className} text-2xl font-bold text-primary mb-8 border-b border-primary/10 pb-4 relative z-10`}>{content.rightTitle}</span>
+            <ul className="space-y-6 relative z-10">
+              {content.solutions.map((sol, i) => (
+  <motion.li
+    key={i}
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: 0.3 + i * 0.1 }}
+    viewport={{ once: true }}
+    className="flex items-center gap-4 text-primary font-bold"
+  >
+    <CheckCircle2 className="w-6 h-6 text-highlight flex-shrink-0" />
+    {sol}
+  </motion.li>
+))}
+            </ul>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

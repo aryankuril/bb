@@ -1,42 +1,99 @@
-import React from "react";
-import LogoSlider from "../components/Services/LogoSlider";
-import type { LogoContent } from "./departmentConfig";
+"use client";
 
-const AdsLogoSection = ({ content }: { content: LogoContent }) => {
+const logos = [
+  "/images/logo/LOGO(1).png",
+  "/images/logo/LOGO(2).png",
+  "/images/logo/LOGO(3).png",
+  "/images/logo/LOGO(4).png",
+  "/images/logo/LOGO(5).png",
+  "/images/logo/LOGO(6).png",
+  "/images/logo/LOGO(7).png",
+  "/images/logo/LOGO(8).png",
+  "/images/logo/LOGO(9).png",
+  "/images/logo/LOGO(10).png",
+  "/images/logo/LOGO(11).png",
+  "/images/logo/LOGO(12).png",
+  "/images/logo/LOGO(13).png",
+  "/images/logo/LOGO(14).png",
+  "/images/logo/LOGO(15).png",
+  "/images/logo/LOGO(16).png",
+  "/images/logo/LOGO(17).png",
+  "/images/logo/LOGO(18).png",
+  "/images/logo/LOGO(19).png",
+  "/images/logo/LOGO(20).png",
+];
+
+const firstRow = logos.slice(0, 10);
+const secondRow = logos.slice(10, 20);
+
+export default function AdsLogoSection() {
   return (
-    <section className="pt-10 sm:pt-14 lg:pt-18 pb-10 sm:pb-15 lg:pb-20 overflow-hidden">
-      {/* Header: badge + heading left, subtitle right */}
-      <div className="container mb-8 sm:mb-10 flex flex-col lg:flex-row lg:items-end gap-5 lg:gap-12">
-        <div className="flex-1">
-          <div className="inline-flex items-center gap-2 bg-[var(--color-primary)] rounded-full px-4 py-[9px] mb-4">
-            <span className="w-[7px] h-[7px] rounded-full bg-[var(--color-highlight)] shrink-0" />
-            <span className="font-['Poppins'] font-bold text-[11px] tracking-[0.13em] uppercase text-[var(--color-highlight)]">
-              {content.eyebrow}
-            </span>
-          </div>
-          <h6 className="black-text">
-            {content.title}{" "}
-            <span className="text-highlight">{content.highlightTitle}</span>
-          </h6>
+    <div className="overflow-hidden space-y-6 container py-10 sm:py-15 lg:py-20">
+
+<div className="w-full flex justify-center mb-8">
+  <a className="inline-block text-center text-4xl md:text-5xl lg:text-5xl font-black leading-tight text-black">
+    Brands That Trust Our Work
+  </a>
+</div>
+
+
+       {/* <h6 className="black-text text-center">Brands That Trust The Work</h6> */}
+
+      {/* Row 1 */}
+      <div className="flex overflow-hidden">
+        <div className="flex animate-marquee gap-6">
+          {[...firstRow, ...firstRow].map((logo, i) => (
+            <LogoCard logo={logo} key={i} />
+          ))}
         </div>
-        <p className="subtitle lg:max-w-[380px] lg:pb-1 text-[#46463f]">
-          {content.subtitle}
-        </p>
       </div>
 
-      {/* Slider with fade edges */}
-      <div
-        style={{
-          WebkitMaskImage:
-            "linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)",
-          maskImage:
-            "linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)",
-        }}
-      >
-        <LogoSlider />
+      {/* Row 2 */}
+      <div className="flex overflow-hidden">
+        <div className="flex animate-marquee-reverse gap-6">
+          {[...secondRow, ...secondRow].map((logo, i) => (
+            <LogoCard logo={logo} key={i} />
+          ))}
+        </div>
       </div>
-    </section>
+
+    </div>
   );
-};
+}
 
-export default AdsLogoSection;
+function LogoCard({ logo }: { logo: string }) {
+  return (
+    <div
+      className="
+      flex-shrink-0
+      flex
+      items-center
+      justify-center
+
+      w-[120px]
+      h-[70px]
+
+      sm:w-[150px]
+      sm:h-[80px]
+
+      md:w-[170px]
+      md:h-[90px]
+
+      lg:w-[190px]
+      lg:h-[100px]
+
+      rounded-2xl
+      border
+      border-[#e8e8e8]
+      bg-black
+      overflow-hidden
+      "
+    >
+      <img
+        src={logo}
+        alt=""
+        className=" object-contain "
+      />
+    </div>
+  );
+}

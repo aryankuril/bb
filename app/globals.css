@@ -1,4 +1,5 @@
 
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:wght@300;400;500;600;700&display=swap");
 /* @import url("https://fonts.googleapis.com/css2?family=Miso:wght@300;400;700&family=Poppins:wght@400;700&display=swap"); */
 @import "tailwindcss";
 
@@ -26,6 +27,7 @@
   --font-poppins: "Poppins", sans-serif;
   --font-bold-miso: "Miso", sans-serif;
   --font-regular-miso: "Miso", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
 
   /* =========================
      Headings - Desktop Sizes
@@ -116,9 +118,9 @@ h5 {
 }
 
 h6 {
-  font-family: var(--font-regular-miso);
+  font-family: var(--font-outfit) !important;
   font-size: var(--h6-size); /* ✅ Section titles, quotes, large paras */
-  line-height: 1.2em;
+  line-height: 1em;
   text-transform: capitalize;
 }
 
@@ -158,6 +160,10 @@ h6 {
   font-size: var(--body4-size); /* ✅ Footer menu */
   font-weight: 400;
   line-height: 1.5em;
+}
+
+.font-outfit {
+  font-family: var(--font-outfit) !important;
 }
 
 /* =========================================
@@ -749,3 +755,38 @@ select {
 html {
   scroll-behavior: smooth;
 }
+
+
+
+/* logoslide ads */ 
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeReverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+  width: max-content;
+}
+
+.animate-marquee-reverse {
+  animation: marqueeReverse 35s linear infinite;
+  width: max-content;
+}
+

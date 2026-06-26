@@ -6,62 +6,53 @@ const pageContent = {
   "/website-development": {
     title: (
       <>
-         Design That {" "}
+        Turn Visitors Into{" "}
         <span className="text-highlight">
-         Speaks Before
-        </span>{" "}
-        You Do.{" "}
-        
+          Paying Customers.
+        </span>
       </>
     ),
     subtitle:
-      "We design modern, responsive websites with intuitive UI/UX, mobile-first experiences, and conversion-focused layouts that strengthen your brand, engage users, and drive business growth.",
+      "High-converting websites and landing pages designed to build credibility, generate leads, and accelerate business growth.",
   },
 
   "/social-media-marketing": {
     title: (
       <>
-       Making Brands {" "}
+        Build A Brand{" "}
         <span className="text-highlight">
-        Impossible To Ignore.
-        </span>{" "}
-        
+          People Remember.
+        </span>
       </>
     ),
     subtitle:
-      "We help brands grow through strategic social media marketing, engaging content, and data-driven campaigns that build awareness, strengthen communities, and drive measurable business growth.",
+      "Content, strategy, and social media campaigns that increase visibility, engagement, and customer loyalty.",
   },
 
   "/paid-marketing": {
     title: (
       <>
-        Mumbai's Growth-Focused {" "}
+        Every Click{" "}
         <span className="text-highlight">
-          Performance Marketing
-        </span>{" "}
-       Agency{" "}
-       
+          Built To Convert.
+        </span>
       </>
     ),
     subtitle:
-      "Trusted by ambitious brands to drive customer acquisition, revenue growth, and industry-leading marketing performance.",
+      "ROI-focused Google and Meta advertising campaigns that generate qualified leads and maximize your marketing budget.",
   },
 
   "/seo": {
     title: (
       <>
-        Improve Rankings With{" "}
+        Get Found{" "}
         <span className="text-highlight">
-          SEO
-        </span>{" "}
-        That Drives{" "}
-        <span className="text-highlight">
-          Organic Growth
+          Before Your Competitors.
         </span>
       </>
     ),
     subtitle:
-      "Increase visibility, traffic, and leads through comprehensive SEO strategies focused on long-term growth and sustainable search performance.",
+      "Comprehensive SEO strategies that improve rankings, increase organic traffic, and drive sustainable business growth.",
   },
 };
 
@@ -73,13 +64,15 @@ export default function Firstsection() {
     pageContent["/website-development"];
 
   return (
-    <section className="container pb-0 lg:py-0 lg:mt-30 -mt-10 px-4 sm:px-6 lg:px-8">
+    <section className="container pb-0 lg:py-0 lg:mt-30 mt-0 px-4 sm:px-6 lg:px-8">
             
       <div className="flex flex-col">
         <div className="flex-1">
-          <h1 className="black-text max-w-full lg:max-w-[1300px]">
-            {content.title}
-          </h1>
+          <a
+  className="black-text max-w-full lg:max-w-[1300px] font-outfit text-[30px] lg:text-[70px] leading-[1em] font-normal"
+>
+  {content.title}
+</a>
 
           <p className="mt-4 max-w-4xl  text-[#666] subtitle">
             {content.subtitle}

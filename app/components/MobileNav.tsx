@@ -198,7 +198,7 @@ const MobileNav = () => {
       </div>
 
       {/* Spacer */}
-      <div className="h-[84px] md:hidden" />
+      <div className="lg:h-[84px] h-[30px] md:hidden" />
     </>
   );
 };

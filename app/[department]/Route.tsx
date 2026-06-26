@@ -15,8 +15,10 @@ import AdsWorkSection from "./AdsWorkSection";
 import AdsWorkflowSection from "./AdsWorkflowSection";
 import AdsFAQSection from "./AdsFAQSection";
 import AdsTestimonialsSection from './AdsTestimonialsSection';
-
-import Taxi from "../components/Taxi";
+import AboutUs from './AboutUs';
+import Problems from './Problems';
+import CaseStudies from './CaseStudies';
+import ProcessCombined from './ProcessCombined'
 import SmoothScroll from "../components/SmoothScroll";
 import { getDepartmentConfig } from "./departmentConfig";
 
@@ -43,8 +45,15 @@ if (!config) {
 <PreviewPage/>
 
         <AdsStatsSection content={config.stats} />
-        <AdsLogoSection content={config.logos} />
+        <AdsLogoSection />
+        {pathname === "/paid-marketing" && (
+   <CaseStudies/>
+)}
+       
+        <AboutUs/>
+        <Problems/>
         <AdsWorkSection content={config.work} />
+        <ProcessCombined/>
         <AdsTestimonialsSection />
         <AdsWorkflowSection content={config.workflow} />
         <AdsFAQSection content={config.faq} />

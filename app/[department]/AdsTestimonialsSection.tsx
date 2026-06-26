@@ -199,52 +199,70 @@ const AdsTestimonialsSection = () => {
     return () => clearInterval(interval);
   }, [instanceRef]);
 
+  // SVG for glowing quote mark
+  const QuoteIcon = () => (
+    <svg className="w-8 h-8 md:w-10 md:h-10 text-[var(--color-highlight)] opacity-40 mb-4" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M14.017 21v-7.391c0-5.714 4.026-9.609 9.983-9.609v3.652c-2.8 0-4.041 1.761-4.041 4.566v1.391h4.041v7.391h-10.083zm-14.017 0v-7.391c0-5.714 4.026-9.609 9.983-9.609v3.652c-2.8 0-4.041 1.761-4.041 4.566v1.391h4.041v7.391h-10.083z" />
+    </svg>
+  );
+
   return (
     <div className="container py-10 sm:py-15 lg:py-20 relative">
-      <div className="text-center mb-8 sm:mb-12">
-        <h2 className="black-text lg:w-[950px] mx-auto">
-          Trusted By <span className="text-highlight">200+ </span> Companies
+      <div className="text-center mb-6 sm:mb-12">
+        <h2 className="black-text lg:w-[950px] mx-auto text-[clamp(28px,5vw,40px)] leading-[1.2]">
+         What <span className="text-highlight">Brand says </span>Abouts us
         </h2>
       </div>
 
-      <div ref={sliderRef} className="keen-slider">
+      <div ref={sliderRef} className="keen-slider py-4">
         {testimonialList.map((item, index) => (
           <div
             key={index}
-            className="keen-slider__slide overflow-hidden relative"
+            className="keen-slider__slide overflow-visible relative h-auto flex"
           >
-            <div className="flex flex-col justify-between h-full w-full bg-black shadow-lg rounded-[20px] p-6 relative overflow-hidden">
-              <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5 candy-border"></div>
+            <div className="flex flex-col justify-between min-h-[300px] sm:min-h-[320px] w-full bg-[#111] border border-[#222] hover:border-[var(--color-highlight)] shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 rounded-[24px] p-6 sm:p-8 relative overflow-hidden group ">
+              
+              {/* Subtle gradient glow in the corner on hover */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-highlight)] opacity-0 group-hover:opacity-10 blur-[50px] transition-opacity duration-500 rounded-full z-0"></div>
+              
+              <div className="z-10 relative">
+                <QuoteIcon />
+                
+                <div className="flex items-center gap-1 mb-4 text-[var(--color-highlight)] text-[16px] sm:text-[18px]">
+                  <span>★★★★★</span>
+                  <span className="text-white ml-2 text-[14px] opacity-90 font-medium">5.0</span>
+                </div>
 
-              <h5 className="text-highlight text-left z-10 relative">
-                {item.maintext}
-              </h5>
+                <p className="white-text subtitle text-[15px] sm:text-[17px] leading-[1.6] opacity-95">
+                  "{item.text}"
+                </p>
+              </div>
 
-              <p className="white-text mt-2 subtitle z-10 relative">
-                {item.text}
-              </p>
-
-              <div className="flex flex-col text-left z-10 relative mt-2">
-                <p className="font-medium white-text">{item.name}</p>
-                {/* <p className="text-sm white-text">{item.brand}</p> */}
+              <div className="flex flex-col text-left z-10 relative mt-6 sm:mt-8 pt-6 border-t border-[#333]">
+                <p className="font-semibold white-text text-[16px] sm:text-[18px] tracking-wide">{item.name}</p>
+                {/* <p className="text-sm text-gray-400 mt-1 uppercase tracking-wider text-[12px]">{item.brand}</p> */}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="flex justify-center mt-6 gap-2">
+      <div className="flex justify-center mt-8 gap-3">
         {[0, 1, 2].map((dot) => (
           <button
             key={dot}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              currentGroup === dot ? "bg-yellow-400" : "bg-gray-400"
-            }`}
+            className="flex items-center justify-center p-2 cursor-pointer group"
             onClick={() => {
               const perGroup = Math.ceil(testimonialList.length / 3);
               instanceRef.current?.moveToIdx(dot * perGroup);
             }}
-          />
+          >
+            <span
+              className={`block rounded-full transition-all duration-300 ${
+                currentGroup === dot ? "bg-[var(--color-highlight)] w-8 h-3" : "bg-gray-400 w-3 h-3 group-hover:bg-gray-300"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>

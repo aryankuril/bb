@@ -20,15 +20,14 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
 
         {/* Left: badge + headline */}
         <div className="lg:flex-1">
-          <div className="inline-flex items-center gap-2 bg-[var(--color-primary)] rounded-full px-4 py-[9px] mb-5">
-            <span className="w-[7px] h-[7px] rounded-full bg-[var(--color-highlight)] shrink-0" />
-            <span className="font-['Poppins'] font-bold text-[12px] tracking-[0.13em] font-medium uppercase text-[var(--color-highlight)]">
-              {content.eyebrow}
-            </span>
-          </div>
-          <h6 className="black-text">{content.headline}</h6>
-           <p className="mt-3 text-[#666] subtitle">
-In a world full of agencies chasing metrics, Bombay Blokes focuses on what truly matters—business growth. As a leading digital marketing agency, we combine Performance Marketing, SEO, Web Development, Design & Branding, social media marketing and production with compelling creative execution and deep consumer insights to help brands increase visibility, generate qualified leads, strengthen their digital presence, and achieve measurable growth. Every strategy is tailored, every campaign is optimized, and every decision is driven by one goal: delivering results that create a lasting impact on your business. When you partner with Bombay Blokes, you gain a team that's as invested in your growth as you are.          </p>
+          
+<div className="w-full flex justify-center mb-2">
+  <a className="inline-block text-center text-4xl md:text-5xl lg:text-5xl font-black leading-tight text-black">
+    {content.headline}
+  </a>
+</div>
+
+        
           
         </div>
 
@@ -103,7 +102,7 @@ In a world full of agencies chasing metrics, Bombay Blokes focuses on what truly
 </div>
 
       {/* CTA banner */}
-      <div className="mt-[18px] bg-[var(--color-primary)] rounded-[22px] p-6 sm:p-8 lg:p-9 flex flex-wrap gap-6 items-center justify-between">
+      {/* <div className="mt-[18px] bg-[var(--color-primary)] rounded-[22px] p-6 sm:p-8 lg:p-9 flex flex-wrap gap-6 items-center justify-between">
         <p className="font-['Poppins'] font-semibold text-[18px] sm:text-[22px] lg:text-[22px] leading-[1.35] text-white max-w-[720px]">
           {content.ctaBanner.text}
         </p>
@@ -116,7 +115,7 @@ In a world full of agencies chasing metrics, Bombay Blokes focuses on what truly
 />
     </div>
        
-      </div>
+      </div> */}
     </section>
   );
 };
