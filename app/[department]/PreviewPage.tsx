@@ -1502,7 +1502,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
           ? "border-red-500 focus:ring-red-300"
           : "border-[#F9B31B] focus:ring-[#F9B31B]"
       }`}
-      placeholder="Message / Link "
+      placeholder="Your Brand name / website / insta Link. "
     />
     {errors.message && (
       <p className="text-red-500 text-sm mt-1">{errors.message}</p>

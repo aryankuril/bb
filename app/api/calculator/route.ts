@@ -287,13 +287,13 @@ total: safeTotal,
                   <!-- Intro -->
                   <tr>
                     <td style="padding-top:14px; padding-bottom:14px;">
-                      <p style="margin:0; font-size:14px; color:#333; text-transform: capitalize; ">
-                        Thanks for checking out  our Website Cost Calculator!Based on the choices you made, here’s your customized project quotation, 
-                         <span style="color:#F7B21A;" > clear,simple, </span>
-                        
-                        and 
-                        <span style="color:#F7B21A;" > transparent. </span>
-                      </p>
+                      <p style="margin:0; font-size:14px; color:#333; text-transform: capitalize;">
+  Thank you for reaching out to us. We're excited to learn more about your project and help you build something amazing with
+  <span style="color:#F7B21A;"> creative ideas, </span>
+  expert guidance, and
+  <span style="color:#F7B21A;"> complete transparency. </span>
+</p>
+
                     </td>
                   </tr>
 
@@ -381,7 +381,7 @@ ${normalizedCustomFields
                   </tr>
 
 
-
+${(safeTotal > 0 || safeQuote.length > 0) ? `
                   <!-- Quatation-->
                   <tr>
                     <td style="padding:8px 0 6px 0;">
@@ -469,6 +469,7 @@ ${normalizedCustomFields
                       <div style="border-top:2px dotted #F4C882; width:100%;"></div>
                     </td>
                   </tr>
+` : ""}
 
 
                   <!-- Work CTA -->
@@ -507,7 +508,7 @@ ${normalizedCustomFields
                         A member of our team will get in touch with you within 24 hours to:
                       </p>
                       <table style="font-size:14px;">
-                        <tr><td style="padding:6px 0;"> <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span> Discuss your project requirements</td></tr>
+                        <tr><td style="padding:6px 0;"> <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span> Discuss your requirements</td></tr>
                         <tr><td style="padding:6px 0;"> <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span> Share timelines and strategy</td></tr>
                         <tr><td style="padding:6px 0;"> <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span> Answer any questions</td></tr>
                         <tr><td style="padding:6px 0;"> <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span> Finalise the proposal</td></tr>
@@ -612,7 +613,7 @@ ${normalizedCustomFields
           //  to: "aryankuril09@gmail.com",
           
          to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
-        subject: `Inquiry - ${serviceNameTitle}`,
+        subject: `New Lead From - ${name}`,
         html: `
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Phone:</strong> ${phone}</p>
@@ -625,7 +626,7 @@ ${normalizedCustomFields
           )}</p>
           ${quotationTableHTML(safeQuote, safeTotal)}
         `,
-        fromName: "Calculator Submission",
+        fromName: "Form Submission",
         fromAddress: "hello@bombayblokes.com",
         replyTo: email,
       });
