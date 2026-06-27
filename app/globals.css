@@ -120,7 +120,7 @@ h5 {
 h6 {
   font-family: var(--font-outfit) !important;
   font-size: var(--h6-size); /* ✅ Section titles, quotes, large paras */
-  line-height: 1em;
+  line-height: 1.2em;
   text-transform: capitalize;
 }
 
@@ -187,7 +187,7 @@ h6 {
 .casenumbering {
   font-family: var(--font-regular-miso);
   font-size: var(--numbering-size); /* ✅ Card number sequence */
-  font-weight: 400;
+  font-weight: 500;
   line-height: 0.9em;
 }
 /* / */

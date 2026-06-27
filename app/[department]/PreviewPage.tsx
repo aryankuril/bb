@@ -1412,7 +1412,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
      name="name" 
      value={formData.name}
       onChange={(e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value, })) }
-      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black font-[13px] focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-black placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-black font-[13px] focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B] ${
         errors.name
@@ -1440,7 +1440,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
           [e.target.name]: e.target.value,
         }))
       }
-      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-black placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-black focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B]  ${
         errors.phone
@@ -1465,7 +1465,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
       name="email"
       value={formData.email}
       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-black placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-black focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B] ${
         errors.email
@@ -1482,7 +1482,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
   {/* Message */}
   <div className="flex flex-col gap-1 w-full">
     {/* <label htmlFor="email" className="text-sm font-medium text-white">
-      Email
+     Message
     </label> */}
     <input
       id="message"
@@ -1495,7 +1495,8 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
         }))
       }
      
-      className={`px-3 py-2 border-b bg-transparent text-black placeholder:text-black focus:outline-none 
+            className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-black placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-black focus:outline-none 
+
       focus:ring-0 
       focus:border-[#F9B31B] ${
           errors.message
@@ -1537,8 +1538,8 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
     font-outfit
     font-[500]
 
-    text-[18px]      /* Mobile */
-    lg:text-[25px]   /* Desktop */
+    text-[18px]
+    lg:text-[25px]
 
     leading-[1.2em]
     mb-2

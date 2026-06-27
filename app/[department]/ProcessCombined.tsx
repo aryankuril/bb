@@ -117,8 +117,8 @@ export default function ProcessCombined() {
   const currentContent = pageContent[pathname as string] || pageContent["default"];
 
   return (
-    <section className="container py-0 sm:py-15 lg:py-20 relative">
-      <div className="">
+    <section className="container py-10 sm:py-15 lg:py-20 relative ">
+      <div >
     
         <div className="text-center ">
           <motion.h6 
@@ -161,13 +161,13 @@ export default function ProcessCombined() {
                  <div className="absolute -left-[47px] top-1 w-8 h-8 rounded-full border-4 border-[#f7f7f7] bg-[#fab31e] lg:hidden shadow-sm"></div>
                  
                  {/* Desktop Node */}
-                 <div className="hidden lg:flex w-12 h-12 bg-white rounded-full border-4 border-[#f7f7f7] bg-[#fab31e] text-[#fab31e] /30 shadow-sm items-center justify-center font-black  mx-auto mb-6 group-hover:border-[#fab31e]  group-hover:text-highlight transition-all relative z-10 bg-clip-padding group-hover:-translate-y-1 group-hover:shadow-lg">
+                 <div className="hidden lg:flex w-12 h-12 bg-white rounded-full border-4 border-[#f7f7f7] bg-[#fab31e] text-[#fab31e] /30 shadow-sm items-center justify-center font-[500]  mx-auto mb-6 group-hover:border-[#fab31e]  group-hover:text-highlight transition-all relative z-10 bg-clip-padding group-hover:-translate-y-1 group-hover:shadow-lg">
                    {step.num}
                  </div>
 
                  <div className="lg:text-center mt-2 lg:mt-0 bg-white lg:bg-transparent p-5 lg:p-0 rounded-2xl shadow-sm lg:shadow-none border border-[#111111]/5 lg:border-none">
                    <span className={`block ${outfit.className} text-xl lg:text-lg font-[500] text-black mb-2 flex items-center gap-2 lg:justify-center`}>
-                     <span className="lg:hidden text-highlight font-black text-2xl">{step.num}</span> 
+                     <span className="lg:hidden text-highlight font-[500] text-2xl">{step.num}</span> 
                      {step.title}
                    </span>
                    <span className={`block ${poppins.className} subtitle text-black`}>{step.desc}</span>

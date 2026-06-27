@@ -10,42 +10,32 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
 
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+      <div className="flex flex-col  ">
 
         {/* Left: sticky heading + CTA */}
-        <div className="lg:w-[360px] shrink-0 lg:sticky lg:top-24 lg:self-start">
-          <div className="inline-flex items-center gap-2 bg-[var(--color-primary)] rounded-full px-4 py-[9px] mb-5">
-            <span className="w-[7px] h-[7px] rounded-full bg-[var(--color-highlight)] shrink-0" />
-            <span className="font-['Poppins'] font-bold text-[11px] tracking-[0.13em] uppercase text-[var(--color-highlight)]">
-              {content.eyebrow}
-            </span>
-          </div>
-          <h6 className="black-text ">
-            {content.title}{" "}
-            <span className="text-highlight">{content.highlightTitle}</span>
-          </h6>
-          <p className=" subtitle text-black lg:mb-8 mb-6 lg:mt-4 mt-1">
-            Can't find what you're looking for? We're happy to walk you through it directly.
-          </p>
+        <div className="flex flex-col items-center text-center mx-auto">
+  <div className="inline-flex items-center gap-2 bg-[var(--color-primary)] rounded-full px-4 py-[9px] lg:mb-5 mb-3">
+    <span className="w-[7px] h-[7px] rounded-full bg-[var(--color-highlight)] shrink-0" />
+    <span className="font-['Poppins'] subtitle uppercase text-[var(--color-highlight)]">
+      {content.eyebrow}
+    </span>
+  </div>
 
-<div className="w-full mt-3">
-  <button
-    onClick={() => {
-      document
-        .getElementById("contact-form")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }}
-    className="py-[8px] px-[23px] rounded-[5px] cursor-pointer bg-[#F9B31B] border shadow-[2px_2px_0px_0px_#000000] text-black"
-  >
-    Talk to us
-  </button>
+  <h6 className="black-text">
+    {content.title}{" "}
+    <span className="text-highlight">{content.highlightTitle}</span>
+  </h6>
+
+  <p className="subtitle text-black  lg:mt-4 mt-1">
+    Can't find what you're looking for? We're happy to walk you through it directly.
+  </p>
+
+
 </div>
-         
-        </div>
 
         {/* Right: accordion */}
-        <div className="flex-1 space-y-3">
-          {content.faqs.map((item, index) => {
+<div className="flex-1 space-y-3 lg:mt-10 mt-5 lg:max-w-[1000px] lg:mx-auto">
+            {content.faqs.map((item, index) => {
             const isOpen = openIndex === index;
             return (
               <div
@@ -83,6 +73,19 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
               </div>
             );
           })}
+
+            <div className="w-full flex justify-center lg:mt-10 mt-5">
+    <button
+      onClick={() => {
+        document
+          .getElementById("contact-form")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }}
+      className="py-[8px] px-[23px] rounded-[5px] cursor-pointer bg-[#F9B31B] border shadow-[2px_2px_0px_0px_#000000] text-black"
+    >
+      Talk to us
+    </button>
+  </div>
         </div>
 
       </div>

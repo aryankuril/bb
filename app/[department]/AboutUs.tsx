@@ -18,7 +18,7 @@ export default function AboutUs() {
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-highlight)]/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
-      <div className=" container mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className=" container mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-10 items-center">
         
         {/* Left text */}
         <div>

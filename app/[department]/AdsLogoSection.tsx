@@ -40,7 +40,10 @@ export default function AdsLogoSection() {
        {/* <h6 className="black-text text-center">Brands That Trust The Work</h6> */}
 
       {/* Row 1 */}
-      <div className="flex overflow-hidden">
+     <div className="relative overflow-hidden">
+   <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
+
+<div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white/90 via-white/40 to-transparent" />
         <div className="flex animate-marquee gap-6">
           {[...firstRow, ...firstRow].map((logo, i) => (
             <LogoCard logo={logo} key={i} />
@@ -49,7 +52,10 @@ export default function AdsLogoSection() {
       </div>
 
       {/* Row 2 */}
-      <div className="flex overflow-hidden">
+      <div className="relative overflow-hidden">
+       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
+
+<div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white/90 via-white/40 to-transparent" />
         <div className="flex animate-marquee-reverse gap-6">
           {[...secondRow, ...secondRow].map((logo, i) => (
             <LogoCard logo={logo} key={i} />

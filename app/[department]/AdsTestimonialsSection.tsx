@@ -243,7 +243,7 @@ const AdsTestimonialsSection = () => {
               </div>
 
               <div className="flex flex-col text-left z-10 relative mt-6 sm:mt-8 pt-6 border-t border-[#333]">
-                <p className="font-semibold white-text text-[16px] sm:text-[18px] tracking-wide">{item.name}</p>
+                <p className="font-[500] white-text text-[14px] sm:text-[18px] tracking-wide">{item.name}</p>
                 {/* <p className="text-sm text-gray-400 mt-1 uppercase tracking-wider text-[12px]">{item.brand}</p> */}
               </div>
             </div>

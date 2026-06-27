@@ -183,7 +183,7 @@ const content =
 
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 items-center justify-center lg:mt-10 mt-5" >
+        <div className="flex flex-col lg:flex-row lg:gap-12 gap-8 items-center justify-center lg:mt-10 mt-5" >
           
           {/* BAD SIDE */}
           <motion.div 
@@ -192,7 +192,7 @@ const content =
             viewport={{ once: true }}
             className="bg-red-50/50 border border-red-100 rounded-[30px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2"
           >
-            <span className={`block ${outfit.className} text-2xl font-bold text-black mb-8 border-b border-red-100 pb-4`}>{content.leftTitle}</span>
+            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-black mb-8 border-b border-red-100 pb-4`}>{content.leftTitle}</span>
             <ul className="space-y-6">
               {content.problems.map((prob, i) => (
   <motion.li
@@ -224,7 +224,7 @@ const content =
            >
             <div className="absolute top-0 right-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
             
-            <span className={`block ${outfit.className} text-2xl font-bold text-primary mb-8 border-b border-primary/10 pb-4 relative z-10`}>{content.rightTitle}</span>
+            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-primary mb-8 border-b border-primary/10 pb-4 relative z-10`}>{content.rightTitle}</span>
             <ul className="space-y-6 relative z-10">
               {content.solutions.map((sol, i) => (
   <motion.li
@@ -233,7 +233,7 @@ const content =
     whileInView={{ opacity: 1 }}
     transition={{ delay: 0.3 + i * 0.1 }}
     viewport={{ once: true }}
-    className="flex items-center gap-4 text-primary font-bold"
+    className="flex items-center gap-4 text-primary font-[500]"
   >
     <CheckCircle2 className="w-6 h-6 text-highlight flex-shrink-0" />
     {sol}

@@ -82,7 +82,7 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
           }
         `}
       >
-        <div className="font-['Poppins'] text-[40px] font-[600] text-highlight">
+        <div className="font-['Poppins'] text-[40px] font-[500] text-highlight">
           <CountUp
   start={0}
   end={parseInt(card.value.replace(/[^0-9,]/g, ""))}
