@@ -102,7 +102,7 @@ const MobileNav = () => {
                         ${isActive ? "w-full" : "w-2.5"}
                       `}
                     />
-                    <span className="relative z-10 block px-4 py-3 font-semibold tracking-wide">
+                    <span className="relative z-10 block px-3 py-3 font-semibold tracking-wide">
                       {item.label}
                     </span>
                   </Link>

@@ -201,7 +201,7 @@ const content =
     whileInView={{ opacity: 1 }}
     transition={{ delay: i * 0.1 }}
     viewport={{ once: true }}
-    className="flex items-center gap-4 text-primary/80 font-medium"
+    className="flex items-center gap-4 text-black font-medium subtitle"
   >
     <XCircle className="w-6 h-6 text-red-400 flex-shrink-0" />
     {prob}
@@ -233,7 +233,7 @@ const content =
     whileInView={{ opacity: 1 }}
     transition={{ delay: 0.3 + i * 0.1 }}
     viewport={{ once: true }}
-    className="flex items-center gap-4 text-primary font-[500]"
+    className="flex items-center gap-4 text-primary font-[500] subtitle"
   >
     <CheckCircle2 className="w-6 h-6 text-highlight flex-shrink-0" />
     {sol}
