@@ -5,14 +5,44 @@ import Link from "next/link";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import type { StatsContent } from "./departmentConfig";
-
 import { motion} from "framer-motion";
 import Button from "../components/Button";
 import ContactButton from "../components/ContactButton";
+import { usePathname } from "next/navigation";
+
+const pageContent = {
+  "/website-development": {
+    subtitle:
+      "No templates, no shortcuts. Just clean code, thoughtful design, and websites built to perform.",
+  },
+
+  "/paid-marketing": {
+    subtitle:
+      "No vanity metrics. Just campaigns engineered to grow revenue.",
+  },
+
+  "/social-media-marketing": {
+    subtitle:
+      "No guesswork, no generic posting calendar. Just strategy that builds real audiences.",
+  },
+
+  "/seo": {
+    subtitle:
+      "No guesswork, no shortcuts. Just strategies that drive real rankings.",
+  },
+};
 
 const AdsStatsSection = ({ content }: { content: StatsContent }) => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.25 });
 
+
+
+const pathname = usePathname();
+
+const pageData =
+  pageContent[pathname as keyof typeof pageContent] ??
+  pageContent["/website-development"];
+
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.25 });
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
       {/* Top row: headline left, achievement stats right */}
@@ -30,8 +60,8 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
  </h6>
 
   <p className="lg:mt-4 mt-1 max-w-4xl mx-auto text-center text-black subtitle">
-    Stop guessing with your digital strategy. Our proven frameworks deliver measurable growth and scale.
-  </p>
+  {pageData.subtitle}
+</p>
 </div>
 
         

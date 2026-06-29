@@ -54,7 +54,7 @@ export default function CaseStudies() {
       </h6>
 
       <p className="lg:mt-4 mt-1 max-w-4xl mx-auto text-black subtitle">
-        We don't hide behind fluffy branding metrics. We show you exactly how much money we make for our partners.
+       We don't hide behind fluffy branding metrics. We show you exactly how much money we make for our partners.
       </p>
     </div>
   </motion.div>

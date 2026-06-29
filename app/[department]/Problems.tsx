@@ -12,10 +12,12 @@ const pageContent = {
         </span>
       </>
     ),
+
     subtitle:
       "A beautiful website means nothing if it doesn't generate leads, build trust, or convert visitors into customers.",
 
     leftTitle: "Common Website Problems",
+
     rightTitle: "How We Solve Them",
 
     problems: [
@@ -35,38 +37,6 @@ const pageContent = {
     ],
   },
 
-  "/social-media-marketing": {
-    heading: (
-      <>
-        Why Brands{" "}
-        <span className="text-highlight">
-          Stop Growing
-        </span>
-      </>
-    ),
-    subtitle:
-      "Posting consistently isn't enough. Without strategy, content rarely delivers meaningful business growth.",
-
-    leftTitle: "Common Social Media Mistakes",
-    rightTitle: "How We Grow Your Brand",
-
-    problems: [
-      "Low engagement despite regular posting",
-      "No consistent brand identity",
-      "Content that doesn't connect with audiences",
-      "Weak community engagement",
-      "No measurable business results",
-    ],
-
-    solutions: [
-      "Content strategies built around your audience",
-      "Strong, consistent brand positioning",
-      "Creative content that drives engagement",
-      "Active community management",
-      "Performance tracking with clear growth metrics",
-    ],
-  },
-
   "/paid-marketing": {
     heading: (
       <>
@@ -76,10 +46,12 @@ const pageContent = {
         </span>
       </>
     ),
+
     subtitle:
       "Most businesses waste a significant portion of their ad budget because campaigns aren't optimized for performance.",
 
     leftTitle: "The Amateur Approach",
+
     rightTitle: "Here's How We Fix It",
 
     problems: [
@@ -99,6 +71,40 @@ const pageContent = {
     ],
   },
 
+  "/social-media-marketing": {
+    heading: (
+      <>
+        Why Brands{" "}
+        <span className="text-highlight">
+          Stop Growing
+        </span>
+      </>
+    ),
+
+    subtitle:
+      "Posting consistently isn't enough. Without strategy, content rarely delivers meaningful business growth.",
+
+    leftTitle: "Common Social Media Mistakes",
+
+    rightTitle: "How We Grow Your Brand",
+
+    problems: [
+      "Low engagement despite regular posting",
+      "No consistent brand identity",
+      "Content that doesn't connect with audiences",
+      "Weak community engagement",
+      "No measurable business results",
+    ],
+
+    solutions: [
+      "Content strategies built around your audience",
+      "Strong, consistent brand positioning",
+      "Creative content that drives engagement",
+      "Active community management",
+      "Performance tracking with clear growth metrics",
+    ],
+  },
+
   "/seo": {
     heading: (
       <>
@@ -108,10 +114,12 @@ const pageContent = {
         </span>
       </>
     ),
+
     subtitle:
       "Without a solid SEO strategy, even the best websites remain invisible on Google.",
 
     leftTitle: "SEO Mistakes",
+
     rightTitle: "Our SEO Strategy",
 
     problems: [

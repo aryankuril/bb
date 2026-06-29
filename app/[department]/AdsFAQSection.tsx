@@ -83,7 +83,7 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
       }}
       className="py-[8px] px-[23px] rounded-[5px] cursor-pointer bg-[#F9B31B] border shadow-[2px_2px_0px_0px_#000000] text-black"
     >
-      Talk to us
+      Get Free Audit
     </button>
   </div>
         </div>

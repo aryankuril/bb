@@ -6,44 +6,43 @@ const pageContent = {
   "/website-development": {
     title: (
       <>
-          Get a Website{" "}
+        Get a Website{" "}
         <span className="text-highlight">
-         That Sells 
+          That Sells
         </span>{" "}
-       Not Just One That Looks Good{" "}
-        
-      </>
-    ),
-   subtitle: "Whether you run a D2C brand, a service business, or a retail store, see exactly what your website will cost and how it'll perform. Get your free audit below.",
-    },
-
-  "/social-media-marketing": {
-    title: (
-      <>
-       Making Brands {" "}
-        <span className="text-highlight">
-        Impossible To Ignore.
-        </span>{" "}
-        
+        Not Just One That Looks Good
       </>
     ),
     subtitle:
-      "We help brands grow through strategic social media marketing, engaging content, and data-driven campaigns that build awareness, strengthen communities, and drive measurable business growth.",
+      "Whether you're scaling a D2C brand, growing a service business, or expanding a retail store, know exactly what your website needs to succeed. Get a free website audit.",
   },
 
   "/paid-marketing": {
     title: (
       <>
-        Mumbai's Growth-Focused {" "}
+        Stop Wasting{" "}
         <span className="text-highlight">
-          Performance Marketing
+          Ad Spend
         </span>{" "}
-       Agency{" "}
-       
+        on Campaigns That Don't Convert
       </>
     ),
     subtitle:
-      "Trusted by ambitious brands to drive customer acquisition, revenue growth, and industry-leading marketing performance.",
+      "Whether you want more leads, online sales, or stronger brand awareness, see exactly what a results-driven campaign will cost and how it'll perform. Get your free audit below.",
+  },
+
+  "/social-media-marketing": {
+    title: (
+      <>
+        Make Your Brand{" "}
+        <span className="text-highlight">
+          Impossible to Ignore
+        </span>{" "}
+        Online
+      </>
+    ),
+    subtitle:
+      "We create strategic social media campaigns and engaging content that increase audience engagement, strengthen brand awareness, and drive measurable business growth.",
   },
 
   "/seo": {
@@ -60,7 +59,7 @@ const pageContent = {
       </>
     ),
     subtitle:
-      "Increase visibility, traffic, and leads through comprehensive SEO strategies focused on long-term growth and sustainable search performance.",
+      "Whether you want more leads, online sales, or stronger local visibility, see exactly what an SEO strategy will cost and how it'll perform. Get your free audit below.",
   },
 };
 

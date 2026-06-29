@@ -2,7 +2,46 @@
 
 import React from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+
+const pageContent = {
+  "/website-development": {
+    heading: ["Connect.", "Collaborate.", "Grow."],
+    subline:
+      "Ready to turn your website into your best salesperson — no matter what you sell? Let's talk.",
+    cta: "Get Free Audit",
+  },
+
+  "/paid-marketing": {
+    heading: ["Connect.", "Collaborate.", "Grow."],
+    subline:
+      "Ready to turn your ad spend into predictable revenue? Let's talk.",
+    cta: "Get Free Audit",
+  },
+
+  "/social-media-marketing": {
+    heading: ["Connect.", "Collaborate.", "Grow."],
+    subline:
+      "Ready to turn your social media into your brand's biggest growth channel? Let's talk.",
+    cta: "Get Free Audit",
+  },
+
+  "/seo": {
+    heading: ["Connect.", "Collaborate.", "Grow."],
+    subline:
+      "Ready to turn search traffic into your most predictable lead source? Let's talk.",
+    cta: "Get Free Audit",
+  },
+};
 const SeventhSection = () => {
+const pathname = usePathname();
+
+const pageData =
+  pageContent[pathname as keyof typeof pageContent] ??
+  pageContent["/website-development"];
+
+
+
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
       <div className="bg-[#1D1D1D] rounded-[20px] relative overflow-hidden">
@@ -19,18 +58,19 @@ const SeventhSection = () => {
 
             {/* Animated Heading */}
             <h2
-              className="
-                text-center 
-                flex flex-col sm:flex-row 
-                justify-center items-center 
-                gap-2 sm:gap-3 
-               
-              "
-            >
-              <span className="animated-word">Connect.</span>
-              <span className="animated-word">Collaborate.</span>
-              <span className="animated-word">Grow.</span>
-            </h2>
+  className="
+    text-center
+    flex flex-col sm:flex-row
+    justify-center items-center
+    gap-2 sm:gap-3
+  "
+>
+  {pageData.heading.map((word) => (
+    <span key={word} className="animated-word">
+      {word}
+    </span>
+  ))}
+</h2>
 
             {/* Contact Info */}
        <div className="flex flex-col items-center justify-center gap-4 body3 white-text px-4 lg:p-0">
@@ -55,9 +95,20 @@ const SeventhSection = () => {
       9987558189
     </a>
   </div>
+</div>
 
 
-
+<div className="flex justify-center">
+  <button
+     onClick={() => {
+        document
+          .getElementById("contact-form")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }}
+    className="py-[8px] px-[23px] rounded-[5px] cursor-pointer bg-[#F9B31B] border shadow-[2px_2px_0px_0px_#FFFFFF] text-black"
+  >
+    {pageData.cta}
+  </button>
 </div>
           </div>
         </div>

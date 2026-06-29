@@ -50,11 +50,12 @@ const allSteps: Step[] = [
 const categories = ["Web Development", "Performance Marketing", "Social Media", "SEO", "Branding"];
 
 const AdsWorkSection = ({ content }: { content: WorkContent }) => {
-  const [activeCategory, setActiveCategory] = useState(content.filterLabel);
   const [showAll, setShowAll] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const filtered = allSteps.filter((s) => s.category === activeCategory);
+  const filtered = allSteps.filter(
+  (s) => s.category === content.filterLabel
+);
   const visible = showAll ? filtered : filtered.slice(0, 5);
 
   const pairs: Step[][] = [];
@@ -62,49 +63,11 @@ const AdsWorkSection = ({ content }: { content: WorkContent }) => {
     pairs.push(visible.slice(i, i + 2));
   }
 
-  const handleCategoryClick = (cat: string, e: React.MouseEvent<HTMLButtonElement>) => {
-    setActiveCategory(cat);
-    setShowAll(false);
 
-    const container = scrollRef.current;
-    const button = e.currentTarget;
-    if (container) {
-      const buttonRight = button.offsetLeft + button.offsetWidth;
-      const visibleRight = container.scrollLeft + container.clientWidth;
-      if (buttonRight > visibleRight - 50) {
-        container.scrollTo({ left: buttonRight - container.clientWidth + 50, behavior: "smooth" });
-      } else if (button.offsetLeft < container.scrollLeft + 50) {
-        container.scrollTo({ left: button.offsetLeft - 50, behavior: "smooth" });
-      }
-    }
-  };
 
   return (
     <section id="our-work" className="container py-10 sm:py-15 lg:py-20">
       <h6 className="black-text mb-6 lg:mb-8 font-outfit text-center">Our Work</h6>
-      
-
-      {/* Filter chips */}
-      <div className="flex justify-center w-full">
-      <div
-        ref={scrollRef}
-        className="flex flex-nowrap  justify-center gap-2 lg:gap-3 overflow-x-auto text-center no-scrollbar mb-5 lg:mb-10 scroll-smooth"
-      >
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={(e) => handleCategoryClick(cat, e)}
-            className={`cursor-pointer shrink-0 px-4 py-1 mb-5 lg:mb-0 rounded-full border body3 transition-all duration-300 ${
-              activeCategory === cat
-                ? "bg-[var(--color-primary)] text-[var(--color-secondary)] border-[var(--color-primary)]"
-                : "bg-[var(--color-secondary)] text-[var(--color-primary)] border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-secondary)]"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-      </div>
 
       {/* Projects grid */}
       <div className="space-y-6">

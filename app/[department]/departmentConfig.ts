@@ -265,26 +265,22 @@ const configs: Record<string, DepartmentConfig> = {
     stats: {
       eyebrow: "Beyond Beautiful",
       headline: "Websites Built To Convert, Perform, And Leave A Lasting Impression",
-     statCards: [
+statCards: [
   {
     value: "100+",
-    description: "Websites Designed",
+    description: "Websites & Web Apps Built",
   },
   {
-    value: "250+",
-    description: "Brands Empowered",
+    value: "25+",
+    description: "Industries Served",
   },
   {
     value: "95%",
     description: "Client Satisfaction",
   },
   {
-    value: "50+",
-    description: "Industries Served",
-  },
-  {
-    value: "10,000+",
-    description: "Pages Designed",
+    value: "100%",
+    description: "Mobile-Responsive Builds",
   },
 ],
       ctaBanner: {
@@ -367,11 +363,11 @@ const configs: Record<string, DepartmentConfig> = {
       eyebrow: "Got questions",
       title: "Web Development",
       highlightTitle: "FAQs",
-    faqs: [
+   faqs: [
   {
     question: "Why does my business need a professionally designed website?",
     answer:
-      "A professionally designed website builds credibility, enhances user experience, and helps convert visitors into customers. It's often the first impression your brand makes, so it should reflect your business while driving measurable results.",
+      "A professional website is often your customer's first impression of your brand—whatever industry you're in. It builds credibility, improves user experience, and directly impacts how many visitors convert into leads or customers.",
   },
   {
     question: "Do you create custom website designs?",
@@ -396,7 +392,17 @@ const configs: Record<string, DepartmentConfig> = {
   {
     question: "Why choose Bombay Blokes for web design?",
     answer:
-      "Bombay Blokes combines creative design, strategic thinking, and user-focused experiences to build websites that don't just look exceptional—they perform. We create conversion-focused, responsive, and SEO-friendly websites that help businesses strengthen their online presence and drive long-term growth.",
+      "We've built websites across fashion, F&B, wellness, retail, education, and service businesses—not just one industry playbook. Every project is tailored to your business goals, audience, and long-term growth.",
+  },
+  {
+    question: "How much does a website actually cost?",
+    answer:
+      "It depends on your project scope, features, and business requirements. Use the free Investment Guide above to get an instant starting estimate based on your business type. No hidden fees and no surprise add-ons.",
+  },
+  {
+    question: "What if I'm not happy with the design?",
+    answer:
+      "Every project includes structured revision rounds and a dedicated project manager, so you're never stuck with a design you don't love. We don't move to the next stage until you're completely satisfied and approve the design.",
   },
 ],
     },
@@ -519,6 +525,7 @@ const configs: Record<string, DepartmentConfig> = {
             "Monthly reports connecting follower growth, engagement, reach, and conversions back to business growth.",
           tags: ["Reports", "Insights", "Growth"],
         },
+        
       ],
     },
     faq: {
@@ -556,6 +563,17 @@ const configs: Record<string, DepartmentConfig> = {
     answer:
       "Bombay Blokes combines creative storytelling, data-driven strategy, and platform expertise to create impactful social media campaigns that build communities, strengthen brand presence, and deliver measurable business results. We don't just manage social media—we help brands grow through it.",
   },
+
+  {
+  question: "How much does social media management actually cost?",
+  answer:
+    "It depends on the number of platforms, content requirements, posting frequency, and campaign scope. Use the free Investment Guide above to get an instant starting estimate based on your business needs. No hidden fees and no surprise add-ons.",
+},
+{
+  question: "What if the content isn't performing?",
+  answer:
+    "Every social media strategy includes ongoing performance tracking, audience insights, and continuous optimization. If content isn't delivering the desired results, we refine the strategy, test new creative approaches, and improve performance using real data—not guesswork.",
+},
 ],
     },
   },
@@ -714,6 +732,16 @@ const configs: Record<string, DepartmentConfig> = {
     answer:
       "Yes. We provide complete end-to-end management for both Meta Ads and Google Ads, including strategy, audience research, campaign setup, creative optimization, budget management, A/B testing, conversion tracking, and ongoing performance reporting to maximize leads, sales, and ROI.",
   },
+  {
+  question: "How much does a performance marketing campaign cost?",
+  answer:
+    "It depends on your business goals, target audience, advertising platforms, and campaign scope. Use the free Investment Guide above to get an instant starting estimate based on your requirements. No hidden fees and no surprise add-ons.",
+},
+{
+  question: "What if the campaign doesn't perform?",
+  answer:
+    "Every campaign is backed by transparent ROAS and CPA reporting, along with continuous testing and optimization. If something isn't performing as expected, we quickly identify the issue, refine the strategy, and make data-driven improvements instead of letting ad spend go to waste.",
+},
 ],
     },
   },

@@ -114,12 +114,11 @@ const [customFields, setCustomFields] = useState<CustomField[]>([]);
 const [customFieldValues, setCustomFieldValues] = useState<Record<string, string>>({});
 const [customFieldErrors, setCustomFieldErrors] = useState<Record<string, string>>({});
   const [includedItems] = useState([
-    "Dedicated Project Manager", "Unlimited Revisions", " Expert Team Collaboration", "Quality Assurance Guaranteed" 
+    "Dedicated Project Manager", " Expert Team Collaboration", "Quality Assurance Guaranteed" 
   ]);
 
 const rotatingTexts = [
   "Dedicated Project Manager",
-  "Unlimited Revisions",
   "Expert Team Collaboration",
   "Quality Guaranteed",
 ];
@@ -1413,7 +1412,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-white relative overflow-hi
      name="name" 
      value={formData.name}
       onChange={(e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value, })) }
-      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-white font-[13px] focus:outline-none 
+      className={`px-3 lg:py-2 py-1 border-b bg-transparent lg:text-[16px] text-[13px] text-white placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-[#CACACA] font-[13px] focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B] ${
         errors.name
@@ -1441,7 +1440,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-white relative overflow-hi
           [e.target.name]: e.target.value,
         }))
       }
-      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white  placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-white focus:outline-none 
+      className={`px-3 lg:py-2 py-1 lg:mt-0 mt-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white  placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-[#CACACA] focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B]  ${
         errors.phone
@@ -1466,7 +1465,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-white relative overflow-hi
       name="email"
       value={formData.email}
       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white  placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-white focus:outline-none 
+      className={`px-3 lg:py-2 py-1 lg:mt-0 mt-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white  placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-[#CACACA] focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B] ${
         errors.email
@@ -1496,7 +1495,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-white relative overflow-hi
         }))
       }
      
-            className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white  placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-white focus:outline-none 
+            className={`px-3 lg:py-2 py-1 lg:mt-0 mt-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white  placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-[#CACACA] focus:outline-none 
 
       focus:ring-0 
       focus:border-[#F9B31B] ${
@@ -1504,7 +1503,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-white relative overflow-hi
           ? "border-red-500 focus:ring-red-300"
           : "border-[#F9B31B] focus:ring-[#F9B31B]"
       }`}
-      placeholder="Your Brand name / website / insta Link. "
+      placeholder="Your Brand Name / Website / Insta Link. "
     />
     {errors.message && (
       <p className="text-red-500 text-sm mt-1">{errors.message}</p>
@@ -1523,7 +1522,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-white relative overflow-hi
     className="py-[8px] px-[23px] rounded-[5px]  cursor-pointer bg-[#F9B31B]
     border shadow-[2px_2px_0px_0px_#FFFFFF]  text-black "
   >
-  {isSubmitting ? "Submitting..." : "Submit"}
+  {isSubmitting ? "Getting Free Audit...." : " Get Free Audit"}
   </button>
  </div>
 
@@ -1546,8 +1545,8 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-white relative overflow-hi
     mb-2
   "
 >
-  Too excited to get started?
-</a>
+ Prefer to talk now?
+ </a>
 
   <div className="space-y-2">
 

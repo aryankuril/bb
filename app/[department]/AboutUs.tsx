@@ -3,15 +3,195 @@
 import { motion } from 'framer-motion';
 import { Target, TrendingUp, Users, Award } from 'lucide-react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
-const stats = [
-  { icon: Award, label: 'Projects Delivered', value: '100+' },
-  { icon: TrendingUp, label: 'Managed Ad Spend', value: '₹20Cr+' },
-  { icon: Users, label: 'Happy Clients', value: '150+' },
-  { icon: Target, label: 'Average ROAS', value: '4X' },
-];
+const iconMap = {
+  award: Award,
+  trending: TrendingUp,
+  users: Users,
+  target: Target,
+};
+
+const pageContent = {
+  "/website-development": {
+    eyebrow: "WHY BOMBAY BLOKES",
+
+    title: (
+      <>
+        We Engineer{" "}
+        <span className="text-[var(--color-highlight)]">
+          Websites That Perform
+        </span>{" "}
+         Not Just Websites That Exist.
+      </>
+    ),
+
+    body: [
+      "Most agencies treat web development as a side service to their marketing work. We don't. Every website goes through structured planning, clean architecture, rigorous QA, and a dedicated project manager — so what you get isn't just a deliverable, it's a foundation built to scale with your business.",
+    ],
+
+    cta: "Get Free Audit",
+
+    stats: [
+      {
+        icon: iconMap.award,
+        value: "10+",
+        label: "Years of Experience",
+      },
+      {
+        icon: iconMap.trending,
+        value: "24-Hr",
+        label: "Response Time",
+      },
+      {
+        icon: iconMap.users,
+        value: "0",
+        label: "Hidden Costs or Surprise Fees",
+      },
+      {
+        icon: iconMap.target,
+        value: "10 Days",
+        label: "Post-Launch Support",
+      },
+    ],
+  },
+
+  "/paid-marketing": {
+    eyebrow: "WHY BOMBAY BLOKES",
+
+    title: (
+      <>
+        We Engineer{" "}
+        <span className="text-[var(--color-highlight)]">
+          Revenue
+        </span>
+        , Not Just Reach.
+      </>
+    ),
+
+    body: [
+      "At Bombay Blokes, we deliver data-driven performance marketing that turns ad spend into measurable business growth. From Meta Ads, Google Ads, and lead generation to conversion rate optimization (CRO), audience targeting, and ROAS-focused campaigns, we continuously optimize every touchpoint to maximize ROI, increase conversions, and scale your business with complete transparency. ",
+    ],
+
+    cta: "Get Free Audit",
+
+    stats: [
+      {
+        icon: iconMap.award,
+        value: "100+",
+        label: "Projects Delivered",
+      },
+      {
+        icon: iconMap.trending,
+        value: "₹20Cr+",
+        label: "Managed Ad Spend",
+      },
+      {
+        icon: iconMap.users,
+        value: "150+",
+        label: "Happy Clients",
+      },
+      {
+        icon: iconMap.target,
+        value: "4X",
+        label: "Average ROAS",
+      },
+    ],
+  },
+
+  "/social-media-marketing": {
+    eyebrow: "WHY BOMBAY BLOKES",
+
+    title: (
+      <>
+        We Build{" "}
+        <span className="text-[var(--color-highlight)]">
+          Brands
+        </span>
+        , Not Just Content Calendars.
+      </>
+    ),
+
+    body: [
+      "Most agencies post content and call it a strategy. We don't. Every social media plan is built around audience research, platform-specific content, and active community management — backed by real ad-spend experience, not just creative templates.",
+    ],
+
+    cta: "Get Free Audit",
+
+    stats: [
+      {
+        icon: iconMap.trending,
+        value: "₹20Cr+",
+        label: "Managed Ad Spend",
+      },
+      {
+        icon: iconMap.target,
+        value: "4X",
+        label: "Average ROAS",
+      },
+      {
+        icon: iconMap.users,
+        value: "150+",
+        label: "Happy Clients",
+      },
+      {
+        icon: iconMap.award,
+        value: "10+",
+        label: "Years of Experience",
+      },
+    ],
+  },
+
+  "/seo": {
+    eyebrow: "WHY BOMBAY BLOKES",
+
+    title: (
+      <>
+        We Engineer{" "}
+        <span className="text-[var(--color-highlight)]">
+          Rankings
+        </span>
+        , Not Just Reports.
+      </>
+    ),
+
+    body: [
+      "Most agencies hand you a monthly report and call it SEO. We don't. Every strategy is backed by technical audits, content built for search intent, and authority-building backlinks — so your rankings keep climbing long after the contract ends.",
+    ],
+
+    cta: "Get Free Audit",
+
+    stats: [
+      {
+        icon: iconMap.award,
+        value: "10+",
+        label: "Years of Experience",
+      },
+      {
+        icon: iconMap.trending,
+        value: "24-Hr",
+        label: "Response Time",
+      },
+      {
+        icon: iconMap.users,
+        value: "0",
+        label: "Hidden Costs or Surprise Fees",
+      },
+      {
+        icon: iconMap.target,
+        value: "100%",
+        label: "White-Hat SEO Practices",
+      },
+    ],
+  },
+};
 
 export default function AboutUs() {
+  const pathname = usePathname();
+
+const content =
+  pageContent[pathname as keyof typeof pageContent] ??
+  pageContent["/website-development"];
   return (
     <section className=" py-10 sm:py-15 lg:py-20 bg-black text-secondary relative overflow-hidden">
       {/* Background accents */}
@@ -28,43 +208,38 @@ export default function AboutUs() {
             viewport={{ once: true }}
           >
             <div className="flex items-center gap-2 text-[var(--color-highlight)] mb-6 font-medium uppercase tracking-widest text-sm">
-<span className="w-3 h-3 rounded-full bg-[var(--color-highlight)] inline-block"></span>    
-          About Our Agency
-            </div>
+  <span className="w-3 h-3 rounded-full bg-[var(--color-highlight)] inline-block"></span>
+  {content.eyebrow}
+</div>
          
-            <h6 className="inline-block font-outfit  text-white mb-3">
-          
-              We engineer <span className="text-[var(--color-highlight)] bg-clip-text bg-gradient-to-r from-secondary to-secondary/50">digital outcomes</span>, not just websites.
-            </h6>
+           <h6 className="inline-block font-outfit text-white mb-3">
+  {content.title}
+</h6>
 
-            <div className="space-y-3 subtitle text-white ">
-              <p>
-                Founded by performance marketers and elite developers, we bridge the gap between stunning visual aesthetics and ruthless conversion rate optimization.
-              </p>
-
-              <p>
-                Whether it’s an Awwwards-worthy WebGL experience or a complex Meta Ads funnel scaling past ₹10L/day, our dedicated experts operate as an extension of your growth team. No fluff. Just data, design, and revenue.
-              </p>
-            </div>
+            <div className="space-y-3 subtitle text-white">
+  {content.body.map((paragraph, index) => (
+    <p key={index}>{paragraph}</p>
+  ))}
+</div>
 
              <div className="w-full mt-3">
-  <button
-    onClick={() => {
-      document
-        .getElementById("contact-form")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }}
-    className="py-[8px] px-[23px] rounded-[5px] cursor-pointer bg-[#F9B31B] border shadow-[2px_2px_0px_0px_#FFFFFF] text-black"
-  >
-    Ready to Get Started?
-  </button>
+<button
+  onClick={() => {
+    document
+      .getElementById("contact-form")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }}
+  className="py-[8px] px-[23px] rounded-[5px] cursor-pointer bg-[#F9B31B] border shadow-[2px_2px_0px_0px_#FFFFFF] text-black"
+>
+  {content.cta}
+</button>
 </div>
           </motion.div>
         </div>
 
         {/* Right Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-6">
-  {stats.map((stat, i) => (
+  {content.stats.map((stat, i) => (
     <motion.div
       key={i}
       initial={{ opacity: 0, scale: 0.95 }}
@@ -108,16 +283,14 @@ export default function AboutUs() {
         "
       >
         <stat.icon
-          className="
-            w-5 h-5
-            lg:w-7 lg:h-7
-
-            text-[var(--color-highlight)]
-            group-hover:text-black
-
-            transition-colors
-          "
-        />
+  className="
+    w-5 h-5
+    lg:w-7 lg:h-7
+    text-[var(--color-highlight)]
+    group-hover:text-black
+    transition-colors
+  "
+/>
       </div>
 
       <div>
