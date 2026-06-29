@@ -149,7 +149,7 @@ const pageContent = {
       <>
        We Engineer Visibility{" "}
         <span className="text-[var(--color-highlight)]">
-         On Google, and On AI.
+         On Google, and On AI
         </span>
         
       </>

@@ -109,10 +109,6 @@ const configs: Record<string, DepartmentConfig> = {
       headline: "Rank Higher, Get Found, And Stay Ahead Of The Competition",
      statCards: [
   {
-    value: "500+",
-    description: "First Page Rankings",
-  },
-  {
     value: "1M+",
     description: "Organic Clicks Generated",
   },
