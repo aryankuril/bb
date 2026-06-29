@@ -212,7 +212,7 @@ const AdsTestimonialsSection = () => {
         
 
          <h6 className="inline-block lg:w-[950px] mx-auto text-center font-outfit text-black">
-     What <span className="text-highlight">Brand says </span>Abouts us
+     What <span className="text-highlight">Our Clients Say </span>
   </h6>
 
 

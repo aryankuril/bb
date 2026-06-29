@@ -9,27 +9,27 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600
 const webProcess = [
   { num: '01', title: 'Discovery Call', desc: 'Aligning on business goals and requirements.' },
   { num: '02', title: 'Research & Planning', desc: 'Competitor analysis and site architecture.' },
-  { num: '03', title: 'UI/UX Design', desc: 'Mapping user journeys & high-fidelity mockups.' },
-  { num: '04', title: 'Development', desc: 'Building on blazing-fast modern stacks.' },
-  { num: '05', title: 'Testing & QA', desc: 'Rigorous cross-device testing.' },
+  { num: '03', title: 'UI/UX Design', desc: 'Mapping user journeys & high fidelity mockups.' },
+  { num: '04', title: 'Development', desc: 'Building on blazing fast modern stacks.' },
+  { num: '05', title: 'Testing & QA', desc: 'Rigorous cross device testing.' },
   { num: '06', title: 'Deployment', desc: 'Seamless handoff to production.' },
   { num: '07', title: 'Maintenance', desc: 'Monthly retainer for speed & security.' },
 ];
 
 const pmProcess = [
   { num: '01', title: 'Business Analysis', desc: 'Auditing your current funnel bottlenecks.' },
-  { num: '02', title: 'Competitor Intel', desc: 'Reverse-engineering rival strategies.' },
-  { num: '03', title: 'Audience Matrix', desc: 'Deep-dive demographic and intent targeting.' },
+  { num: '02', title: 'Competitor Intel', desc: 'Reverse engineering rival strategies.' },
+  { num: '03', title: 'Audience Matrix', desc: 'Deep dive demographic and intent targeting.' },
   { num: '04', title: 'Campaign Setup', desc: 'Structuring Pixel, CAPI, and tracking tags.' },
-  { num: '05', title: 'Creative Testing', desc: 'Deploying hook-driven organic-style ads.' },
+  { num: '05', title: 'Creative Testing', desc: 'Deploying hook driven organic style ads.' },
   { num: '06', title: 'Optimization', desc: 'Daily bid adjustment based on live ROAS.' },
   { num: '07', title: 'Scaling', desc: 'Vertical scaling constraints unlocked.' },
 ];
 
 const smmProcess = [
   { num: '01', title: 'Brand Audit', desc: 'Evaluating current social presence and voice.' },
-  { num: '02', title: 'Strategy Dev', desc: 'Platform-specific content pillars & planning.' },
-  { num: '03', title: 'Content Creation', desc: 'Designing eye-catching posts and videos.' },
+  { num: '02', title: 'Strategy Dev', desc: 'Platform specific content pillars & planning.' },
+  { num: '03', title: 'Content Creation', desc: 'Designing eye catching posts and videos.' },
   { num: '04', title: 'Scheduling', desc: 'Automated publishing at peak engagement times.' },
   { num: '05', title: 'Community', desc: 'Active engagement with followers and leads.' },
   { num: '06', title: 'Analytics', desc: 'Tracking reach, engagement, and conversions.' },
@@ -38,10 +38,10 @@ const smmProcess = [
 
 const seoProcess = [
   { num: '01', title: 'Tech Audit', desc: 'Identifying crawl errors and speed bottlenecks.' },
-  { num: '02', title: 'Keyword Research', desc: 'Finding high-intent, low-competition terms.' },
+  { num: '02', title: 'Keyword Research', desc: 'Finding high intent, low competition terms.' },
   { num: '03', title: 'On-Page SEO', desc: 'Optimizing titles, meta descriptions, and content.' },
   { num: '04', title: 'Content Strategy', desc: 'Planning blog posts and pillar pages.' },
-  { num: '05', title: 'Link Building', desc: 'Securing high-quality backlinks from niche sites.' },
+  { num: '05', title: 'Link Building', desc: 'Securing high quality backlinks from niche sites.' },
   { num: '06', title: 'Local SEO', desc: 'Optimizing GMB and local citations.' },
   { num: '07', title: 'Tracking', desc: 'Monitoring rankings and organic traffic growth.' },
 ];
@@ -69,7 +69,7 @@ const pageContent: Record<string, any> = {
         </span>{" "}
       </>
     ),
-    subtitle: "We help brands grow through strategic social media marketing, engaging content, and data-driven campaigns that build awareness, strengthen communities, and drive measurable business growth.",
+    subtitle: "We help brands grow through strategic social media marketing, engaging content, and data driven campaigns that build awareness, strengthen communities, and drive measurable business growth.",
     process: smmProcess
   },
   "/paid-marketing": {
@@ -82,7 +82,7 @@ const pageContent: Record<string, any> = {
        Agency{" "}
       </>
     ),
-    subtitle: "Trusted by ambitious brands to drive customer acquisition, revenue growth, and industry-leading marketing performance.",
+    subtitle: "Trusted by ambitious brands to drive customer acquisition, revenue growth, and industry leading marketing performance.",
     process: pmProcess
   },
   "/seo": {
@@ -98,7 +98,7 @@ const pageContent: Record<string, any> = {
         </span>
       </>
     ),
-    subtitle: "Increase visibility, traffic, and leads through comprehensive SEO strategies focused on long-term growth and sustainable search performance.",
+    subtitle: "Increase visibility, traffic, and leads through comprehensive SEO strategies focused on long term growth and sustainable search performance.",
     process: seoProcess
   },
   "default": {

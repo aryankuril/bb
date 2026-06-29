@@ -45,22 +45,22 @@ const pageContent = {
       "We create strategic social media campaigns and engaging content that increase audience engagement, strengthen brand awareness, and drive measurable business growth.",
   },
 
-  "/seo": {
-    title: (
-      <>
-        Improve Rankings With{" "}
-        <span className="text-highlight">
-          SEO
-        </span>{" "}
-        That Drives{" "}
-        <span className="text-highlight">
-          Organic Growth
-        </span>
-      </>
-    ),
-    subtitle:
-      "Whether you want more leads, online sales, or stronger local visibility, see exactly what an SEO strategy will cost and how it'll perform. Get your free audit below.",
-  },
+"/seo": {
+  title: (
+    <>
+      Improve Rankings With{" "}
+      <span className="text-highlight">
+        SEO
+      </span>{" "}
+      That Drives{" "}
+      <span className="text-highlight">
+        Organic Growth
+      </span>
+    </>
+  ),
+  subtitle:
+    "Whether you're looking to generate more qualified leads, increase online sales, or dominate local search results, discover exactly what your SEO strategy will cost and how it can grow your business. Get your free SEO audit below.",
+},
 };
 
 export default function Firstsection() {

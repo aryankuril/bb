@@ -70,7 +70,7 @@ const pageContent = {
     ),
 
     body: [
-      "At Bombay Blokes, we deliver data-driven performance marketing that turns ad spend into measurable business growth. From Meta Ads, Google Ads, and lead generation to conversion rate optimization (CRO), audience targeting, and ROAS-focused campaigns, we continuously optimize every touchpoint to maximize ROI, increase conversions, and scale your business with complete transparency. ",
+      "At Bombay Blokes, we deliver data driven performance marketing that turns ad spend into measurable business growth. From Meta Ads, Google Ads, and lead generation to conversion rate optimization (CRO), audience targeting, and ROAS focused campaigns, we continuously optimize every touchpoint to maximize ROI, increase conversions, and scale your business with complete transparency. ",
     ],
 
     cta: "Get Free Audit",
@@ -78,7 +78,7 @@ const pageContent = {
     stats: [
       {
         icon: iconMap.award,
-        value: "100+",
+        value: "1000+",
         label: "Projects Delivered",
       },
       {
@@ -147,16 +147,16 @@ const pageContent = {
 
     title: (
       <>
-        We Engineer{" "}
+       We Engineer Visibility{" "}
         <span className="text-[var(--color-highlight)]">
-          Rankings
+         On Google, and On AI.
         </span>
-        , Not Just Reports.
+        
       </>
     ),
 
     body: [
-      "Most agencies hand you a monthly report and call it SEO. We don't. Every strategy is backed by technical audits, content built for search intent, and authority-building backlinks — so your rankings keep climbing long after the contract ends.",
+      "SEO isn't just about ranking on Google anymore. Every strategy we build includes technical audits, content built for search intent, and authority-building backlinks — plus structured data and content architecture designed for GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization), so your brand gets surfaced by AI tools like ChatGPT, Perplexity, and Google AI Overviews, not just buried on page two.",
     ],
 
     cta: "Get Free Audit",
@@ -216,7 +216,7 @@ const content =
   {content.title}
 </h6>
 
-            <div className="space-y-3 subtitle text-white">
+            <div className="space-y-3 subtitle text-[#CACACA]">
   {content.body.map((paragraph, index) => (
     <p key={index}>{paragraph}</p>
   ))}
@@ -301,7 +301,7 @@ const content =
             text-2xl
             lg:text-5xl
 font-[500]
-            font-black
+            
             text-white
 
             mb-1 lg:mb-2
@@ -315,7 +315,7 @@ font-[500]
             text-[10px]
             lg:text-sm
 
-            text-white
+            text-[#CACACA]
 
             font-[500]
             uppercase

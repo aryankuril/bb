@@ -94,23 +94,23 @@ const configs: Record<string, DepartmentConfig> = {
         "Rankings are only the start. We build search visibility that brings the right people in, moves them through the site, and turns organic traffic into measurable business growth.",
       ctaText: "BOOK FREE SEO AUDIT",
       ctaHref: "/contactus",
-      badgeText: "Search, the revenue-focused way",
+      badgeText: "Search, the revenue focused way",
       images: [
-        "/images/seo-cs/seo1.jpeg",
-        "/images/seo-cs/seo2.png",
-        "/images/seo-cs/seo3.webp",
-        "/images/seo-cs/seo4.webp",
+        "/images/seo cs/seo1.jpeg",
+        "/images/seo cs/seo2.png",
+        "/images/seo cs/seo3.webp",
+        "/images/seo cs/seo4.webp",
       ],
     },
     whyText:
-      "Rankings are easy. Revenue is harder. Bombay Blokes treats SEO as a long-term asset, not a checklist. We start with strategy, build technical foundations that scale, create content that converts, report transparently, and grow search visibility that compounds month after month.",
+      "Rankings are easy. Revenue is harder. Bombay Blokes treats SEO as a long term asset, not a checklist. We start with strategy, build technical foundations that scale, create content that converts, report transparently, and grow search visibility that compounds month after month.",
     stats: {
       eyebrow: "Organic Growth",
       headline: "Rank Higher, Get Found, And Stay Ahead Of The Competition",
      statCards: [
   {
     value: "500+",
-    description: "First-Page Rankings",
+    description: "First Page Rankings",
   },
   {
     value: "1M+",
@@ -153,14 +153,14 @@ const configs: Record<string, DepartmentConfig> = {
         {
           number: "01",
           title: "Manba Finance",
-          image: "/images/seo-cs/manbaaa.png",
-          link: "/work/seo-services/manbafinance",
+          image: "/images/seo cs/manbaaa.png",
+          link: "/work/seo services/manbafinance",
         },
         {
           number: "02",
           title: "SCS Sports",
-          image: "/images/seo-cs/SCS1.png",
-          link: "/work/seo-services/scssports",
+          image: "/images/seo cs/SCS1.png",
+          link: "/work/seo services/scssports",
         },
       ],
     },
@@ -186,9 +186,9 @@ const configs: Record<string, DepartmentConfig> = {
           tags: ["Speed", "Schema", "Structure"],
         },
         {
-          title: "Content & On-Page",
+          title: "Content & On Page",
           description:
-            "Pages are built around useful content, sharp metadata, internal links, and conversion-focused messaging.",
+            "Pages are built around useful content, sharp metadata, internal links, and conversion focused messaging.",
           tags: ["Content", "Metadata", "Conversion"],
         },
         {
@@ -213,33 +213,48 @@ const configs: Record<string, DepartmentConfig> = {
   {
     question: "Why is SEO important for my business?",
     answer:
-      "SEO helps your business rank higher on search engines, attract qualified organic traffic, and generate consistent leads without relying solely on paid advertising. It's a long-term investment that builds credibility, increases visibility, and drives sustainable business growth.",
+      "SEO helps your business rank higher on search engines, attract qualified organic traffic, and generate consistent leads without relying solely on paid advertising. It's a long term investment that builds credibility, increases visibility, and drives sustainable business growth.",
   },
   {
     question: "What SEO services does Bombay Blokes offer?",
     answer:
-      "We provide end-to-end SEO services, including keyword research, technical SEO, on-page optimization, content strategy, link building, local SEO, website audits, and ongoing performance monitoring to improve your search rankings and organic visibility.",
+      "We provide end to end SEO services, including keyword research, technical SEO, on page optimization, content strategy, link building, local SEO, website audits, and ongoing performance monitoring to improve your search rankings and organic visibility.",
   },
   {
     question: "How long does SEO take to show results?",
     answer:
-      "SEO is a long-term strategy. While timelines vary depending on your industry, website, and competition, most businesses begin seeing measurable improvements within 3–6 months, with stronger and more sustainable results achieved over time through continuous optimization.",
+      "SEO is a long term strategy. While timelines vary depending on your industry, website, and competition, most businesses begin seeing measurable improvements within 3–6 months, with stronger and more sustainable results achieved over time through continuous optimization.",
   },
   {
     question: "Do you provide Local SEO services?",
     answer:
-      "Yes. We optimize your online presence to improve visibility in local search results through Google Business Profile optimization, local keyword targeting, citation management, and location-specific SEO strategies that help nearby customers discover your business.",
+      "Yes. We optimize your online presence to improve visibility in local search results through Google Business Profile optimization, local keyword targeting, citation management, and location specific SEO strategies that help nearby customers discover your business.",
   },
   {
     question: "How do you measure SEO success?",
     answer:
-      "We measure SEO success through key performance metrics such as organic traffic, keyword rankings, search visibility, click-through rates (CTR), website conversions, lead generation, and overall business growth. You'll receive transparent reports with actionable insights.",
+      "We measure SEO success through key performance metrics such as organic traffic, keyword rankings, search visibility, click through rates (CTR), website conversions, lead generation, and overall business growth. You'll receive transparent reports with actionable insights.",
   },
   {
     question: "Why choose Bombay Blokes for SEO?",
     answer:
-      "Bombay Blokes combines technical expertise, data-driven strategies, and high-quality content to improve search rankings, increase organic traffic, and generate long-term business growth. We focus on ranking for the keywords that matter most to your business while delivering measurable results.",
+      "Bombay Blokes combines technical expertise, data driven strategies, and high quality content to improve search rankings, increase organic traffic, and generate long term business growth. We focus on ranking for the keywords that matter most to your business while delivering measurable results.",
   },
+  {
+  question: "How much does SEO actually cost?",
+  answer:
+    "It depends on your business goals, competition level, and the scope of work required. Use the free Investment Guide above to get an instant starting estimate based on your needs. No hidden fees and no surprise add ons.",
+},
+{
+  question: "What if my rankings drop?",
+  answer:
+    "SEO is continuously monitored—not set and forget. If rankings fluctuate due to algorithm updates or increased competition, we immediately analyze the data, identify the cause, and adjust the strategy using real ranking, traffic, and conversion insights to restore and improve performance.",
+},
+{
+  question: "What are GEO and AEO, and do you offer them?",
+  answer:
+    "Yes. GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization) are the next evolution of SEO. They focus on optimizing your content to appear in AI powered search experiences such as ChatGPT, Google AI Overviews, Perplexity, and other answer engines. We incorporate GEO and AEO best practices into every SEO strategy alongside traditional SEO to help your business stay visible as search continues to evolve.",
+},
 ],
     },
   },
@@ -267,7 +282,7 @@ const configs: Record<string, DepartmentConfig> = {
       headline: "Websites Built To Convert, Perform, And Leave A Lasting Impression",
 statCards: [
   {
-    value: "100+",
+    value: "250+",
     description: "Websites & Web Apps Built",
   },
   {
@@ -280,18 +295,18 @@ statCards: [
   },
   {
     value: "100%",
-    description: "Mobile-Responsive Builds",
+    description: "Mobile Responsive Builds",
   },
 ],
       ctaBanner: {
-        text: "Every day without a fast, conversion-optimised site, you're handing business to your competitors.",
+        text: "Every day without a fast, conversion optimised site, you're handing business to your competitors.",
         buttonText: "See what you're losing ",
         buttonHref: "/contactus",
       },
       achievementStats: [
         { value: 100, suffix: "+", label: "Projects Delivered" },
         { value: 50, suffix: "+", label: "Brands Worked With" },
-        { value: 98, suffix: "%", label: "On-Time Delivery" },
+        { value: 98, suffix: "%", label: "On Time Delivery" },
         { value: 5, suffix: "+", label: "Years Experience" },
       ],
     },
@@ -308,13 +323,13 @@ statCards: [
           number: "01",
           title: "JK Diamonds",
           image: "/images/webdev/jkd1.png",
-          link: "/work/website-development/jkdiamonds",
+          link: "/work/website development/jkdiamonds",
         },
         {
           number: "02",
           title: "Mr. Blox",
           image: "/images/webdev/mrblox1.jpg",
-          link: "/work/website-development/mrblox",
+          link: "/work/website development/mrblox",
         },
       ],
     },
@@ -342,19 +357,19 @@ statCards: [
         {
           title: "QA & Testing",
           description:
-            "Cross-device testing, speed audits, and accessibility checks before anything goes live.",
+            "Cross device testing, speed audits, and accessibility checks before anything goes live.",
           tags: ["Testing", "Speed", "Mobile"],
         },
         {
           title: "Launch",
           description:
-            "Smooth deployment with SEO fundamentals, analytics tracking, and zero-downtime rollout.",
+            "Smooth deployment with SEO fundamentals, analytics tracking, and zero downtime rollout.",
           tags: ["Deploy", "SEO", "Analytics"],
         },
         {
           title: "Support & Growth",
           description:
-            "Post-launch support, performance monitoring, and iterative improvements that keep the site growing.",
+            "Post launch support, performance monitoring, and iterative improvements that keep the site growing.",
           tags: ["Support", "Updates", "Growth"],
         },
       ],
@@ -375,14 +390,14 @@ statCards: [
       "Yes. Every website we design is fully customized to match your brand identity, business goals, and target audience. We don't use generic templates—we create unique digital experiences that help your brand stand out.",
   },
   {
-    question: "Will my website be mobile-friendly and responsive?",
+    question: "Will my website be mobile friendly and responsive?",
     answer:
       "Absolutely. Every website we design is fully responsive, ensuring a seamless experience across desktops, tablets, and mobile devices for maximum engagement and performance.",
   },
   {
     question: "Do you design websites with SEO in mind?",
     answer:
-      "Yes. Our websites are built with SEO best practices, including clean site architecture, optimized page structure, fast loading speeds, and user-friendly navigation to improve search engine visibility.",
+      "Yes. Our websites are built with SEO best practices, including clean site architecture, optimized page structure, fast loading speeds, and user friendly navigation to improve search engine visibility.",
   },
   {
     question: "Can you redesign my existing website?",
@@ -392,12 +407,12 @@ statCards: [
   {
     question: "Why choose Bombay Blokes for web design?",
     answer:
-      "We've built websites across fashion, F&B, wellness, retail, education, and service businesses—not just one industry playbook. Every project is tailored to your business goals, audience, and long-term growth.",
+      "We've built websites across fashion, F&B, wellness, retail, education, and service businesses—not just one industry playbook. Every project is tailored to your business goals, audience, and long term growth.",
   },
   {
     question: "How much does a website actually cost?",
     answer:
-      "It depends on your project scope, features, and business requirements. Use the free Investment Guide above to get an instant starting estimate based on your business type. No hidden fees and no surprise add-ons.",
+      "It depends on your project scope, features, and business requirements. Use the free Investment Guide above to get an instant starting estimate based on your business type. No hidden fees and no surprise add ons.",
   },
   {
     question: "What if I'm not happy with the design?",
@@ -413,7 +428,7 @@ statCards: [
       headline: "Making Brands",
       highlightText: "Impossible To Ignore.",
       description:
-        "We help brands grow through strategic social media marketing, content creation, and community building. From Instagram and LinkedIn management to content strategy and performance-driven campaigns, we create meaningful engagement, strengthen brand awareness, and drive measurable business growth. ",
+        "We help brands grow through strategic social media marketing, content creation, and community building. From Instagram and LinkedIn management to content strategy and performance driven campaigns, we create meaningful engagement, strengthen brand awareness, and drive measurable business growth. ",
       ctaText: "BOOK FREE STRATEGY CALL",
       ctaHref: "/contactus",
       badgeText: "Content that earns attention",
@@ -476,13 +491,13 @@ statCards: [
           number: "01",
           title: "Super Sox",
           image: "/images/SocialMedia/SuperSox.webp",
-          link: "/work/social-media/supersox",
+          link: "/work/social media/supersox",
         },
         {
           number: "02",
           title: "Ric Rac",
           image: "/images/SocialMedia/ricrac.webp",
-          link: "/work/social-media/ricrac",
+          link: "/work/social media/ricrac",
         },
       ],
     },
@@ -504,13 +519,13 @@ statCards: [
         {
           title: "Content Creation",
           description:
-            "Scroll-stopping visuals, copy, reels, and carousels crafted to earn attention and drive action.",
+            "Scroll stopping visuals, copy, reels, and carousels crafted to earn attention and drive action.",
           tags: ["Design", "Copy", "Reels"],
         },
         {
           title: "Publishing",
           description:
-            "Consistent scheduling, platform-native formatting, and hashtag strategy for maximum organic reach.",
+            "Consistent scheduling, platform native formatting, and hashtag strategy for maximum organic reach.",
           tags: ["Scheduling", "Reach", "Formats"],
         },
         {
@@ -541,12 +556,12 @@ statCards: [
   {
     question: "Which social media platforms do you manage?",
     answer:
-      "We manage Instagram, Facebook, LinkedIn, X (Twitter), YouTube, and other leading social platforms, creating platform-specific strategies that maximize reach, engagement, and brand impact.",
+      "We manage Instagram, Facebook, LinkedIn, X (Twitter), YouTube, and other leading social platforms, creating platform specific strategies that maximize reach, engagement, and brand impact.",
   },
   {
     question: "Do you create content for social media?",
     answer:
-      "Yes. Our team handles everything from content strategy and creative design to copywriting, photography, videography, and short-form video production, ensuring your brand remains consistent and engaging across all platforms.",
+      "Yes. Our team handles everything from content strategy and creative design to copywriting, photography, videography, and short form video production, ensuring your brand remains consistent and engaging across all platforms.",
   },
   {
     question: "How do you measure the success of social media campaigns?",
@@ -556,18 +571,18 @@ statCards: [
   {
     question: "Can social media marketing help generate leads and sales?",
     answer:
-      "Absolutely. Our social media strategies are designed to build brand awareness, generate qualified leads, drive website traffic, increase customer engagement, and support long-term business growth.",
+      "Absolutely. Our social media strategies are designed to build brand awareness, generate qualified leads, drive website traffic, increase customer engagement, and support long term business growth.",
   },
   {
     question: "Why should I choose Bombay Blokes for social media marketing?",
     answer:
-      "Bombay Blokes combines creative storytelling, data-driven strategy, and platform expertise to create impactful social media campaigns that build communities, strengthen brand presence, and deliver measurable business results. We don't just manage social media—we help brands grow through it.",
+      "Bombay Blokes combines creative storytelling, data driven strategy, and platform expertise to create impactful social media campaigns that build communities, strengthen brand presence, and deliver measurable business results. We don't just manage social media—we help brands grow through it.",
   },
 
   {
   question: "How much does social media management actually cost?",
   answer:
-    "It depends on the number of platforms, content requirements, posting frequency, and campaign scope. Use the free Investment Guide above to get an instant starting estimate based on your business needs. No hidden fees and no surprise add-ons.",
+    "It depends on the number of platforms, content requirements, posting frequency, and campaign scope. Use the free Investment Guide above to get an instant starting estimate based on your business needs. No hidden fees and no surprise add ons.",
 },
 {
   question: "What if the content isn't performing?",
@@ -586,11 +601,11 @@ statCards: [
         "Anyone can get you clicks. We get you conversions — turning ad spend into real revenue, not vanity metrics. Every rupee tracked, every campaign optimised.",
       ctaText: "BOOK FREE AUDIT",
       ctaHref: "/contactus",
-      badgeText: "Marketing, the result-driven way",
+      badgeText: "Marketing, the result driven way",
       images: [
         "/images/pm/chaterbox.png",
         "/images/pm/Dancingleaf.png",
-        "/images/pm/Jk-diamonds.png",
+        "/images/pm/Jk diamonds.png",
         "/images/pm/SCS.png",
       ],
     },
@@ -598,15 +613,11 @@ statCards: [
       "Performance marketing is not about spending more. It is about spending smarter. Bombay Blokes builds campaigns with precision targeting, compelling creative, continuous optimisation, and transparent reporting that connects every rupee to real business outcomes.",
     stats: {
       eyebrow: "Real Results",
-      headline: "Growth-First Approach Focused On Revenue & ROI",
+      headline: "Growth First Approach Focused On Revenue & ROI",
       statCards: [
   {
     value: "250+",
-    description: "Brands Trusted",
-  },
-  {
-    value: "500+",
-    description: "Campaigns Delivered",
+    description: "Trusted Brands",
   },
   {
     value: "100M+",
@@ -637,7 +648,7 @@ statCards: [
       eyebrow: "Trusted by 250+ brands",
       title: "Brands That",
       highlightTitle: "Trust The Work",
-      subtitle: "From e-commerce to service businesses, 50+ brands have trusted us to make their ad spend work harder.",
+      subtitle: "From e commerce to service businesses, 50+ brands have trusted us to make their ad spend work harder.",
     },
     work: {
       filterLabel: "Performance Marketing",
@@ -646,13 +657,13 @@ statCards: [
           number: "01",
           title: "Manba Finance",
           image: "/images/pm/Manba.png",
-          link: "/work/performance-marketing/manbafinance",
+          link: "/work/performance marketing/manbafinance",
         },
         {
           number: "02",
           title: "Presolv360",
           image: "/images/pm/Presolv.png",
-          link: "/work/performance-marketing/presolv",
+          link: "/work/performance marketing/presolv",
         },
       ],
     },
@@ -705,12 +716,12 @@ statCards: [
   {
     question: "How can Performance Marketing help my business grow?",
     answer:
-      "Performance Marketing helps you reach the right audience, generate qualified leads, increase conversions, and maximize your return on investment. Every campaign is continuously optimized using real-time data to drive measurable business growth and long-term profitability.",
+      "Performance Marketing helps you reach the right audience, generate qualified leads, increase conversions, and maximize your return on investment. Every campaign is continuously optimized using real time data to drive measurable business growth and long term profitability.",
   },
   {
     question: "Which advertising platforms do you specialize in?",
     answer:
-      "We specialize in Meta Ads (Facebook & Instagram), Google Ads, YouTube Ads, LinkedIn Ads, and other leading digital advertising platforms. Our team builds platform-specific strategies designed to maximize reach, engagement, and conversions.",
+      "We specialize in Meta Ads (Facebook & Instagram), Google Ads, YouTube Ads, LinkedIn Ads, and other leading digital advertising platforms. Our team builds platform specific strategies designed to maximize reach, engagement, and conversions.",
   },
   {
     question: "How do you measure the success of a campaign?",
@@ -720,27 +731,27 @@ statCards: [
   {
     question: "How long does it take to see results from Performance Marketing?",
     answer:
-      "Results vary depending on your industry, audience, competition, and campaign objectives. Most campaigns begin generating valuable insights within the first few weeks, with performance improving continuously through optimization and data-driven refinements.",
+      "Results vary depending on your industry, audience, competition, and campaign objectives. Most campaigns begin generating valuable insights within the first few weeks, with performance improving continuously through optimization and data driven refinements.",
   },
   {
     question: "What industries does Bombay Blokes work with?",
     answer:
-      "We work with startups, D2C brands, e-commerce businesses, healthcare, hospitality, real estate, education, retail, lifestyle, and service-based businesses, creating customized performance marketing strategies for every industry.",
+      "We work with startups, D2C brands, e commerce businesses, healthcare, hospitality, real estate, education, retail, lifestyle, and service based businesses, creating customized performance marketing strategies for every industry.",
   },
   {
     question: "Do you manage both Meta Ads and Google Ads?",
     answer:
-      "Yes. We provide complete end-to-end management for both Meta Ads and Google Ads, including strategy, audience research, campaign setup, creative optimization, budget management, A/B testing, conversion tracking, and ongoing performance reporting to maximize leads, sales, and ROI.",
+      "Yes. We provide complete end to end management for both Meta Ads and Google Ads, including strategy, audience research, campaign setup, creative optimization, budget management, A/B testing, conversion tracking, and ongoing performance reporting to maximize leads, sales, and ROI.",
   },
   {
   question: "How much does a performance marketing campaign cost?",
   answer:
-    "It depends on your business goals, target audience, advertising platforms, and campaign scope. Use the free Investment Guide above to get an instant starting estimate based on your requirements. No hidden fees and no surprise add-ons.",
+    "It depends on your business goals, target audience, advertising platforms, and campaign scope. Use the free Investment Guide above to get an instant starting estimate based on your requirements. No hidden fees and no surprise add ons.",
 },
 {
   question: "What if the campaign doesn't perform?",
   answer:
-    "Every campaign is backed by transparent ROAS and CPA reporting, along with continuous testing and optimization. If something isn't performing as expected, we quickly identify the issue, refine the strategy, and make data-driven improvements instead of letting ad spend go to waste.",
+    "Every campaign is backed by transparent ROAS and CPA reporting, along with continuous testing and optimization. If something isn't performing as expected, we quickly identify the issue, refine the strategy, and make data driven improvements instead of letting ad spend go to waste.",
 },
 ],
     },

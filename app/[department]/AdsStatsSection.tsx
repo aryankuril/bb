@@ -55,7 +55,7 @@ const pageData =
  <h6 className="inline-block text-center  text-black">
   We operate on{" "}
   <span className="text-highlight">
-    results.
+    results
   </span>
  </h6>
 
@@ -97,7 +97,7 @@ const pageData =
         transition={{ duration: 0.5 }}
         className={`
           bg-white
-          border
+          border border-[#A1A1A1]
           
           rounded-[20px]
           lg:p-6 p-4

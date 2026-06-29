@@ -63,7 +63,7 @@ const pageContent = {
     ],
 
     solutions: [
-      "Laser-focused audience targeting",
+      "Laser focused audience targeting",
       "High-converting ad copy",
       "Landing pages optimized for conversions",
       "Transparent ROAS & CPA reporting",
@@ -123,20 +123,22 @@ const pageContent = {
     rightTitle: "Our SEO Strategy",
 
     problems: [
-      "Poor keyword targeting",
-      "Technical SEO issues",
-      "Thin or duplicate content",
-      "Slow website performance",
-      "Weak backlink profile",
-    ],
+  "Poor keyword targeting",
+  "Technical SEO issues",
+  "Thin or duplicate content",
+  "Slow website performance",
+  "Weak backlink profile",
+  "No visibility in AI search and answer engines (GEO/AEO gaps)",
+],
 
-    solutions: [
-      "Comprehensive keyword research",
-      "Technical SEO optimization",
-      "High-quality content strategy",
-      "Core Web Vitals optimization",
-      "Authority-building link strategy",
-    ],
+solutions: [
+  "Comprehensive keyword research",
+  "Technical SEO optimization",
+  "High-quality content strategy",
+  "Core Web Vitals optimization",
+  "Authority-building link strategy",
+  "GEO & AEO optimization — structured content built for AI answer engines",
+],
   },
 };
 
@@ -156,7 +158,7 @@ const problems = [
 ];
 
 const solutions = [
-  "Laser-focused audience segmentation & retargeting",
+  "Laser focused audience segmentation & retargeting",
   "A/B tested ad copy driving high CTRs",
   "CRO optimized landing pages built to convert",
   "100% transparent ROAS & CPA dashboarding",
@@ -198,9 +200,9 @@ const content =
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-secondary border border-primary/10 rounded-[20px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors "
+            className="bg-secondary border border-[#A1A1A1] rounded-[20px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors "
           >
-            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-black mb-8 border-b  pb-4`}>{content.leftTitle}</span>
+            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-black mb-8 border-b border-[#A1A1A1] pb-4`}>{content.leftTitle}</span>
             <ul className="space-y-6">
               {content.problems.map((prob, i) => (
   <motion.li
@@ -228,11 +230,11 @@ const content =
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-secondary border border-primary/10 rounded-[20px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors "
+            className="bg-secondary border border-[#A1A1A1] rounded-[20px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors "
            >
             <div className="absolute top-0 right-0 w-64 h-64 bg-highlight/5 rounded-[20px] blur-3xl translate-x-1/3 -translate-y-1/3"></div>
             
-            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-primary mb-8 border-b border-primary/10 pb-4 relative z-10`}>{content.rightTitle}</span>
+            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-primary mb-8 border-b border-[#A1A1A1] pb-4 relative z-10`}>{content.rightTitle}</span>
             <ul className="space-y-6 relative z-10">
               {content.solutions.map((sol, i) => (
   <motion.li

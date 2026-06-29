@@ -52,7 +52,7 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
                   className="w-full cursor-pointer text-left px-6 py-5 flex items-center justify-between gap-4"
                   aria-expanded={isOpen}
                 >
-                  <span className={`font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] transition-colors ${
+                  <span className={`font-outfit font-[400]  text-[18px]  lg:text-[25px] leading-[1.2] transition-colors ${
                     isOpen ? "text-white" : "text-[#0a0a0a]"
                   }`}>
                     {item.question}
