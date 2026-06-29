@@ -180,7 +180,7 @@ const pageContent = {
       {
         icon: iconMap.target,
         value: "100%",
-        label: "White-Hat SEO Practices",
+        label: "White Hat SEO Practices",
       },
     ],
   },
@@ -318,7 +318,7 @@ font-[500]
             text-[#CACACA]
 
             font-[500]
-            uppercase
+           
             tracking-wider
           "
         >

@@ -97,19 +97,6 @@ const pageData =
   </div>
 </div>
 
-
-<div className="flex justify-center">
-  <button
-     onClick={() => {
-        document
-          .getElementById("contact-form")
-          ?.scrollIntoView({ behavior: "smooth" });
-      }}
-    className="py-[8px] px-[23px] rounded-[5px] cursor-pointer bg-[#F9B31B] border shadow-[2px_2px_0px_0px_#FFFFFF] text-black"
-  >
-    {pageData.cta}
-  </button>
-</div>
           </div>
         </div>
 
