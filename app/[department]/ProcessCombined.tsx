@@ -75,7 +75,7 @@ const pageContent: Record<string, any> = {
   "/paid-marketing": {
     title: (
       <>
-        Mumbai's Growth-Focused {" "}
+        Mumbai's Growth Focused {" "}
         <span className="text-highlight">
           Performance Marketing
         </span>{" "}

@@ -13,7 +13,7 @@ import SmoothScroll from '../components/SmoothScroll'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "About Bombay Blokes | Growth-Focused Digital Marketing Agency In Mumbai",
+  title: "About Bombay Blokes | Growth Focused Digital Marketing Agency In Mumbai",
   description: "We’re Bombay Blokes — a digital agency in Mumbai built for bold brands. Explore our journey, creative approach & proven strategies that drive traffic, leads & long-term success.",
 };
 
