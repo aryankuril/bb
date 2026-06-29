@@ -269,11 +269,18 @@ export default function DesktopNav() {
     </div>
             {/* HAMBURGER */}
             <div className="flex items-center gap-4">
-              <Button
-                href="/contactus"
-                text="Start Growing"
-                className="relative justify-center text-black font-semibold transition-colors"
-              />
+             {![
+  "/website-development",
+  "/paid-marketing",
+  "/social-media-marketing",
+  "/seo",
+].includes(pathname) && (
+  <Button
+    href="/contactus"
+    text="Start Growing"
+    className="relative justify-center text-black font-semibold transition-colors"
+  />
+)}
 
               <button
                 onClick={() => {

@@ -351,7 +351,7 @@ statCards: [
         {
           title: "Development",
           description:
-            "Clean, performant code built on modern frameworks — fast to ship and easy to scale.",
+            "Clean, performant code built on modern frameworks   fast to ship and easy to scale.",
           tags: ["Code", "CMS", "Performance"],
         },
         {
@@ -461,10 +461,7 @@ statCards: [
     value: "1M+",
     description: "Engagements",
   },
-  {
-    value: "500+",
-    description: "Campaigns Delivered",
-  },
+
 ],
       ctaBanner: {
         text: "Every post without a strategy is a missed opportunity to build real brand equity.",
@@ -598,7 +595,7 @@ statCards: [
       headline: "From clicks",
       highlightText: "to customers.",
       description:
-        "Anyone can get you clicks. We get you conversions — turning ad spend into real revenue, not vanity metrics. Every rupee tracked, every campaign optimised.",
+        "Anyone can get you clicks. We get you conversions   turning ad spend into real revenue, not vanity metrics. Every rupee tracked, every campaign optimised.",
       ctaText: "BOOK FREE AUDIT",
       ctaHref: "/contactus",
       badgeText: "Marketing, the result driven way",
@@ -685,7 +682,7 @@ statCards: [
         {
           title: "Creative",
           description:
-            "Ad creative — copy, visuals, and video — built to stop the scroll and drive the click.",
+            "Ad creative copy, visuals, and video built to stop the scroll and drive the click.",
           tags: ["Creative", "Copy", "Video"],
         },
         {

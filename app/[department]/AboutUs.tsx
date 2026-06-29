@@ -22,12 +22,12 @@ const pageContent = {
         <span className="text-[var(--color-highlight)]">
           Websites That Perform
         </span>{" "}
-         Not Just Websites That Exist.
+         Not Just Websites That Exist
       </>
     ),
 
     body: [
-      "Most agencies treat web development as a side service to their marketing work. We don't. Every website goes through structured planning, clean architecture, rigorous QA, and a dedicated project manager — so what you get isn't just a deliverable, it's a foundation built to scale with your business.",
+      "Most agencies treat web development as a side service to their marketing work. We don't. Every website goes through structured planning, clean architecture, rigorous QA, and a dedicated project manager   so what you get isn't just a deliverable, it's a foundation built to scale with your business.",
     ],
 
     cta: "Get Free Audit",
@@ -65,7 +65,7 @@ const pageContent = {
         <span className="text-[var(--color-highlight)]">
           Revenue
         </span>
-        , Not Just Reach.
+        , Not Just Reach
       </>
     ),
 
@@ -108,12 +108,12 @@ const pageContent = {
         <span className="text-[var(--color-highlight)]">
           Brands
         </span>
-        , Not Just Content Calendars.
+        , Not Just Content Calendars
       </>
     ),
 
     body: [
-      "Most agencies post content and call it a strategy. We don't. Every social media plan is built around audience research, platform-specific content, and active community management — backed by real ad-spend experience, not just creative templates.",
+      "Most agencies post content and call it a strategy. We don't. Every social media plan is built around audience research, platform-specific content, and active community management   backed by real ad-spend experience, not just creative templates.",
     ],
 
     cta: "Get Free Audit",
@@ -156,7 +156,7 @@ const pageContent = {
     ),
 
     body: [
-      "SEO isn't just about ranking on Google anymore. Every strategy we build includes technical audits, content built for search intent, and authority-building backlinks — plus structured data and content architecture designed for GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization), so your brand gets surfaced by AI tools like ChatGPT, Perplexity, and Google AI Overviews, not just buried on page two.",
+      "SEO isn't just about ranking on Google anymore. Every strategy we build includes technical audits, content built for search intent, and authority-building backlinks   plus structured data and content architecture designed for GEO (Generative Engine Optimization) and AEO (Answer Engine Optimization), so your brand gets surfaced by AI tools like ChatGPT, Perplexity, and Google AI Overviews, not just buried on page two.",
     ],
 
     cta: "Get Free Audit",

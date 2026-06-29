@@ -129,13 +129,13 @@ const testimonials = {
   },
   {
     brand: "The Feline Foundation",
-    text: "BB built The Feline Foundation's website and nailed the brief perfectly — warm, impactful, and nothing like a typical non-profit site. It drives real fundraising and volunteering results.",
+    text: "BB built The Feline Foundation's website and nailed the brief perfectly   warm, impactful, and nothing like a typical non-profit site. It drives real fundraising and volunteering results.",
     name: "~ Pallavi Kamath",
     maintext: "★★★★★ 5.0",
   },
   {
     brand: "Client Review",
-    text: "Incredible work on our website, especially the complex mascot animations. Patient, skilled team — highly recommend for anything creative and technical.",
+    text: "Incredible work on our website, especially the complex mascot animations. Patient, skilled team   highly recommend for anything creative and technical.",
     name: "~ Jash Chheda",
     maintext: "★★★★★ 5.0",
   },
