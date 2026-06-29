@@ -1029,7 +1029,7 @@ p-4 md:p-8 lg:p-10
       w-8 h-8
       lg:w-10 lg:h-10
 
-      rounded-full
+      rounded-[20px]
       border-2 border-[#F9B31B]
 
       flex items-center justify-center
@@ -1307,8 +1307,9 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)]
           <p>₹{totalEstimate.toLocaleString()}</p>
         </div>
 
-         <p className="text-[#1E1E1E] text-[13px] text-center font-[500] py-1">
-           Here What It Take to Build Your Vision
+         <p className="text-[#1E1E1E] text-[13px] text-center font-[500] py-1 ">
+           This is your starting Investment Guide final pricing depends on scope.
+
           </p>
 
       
@@ -1369,9 +1370,9 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)]
               
 
   <div className="w-full h-auto min-h-full rounded-[20px]
-border border-[#E8E4DD]
-bg-[#FCFAF7]
-shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hidden">
+border border-[var(--color-highlight)]
+bg-black
+shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-white relative overflow-hidden">
 
 
 
@@ -1394,7 +1395,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
   Get Expert Guidance for Your Project
 </a>
 
-   <p className=" max-w-2xl mb-4  subtitle text-black leading-relaxed">
+   <p className=" max-w-2xl mb-4  subtitle leading-relaxed">
            Expect a response within 24 hours.
           </p>
 
@@ -1412,7 +1413,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
      name="name" 
      value={formData.name}
       onChange={(e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value, })) }
-      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-black placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-black font-[13px] focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-white font-[13px] focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B] ${
         errors.name
@@ -1440,7 +1441,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
           [e.target.name]: e.target.value,
         }))
       }
-      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-black placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-black focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white  placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-white focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B]  ${
         errors.phone
@@ -1465,7 +1466,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
       name="email"
       value={formData.email}
       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-black placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-black focus:outline-none 
+      className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white  placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-white focus:outline-none 
       focus:ring-0 
       focus:border-[#F9B31B] ${
         errors.email
@@ -1495,7 +1496,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
         }))
       }
      
-            className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-black placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-black focus:outline-none 
+            className={`px-3 py-2 border-b bg-transparent lg:text-[16px] text-[13px] text-white  placeholder:!text-[13px] md:placeholder:!text-[16px] placeholder:text-white focus:outline-none 
 
       focus:ring-0 
       focus:border-[#F9B31B] ${
@@ -1520,7 +1521,7 @@ shadow-[0_20px_60px_rgba(0,0,0,0.06)] lg:p-8 p-4 text-black relative overflow-hi
   <button
     onClick={handleSubmit}
     className="py-[8px] px-[23px] rounded-[5px]  cursor-pointer bg-[#F9B31B]
-    border shadow-[2px_2px_0px_0px_#000000]  text-black "
+    border shadow-[2px_2px_0px_0px_#FFFFFF]  text-black "
   >
   {isSubmitting ? "Submitting..." : "Submit"}
   </button>

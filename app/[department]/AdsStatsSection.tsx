@@ -68,7 +68,7 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
         className={`
           bg-white
           border
-          border-[rgba(10,10,10,.07)]
+          
           rounded-[20px]
           lg:p-6 p-4
 
@@ -91,7 +91,7 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
           {card.value.replace(/[0-9,]/g, "")}
         </div>
 
-        <p className="lg:mt-3 mt-0 subtitle text-[#46463f]">
+        <p className=" subtitle text-[#46463f]">
           {parts.map((part, i) =>
             card.boldWord &&
             part.toLowerCase() === card.boldWord.toLowerCase() ? (
@@ -109,7 +109,7 @@ const AdsStatsSection = ({ content }: { content: StatsContent }) => {
 </div>
 
       {/* CTA banner */}
-      {/* <div className="mt-[18px] bg-[var(--color-primary)] rounded-[22px] p-6 sm:p-8 lg:p-9 flex flex-wrap gap-6 items-center justify-between">
+      {/* <div className="mt-[18px] bg-[var(--color-primary)] rounded-[20px] p-6 sm:p-8 lg:p-9 flex flex-wrap gap-6 items-center justify-between">
         <p className="font-['Poppins'] font-semibold text-[18px] sm:text-[22px] lg:text-[22px] leading-[1.35] text-white max-w-[720px]">
           {content.ctaBanner.text}
         </p>

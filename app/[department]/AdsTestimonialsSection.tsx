@@ -224,7 +224,7 @@ const AdsTestimonialsSection = () => {
             key={index}
             className="keen-slider__slide overflow-visible relative h-auto flex"
           >
-            <div className="flex flex-col justify-between min-h-[300px] sm:min-h-[320px] w-full bg-[#111] border border-[#222] hover:border-[var(--color-highlight)] shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 rounded-[24px] p-6 sm:p-8 relative overflow-hidden group ">
+            <div className="flex flex-col justify-between min-h-[300px] sm:min-h-[320px] w-full bg-black border border-[var(--color-highlight)] shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 rounded-[20px] p-6 sm:p-8 relative overflow-hidden group ">
               
               {/* Subtle gradient glow in the corner on hover */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-highlight)] opacity-0 group-hover:opacity-10 blur-[50px] transition-opacity duration-500 rounded-full z-0"></div>

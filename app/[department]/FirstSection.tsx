@@ -6,15 +6,15 @@ const pageContent = {
   "/website-development": {
     title: (
       <>
-         Design That {" "}
+          Get a Website{" "}
         <span className="text-highlight">
-         Speaks Before
+         That Sells 
         </span>{" "}
-        You Do.{" "}
+       Not Just One That Looks Good{" "}
         
       </>
     ),
-   subtitle: "Modern, responsive websites with intuitive UI/UX that engage users and drive business growth.",
+   subtitle: "Whether you run a D2C brand, a service business, or a retail store, see exactly what your website will cost and how it'll perform. Get your free audit below.",
     },
 
   "/social-media-marketing": {

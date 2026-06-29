@@ -190,9 +190,9 @@ const content =
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-red-50/50 border border-red-100 rounded-[30px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2"
+            className="bg-secondary border border-primary/10 rounded-[20px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors "
           >
-            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-black mb-8 border-b border-red-100 pb-4`}>{content.leftTitle}</span>
+            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-black mb-8 border-b  pb-4`}>{content.leftTitle}</span>
             <ul className="space-y-6">
               {content.problems.map((prob, i) => (
   <motion.li
@@ -211,7 +211,7 @@ const content =
           </motion.div>
 
           {/* ARROW */}
-          <div className="hidden lg:flex items-center justify-center -mx-4 z-10 bg-white p-4 rounded-full border border-primary/10 shadow-lg">
+          <div className="hidden lg:flex items-center justify-center -mx-4 z-10 bg-white p-4 rounded-[30px] border border-primary/10 ">
             <ArrowRight className="w-8 h-8 text-primary" />
           </div>
 
@@ -220,9 +220,9 @@ const content =
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-secondary border border-primary/10 rounded-[30px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors shadow-2xl shadow-primary/5"
+            className="bg-secondary border border-primary/10 rounded-[20px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors "
            >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-highlight/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-highlight/5 rounded-[20px] blur-3xl translate-x-1/3 -translate-y-1/3"></div>
             
             <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-primary mb-8 border-b border-primary/10 pb-4 relative z-10`}>{content.rightTitle}</span>
             <ul className="space-y-6 relative z-10">
@@ -235,7 +235,7 @@ const content =
     viewport={{ once: true }}
     className="flex items-center gap-4 text-primary font-[500] subtitle"
   >
-    <CheckCircle2 className="w-6 h-6 text-highlight flex-shrink-0" />
+    <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0" />
     {sol}
   </motion.li>
 ))}

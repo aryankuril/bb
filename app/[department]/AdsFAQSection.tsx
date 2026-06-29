@@ -14,7 +14,7 @@ const AdsFAQSection = ({ content }: { content: FAQContent }) => {
 
         {/* Left: sticky heading + CTA */}
         <div className="flex flex-col items-center text-center mx-auto">
-  <div className="inline-flex items-center gap-2 bg-[var(--color-primary)] rounded-full px-4 py-[9px] lg:mb-5 mb-3">
+  <div className="inline-flex items-center gap-2 bg-black rounded-full px-4 py-[9px] lg:mb-5 mb-3">
     <span className="w-[7px] h-[7px] rounded-full bg-[var(--color-highlight)] shrink-0" />
     <span className="font-['Poppins'] subtitle uppercase text-[var(--color-highlight)]">
       {content.eyebrow}

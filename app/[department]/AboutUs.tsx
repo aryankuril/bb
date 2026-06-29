@@ -15,8 +15,8 @@ export default function AboutUs() {
   return (
     <section className=" py-10 sm:py-15 lg:py-20 bg-black text-secondary relative overflow-hidden">
       {/* Background accents */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-highlight)]/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--color-highlight)]/5 rounded-[20px] blur-[100px] translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-[20px] blur-[100px] pxranslate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
       <div className=" container mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 lg:gap-16 gap-10 items-center">
         
@@ -72,11 +72,10 @@ export default function AboutUs() {
       viewport={{ once: true }}
       transition={{ delay: i * 0.1, duration: 0.5 }}
       className="
-        bg-secondary/5
-        border border-secondary/10
+        bg-secondary/5 border
+        border-[var(--color-highlight)]/40
         backdrop-blur-md
-
-        rounded-[20px] lg:rounded-[32px]
+        rounded-[20px]
 
         p-4 lg:p-8
 
@@ -93,7 +92,7 @@ export default function AboutUs() {
           w-10 h-10
           lg:w-14 lg:h-14
 
-          rounded-xl lg:rounded-2xl
+         rounded-[20px]
 
           bg-[var(--color-highlight)]/10
 

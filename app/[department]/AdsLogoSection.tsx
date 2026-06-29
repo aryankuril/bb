@@ -88,7 +88,7 @@ function LogoCard({ logo }: { logo: string }) {
       lg:w-[190px]
       lg:h-[100px]
 
-      rounded-2xl
+      rounded-[20px]
       border
       border-[#e8e8e8]
       bg-black

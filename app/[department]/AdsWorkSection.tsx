@@ -119,7 +119,7 @@ const AdsWorkSection = ({ content }: { content: WorkContent }) => {
                 <Link
                   key={i}
                   href={step.link}
-                  className={`col-span-1 ${colSpan} relative h-[220px] sm:h-[300px] md:h-[340px] rounded-[15px] overflow-hidden group`}
+                  className={`col-span-1 ${colSpan} relative h-[220px] sm:h-[300px] md:h-[340px] rounded-[20px] overflow-hidden group`}
                 >
                   <Image
                     width={1000}
