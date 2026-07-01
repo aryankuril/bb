@@ -1,5 +1,6 @@
 ﻿"use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import Button from "../Button";
 
 const SecondSection = () => {
@@ -189,23 +190,21 @@ const SecondSection = () => {
     "idle" | "success" | "error"
   >("idle");
 
-
   // Validation functions
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-const validatePhone = (phone: string): boolean => {
-  // Remove spaces, dashes, brackets etc before checking
-  const cleanedPhone = phone.replace(/[^0-9]/g, "");
+  const validatePhone = (phone: string): boolean => {
+    // Remove spaces, dashes, brackets etc before checking
+    const cleanedPhone = phone.replace(/[^0-9]/g, "");
 
-  // Must be exactly 10 digits and start with 6-9
-  const phoneRegex = /^[6-9][0-9]{9}$/;
+    // Must be exactly 10 digits and start with 6-9
+    const phoneRegex = /^[6-9][0-9]{9}$/;
 
-  return phoneRegex.test(cleanedPhone);
-};
-
+    return phoneRegex.test(cleanedPhone);
+  };
 
   const validateField = (name: string, value: string): string => {
     switch (name) {
@@ -213,11 +212,8 @@ const validatePhone = (phone: string): boolean => {
         if (!value.trim()) return "Name is required";
         if (value.trim().length < 2)
           return "Name must be at least 2 characters";
-        if (
-    typeof value === "string" &&
-    !/^[A-Za-z\s]+$/.test(value.trim())
-  )
-    return "Name can contain only letters (no numbers or special characters)";
+        if (typeof value === "string" && !/^[A-Za-z\s]+$/.test(value.trim()))
+          return "Name can contain only letters (no numbers or special characters)";
         return "";
       case "email":
         if (!value.trim()) return "Email is required";
@@ -236,7 +232,6 @@ const validatePhone = (phone: string): boolean => {
         return "";
     }
   };
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -283,68 +278,67 @@ const validatePhone = (phone: string): boolean => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const newErrors = {
-    name: validateField("name", formData.name),
-    email: validateField("email", formData.email),
-    phone: validateField("phone", formData.phone),
-    company: validateField("company", formData.company),
-    message: validateField("message", message),
-    services:
-      selectedServices.length === 0
-        ? "Please select at least one service"
-        : "",
+    const newErrors = {
+      name: validateField("name", formData.name),
+      email: validateField("email", formData.email),
+      phone: validateField("phone", formData.phone),
+      company: validateField("company", formData.company),
+      message: validateField("message", message),
+      services:
+        selectedServices.length === 0
+          ? "Please select at least one service"
+          : "",
+    };
+
+    setErrors(newErrors);
+
+    const hasErrors = Object.values(newErrors).some((e) => e !== "");
+    if (hasErrors) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company, // âœ… FIX HERE
+          message: message,
+          services: selectedServices,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to submit form");
+
+      setSubmitStatus("success");
+      // router.push("/thank-you");
+
+      setFormData({ name: "", email: "", phone: "", company: "" });
+      setMessage("");
+      setSelectedServices([]);
+      setErrors({
+        name: "",
+        email: "",
+        phone: "",
+        // company: "",
+        services: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
-
-  setErrors(newErrors);
-
-  const hasErrors = Object.values(newErrors).some((e) => e !== "");
-  if (hasErrors) return;
-
-  setIsSubmitting(true);
-  setSubmitStatus("idle");
-
-  try {
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        company: formData.company, // âœ… FIX HERE
-        message: message,
-        services: selectedServices,
-      }),
-    });
-
-    if (!response.ok) throw new Error("Failed to submit form");
-
-    setSubmitStatus("success");
-    // router.push("/thank-you");
-
-    setFormData({ name: "", email: "", phone: "", company: "" });
-    setMessage("");
-    setSelectedServices([]);
-    setErrors({
-      name: "",
-      email: "",
-      phone: "",
-      // company: "",
-      services: "",
-      message: "",
-    });
-  } catch (error) {
-    console.error("Form submission error:", error);
-    setSubmitStatus("error");
-  } finally {
-    setIsSubmitting(false);
-  }
-};
-
 
   // fieldValue is a string (or undefined/null if empty), fieldFocused is boolean
   const getIconColor = (
@@ -362,301 +356,361 @@ const validatePhone = (phone: string): boolean => {
             Connect <span className="text-highlight">With Us</span>
           </h2>
         </div>
-        {/* FORM CARD (centered) */}
-        <div className="max-w-3xl mx-auto bg-transparent rounded-lg relative">
-          <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Name & Brand */}
+        <div className="mx-auto grid max-w-6xl items-stretch gap-8 lg:grid-cols-[minmax(280px,0.85fr)_minmax(0,1.15fr)]">
+          <div className="relative min-h-[520px] overflow-hidden rounded-[16px] bg-white/5 lg:min-h-full">
+            <Image
+              src="/images/panipuricart1.png"
+              alt="Pani puri cart illustration"
+              fill
+              sizes="(min-width: 1024px) 38vw, 100vw"
+              className="object-cover object-center"
+            />
+          </div>
 
-            <div className="relative w-full h-auto min-h-[200px]">
+          {/* FORM CARD */}
+          <div className="bg-transparent rounded-lg relative mr-2">
+            <form onSubmit={handleSubmit} className="space-y-0">
+              {/* Name & Brand */}
 
-  <div className="w-full">
-              <h3 className="text-left text-lg white-text py-7">Tell Us About You</h3>
+              <div className="relative w-full h-auto min-h-[200px]">
+                <div className="w-full">
+                  <h3 className="text-left text-lg white-text">
+                    Tell Us About You
+                  </h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-                {/* Full Name */}
-                <div>
-                  {/* <label className="block white-text body3 mb-2">Your Full Name</label> */}
-                  <div className="relative">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Your Full Name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      onFocus={() => handleFocus && handleFocus("name")}
-                      onBlur={() => handleBlur && handleBlur("name")}
-                      className={`w-full px-7 py-3 bg-transparent border-b-2 ${errors.name ? "border-b-red-500" : "border-b-[var(--color-highlight)]"} outline-none white-text`}
-                    />
-
-                  <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill={getIconColor(formData.name, focused.name)} // changes color when typing
-                  >
-                    <path
-                      d="M11.8295 11.5609C13.4177 11.5609 14.7928 10.9913 15.9167 9.86735C17.0403 8.74364 17.6101 7.3687 17.6101 5.78026C17.6101 4.19237 17.0405 2.81726 15.9166 1.69317C14.7927 0.56964 13.4175 0 11.8295 0C10.241 0 8.86609 0.56964 7.74237 1.69336C6.61865 2.81707 6.04883 4.19219 6.04883 5.78026C6.04883 7.3687 6.61865 8.74382 7.74237 9.86753C8.86646 10.9911 10.2416 11.5609 11.8295 11.5609ZM8.737 2.6878C9.59924 1.82556 10.6107 1.40643 11.8295 1.40643C13.048 1.40643 14.0597 1.82556 14.9221 2.6878C15.7844 3.55023 16.2037 4.56188 16.2037 5.78026C16.2037 6.99901 15.7844 8.01048 14.9221 8.87291C14.0597 9.73533 13.048 10.1545 11.8295 10.1545C10.6111 10.1545 9.59961 9.73515 8.737 8.87291C7.87457 8.01067 7.45526 6.99901 7.45526 5.78026C7.45526 4.56188 7.87457 3.55023 8.737 2.6878Z"
-                      fill={getIconColor(formData.name, focused.name)}
-                    />
-                    <path
-                      d="M21.9435 18.4548C21.9111 17.9871 21.8456 17.477 21.7491 16.9383C21.6517 16.3956 21.5262 15.8825 21.3761 15.4136C21.2208 14.9289 21.0101 14.4503 20.7491 13.9916C20.4787 13.5155 20.1608 13.101 19.8041 12.7599C19.4312 12.403 18.9745 12.1161 18.4464 11.9068C17.9202 11.6986 17.337 11.5931 16.7131 11.5931C16.4681 11.5931 16.2312 11.6936 15.7736 11.9916C15.492 12.1752 15.1626 12.3876 14.7949 12.6225C14.4805 12.8229 14.0546 13.0105 13.5286 13.1805C13.0153 13.3465 12.4942 13.4308 11.9797 13.4308C11.4655 13.4308 10.9444 13.3465 10.4308 13.1805C9.90527 13.0107 9.47919 12.823 9.16534 12.6227C8.80115 12.39 8.47156 12.1776 8.18573 11.9914C7.72852 11.6935 7.49158 11.5929 7.24658 11.5929C6.62256 11.5929 6.03955 11.6986 5.51349 11.907C4.98578 12.1159 4.52893 12.4028 4.15558 12.76C3.79889 13.1014 3.48102 13.5157 3.21075 13.9916C2.9502 14.4503 2.73926 14.9287 2.58398 15.4138C2.43402 15.8827 2.30859 16.3956 2.21118 16.9383C2.1145 17.4763 2.04913 17.9866 2.01672 18.4553C1.98486 18.9137 1.96875 19.3906 1.96875 19.8726C1.96875 21.1254 2.367 22.1396 3.15234 22.8876C3.92798 23.6257 4.9541 24 6.20233 24H17.7585C19.0063 24 20.0325 23.6257 20.8083 22.8876C21.5938 22.1402 21.9921 21.1256 21.9921 19.8724C21.9919 19.3888 21.9756 18.9118 21.9435 18.4548Z"
-                      fill={getIconColor(formData.name, focused.name)}
-                    />
-                  </svg>
-                </div>
-                  </div>
-                  {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
-                </div>
-
-                {/* Company / Brand */}
-                <div>
-                  {/* <label className="block white-text body3 mb-2">Your Company / Brand Name</label> */}
-                  <div className="relative">
-                    <input
-                      type="text"
-                      name="company"
-                      placeholder="Your Company / Brand Name"
-                      value={formData.company}
-                      onChange={handleChange}
-                      onFocus={() => handleFocus && handleFocus("company")}
-                      onBlur={() => handleBlur && handleBlur("company")}
-                      className={`w-full px-7 py-3 bg-transparent border-b-2 outline-none white-text border-b-[var(--color-highlight)]`}
-                    />
-                      <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
-                  <svg
-    id="fi_4300058"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 512 512"
-    width="20"
-    height="20"
-    fill={getIconColor(formData.company, focused.company)}
-  >
-    <g>
-      <path
-        d="m462.742 381.745c-3.997.047-3.558-.147-8.872.225v-124.321c0-13.305-10.825-24.13-24.13-24.13h-60.92c-.033 0-.064-.005-.097-.005h-70.152v-187.285l57.535 55.615c3.252 3.144 5.117 7.54 5.117 12.063v91.754c0 4.142 3.358 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-91.754c0-8.566-3.532-16.894-9.692-22.848l-70.248-67.903c-1.579-1.482-4.605-2.812-7.602-1.717l-126.021 42.36v-29.2c.095-12.759-11.353-23.864-24.67-23.09-12.737 0-23.1 10.358-23.1 23.09v45.257l-32.971 11.083c-12.951 4.354-21.653 16.458-21.653 30.122v260.725c-33.375.855-60.266 28.251-60.266 61.828v38.138c0 10.354 8.423 18.776 18.776 18.776h474.447c10.354 0 18.776-8.423 18.776-18.776v-50.75c.001-27.16-22.096-49.257-49.257-49.257zm0 15c18.89 0 34.258 15.368 34.258 34.258v7.868h-72.75v-7.868c.017-20.501 18.03-36.034 38.492-34.258zm-23.872-139.096v128.191c-17.414 7.602-29.62 24.979-29.62 45.162v7.868h-110.679v-190.351h131.169c5.034 0 9.13 4.096 9.13 9.13zm-308.98-223.05c0-4.461 3.634-8.09 8.1-8.09 4.011-.589 9.412 2.556 9.67 8.09v34.242l-17.77 5.973zm-69.623 362.173v42.099h-45.029c2.333-23.102 21.512-41.305 45.029-42.099zm-45.267 84.981v-27.882h45.267v31.658h-41.49c-2.083 0-3.777-1.694-3.777-3.776zm60.267-360.692c0-7.214 4.594-13.604 11.432-15.903l196.873-66.176v40.865l-163.572 54.983c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.792-53.375v38.155l-163.572 54.982c-3.926 1.32-6.039 5.573-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.792-53.376v38.155l-163.572 54.983c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.792-53.375v37.358c0 .01-.001.019-.001.029v.769l-163.571 54.981c-3.926 1.32-6.039 5.573-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.79-53.376v38.156l-102.137 34.332c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l97.357-32.726v173.936h-64.792v-77.933c0-5.108-2.334-9.81-6.403-12.898s-9.225-4.072-14.145-2.698l-69.807 19.488c-7.967 2.224-13.531 9.554-13.531 17.826v56.215h-39.625zm54.625 308.253c0-1.568 1.055-2.957 2.564-3.379l26.878-7.504v67.098h-29.443v-56.215zm44.442 56.215v-71.286l27.929-7.797c.377-.106.729-.04 1.042.199.313.238.472.558.472.951v77.933zm124.237 0v-31.658h110.679v31.658zm198.429-3.776c0 2.083-1.694 3.776-3.776 3.776h-68.974v-31.658h72.75z"
-        fill={getIconColor(formData.company, focused.company)}
-      />
-      <path
-        d="m122.389 365.361c.792 0 1.598-.126 2.391-.393l27.846-9.36c3.926-1.319 6.039-5.572 4.719-9.499s-5.573-6.041-9.499-4.719l-27.846 9.36c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.133 3.975 5.112 7.108 5.112z"
-        fill={getIconColor(formData.company, focused.company)}
-      />
-      <path
-        d="m331.417 310.379h73.551c6.975 0 12.649-5.674 12.649-12.648v-18.053c0-6.975-5.674-12.649-12.649-12.649h-73.551c-6.975 0-12.648 5.674-12.648 12.649v18.053c0 6.974 5.674 12.648 12.648 12.648zm2.352-28.35h68.848v13.35h-68.848z"
-        fill={getIconColor(formData.company, focused.company)}
-      />
-      <path
-        d="m331.417 367.409h73.551c6.975 0 12.649-5.674 12.649-12.649v-18.053c0-6.975-5.674-12.648-12.649-12.648h-73.551c-6.975 0-12.648 5.674-12.648 12.648v18.053c0 6.975 5.674 12.649 12.648 12.649zm2.352-28.35h68.848v13.35h-68.848z"
-        fill={getIconColor(formData.company, focused.company)}
-      />
-      <path
-        d="m331.417 425.022h24.328c6.975 0 12.649-5.674 12.649-12.648v-18.053c0-6.975-5.674-12.649-12.649-12.649h-24.328c-6.975 0-12.648 5.674-12.648 12.649v18.053c0 6.974 5.674 12.648 12.648 12.648zm2.352-28.35h19.625v13.35h-19.625z"
-        fill={getIconColor(formData.company, focused.company)}
-      />
-    </g>
-  </svg>
-                </div>
-                  </div>
-                  {/* {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>} */}
-                </div>
-              </div>
-            </div>
-
-            {/* Phone & Email */}
-          
-<div className="w-full">
-              <h3 className="text-left text-lg white-text py-7 ">Where we can contact you</h3>
-
-  <div className="grid grid-cols-1 gap-6">
-
-    {/* PHONE */}
-    <div className="relative">
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone"
-        value={formData.phone}
-        onChange={handleChange}
-        onFocus={() => handleFocus && handleFocus("phone")}
-        onBlur={() => handleBlur && handleBlur("phone")}
-        className={`w-full px-7 py-3 bg-transparent border-b-2 ${
-          errors.phone
-            ? "border-b-red-500"
-            : "border-b-[var(--color-highlight)]"
-        } outline-none white-text`}
-      />
-
-        <div className="absolute left-0 top-[14px] pointer-events-none">
-       <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 25"
-                    fill={getIconColor(formData.phone, focused.phone)}
-                  >
-                    <g clipPath="url(#clip0_2217_5654)">
-                      <path
-                        d="M4.89005 16.4536C7.25722 19.2833 10.1068 21.5112 13.3592 23.0877C14.5975 23.6745 16.2535 24.3707 18.0985 24.4901C18.2129 24.495 18.3223 24.5 18.4367 24.5C19.675 24.5 20.6696 24.0723 21.4802 23.1921C21.4852 23.1871 21.4951 23.1772 21.5001 23.1672C21.7885 22.8191 22.1167 22.5058 22.4599 22.1726C22.6936 21.9488 22.9323 21.7151 23.1611 21.4764C24.2203 20.3724 24.2203 18.97 23.1511 17.9007L20.1623 14.9119C19.6551 14.3848 19.0484 14.1063 18.4118 14.1063C17.7753 14.1063 17.1636 14.3848 16.6414 14.907L14.861 16.6873C14.6969 16.5928 14.5278 16.5083 14.3687 16.4287C14.1698 16.3293 13.9858 16.2348 13.8217 16.1303C12.2004 15.1009 10.7284 13.7582 9.32105 12.0325C8.6099 11.1324 8.13248 10.3765 7.79929 9.60568C8.26676 9.18297 8.70439 8.74037 9.1271 8.30771C9.27629 8.15354 9.43045 7.99938 9.58462 7.84521C10.1217 7.30812 10.4101 6.68649 10.4101 6.05491C10.4101 5.42333 10.1267 4.8017 9.58462 4.26461L8.10264 2.78264C7.92859 2.60858 7.76448 2.43949 7.59539 2.26544C7.26717 1.92727 6.92403 1.57915 6.58586 1.26585C6.07364 0.763572 5.4719 0.5 4.83534 0.5C4.20376 0.5 3.59705 0.763572 3.06493 1.27082L1.20501 3.13075C0.528671 3.80709 0.145745 4.62764 0.0661763 5.5775C-0.0283119 6.76606 0.190503 8.02922 0.757432 9.55595C1.62772 11.9182 2.94061 14.1113 4.89005 16.4536ZM1.2796 5.68193C1.33928 5.02051 1.59291 4.4685 2.07032 3.99109L3.9203 2.14111C4.20874 1.86262 4.52701 1.7184 4.83534 1.7184C5.1387 1.7184 5.44703 1.86262 5.73049 2.15106C6.06369 2.45939 6.37699 2.78264 6.71516 3.12578C6.88425 3.29983 7.0583 3.47389 7.23236 3.65292L8.71433 5.13489C9.02266 5.44322 9.1818 5.75653 9.1818 6.06486C9.1818 6.37319 9.02266 6.68649 8.71433 6.99482C8.56017 7.14898 8.406 7.30812 8.25184 7.46229C7.78934 7.92976 7.35669 8.37236 6.87927 8.79507C6.86933 8.80501 6.86435 8.80999 6.85441 8.81993C6.44164 9.2327 6.50629 9.62557 6.60575 9.92395C6.61073 9.93887 6.6157 9.94882 6.62067 9.96374C7.0036 10.8838 7.53572 11.759 8.36622 12.8034C9.85814 14.6434 11.4296 16.0707 13.1602 17.1697C13.3741 17.309 13.6029 17.4184 13.8167 17.5278C14.0156 17.6272 14.1996 17.7217 14.3637 17.8261C14.3836 17.8361 14.3985 17.846 14.4184 17.856C14.5825 17.9405 14.7417 17.9803 14.9008 17.9803C15.2987 17.9803 15.5573 17.7267 15.6418 17.6421L17.5017 15.7822C17.7902 15.4938 18.1035 15.3396 18.4118 15.3396C18.7898 15.3396 19.0981 15.5734 19.292 15.7822L22.2908 18.776C22.8876 19.3728 22.8826 20.0193 22.2759 20.6509C22.067 20.8746 21.8482 21.0885 21.6145 21.3123C21.2663 21.6504 20.9033 21.9986 20.5751 22.3914C20.0032 23.0081 19.3219 23.2965 18.4416 23.2965C18.3571 23.2965 18.2676 23.2915 18.183 23.2866C16.5519 23.1821 15.0351 22.5456 13.8963 22.0035C10.803 20.5066 8.08773 18.3831 5.83493 15.6877C3.97998 13.4548 2.73174 11.3761 1.90621 9.14816C1.39398 7.78056 1.20003 6.68152 1.2796 5.68193Z"
-                        fill={getIconColor(formData.phone, focused.phone)}
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_2217_5654">
-                        <rect
-                          width="24"
-                          height="24"
-                          fill="white"
-                          transform="translate(0 0.5)"
+                  <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
+                    {/* Full Name */}
+                    <div>
+                      {/* <label className="block white-text body3 mb-2">Your Full Name</label> */}
+                      <div className="relative">
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder="Your Full Name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          onFocus={() => handleFocus && handleFocus("name")}
+                          onBlur={() => handleBlur && handleBlur("name")}
+                          className={`w-full px-7 py-3 bg-transparent border-b-2 ${
+                            errors.name
+                              ? "border-b-red-500"
+                              : "border-b-[var(--color-highlight)]"
+                          } outline-none white-text`}
                         />
-                      </clipPath>
-                    </defs>
-                  </svg>
-      </div>
 
-      {errors.phone && (
-        <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
-      )}
-    </div>
+                        <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill={getIconColor(formData.name, focused.name)} // changes color when typing
+                          >
+                            <path
+                              d="M11.8295 11.5609C13.4177 11.5609 14.7928 10.9913 15.9167 9.86735C17.0403 8.74364 17.6101 7.3687 17.6101 5.78026C17.6101 4.19237 17.0405 2.81726 15.9166 1.69317C14.7927 0.56964 13.4175 0 11.8295 0C10.241 0 8.86609 0.56964 7.74237 1.69336C6.61865 2.81707 6.04883 4.19219 6.04883 5.78026C6.04883 7.3687 6.61865 8.74382 7.74237 9.86753C8.86646 10.9911 10.2416 11.5609 11.8295 11.5609ZM8.737 2.6878C9.59924 1.82556 10.6107 1.40643 11.8295 1.40643C13.048 1.40643 14.0597 1.82556 14.9221 2.6878C15.7844 3.55023 16.2037 4.56188 16.2037 5.78026C16.2037 6.99901 15.7844 8.01048 14.9221 8.87291C14.0597 9.73533 13.048 10.1545 11.8295 10.1545C10.6111 10.1545 9.59961 9.73515 8.737 8.87291C7.87457 8.01067 7.45526 6.99901 7.45526 5.78026C7.45526 4.56188 7.87457 3.55023 8.737 2.6878Z"
+                              fill={getIconColor(formData.name, focused.name)}
+                            />
+                            <path
+                              d="M21.9435 18.4548C21.9111 17.9871 21.8456 17.477 21.7491 16.9383C21.6517 16.3956 21.5262 15.8825 21.3761 15.4136C21.2208 14.9289 21.0101 14.4503 20.7491 13.9916C20.4787 13.5155 20.1608 13.101 19.8041 12.7599C19.4312 12.403 18.9745 12.1161 18.4464 11.9068C17.9202 11.6986 17.337 11.5931 16.7131 11.5931C16.4681 11.5931 16.2312 11.6936 15.7736 11.9916C15.492 12.1752 15.1626 12.3876 14.7949 12.6225C14.4805 12.8229 14.0546 13.0105 13.5286 13.1805C13.0153 13.3465 12.4942 13.4308 11.9797 13.4308C11.4655 13.4308 10.9444 13.3465 10.4308 13.1805C9.90527 13.0107 9.47919 12.823 9.16534 12.6227C8.80115 12.39 8.47156 12.1776 8.18573 11.9914C7.72852 11.6935 7.49158 11.5929 7.24658 11.5929C6.62256 11.5929 6.03955 11.6986 5.51349 11.907C4.98578 12.1159 4.52893 12.4028 4.15558 12.76C3.79889 13.1014 3.48102 13.5157 3.21075 13.9916C2.9502 14.4503 2.73926 14.9287 2.58398 15.4138C2.43402 15.8827 2.30859 16.3956 2.21118 16.9383C2.1145 17.4763 2.04913 17.9866 2.01672 18.4553C1.98486 18.9137 1.96875 19.3906 1.96875 19.8726C1.96875 21.1254 2.367 22.1396 3.15234 22.8876C3.92798 23.6257 4.9541 24 6.20233 24H17.7585C19.0063 24 20.0325 23.6257 20.8083 22.8876C21.5938 22.1402 21.9921 21.1256 21.9921 19.8724C21.9919 19.3888 21.9756 18.9118 21.9435 18.4548Z"
+                              fill={getIconColor(formData.name, focused.name)}
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      {errors.name && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.name}
+                        </p>
+                      )}
+                    </div>
 
-    {/* EMAIL */}
-    <div className="relative">
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-        onFocus={() => handleFocus && handleFocus("email")}
-        onBlur={() => handleBlur && handleBlur("email")}
-        className={`w-full px-7 py-3 bg-transparent border-b-2 ${
-          errors.email
-            ? "border-b-red-500"
-            : "border-b-[var(--color-highlight)]"
-        } outline-none white-text`}
-      />
+                    {/* Company / Brand */}
+                    <div>
+                      {/* <label className="block white-text body3 mb-2">Your Company / Brand Name</label> */}
+                      <div className="relative">
+                        <input
+                          type="text"
+                          name="company"
+                          placeholder="Your Company / Brand Name"
+                          value={formData.company}
+                          onChange={handleChange}
+                          onFocus={() => handleFocus && handleFocus("company")}
+                          onBlur={() => handleBlur && handleBlur("company")}
+                          className={`w-full px-7 py-3 bg-transparent border-b-2 outline-none white-text border-b-[var(--color-highlight)]`}
+                        />
+                        <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
+                          <svg
+                            id="fi_4300058"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"
+                            width="20"
+                            height="20"
+                            fill={getIconColor(
+                              formData.company,
+                              focused.company
+                            )}
+                          >
+                            <g>
+                              <path
+                                d="m462.742 381.745c-3.997.047-3.558-.147-8.872.225v-124.321c0-13.305-10.825-24.13-24.13-24.13h-60.92c-.033 0-.064-.005-.097-.005h-70.152v-187.285l57.535 55.615c3.252 3.144 5.117 7.54 5.117 12.063v91.754c0 4.142 3.358 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-91.754c0-8.566-3.532-16.894-9.692-22.848l-70.248-67.903c-1.579-1.482-4.605-2.812-7.602-1.717l-126.021 42.36v-29.2c.095-12.759-11.353-23.864-24.67-23.09-12.737 0-23.1 10.358-23.1 23.09v45.257l-32.971 11.083c-12.951 4.354-21.653 16.458-21.653 30.122v260.725c-33.375.855-60.266 28.251-60.266 61.828v38.138c0 10.354 8.423 18.776 18.776 18.776h474.447c10.354 0 18.776-8.423 18.776-18.776v-50.75c.001-27.16-22.096-49.257-49.257-49.257zm0 15c18.89 0 34.258 15.368 34.258 34.258v7.868h-72.75v-7.868c.017-20.501 18.03-36.034 38.492-34.258zm-23.872-139.096v128.191c-17.414 7.602-29.62 24.979-29.62 45.162v7.868h-110.679v-190.351h131.169c5.034 0 9.13 4.096 9.13 9.13zm-308.98-223.05c0-4.461 3.634-8.09 8.1-8.09 4.011-.589 9.412 2.556 9.67 8.09v34.242l-17.77 5.973zm-69.623 362.173v42.099h-45.029c2.333-23.102 21.512-41.305 45.029-42.099zm-45.267 84.981v-27.882h45.267v31.658h-41.49c-2.083 0-3.777-1.694-3.777-3.776zm60.267-360.692c0-7.214 4.594-13.604 11.432-15.903l196.873-66.176v40.865l-163.572 54.983c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.792-53.375v38.155l-163.572 54.982c-3.926 1.32-6.039 5.573-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.792-53.376v38.155l-163.572 54.983c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.792-53.375v37.358c0 .01-.001.019-.001.029v.769l-163.571 54.981c-3.926 1.32-6.039 5.573-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l158.79-53.376v38.156l-102.137 34.332c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.134 3.975 5.112 7.108 5.112.792 0 1.598-.126 2.391-.393l97.357-32.726v173.936h-64.792v-77.933c0-5.108-2.334-9.81-6.403-12.898s-9.225-4.072-14.145-2.698l-69.807 19.488c-7.967 2.224-13.531 9.554-13.531 17.826v56.215h-39.625zm54.625 308.253c0-1.568 1.055-2.957 2.564-3.379l26.878-7.504v67.098h-29.443v-56.215zm44.442 56.215v-71.286l27.929-7.797c.377-.106.729-.04 1.042.199.313.238.472.558.472.951v77.933zm124.237 0v-31.658h110.679v31.658zm198.429-3.776c0 2.083-1.694 3.776-3.776 3.776h-68.974v-31.658h72.75z"
+                                fill={getIconColor(
+                                  formData.company,
+                                  focused.company
+                                )}
+                              />
+                              <path
+                                d="m122.389 365.361c.792 0 1.598-.126 2.391-.393l27.846-9.36c3.926-1.319 6.039-5.572 4.719-9.499s-5.573-6.041-9.499-4.719l-27.846 9.36c-3.926 1.319-6.039 5.572-4.719 9.499 1.053 3.133 3.975 5.112 7.108 5.112z"
+                                fill={getIconColor(
+                                  formData.company,
+                                  focused.company
+                                )}
+                              />
+                              <path
+                                d="m331.417 310.379h73.551c6.975 0 12.649-5.674 12.649-12.648v-18.053c0-6.975-5.674-12.649-12.649-12.649h-73.551c-6.975 0-12.648 5.674-12.648 12.649v18.053c0 6.974 5.674 12.648 12.648 12.648zm2.352-28.35h68.848v13.35h-68.848z"
+                                fill={getIconColor(
+                                  formData.company,
+                                  focused.company
+                                )}
+                              />
+                              <path
+                                d="m331.417 367.409h73.551c6.975 0 12.649-5.674 12.649-12.649v-18.053c0-6.975-5.674-12.648-12.649-12.648h-73.551c-6.975 0-12.648 5.674-12.648 12.648v18.053c0 6.975 5.674 12.649 12.648 12.649zm2.352-28.35h68.848v13.35h-68.848z"
+                                fill={getIconColor(
+                                  formData.company,
+                                  focused.company
+                                )}
+                              />
+                              <path
+                                d="m331.417 425.022h24.328c6.975 0 12.649-5.674 12.649-12.648v-18.053c0-6.975-5.674-12.649-12.649-12.649h-24.328c-6.975 0-12.648 5.674-12.648 12.649v18.053c0 6.974 5.674 12.648 12.648 12.648zm2.352-28.35h19.625v13.35h-19.625z"
+                                fill={getIconColor(
+                                  formData.company,
+                                  focused.company
+                                )}
+                              />
+                            </g>
+                          </svg>
+                        </div>
+                      </div>
+                      {/* {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>} */}
+                    </div>
+                  </div>
+                </div>
 
-        <div className="absolute left-0 top-[14px] pointer-events-none">
-       <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 25"
-                    fill={getIconColor(formData.email, focused.email)}
-                  >
-                    <path
-                      d="M21.8906 4.0625H2.10938C0.943922 4.0625 0 5.01228 0 6.17188V18.8281C0 19.9946 0.950859 20.9375 2.10938 20.9375H21.8906C23.0463 20.9375 24 19.9986 24 18.8281V6.17188C24 5.01434 23.0598 4.0625 21.8906 4.0625ZM21.5952 5.46875C21.1642 5.89742 13.7476 13.275 13.4916 13.5297C13.0931 13.9281 12.5634 14.1475 12 14.1475C11.4366 14.1475 10.9069 13.9281 10.5071 13.5284C10.3349 13.3571 3.00014 6.06097 2.40478 5.46875H21.5952ZM1.40625 18.5419V6.45898L7.48303 12.5037L1.40625 18.5419ZM2.40567 19.5312L8.48006 13.4955L9.51408 14.5241C10.1781 15.1881 11.061 15.5538 12 15.5538C12.939 15.5538 13.8219 15.1881 14.4846 14.5254L15.5199 13.4955L21.5943 19.5312H2.40567ZM22.5938 18.5419L16.517 12.5037L22.5938 6.45898V18.5419Z"
-                      fill={getIconColor(formData.email, focused.email)}
+                {/* Phone & Email */}
+
+                <div className="w-full">
+                  <h3 className="text-left text-lg white-text mt-5">
+                    Where we can contact you
+                  </h3>
+
+                  <div className="grid grid-cols-1 gap-2">
+                    {/* PHONE */}
+                    <div className="relative">
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus && handleFocus("phone")}
+                        onBlur={() => handleBlur && handleBlur("phone")}
+                        className={`w-full px-7 py-3 bg-transparent border-b-2 ${
+                          errors.phone
+                            ? "border-b-red-500"
+                            : "border-b-[var(--color-highlight)]"
+                        } outline-none white-text`}
+                      />
+
+                      <div className="absolute left-0 top-[14px] pointer-events-none">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 25"
+                          fill={getIconColor(formData.phone, focused.phone)}
+                        >
+                          <g clipPath="url(#clip0_2217_5654)">
+                            <path
+                              d="M4.89005 16.4536C7.25722 19.2833 10.1068 21.5112 13.3592 23.0877C14.5975 23.6745 16.2535 24.3707 18.0985 24.4901C18.2129 24.495 18.3223 24.5 18.4367 24.5C19.675 24.5 20.6696 24.0723 21.4802 23.1921C21.4852 23.1871 21.4951 23.1772 21.5001 23.1672C21.7885 22.8191 22.1167 22.5058 22.4599 22.1726C22.6936 21.9488 22.9323 21.7151 23.1611 21.4764C24.2203 20.3724 24.2203 18.97 23.1511 17.9007L20.1623 14.9119C19.6551 14.3848 19.0484 14.1063 18.4118 14.1063C17.7753 14.1063 17.1636 14.3848 16.6414 14.907L14.861 16.6873C14.6969 16.5928 14.5278 16.5083 14.3687 16.4287C14.1698 16.3293 13.9858 16.2348 13.8217 16.1303C12.2004 15.1009 10.7284 13.7582 9.32105 12.0325C8.6099 11.1324 8.13248 10.3765 7.79929 9.60568C8.26676 9.18297 8.70439 8.74037 9.1271 8.30771C9.27629 8.15354 9.43045 7.99938 9.58462 7.84521C10.1217 7.30812 10.4101 6.68649 10.4101 6.05491C10.4101 5.42333 10.1267 4.8017 9.58462 4.26461L8.10264 2.78264C7.92859 2.60858 7.76448 2.43949 7.59539 2.26544C7.26717 1.92727 6.92403 1.57915 6.58586 1.26585C6.07364 0.763572 5.4719 0.5 4.83534 0.5C4.20376 0.5 3.59705 0.763572 3.06493 1.27082L1.20501 3.13075C0.528671 3.80709 0.145745 4.62764 0.0661763 5.5775C-0.0283119 6.76606 0.190503 8.02922 0.757432 9.55595C1.62772 11.9182 2.94061 14.1113 4.89005 16.4536ZM1.2796 5.68193C1.33928 5.02051 1.59291 4.4685 2.07032 3.99109L3.9203 2.14111C4.20874 1.86262 4.52701 1.7184 4.83534 1.7184C5.1387 1.7184 5.44703 1.86262 5.73049 2.15106C6.06369 2.45939 6.37699 2.78264 6.71516 3.12578C6.88425 3.29983 7.0583 3.47389 7.23236 3.65292L8.71433 5.13489C9.02266 5.44322 9.1818 5.75653 9.1818 6.06486C9.1818 6.37319 9.02266 6.68649 8.71433 6.99482C8.56017 7.14898 8.406 7.30812 8.25184 7.46229C7.78934 7.92976 7.35669 8.37236 6.87927 8.79507C6.86933 8.80501 6.86435 8.80999 6.85441 8.81993C6.44164 9.2327 6.50629 9.62557 6.60575 9.92395C6.61073 9.93887 6.6157 9.94882 6.62067 9.96374C7.0036 10.8838 7.53572 11.759 8.36622 12.8034C9.85814 14.6434 11.4296 16.0707 13.1602 17.1697C13.3741 17.309 13.6029 17.4184 13.8167 17.5278C14.0156 17.6272 14.1996 17.7217 14.3637 17.8261C14.3836 17.8361 14.3985 17.846 14.4184 17.856C14.5825 17.9405 14.7417 17.9803 14.9008 17.9803C15.2987 17.9803 15.5573 17.7267 15.6418 17.6421L17.5017 15.7822C17.7902 15.4938 18.1035 15.3396 18.4118 15.3396C18.7898 15.3396 19.0981 15.5734 19.292 15.7822L22.2908 18.776C22.8876 19.3728 22.8826 20.0193 22.2759 20.6509C22.067 20.8746 21.8482 21.0885 21.6145 21.3123C21.2663 21.6504 20.9033 21.9986 20.5751 22.3914C20.0032 23.0081 19.3219 23.2965 18.4416 23.2965C18.3571 23.2965 18.2676 23.2915 18.183 23.2866C16.5519 23.1821 15.0351 22.5456 13.8963 22.0035C10.803 20.5066 8.08773 18.3831 5.83493 15.6877C3.97998 13.4548 2.73174 11.3761 1.90621 9.14816C1.39398 7.78056 1.20003 6.68152 1.2796 5.68193Z"
+                              fill={getIconColor(formData.phone, focused.phone)}
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_2217_5654">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="white"
+                                transform="translate(0 0.5)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </div>
+
+                      {errors.phone && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.phone}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* EMAIL */}
+                    <div className="relative">
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus && handleFocus("email")}
+                        onBlur={() => handleBlur && handleBlur("email")}
+                        className={`w-full px-7 py-3 bg-transparent border-b-2 ${
+                          errors.email
+                            ? "border-b-red-500"
+                            : "border-b-[var(--color-highlight)]"
+                        } outline-none white-text`}
+                      />
+
+                      <div className="absolute left-0 top-[14px] pointer-events-none">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 25"
+                          fill={getIconColor(formData.email, focused.email)}
+                        >
+                          <path
+                            d="M21.8906 4.0625H2.10938C0.943922 4.0625 0 5.01228 0 6.17188V18.8281C0 19.9946 0.950859 20.9375 2.10938 20.9375H21.8906C23.0463 20.9375 24 19.9986 24 18.8281V6.17188C24 5.01434 23.0598 4.0625 21.8906 4.0625ZM21.5952 5.46875C21.1642 5.89742 13.7476 13.275 13.4916 13.5297C13.0931 13.9281 12.5634 14.1475 12 14.1475C11.4366 14.1475 10.9069 13.9281 10.5071 13.5284C10.3349 13.3571 3.00014 6.06097 2.40478 5.46875H21.5952ZM1.40625 18.5419V6.45898L7.48303 12.5037L1.40625 18.5419ZM2.40567 19.5312L8.48006 13.4955L9.51408 14.5241C10.1781 15.1881 11.061 15.5538 12 15.5538C12.939 15.5538 13.8219 15.1881 14.4846 14.5254L15.5199 13.4955L21.5943 19.5312H2.40567ZM22.5938 18.5419L16.517 12.5037L22.5938 6.45898V18.5419Z"
+                            fill={getIconColor(formData.email, focused.email)}
+                          />
+                        </svg>
+                      </div>
+
+                      {errors.email && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Services */}
+                <div className="w-full">
+                  <h3 className="text-left  white-text mt-5 mb-3">
+                    Which service you want from us
+                  </h3>
+
+                  {/* <p className="white-text mb-3">And Iâ€™m Keen To Get A Taste Of Your</p> */}
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    {services.map((service, index) => {
+                      const isActive = selectedServices.includes(service.name);
+                      return (
+                        <button
+                          key={index}
+                          type="button"
+                          onClick={() => handleServiceToggle(service.name)}
+                          className={`flex items-center gap-3 px-4 py-3 rounded-[10px] border transition small-placeholder w-full ${
+                            isActive
+                              ? "bg-[var(--color-highlight)] text-black"
+                              : "border-[var(--color-highlight)] text-white"
+                          }`}
+                        >
+                          <span className="w-5 h-5">
+                            {service.icon ? service.icon(isActive) : null}
+                          </span>
+                          <span>{service.name}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {errors.services && (
+                    <p className="text-red-500 text-xs mt-2">
+                      {errors.services}
+                    </p>
+                  )}
+
+                  {/* Message field under services (if you want it here) */}
+                  <div className="mt-2 relative">
+                    <input
+                      type="text"
+                      placeholder="Message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      required
+                      onFocus={() => handleFocus && handleFocus("message")}
+                      onBlur={() => handleBlur && handleBlur("message")}
+                      className="w-full px-7 py-3 bg-transparent border-b-2 border-[var(--color-highlight)] outline-none white-text"
                     />
-                  </svg>
-      </div>
+                    {errors.message && (
+                      <p className="text-red-500 text-xs mt-2">
+                        {errors.message}
+                      </p>
+                    )}
 
-      {errors.email && (
-        <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-      )}
-    </div>
+                    {/* FIXED ICON */}
+                    <div className="absolute left-0 top-[16px] pointer-events-none">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 25"
+                        fill={getIconColor(message, focused.message)}
+                      >
+                        <path d="M20.1449 2.11723H3.83162C2.12599 2.11723 0.738281 3.50467 0.738281 5.21057V15.194C0.738281 16.896 2.11995 18.2813 3.82063 18.2873V22.8177L10.3313 18.2873H20.1449C21.8506 18.2873 23.2383 16.8996 23.2383 15.194V5.21057C23.2383 3.50467 21.8506 2.11723 20.1449 2.11723ZM21.9199 15.194C21.9199 16.1726 21.1237 16.969 20.1449 16.969H9.91763L5.13899 20.2943V16.969H3.83162C2.85287 16.969 2.05664 16.1726 2.05664 15.194V5.21057C2.05664 4.23169 2.85287 3.43559 3.83162 3.43559H20.1449C21.1237 3.43559 21.9199 4.23169 21.9199 5.21057V15.194Z" />
+                        <path
+                          d="M6.76074 6.77557H17.2167V8.09393H6.76074V6.77557Z"
+                          fill={getIconColor(message, focused.message)}
+                        />
+                        <path
+                          d="M6.76074 9.58807H17.2167V10.9064H6.76074V9.58807Z"
+                          fill={getIconColor(message, focused.message)}
+                        />
+                        <path
+                          d="M6.76074 12.4006H17.2167V13.7189H6.76074V12.4006Z"
+                          fill={getIconColor(message, focused.message)}
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
 
-  </div>
-</div>
-
-
-            {/* Services */}
-            <div className="w-full">
-              <h3 className="text-left  white-text py-8">Which service you want from us</h3>
-
-              {/* <p className="white-text mb-3">And Iâ€™m Keen To Get A Taste Of Your</p> */}
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {services.map((service, index) => {
-                  const isActive = selectedServices.includes(service.name);
-                  return (
-                    <button
-                      key={index}
-                      type="button"
-                      onClick={() => handleServiceToggle(service.name)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-[10px] border transition small-placeholder w-full ${
-                        isActive ? "bg-[var(--color-highlight)] text-black" : "border-[var(--color-highlight)] text-white"
-                      }`}
-                    >
-                      <span className="w-5 h-5">{service.icon ? service.icon(isActive) : null}</span>
-                      <span>{service.name}</span>
-                    </button>
-                  );
-                })}
+                {/* Thank you */}
+                <div className="w-full">
+                  <div className="text-center py-5">
+                    {submitStatus === "success" && (
+                      <>
+                        <h3 className=" text-highlight mb-3">Thank you!</h3>
+                        <p className="text-gray-300 max-w-xl mx-auto">
+                          An email from us is on the way, do not forget to check
+                          your inbox
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </div>
               </div>
-              {errors.services && <p className="text-red-500 text-xs mt-2">{errors.services}</p>}
 
-              {/* Message field under services (if you want it here) */}
-              <div className="mt-4 relative">
-  <input
-    type="text"
-    placeholder="Message"
-    value={message}
-    onChange={(e) => setMessage(e.target.value)}
-    required
-    onFocus={() => handleFocus && handleFocus("message")}
-    onBlur={() => handleBlur && handleBlur("message")}
-    className="w-full px-7 py-3 bg-transparent border-b-2 border-[var(--color-highlight)] outline-none white-text"
-  />
-  {errors.message && <p className="text-red-500 text-xs mt-2">{errors.message}</p>}
-
-  {/* FIXED ICON */}
-  <div className="absolute left-0 top-[16px] pointer-events-none">
-   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                   width="20"
-                    height="20"
-                    viewBox="0 0 24 25"
-                    fill={getIconColor(message, focused.message)}
-                  >
-                    <path d="M20.1449 2.11723H3.83162C2.12599 2.11723 0.738281 3.50467 0.738281 5.21057V15.194C0.738281 16.896 2.11995 18.2813 3.82063 18.2873V22.8177L10.3313 18.2873H20.1449C21.8506 18.2873 23.2383 16.8996 23.2383 15.194V5.21057C23.2383 3.50467 21.8506 2.11723 20.1449 2.11723ZM21.9199 15.194C21.9199 16.1726 21.1237 16.969 20.1449 16.969H9.91763L5.13899 20.2943V16.969H3.83162C2.85287 16.969 2.05664 16.1726 2.05664 15.194V5.21057C2.05664 4.23169 2.85287 3.43559 3.83162 3.43559H20.1449C21.1237 3.43559 21.9199 4.23169 21.9199 5.21057V15.194Z" />
-                    <path
-                      d="M6.76074 6.77557H17.2167V8.09393H6.76074V6.77557Z"
-                      fill={getIconColor(message, focused.message)}
-                    />
-                    <path
-                      d="M6.76074 9.58807H17.2167V10.9064H6.76074V9.58807Z"
-                      fill={getIconColor(message, focused.message)}
-                    />
-                    <path
-                      d="M6.76074 12.4006H17.2167V13.7189H6.76074V12.4006Z"
-                      fill={getIconColor(message, focused.message)}
-                    />
-                  </svg>
-  </div>
-</div>
-
-            </div>
-
-            {/* Thank you */}
-            <div className="w-full">
-  <div className="text-center py-10">
-    {submitStatus === "success" && (
-      <>
-        <h3 className=" text-highlight mb-3">Thank you!</h3>
-        <p className="text-gray-300 max-w-xl mx-auto">
-          An email from us is on the way, do not forget to check your inbox
-        </p>
-      </>
-    )}
-  </div>
-</div>
-
-</div>
-
-            <div className="flex justify-end items-center pt-6">
-              {submitStatus !== "success" && (
-                <Button id="lets-connect-btn" text="Let's Connect" type="submit" disabled={isSubmitting} className="white-text" />
-              )}
-            </div>
-          </form>
-
+              <div className="flex justify-end items-center">
+                {submitStatus !== "success" && (
+                  <Button
+                    id="lets-connect-btn"
+                    text="Let's Connect"
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="white-text"
+                  />
+                )}
+              </div>
+            </form>
+          </div>
         </div>
-          {/* Right yellow stripe preserved */}
-          <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5 candy-border"></div>
+        {/* Right yellow stripe preserved */}
+        <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5 candy-border"></div>
       </div>
     </section>
   );
-}
+};
 
 export default SecondSection;

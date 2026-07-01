@@ -11,6 +11,17 @@ export default function PageLoader({ children }: PageLoaderProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!loading) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [loading]);
+
+  useEffect(() => {
     if (document.readyState === "complete") {
       setLoading(false);
     } else {
@@ -22,7 +33,7 @@ export default function PageLoader({ children }: PageLoaderProps) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-white">
+      <div className="fixed inset-0 z-[1000] flex h-dvh w-screen items-center justify-center overflow-hidden bg-white">
         <Image
           width={40}
           height={40}
