@@ -1,18 +1,6 @@
-"use client";
-import React, { useState ,useEffect } from "react";
-import ContactButton from "../ContactButton";
-import { number } from "framer-motion";
-import Image from "next/image";
+﻿"use client";
+import React, { useState } from "react";
 import Button from "../Button";
-import { useRouter } from "next/navigation";
-
-const initialFormState = {
-  name: "",
-  email: "",
-  phone: "",
-  company: "",
-  message: "",
-};
 
 const SecondSection = () => {
   const services = [
@@ -171,10 +159,9 @@ const SecondSection = () => {
         </svg>
       ),
     },
-    // 👉 add other services with their respective inline SVGs here
+    // ðŸ‘‰ add other services with their respective inline SVGs here
   ];
 
-  const router = useRouter();
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -201,31 +188,6 @@ const SecondSection = () => {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
-    const [step, setStep] = useState(0);
-
-      // When submitStatus becomes success, show the Thank you step
-useEffect(() => {
-  if (submitStatus === "success") {
-    setStep(3);
-
-    const timer = setTimeout(() => {
-      setStep(0);
-      setSubmitStatus("idle");
-      setFormData(initialFormState);
-      setMessage("");
-      setSelectedServices([]);
-      setErrors({
-        name: "",
-        email: "",
-        phone: "",
-        services: "",
-        message: "",
-      });
-    }, 10000);
-
-    return () => clearTimeout(timer);
-  }
-}, [submitStatus]);
 
 
   // Validation functions
@@ -273,63 +235,6 @@ const validatePhone = (phone: string): boolean => {
       default:
         return "";
     }
-  };
-
-
-  const totalSteps = 3;
-
-const goNext = () => {
-  let hasErrors = false;
-
-  // ✅ Clear previous errors before fresh validation
-  setErrors({
-    name: "",
-    email: "",
-    phone: "",
-    services: "",
-    message: "",
-  });
-
-  if (step === 0) {
-    const nameError = validateField("name", formData.name);
-    if (nameError) {
-      setErrors((prev) => ({ ...prev, name: nameError }));
-      hasErrors = true;
-    }
-  }
-
-  if (step === 1) {
-    const phoneError = validateField("phone", formData.phone);
-    const emailError = validateField("email", formData.email);
-
-    if (phoneError) {
-      setErrors((prev) => ({ ...prev, phone: phoneError }));
-      hasErrors = true;
-    }
-
-    if (emailError) {
-      setErrors((prev) => ({ ...prev, email: emailError }));
-      hasErrors = true;
-    }
-  }
-
-  if (step === 2) {
-    if (selectedServices.length === 0) {
-      setErrors((prev) => ({
-        ...prev,
-        services: "Please select at least one service",
-      }));
-      hasErrors = true;
-    }
-  }
-
-  if (hasErrors) return;
-
-  setStep((prev) => prev + 1);
-};
-
-  const goBack = () => {
-    if (step > 0) setStep((s) => s - 1);
   };
 
 
@@ -410,7 +315,7 @@ const goNext = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
-        company: formData.company, // ✅ FIX HERE
+        company: formData.company, // âœ… FIX HERE
         message: message,
         services: selectedServices,
       }),
@@ -448,71 +353,24 @@ const goNext = () => {
   ) => {
     return fieldFocused || fieldValue ? "#FAB31E" : "#ABABAB";
   };
- // progress helpers
-  const progressPercentage = Math.round(((step + 0) / totalSteps) * 100);
 
   return (
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
       <div className="bg-[#1D1D1D] rounded-[20px] relative overflow-hidden px-6 py-8">
-        {/* TOP: Title + progress bar */}
-       <div className="max-w-3xl mx-auto text-center mb-6 relative">
-  <h2 className="text-3xl font-medium white-text">
-    Connect <span className="text-highlight">With Us</span>
-  </h2>
-
-  {/* Progress Bar visual */}
-  <div className="mt-6">
-    <div className="w-full">
-      <div className="flex gap-3 items-center">
-        {Array.from({ length: totalSteps }).map((_, idx) => {
-          const filled = idx < step;
-          return (
-            <div
-              key={idx}
-              className={`flex-1 h-2 rounded-full transition-all duration-500 ${
-                filled
-                  ? "bg-[var(--color-highlight)]"
-                  : "bg-transparent border border-gray-600/40"
-              }`}
-            />
-          );
-        })}
-      </div>
-
-      <div className="mt-3 text-sm text-gray-300 flex items-center justify-between">
-        <div>Step {Math.min(step + 1, totalSteps)} of {totalSteps}</div>
-        <div className="text-[var(--color-highlight)]">
-          {progressPercentage}%
+        <div className="max-w-3xl mx-auto text-center mb-6 relative">
+          <h2 className="text-3xl font-medium white-text">
+            Connect <span className="text-highlight">With Us</span>
+          </h2>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
         {/* FORM CARD (centered) */}
         <div className="max-w-3xl mx-auto bg-transparent rounded-lg relative">
           <form onSubmit={handleSubmit} className="space-y-8">
-            {/* Step 0: Name & Brand */}
+            {/* Name & Brand */}
 
             <div className="relative w-full h-auto min-h-[200px]">
 
-  <div
-className={`w-full type-step ${
-  step === 0 ? "type-active" : step > 0 ? "type-hidden-up" : "type-hidden-down"
-}`}
-
-
-  >
-                <div>
-                {step > 0 && step < 3 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div> 
-              
-              <h3 className="text-left text-lg white-text py-7">1. Tell Us About You</h3>
+  <div className="w-full">
+              <h3 className="text-left text-lg white-text py-7">Tell Us About You</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
                 {/* Full Name */}
@@ -605,24 +463,10 @@ className={`w-full type-step ${
               </div>
             </div>
 
-            {/* Step 1: Phone & Email */}
+            {/* Phone & Email */}
           
-<div
-className={`w-full type-step ${
-  step === 1 ? "type-active" : step > 1 ? "type-hidden-up" : "type-hidden-down"
-}`}
-
-  >
-
-
- <div>
-                {step > 0 && step < 3 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div> 
-  <h3 className="text-left text-lg white-text py-7 ">2. Where  we can contact you</h3>
+<div className="w-full">
+              <h3 className="text-left text-lg white-text py-7 ">Where we can contact you</h3>
 
   <div className="grid grid-cols-1 gap-6">
 
@@ -716,28 +560,14 @@ className={`w-full type-step ${
 </div>
 
 
-            {/* Step 2: Services */}
-            <div
-className={`w-full type-step ${
-  step === 2 ? "type-active" : step > 2 ? "type-hidden-up" : "type-hidden-down"
-}`}
+            {/* Services */}
+            <div className="w-full">
+              <h3 className="text-left  white-text py-8">Which service you want from us</h3>
 
-  >
-               <div>
-                {step > 0 && step < 3 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div> 
-
-              
-              <h3 className="text-left  white-text py-8">3. Which service you want from us</h3>
-
-              {/* <p className="white-text mb-3">And I’m Keen To Get A Taste Of Your</p> */}
+              {/* <p className="white-text mb-3">And Iâ€™m Keen To Get A Taste Of Your</p> */}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {services.map((service: any, index: number) => {
+                {services.map((service, index) => {
                   const isActive = selectedServices.includes(service.name);
                   return (
                     <button
@@ -798,18 +628,14 @@ className={`w-full type-step ${
 
             </div>
 
-            {/* Step 3: Thank you */}
-            <div 
-className={`w-full type-step ${
-  step === 3 ? "type-active" : step > 3 ? "type-hidden-up" : "type-hidden-down"
-}`}
->
+            {/* Thank you */}
+            <div className="w-full">
   <div className="text-center py-10">
     {submitStatus === "success" && (
       <>
-        <h3 className=" text-highlight mb-3">Thank you! 🎉</h3>
+        <h3 className=" text-highlight mb-3">Thank you!</h3>
         <p className="text-gray-300 max-w-xl mx-auto">
-          An email from us is on the way, don’t forget to check your inbox
+          An email from us is on the way, do not forget to check your inbox
         </p>
       </>
     )}
@@ -818,30 +644,11 @@ className={`w-full type-step ${
 
 </div>
 
-            {/* NAV / CTA area (visible always but buttons adapt) */}
             <div className="flex justify-end items-center pt-6">
-
-  {/* Step 1 */}
-  {step === 0 && (
-    <div onClick={goNext}>
-      <Button text="A step closer" type="button" disabled={isSubmitting} className="white-text" />
-    </div>
-  )}
-
-  {/* Step 2 */}
-  {step === 1 && (
-    <div onClick={goNext}>
-      <Button text="almost there" type="button" disabled={isSubmitting} className="white-text"/>
-    </div>
-  )}
-
-  {/* Step 3 */}
-  {step === 2 && submitStatus !== "success" && (
-    <Button id="lets-connect-btn" text="Let’s Connect" type="submit" disabled={isSubmitting} className="white-text" />
-  )}
-
-</div>
-
+              {submitStatus !== "success" && (
+                <Button id="lets-connect-btn" text="Let's Connect" type="submit" disabled={isSubmitting} className="white-text" />
+              )}
+            </div>
           </form>
 
         </div>
