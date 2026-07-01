@@ -385,9 +385,9 @@ const Firstsection = () => {
             >
               Are you from Mumbai?
             </h2>
-            <p className="mt-3 text-sm leading-6 text-neutral-600">
+            {/* <p className="mt-3 text-sm leading-6 text-neutral-600">
               Say yes and we will bring the monsoon mood to the hero.
-            </p>
+            </p> */}
             <div className="mt-6 grid grid-cols-2 gap-3">
               <button
                 type="button"
