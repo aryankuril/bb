@@ -50,15 +50,15 @@
   h2 .acc{background:var(--bb-yellow);padding:0 .14em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
   .lede{max-width:680px;color:#3A3A36;font-size:18px;line-height:1.55;margin-bottom:48px}
 
-  .cover{border:1px solid var(--bb-black);background:var(--bb-yellow);padding:72px 56px 56px;position:relative;overflow:hidden}
+  .cover{border:1px solid var(--bb-black);background:var(--bb-yellow);padding:24px;position:relative;overflow:hidden}
   .cover .bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(14,14,14,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(14,14,14,.05) 1px,transparent 1px);background-size:48px 48px}
-  .cover .top-row{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2;margin-bottom:120px}
+  .cover .top-row{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2;margin-bottom:10px}
   .cover .top-row .meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em}
   .cover h1{font-family:var(--display);font-size:clamp(64px,13vw,200px);line-height:.84;letter-spacing:-.025em;position:relative;z-index:2}
   .cover h1 .row{display:block}
   .cover h1 .bulb-o{display:inline-flex;align-items:center;justify-content:center;width:.85em;height:.85em;border:.08em solid var(--bb-black);border-radius:50%;vertical-align:middle;position:relative;background:var(--bb-yellow);margin:0 .02em}
   .cover h1 .bulb-o::after{content:"";width:.32em;height:.32em;background:var(--bb-black);border-radius:50%}
-  .cover .foot{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;border-top:1px solid var(--bb-black);padding-top:24px;position:relative;z-index:2}
+  .cover .foot{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:10px;border-top:1px solid var(--bb-black);padding-top:24px;position:relative;z-index:2}
   .cover .foot div b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;margin-bottom:6px;font-weight:700}
   .cover .foot div span{font-family:var(--display);font-size:18px}
 
@@ -678,6 +678,56 @@
     .sum,.voice-grid{grid-template-columns:1fr}
     .li-banner{aspect-ratio:auto;flex-direction:column;gap:24px;align-items:flex-start}
     .li-banner .right{align-items:flex-start}
+
+
+
+
+    .cover{
+    position: relative;
+    overflow: hidden;
+}
+
+.display{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    /* margin:2.5rem 0; */
+}
+
+.cover-logo{
+    width:100%;
+    max-width:650px;   /* Smaller desktop size */
+    height:auto;
+    object-fit:contain;
+    display:block;
+}
+
+/* Laptop */
+@media (max-width:1200px){
+    .cover-logo{
+        max-width:560px;
+    }
+}
+
+/* Tablet */
+@media (max-width:768px){
+    
+
+    .cover-logo{
+        width:90%;
+        max-width:420px;
+    }
+}
+
+/* Mobile */
+@media (max-width:480px){
+    .cover-logo{
+        width:92%;
+        max-width:300px;
+    }
+}
+
+
   }
 </style>
 </head>
@@ -701,10 +751,13 @@
         <span class="meta">// THE COMPLETE BRAND SYSTEM</span>
         <span class="meta">EST. MUMBAI · IN</span>
       </div>
-      <h1 class="display">
-        <span class="row">B<span class="bulb-o"></span>MBAY</span>
-        <span class="row">BL<span class="bulb-o"></span>KES.</span>
-      </h1>
+    <h1 class="display">
+  <img
+    src="images/BG/rightlogo(4).png"
+    alt="Bombay Blokes Logo"
+    class="cover-logo"
+  >
+</h1>
       <div class="foot">
         <div><b>OWNER</b><span>BOMBAY BLOKES</span></div>
         <div><b>FORMAT</b><span>DIGITAL AGENCY</span></div>
