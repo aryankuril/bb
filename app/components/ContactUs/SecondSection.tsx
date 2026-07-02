@@ -356,7 +356,7 @@ const SecondSection = () => {
             Connect <span className="text-highlight">With Us</span>
           </h2>
         </div>
-        <div className="mx-auto grid max-w-6xl items-stretch gap-8 lg:grid-cols-[minmax(280px,0.85fr)_minmax(0,1.15fr)]">
+        <div className="mx-auto grid max-w-[1280px] items-stretch gap-8 lg:grid-cols-[minmax(280px,0.85fr)_minmax(0,1.15fr)]">
           <div className="relative min-h-[520px] overflow-hidden rounded-[16px] bg-white/5 lg:min-h-full">
             <Image
               src="/images/panipuricart1.png"
