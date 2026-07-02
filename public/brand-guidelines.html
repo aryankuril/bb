@@ -82,12 +82,62 @@
   .belief{font-family:var(--display);font-size:32px;line-height:1.05;letter-spacing:-.012em;margin-bottom:8px}
   .belief em{font-style:normal;background:var(--bb-yellow);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 
-  .logo-block{border:1px solid var(--bb-black);background:var(--paper);padding:64px 48px;display:flex;align-items:center;justify-content:center;min-height:280px;position:relative}
-  .logo-block.dark{background:var(--bb-black)}
-  .logo-block.yellow{background:var(--bb-yellow)}
-  .logo-block .label{position:absolute;top:14px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute)}
-  .logo-block.dark .label{color:var(--mute-2)}
-  .logo-block .label.r{left:auto;right:14px}
+.logo-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+}
+
+.logo-block{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+    border:1px solid #e5e5e5;
+    border-radius:18px;
+    background:#fff;
+    min-height:320px; /* All cards same height */
+}
+
+.logo-block.dark{
+    background:#000000;
+}
+
+.logo-img{
+    width:100%;
+    height:170px;          /* Same height for every logo */
+    object-fit:contain;    /* Keeps aspect ratio */
+    object-position:center;
+}
+
+.label{
+    margin-bottom:18px;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#777;
+    text-align:center;
+}
+
+.label.r{
+    margin-top:18px;
+}
+
+@media (max-width:768px){
+    .logo-grid{
+        grid-template-columns:1fr;
+    }
+
+    .logo-block{
+        min-height:260px;
+        padding:20px;
+    }
+
+    .logo-img{
+        height:140px;
+    }
+}
 
   .bb-wordmark{font-family:var(--display);font-size:64px;line-height:.9;letter-spacing:-.025em;color:var(--bb-black);text-align:center}
   .bb-wordmark.lg{font-size:96px}
@@ -107,12 +157,78 @@
   .bb-mark .b::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:var(--bb-yellow);border:3px solid var(--bb-black);right:-6px;bottom:14px}
   .bb-mark.yellow .b::after{background:var(--bb-black);border-color:var(--bb-black)}
   .bb-mark.dark .b::after{background:var(--bb-yellow);border-color:var(--paper)}
+.donts{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
 
-  .donts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bb-black);border:1px solid var(--bb-black);margin-top:48px}
-  .dont-cell{background:var(--paper);padding:32px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;position:relative;min-height:200px;justify-content:center}
-  .dont-cell .x{position:absolute;top:14px;right:14px;width:24px;height:24px;border:2px solid var(--red);color:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:14px;border-radius:99px}
-  .dont-cell .lb{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute);font-weight:700}
+.dont-cell{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    border:1px solid #e5e5e5;
+    border-radius:16px;
+    background:#fff;
+    min-height:220px;
+}
 
+.dont-img{
+    width:100%;
+    max-width:180px;
+    height:100px;
+    object-fit:contain;
+    margin:12px 0;
+}
+
+.x{
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:#ff3b30;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:16px;
+}
+
+.lb{
+    margin-top:16px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-align:center;
+}
+
+@media (max-width:768px){
+    .donts{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dont-cell{
+        min-height:180px;
+        padding:20px;
+    }
+
+    .dont-img{
+        max-width:140px;
+        height:80px;
+    }
+}
+
+@media (max-width:480px){
+    .donts{
+        grid-template-columns:1fr;
+    }
+}
   .palette{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:1px;background:var(--bb-black);border:1px solid var(--bb-black)}
   .sw{padding:28px 24px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
   .sw .role{font-family:var(--mono);font-size:10px;letter-spacing:.16em;opacity:.7;font-weight:700}
@@ -673,58 +789,71 @@
     <h2 class="section-title">THE MARK<br>STAYS <span class="acc">SACRED.</span></h2>
     <p class="lede">The Bombay Blokes wordmark and the bulb-O are fixed assets. They are not redesigned, recoloured outside this guide, restyled, or re-spaced. The "O" with the lightbulb filament is the brand's idea — literally and visually.</p>
 
-    <div class="g2" style="grid-template-columns:1.4fr 1fr">
-      <div class="logo-block">
-        <span class="label">A — PRIMARY WORDMARK / LIGHT</span>
-        <div class="bb-wordmark lg">B<span class="o-bulb"></span>MBAY BL<span class="o-bulb"></span>KES.</div>
-        <span class="label r">CORE / 80% USE</span>
-      </div>
-      <div class="logo-block dark">
-        <span class="label">B — INVERSE / DARK BG</span>
-        <div class="bb-wordmark">B<span class="o-bulb"></span>MBAY BL<span class="o-bulb"></span>KES.</div>
-      </div>
-      <div class="logo-block yellow">
-        <span class="label">C — YELLOW SURFACE</span>
-        <div class="bb-wordmark">B<span class="o-bulb"></span>MBAY BL<span class="o-bulb"></span>KES.</div>
-      </div>
-      <div class="logo-block">
-        <span class="label">D — MONOGRAM MARK</span>
-        <div class="bb-mark"><span class="b">B</span></div>
-        <span class="label r">AVATAR · FAVICON · APP ICON</span>
-      </div>
-      <div class="logo-block dark">
-        <span class="label">E — MONOGRAM / DARK</span>
-        <div class="bb-mark dark"><span class="b">B</span></div>
-      </div>
-      <div class="logo-block yellow">
-        <span class="label">F — MONOGRAM / YELLOW</span>
-        <div class="bb-mark yellow"><span class="b">B</span></div>
-      </div>
-    </div>
+    <div class="logo-grid">
+
+  <div class="logo-block">
+    <span class="label">A — PRIMARY WORDMARK / LIGHT</span>
+    <img src="images/BG/rightlogo(1).png" alt="Primary Wordmark" class="logo-img">
+    <span class="label r">CORE / 80% USE</span>
+  </div>
+
+  <div class="logo-block dark">
+    <span class="label">B — INVERSE / DARK BG</span>
+    <img src="images/BG/rightlogo(6).png" alt="Inverse Logo" class="logo-img">
+  </div>
+
+  <div class="logo-block ">
+     <span class="label r">AVATAR · FAVICON · APP ICON</span>
+    <img src="images/BG/rightlogo(3).png" alt="Yellow Surface Logo" class="logo-img">
+  </div>
+
+  <div class="logo-block">
+    <span class="label">D — MONOGRAM MARK</span>
+    <img src="images/BG/rightlogo(4).png" alt="Monogram Mark" class="logo-img  ">
+    <span class="label r">AVATAR · FAVICON · APP ICON</span>
+  </div>
+
+  <div class="logo-block dark">
+    <span class="label">E — MONOGRAM / DARK</span>
+    <img src="images/BG/rightlogo(5).png" alt="Monogram Dark" class="logo-img  ">
+  </div>
+
+  <div class="logo-block  ">
+    <!-- <span class="label">F — MONOGRAM <span> -->
+    <img src="images/BG/rightlogo(2).png" alt="Monogram Yellow" class="logo-img  ">
+  </div>
+
+</div>
 
     <div class="mono" style="color:var(--bb-yellow-deep);margin-top:48px;margin-bottom:14px;font-weight:700">// DON'TS</div>
-    <div class="donts">
-      <div class="dont-cell">
-        <span class="x">✕</span>
-        <div class="bb-wordmark sm" style="transform:scaleY(.6);transform-origin:center">B<span class="o-bulb"></span>MBAY</div>
-        <div class="lb">DON'T STRETCH</div>
-      </div>
-      <div class="dont-cell">
-        <span class="x">✕</span>
-        <div class="bb-wordmark sm" style="color:var(--red)">B<span class="o-bulb"></span>MBAY</div>
-        <div class="lb">DON'T RECOLOUR</div>
-      </div>
-      <div class="dont-cell">
-        <span class="x">✕</span>
-        <div class="bb-wordmark sm" style="transform:rotate(-12deg)">B<span class="o-bulb"></span>MBAY</div>
-        <div class="lb">DON'T ROTATE</div>
-      </div>
-      <div class="dont-cell">
-        <span class="x">✕</span>
-        <div class="bb-wordmark sm" style="text-shadow:3px 3px 0 var(--bb-yellow)">B<span class="o-bulb"></span>MBAY</div>
-        <div class="lb">DON'T ADD EFFECTS</div>
-      </div>
-    </div>
+
+<div class="donts">
+
+  <div class="dont-cell">
+    <span class="x">✕</span>
+    <img src="images/BG/wronglogo(1).png" alt="Don't Stretch" class="dont-img">
+    <div class="lb">DON'T STRETCH</div>
+  </div>
+
+  <div class="dont-cell">
+    <span class="x">✕</span>
+    <img src="images/BG/wronglogo(2).png" alt="Don't Recolour" class="dont-img">
+    <div class="lb">DON'T RECOLOUR</div>
+  </div>
+
+  <div class="dont-cell">
+    <span class="x">✕</span>
+    <img src="images/BG/wronglogo(3).png" alt="DON'T ALTER THE LOGO" class="dont-img">
+    <div class="lb">DON'T ALTER THE LOGO</div>
+  </div>
+
+  <div class="dont-cell">
+    <span class="x">✕</span>
+    <img src="images/BG/wronglogo(4).png" alt="Don't Add Dark BACKGROUND" class="dont-img">
+    <div class="lb">DON'T ADD DARK BACKGROUND</div>
+  </div>
+
+</div>
 
     <div class="vo-sample" data-tag="CLEAR SPACE / MIN SIZE" style="margin-top:48px">
       <div class="body"><b>Clear space</b> equal to the height of the bulb-O on all sides. <b>Minimum size:</b> 80px height for primary wordmark, 32×32px for the monogram. Never place the wordmark over busy photography without a yellow or black solid plate beneath it. Never re-letter the wordmark or substitute the bulb-O for a regular O.</div>

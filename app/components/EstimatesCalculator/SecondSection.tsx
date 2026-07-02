@@ -19,7 +19,7 @@ const cardsData: CardData[] = [
     description: "Estimate your cost for boosting Google rankings.",
     image: "/images/calculator/Web-Development.png",
     buttonText: "Get Quote",
-    href: "https://estimates.bombayblokes.com/seo",
+    href: "/seo",
      icon:  
   (
         <svg 
@@ -38,9 +38,8 @@ const cardsData: CardData[] = [
     title: "Website Development",
     description: "Get a quick quote for custom, responsive websites.",
     image: "/images/calculator/Web-Development.png",
-    buttonText: "Coming Soon",
-    comingSoon: true,
-    href: "https://estimates.bombayblokes.com/website",
+    buttonText: "Get Quote",
+    href: "website-development",
     icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,9 +65,8 @@ const cardsData: CardData[] = [
     title: "Performance Marketing",
     description: "Know your budget for high-ROI ad campaigns.",
     image: "/images/calculator/Web-Development.png",
-    buttonText: "Coming Soon",
-    comingSoon: true,
-    href: "/calculator/performance",
+    buttonText: "Get Quote",
+    href: "/paid-marketing",
      icon:  
  (
         <svg
@@ -93,8 +91,8 @@ const cardsData: CardData[] = [
     title: "Social Media",
     description: "Get a price for content, strategy, and growth.",
     image: "/images/calculator/Web-Development.png",
-    buttonText: "Coming Soon",
-    comingSoon: true,
+    buttonText: "Get Quote",
+    href: "/social-media-marketing",
      icon:  
  (
         <svg

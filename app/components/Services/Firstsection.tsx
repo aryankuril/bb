@@ -58,7 +58,7 @@ const Firstsection: React.FC = () => {
               <span className="black-text">to Thrive in the Digital World</span>
             </h1>
             <div className=" lg:mt-10 mt-5 pl-2">
-                      <Button href="/estimates-calculator" text="Get Estimates " className="" />
+                      <Button href="/investment-estimate-guide" text="Get Estimates " className="" />
                     </div>
           </div>
       </div>

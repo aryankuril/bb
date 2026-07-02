@@ -43,7 +43,7 @@ const Firstsection = () => {
   <span className="text-highlight">Retains Students</span> */}
 </h1>
   <div className=" lg:mt-10 mt-5 pl-2">
-                      <Button href="/estimates-calculator" text="Get Estimates " className="" />
+                      <Button href="/investment-estimate-guide" text="Get Estimates " className="" />
                     </div>
 
       </div>
