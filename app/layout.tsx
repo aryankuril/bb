@@ -100,10 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   />
 </head>
       <body>
-
-
-
-<iframe
+        <iframe
   src="https://www.googletagmanager.com/ns.html?id=GTM-MBWHTFLQ"
   height="0"
   width="0"
@@ -112,10 +109,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     visibility: "hidden",
   }}
 />
-
-
-
-     
           <PageLoader>
             {children}
           </PageLoader>

@@ -1,0 +1,1834 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BOMBAY BLOKES Brand System & Digital Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800;900&family=Archivo+Black&family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bb-yellow:#FFC629;
+    --bb-yellow-deep:#F0B400;
+    --bb-yellow-soft:#FFF0B8;
+    --bb-black:#0E0E0E;
+    --bb-steel:#1A1A1A;
+    --paper:#FAFAF7;
+    --soft:#F1EFE6;
+    --line:#E5E3D9;
+    --line-2:#D6D3C7;
+    --mute:#6B6B66;
+    --mute-2:#9C9A91;
+    --red:#E62F2D;
+    --blue:#213E91;
+    --green:#61B032;
+    --display: 'Archivo Black', 'Archivo', system-ui, sans-serif;
+    --grotesk: 'Archivo', system-ui, sans-serif;
+    --body: 'Poppins', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--bb-black);font-family:var(--body);font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--bb-yellow);color:var(--bb-black)}
+  .display{font-family:var(--display);letter-spacing:-.012em;line-height:.92}
+  .mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:11px}
+  .num{font-variant-numeric:tabular-nums}
+
+  .doc{max-width:1380px;margin:0 auto;padding:36px 36px 120px}
+
+  .strip{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border:1px solid var(--bb-black);background:var(--paper);margin-bottom:24px}
+  .strip-l{display:flex;gap:14px;align-items:center}
+  .strip .badge{background:var(--bb-black);color:var(--bb-yellow);padding:4px 8px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;font-weight:700}
+
+  section{padding:96px 0;border-top:1px solid var(--bb-black);position:relative}
+  section:first-of-type{border-top:none;padding-top:0}
+  .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:32px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--mute)}
+  .eyebrow .num-tag{background:var(--bb-yellow);color:var(--bb-black);padding:4px 10px;font-weight:700}
+  .eyebrow .line{flex:1;height:1px;background:var(--bb-black)}
+  h2.section-title{font-family:var(--display);font-size:clamp(40px,6vw,84px);line-height:.92;letter-spacing:-.02em;margin-bottom:20px}
+  h2 .acc{background:var(--bb-yellow);padding:0 .14em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .lede{max-width:680px;color:#3A3A36;font-size:18px;line-height:1.55;margin-bottom:48px}
+  .cover{border:1px solid var(--bb-black);background:var(--bb-yellow);padding:72px 56px 56px;position:relative;overflow:hidden}
+  .cover .bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(14,14,14,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(14,14,14,.05) 1px,transparent 1px);background-size:48px 48px}
+  .cover .top-row{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2;margin-bottom:120px}
+  .cover .top-row .meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em}
+  .cover h1{font-family:var(--display);font-size:clamp(64px,13vw,200px);line-height:.84;letter-spacing:-.025em;position:relative;z-index:2}
+  .cover h1 .row{display:block}
+  .cover h1 .bulb-o{display:inline-flex;align-items:center;justify-content:center;width:.85em;height:.85em;border:.08em solid var(--bb-black);border-radius:50%;vertical-align:middle;position:relative;background:var(--bb-yellow);margin:0 .02em}
+  .cover h1 .bulb-o::after{content:"";width:.32em;height:.32em;background:var(--bb-black);border-radius:50%}
+  .cover .foot{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;border-top:1px solid var(--bb-black);padding-top:24px;position:relative;z-index:2}
+  .cover .foot div b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;margin-bottom:6px;font-weight:700}
+  .cover .foot div span{font-family:var(--display);font-size:18px}
+
+  .index{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bb-black);border:1px solid var(--bb-black);margin-top:48px}
+  .idx{background:var(--paper);padding:24px;display:flex;flex-direction:column;gap:8px;min-height:120px;justify-content:space-between}
+  .idx .n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--mute)}
+  .idx .t{font-family:var(--display);font-size:22px;line-height:1;letter-spacing:-.01em}
+  .idx .d{font-family:var(--body);font-size:12px;color:var(--mute);line-height:1.4}
+
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bb-black);border:1px solid var(--bb-black)}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bb-black);border:1px solid var(--bb-black)}
+  .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bb-black);border:1px solid var(--bb-black)}
+  .cell{background:var(--paper);padding:32px}
+  .cell.dark{background:var(--bb-black);color:var(--paper)}
+  .cell.yellow{background:var(--bb-yellow);color:var(--bb-black)}
+
+  .pillar h3{font-family:var(--display);font-size:32px;line-height:.95;margin-bottom:10px;letter-spacing:-.01em}
+  .pillar p{color:var(--mute);font-size:14.5px}
+  .pillar .tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--bb-yellow-deep);margin-bottom:18px;font-weight:700}
+
+  .belief{font-family:var(--display);font-size:32px;line-height:1.05;letter-spacing:-.012em;margin-bottom:8px}
+  .belief em{font-style:normal;background:var(--bb-yellow);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.logo-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+}
+
+.logo-block{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+    border:1px solid #e5e5e5;
+    border-radius:18px;
+    background:#fff;
+    min-height:320px; /* All cards same height */
+}
+
+.logo-block.dark{
+    background:#000000;
+}
+
+.logo-img{
+    width:100%;
+    height:170px;          
+    object-fit:contain;    
+    object-position:center;
+}
+
+.label{
+    margin-bottom:18px;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#777;
+    text-align:center;
+}
+
+.label.r{
+    margin-top:18px;
+}
+
+@media (max-width:768px){
+    .logo-grid{
+        grid-template-columns:1fr;
+    }
+
+    .logo-block{
+        min-height:260px;
+        padding:20px;
+    }
+
+    .logo-img{
+        height:140px;
+    }
+}
+
+  .bb-wordmark{font-family:var(--display);font-size:64px;line-height:.9;letter-spacing:-.025em;color:var(--bb-black);text-align:center}
+  .bb-wordmark.lg{font-size:96px}
+  .bb-wordmark.sm{font-size:32px}
+  .dark .bb-wordmark{color:var(--paper)}
+  .yellow .bb-wordmark{color:var(--bb-black)}
+  .bb-wordmark .o-bulb{display:inline-flex;align-items:center;justify-content:center;width:.78em;height:.78em;border:.075em solid currentColor;border-radius:50%;vertical-align:-.06em;position:relative;margin:0 .015em}
+  .bb-wordmark .o-bulb::after{content:"";width:.30em;height:.30em;background:var(--bb-yellow);border-radius:50%}
+  .dark .bb-wordmark .o-bulb::after{background:var(--bb-yellow)}
+  .yellow .bb-wordmark .o-bulb::after{background:var(--bb-black)}
+
+  .bb-mark{width:140px;height:140px;border:3px solid var(--bb-black);border-radius:24px;display:flex;align-items:center;justify-content:center;background:var(--paper);position:relative}
+  .bb-mark.dark{background:var(--bb-black);border-color:var(--paper)}
+  .bb-mark.yellow{background:var(--bb-yellow);border-color:var(--bb-black)}
+  .bb-mark .b{font-family:var(--display);font-size:80px;line-height:1;color:var(--bb-black);position:relative}
+  .bb-mark.dark .b{color:var(--paper)}
+  .bb-mark .b::after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;background:var(--bb-yellow);border:3px solid var(--bb-black);right:-6px;bottom:14px}
+  .bb-mark.yellow .b::after{background:var(--bb-black);border-color:var(--bb-black)}
+  .bb-mark.dark .b::after{background:var(--bb-yellow);border-color:var(--paper)}
+.donts{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.dont-cell{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    border:1px solid #e5e5e5;
+    border-radius:16px;
+    background:#fff;
+    min-height:220px;
+}
+
+.dont-img{
+    width:100%;
+    max-width:180px;
+    height:100px;
+    object-fit:contain;
+    margin:12px 0;
+}
+
+.x{
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:#ff3b30;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:16px;
+}
+
+.lb{
+    margin-top:16px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-align:center;
+}
+
+@media (max-width:768px){
+    .donts{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dont-cell{
+        min-height:180px;
+        padding:20px;
+    }
+
+    .dont-img{
+        max-width:140px;
+        height:80px;
+    }
+}
+
+@media (max-width:480px){
+    .donts{
+        grid-template-columns:1fr;
+    }
+}
+  .palette{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:1px;background:var(--bb-black);border:1px solid var(--bb-black)}
+  .sw{padding:28px 24px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+  .sw .role{font-family:var(--mono);font-size:10px;letter-spacing:.16em;opacity:.7;font-weight:700}
+  .sw .name{font-family:var(--display);font-size:36px;line-height:.95;letter-spacing:-.01em}
+  .sw.lg .name{font-size:56px}
+  .sw .codes{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;line-height:1.85}
+  .sw-yel{background:var(--bb-yellow);color:var(--bb-black)}
+  .sw-blk{background:var(--bb-black);color:var(--paper)}
+  .sw-paper{background:var(--paper);color:var(--bb-black);border:1px solid var(--line)}
+  .sw-soft{background:var(--soft);color:var(--bb-black)}
+  .sw-steel{background:var(--bb-steel);color:var(--paper)}
+  .sw-yel-deep{background:var(--bb-yellow-deep);color:var(--bb-black)}
+  .sw-yel-soft{background:var(--bb-yellow-soft);color:var(--bb-black)}
+
+  .sys-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bb-black);border:1px solid var(--bb-black);margin-top:1px}
+  .sys{padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:160px;color:#fff;position:relative}
+  .sys-red{background:var(--red)}
+  .sys-blue{background:var(--blue)}
+  .sys-grn{background:var(--green)}
+  .sys .name{font-family:var(--display);font-size:24px}
+  .sys .role{font-family:var(--mono);font-size:10px;letter-spacing:.16em;opacity:.85;font-weight:700}
+
+  .ratio{display:flex;height:64px;border:1px solid var(--bb-black);margin-top:32px;overflow:hidden}
+  .ratio div{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;letter-spacing:.12em;font-weight:700}
+  .r-paper{flex:55;background:var(--paper);color:var(--bb-black)}
+  .r-blk{flex:25;background:var(--bb-black);color:var(--paper)}
+  .r-yel{flex:15;background:var(--bb-yellow);color:var(--bb-black)}
+  .r-sys{flex:5;background:linear-gradient(90deg,var(--red) 0,var(--red) 33%,var(--blue) 33%,var(--blue) 66%,var(--green) 66%,var(--green) 100%);color:#fff}
+
+  .type-row{display:grid;grid-template-columns:240px 1fr;gap:32px;padding:36px 0;border-top:1px solid var(--bb-black);align-items:center}
+  .type-row:first-of-type{border-top:none}
+  .type-row .meta{display:flex;flex-direction:column;gap:6px}
+  .type-row .meta .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute);font-weight:700}
+  .type-row .meta .ttl{font-family:var(--display);font-size:24px;letter-spacing:-.01em}
+  .type-row .meta .src{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--bb-yellow-deep);font-weight:700}
+
+  .smp-1{font-family:var(--display);font-size:108px;line-height:.85;letter-spacing:-.025em}
+  .smp-2{font-family:var(--display);font-size:64px;line-height:.9;letter-spacing:-.02em}
+  .smp-3{font-family:var(--grotesk);font-weight:800;font-size:36px;line-height:1;letter-spacing:-.01em}
+  .smp-4{font-family:var(--body);font-weight:400;font-size:17px;line-height:1.55;color:#3A3A36;max-width:560px}
+  .smp-5{font-family:var(--mono);font-size:14px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+
+  .scale-table{display:grid;grid-template-columns:80px 1fr 110px 90px;gap:0;border:1px solid var(--bb-black);margin-top:32px}
+  .scale-table div{padding:14px 18px;border-top:1px solid var(--line);display:flex;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+  .scale-table div:nth-child(-n+4){border-top:none;background:var(--bb-black);color:var(--bb-yellow);font-weight:700;letter-spacing:.14em}
+  .scale-table .smp{font-family:var(--display);text-transform:none;letter-spacing:-.005em;color:var(--bb-black)}
+
+  .grid-demo{border:1px solid var(--bb-black);position:relative;background:var(--paper);display:grid;grid-template-columns:repeat(12,1fr);gap:8px;padding:24px;min-height:240px}
+  .grid-demo span{background:var(--bb-yellow-soft);border:1px dashed var(--bb-yellow-deep);font-family:var(--mono);font-size:10px;color:var(--bb-yellow-deep);text-align:center;padding:6px 0;letter-spacing:.1em;font-weight:700}
+  .spacing{display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;align-items:flex-end}
+  .spacing .step{display:flex;flex-direction:column;align-items:center;gap:8px}
+  .spacing .step .box{background:var(--bb-yellow);border:1px solid var(--bb-black)}
+  .spacing .step .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;font-weight:700}
+
+  .icon-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:var(--bb-black);border:1px solid var(--bb-black)}
+  .icon-grid .ic{background:var(--paper);aspect-ratio:1;display:flex;align-items:center;justify-content:center;color:var(--bb-yellow-deep)}
+  .icon-grid .ic svg{width:36px;height:36px}
+
+  .photo-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+  .ph{aspect-ratio:4/5;border:1px solid var(--bb-black);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
+  .ph .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.16em;background:var(--paper);color:var(--bb-black);padding:4px 8px;align-self:flex-start;border:1px solid var(--bb-black);font-weight:700}
+  .ph-1{background:linear-gradient(0deg,rgba(0,0,0,.45),transparent),repeating-linear-gradient(90deg,#FFC629 0,#FFC629 26px,#0E0E0E 26px,#0E0E0E 52px)}
+  .ph-2{background:linear-gradient(0deg,rgba(0,0,0,.55),transparent),radial-gradient(circle at 60% 40%,#3a3a36,#0E0E0E 70%)}
+  .ph-3{background:linear-gradient(0deg,rgba(0,0,0,.45),transparent),radial-gradient(circle at 40% 30%,#FFC629,#F0B400 70%)}
+  .ph-4{background:linear-gradient(0deg,rgba(0,0,0,.45),transparent),repeating-linear-gradient(45deg,#1F1F1F 0,#1F1F1F 12px,#0E0E0E 12px,#0E0E0E 24px)}
+  .ph-5{background:linear-gradient(0deg,rgba(0,0,0,.45),transparent),linear-gradient(135deg,#FFE08A,#FFC629 70%)}
+  .ph-6{background:linear-gradient(0deg,rgba(0,0,0,.55),transparent),radial-gradient(ellipse at 30% 70%,#5a4830,#1A1A1A 70%)}
+  .ph-7{background:linear-gradient(0deg,rgba(0,0,0,.4),transparent),radial-gradient(circle at 50% 50%,#FAFAF7,#E5E3D9)}
+  .ph-7 .lbl{background:var(--bb-black);color:var(--paper)}
+  .ph-8{background:linear-gradient(0deg,rgba(0,0,0,.45),transparent),repeating-linear-gradient(0deg,#FFC629 0,#FFC629 4px,#0E0E0E 4px,#0E0E0E 8px)}
+
+  .voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bb-black);border:1px solid var(--bb-black);margin-top:24px}
+  .voice{background:var(--paper);padding:32px}
+  .voice h4{font-family:var(--display);font-size:32px;line-height:.95;margin-bottom:16px;letter-spacing:-.01em}
+  .voice.do h4 span{background:var(--green);color:var(--paper);padding:0 .14em}
+  .voice.dont h4 span{background:var(--red);color:var(--paper);padding:0 .14em}
+  .voice ul{list-style:none}
+  .voice li{padding:14px 0;border-top:1px dashed var(--line-2);font-size:14.5px;line-height:1.45;display:flex;gap:12px;color:#3A3A36}
+  .voice li::before{font-family:var(--mono);font-weight:700;flex-shrink:0;font-size:14px}
+  .voice.do li::before{content:"✓";color:var(--green)}
+  .voice.dont li::before{content:"✗";color:var(--red)}
+
+  .vo-sample{background:var(--paper);border:1px solid var(--bb-black);padding:28px;margin-top:18px;position:relative}
+  .vo-sample::before{content:attr(data-tag);position:absolute;top:-9px;left:18px;background:var(--bb-yellow);color:var(--bb-black);font-family:var(--mono);font-size:10px;letter-spacing:.16em;padding:2px 10px;font-weight:700}
+  .vo-sample .body{font-family:var(--body);font-size:16px;line-height:1.5;color:#3A3A36}
+  .vo-sample .body b{color:var(--bb-black)}
+
+  .ig-section{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;margin-top:24px}
+  .ig-frame{width:100%;max-width:420px;border:1px solid var(--bb-black);background:var(--paper);border-radius:36px;padding:14px;margin:0 auto;position:relative}
+  .ig-frame::before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:120px;height:24px;background:var(--bb-black);border-radius:0 0 16px 16px;z-index:5}
+  .ig-screen{background:var(--paper);border-radius:24px;overflow:hidden}
+  .ig-header{padding:16px 14px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);margin-top:24px}
+  .ig-avatar{width:42px;height:42px;border-radius:50%;background:var(--bb-yellow);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:18px;color:var(--bb-black);position:relative;border:2px solid var(--bb-black)}
+  .ig-handle{font-family:var(--grotesk);font-weight:700;font-size:14px;color:var(--bb-black)}
+  .ig-handle small{display:block;color:var(--mute);font-weight:400;font-size:11px}
+  .ig-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bb-black)}
+  .ig-tile{aspect-ratio:1;background:var(--paper);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:10px}
+
+  .it-1{background:var(--bb-yellow);color:var(--bb-black)}
+  .it-1 .h{font-family:var(--display);font-size:13px;line-height:.95;letter-spacing:-.01em}
+  .it-2{background:var(--bb-black);color:var(--paper)}
+  .it-2 .h{font-family:var(--display);font-size:13px;line-height:.95}
+  .it-2 .h em{font-style:normal;color:var(--bb-yellow)}
+  .it-3{background:var(--paper);color:var(--bb-black);border:1px solid var(--line)}
+  .it-3 .h{font-family:var(--display);font-size:32px;line-height:.85;color:var(--bb-yellow-deep)}
+  .it-3 .lbl{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--mute);margin-bottom:auto;font-weight:700}
+  .it-4{background:var(--bb-yellow);color:var(--bb-black)}
+  .it-4 .num{font-family:var(--display);font-size:48px;line-height:.85}
+  .it-4 .lbl{font-family:var(--mono);font-size:8px;letter-spacing:.16em;font-weight:700}
+  .it-5{background:var(--bb-black);color:var(--paper)}
+  .it-5 .num{font-family:var(--display);font-size:42px;line-height:.85;color:var(--bb-yellow)}
+  .it-5 .lbl{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--mute-2);font-weight:700}
+  .it-6{background:var(--soft);color:var(--bb-black)}
+  .it-6 .h{font-family:var(--display);font-size:13px;line-height:.95}
+  .it-7{background:linear-gradient(180deg,#FFC629 50%,#0E0E0E 50%);color:var(--bb-black)}
+  .it-7 .h{font-family:var(--display);font-size:13px;line-height:.95}
+  .it-8{background:var(--bb-black);color:var(--paper)}
+  .it-8 .lbl{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--bb-yellow);font-weight:700}
+  .it-8 .h{font-family:var(--display);font-size:14px;line-height:.95}
+  .it-9{background:var(--paper);border:1px solid var(--line);color:var(--bb-black)}
+  .it-9 .h{font-family:var(--display);font-size:13px;line-height:.95;color:var(--bb-black)}
+  .it-9 .h em{font-style:normal;background:var(--bb-yellow);padding:0 2px}
+
+  .post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+  .post{aspect-ratio:1;border:1px solid var(--bb-black);position:relative;overflow:hidden;padding:36px;display:flex;flex-direction:column;justify-content:space-between}
+  .post .crn{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.14em;font-weight:700}
+  .post .crn-tl{top:18px;left:24px}
+  .post .crn-tr{top:18px;right:24px}
+  .post .crn-bl{bottom:18px;left:24px}
+  .post .crn-br{bottom:18px;right:24px}
+
+  .p-q{background:var(--paper);color:var(--bb-black)}
+  .p-q .big{font-family:var(--display);font-size:54px;line-height:.92;letter-spacing:-.015em}
+  .p-q .big em{font-style:normal;background:var(--bb-yellow);padding:0 .08em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .p-q .crn{color:var(--mute)}
+  .p-q .crn.acc{color:var(--bb-yellow-deep)}
+
+  .p-y{background:var(--bb-yellow);color:var(--bb-black)}
+  .p-y .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;font-weight:700}
+  .p-y .big{font-family:var(--display);font-size:64px;line-height:.9;letter-spacing:-.02em}
+  .p-y .row{display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:700}
+
+  .p-k{background:var(--bb-black);color:var(--paper);position:relative}
+  .p-k .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--bb-yellow);font-weight:700}
+  .p-k .big{font-family:var(--display);font-size:54px;line-height:.92;letter-spacing:-.015em}
+  .p-k .big em{font-style:normal;color:var(--bb-yellow)}
+
+  .p-stat{background:var(--paper);color:var(--bb-black);position:relative}
+  .p-stat .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--mute);font-weight:700}
+  .p-stat .num{font-family:var(--display);font-size:160px;line-height:.85;letter-spacing:-.04em}
+  .p-stat .num em{font-style:normal;background:var(--bb-yellow);padding:0 .04em}
+  .p-stat .desc{font-family:var(--body);font-weight:600;font-size:14px;max-width:80%;line-height:1.4}
+
+  .p-list{background:var(--bb-black);color:var(--paper)}
+  .p-list .h{font-family:var(--display);font-size:30px;line-height:.95;margin-bottom:18px;letter-spacing:-.012em}
+  .p-list .h em{font-style:normal;color:var(--bb-yellow)}
+  .p-list .li{font-family:var(--body);font-size:13.5px;line-height:1.5;padding:8px 0;border-top:1px solid #2a2a2a;display:flex;gap:10px;color:var(--paper)}
+  .p-list .li b{color:var(--bb-yellow);font-family:var(--mono);font-size:11px;flex:0 0 22px;font-weight:700}
+
+  .p-car{background:var(--bb-yellow);color:var(--bb-black);position:relative}
+  .p-car .swipe{position:absolute;right:24px;top:24px;background:var(--bb-black);color:var(--bb-yellow);font-family:var(--mono);font-size:10px;letter-spacing:.14em;padding:5px 10px;font-weight:700}
+  .p-car .num{font-family:var(--display);font-size:140px;line-height:.85;letter-spacing:-.04em;color:var(--bb-black)}
+  .p-car .title{font-family:var(--display);font-size:30px;line-height:.95;letter-spacing:-.012em}
+
+  .p-case{background:var(--paper);color:var(--bb-black);position:relative}
+  .p-case::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--bb-yellow)}
+  .p-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--bb-yellow-deep);font-weight:700}
+  .p-case .h{font-family:var(--display);font-size:32px;line-height:.95;letter-spacing:-.012em}
+  .p-case .stats{display:flex;gap:24px;margin-top:auto}
+  .p-case .stat{display:flex;flex-direction:column;gap:2px}
+  .p-case .stat .n{font-family:var(--display);font-size:36px;line-height:1}
+  .p-case .stat .l{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--mute);font-weight:700}
+
+  .p-ann{background:var(--bb-yellow);color:var(--bb-black);position:relative;display:flex;flex-direction:column;justify-content:space-between}
+  .p-ann .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;font-weight:700}
+  .p-ann .h{font-family:var(--display);font-size:42px;line-height:.95;letter-spacing:-.015em}
+  .p-ann .footer{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.14em;font-weight:700}
+
+  .p-quote-2{background:var(--bb-black);color:var(--paper);position:relative}
+  .p-quote-2 .marks{font-family:var(--display);font-size:80px;line-height:.7;color:var(--bb-yellow)}
+  .p-quote-2 .h{font-family:var(--display);font-size:30px;line-height:1;letter-spacing:-.01em}
+  .p-quote-2 .who{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--bb-yellow);font-weight:700}
+
+  .stories{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
+  .story{aspect-ratio:9/16;border:1px solid var(--bb-black);position:relative;overflow:hidden;display:flex;flex-direction:column;padding:18px}
+  .story .pbar{position:absolute;top:8px;left:8px;right:8px;height:2px;background:rgba(255,255,255,.3)}
+  .story .pbar::after{content:"";position:absolute;left:0;top:0;bottom:0;width:35%;background:#fff}
+  .s-1{background:var(--bb-yellow);color:var(--bb-black)}
+  .s-1 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;margin-top:14px;font-weight:700}
+  .s-1 .h{font-family:var(--display);font-size:30px;line-height:.95;margin-top:auto;letter-spacing:-.012em}
+  .s-1 .b{font-family:var(--mono);font-size:9px;letter-spacing:.16em;margin-top:8px;font-weight:700}
+
+  .s-2{background:var(--bb-black);color:var(--paper);position:relative}
+  .s-2 .pbar{background:rgba(255,255,255,.2)}
+  .s-2 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--bb-yellow);margin-top:14px;font-weight:700}
+  .s-2 .h{font-family:var(--display);font-size:32px;line-height:.95;margin:auto 0;letter-spacing:-.012em}
+  .s-2 .h em{font-style:normal;color:var(--bb-yellow)}
+  .s-2 .b{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--mute-2);font-weight:700}
+
+  .s-3{background:var(--paper);color:var(--bb-black);position:relative}
+  .s-3 .pbar{background:rgba(0,0,0,.15)}
+  .s-3 .pbar::after{background:var(--bb-black)}
+  .s-3 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--bb-yellow-deep);margin-top:14px;font-weight:700}
+  .s-3 .num{font-family:var(--display);font-size:90px;line-height:.85;margin:auto 0;letter-spacing:-.03em}
+  .s-3 .num em{font-style:normal;background:var(--bb-yellow);padding:0 .04em}
+  .s-3 .b{font-family:var(--body);font-weight:600;font-size:13px;line-height:1.4}
+
+  .s-4{background:var(--bb-yellow);color:var(--bb-black);position:relative}
+  .s-4 .pbar{background:rgba(0,0,0,.15)}
+  .s-4 .pbar::after{background:var(--bb-black)}
+  .s-4 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;margin-top:14px;font-weight:700}
+  .s-4 .q{font-family:var(--display);font-size:24px;line-height:1;margin-top:auto;letter-spacing:-.01em}
+  .s-4 .opts{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+  .s-4 .opts div{background:var(--bb-black);color:var(--paper);padding:8px 10px;font-family:var(--body);font-weight:600;font-size:12px;border-radius:4px}
+  .s-4 .opts .y{background:var(--paper);color:var(--bb-black);border:2px solid var(--bb-black)}
+
+  .reels{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px}
+  .reel{aspect-ratio:9/16;border:1px solid var(--bb-black);position:relative;overflow:hidden;display:flex;flex-direction:column;padding:20px}
+  .reel .ico{position:absolute;top:14px;right:14px;width:24px;height:24px;border:1.5px solid currentColor;border-radius:4px;display:flex;align-items:center;justify-content:center}
+  .reel .ico::after{content:"▶";font-size:9px}
+  .r-1{background:var(--bb-yellow);color:var(--bb-black)}
+  .r-1 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;font-weight:700}
+  .r-1 .h{font-family:var(--display);font-size:42px;line-height:.9;margin-top:auto;letter-spacing:-.015em}
+  .r-2{background:var(--bb-black);color:var(--paper)}
+  .r-2 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--bb-yellow);font-weight:700}
+  .r-2 .h{font-family:var(--display);font-size:42px;line-height:.9;margin-top:auto;letter-spacing:-.015em}
+  .r-2 .h em{font-style:normal;color:var(--bb-yellow)}
+  .r-3{background:var(--paper);color:var(--bb-black);position:relative;border:1px solid var(--line)}
+  .r-3::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--bb-yellow)}
+  .r-3 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--bb-yellow-deep);font-weight:700}
+  .r-3 .h{font-family:var(--display);font-size:38px;line-height:.92;margin-top:auto;letter-spacing:-.012em}
+  .r-4{background:linear-gradient(180deg,var(--bb-yellow) 0%,var(--bb-yellow) 60%,var(--bb-black) 60%,var(--bb-black) 100%);color:var(--bb-black);position:relative}
+  .r-4 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;font-weight:700}
+  .r-4 .h{font-family:var(--display);font-size:38px;line-height:.92;letter-spacing:-.012em;color:var(--bb-black)}
+  .r-4 .h.b{color:var(--bb-yellow);margin-top:auto}
+
+  .li-banner{border:1px solid var(--bb-black);background:var(--bb-black);color:var(--paper);padding:48px 56px;display:flex;justify-content:space-between;align-items:center;aspect-ratio:4/1;margin-top:32px;position:relative;overflow:hidden}
+  .li-banner .left{display:flex;flex-direction:column;gap:14px;z-index:2}
+  .li-banner .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--bb-yellow);font-weight:700}
+  .li-banner h3{font-family:var(--display);font-size:54px;line-height:.95;letter-spacing:-.02em}
+  .li-banner h3 em{font-style:normal;background:var(--bb-yellow);color:var(--bb-black);padding:0 .1em}
+  .li-banner .right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:700}
+  .li-banner .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,198,41,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,198,41,.06) 1px,transparent 1px);background-size:32px 32px}
+
+  .li-posts{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:32px}
+  .li-post{border:1px solid var(--bb-black);background:var(--paper);padding:0;overflow:hidden;display:flex;flex-direction:column}
+  .li-head{padding:14px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line)}
+  .li-head .av{width:40px;height:40px;border-radius:50%;background:var(--bb-yellow);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:16px;border:2px solid var(--bb-black)}
+  .li-head .meta{display:flex;flex-direction:column}
+  .li-head .meta b{font-family:var(--grotesk);font-weight:700;font-size:14px}
+  .li-head .meta small{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--mute);font-weight:700}
+  .li-img{aspect-ratio:1.91/1;display:flex;flex-direction:column;justify-content:center;padding:36px 32px;position:relative}
+  .li-img-1{background:var(--bb-yellow);color:var(--bb-black)}
+  .li-img-1 .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;font-weight:700;margin-bottom:14px}
+  .li-img-1 .h{font-family:var(--display);font-size:42px;line-height:.95;letter-spacing:-.015em}
+  .li-img-1 .h em{font-style:normal;background:var(--bb-black);color:var(--bb-yellow);padding:0 .06em}
+  .li-img-2{background:var(--bb-black);color:var(--paper);justify-content:space-between}
+  .li-img-2 .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--bb-yellow);margin-bottom:14px;font-weight:700}
+  .li-img-2 .h{font-family:var(--display);font-size:34px;line-height:.95;letter-spacing:-.015em}
+  .li-img-2 .num{font-family:var(--display);font-size:96px;line-height:.85;color:var(--bb-yellow);letter-spacing:-.04em;align-self:flex-end}
+  .li-cap{padding:14px 18px;font-family:var(--body);font-size:13.5px;line-height:1.5;color:#3A3A36;border-top:1px solid var(--line)}
+
+  .x-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;margin-top:32px;align-items:start}
+  .x-banner{aspect-ratio:3/1;border:1px solid var(--bb-black);background:var(--bb-yellow);position:relative;overflow:hidden;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+  .x-banner .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;font-weight:700}
+  .x-banner .h{font-family:var(--display);font-size:42px;line-height:.92;letter-spacing:-.015em;max-width:72%}
+  .x-card{border:1px solid var(--bb-black);background:var(--paper);padding:18px}
+  .x-card .head{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+  .x-card .av{width:36px;height:36px;border-radius:50%;background:var(--bb-yellow);border:2px solid var(--bb-black)}
+  .x-card .name{font-family:var(--grotesk);font-weight:700;font-size:13px}
+  .x-card .name small{display:block;color:var(--mute);font-weight:400;font-family:var(--mono);font-size:10px;letter-spacing:.1em}
+  .x-card .text{font-family:var(--body);font-size:14.5px;line-height:1.45}
+  .x-card .text .acc{background:var(--bb-yellow);padding:0 4px}
+
+  .yt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+  .yt-thumb{aspect-ratio:16/9;border:1px solid var(--bb-black);position:relative;overflow:hidden;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+  .yt-1{background:var(--bb-yellow);color:var(--bb-black)}
+  .yt-1 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;font-weight:700}
+  .yt-1 .h{font-family:var(--display);font-size:30px;line-height:.95;letter-spacing:-.015em;max-width:78%}
+  .yt-2{background:var(--bb-black);color:var(--paper)}
+  .yt-2 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--bb-yellow);font-weight:700}
+  .yt-2 .h{font-family:var(--display);font-size:30px;line-height:.95;letter-spacing:-.015em;max-width:78%}
+  .yt-2 .h em{font-style:normal;color:var(--bb-yellow)}
+  .yt-3{background:var(--paper);color:var(--bb-black);border:1px solid var(--line);position:relative}
+  .yt-3::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--bb-yellow)}
+  .yt-3 .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--bb-yellow-deep);font-weight:700}
+  .yt-3 .h{font-family:var(--display);font-size:30px;line-height:.95;letter-spacing:-.015em;max-width:78%}
+  .yt-time{position:absolute;bottom:8px;right:8px;background:var(--bb-black);color:var(--paper);font-family:var(--mono);font-size:10px;padding:2px 6px;letter-spacing:.06em;font-weight:700}
+
+  .web-frame{border:1px solid var(--bb-black);background:var(--paper);overflow:hidden;margin-top:32px}
+  .web-bar{display:flex;align-items:center;gap:8px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--soft)}
+  .web-bar .dot{width:10px;height:10px;border-radius:50%;background:var(--mute-2)}
+  .web-bar .url{margin-left:14px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.06em;font-weight:700}
+  .web-hero{padding:64px 56px 96px;position:relative;display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:end;background:var(--paper)}
+  .web-hero::after{content:"";position:absolute;right:48px;top:48px;width:120px;height:120px;background:var(--bb-yellow);border-radius:50%}
+  .web-hero .top{position:absolute;top:24px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:700}
+  .web-hero .nav{display:flex;gap:24px}
+  .web-hero h3{font-family:var(--display);font-size:80px;line-height:.92;letter-spacing:-.025em;position:relative;z-index:2}
+  .web-hero h3 em{font-style:normal;background:var(--bb-yellow);padding:0 .06em}
+  .web-hero .sub{font-family:var(--body);font-size:16px;color:var(--mute);max-width:90%;margin-top:16px;position:relative;z-index:2}
+  .web-hero .cta{margin-top:32px;display:flex;gap:14px;position:relative;z-index:2}
+  .btn{font-family:var(--grotesk);font-weight:700;font-size:14px;letter-spacing:.02em;padding:12px 22px;border:1.5px solid var(--bb-black);text-transform:uppercase;background:var(--bb-black);color:var(--bb-yellow);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .btn.alt{background:var(--paper);color:var(--bb-black)}
+  .btn.yel{background:var(--bb-yellow);color:var(--bb-black)}
+
+  .web-strip{background:var(--bb-black);color:var(--paper);padding:18px 56px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:700}
+  .web-strip span:first-child{color:var(--bb-yellow)}
+
+  .components{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bb-black);border:1px solid var(--bb-black);margin-top:32px}
+  .cmp{background:var(--paper);padding:32px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-height:180px;justify-content:center}
+  .cmp .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute);font-weight:700}
+
+  .input-demo{border:1.5px solid var(--bb-black);padding:12px 16px;font-family:var(--body);font-size:14px;background:var(--paper);width:100%}
+  .chip{font-family:var(--mono);font-size:11px;letter-spacing:.12em;padding:6px 12px;border:1.5px solid var(--bb-black);background:var(--bb-yellow);color:var(--bb-black);font-weight:700}
+
+  .card-demo{border:1.5px solid var(--bb-black);background:var(--paper);padding:18px;width:100%}
+  .card-demo .lb{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--bb-yellow-deep);margin-bottom:8px;font-weight:700}
+  .card-demo .ti{font-family:var(--display);font-size:20px;line-height:1;letter-spacing:-.01em;margin-bottom:8px}
+  .card-demo .te{font-size:13px;color:var(--mute);line-height:1.4}
+
+  .email-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:32px;margin-top:32px}
+  .email-sig{border:1px solid var(--bb-black);background:var(--paper);padding:32px}
+  .email-sig .head{display:flex;gap:18px;align-items:center;border-bottom:2px solid var(--bb-yellow);padding-bottom:16px;margin-bottom:14px}
+  .email-sig .av{width:64px;height:64px;background:var(--bb-yellow);border:2px solid var(--bb-black);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:28px}
+  .email-sig .id b{font-family:var(--display);font-size:20px;display:block;letter-spacing:-.01em}
+  .email-sig .id span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute);text-transform:uppercase;font-weight:700}
+  .email-sig .row{display:grid;grid-template-columns:80px 1fr;gap:8px;font-size:12px;padding:6px 0;border-top:1px dashed var(--line-2)}
+  .email-sig .row b{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute);font-weight:700}
+  .email-sig .footer{margin-top:14px;padding-top:14px;border-top:2px solid var(--bb-black);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute);font-weight:700}
+
+  .news{border:1px solid var(--bb-black);background:var(--paper);overflow:hidden}
+  .news .top{background:var(--bb-yellow);color:var(--bb-black);padding:24px 28px;display:flex;justify-content:space-between;align-items:center}
+  .news .top .ttl{font-family:var(--display);font-size:28px;letter-spacing:-.012em;line-height:.95}
+  .news .top .meta{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-align:right;font-weight:700}
+  .news .body{padding:28px}
+  .news .body h4{font-family:var(--display);font-size:24px;line-height:1;letter-spacing:-.01em;margin-bottom:8px}
+  .news .body p{font-size:14px;color:#3A3A36;line-height:1.5;margin-bottom:18px}
+  .news .body .divider{height:1px;background:var(--bb-black);margin:18px 0}
+  .news .body .lb{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--bb-yellow-deep);font-weight:700;margin-bottom:6px}
+
+  .deck{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:32px}
+  .slide{aspect-ratio:16/9;border:1px solid var(--bb-black);position:relative;overflow:hidden;padding:48px 56px;display:flex;flex-direction:column;justify-content:space-between}
+  .slide .top-row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.14em;font-weight:700}
+  .slide .pn{position:absolute;bottom:24px;right:32px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute);font-weight:700}
+  .sl-cover{background:var(--bb-yellow);color:var(--bb-black)}
+  .sl-cover .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;font-weight:700}
+  .sl-cover .h{font-family:var(--display);font-size:64px;line-height:.92;letter-spacing:-.02em}
+  .sl-cover .meta{font-family:var(--mono);font-size:10px;letter-spacing:.14em;font-weight:700}
+
+  .sl-divider{background:var(--bb-black);color:var(--paper);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;text-align:center}
+  .sl-divider .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--bb-yellow);font-weight:700}
+  .sl-divider .h{font-family:var(--display);font-size:64px;line-height:.92;letter-spacing:-.02em}
+  .sl-divider .h em{font-style:normal;color:var(--bb-yellow)}
+
+  .sl-content{background:var(--paper);color:var(--bb-black);display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .sl-content .l{display:flex;flex-direction:column;gap:14px}
+  .sl-content .l .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--bb-yellow-deep);font-weight:700}
+  .sl-content .l h4{font-family:var(--display);font-size:36px;line-height:.95;letter-spacing:-.015em}
+  .sl-content .l p{font-size:13.5px;color:var(--mute);line-height:1.5}
+  .sl-content .r{display:flex;flex-direction:column;gap:8px}
+  .sl-content .r .stat{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding:8px 0}
+  .sl-content .r .stat:first-child{border-top:none}
+  .sl-content .r .stat b{font-family:var(--display);font-size:32px;line-height:1;letter-spacing:-.015em}
+  .sl-content .r .stat span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute);font-weight:700}
+
+  .sl-stat{background:var(--paper);color:var(--bb-black);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+  .sl-stat .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--mute);font-weight:700}
+  .sl-stat .num{font-family:var(--display);font-size:200px;line-height:.85;letter-spacing:-.04em}
+  .sl-stat .num em{font-style:normal;background:var(--bb-yellow);padding:0 .04em}
+  .sl-stat .desc{font-family:var(--display);font-size:24px;line-height:1;letter-spacing:-.01em;max-width:60%;margin-top:-12px}
+
+  .print-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+  .card-front,.card-back{aspect-ratio:1.75/1;border:1px solid var(--bb-black);position:relative;overflow:hidden;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+  .card-front{background:var(--bb-yellow);color:var(--bb-black)}
+  .card-front .top{font-family:var(--mono);font-size:10px;letter-spacing:.14em;font-weight:700}
+  .card-front .name{font-family:var(--display);font-size:24px;letter-spacing:-.012em;line-height:1}
+  .card-front .role{font-family:var(--mono);font-size:10px;letter-spacing:.14em;margin-top:4px;font-weight:700}
+  .card-front .row{display:flex;justify-content:space-between;align-items:flex-end}
+  .card-back{background:var(--bb-black);color:var(--paper);justify-content:center;align-items:center}
+  .card-back .bb-wordmark{color:var(--paper);font-size:32px}
+  .card-back .bb-wordmark .o-bulb::after{background:var(--bb-yellow)}
+
+  .letterhead{aspect-ratio:.77/1;border:1px solid var(--bb-black);background:var(--paper);position:relative;padding:32px 28px;display:flex;flex-direction:column}
+  .letterhead .head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--bb-black);padding-bottom:14px;margin-bottom:14px}
+  .letterhead .head .bb-wordmark{font-size:18px}
+  .letterhead .head .meta{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-align:right;color:var(--mute);line-height:1.6;font-weight:700}
+  .letterhead .body p{font-family:var(--body);font-size:9px;color:var(--mute);line-height:1.6;margin-bottom:8px}
+  .letterhead .body .lin{height:1px;background:var(--line);margin:6px 0}
+  .letterhead .footer{margin-top:auto;border-top:2px solid var(--bb-yellow);padding-top:8px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;letter-spacing:.14em;color:var(--mute);font-weight:700}
+
+  .merch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:24px}
+  .merch{aspect-ratio:1;border:1px solid var(--bb-black);position:relative;overflow:hidden;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+  .m-tee{background:var(--bb-black);color:var(--paper)}
+  .m-tee .h{font-family:var(--display);font-size:36px;line-height:.9;margin:auto 0;text-align:center;letter-spacing:-.015em}
+  .m-tee .h em{font-style:normal;color:var(--bb-yellow)}
+  .m-tee .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute-2);text-align:center;font-weight:700}
+  .m-cap{background:var(--bb-yellow);color:var(--bb-black);display:flex;align-items:center;justify-content:center}
+  .m-cap .h{font-family:var(--display);font-size:42px;line-height:.9;letter-spacing:-.02em}
+  .m-tot{background:var(--paper);color:var(--bb-black);border:1px solid var(--bb-black)}
+  .m-tot .h{font-family:var(--display);font-size:24px;line-height:.95;margin:auto 0;text-align:center;letter-spacing:-.012em}
+  .m-tot .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--mute);text-align:center;font-weight:700}
+  .m-stk{background:var(--bb-yellow);color:var(--bb-black);position:relative;display:flex;align-items:center;justify-content:center}
+  .m-stk::before{content:"";position:absolute;inset:6px;border:2px dashed var(--bb-black)}
+  .m-stk .h{font-family:var(--display);font-size:38px;line-height:.85;letter-spacing:-.02em;text-align:center;position:relative}
+
+  .motion-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bb-black);border:1px solid var(--bb-black);margin-top:32px}
+  .mot{background:var(--paper);padding:24px;display:flex;flex-direction:column;gap:14px;min-height:180px;position:relative}
+  .mot .lb{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--bb-yellow-deep);font-weight:700}
+  .mot .ti{font-family:var(--display);font-size:18px;line-height:1;letter-spacing:-.01em}
+  .mot .de{font-size:12.5px;color:var(--mute);line-height:1.45}
+
+  .sum{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bb-black);border:1px solid var(--bb-black);margin-top:32px}
+  .sum-cell{background:var(--paper);padding:32px;min-height:200px}
+  .sum-cell.do{background:#F4FAF1}
+  .sum-cell.dont{background:#FCF1F1}
+  .sum-cell h4{font-family:var(--display);font-size:24px;margin-bottom:14px;letter-spacing:-.01em}
+  .sum-cell.do h4 span{background:var(--green);color:var(--paper);padding:0 10px}
+  .sum-cell.dont h4 span{background:var(--red);color:var(--paper);padding:0 10px}
+  .sum-cell ul{list-style:none}
+  .sum-cell li{padding:10px 0;border-top:1px dashed var(--line-2);font-size:13.5px;line-height:1.45;color:#3A3A36}
+
+  .foot{margin-top:80px;padding:32px;border:1px solid var(--bb-black);background:var(--bb-black);color:var(--paper);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:700}
+  .foot b{color:var(--bb-yellow)}
+
+  .mini-mark{font-family:var(--display);display:inline-flex;align-items:center;line-height:1}
+  .mini-mark .ob{display:inline-flex;align-items:center;justify-content:center;width:.7em;height:.7em;border:.07em solid currentColor;border-radius:50%;vertical-align:-.05em;margin:0 .015em}
+  .mini-mark .ob::after{content:"";display:block;width:.28em;height:.28em;background:var(--bb-yellow);border-radius:50%}
+
+  @media (max-width:980px){
+    .doc{padding:24px 20px 80px}
+    .cover h1{font-size:64px}
+    .cover .foot{grid-template-columns:1fr 1fr}
+    .index,.g3,.g4{grid-template-columns:1fr}
+    .palette{grid-template-columns:1fr 1fr}
+    .sw.lg{grid-column:1/-1}
+    .post-grid,.li-posts,.yt-grid{grid-template-columns:1fr}
+    .stories,.reels{grid-template-columns:1fr 1fr}
+    .ig-section,.x-wrap,.email-wrap,.deck{grid-template-columns:1fr}
+    .icon-grid{grid-template-columns:repeat(4,1fr)}
+    .donts,.merch-grid,.photo-row{grid-template-columns:1fr 1fr}
+    .web-hero{grid-template-columns:1fr;padding:48px 32px}
+    .web-hero h3{font-size:48px}
+    .smp-1{font-size:64px}
+    .type-row{grid-template-columns:1fr}
+    .scale-table{grid-template-columns:60px 1fr 90px 70px}
+    .components{grid-template-columns:1fr}
+    .sum,.voice-grid{grid-template-columns:1fr}
+    .li-banner{aspect-ratio:auto;flex-direction:column;gap:24px;align-items:flex-start}
+    .li-banner .right{align-items:flex-start}
+  }
+
+</style>
+
+</head>
+<body>
+<div class="doc">
+  <!-- TOP STRIP -->
+  <div class="strip">
+    <div class="strip-l">
+      <span class="badge">BRAND SYSTEM</span>
+      <span class="mono">V 02.0 / MAY 2026 / DIGITAL HANDBOOK</span>
+    </div>
+    <span class="mono">BOMBAY BLOKES — IDENTITY HANDBOOK</span>
+  </div>
+
+  <!-- COVER -->
+  <section style="padding-top:0">
+    <div class="cover">
+      <div class="bg-grid"></div>
+      <div class="top-row">
+        <span class="meta">// THE COMPLETE BRAND SYSTEM</span>
+        <span class="meta">EST. MUMBAI · IN</span>
+      </div>
+      <h1 class="display">
+        <span class="row">B<span class="bulb-o"></span>MBAY</span>
+        <span class="row">BL<span class="bulb-o"></span>KES.</span>
+      </h1>
+      <div class="foot">
+        <div><b>OWNER</b><span>BOMBAY BLOKES</span></div>
+        <div><b>FORMAT</b><span>DIGITAL AGENCY</span></div>
+        <div><b>BENCHMARKS</b><span>APPLE · BRAUN · XIAOMI</span></div>
+        <div><b>TAGLINE</b><span>BEYOND ORDINARY.</span></div>
+      </div>
+    </div>
+
+    <!-- INDEX -->
+    <div class="index">
+      <div class="idx"><span class="n">01 / FOUNDATION</span><span class="t">The Belief.</span><span class="d">Mission, vision, voice, "Beyond Ordinary".</span></div>
+      <div class="idx"><span class="n">02 / LOGO</span><span class="t">The Mark.</span><span class="d">Wordmark, monogram, lockups, do's &amp; don'ts.</span></div>
+      <div class="idx"><span class="n">03 / COLOR</span><span class="t">Yellow &amp; Black.</span><span class="d">Primary, secondary, semantic. The 55/25/15 rule.</span></div>
+      <div class="idx"><span class="n">04 / TYPE</span><span class="t">Loud. Clean.</span><span class="d">Archivo Black + Poppins. The social-first scale.</span></div>
+      <div class="idx"><span class="n">05 / GRID</span><span class="t">8pt System.</span><span class="d">Spacing, columns, layout principles.</span></div>
+      <div class="idx"><span class="n">06 / ICONS</span><span class="t">Line First.</span><span class="d">Iconography, illustration, photography.</span></div>
+      <div class="idx"><span class="n">07 / VOICE</span><span class="t">Bombay Direct.</span><span class="d">Tone, lexicon, do/don't with samples.</span></div>
+      <div class="idx"><span class="n">08 / SOCIAL</span><span class="t">Feed System.</span><span class="d">Instagram, LinkedIn, X, YouTube — full templates.</span></div>
+      <div class="idx"><span class="n">09 / WEB &amp; UI</span><span class="t">Site System.</span><span class="d">Hero, components, buttons, cards, motion.</span></div>
+      <div class="idx"><span class="n">10 / EMAIL</span><span class="t">Inbox System.</span><span class="d">Signatures, newsletter, transactional.</span></div>
+      <div class="idx"><span class="n">11 / DECK</span><span class="t">Sales Deck.</span><span class="d">Cover, dividers, content, stat slides.</span></div>
+      <div class="idx"><span class="n">12 / PRINT</span><span class="t">Off-Screen.</span><span class="d">Cards, letterhead, swag, stickers.</span></div>
+    </div>
+  </section>
+
+  <!-- 01 FOUNDATION -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">01</span>
+      <span>FOUNDATION</span>
+      <span class="line"></span>
+      <span>BELIEF · POSITIONING · VOICE</span>
+    </div>
+    <h2 class="section-title">WE BUILD <span class="acc">BEYOND</span><br>ORDINARY BRANDS.</h2>
+    <p class="lede">Bombay Blokes is a digital marketing &amp; technical agency from Mumbai, building brands the way the city does — fast, sharp, real, and with a particular fondness for the unexpected. The lightbulb in our mark isn't decoration. It's the work.</p>
+
+    <div class="g3">
+      <div class="cell pillar">
+        <div class="tag">// BELIEF 01</div>
+        <h3>Beyond Ordinary.</h3>
+        <p>Most brands settle for "good enough." Our standard starts where theirs ends. Every output — from a meta description to a launch film — earns the title or doesn't ship.</p>
+      </div>
+      <div class="cell pillar">
+        <div class="tag">// BELIEF 02</div>
+        <h3>Built in Bombay.</h3>
+        <p>The city's speed, density, jugaad, taste and unsentimental clarity is in everything we make. We don't romanticise it. We just work that way.</p>
+      </div>
+      <div class="cell pillar">
+        <div class="tag">// BELIEF 03</div>
+        <h3>Marketing meets Tech.</h3>
+        <p>We are equally fluent in narrative and code. Strategy, design, performance and engineering live under one roof — and one P&amp;L.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+      <div>
+        <div class="mono" style="color:var(--bb-yellow-deep);margin-bottom:16px;font-weight:700">// MISSION</div>
+        <p class="belief">To make ambitious brands <em>impossible to ignore</em> — through sharp positioning, sharper craft, and sharpest execution.</p>
+      </div>
+      <div>
+        <div class="mono" style="color:var(--bb-yellow-deep);margin-bottom:16px;font-weight:700">// VISION</div>
+        <p class="belief">To be the agency Mumbai's most ambitious founders <em>call first</em> — and the one their competitors hear about second.</p>
+      </div>
+    </div>
+
+    <div class="g4" style="margin-top:48px">
+      <div class="cell"><div class="mono" style="color:var(--mute);margin-bottom:8px;font-weight:700">CHARACTER</div><div class="display" style="font-size:22px">Confident<br>not cocky.</div></div>
+      <div class="cell"><div class="mono" style="color:var(--mute);margin-bottom:8px;font-weight:700">CHARACTER</div><div class="display" style="font-size:22px">Sharp<br>not slick.</div></div>
+      <div class="cell"><div class="mono" style="color:var(--mute);margin-bottom:8px;font-weight:700">CHARACTER</div><div class="display" style="font-size:22px">Witty<br>never cute.</div></div>
+      <div class="cell"><div class="mono" style="color:var(--mute);margin-bottom:8px;font-weight:700">CHARACTER</div><div class="display" style="font-size:22px">Mumbai<br>always.</div></div>
+    </div>
+  </section>
+
+  <!-- 02 LOGO -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">02</span>
+      <span>LOGO SYSTEM</span>
+      <span class="line"></span>
+      <span>WORDMARK · MARK · LOCKUPS</span>
+    </div>
+    <h2 class="section-title">THE MARK<br>STAYS <span class="acc">SACRED.</span></h2>
+    <p class="lede">The Bombay Blokes wordmark and the bulb-O are fixed assets. They are not redesigned, recoloured outside this guide, restyled, or re-spaced. The "O" with the lightbulb filament is the brand's idea — literally and visually.</p>
+
+    <div class="logo-grid">
+
+  <div class="logo-block">
+    <span class="label">A — PRIMARY WORDMARK / LIGHT</span>
+    <img src="images/BG/rightlogo(1).png" alt="Primary Wordmark" class="logo-img">
+    <span class="label r">CORE / 80% USE</span>
+  </div>
+
+  <div class="logo-block dark">
+    <span class="label">B — INVERSE / DARK BG</span>
+    <img src="images/BG/rightlogo(6).png" alt="Inverse Logo" class="logo-img">
+  </div>
+
+  <div class="logo-block ">
+     <span class="label r">AVATAR · FAVICON · APP ICON</span>
+    <img src="images/BG/rightlogo(3).png" alt="Yellow Surface Logo" class="logo-img">
+  </div>
+
+  <div class="logo-block">
+    <span class="label">D — MONOGRAM MARK</span>
+    <img src="images/BG/rightlogo(4).png" alt="Monogram Mark" class="logo-img  ">
+    <!-- <span class="label r">AVATAR · FAVICON · APP ICON</span> -->
+  </div>
+
+  <div class="logo-block dark">
+    <span class="label">E — MONOGRAM / DARK</span>
+    <img src="images/BG/rightlogo(5).png" alt="Monogram Dark" class="logo-img  ">
+  </div>
+
+  <div class="logo-block  ">
+    <!-- <span class="label">F — MONOGRAM <span> -->
+    <img src="images/BG/rightlogo(2).png" alt="Monogram Yellow" class="logo-img  ">
+  </div>
+
+</div>
+
+    <div class="mono" style="color:var(--bb-yellow-deep);margin-top:48px;margin-bottom:14px;font-weight:700">// DON'TS</div>
+
+<div class="donts">
+
+  <div class="dont-cell">
+    <span class="x">✕</span>
+    <img src="images/BG/wronglogo(1).png" alt="Don't Stretch" class="dont-img">
+    <div class="lb">DON'T STRETCH</div>
+  </div>
+
+  <div class="dont-cell">
+    <span class="x">✕</span>
+    <img src="images/BG/wronglogo(2).png" alt="Don't Recolour" class="dont-img">
+    <div class="lb">DON'T RECOLOUR</div>
+  </div>
+
+  <div class="dont-cell">
+    <span class="x">✕</span>
+    <img src="images/BG/wronglogo(3).png" alt="DON'T ALTER THE LOGO" class="dont-img">
+    <div class="lb">DON'T ALTER THE LOGO</div>
+  </div>
+
+  <div class="dont-cell">
+    <span class="x">✕</span>
+    <img src="images/BG/wronglogo(4).png" alt="Don't Add Dark BACKGROUND" class="dont-img">
+    <div class="lb">DON'T ADD DARK BACKGROUND</div>
+  </div>
+
+</div>
+
+    <div class="vo-sample" data-tag="CLEAR SPACE / MIN SIZE" style="margin-top:48px">
+      <div class="body"><b>Clear space</b> equal to the height of the bulb-O on all sides. <b>Minimum size:</b> 80px height for primary wordmark, 32×32px for the monogram. Never place the wordmark over busy photography without a yellow or black solid plate beneath it. Never re-letter the wordmark or substitute the bulb-O for a regular O.</div>
+    </div>
+  </section>
+
+  <!-- 03 COLOR -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">03</span>
+      <span>COLOR SYSTEM</span>
+      <span class="line"></span>
+      <span>YELLOW · BLACK · PAPER</span>
+    </div>
+    <h2 class="section-title">YELLOW IS THE <span class="acc">SPARK.</span><br>BLACK IS THE BACKBONE.</h2>
+    <p class="lede">A two-color brand at heart. Yellow is the attention. Black is the structure. Paper is the breath. Every other color is a service color — used only for system meaning (alerts, info, success), never as decoration.</p>
+
+    <div class="palette">
+      <div class="sw sw-yel lg">
+        <div>
+          <div class="role">PRIMARY · ATTENTION</div>
+          <div class="name" style="margin-top:14px">BB YELLOW.</div>
+        </div>
+        <div class="codes">
+          HEX&nbsp;&nbsp;#FFC629<br>
+          RGB&nbsp;&nbsp;255 / 198 / 41<br>
+          CMYK&nbsp;&nbsp;0 / 22 / 84 / 0<br>
+          PMS&nbsp;&nbsp;7549 C
+        </div>
+      </div>
+      <div class="sw sw-blk">
+        <div><div class="role">CORE · STRUCTURE</div><div class="name">BB BLACK.</div></div>
+        <div class="codes">#0E0E0E<br>14 / 14 / 14<br>0 / 0 / 0 / 100</div>
+      </div>
+      <div class="sw sw-paper">
+        <div><div class="role">SURFACE</div><div class="name">PAPER.</div></div>
+        <div class="codes">#FAFAF7<br>250 / 250 / 247</div>
+      </div>
+      <div class="sw sw-soft">
+        <div><div class="role">SECONDARY SURFACE</div><div class="name">SOFT.</div></div>
+        <div class="codes">#F1EFE6<br>241 / 239 / 230</div>
+      </div>
+    </div>
+
+    <div class="palette" style="grid-template-columns:1fr 1fr 1fr;margin-top:1px">
+      <div class="sw sw-yel-deep" style="min-height:160px">
+        <div><div class="role">YELLOW DEEP / HOVER</div><div class="name" style="font-size:24px">BB YELLOW DEEP.</div></div>
+        <div class="codes">#F0B400</div>
+      </div>
+      <div class="sw sw-yel-soft" style="min-height:160px">
+        <div><div class="role">YELLOW SOFT / TINT</div><div class="name" style="font-size:24px">BB YELLOW SOFT.</div></div>
+        <div class="codes">#FFF0B8</div>
+      </div>
+      <div class="sw sw-steel" style="min-height:160px">
+        <div><div class="role">STEEL / DARK SURFACE</div><div class="name" style="font-size:24px">BB STEEL.</div></div>
+        <div class="codes">#1A1A1A</div>
+      </div>
+    </div>
+
+    <div class="mono" style="color:var(--bb-yellow-deep);margin-top:32px;margin-bottom:10px;font-weight:700">// SECONDARY · SYSTEM ONLY</div>
+    <div class="sys-grid">
+      <div class="sys sys-red">
+        <div class="role">ALERT / DESTRUCTIVE</div>
+        <div>
+          <div class="name">SIGNAL RED.</div>
+          <div class="mono" style="margin-top:6px">#E62F2D</div>
+        </div>
+      </div>
+      <div class="sys sys-blue">
+        <div class="role">INFO / LINK</div>
+        <div>
+          <div class="name">DEEP BLUE.</div>
+          <div class="mono" style="margin-top:6px">#213E91</div>
+        </div>
+      </div>
+      <div class="sys sys-grn">
+        <div class="role">SUCCESS / CONFIRM</div>
+        <div>
+          <div class="name">GO GREEN.</div>
+          <div class="mono" style="margin-top:6px">#61B032</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ratio">
+      <div class="r-paper">PAPER · 55%</div>
+      <div class="r-blk">BLACK · 25%</div>
+      <div class="r-yel">YELLOW · 15%</div>
+      <div class="r-sys">SYS · 5%</div>
+    </div>
+    <div class="mono" style="color:var(--mute);margin-top:10px">// THE 55 / 25 / 15 / 5 RULE — NEVER FLOOD A FRAME WITH YELLOW. THE SPARK NEEDS THE DARK.</div>
+  </section>
+
+  <!-- 04 TYPOGRAPHY -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">04</span>
+      <span>TYPOGRAPHY</span>
+      <span class="line"></span>
+      <span>DISPLAY · BODY · MONO</span>
+    </div>
+    <h2 class="section-title">LOUD WHERE IT <span class="acc">MATTERS.</span><br>QUIET WHERE IT COUNTS.</h2>
+    <p class="lede">A 3-family system tuned for thumb-stopping social and clean long-form. Archivo Black does the shouting. Poppins does the talking. JetBrains Mono does the labelling. Nothing else gets a seat.</p>
+
+    <div>
+      <div class="type-row">
+        <div class="meta">
+          <div class="lbl">// DISPLAY</div>
+          <div class="ttl">Archivo Black</div>
+          <div class="src">GOOGLE FONTS · 900</div>
+          <div class="lbl" style="color:var(--mute)">USE: HEADLINES · SOCIAL · COVERS</div>
+        </div>
+        <div>
+          <div class="smp-1">Beyond<br>Ordinary.</div>
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="meta">
+          <div class="lbl">// SUB-DISPLAY</div>
+          <div class="ttl">Archivo / 800</div>
+          <div class="src">GOOGLE FONTS</div>
+          <div class="lbl" style="color:var(--mute)">USE: SECTION HEADS · CTAS</div>
+        </div>
+        <div>
+          <div class="smp-2">We make brands impossible to ignore.</div>
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="meta">
+          <div class="lbl">// SUB-HEAD</div>
+          <div class="ttl">Archivo / 700</div>
+          <div class="src">GOOGLE FONTS</div>
+          <div class="lbl" style="color:var(--mute)">USE: CARD TITLES · BUTTONS</div>
+        </div>
+        <div>
+          <div class="smp-3">Strategy meets engineering.</div>
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="meta">
+          <div class="lbl">// BODY</div>
+          <div class="ttl">Poppins / 400 / 500 / 700</div>
+          <div class="src">GOOGLE FONTS · BRAND CONTINUITY</div>
+          <div class="lbl" style="color:var(--mute)">USE: PARAGRAPHS · CAPTIONS · UI</div>
+        </div>
+        <div>
+          <div class="smp-4">Bombay Blokes is a digital marketing and technical agency that turns ambitious briefs into measurable outcomes — without the inflated decks, vague timelines, or theatre. Sharp work, on time, with receipts.</div>
+        </div>
+      </div>
+      <div class="type-row">
+        <div class="meta">
+          <div class="lbl">// MONO</div>
+          <div class="ttl">JetBrains Mono</div>
+          <div class="src">GOOGLE FONTS · 500 / 700</div>
+          <div class="lbl" style="color:var(--mute)">USE: TAGS · METADATA · TIMESTAMPS</div>
+        </div>
+        <div>
+          <div class="smp-5">// CASE STUDY 042 / D2C / +180% ROAS / Q1 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scale-table">
+      <div>STEP</div><div>SAMPLE</div><div>SIZE / LH</div><div>TRACK</div>
+      <div class="num">D-XL</div><div class="smp" style="font-size:48px">Beyond Ordinary.</div><div class="num">96 / 88</div><div class="num">-2.5%</div>
+      <div class="num">D-LG</div><div class="smp" style="font-size:36px">Beyond Ordinary.</div><div class="num">72 / 68</div><div class="num">-2%</div>
+      <div class="num">D-MD</div><div class="smp" style="font-size:28px">Beyond Ordinary.</div><div class="num">54 / 52</div><div class="num">-1.5%</div>
+      <div class="num">D-SM</div><div class="smp" style="font-size:22px">Beyond Ordinary.</div><div class="num">36 / 38</div><div class="num">-1%</div>
+      <div class="num">H-1</div><div class="smp" style="font-family:var(--grotesk);font-weight:800;font-size:20px">Section Heading</div><div class="num">28 / 32</div><div class="num">-0.5%</div>
+      <div class="num">H-2</div><div class="smp" style="font-family:var(--grotesk);font-weight:700;font-size:17px">Card Heading</div><div class="num">22 / 28</div><div class="num">0%</div>
+      <div class="num">BODY</div><div class="smp" style="font-family:var(--body);font-weight:400;font-size:15px;letter-spacing:0">Body copy and paragraphs go here.</div><div class="num">16 / 24</div><div class="num">0%</div>
+      <div class="num">CAPTION</div><div class="smp" style="font-family:var(--body);font-weight:500;font-size:13px;letter-spacing:0">Image caption or footnote.</div><div class="num">13 / 18</div><div class="num">+0.5%</div>
+      <div class="num">META</div><div class="smp" style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase">// METADATA / TIMESTAMP</div><div class="num">11 / 16</div><div class="num">+14%</div>
+    </div>
+  </section>
+
+  <!-- 05 GRID & LAYOUT -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">05</span>
+      <span>GRID &amp; LAYOUT</span>
+      <span class="line"></span>
+      <span>8PT BASE · 12 COL</span>
+    </div>
+    <h2 class="section-title">EVERYTHING SITS ON <span class="acc">A GRID.</span></h2>
+    <p class="lede">12-column layout grid. 8-point spacing scale. Strict hierarchy, generous breathing room, no decorative misalignment. If something looks off — it usually is. Trust the grid.</p>
+
+    <div class="grid-demo">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+    </div>
+    <div class="mono" style="color:var(--mute);margin-top:10px">// 12-COL GRID · 24PX GUTTERS DESKTOP · 16PX MOBILE</div>
+
+    <div class="mono" style="color:var(--bb-yellow-deep);margin-top:32px;margin-bottom:10px;font-weight:700">// SPACING SCALE</div>
+    <div class="spacing">
+      <div class="step"><div class="box" style="width:8px;height:8px"></div><div class="lbl">8</div></div>
+      <div class="step"><div class="box" style="width:16px;height:16px"></div><div class="lbl">16</div></div>
+      <div class="step"><div class="box" style="width:24px;height:24px"></div><div class="lbl">24</div></div>
+      <div class="step"><div class="box" style="width:32px;height:32px"></div><div class="lbl">32</div></div>
+      <div class="step"><div class="box" style="width:48px;height:48px"></div><div class="lbl">48</div></div>
+      <div class="step"><div class="box" style="width:64px;height:64px"></div><div class="lbl">64</div></div>
+      <div class="step"><div class="box" style="width:96px;height:96px"></div><div class="lbl">96</div></div>
+      <div class="step"><div class="box" style="width:128px;height:128px"></div><div class="lbl">128</div></div>
+    </div>
+  </section>
+
+  <!-- 06 ICONOGRAPHY -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">06</span>
+      <span>ICONOGRAPHY</span>
+      <span class="line"></span>
+      <span>LINE FIRST · 2PX STROKE · YELLOW ACCENT</span>
+    </div>
+    <h2 class="section-title">LINES, NOT <span class="acc">DECORATIONS.</span></h2>
+    <p class="lede">A consistent line-icon system. 2px stroke, 24px frame, rounded line caps. Yellow as the accent dot — never as the full fill. One yellow detail per icon, max.</p>
+
+    <div class="icon-grid">
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6c-3 0-6 2.5-6 6 0 2.5 1.5 4 2.5 5l.5 2h6l.5-2c1-1 2.5-2.5 2.5-5 0-3.5-3-6-6-6Z"/><path d="M14 23h4M14 26h4" stroke="#F0B400"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10h20M6 16h20M6 22h12"/><circle cx="22" cy="22" r="2" fill="#F0B400" stroke="none"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="8" width="20" height="16" rx="2"/><path d="M6 13h20"/><circle cx="9" cy="11" r="1" fill="#F0B400" stroke="none"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 24l6-6 4 4 10-10"/><path d="M22 12h4v4"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="8"/><circle cx="16" cy="16" r="3" fill="#F0B400" stroke="none"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4l3 9h9l-7 5 3 9-8-5.5L8 27l3-9-7-5h9z"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="20" height="20" rx="2"/><path d="M11 16h10M16 11v10" stroke="#F0B400"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22l6-6 4 4 10-10"/><circle cx="26" cy="10" r="2" fill="#F0B400" stroke="none"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="10"/><path d="M16 8v8l5 3"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 6L6 11v8c0 6 4 9 10 11 6-2 10-5 10-11v-8L16 6z"/><circle cx="16" cy="16" r="2" fill="#F0B400" stroke="none"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="20" height="14" rx="2"/><path d="M10 10V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><circle cx="16" cy="17" r="1.5" fill="#F0B400" stroke="none"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M16 6l10 10-10 10"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="12" r="4"/><path d="M8 26c0-4 4-7 8-7s8 3 8 7"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V10l10-4 10 4v12"/><path d="M6 22h20M12 22v-6h8v6"/><circle cx="20" cy="12" r="1.5" fill="#F0B400" stroke="none"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 24l-4-4 8-8 4 4-8 8z"/><path d="M14 12l8-8 4 4-8 8"/><path d="M18 8l4 4" stroke="#F0B400"/></svg></div>
+      <div class="ic"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 28c-6-4-10-8-10-14a6 6 0 0 1 10-4 6 6 0 0 1 10 4c0 6-4 10-10 14z"/></svg></div>
+    </div>
+
+    <div class="vo-sample" data-tag="ICON RULES" style="margin-top:32px">
+      <div class="body"><b>One yellow accent per icon</b>, never two. <b>Stroke only</b>, no filled illustrations. Use the icon system as visual punctuation — every section can hold one icon, never a wall of them. For UI controls (buttons, nav), prefer text labels over icon-only.</div>
+    </div>
+  </section>
+
+  <!-- 07 PHOTOGRAPHY -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">07</span>
+      <span>PHOTOGRAPHY</span>
+      <span class="line"></span>
+      <span>HARD LIGHT · REAL ROOMS · YELLOW KEY</span>
+    </div>
+    <h2 class="section-title">DOCUMENTARY <span class="acc">CLARITY.</span></h2>
+    <p class="lede">Mumbai-rooted, high-contrast, low-fuss. We shoot people doing real work in real spaces. No glossy stock, no "creator filters", no fake conference rooms. When in doubt, underexpose and let the yellow do the lift.</p>
+
+    <div class="photo-row">
+      <div class="ph ph-1"><span class="lbl">TAXI / EDITORIAL</span></div>
+      <div class="ph ph-2"><span class="lbl">FOUNDER PORTRAIT</span></div>
+      <div class="ph ph-3"><span class="lbl">YELLOW KEY LIGHT</span></div>
+      <div class="ph ph-4"><span class="lbl">STUDIO / NIGHT</span></div>
+    </div>
+    <div class="photo-row">
+      <div class="ph ph-5"><span class="lbl">WARM WIDE</span></div>
+      <div class="ph ph-6"><span class="lbl">STREET / 6AM</span></div>
+      <div class="ph ph-7"><span class="lbl">PRODUCT / FLATLAY</span></div>
+      <div class="ph ph-8"><span class="lbl">PATTERN / TEXTURE</span></div>
+    </div>
+
+    <div class="g3" style="margin-top:32px">
+      <div class="cell">
+        <div class="mono" style="color:var(--bb-yellow-deep);margin-bottom:10px;font-weight:700">// COMPOSITION</div>
+        <p>Off-centre subject. Strong negative space. Foreground anchor + mid-ground subject. Avoid flat eye-level "team photos".</p>
+      </div>
+      <div class="cell">
+        <div class="mono" style="color:var(--bb-yellow-deep);margin-bottom:10px;font-weight:700">// COLOR &amp; GRADE</div>
+        <p>Push contrast. Crush blacks slightly. Maintain natural skin tones. One yellow object/light source per frame when possible.</p>
+      </div>
+      <div class="cell">
+        <div class="mono" style="color:var(--bb-yellow-deep);margin-bottom:10px;font-weight:700">// AVOID</div>
+        <p>HDR halos. Tilt-shift. Over-bokeh. Cyan-orange "cinematic" presets. Stocky agency shots of laptops + coffee.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 VOICE -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">08</span>
+      <span>VOICE &amp; TONE</span>
+      <span class="line"></span>
+      <span>BOMBAY DIRECT · NO FLUFF</span>
+    </div>
+    <h2 class="section-title">SAY IT <span class="acc">SHARP.</span><br>SAY IT ONCE.</h2>
+    <p class="lede">We write the way Mumbai talks — quickly, clearly, with one good idea per sentence. We don't pad. We don't moralise. We don't open emails with "I hope this finds you well". We respect the reader's clock.</p>
+
+    <div class="voice-grid">
+      <div class="voice do">
+        <h4>WE <span>DO.</span></h4>
+        <ul>
+          <li>Open with the point. The sentence after the headline should already be the answer.</li>
+          <li>Name the work. "We grew their organic by 4× in 90 days." Not "We helped them on their journey".</li>
+          <li>Use Mumbai when it fits. Local words land harder than borrowed ones.</li>
+          <li>Show the receipts. Numbers, screenshots, before/after. Always.</li>
+          <li>Punch up. Take real positions. Disagree publicly when we mean it.</li>
+        </ul>
+      </div>
+      <div class="voice dont">
+        <h4>WE <span>DON'T.</span></h4>
+        <ul>
+          <li>Use "synergy", "leverage", "ecosystem", "thought leader", "delve into", or any LinkedIn auto-suggest.</li>
+          <li>Write 4 paragraphs when 2 lines are honest.</li>
+          <li>Hide bad news in passive voice. "A delay was experienced" → "We slipped two days. Here's why."</li>
+          <li>Use emojis as filler. The yellow already does the smiling.</li>
+          <li>Sub-tweet competitors or moralise from a stage.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="vo-sample" data-tag="SAMPLE — LINKEDIN POST">
+      <div class="body"><b>We turned down a ₹40L retainer last month.</b><br><br>The brief was clear, the budget was real, and the founder was a good guy. We still said no — because the deliverables were a 12-month treadmill of "more posts, more reels, more more". No outcome, no thesis, no exit.<br><br>Bombay Blokes doesn't do treadmills. We do work that ends. <span style="background:var(--bb-yellow);padding:0 4px">If your agency can't tell you when the engagement is done, you don't have an agency. You have a subscription.</span></div>
+    </div>
+
+    <div class="vo-sample" data-tag="SAMPLE — WEBSITE HERO">
+      <div class="body"><b>We build brands beyond ordinary.</b><br>Strategy, design, performance &amp; engineering for ambitious teams. Built in Bombay. Shipped on time. Backed by receipts.</div>
+    </div>
+
+    <div class="vo-sample" data-tag="SAMPLE — COLD EMAIL OPENER">
+      <div class="body"><b>Subject:</b> One thing your homepage is doing wrong.<br><br>Hi {Name} — quick one. Pulled up {Brand}.com on mobile this morning. Above the fold has 4 CTAs and no answer to "what does this do for me". We rewrote homepages for {ClientA} and {ClientB} last quarter — both saw bounce drop 30%+ in 6 weeks. Worth 20 minutes? — Pri / Bombay Blokes</div>
+    </div>
+  </section>
+
+  <!-- 09.A SOCIAL — INSTAGRAM -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">09.A</span>
+      <span>SOCIAL · INSTAGRAM</span>
+      <span class="line"></span>
+      <span>FEED · STORIES · REELS</span>
+    </div>
+    <h2 class="section-title">THE FEED IS THE <span class="acc">PORTFOLIO.</span></h2>
+    <p class="lede">Every grid tile earns its place. The pattern: yellow / black / paper rotation in a rolling 9. Always at least one stat tile per row. Quote tiles open with a single sharp line — never a paragraph.</p>
+
+    <div class="ig-section">
+      <div class="ig-frame">
+        <div class="ig-screen">
+          <div class="ig-header">
+            <div class="ig-avatar">B</div>
+            <div class="ig-handle">bombayblokes<small>Digital Agency · Mumbai</small></div>
+          </div>
+          <div class="ig-grid-3">
+            <div class="ig-tile it-1"><div class="h">BRANDS DON'T DIE FROM BAD DESIGN. THEY DIE FROM <em>NO POV</em>.</div></div>
+            <div class="ig-tile it-3"><div class="lbl">// CASE 042</div><div class="h">+180%</div></div>
+            <div class="ig-tile it-2"><div class="h">WE BUILD <em>BEYOND</em> ORDINARY BRANDS.</div></div>
+            <div class="ig-tile it-4"><div class="num">04</div><div class="lbl">// HOMEPAGE FIXES</div></div>
+            <div class="ig-tile it-5"><div class="num">7×</div><div class="lbl">// PIPELINE GROWTH</div></div>
+            <div class="ig-tile it-6"><div class="h">STOP A/B TESTING BUTTON COLOURS.</div></div>
+            <div class="ig-tile it-7"><div class="h">HALF THE BRIEF. <br>TWICE THE WORK.</div></div>
+            <div class="ig-tile it-8"><div class="lbl">// PILLAR 03</div><div class="h">MARKETING <em style="font-style:normal;color:var(--bb-yellow)">×</em> TECH</div></div>
+            <div class="ig-tile it-9"><div class="h">NEW <em>CASE STUDY</em> LIVE.</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="mono" style="color:var(--bb-yellow-deep);margin-bottom:14px;font-weight:700">// FEED RHYTHM</div>
+        <div style="border:1px solid var(--bb-black);padding:24px;margin-bottom:14px;background:var(--paper)">
+          <div class="display" style="font-size:18px;letter-spacing:-.005em;margin-bottom:8px">3-COLUMN ROLLING PATTERN</div>
+          <div style="font-family:var(--mono);font-size:11px;line-height:2;letter-spacing:.06em;color:#3A3A36;font-weight:700">
+            ROW 01 — QUOTE / STAT / DARK QUOTE<br>
+            ROW 02 — STAT YEL / STAT DARK / SOFT QUOTE<br>
+            ROW 03 — SPLIT / PILLAR / CTA TILE
+          </div>
+        </div>
+        <div style="border:1px solid var(--bb-black);padding:24px;margin-bottom:14px;background:var(--paper)">
+          <div class="display" style="font-size:18px;letter-spacing:-.005em;margin-bottom:8px">POSTING CADENCE</div>
+          <div style="font-family:var(--mono);font-size:11px;line-height:2;letter-spacing:.06em;color:#3A3A36;font-weight:700">
+            MON — TACTICAL CARROUSEL<br>
+            TUE — CLIENT WIN / CASE STAT<br>
+            WED — POV QUOTE TILE<br>
+            THU — REEL · WORK BTS<br>
+            FRI — TEAM / CULTURE<br>
+            SAT — REPOST / FEATURED IN<br>
+            SUN — REFLECTION / WEEK RECAP
+          </div>
+        </div>
+        <div style="border:1px solid var(--bb-black);padding:24px;background:var(--paper)">
+          <div class="display" style="font-size:18px;letter-spacing:-.005em;margin-bottom:8px">VISUAL RULES</div>
+          <div style="font-family:var(--mono);font-size:11px;line-height:2;letter-spacing:.06em;color:#3A3A36;font-weight:700">
+            // NEVER 2 YELLOW TILES TOUCHING<br>
+            // EVERY 3RD POST = HIGH-CONTRAST DARK<br>
+            // 1 STAT / NUMBER PER ROW MIN<br>
+            // ALWAYS LEAD CAROUSEL WITH A BLACK/YEL COVER<br>
+            // NEVER STACK 4 QUOTE TILES IN A ROW
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mono" style="color:var(--bb-yellow-deep);margin-top:64px;margin-bottom:14px;font-weight:700">// FEED POST TEMPLATES — 1080×1080</div>
+    <div class="post-grid">
+      <div class="post p-q">
+        <span class="crn crn-tl">// POV / 014</span>
+        <span class="crn crn-tr acc"><span class="mini-mark">B<span class="ob"></span>B</span></span>
+        <div class="big">YOUR <em>HOMEPAGE</em> IS NOT YOUR PORTFOLIO.</div>
+        <span class="crn crn-bl">@BOMBAYBLOKES</span>
+        <span class="crn crn-br acc">// READ →</span>
+      </div>
+      <div class="post p-y">
+        <div class="lbl">// CASE 042 · D2C</div>
+        <div class="big">WE GREW THEIR ROAS BY 4×.</div>
+        <div class="row">
+          <span>Q1 / 2026</span>
+          <span>BOMBAY BLOKES</span>
+        </div>
+      </div>
+      <div class="post p-k">
+        <div class="lbl">// AGENCY POV</div>
+        <div class="big">STRATEGY WITHOUT SHIPPING IS <em>JUST A PDF.</em></div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--mute-2);font-weight:700">@BOMBAYBLOKES</div>
+      </div>
+      <div class="post p-stat">
+        <div class="lbl">// 6 WEEKS</div>
+        <div class="num"><em>4×</em></div>
+        <div class="desc">REVENUE GROWTH FOR A D2C SKINCARE BRAND. NO NEW SPEND. JUST A NEW HOMEPAGE.</div>
+      </div>
+      <div class="post p-list">
+        <div class="h">5 THINGS YOUR <em>HOMEPAGE</em> NEEDS TODAY.</div>
+        <div>
+          <div class="li"><b>01</b> One sentence answer to "what is this?"</div>
+          <div class="li"><b>02</b> Proof above the fold. Not below.</div>
+          <div class="li"><b>03</b> One CTA. Not four.</div>
+          <div class="li"><b>04</b> Mobile load &lt; 2s. No exceptions.</div>
+          <div class="li"><b>05</b> A reason to come back tomorrow.</div>
+        </div>
+      </div>
+      <div class="post p-car">
+        <span class="swipe">SWIPE →</span>
+        <div class="num">04</div>
+        <div class="title">REASONS YOUR FUNNEL LEAKS.</div>
+        <div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:700">// CARROUSEL · 8 SLIDES</div>
+      </div>
+      <div class="post p-case">
+        <div>
+          <div class="lbl">// CASE STUDY</div>
+          <div class="h">FROM 12K TO 84K MONTHLY ORGANIC IN 6 MONTHS.</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="n">+700%</div><div class="l">// TRAFFIC</div></div>
+          <div class="stat"><div class="n">+38%</div><div class="l">// CVR</div></div>
+          <div class="stat"><div class="n">0</div><div class="l">// PAID</div></div>
+        </div>
+      </div>
+      <div class="post p-ann">
+        <div class="lbl">// NOW HIRING</div>
+        <div class="h">SENIOR PERFORMANCE MARKETER.<br>BOMBAY · ON-SITE.</div>
+        <div class="footer">
+          <span>JOBS@BOMBAYBLOKES.COM</span>
+          <span>03 / 06</span>
+        </div>
+      </div>
+      <div class="post p-quote-2">
+        <div class="marks">"</div>
+        <div class="h">"BB rebuilt our marketing in 60 days. Pipeline is up 7×, and we finally know why."</div>
+        <div class="who">— FOUNDER · D2C, MUMBAI</div>
+      </div>
+    </div>
+
+    <div class="mono" style="color:var(--bb-yellow-deep);margin-top:64px;margin-bottom:14px;font-weight:700">// STORY TEMPLATES — 1080×1920</div>
+    <div class="stories">
+      <div class="story s-1">
+        <div class="pbar"></div>
+        <div class="lbl">// CASE STUDY</div>
+        <div class="h">D2C BRAND.<br>4× ROAS.<br>ZERO NEW <br>BUDGET.</div>
+        <div class="b">SWIPE UP →</div>
+      </div>
+      <div class="story s-2">
+        <div class="pbar"></div>
+        <div class="lbl">// QUOTE / 028</div>
+        <div class="h">BUILD <em>BEYOND</em><br>ORDINARY <br>OR DON'T <br>BUILD.</div>
+        <div class="b">@BOMBAYBLOKES</div>
+      </div>
+      <div class="story s-3">
+        <div class="pbar"></div>
+        <div class="lbl">// METRIC OF THE DAY</div>
+        <div class="num"><em>92%</em></div>
+        <div class="b">of homepage A/B tests don't move the needle. Test the layout, not the colour.</div>
+      </div>
+      <div class="story s-4">
+        <div class="pbar"></div>
+        <div class="lbl">// QUICK POLL</div>
+        <div class="q">PAID OR ORGANIC. WHERE DO YOU SPEND MORE?</div>
+        <div class="opts">
+          <div class="y">PAID ✓</div>
+          <div>ORGANIC</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mono" style="color:var(--bb-yellow-deep);margin-top:64px;margin-bottom:14px;font-weight:700">// REEL COVERS — 1080×1920</div>
+    <div class="reels">
+      <div class="reel r-1">
+        <div class="ico"></div>
+        <div class="lbl">// 47 SEC · TUTORIAL</div>
+        <div class="h">3 META ADS<br>BUGS COSTING<br>YOU 30%<br>OF SPEND.</div>
+      </div>
+      <div class="reel r-2">
+        <div class="ico"></div>
+        <div class="lbl">// CASE / 041</div>
+        <div class="h">HOW WE <em>10×'d</em><br>A FOUNDER'S<br>LINKEDIN <br>IN 90 DAYS.</div>
+      </div>
+      <div class="reel r-3">
+        <div class="ico"></div>
+        <div class="lbl">// AGENCY DIARY</div>
+        <div class="h">WE LOST <br>A PITCH. <br>HERE'S THE<br>DECK ANYWAY.</div>
+      </div>
+      <div class="reel r-4">
+        <div class="ico"></div>
+        <div class="lbl">// FOUNDER POV</div>
+        <div class="h">WHY WE STOPPED<br>OFFERING <br>"SOCIAL MEDIA<br>PACKAGES".</div>
+        <div class="h b">— PRI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09.B LINKEDIN -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">09.B</span>
+      <span>SOCIAL · LINKEDIN</span>
+      <span class="line"></span>
+      <span>BANNER · POSTS · ARTICLES</span>
+    </div>
+    <h2 class="section-title">LINKEDIN IS THE <span class="acc">SHOWROOM.</span></h2>
+    <p class="lede">More tactical, more proof-led, longer captions, fewer emojis. The yellow does the visual heavy lifting; the copy does the rest. Always one stat or screenshot per post — no abstract opinions floating in white space.</p>
+
+    <div class="li-banner">
+      <div class="grid-bg"></div>
+      <div class="left">
+        <span class="lbl">// LINKEDIN COMPANY BANNER · 1584 × 396</span>
+        <h3>WE BUILD <em>BEYOND</em><br>ORDINARY BRANDS.</h3>
+      </div>
+      <div class="right">
+        <span class="mini-mark" style="font-size:24px;color:var(--paper)">B<span class="ob"></span>MBAY BL<span class="ob"></span>KES.</span>
+        <span>BOMBAYBLOKES.COM</span>
+        <span style="color:var(--bb-yellow)">DIGITAL · MARKETING · TECH</span>
+      </div>
+    </div>
+
+    <div class="li-posts">
+      <div class="li-post">
+        <div class="li-head">
+          <div class="av">B</div>
+          <div class="meta"><b>Bombay Blokes</b><small>4,210 FOLLOWERS · 3D</small></div>
+        </div>
+        <div class="li-img li-img-1">
+          <div class="lbl">// HOT TAKE / 014</div>
+          <div class="h">YOUR HOMEPAGE IS NOT <em>A PORTFOLIO</em>.<br>IT'S A PROMISE.</div>
+        </div>
+        <div class="li-cap">7 of 10 founder homepages we audit fail this in the first 5 seconds. Here's the 4-line fix we use on every project →</div>
+      </div>
+      <div class="li-post">
+        <div class="li-head">
+          <div class="av">B</div>
+          <div class="meta"><b>Bombay Blokes</b><small>4,210 FOLLOWERS · 1W</small></div>
+        </div>
+        <div class="li-img li-img-2">
+          <div>
+            <div class="lbl">// CASE STUDY / 042</div>
+            <div class="h">D2C SKINCARE.<br>NEW HOMEPAGE.</div>
+          </div>
+          <div class="num">+4×</div>
+        </div>
+        <div class="li-cap">No new ad spend. No new product. Just a homepage that finally answered "what does this do for me?". Full breakdown ↓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09.C X / TWITTER -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">09.C</span>
+      <span>SOCIAL · X / TWITTER</span>
+      <span class="line"></span>
+      <span>BANNER · POST CARDS</span>
+    </div>
+    <h2 class="section-title">SHORT PUNCHES. <span class="acc">PUBLICLY.</span></h2>
+    <p class="lede">X is for sharp, public-facing opinions, hiring posts, and live event commentary. Banner stays minimal. Post cards use yellow as the highlight — never as the background flood.</p>
+
+    <div class="x-wrap">
+      <div class="x-banner">
+        <span class="lbl">// X / TWITTER HEADER · 1500 × 500</span>
+        <div class="h">Strategy. Design.<br>Performance.<br>Engineering.</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="mono" style="font-size:11px;letter-spacing:.16em;font-weight:700">// BOMBAYBLOKES.COM</span>
+          <span class="mini-mark" style="font-size:20px">B<span class="ob"></span>B.</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="x-card">
+          <div class="head">
+            <div class="av"></div>
+            <div class="name">Bombay Blokes<small>@BOMBAYBLOKES · 2H</small></div>
+          </div>
+          <div class="text">Stopped offering "social media packages" 18 months ago.<br><br>Revenue up. Headaches down. Clients happier.<br><br><span class="acc">If your agency offers a "package", you're not buying work — you're buying treadmills.</span></div>
+        </div>
+        <div class="x-card">
+          <div class="head">
+            <div class="av"></div>
+            <div class="name">Bombay Blokes<small>@BOMBAYBLOKES · 1D</small></div>
+          </div>
+          <div class="text">A homepage hierarchy that <span class="acc">actually converts</span>:<br><br>1. What is this?<br>2. Who is it for?<br>3. Proof.<br>4. One CTA.<br><br>Above the fold. Mobile-first. No carousel.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09.D YOUTUBE -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">09.D</span>
+      <span>SOCIAL · YOUTUBE</span>
+      <span class="line"></span>
+      <span>THUMBNAILS · CHANNEL ART</span>
+    </div>
+    <h2 class="section-title">THUMBNAILS DO THE <span class="acc">CLICKING.</span></h2>
+    <p class="lede">Thumbnails follow the same 55/25/15 rule. Big display headline. One number, one phrase, one yellow accent. We do not do "shocked face + red arrow" YouTube — that's not us.</p>
+
+    <div class="yt-grid">
+      <div class="yt-thumb yt-1">
+        <div class="lbl">// 04:12 · TUTORIAL</div>
+        <div class="h">3 META ADS BUGS COSTING YOU 30%.</div>
+        <div class="yt-time">04:12</div>
+      </div>
+      <div class="yt-thumb yt-2">
+        <div class="lbl">// CASE / 042</div>
+        <div class="h">HOW WE <em>4×'d</em> A D2C BRAND IN 6 WEEKS.</div>
+        <div class="yt-time">11:48</div>
+      </div>
+      <div class="yt-thumb yt-3">
+        <div class="lbl">// AGENCY DIARY</div>
+        <div class="h">WE LOST A PITCH. HERE'S THE DECK ANYWAY.</div>
+        <div class="yt-time">07:24</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 WEB -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">10</span>
+      <span>WEB &amp; UI SYSTEM</span>
+      <span class="line"></span>
+      <span>HERO · COMPONENTS · STATES</span>
+    </div>
+    <h2 class="section-title">THE SITE IS THE <span class="acc">PROOF.</span></h2>
+    <p class="lede">Generous white space, big display type, one yellow moment per viewport. The site loads fast, says one thing, and shows the work. Buttons are square-edged, high-contrast, never gradient-filled.</p>
+
+    <div class="web-frame">
+      <div class="web-bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <span class="url">bombayblokes.com</span>
+      </div>
+      <div class="web-hero">
+        <div class="top">
+          <span class="mini-mark" style="font-size:18px">B<span class="ob"></span>MBAY BL<span class="ob"></span>KES.</span>
+          <div class="nav">
+            <span>WORK</span><span>SERVICES</span><span>STUDIO</span><span>JOURNAL</span><span>CONTACT</span>
+          </div>
+        </div>
+        <div>
+          <h3>WE BUILD <em>BEYOND</em><br>ORDINARY BRANDS.</h3>
+          <p class="sub">Strategy, design, performance &amp; engineering for ambitious teams. Built in Bombay. Shipped on time. Backed by receipts.</p>
+          <div class="cta">
+            <button class="btn">START A PROJECT →</button>
+            <button class="btn alt">SEE THE WORK</button>
+          </div>
+        </div>
+        <div></div>
+      </div>
+      <div class="web-strip">
+        <span>// LIVE FROM BOMBAY</span>
+        <span>TRUSTED BY · D2C · SAAS · FINTECH · CONSUMER · B2B</span>
+      </div>
+    </div>
+
+    <div class="mono" style="color:var(--bb-yellow-deep);margin-top:48px;margin-bottom:14px;font-weight:700">// CORE COMPONENTS</div>
+    <div class="components">
+      <div class="cmp">
+        <span class="lbl">BUTTONS</span>
+        <button class="btn">PRIMARY →</button>
+        <button class="btn alt">SECONDARY</button>
+        <button class="btn yel">YELLOW CTA →</button>
+      </div>
+      <div class="cmp">
+        <span class="lbl">CHIPS / TAGS</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="chip">D2C</span>
+          <span class="chip" style="background:var(--paper)">SAAS</span>
+          <span class="chip" style="background:var(--bb-black);color:var(--bb-yellow)">FINTECH</span>
+        </div>
+        <input class="input-demo" placeholder="enter@bombayblokes.com" />
+      </div>
+      <div class="cmp">
+        <span class="lbl">CONTENT CARD</span>
+        <div class="card-demo">
+          <div class="lb">// CASE STUDY · 042</div>
+          <div class="ti">D2C Skincare<br>+4× ROAS.</div>
+          <div class="te">Homepage rebuild + funnel rewire. 6 weeks. No new spend.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 EMAIL -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">11</span>
+      <span>EMAIL SYSTEM</span>
+      <span class="line"></span>
+      <span>SIGNATURE · NEWSLETTER · TRANSACTIONAL</span>
+    </div>
+    <h2 class="section-title">THE INBOX IS A <span class="acc">SACRED PLACE.</span></h2>
+    <p class="lede">Email is permission, not interruption. Signature is structured and brand-consistent across the team. Newsletter goes out fortnightly, never weekly — we'd rather have something to say than fill a slot.</p>
+
+    <div class="email-wrap">
+      <div class="email-sig">
+        <div class="head">
+          <div class="av">P</div>
+          <div class="id">
+            <b>Pri / Founder</b>
+            <span>BOMBAY BLOKES · MUMBAI</span>
+          </div>
+        </div>
+        <div class="row"><b>EMAIL</b><span>pri@bombayblokes.com</span></div>
+        <div class="row"><b>PHONE</b><span>+91 98XXX XXXXX</span></div>
+        <div class="row"><b>WEB</b><span>bombayblokes.com</span></div>
+        <div class="row"><b>SOCIAL</b><span>@bombayblokes · @courtsidewithpri</span></div>
+        <div class="footer">
+          <span>// BUILT BEYOND ORDINARY</span>
+          <span>BB · 2026</span>
+        </div>
+      </div>
+      <div class="news">
+        <div class="top">
+          <div class="ttl">THE BLOKES <br>BRIEF.</div>
+          <div class="meta">// EDITION 014<br>FORTNIGHTLY · MUMBAI</div>
+        </div>
+        <div class="body">
+          <div class="lb">// THIS WEEK</div>
+          <h4>The 4-line homepage fix we use on every D2C client.</h4>
+          <p>The most common audit finding we see — across 60+ websites — is the same one. Not slow load times. Not weak design. Not bad copy. It's that the homepage doesn't answer the most basic question on the planet…</p>
+          <button class="btn yel" style="font-size:12px;padding:10px 18px">READ FULL ISSUE →</button>
+          <div class="divider"></div>
+          <div class="lb">// CASE STUDY DROP</div>
+          <h4>D2C Skincare. 4× ROAS. 6 weeks.</h4>
+          <p>How a homepage rebuild — without changing the product, the offer, or the ad spend — did what 9 months of "more posts" couldn't.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 DECK -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">12</span>
+      <span>SALES DECK</span>
+      <span class="line"></span>
+      <span>COVER · DIVIDER · CONTENT · STAT</span>
+    </div>
+    <h2 class="section-title">PITCH DECKS THAT <span class="acc">CLOSE.</span></h2>
+    <p class="lede">A 4-template deck system: Cover, Section Divider, Content, Stat. Anything we present externally uses these four — case studies, sales pitches, internal reviews, partner decks. No deck has more than 18 slides.</p>
+
+    <div class="deck">
+      <div class="slide sl-cover">
+        <div class="top-row">
+          <span>// 042 · CASE STUDY</span>
+          <span class="mini-mark" style="font-size:14px">B<span class="ob"></span>B</span>
+        </div>
+        <div>
+          <div class="lbl" style="margin-bottom:14px">// FOR — D2C SKINCARE</div>
+          <div class="h">A NEW HOMEPAGE. <br>4× ROAS.<br>6 WEEKS.</div>
+        </div>
+        <div class="meta">BOMBAY BLOKES · MAY 2026</div>
+      </div>
+      <div class="slide sl-divider">
+        <div class="top-row" style="position:absolute;top:24px;left:48px;right:48px;color:var(--mute-2)">
+          <span>// 03 / 18</span>
+          <span>BOMBAY BLOKES</span>
+        </div>
+        <div class="lbl">// SECTION 02</div>
+        <div class="h">THE <em>BRIEF.</em></div>
+      </div>
+      <div class="slide sl-content">
+        <div class="top-row" style="grid-column:1/-1">
+          <span>// 06 / 18 · INSIGHT</span>
+          <span class="mini-mark" style="font-size:14px">B<span class="ob"></span>B</span>
+        </div>
+        <div class="l">
+          <div class="lbl">// THE INSIGHT</div>
+          <h4>Above the fold did all the work the funnel below couldn't.</h4>
+          <p>The original hero asked the customer to "explore the range". The new hero answered: "for sensitive skin, finally". Conversion changed before we touched ad copy.</p>
+        </div>
+        <div class="r">
+          <div class="stat"><b>+4×</b><span>ROAS</span></div>
+          <div class="stat"><b>+38%</b><span>CVR</span></div>
+          <div class="stat"><b>−42%</b><span>BOUNCE</span></div>
+          <div class="stat"><b>0</b><span>NEW SPEND</span></div>
+        </div>
+        <div class="pn">06 / 18</div>
+      </div>
+      <div class="slide sl-stat">
+        <div class="top-row" style="position:absolute;top:24px;left:48px;right:48px">
+          <span>// 11 / 18 · OUTCOME</span>
+          <span class="mini-mark" style="font-size:14px">B<span class="ob"></span>B</span>
+        </div>
+        <div class="lbl">// IN 6 WEEKS</div>
+        <div class="num"><em>4×</em></div>
+        <div class="desc">Return on ad spend. Same product. Same audience. New homepage.</div>
+        <div class="pn">11 / 18</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 PRINT -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">13</span>
+      <span>PRINT &amp; MERCH</span>
+      <span class="line"></span>
+      <span>CARDS · LETTERHEAD · SWAG</span>
+    </div>
+    <h2 class="section-title">OFF-SCREEN <span class="acc">ALSO COUNTS.</span></h2>
+    <p class="lede">Even the parts no one expects to be branded — the back of a business card, a tote bag at an event, a sticker on a laptop — should hold the system. Yellow + black. Display type. One idea. Done.</p>
+
+    <div class="print-grid">
+      <div class="card-front">
+        <div class="top">// BB / FOUNDER</div>
+        <div class="row">
+          <div>
+            <div class="name">PRI.</div>
+            <div class="role">FOUNDER</div>
+          </div>
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-align:right;line-height:1.6;font-weight:700">
+            PRI@BOMBAYBLOKES.COM<br>
+            +91 98XXX XXXXX<br>
+            BOMBAYBLOKES.COM
+          </div>
+        </div>
+      </div>
+      <div class="card-back">
+        <div class="bb-wordmark">B<span class="o-bulb"></span>MBAY BL<span class="o-bulb"></span>KES.</div>
+      </div>
+      <div class="letterhead">
+        <div class="head">
+          <div class="bb-wordmark">B<span class="o-bulb"></span>MBAY BL<span class="o-bulb"></span>KES.</div>
+          <div class="meta">
+            BANDRA · MUMBAI<br>
+            +91 98XXX XXXXX<br>
+            HELLO@BOMBAYBLOKES.COM
+          </div>
+        </div>
+        <div class="body">
+          <p style="font-family:var(--mono);font-size:8px;letter-spacing:.14em;font-weight:700">// 14 MAY 2026</p>
+          <p style="font-family:var(--mono);font-size:8px;letter-spacing:.14em;color:var(--bb-black);font-weight:700">DEAR FOUNDER,</p>
+          <p>This is a sample letterhead layout. Body copy sits in Poppins regular at 9pt with 1.6 leading. Margins are 24px. The signature block sits at the bottom.</p>
+          <p>Sincerely,<br>The Bombay Blokes</p>
+          <div class="lin"></div>
+        </div>
+        <div class="footer">
+          <span>// BEYOND ORDINARY</span>
+          <span>BOMBAYBLOKES.COM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mono" style="color:var(--bb-yellow-deep);margin-top:48px;margin-bottom:14px;font-weight:700">// MERCH &amp; SWAG</div>
+    <div class="merch-grid">
+      <div class="merch m-tee">
+        <div class="lbl">// FRONT — TEE</div>
+        <div class="h">BEYOND<br>ORDINARY.</div>
+        <div class="lbl">// 100% COTTON · BLACK</div>
+      </div>
+      <div class="merch m-cap">
+        <div class="h"><span class="mini-mark">B<span class="ob"></span>B.</span></div>
+      </div>
+      <div class="merch m-tot">
+        <div class="lbl">// CANVAS TOTE</div>
+        <div class="h">CARRY <br>BEYOND <br>ORDINARY.</div>
+        <div class="lbl">// HEAVY CANVAS · 14OZ</div>
+      </div>
+      <div class="merch m-stk">
+        <div class="h">BUILT<br>IN<br>BOMBAY.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTION -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">14</span>
+      <span>MOTION PRINCIPLES</span>
+      <span class="line"></span>
+      <span>WEB · SOCIAL · DECK</span>
+    </div>
+    <h2 class="section-title">MOTION WITH <span class="acc">PURPOSE.</span></h2>
+    <p class="lede">Motion in Bombay Blokes' work is functional, not decorative. It directs attention, communicates state, and suggests speed. Never seasonal, never trendy, never "for the showreel".</p>
+
+    <div class="motion-grid">
+      <div class="mot">
+        <span class="lb">// 01 — CRISP</span>
+        <div class="ti">200–300ms transitions.</div>
+        <div class="de">Buttons, hovers, modals. No 600ms easing curves. We don't have time and neither does the user.</div>
+      </div>
+      <div class="mot">
+        <span class="lb">// 02 — DIRECTIONAL</span>
+        <div class="ti">Movement implies meaning.</div>
+        <div class="de">Forward = progress. Up = reveal. Down = dismiss. Never random parallax for decoration.</div>
+      </div>
+      <div class="mot">
+        <span class="lb">// 03 — YELLOW LEADS</span>
+        <div class="ti">The accent moves first.</div>
+        <div class="de">In stat reveals or interactive elements, the yellow element animates in 100ms before the supporting text.</div>
+      </div>
+      <div class="mot">
+        <span class="lb">// 04 — STILLNESS WINS</span>
+        <div class="ti">Most things shouldn't move.</div>
+        <div class="de">Hero copy stays still. Body text stays still. If it doesn't add meaning, it doesn't get an animation.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section>
+    <div class="eyebrow">
+      <span class="num-tag">15</span>
+      <span>BRAND SUMMARY</span>
+      <span class="line"></span>
+      <span>DO'S &amp; DON'TS</span>
+    </div>
+    <h2 class="section-title">PIN THIS <span class="acc">ABOVE</span><br>THE DESK.</h2>
+    <p class="lede">Everything in this document, condensed.</p>
+
+    <div class="sum">
+      <div class="sum-cell do">
+        <h4><span>DO.</span></h4>
+        <ul>
+          <li>Lead with display type. Make the headline the hero.</li>
+          <li>Use yellow as the spike — never as the floor.</li>
+          <li>Honour the bulb-O. It's the brand's idea.</li>
+          <li>Show the work. Numbers, screenshots, before/after.</li>
+          <li>Write the way Mumbai talks: short, sharp, direct.</li>
+          <li>Trust the 8pt grid and the 12-col layout.</li>
+          <li>Use mono labels for system + structure.</li>
+          <li>Keep one idea per asset. Always.</li>
+        </ul>
+      </div>
+      <div class="sum-cell dont">
+        <h4><span>DON'T.</span></h4>
+        <ul>
+          <li>Restyle the wordmark. The mark is fixed.</li>
+          <li>Flood backgrounds with yellow. The spark needs the dark.</li>
+          <li>Use gradients, drop shadows, glows, or 3D effects.</li>
+          <li>Use stocky agency clichés (laptop + coffee, fake teamwork shots).</li>
+          <li>Add a second display font. Archivo Black holds it down.</li>
+          <li>Use emoji as filler or "decoration". The yellow does that job.</li>
+          <li>Write LinkedIn-speak: "synergy", "leverage", "ecosystem", "delve".</li>
+          <li>Ship a deck longer than 18 slides.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    <div>BOMBAY BLOKES <b>/ BRAND HANDBOOK V2.0</b></div>
+    <div>BUILT IN BOMBAY · <b>MAY 2026</b></div>
+    <div>BENCHMARKS — <b>APPLE / BRAUN / XIAOMI / GOOGLE</b></div>
+  </div>
+</div>
+</body>
+</html>
