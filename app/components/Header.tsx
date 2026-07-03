@@ -38,7 +38,7 @@ const links = [
 export default function DesktopNav() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
-   const pathname = usePathname();
+  const pathname = usePathname();
 
   // refs
   const root = useRef<HTMLDivElement | null>(null);
@@ -87,15 +87,19 @@ export default function DesktopNav() {
     gsap.set(br, { opacity: 0, y: 10 });
 
     const ctx = gsap.context(() => {
-      const dur1 = 0.8;
-      const dur2 = 0.8;
+      const dur1 = 0.5;
+      const dur2 = 0.5;
       const ease = "expo.inOut";
 
       tl.current = gsap.timeline({ paused: true });
 
       tl.current
         // Stage in
-        .to(stage.current, { opacity: 1, pointerEvents: "auto", duration: 1 }, 0)
+        .to(
+          stage.current,
+          { opacity: 1, pointerEvents: "auto", duration: 1 },
+          0
+        )
         // 1) Yellow expands
         .to(
           y,
@@ -150,12 +154,21 @@ export default function DesktopNav() {
           { opacity: 1, y: 0, duration: 0.28, ease: "power3.out" },
           "-=0.22"
         )
-        .to(sh, { borderTopLeftRadius: 0, borderTopRightRadius: 0, duration: 0.18, ease }, 0.06)
+        .to(
+          sh,
+          {
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+            duration: 0.18,
+            ease,
+          },
+          0.06
+        )
         // Animate menu text from center
         .fromTo(
           textRefs.current,
           { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.1 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", stagger: 0.1 },
           "-=0.15"
         );
     }, root);
@@ -211,37 +224,33 @@ export default function DesktopNav() {
     };
   }, [open]);
 
+  const hatRef = useRef(null);
 
+  useEffect(() => {
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 5 });
+    // repeat: -1 → infinite loop
+    // repeatDelay: 5 → wait 5 sec before coming again
 
+    tl.fromTo(
+      hatRef.current,
+      { y: -80, opacity: 0, rotate: -20 },
+      {
+        y: -10,
+        opacity: 1,
+        rotate: 0,
+        duration: 1.2,
+        ease: "power3.out",
+      }
+    );
 
-    const hatRef = useRef(null);
-
- useEffect(() => {
-  const tl = gsap.timeline({ repeat: -1, repeatDelay: 5 }); 
-  // repeat: -1 → infinite loop
-  // repeatDelay: 5 → wait 5 sec before coming again
-
-  tl.fromTo(
-    hatRef.current,
-    { y: -80, opacity: 0, rotate: -20 },
-    {
-      y: -10,
-      opacity: 1,
-      rotate: 0,
-      duration: 1.2,
-      ease: "power3.out",
-    }
-  );
-
-  tl.to(hatRef.current, {
-    opacity: 0,
-    y: -40,
-    duration: 0.8,
-    delay: 20, // hat stays on logo for 2 sec
-    ease: "power2.inOut",
-  });
-}, []);
-
+    tl.to(hatRef.current, {
+      opacity: 0,
+      y: -40,
+      duration: 0.8,
+      delay: 20, // hat stays on logo for 2 sec
+      ease: "power2.inOut",
+    });
+  }, []);
 
   return (
     <div className="">
@@ -251,36 +260,34 @@ export default function DesktopNav() {
           ref={shell}
           className="h-[90px] container bg-[rgba(142,142,142,0.20)] rounded-[20px] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.1)] items-center absolute inset-x-0 z-[100001]"
         >
-          
           {/* ⭐⭐ END DECOR ⭐⭐ */}
           <div className="flex items-center justify-between py-5 px-10 ">
             <div className="relative inline-block">
-      {/* Your Logo */}
-      <Link href="/">
-        <Image
-          src="/images/bblogo.webp"
-          alt="Bombay Blokes Logo"
-          width={210}
-          height={80}
-          className="object-cover transition-opacity duration-300"
-        />
-      </Link>
-
-    </div>
+              {/* Your Logo */}
+              <Link href="/">
+                <Image
+                  src="/images/bblogo.webp"
+                  alt="Bombay Blokes Logo"
+                  width={210}
+                  height={80}
+                  className="object-cover transition-opacity duration-300"
+                />
+              </Link>
+            </div>
             {/* HAMBURGER */}
             <div className="flex items-center gap-4">
-             {![
-  "/website-development",
-  "/paid-marketing",
-  "/social-media-marketing",
-  "/seo",
-].includes(pathname) && (
-  <Button
-    href="/contactus"
-    text="Start Growing"
-    className="relative justify-center text-black font-semibold transition-colors"
-  />
-)}
+              {![
+                "/website-development",
+                "/paid-marketing",
+                "/social-media-marketing",
+                "/seo",
+              ].includes(pathname) && (
+                <Button
+                  href="/contactus"
+                  text="Start Growing"
+                  className="relative justify-center text-black font-semibold transition-colors"
+                />
+              )}
 
               <button
                 onClick={() => {
@@ -294,8 +301,6 @@ export default function DesktopNav() {
                 aria-label="Toggle menu"
                 className="relative grid h-12 w-12 text-[20px] border-2 rounded-[5px] border-black leading-5 cursor-pointer font-miso place-items-center text-black"
               >
-
-              
                 M E <br />N U
               </button>
             </div>
@@ -304,7 +309,7 @@ export default function DesktopNav() {
           {/* stage */}
           <div
             ref={stage}
-            className="relative mt-10 h-[550px] w-[650px] mx-auto flex justify-center items-center overflow-hidden rounded-xl z-[100002]"
+            className="relative mt-[-2rem] h-[550px] w-[650px] mx-auto flex justify-center items-center overflow-hidden rounded-xl z-[100002]"
           >
             <div ref={black} />
             <div ref={yellow} />
@@ -352,57 +357,55 @@ export default function DesktopNav() {
 
             {/* menu links */}
             <div className="relative z-10 grid grid-cols-2 grid-rows-4 gap-y-10 px-12 py-8 lg:mb-15 md:mb-10 mb-5 text-center place-items-center w-full">
-             {links.map((link, index) => {
-  const isActive = pathname === link.href;
+              {links.map((link, index) => {
+                const isActive = pathname === link.href;
 
-  return (
-    <div
-      key={index}
-      className={`w-full flex justify-center items-center relative ${
-        index % 2 === 0 ? "border-r border-white" : ""
-      }`}
-    >
-      <Link
-        href={link.href}
-        onClick={(e) => {
-          e.preventDefault();
-          if (tl.current) tl.current.pause(0);
-          setOpen(false);
+                return (
+                  <div
+                    key={index}
+                    className={`w-full flex justify-center items-center relative ${
+                      index % 2 === 0 ? "border-r border-white" : ""
+                    }`}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (tl.current) tl.current.pause(0);
+                        setOpen(false);
 
-          if (window.location.pathname === link.href) {
-            router.refresh();
-          } else {
-            router.push(link.href);
-          }
-        }}
-        ref={(el) => {
-          if (el) textRefs.current[index] = el;
-        }}
-        className={`flex items-center justify-center gap-3 font-[Miso] text-[36px] font-normal uppercase leading-none transition-colors 
+                        if (window.location.pathname === link.href) {
+                          router.refresh();
+                        } else {
+                          router.push(link.href);
+                        }
+                      }}
+                      ref={(el) => {
+                        if (el) textRefs.current[index] = el;
+                      }}
+                      className={`flex items-center justify-center gap-3 font-[Miso] text-[36px] font-normal uppercase leading-none transition-colors 
           ${
             isActive
               ? "text-[#FAB31E]" // 👈 active color (yellow)
               : "text-white hover:text-[#FAB31E]"
           }`}
-      >
-        {link.logo && (
-          <div className="w-[40px] h-[40px] rounded-[20px] overflow-hidden border border-white bg-white flex-shrink-0">
-            <Image
-              src={link.logo}
-              alt={`${link.label} Logo`}
-              width={30}
-              height={30}
-              className="object-contain w-full h-full"
-            />
-          </div>
-          
-        )}
-        {link.label}
-      </Link>
-    </div>
-  );
-})}
-
+                    >
+                      {link.logo && (
+                        <div className="w-[40px] h-[40px] rounded-[20px] overflow-hidden border border-white bg-white flex-shrink-0">
+                          <Image
+                            src={link.logo}
+                            alt={`${link.label} Logo`}
+                            width={30}
+                            height={30}
+                            className="object-contain w-full h-full"
+                          />
+                        </div>
+                      )}
+                      {link.label}
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
 
             {/* bottom row social icons */}
