@@ -612,7 +612,7 @@ ${(safeTotal > 0 || safeQuote.length > 0) ? `
       await sendEmail({
           //  to: "aryankuril09@gmail.com",
           
-         to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
+         to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com"],
         subject: `New Lead From - ${name}`,
         html: `
           <p><strong>Name:</strong> ${name}</p>
