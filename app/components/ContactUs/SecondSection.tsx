@@ -687,7 +687,7 @@ const SecondSection = () => {
                 
 
                 {/* Thank you */}
-                <div className="w-full">
+                {/* <div className="w-full">
                   <div className="text-center py-5">
                     {submitStatus === "success" && (
                       <>
@@ -699,20 +699,18 @@ const SecondSection = () => {
                       </>
                     )}
                   </div>
-                </div>
+                </div> */}
               </div>
 
-              <div className="flex justify-end items-center">
-                {submitStatus !== "success" && (
-                  <Button
-                    id="lets-connect-btn"
-                    text="Let's Connect"
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="white-text"
-                  />
-                )}
-              </div>
+              <div className="flex justify-end items-center py-5">
+  <Button
+    id="lets-connect-btn"
+    text={isSubmitting ? "Submitting..." : "Let's Connect"}
+    type="submit"
+    disabled={isSubmitting}
+    className="white-text"
+  />
+</div>
             </form>
           </div>
         </div>
