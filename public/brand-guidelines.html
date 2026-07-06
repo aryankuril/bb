@@ -657,8 +657,23 @@
   .mini-mark .ob{display:inline-flex;align-items:center;justify-content:center;width:.7em;height:.7em;border:.07em solid currentColor;border-radius:50%;vertical-align:-.05em;margin:0 .015em}
   .mini-mark .ob::after{content:"";display:block;width:.28em;height:.28em;background:var(--bb-yellow);border-radius:50%}
 
+  .cover-logo{
+    width:100%;
+    max-width:650px;
+    height:auto;
+    object-fit:contain;
+    display:block;
+  }
+
+  @media (max-width:1200px){
+    .cover-logo{max-width:560px}
+  }
+
   @media (max-width:980px){
-    .doc{padding:24px 20px 80px}
+    .doc{padding:24px 20px 80px;max-width:100%;overflow-x:hidden}
+    section{padding:72px 0}
+    .strip{align-items:flex-start;gap:12px;flex-wrap:wrap}
+    .strip-l{flex-wrap:wrap}
     .cover h1{font-size:64px}
     .cover .foot{grid-template-columns:1fr 1fr}
     .index,.g3,.g4{grid-template-columns:1fr}
@@ -673,61 +688,104 @@
     .web-hero h3{font-size:48px}
     .smp-1{font-size:64px}
     .type-row{grid-template-columns:1fr}
-    .scale-table{grid-template-columns:60px 1fr 90px 70px}
+    .scale-table{grid-template-columns:54px minmax(0,1fr) 72px 58px}
+    .scale-table div{padding:10px 8px;font-size:9px;min-width:0;overflow-wrap:anywhere}
+    .scale-table .smp{font-size:clamp(14px,4.8vw,28px)!important;line-height:1.05}
     .components{grid-template-columns:1fr}
-    .sum,.voice-grid{grid-template-columns:1fr}
+    .sum,.voice-grid,.mission-grid{grid-template-columns:1fr!important}
     .li-banner{aspect-ratio:auto;flex-direction:column;gap:24px;align-items:flex-start}
     .li-banner .right{align-items:flex-start}
+    .cover{position:relative;overflow:hidden}
+    .display{display:flex;justify-content:center;align-items:center}
+    .cover-logo{width:90%;max-width:420px}
+    .cell,.voice,.vo-sample,.cmp,.email-sig,.news .body,.sum-cell{min-width:0}
+    .mono,.label,.lb,.btn,.chip,.crn,.lbl,.role,.codes{overflow-wrap:anywhere}
+    .web-hero .top{position:relative;top:auto;left:auto;right:auto;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+    .web-hero .nav{flex-wrap:wrap;gap:10px 16px}
+    .web-hero .cta{flex-wrap:wrap}
+    .web-strip,.foot{flex-wrap:wrap;gap:12px}
+    .post,.story,.reel,.slide,.card-front,.card-back,.merch,.yt-thumb,.li-img,.x-banner{min-width:0}
+  }
 
+  @media (max-width:768px){
+    .doc{padding:20px 16px 72px}
+    section{padding:56px 0}
+    .eyebrow{gap:10px;flex-wrap:wrap;margin-bottom:24px}
+    .eyebrow .line{flex-basis:100%}
+    .section-title{font-size:clamp(34px,11vw,54px);overflow-wrap:anywhere}
+    .lede{font-size:16px;margin-bottom:36px}
+    .cover{padding:18px}
+    .cover .top-row{gap:12px;flex-wrap:wrap}
+    .palette,.palette.compact-palette,.sys-grid{grid-template-columns:1fr!important}
+    .sw{min-height:200px;padding:22px 18px}
+    .sw .name,.sw.lg .name{font-size:clamp(28px,10vw,44px)}
+    .ratio{height:auto;flex-wrap:wrap}
+    .ratio div{min-height:42px;flex:1 1 50%;font-size:9px;padding:0 6px;text-align:center}
+    .smp-1{font-size:clamp(46px,15vw,64px)}
+    .smp-2{font-size:clamp(34px,11vw,52px)}
+    .smp-3{font-size:clamp(26px,8vw,34px)}
+    .grid-demo{grid-template-columns:repeat(6,1fr);padding:16px}
+    .spacing .step{max-width:72px}
+    .spacing .step .box{max-width:100%}
+    .ig-frame{border-radius:28px;padding:10px}
+    .post{padding:28px}
+    .p-stat .num,.p-car .num{font-size:clamp(84px,28vw,128px)}
+    .li-banner{padding:32px 24px}
+    .li-banner h3{font-size:clamp(34px,10vw,48px)}
+    .x-banner .h{font-size:clamp(28px,9vw,38px);max-width:100%}
+    .web-hero{padding:36px 24px 48px}
+    .web-hero h3{font-size:clamp(36px,11vw,48px)}
+    .web-strip{padding:16px 24px}
+    .email-sig .head,.email-sig .footer,.news .top{align-items:flex-start;flex-direction:column;gap:12px}
+    .email-sig .row{grid-template-columns:1fr;gap:2px}
+    .slide{padding:32px 28px;aspect-ratio:auto;min-height:260px}
+    .slide .top-row{gap:10px;flex-wrap:wrap}
+    .sl-cover .h,.sl-divider .h{font-size:clamp(36px,11vw,56px)}
+    .sl-content{grid-template-columns:1fr}
+    .sl-stat .num{font-size:clamp(92px,30vw,150px)}
+    .sl-stat .desc{max-width:100%;margin-top:0}
+    .print-grid,.motion-grid{grid-template-columns:1fr}
+  }
 
+  @media (max-width:560px){
+    .cover .foot,.stories,.reels,.donts,.merch-grid,.photo-row{grid-template-columns:1fr}
+    .icon-grid{grid-template-columns:repeat(2,1fr)}
+    .post{aspect-ratio:auto;min-height:300px;padding:24px}
+    .post .crn{font-size:9px}
+    .p-q .big,.p-k .big{font-size:clamp(34px,11vw,46px)}
+    .p-y .big{font-size:clamp(40px,13vw,54px)}
+    .p-list .h,.p-case .h,.p-ann .h,.p-quote-2 .h{font-size:clamp(25px,8vw,30px)}
+    .p-case .stats{gap:12px;flex-wrap:wrap}
+    .p-case .stat .n{font-size:30px}
+    .story,.reel{width:100%;justify-self:center}
+    .yt-thumb,.x-banner,.li-img,.card-front,.card-back{aspect-ratio:auto;min-height:190px}
+    .li-img-1 .h,.li-img-2 .h{font-size:clamp(28px,9vw,36px)}
+    .li-img-2 .num{font-size:clamp(64px,20vw,88px)}
+    .deck{gap:18px}
+    .letterhead{aspect-ratio:auto;min-height:420px}
+    .letterhead .head,.letterhead .footer,.card-front .row{flex-direction:column;gap:12px;align-items:flex-start}
+    .letterhead .head .meta{text-align:left}
+  }
 
-
-    .cover{
-    position: relative;
-    overflow: hidden;
-}
-
-.display{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    /* margin:2.5rem 0; */
-}
-
-.cover-logo{
-    width:100%;
-    max-width:650px;   /* Smaller desktop size */
-    height:auto;
-    object-fit:contain;
-    display:block;
-}
-
-/* Laptop */
-@media (max-width:1200px){
-    .cover-logo{
-        max-width:560px;
-    }
-}
-
-/* Tablet */
-@media (max-width:768px){
-    
-
-    .cover-logo{
-        width:90%;
-        max-width:420px;
-    }
-}
-
-/* Mobile */
-@media (max-width:480px){
-    .cover-logo{
-        width:92%;
-        max-width:300px;
-    }
-}
-
-
+  @media (max-width:480px){
+    html,body{font-size:14.5px}
+    .doc{padding:16px 12px 64px}
+    .cover-logo{width:92%;max-width:300px}
+    .cover .foot{gap:16px}
+    .cover .foot div span{font-size:16px}
+    .idx,.cell,.voice,.vo-sample,.cmp,.email-sig,.news .top,.sum-cell{padding:20px}
+    .logo-block{padding:18px;min-height:220px}
+    .logo-img{height:120px}
+    .scale-table{grid-template-columns:42px minmax(0,1fr) 56px 46px}
+    .scale-table div{padding:8px 5px;font-size:8px;letter-spacing:.02em}
+    .grid-demo{grid-template-columns:repeat(4,1fr);gap:6px}
+    .btn{width:100%;justify-content:center;padding:12px 14px;text-align:center}
+    .components .btn{width:auto}
+    .web-hero{padding:28px 18px 40px}
+    .web-hero::after{right:18px;top:18px;width:72px;height:72px}
+    .web-bar .url{margin-left:4px;font-size:9px;overflow-wrap:anywhere}
+    .x-banner > div[style*="space-between"]{align-items:flex-start!important;flex-direction:column;gap:10px}
+    .foot{padding:24px;font-size:10px}
   }
 </style>
 </head>
@@ -812,7 +870,7 @@
       </div>
     </div>
 
-    <div style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+    <div class="mission-grid" style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
       <div>
         <div class="mono" style="color:var(--bb-yellow-deep);margin-bottom:16px;font-weight:700">// MISSION</div>
         <p class="belief">To make ambitious brands <em>impossible to ignore</em> — through sharp positioning, sharper craft, and sharpest execution.</p>
@@ -951,7 +1009,7 @@
       </div>
     </div>
 
-    <div class="palette" style="grid-template-columns:1fr 1fr 1fr;margin-top:1px">
+    <div class="palette compact-palette" style="grid-template-columns:1fr 1fr 1fr;margin-top:1px">
       <div class="sw sw-yel-deep" style="min-height:160px">
         <div><div class="role">YELLOW DEEP / HOVER</div><div class="name" style="font-size:24px">BB YELLOW DEEP.</div></div>
         <div class="codes">#F0B400</div>
