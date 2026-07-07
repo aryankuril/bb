@@ -1,12 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-const RAIN_DURATION_MS = 30000;
+import { CloudOff } from "lucide-react";
 
 export default function GlobalRain() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const stopTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [showMumbaiModal, setShowMumbaiModal] = useState(false);
   const [isRaining, setIsRaining] = useState(false);
 
@@ -23,7 +21,6 @@ export default function GlobalRain() {
 
     return () => {
       window.removeEventListener("load", showModal);
-      if (stopTimerRef.current) clearTimeout(stopTimerRef.current);
     };
   }, []);
 
@@ -33,11 +30,6 @@ export default function GlobalRain() {
     if (!isFromMumbai) return;
 
     setIsRaining(true);
-    if (stopTimerRef.current) clearTimeout(stopTimerRef.current);
-
-    stopTimerRef.current = setTimeout(() => {
-      setIsRaining(false);
-    }, RAIN_DURATION_MS);
   };
 
   useEffect(() => {
@@ -262,11 +254,21 @@ export default function GlobalRain() {
   return (
     <>
       {isRaining && (
-        <canvas
-          ref={canvasRef}
-          className="pointer-events-none fixed inset-0 z-[998]"
-          aria-hidden="true"
-        />
+        <>
+          <canvas
+            ref={canvasRef}
+            className="pointer-events-none fixed inset-0 z-[998]"
+            aria-hidden="true"
+          />
+          <button
+            type="button"
+            onClick={() => setIsRaining(false)}
+            className="fixed bottom-24 right-8 z-[999] flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#FAB31E] text-black shadow-lg transition hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-black/30"
+            aria-label="Stop rain animation"
+          >
+            <CloudOff className="h-6 w-6" aria-hidden="true" strokeWidth={2.5} />
+          </button>
+        </>
       )}
 
       {showMumbaiModal && (
