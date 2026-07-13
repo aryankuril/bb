@@ -350,7 +350,7 @@ const SecondSection = () => {
 
   return (
     <section id="second-section" className="container py-10 sm:py-15 lg:py-20">
-      <div className="bg-[#1D1D1D] rounded-[20px] relative overflow-hidden px-6 py-8">
+      <div className="bg-[#1B1B1B] rounded-[20px] relative overflow-hidden px-6 py-8">
         <div className="max-w-3xl mx-auto text-center mb-6 relative">
           <h2 className="text-3xl font-medium white-text">
             Connect <span className="text-highlight">With Us</span>
@@ -359,7 +359,7 @@ const SecondSection = () => {
         <div className="mx-auto grid max-w-[1280px] items-stretch gap-8 lg:grid-cols-[minmax(280px,0.85fr)_minmax(0,1.15fr)]">
           <div className="relative hidden md:block min-h-[520px] overflow-hidden rounded-[16px] bg-white/5 lg:min-h-full">
             <Image
-              src="/images/panipuricart1.png"
+              src="/images/Contact2.1.png"
               alt="Pani puri cart illustration"
               fill
               sizes="(min-width: 1024px) 38vw, 100vw"
