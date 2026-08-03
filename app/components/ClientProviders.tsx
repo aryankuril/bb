@@ -1,10 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const AnimatedEffects = dynamic(() => import("./AnimatedEffects"), { ssr: false });
-const AnalyticsWrapper = dynamic(() => import("./analytics-wrapper"), { ssr: false });
-const GlobalRain = dynamic(() => import("./GlobalRain"), { ssr: false });
+// Static imports instead of next/dynamic to avoid server-side bailout in dev.
+import AnimatedEffects from "./AnimatedEffects";
+import AnalyticsWrapper from "./analytics-wrapper";
+import GlobalRain from "./GlobalRain";
 
 export default function ClientProviders() {
   return (

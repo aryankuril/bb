@@ -4,27 +4,29 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Link from "next/link";
 import Image from "next/image";
+import type { ServerBlog } from "@/lib/server-data";
 
-type BlogData = {
-  id: string;
-  slug:string;
-  title: string;
-  description?: any;
-  imageUrl?: string;
-  category?: string;
-  postedAt?: { seconds: number; nanoseconds: number };
-  scheduledAt?: { seconds: number; nanoseconds: number };
-  isPublished?: boolean;
+type BlogData = ServerBlog;
+
+type SecondSectionProps = {
+  initialBlogs?: BlogData[];
 };
 
-const SecondSection = () => {
+const SecondSection = ({ initialBlogs = [] }: SecondSectionProps) => {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [visibleCount, setVisibleCount] = useState(8);
-  const [blogs, setBlogs] = useState<BlogData[]>([]);
+  const [blogs, setBlogs] = useState<BlogData[]>(initialBlogs);
   const [isMobile, setIsMobile] = useState(false);
-  const [availableCategories, setAvailableCategories] = useState<string[]>([
-    "ALL",
-  ]);
+  const [availableCategories, setAvailableCategories] = useState<string[]>(() => {
+    const categories = Array.from(
+      new Set(
+        initialBlogs
+          .map((b) => b.category?.trim())
+          .filter((c): c is string => !!c && c.toUpperCase() !== "ALL")
+      )
+    );
+    return ["ALL", ...categories];
+  });
 
   // ✅ FAST FETCH
   const fetchBlogs = async () => {
@@ -61,8 +63,9 @@ const SecondSection = () => {
   };
 
   useEffect(() => {
+    if (initialBlogs.length > 0) return;
     fetchBlogs();
-  }, []);
+  }, [initialBlogs.length]);
 
   useEffect(() => {
     const resize = () => setIsMobile(window.innerWidth < 768);

@@ -5,25 +5,11 @@ import { useRouter } from "next/navigation";
 import { db } from "@/lib/firebase";
 import ContactButton from "../ContactButton";
 import Button from "../Button";
+import type { ServerCareer, ServerCareerCategory } from "@/lib/server-data";
 
-interface CareerCategory {
-  id: string;
-  name: string;
-  slug: string;
-  position: number;
-}
+interface CareerCategory extends ServerCareerCategory {}
 
-interface Career {
-  id: string;
-  title: string;
-  description: string;
-  isImmediate: boolean;
-  isFeatured: boolean;
-  postedAt?: { seconds: number };
-  tag?: string;
-  details?: string;
-  category: string;
-}
+interface Career extends ServerCareer {}
 
 
 
@@ -123,13 +109,21 @@ function renderEditorJsHTML(data: unknown) {
     .join("");
 }
 
-const SecondSection = () => {
+type SecondSectionProps = {
+  initialJobs?: Career[];
+  initialCategories?: CareerCategory[];
+};
+
+const SecondSection = ({
+  initialJobs = [],
+  initialCategories = [],
+}: SecondSectionProps) => {
 const router = useRouter();
-const [jobs, setJobs] = useState<Career[]>([]);
-const [categories, setCategories] = useState<
-  CareerCategory[]
->([]);
-const [activeJob, setActiveJob] = useState<Career | null>(null);
+const [jobs, setJobs] = useState<Career[]>(initialJobs);
+const [categories, setCategories] = useState<CareerCategory[]>(initialCategories);
+const [activeJob, setActiveJob] = useState<Career | null>(
+  initialJobs.length > 0 ? initialJobs[0] : null
+);
 
   const [isFlipped, setIsFlipped] = useState(false);
   const [focusedInput, setFocusedInput] = useState<keyof InputValues | "">("");
@@ -183,6 +177,8 @@ useEffect(() => {
 
 
 useEffect(() => {
+  if (initialCategories.length > 0) return;
+
   const fetchCategories = async () => {
     try {
       const snapshot = await getDocs(
@@ -204,7 +200,7 @@ useEffect(() => {
   };
 
   fetchCategories();
-}, []);
+}, [initialCategories.length]);
 
 
   const goBack = () => {
@@ -269,6 +265,8 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (initialJobs.length > 0) return;
+
     const fetchCareers = async () => {
   try {
     const q = query(collection(db, "careers"), orderBy("postedAt", "desc"));
@@ -350,7 +348,7 @@ setJobs(careersData);
 
 
     fetchCareers();
-  }, []);
+  }, [initialJobs.length]);
 
   const handleFocus = (field: keyof InputValues) => setFocusedInput(field);
   const handleBlur = (

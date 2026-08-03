@@ -1,10 +1,10 @@
 "use client";
-import Image from "next/image";
 
+import Image from "next/image";
 import { useState, useEffect, ReactNode } from "react";
 
 interface PageLoaderProps {
-  children?: ReactNode; // 👈 make children optional
+  children?: ReactNode;
 }
 
 export default function PageLoader({ children }: PageLoaderProps) {
@@ -20,19 +20,24 @@ export default function PageLoader({ children }: PageLoaderProps) {
     }
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-white">
-        <Image
-          width={40}
-          height={40}
-          src="/images/BB-web-chai-1.gif"
-          alt="Loading..."
-          className="w-100 h-100"
-        />
-      </div>
-    );
-  }
-
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      {loading && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center min-h-screen bg-white"
+          aria-hidden="true"
+        >
+          <Image
+            width={40}
+            height={40}
+            src="/images/BB-web-chai-1.gif"
+            alt="Loading..."
+            className="w-100 h-100"
+            priority
+          />
+        </div>
+      )}
+    </>
+  );
 }

@@ -63,11 +63,16 @@ const pageContent = {
 },
 };
 
-export default function Firstsection() {
+type FirstsectionProps = {
+  department?: string;
+};
+
+export default function Firstsection({ department }: FirstsectionProps) {
   const pathname = usePathname();
+  const pathKey = department ? `/${department}` : pathname;
 
   const content =
-    pageContent[pathname as keyof typeof pageContent] ||
+    pageContent[pathKey as keyof typeof pageContent] ||
     pageContent["/website-development"];
 
   return (

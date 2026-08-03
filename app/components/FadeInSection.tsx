@@ -7,7 +7,7 @@ type Props = {
 };
 
 const FadeInSection = ({ children, scrollIntoView }: Props) => {
-  const [isVisible, setVisible] = useState(false);
+  const [isVisible, setVisible] = useState(true);
   const domRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -16,14 +16,17 @@ const FadeInSection = ({ children, scrollIntoView }: Props) => {
       return;
     }
 
+    setVisible(false);
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => setVisible(entry.isIntersecting));
     });
 
-    if (domRef.current) observer.observe(domRef.current);
+    const node = domRef.current;
+    if (node) observer.observe(node);
 
     return () => {
-      if (domRef.current) observer.unobserve(domRef.current);
+      if (node) observer.unobserve(node);
     };
   }, [scrollIntoView]);
 

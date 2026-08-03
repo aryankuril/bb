@@ -1,3 +1,5 @@
+
+import Navbar from "@/app/components/Navbar";
 import Hero from "./Hero/Hero";
 import TrustedBy from "./TrustedBy/TrustedBy";
 import Services from "./Services/Services";
@@ -21,6 +23,7 @@ type AdsLandingPageProps = {
 export default function AdsLandingPage({ pageKey }: AdsLandingPageProps) {
   return (
     <main className="pb-20 md:pb-0">
+      <Navbar />
       <Hero />
       <TrustedBy />
       <Services />

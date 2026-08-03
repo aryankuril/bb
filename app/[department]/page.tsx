@@ -1,31 +1,24 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Preview from "./Preview";
-import { adminDB } from "@/lib/firebase-admin";
+import { getCalculatorDepartment } from "@/lib/server-data";
 
 type PageProps = {
-  params: { department?: string };
+  params: Promise<{ department?: string }>;
 };
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const department = params.department;
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { department } = await params;
 
   if (!department) {
     notFound();
   }
 
-  const snap = await adminDB
-    .collection("calculatorDepartments")
-    .doc(department)
-    .get();
+  const data = await getCalculatorDepartment(department);
 
-  if (!snap.exists) {
+  if (!data) {
     notFound();
   }
-
-  const data = snap.data()!;
 
   return {
     title:
@@ -47,20 +40,23 @@ export async function generateMetadata({
 }
 
 export default async function DepartmentPage({ params }: PageProps) {
-  const department = params.department;
+  const { department } = await params;
 
   if (!department) {
     notFound();
   }
 
-  const snap = await adminDB
-    .collection("calculatorDepartments")
-    .doc(department)
-    .get();
+  const data = await getCalculatorDepartment(department);
 
-  if (!snap.exists) {
-    notFound(); // ✅ THIS triggers the real 404 page
+  if (!data) {
+    notFound();
   }
 
-  return <Preview />;
+  return (
+    <Preview
+      department={department}
+      initialQuestions={data.questions}
+      initialCustomFields={data.customFields}
+    />
+  );
 }

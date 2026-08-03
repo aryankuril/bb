@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState,  useCallback,useMemo ,useRef} from 'react';
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 // import CalculatorTestimonials from '../components/CalculatorTestimonials';
 import Button from "../components/Button"
 import { doc, getDoc } from "firebase/firestore";
@@ -76,11 +76,21 @@ type WorkflowStep =
       field: CustomField;
     };
 
-export default function PreviewPage() {
-  const params = useParams() as { department: string };
-  const department = params.department;
+type PreviewPageProps = {
+  department: string;
+  initialQuestions?: unknown[];
+  initialCustomFields?: unknown[];
+};
+
+export default function PreviewPage({
+  department,
+  initialQuestions = [],
+  initialCustomFields = [],
+}: PreviewPageProps) {
   const router = useRouter();
-  const [questions, setQuestions] = useState<Question[] | null>(null);
+  const [questions, setQuestions] = useState<Question[] | null>(
+    initialQuestions.length > 0 ? (initialQuestions as Question[]) : null
+  );
   // const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<Record<number, Option | null>>({});
   const [visibleQuestions, setVisibleQuestions] = useState<Question[]>([]);
@@ -110,7 +120,9 @@ const [currentSection, setCurrentSection] = useState(0);
 const [isSubmitting, setIsSubmitting] = useState(false);
 
 
-const [customFields, setCustomFields] = useState<CustomField[]>([]);
+const [customFields, setCustomFields] = useState<CustomField[]>(
+  initialCustomFields as CustomField[]
+);
 const [customFieldValues, setCustomFieldValues] = useState<Record<string, string>>({});
 const [customFieldErrors, setCustomFieldErrors] = useState<Record<string, string>>({});
   const [includedItems] = useState([
@@ -332,7 +344,7 @@ useEffect(() => {
 
 useEffect(() => {
   async function loadFromFirestore() {
-    if (!department) return;
+    if (!department || initialQuestions.length > 0) return;
 
     try {
       const docRef = doc(db, "calculatorDepartments", department);
@@ -361,7 +373,7 @@ useEffect(() => {
   }
 
   loadFromFirestore();
-}, [department]);
+}, [department, initialQuestions.length]);
 
 
   

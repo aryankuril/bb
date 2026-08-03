@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -11,8 +11,13 @@ type RevealProps = {
 
 export default function Reveal({ children, className = "", delay = 0 }: RevealProps) {
   const prefersReducedMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
 
-  if (prefersReducedMotion) {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || prefersReducedMotion) {
     return <div className={className}>{children}</div>;
   }
 
