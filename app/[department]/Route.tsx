@@ -7,18 +7,16 @@ import SeventhSection from './SeventhSection';
 import Footer from '../components/Footer'
 
 import { notFound } from "next/navigation";
-import AdsHeroSection from "./AdsHeroSection";
-import AdsWhySection from "./AdsWhySection";
 import AdsStatsSection from "./AdsStatsSection";
 import AdsLogoSection from "./AdsLogoSection";
 import AdsWorkSection from "./AdsWorkSection";
-import AdsWorkflowSection from "./AdsWorkflowSection";
-import AdsFAQSection from "./AdsFAQSection";
 import AdsTestimonialsSection from './AdsTestimonialsSection';
 import AboutUs from './AboutUs';
 import Problems from './Problems';
 import CaseStudies from './CaseStudies';
 import ProcessCombined from './ProcessCombined'
+import AdsFAQSection from "./AdsFAQSection";
+import AdsLandingPage from "../components/ADS";
 import SmoothScroll from "../components/SmoothScroll";
 import { getDepartmentConfig } from "./departmentConfig";
 
@@ -44,32 +42,31 @@ if (!config) {
 <Firstsection/>
 <PreviewPage/>
 
-        <AdsStatsSection content={config.stats} />
-        <AdsLogoSection />
-        {pathname === "/paid-marketing" && (
-   <CaseStudies/>
-)}
-       
-        <AboutUs/>
-        <Problems/>
-        <AdsWorkSection content={config.work} />
-        <AdsTestimonialsSection />
-        <ProcessCombined/>
-        {/* <AdsWorkflowSection content={config.workflow} /> */}
-        <AdsFAQSection content={config.faq} />
-<SeventhSection/>
-  <Footer />
-  </SmoothScroll>
+       {department === "website-development" ? (
+         <AdsLandingPage pageKey="/website-development" />
+       ) : (
+         <>
+           <AdsStatsSection content={config.stats} />
+           <AdsLogoSection />
+           {pathname === "/paid-marketing" && (
+             <CaseStudies />
+           )}
+
+           <AboutUs />
+           <Problems />
+           <AdsWorkSection content={config.work} />
+           <AdsTestimonialsSection />
+           <ProcessCombined />
+           {/* <AdsWorkflowSection content={config.workflow} /> */}
+           <AdsFAQSection content={config.faq} />
+           <SeventhSection />
+           <Footer />
+         </>
+       )}
+
+ </SmoothScroll>
     </div>
   )
 }
 
 export default Route
-
-
-
-
-
-
-
-
