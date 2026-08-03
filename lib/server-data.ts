@@ -109,6 +109,7 @@ export type ServerCareerCategory = {
 
 export type ServerCareer = {
   id: string;
+  slug?: string;
   title: string;
   description: string;
   isImmediate: boolean;
@@ -170,6 +171,7 @@ export async function getPublishedCareers(): Promise<ServerCareer[]> {
 
       return {
         id: doc.id,
+        slug: data.slug ?? "",
         title: data.title ?? "",
         description: data.description ?? "",
         isImmediate: Boolean(data.isImmediate),
@@ -192,4 +194,21 @@ export async function getPublishedCareers(): Promise<ServerCareer[]> {
   });
 
   return careers;
+}
+
+/**
+ * Resolves a public career URL to a visible job. Older records used the
+ * Firestore document id in URLs, while newer records may use a slug, so
+ * support both formats without exposing drafts or scheduled jobs early.
+ */
+export async function getPublishedCareerByIdentifier(
+  identifier: string
+): Promise<ServerCareer | null> {
+  const careers = await getPublishedCareers();
+
+  return (
+    careers.find(
+      (career) => career.id === identifier || career.slug === identifier
+    ) ?? null
+  );
 }

@@ -1,5 +1,3 @@
-"use client";
-
 type BlogData = {
   title: string;
   description?: string;

@@ -8,21 +8,53 @@ import Footer from "@/app/components/Footer";
 import Taxi from "@/app/components/Taxi";
 import SmoothScroll from "@/app/components/SmoothScroll";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import {
+  getCareerCategories,
+  getPublishedCareerByIdentifier,
+} from "@/lib/server-data";
 
-export const metadata: Metadata = {
-  title: "Digital Marketing careers in Mumbai",
-  description:
-    "Looking for Jobs and an opportunity in the field of digital marketing? Contact us to know more. ",
+// Career records can change outside deploys. Always render the current job on
+// the server so crawlers and View Source receive the job description.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+type Props = {
+  params: Promise<{ slug: string }>;
 };
 
-const Index = () => {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const career = await getPublishedCareerByIdentifier(slug);
+
+  if (!career) return { title: "Career Not Found | Bombay Blokes" };
+
+  return {
+    title: `${career.title} | Careers at Bombay Blokes`,
+    description: `Apply for the ${career.title} role at Bombay Blokes.`,
+  };
+};
+
+const Index = async ({ params }: Props) => {
+  const { slug } = await params;
+  const [career, categories] = await Promise.all([
+    getPublishedCareerByIdentifier(slug),
+    getCareerCategories(),
+  ]);
+
+  if (!career) notFound();
+
   return (
     <div>
       <SmoothScroll>
         <Taxi />
         <Navbar />
         <Firstsection />
-        <SecondSectionId  />
+        <SecondSectionId
+          initialJobs={[career]}
+          initialCategories={categories}
+          initialJobId={slug}
+        />
         <ThirdSection />
         <SeventhSection />
         <Footer />

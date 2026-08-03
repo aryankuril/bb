@@ -1,4 +1,9 @@
 import { NextResponse } from "next/server";
+import { getPublishedBlogs, getPublishedCareers } from "@/lib/server-data";
+
+// The sitemap must include records created after deployment as well.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function GET() {
   const baseUrl = "https://bombayblokes.com";
@@ -37,15 +42,42 @@ export async function GET() {
     "work/website-development/thefelinefoundation",
   ];
 
+  const [blogs, careers] = await Promise.all([
+    getPublishedBlogs(),
+    getPublishedCareers(),
+  ]);
+
+  const dynamicPages = [
+    ...blogs
+      .filter((blog) => blog.slug)
+      .map((blog) => ({
+        path: `blogs/${blog.slug}`,
+        lastModified: blog.scheduledAt ?? blog.postedAt,
+      })),
+    ...careers.map((career) => ({
+      path: `join-our-team/${career.slug || career.id}`,
+      lastModified: career.postedAt,
+    })),
+  ];
+
+  const today = new Date().toISOString().split("T")[0];
+  const formatDate = (timestamp?: { seconds: number }) =>
+    timestamp
+      ? new Date(timestamp.seconds * 1000).toISOString().split("T")[0]
+      : today;
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${pages
+  ${[
+    ...pages.map((path) => ({ path, lastModified: undefined })),
+    ...dynamicPages,
+  ]
     .map(
-      (page) => `<url>
-  <loc>${baseUrl}/${page}</loc>
-  <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
+      ({ path, lastModified }) => `<url>
+  <loc>${baseUrl}/${path}</loc>
+  <lastmod>${formatDate(lastModified)}</lastmod>
   <changefreq>monthly</changefreq>
-  <priority>${page === "" ? "1.0" : "0.8"}</priority>
+  <priority>${path === "" ? "1.0" : "0.8"}</priority>
 </url>`
     )
     .join("")}

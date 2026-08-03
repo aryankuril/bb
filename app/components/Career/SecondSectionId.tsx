@@ -5,6 +5,7 @@ import { useRouter ,useSearchParams} from "next/navigation";
 import { db } from "@/lib/firebase";
 import ContactButton from "@/app/components/ContactButton";
 import Button from "@/app/components/Button";
+import type { ServerCareer, ServerCareerCategory } from "@/lib/server-data";
 type CareerCategoryType =
   | "performance"
   | "social"
@@ -13,17 +14,7 @@ type CareerCategoryType =
   | "tech"
   | "others";
 
-interface Career {
-  id: string;
-  title: string;
-  description: string;
-  isImmediate: boolean;
-  isFeatured: boolean;
-  postedAt?: { seconds: number };
-  tag?: string;
-  details?: string;
-  category: CareerCategoryType;
-}
+type Career = ServerCareer;
 
 
 type CareerCategoryMap = Record<CareerCategoryType, Career[]>;
@@ -49,11 +40,12 @@ type InputValues = {
 };
 
 
-type CareerCategory = {
-  id: string;
-  name: string;
-  slug: string;
-  position: number;
+type CareerCategory = ServerCareerCategory;
+
+type SecondSectionIdProps = {
+  initialJobs?: Career[];
+  initialCategories?: CareerCategory[];
+  initialJobId?: string;
 };
 
 function renderEditorJsHTML(data: unknown) {
@@ -142,7 +134,11 @@ function renderEditorJsHTML(data: unknown) {
     .join("");
 }
 
-const SecondSectionId = () => {
+const SecondSectionId = ({
+  initialJobs = [],
+  initialCategories = [],
+  initialJobId,
+}: SecondSectionIdProps) => {
 const router = useRouter();
 const searchParams = useSearchParams();
 const jobId =
@@ -150,11 +146,13 @@ const jobId =
   searchParams.get("jobId") ||
   searchParams.get("slug");
 
-  const [categories, setCategories] = useState<
-  CareerCategory[]
->([]);
-const [jobs, setJobs] = useState<Career[]>([]);
-const [activeJob, setActiveJob] = useState<Career | null>(null);
+  const [categories, setCategories] = useState<CareerCategory[]>(initialCategories);
+const [jobs, setJobs] = useState<Career[]>(initialJobs);
+const [activeJob, setActiveJob] = useState<Career | null>(
+  initialJobs.find((job) => job.id === initialJobId || job.slug === initialJobId) ??
+    initialJobs[0] ??
+    null
+);
 
   const [isFlipped, setIsFlipped] = useState(false);
   const [focusedInput, setFocusedInput] = useState<keyof InputValues | "">("");
@@ -213,6 +211,8 @@ const sortedCategories = [...categories].sort(
 
 
 useEffect(() => {
+  if (initialCategories.length > 0) return;
+
   const fetchCategories = async () => {
     try {
       const q = query(
@@ -234,7 +234,7 @@ useEffect(() => {
   };
 
   fetchCategories();
-}, []);
+}, [initialCategories.length]);
 
   const goBack = () => {
     if (step > 0) setStep((s) => s - 1);
@@ -298,6 +298,8 @@ useEffect(() => {
   };
 
 useEffect(() => {
+  if (initialJobs.length > 0) return;
+
   const fetchCareers = async () => {
     try {
       const q = query(
@@ -360,7 +362,7 @@ useEffect(() => {
   };
 
   fetchCareers();
-}, [jobId]);
+}, [jobId, initialJobs.length]);
 
   const handleFocus = (field: keyof InputValues) => setFocusedInput(field);
   const handleBlur = (
