@@ -142,11 +142,22 @@ function isCareerVisible(career: ServerCareer & { status?: string; scheduledAt?:
 }
 
 export async function getCareerCategories(): Promise<ServerCareerCategory[]> {
-  const snap = await adminDB.collection("careerCategories").orderBy("position", "asc").get();
-  return snap.docs.map((doc) => ({
-    id: doc.id,
-    ...(doc.data() as Omit<ServerCareerCategory, "id">),
-  }));
+  const snap = await adminDB
+    .collection("careerCategories")
+    .orderBy("position", "asc")
+    .get();
+
+  return snap.docs.map((doc) => {
+    const data = doc.data();
+
+    return {
+      id: doc.id,
+      name: data.name ?? "",
+      slug: data.slug ?? "",
+      position: data.position ?? 0,
+      // Don't include createdAt unless you actually need it.
+    };
+  });
 }
 
 export async function getPublishedCareers(): Promise<ServerCareer[]> {
