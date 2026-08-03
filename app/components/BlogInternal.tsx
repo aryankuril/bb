@@ -2,7 +2,7 @@
 
 type BlogData = {
   title: string;
-  description: any;
+  description?: string;
   imageUrl?: string;
 };
 

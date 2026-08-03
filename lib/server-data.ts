@@ -41,7 +41,7 @@ export type ServerBlog = {
   id: string;
   slug: string;
   title: string;
-  description?: unknown;
+  description?: string;
   imageUrl?: string;
   category?: string;
   postedAt?: { seconds: number; nanoseconds: number };
