@@ -3,6 +3,11 @@ import type { Metadata } from "next";
 import Preview from "./Preview";
 import { getCalculatorDepartment } from "@/lib/server-data";
 
+// Department configuration is fetched from Firestore. Avoid build-time HTML
+// so metadata and page content stay available in View Source after deploys.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type PageProps = {
   params: Promise<{ department?: string }>;
 };

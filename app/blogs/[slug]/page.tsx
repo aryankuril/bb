@@ -6,6 +6,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getBlogBySlug } from "@/lib/server-data";
 
+// A blog can be created or updated after deployment, so do not statically
+// generate this page at build time.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type Props = {
   params: Promise<{
     slug: string;

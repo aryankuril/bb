@@ -8,6 +8,12 @@ import SmoothScroll from "@/app/components/SmoothScroll";
 import { Metadata } from "next";
 import { getPublishedBlogs } from "@/lib/server-data";
 
+// Blog records come from Firestore. Render this route per request so the
+// HTML returned by View Source always contains the current records instead of
+// a build-time snapshot.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Blogs | Digital Agency | Bombay Blokes",
   description:

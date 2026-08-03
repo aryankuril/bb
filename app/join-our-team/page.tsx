@@ -10,6 +10,10 @@ import SmoothScroll from "../components/SmoothScroll";
 import { Metadata } from "next";
 import { getCareerCategories, getPublishedCareers } from "@/lib/server-data";
 
+// Careers are managed in Firestore and must be included in the server HTML.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Digital Marketing careers in Mumbai",
   description:
