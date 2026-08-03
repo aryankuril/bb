@@ -7,12 +7,15 @@ import { getBlogBySlug } from "@/lib/server-data";
 import { notFound } from "next/navigation";
 
 type PageProps = {
-  params: Promise<{ slug: string }>;
+  params: {
+    slug: string;
+  };
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const blog = await getBlogBySlug(slug);
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const blog = await getBlogBySlug(params.slug);
 
   if (!blog) {
     return {
@@ -30,8 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogPage({ params }: PageProps) {
-  const { slug } = await params;
-  const blog = await getBlogBySlug(slug);
+  const blog = await getBlogBySlug(params.slug);
 
   if (!blog) {
     notFound();
