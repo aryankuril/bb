@@ -115,7 +115,7 @@ const TermsAndConditions = () => {
     August 2026 · Version 1.0
   </p>
 
-  <p className="mt-5 body2 black-text dark:text-gray-300 leading-relaxed max-w-6xl ">
+  <p className="mt-5 body2 black-text dark:text-gray-300 leading-relaxed max-w-6xl mx-auto text-center">
     These Terms of Engagement apply to every project with Bombay Blokes and
     complement your signed proposal or scope of work. By checking the consent
     box during onboarding, you confirm that you have read, understood, and
