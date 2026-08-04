@@ -8,15 +8,15 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const {
       companyName,
-      brandName,
       industry,
       gstin,
       services,
       contactPerson,
       email,
       phone,
-      address,
       website,
+      termsVersion,
+      agreementTimestamp,
     } = body;
 
     if (
@@ -43,15 +43,15 @@ export async function POST(request: NextRequest) {
     // 🔥 SAVE TO FIRESTORE
     await adminDB.collection("clientApplications").add({
       companyName,
-      brandName: brandName || "",
       industry,
       gstin: gstin || "",
       services,
       contactPerson,
       email,
       phone,
-      address: address || "",
       website: website || "",
+      termsVersion,
+      agreementTimestamp,
       createdAt: FieldValue.serverTimestamp(),
     });
 
@@ -164,16 +164,8 @@ const htmlTemplate = `
   <tr>
     <td style="padding:6px 0;">
       <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
-      <strong>Registered Company Name:</strong>
+      <strong>Brand / Company Name:</strong>
       <span style=" color:#555555 ; text-transform: capitalize;" >${companyName}</span>
-    </td>
-  </tr>
-
-  <tr>
-    <td style="padding:6px 0;">
-      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
-      <strong>Brand Name:</strong>
-      <span style=" color:#555555 ; text-transform: capitalize;" >${brandName || "N/A"}</span>
     </td>
   </tr>
 
@@ -226,14 +218,6 @@ const htmlTemplate = `
       <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
       <strong>Phone:</strong>
       <span style=" color:#555555 ; text-transform: capitalize;" >${phone}</span>
-    </td>
-  </tr>
-
-  <tr>
-    <td style="padding:6px 0;">
-      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
-      <strong>Registered Address:</strong>
-      <span style=" color:#555555 ; text-transform: capitalize;" >${address || "N/A"}</span>
     </td>
   </tr>
 
@@ -408,16 +392,16 @@ const htmlTemplate = `
     // Send notification to team
     const teamNotification = `
       <h3>New Client Registration</h3>
-      <p><strong>Company Name:</strong> ${companyName}</p>
-      <p><strong>Brand Name:</strong> ${brandName || "N/A"}</p>
+      <p><strong>Brand / Company Name:</strong> ${companyName}</p>
       <p><strong>Industry:</strong> ${industry}</p>
       <p><strong>GSTIN:</strong> ${gstin || "N/A"}</p>
       <p><strong>Services:</strong> ${services.join(", ")}</p>
       <p><strong>Contact Person:</strong> ${contactPerson || "N/A"}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Address:</strong> ${address || "N/A"}</p>
       <p><strong>Website:</strong> ${website || "N/A"}</p>
+      <p><strong>Terms Agreed:</strong> Yes (Version ${termsVersion})</p>
+      <p><strong>Agreement Timestamp:</strong> ${agreementTimestamp}</p>
     `;
 
     await sendEmail({

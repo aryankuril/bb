@@ -166,37 +166,33 @@ const SecondSection = () => {
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     companyName: "",
-    brandName: "",
     industry: "",
     gstin: "",
     contactPerson: "",
     email: "",
     phone: "",
-    address: "",
     website: "",
+    termsAgreed: false,
   });
   const [focused, setFocused] = useState({
     companyName: false,
-    brandName: false,
     industry: false,
     gstin: false,
     contactPerson: false,
     email: false,
     phone: false,
-    address: false,
     website: false,
   });
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<any>({
     companyName: "",
-    brandName: "",
     industry: "",
     gstin: "",
     contactPerson: "",
     email: "",
     phone: "",
-    address: "",
     website: "",
     services: "",
+    termsAgreed: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
@@ -209,25 +205,32 @@ const validateCurrentStep = (): boolean => {
   let newErrors = { ...errors };
 
   const fieldsByStep: any = {
-    0: ["companyName", "brandName", "industry"],
-    1: ["contactPerson"],
-    2: ["email", "phone", "address", "website"],
+    0: ["companyName", "industry"],
+    1: ["contactPerson", "email", "phone", "termsAgreed"],
   };
 
   // ✅ Validate ONLY fields of current step - DO NOT clear other steps
   fieldsByStep[step]?.forEach((field: string) => {
-    const value = formData[field as keyof typeof formData];
-    const error = validateField(field, value);
-
-    if (error) {
-      newErrors[field as keyof typeof newErrors] = error;
-      valid = false;
+    let value = (formData as any)[field];
+    if (field === 'termsAgreed') {
+        const error = value === true ? "" : "You must agree to the Terms of Engagement";
+        if (error) {
+           newErrors.termsAgreed = error;
+           valid = false;
+        } else {
+           newErrors.termsAgreed = "";
+        }
+    } else {
+        const error = validateField(field, value as string);
+        if (error) {
+          (newErrors as any)[field] = error;
+          valid = false;
+        }
     }
-    // ❌ REMOVE else block completely
   });
 
-  // ✅ Services validate ONLY on step 1
-  if (step === 1) {
+  // ✅ Services validate ONLY on step 0 now
+  if (step === 0) {
     if (selectedServices.length === 0) {
       newErrors.services = "Please select at least one service";
       valid = false;
@@ -256,7 +259,7 @@ const nextStep = () => {
 useEffect(() => {
   if (submitStatus === "success") {
     // Show Thank You screen
-    setStep(3);
+    setStep(2);
 
     const timer = setTimeout(() => {
       // Reset everything after 10 seconds
@@ -265,29 +268,27 @@ useEffect(() => {
 
       setFormData({
         companyName: "",
-        brandName: "",
         industry: "",
         gstin: "",
         contactPerson: "",
         email: "",
         phone: "",
-        address: "",
         website: "",
+        termsAgreed: false,
       });
 
       setSelectedServices([]);
 
       setErrors({
         companyName: "",
-        brandName: "",
         industry: "",
         gstin: "",
         contactPerson: "",
         email: "",
         phone: "",
-        address: "",
         website: "",
         services: "",
+        termsAgreed: "",
       });
     }, 10000); // ✅ 10 seconds
 
@@ -316,14 +317,9 @@ useEffect(() => {
   const validateField = (name: string, value: string): string => {
     switch (name) {
       case "companyName":
-        if (!value.trim()) return "Company name is required";
+        if (!value.trim()) return "Brand / Company name is required";
         if (value.trim().length < 2)
-          return "Company name must be at least 2 characters";
-        if (
-    typeof value === "string" &&
-    !/^[A-Za-z\s]+$/.test(value.trim())
-  )
-    return "Company name can contain only letters (no numbers or special characters)";
+          return "Brand / Company name must be at least 2 characters";
         return "";
       case "industry":
         if (!value.trim()) return "Industry is required";
@@ -339,9 +335,7 @@ useEffect(() => {
       case "contactPerson":
         if (!value.trim()) return "Contact Person is required";
         return "";
-      case "brandName":
       case "gstin":
-      case "address":
       case "website":
         // Optional fields - no validation required
         return "";
@@ -350,8 +344,7 @@ useEffect(() => {
     }
   };
 
-
-    const totalSteps = 3;
+    const totalSteps = 2;
 
 
   const goBack = () => {
@@ -359,17 +352,24 @@ useEffect(() => {
   };
 
 const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const { name, value } = e.target;
+  const { name, value, type, checked } = e.target;
+  const newValue = type === 'checkbox' ? checked : value;
 
-  setFormData((prev) => ({ ...prev, [name]: value }));
+  setFormData((prev) => ({ ...prev, [name]: newValue }));
 
-  // ✅ Only clear error when the value is actually valid
-  const error = validateField(name, value);
-
-  setErrors((prev) => ({
-    ...prev,
-    [name]: error || "",
-  }));
+  if (type === 'checkbox') {
+      const error = newValue === true ? "" : "You must agree to the Terms of Engagement";
+      setErrors((prev: any) => ({
+        ...prev,
+        [name]: error || "",
+      }));
+  } else {
+      const error = validateField(name, String(newValue));
+      setErrors((prev: any) => ({
+        ...prev,
+        [name]: error || "",
+      }));
+  }
 };
 
 
@@ -379,15 +379,16 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   };
 
   const handleBlur = (field: string) => {
-    setFocused((prev) => ({ ...prev, [field]: false }));
+    if (field === "termsAgreed") return;
+    setFocused((prev: any) => ({ ...prev, [field]: false }));
 
     // Validate on blur for form fields
     if (field in formData) {
       const error = validateField(
         field,
-        formData[field as keyof typeof formData]
+        formData[field as keyof typeof formData] as string
       );
-      setErrors((prev) => ({ ...prev, [field]: error }));
+      setErrors((prev: any) => ({ ...prev, [field]: error }));
     }
   };
 
@@ -398,9 +399,9 @@ const handleServiceToggle = (serviceName: string) => {
       : [...prev, serviceName]
   );
 
-  // ✅ Only clear services error when in step 1
-  if (step === 1 && errors.services) {
-    setErrors((prev) => ({ ...prev, services: "" }));
+  // ✅ Only clear services error when in step 0
+  if (step === 0 && errors.services) {
+    setErrors((prev: any) => ({ ...prev, services: "" }));
   }
 };
 
@@ -419,7 +420,7 @@ const handleServiceToggle = (serviceName: string) => {
   contactPerson: validateField("contactPerson", formData.contactPerson),
   email: validateField("email", formData.email),
   phone: validateField("phone", formData.phone),
-
+  termsAgreed: formData.termsAgreed ? "" : "You must agree to the Terms of Engagement",
   services:
     selectedServices.length === 0
       ? "Please select at least one service"
@@ -455,15 +456,15 @@ const handleServiceToggle = (serviceName: string) => {
         },
         body: JSON.stringify({
           companyName: formData.companyName,
-          brandName: formData.brandName,
           industry: formData.industry,
           gstin: formData.gstin,
           services: selectedServices,
           contactPerson: formData.contactPerson,
           email: formData.email,
           phone: formData.phone,
-          address: formData.address,
           website: formData.website,
+          termsVersion: "v1.0",
+          agreementTimestamp: new Date().toISOString(),
         }),
       });
 
@@ -475,29 +476,26 @@ const handleServiceToggle = (serviceName: string) => {
       // Reset form
       setFormData({
         companyName: "",
-        brandName: "",
         industry: "",
         gstin: "",
         contactPerson: "",
         email: "",
         phone: "",
-        address: "",
         website: "",
+        termsAgreed: false,
       });
       setSelectedServices([]);
       setErrors({
         companyName: "",
-        brandName: "",
         industry: "",
         gstin: "",
         contactPerson: "",
         email: "",
         phone: "",
-        address: "",
         website: "",
         services: "",
+        termsAgreed: "",
       });
-
 
     } catch (error) {
       console.error("Form submission error:", error);
@@ -598,7 +596,7 @@ className={`w-full type-step ${
                 <input
                   type="text"
                   name="companyName"
-                  placeholder="Company Name"
+                  placeholder="Brand / Company Name"
                   value={formData.companyName}
                   onChange={handleChange}
                   onFocus={() => handleFocus("companyName")}
@@ -656,62 +654,7 @@ className={`w-full type-step ${
                 </p>
               )}
             </div>
-
-            {/* Brand Name  */}
-            <div>
-              {/* <label
-                className="
-    block white-text body3
-  "
-              >
-                Brand Name
-              </label> */}
-
-              <div className="relative w-full">
-                <input
-                  type="text"
-                  name="brandName"
-                  placeholder="Brand Name, If any"
-                  value={formData.brandName}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus("brandName")}
-                  onBlur={() => handleBlur("brandName")}
-                  className={`
-          w-full px-7 py-1 bg-transparent 
-          border-0 border-b-2 ${
-            errors.brandName
-              ? "border-b-red-500"
-              : "border-b-[var(--color-highlight)]"
-          }
-          white-text placeholder-gray-400 small-placeholder
-          focus:outline-none focus:border-b-[var(--color-highlight)]
-        `}
-                />
-
-                <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
-  <svg
-    id="fi_7959262"
-    xmlns="http://www.w3.org/2000/svg"
-    enableBackground="new 0 0 512 512"
-    width="20"
-    height="20"
-    viewBox="0 0 512 512"
-    fill={getIconColor(formData.brandName, focused.brandName)}
-  >
-    <path
-      d="m395.051 340.428c34.549-35.192 55.895-83.388 55.895-136.484-.001-107.492-87.453-194.944-194.946-194.944s-194.945 87.452-194.945 194.945c0 53.095 21.346 101.291 55.895 136.484l-52.093 90.227c-1.375 2.383-1.228 5.351.378 7.585s4.373 3.322 7.069 2.776l70.109-14.152 22.801 67.793c.877 2.608 3.201 4.46 5.938 4.734.234.023.467.035.698.035 2.481 0 4.802-1.32 6.061-3.5l56.704-98.216c7.025.77 14.158 1.178 21.385 1.178s14.359-.408 21.384-1.178l58.767 101.789c1.259 2.18 3.578 3.5 6.061 3.5.231 0 .465-.011.698-.035 2.737-.273 5.062-2.126 5.938-4.734l22.8-67.793 70.11 14.151c2.695.545 5.463-.542 7.069-2.776 1.605-2.234 1.754-5.203.378-7.585zm-221.511 135.07-19.825-58.947c-1.125-3.344-4.563-5.325-8.02-4.63l-60.96 12.305 42.667-73.9c25.702 22.607 57.38 38.564 92.328 45.167zm-98.485-271.553c0-99.774 81.172-180.945 180.945-180.945s180.945 81.171 180.945 180.945-81.172 180.945-180.945 180.945-180.945-81.172-180.945-180.945zm293.311 211.549c-3.457-.698-6.895 1.287-8.02 4.63l-19.824 58.946-48.254-83.578c34.948-6.603 66.628-22.56 92.33-45.167l44.73 77.473zm-112.366-356.355c-79.846 0-144.806 64.959-144.806 144.806s64.96 144.805 144.806 144.805 144.806-64.959 144.806-144.806-64.96-144.805-144.806-144.805zm0 275.611c-72.127 0-130.806-58.679-130.806-130.806s58.679-130.805 130.806-130.805 130.806 58.679 130.806 130.806-58.679 130.805-130.806 130.805zm94.157-152.613c-.889-2.735-3.36-4.648-6.23-4.824l-59.553-3.637-21.86-55.514c-1.055-2.676-3.638-4.435-6.514-4.435s-5.459 1.759-6.514 4.435l-21.86 55.514-59.553 3.637c-2.87.175-5.342 2.088-6.23 4.824s-.015 5.736 2.205 7.565l46.041 37.946-14.943 57.761c-.721 2.784.335 5.726 2.662 7.417s5.452 1.785 7.876.24l50.316-32.063 50.316 32.062c1.15.733 2.457 1.097 3.762 1.097 1.446 0 2.891-.448 4.114-1.337 2.327-1.69 3.383-4.632 2.662-7.417l-14.943-57.761 46.041-37.946c2.22-1.828 3.094-4.829 2.205-7.564zm-60.593 37.544c-2.1 1.73-3.006 4.521-2.325 7.155l11.609 44.871-39.086-24.907c-1.147-.731-2.454-1.097-3.762-1.097s-2.614.366-3.762 1.097l-39.087 24.907 11.609-44.871c.681-2.634-.226-5.425-2.325-7.155l-35.767-29.478 46.263-2.825c2.716-.166 5.09-1.89 6.087-4.422l16.982-43.124 16.981 43.125c.997 2.532 3.371 4.256 6.087 4.422l46.263 2.825z"
-      fill={getIconColor(formData.brandName, focused.brandName)}
-    />
-  </svg>
-</div>
-
-              </div>
-              {errors.brandName && (
-                <p className="text-red-500 text-xs mt-1">{errors.brandName}</p>
-              )}
-            </div>
-
-            {/* industry  */}
+{/* industry  */}
             <div>
               {/* <label
                 className="
@@ -828,29 +771,8 @@ className={`w-full type-step ${
               )}
             </div>
 
-              </div>
-            </div>
+              
 
-            {/* Step 1: Services % ciontact person */}
-          
-<div
-className={`w-full type-step ${
-  step === 1 ? "type-active" : step > 1 ? "type-hidden-up" : "type-hidden-down"
-}`}
-
-  >
-
-
- <div>
-                {step > 0 && step < 3 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div> 
-  <h3 className="text-left text-lg white-text py-7 ">2. Contact person and service </h3>
-
-  <div className="grid grid-cols-1 gap-6">
 
  {/* Services */}
             <div>
@@ -896,7 +818,31 @@ className={`w-full type-step ${
               )}
             </div>
 
-            {/* Contact Person */}
+            
+</div>
+            </div>
+
+            {/* Step 1: Contact Details */}
+            <div
+className={`w-full type-step ${
+  step === 1 ? "type-active" : step > 1 ? "type-hidden-up" : "type-hidden-down"
+}`}
+
+  >
+               <div>
+                {step > 0 && step < 3 && (
+                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
+                    ←   <span className=" underline" > Previous Question </span>
+                  </button>
+                )}
+              </div> 
+
+              
+              <h3 className="text-left  white-text py-8">2. Your contact details</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+
+{/* Contact Person */}
             <div>
               {/* <label
                 className="
@@ -960,29 +906,8 @@ className={`w-full type-step ${
               )}
             </div>
 
-  </div>
-</div>
+  
 
-
-            {/* Step 2: Services */}
-            <div
-className={`w-full type-step ${
-  step === 2 ? "type-active" : step > 2 ? "type-hidden-up" : "type-hidden-down"
-}`}
-
-  >
-               <div>
-                {step > 0 && step < 3 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div> 
-
-              
-              <h3 className="text-left  white-text py-8">3. Your contact details</h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
 
                {/* Email */}
             <div>
@@ -1095,74 +1020,7 @@ className={`w-full type-step ${
                 <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
               )}
             </div>
-
-            {/* Address */}
-            <div>
-              {/* <label
-                className="
-          block white-text  body3
-        "
-              >
-                Registered Address
-              </label> */}
-              <div className="relative w-full">
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="Address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  onFocus={() => handleFocus("address")}
-                  onBlur={() => handleBlur("address")}
-                  className={`
-          w-full px-7 py-1 bg-transparent 
-          border-0 border-b-2 ${
-            errors.address
-              ? "border-b-red-500"
-              : "border-b-[var(--color-highlight)]"
-          }
-          white-text placeholder-gray-400 small-placeholder
-          focus:outline-none focus:border-b-[var(--color-highlight)]
-        `}
-                />
-                  <div className="absolute top-1/2 -translate-y-1/2 pointer-events-none">
-  <svg
-    viewBox="0 0 368.16 368.16"
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    fill={getIconColor(formData.address, focused.address)}
-  >
-    <g>
-      <g>
-        <g>
-          <path
-            d="M184.08,0c-74.992,0-136,61.008-136,136c0,24.688,11.072,51.24,11.536,52.36c3.576,8.488,10.632,21.672,15.72,29.4
-              l93.248,141.288c3.816,5.792,9.464,9.112,15.496,9.112s11.68-3.32,15.496-9.104l93.256-141.296
-              c5.096-7.728,12.144-20.912,15.72-29.4c0.464-1.112,11.528-27.664,11.528-52.36C320.08,61.008,259.072,0,184.08,0z
-               M293.8,182.152c-3.192,7.608-9.76,19.872-14.328,26.8l-93.256,141.296c-1.84,2.792-2.424,2.792-4.264,0L88.696,208.952
-              c-4.568-6.928-11.136-19.2-14.328-26.808C74.232,181.816,64.08,157.376,64.08,136c0-66.168,53.832-120,120-120
-              c66.168,0,120,53.832,120,120C304.08,157.408,293.904,181.912,293.8,182.152z"
-            fill={getIconColor(formData.address, focused.address)}
-          />
-          <path
-            d="M184.08,64.008c-39.704,0-72,32.304-72,72c0,39.696,32.296,72,72,72c39.704,0,72-32.304,72-72
-              C256.08,96.312,223.784,64.008,184.08,64.008z M184.08,192.008c-30.872,0-56-25.12-56-56s25.128-56,56-56s56,25.12,56,56
-              S214.952,192.008,184.08,192.008z"
-            fill={getIconColor(formData.address, focused.address)}
-          />
-        </g>
-      </g>
-    </g>
-  </svg>
-</div>
-              </div>
-              {errors.address && (
-                <p className="text-red-500 text-xs mt-1">{errors.address}</p>
-              )}
-            </div>
-
-            <div>
+<div>
               {/* <label
                 className="
           block white-text  body3
@@ -1215,13 +1073,33 @@ className={`w-full type-step ${
               )}
             </div>
 
+
+
+            {/* Terms and Conditions */}
+            <div className="flex items-center gap-3 mt-4">
+              <input
+                type="checkbox"
+                id="termsAgreed"
+                name="termsAgreed"
+                checked={formData.termsAgreed}
+                onChange={handleChange}
+                className="w-5 h-5 accent-[var(--color-highlight)] bg-transparent border-2 border-[var(--color-highlight)] rounded cursor-pointer"
+              />
+              <label htmlFor="termsAgreed" className="white-text text-sm">
+                I agree to the <a href="/terms-of-engagement" target="_blank" className="underline text-[var(--color-highlight)]">Terms of Engagement</a>
+              </label>
+            </div>
+            {errors.termsAgreed && (
+              <p className="text-red-500 text-xs mt-1">{errors.termsAgreed}</p>
+            )}
+
 </div>
             </div>
 
             {/* Step 3: Thank you */}
             <div 
 className={`w-full type-step ${
-  step === 3 ? "type-active" : step > 3 ? "type-hidden-up" : "type-hidden-down"
+  step === 2 ? "type-active" : step > 2 ? "type-hidden-up" : "type-hidden-down"
 }`}
 >
   <div className="text-center py-10">
@@ -1249,14 +1127,7 @@ className={`w-full type-step ${
   )}
 
   {/* Step 2 */}
-  {step === 1 && (
-    <div onClick={nextStep   }>
-      <Button text="almost there" type="button" disabled={isSubmitting} className="white-text"/>
-    </div>
-  )}
-
-  {/* Step 3 */}
-  {step === 2 && submitStatus !== "success" && (
+  {step === 1 && submitStatus !== "success" && (
     <Button text="Let’s Connect" type="submit" disabled={isSubmitting} className="white-text" />
   )}
 
