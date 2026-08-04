@@ -1,0 +1,2 @@
+import { industries } from "../data"; import { Section } from "../Shared";
+export default function Industries() { return <Section copy={{ eyebrow: industries.eyebrow, title: industries.title, body: "The patterns change. The need to understand the customer does not." }} dark><div className="mt-10 flex flex-wrap gap-3">{industries.items.map((item) => <span className="rounded-full border border-white/20 px-5 py-3 text-sm" key={item}>{item}</span>)}</div></Section> }

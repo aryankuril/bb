@@ -1,0 +1,2 @@
+import { framework } from "../data"; import { Section } from "../Shared";
+export default function PerformanceFramework() { return <Section copy={framework} dark><ol className="mt-12 flex flex-wrap gap-2">{framework.steps.map((step, index) => <li key={step} className="flex items-center gap-2"><span className="rounded-full border border-white/25 px-4 py-2 text-sm">{step}</span>{index < framework.steps.length - 1 && <span className="text-[#f7bf36]">→</span>}</li>)}</ol></Section> }

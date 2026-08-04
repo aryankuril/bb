@@ -1,0 +1,2 @@
+import { pageContent } from "../data";
+export default function FloatingWhatsapp() { return <a href="https://wa.me/919000000000" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" className="fixed bottom-5 right-5 z-40 grid h-12 w-12 place-items-center rounded-full bg-[#25D366] text-xl text-black shadow-lg transition hover:scale-110">◔<span className="sr-only">{pageContent.brand}</span></a> }

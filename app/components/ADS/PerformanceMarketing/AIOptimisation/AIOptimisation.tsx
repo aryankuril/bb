@@ -1,0 +1,2 @@
+import { aiOptimisation } from "../data"; import { Section } from "../Shared"; import { CheckIcon } from "../icons";
+export default function AIOptimisation() { return <Section copy={aiOptimisation}><div className="mt-10 grid gap-3 sm:grid-cols-2 md:grid-cols-4">{aiOptimisation.items.map((item) => <div className="flex items-center gap-3 rounded-xl border border-black/10 p-4 text-sm" key={item}><CheckIcon size={16} className="text-[#d18a00]" />{item}</div>)}</div></Section> }

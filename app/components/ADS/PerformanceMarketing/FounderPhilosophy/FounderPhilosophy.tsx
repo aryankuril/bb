@@ -1,0 +1,2 @@
+import { founder } from "../data";
+export default function FounderPhilosophy() { return <section className="bg-[#f7bf36] px-5 py-24 text-black md:py-36"><div className="container max-w-5xl"><p className="text-xs font-semibold uppercase tracking-[.22em]">{founder.eyebrow}</p><blockquote className="mt-7 text-4xl font-medium tracking-[-.055em] md:text-7xl">“{founder.quote}”</blockquote><p className="mt-8 max-w-xl text-base leading-7">{founder.body}</p></div></section> }

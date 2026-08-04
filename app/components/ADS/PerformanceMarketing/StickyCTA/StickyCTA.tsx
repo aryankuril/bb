@@ -1,0 +1,2 @@
+import { heroContent, pageContent } from "../data"; import { LinkButton } from "../Shared";
+export default function StickyCTA() { return <aside className="fixed bottom-4 left-1/2 z-40 hidden w-[min(92%,760px)] -translate-x-1/2 items-center justify-between gap-4 rounded-full border border-black/10 bg-white/90 px-5 py-3 shadow-xl backdrop-blur md:flex"><p className="text-xs text-black/60">{pageContent.stickyNote}</p><LinkButton cta={heroContent.primary} /></aside> }
