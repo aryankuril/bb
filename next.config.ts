@@ -12,9 +12,6 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true, 
   },
 
-  // Enable SWC minification (already default but keeping explicit)
-  swcMinify: true,
-
   // Enable compression (gzip + brotli)
   compress: true,
 

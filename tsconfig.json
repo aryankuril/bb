@@ -24,5 +24,18 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "app/components/ADS/src/components/ui/chart.tsx",
+    "app/components/ADS/src/components/ui/command.tsx",
+    "app/components/ADS/src/components/ui/drawer.tsx",
+    "app/components/ADS/src/components/ui/form.tsx",
+    "app/components/ADS/src/components/ui/input-otp.tsx",
+    "app/components/ADS/src/components/ui/resizable.tsx",
+    "app/components/ADS/src/router.tsx",
+    "app/components/ADS/src/routeTree.gen.ts",
+    "app/components/ADS/src/routes",
+    "app/components/ADS/src/server.ts",
+    "app/components/ADS/src/start.ts"
+  ]
 }

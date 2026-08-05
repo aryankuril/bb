@@ -1,6 +1,6 @@
 import { SiteNav } from "@/app/components/ADS/src/components/landing/SiteNav";
 import { Hero } from "@/app/components/ADS/src/components/landing/Hero";
-import { LogoMarquee } from "@/app/components/ADS/src/components/landing/LogoMarquee";
+import LogoMarquee from "@/app/components/ADS/src/components/landing/LogoMarquee";
 import { Services } from "@/app/components/ADS/src/components/landing/Services";
 import { CaseStudies } from "@/app/components/ADS/src/components/landing/CaseStudies";
 import { WhyUs } from "@/app/components/ADS/src/components/landing/WhyUs";
