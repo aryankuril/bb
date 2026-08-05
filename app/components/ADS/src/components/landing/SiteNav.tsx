@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/app/components/ADS/src/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -30,14 +32,15 @@ export function SiteNav() {
       )}
     >
       <nav className="container flex h-16 items-center justify-between gap-4 md:h-20">
-        <a href="#top" className="flex min-w-0 items-center gap-2.5">
-          <span className="bg-ink text-background grid size-9 shrink-0 place-items-center rounded-xl font-display text-sm font-bold">
-            BB
-          </span>
-          <span className="truncate font-display text-base leading-tight font-extrabold tracking-tight">
-            Bombay Blokes
-          </span>
-        </a>
+         <Link href="/">
+                <Image
+                  src="/images/bblogo.webp"
+                  alt="Bombay Blokes Logo"
+                  width={210}
+                  height={80}
+                  className="object-cover transition-opacity duration-300"
+                />
+              </Link>
 
         <div className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (

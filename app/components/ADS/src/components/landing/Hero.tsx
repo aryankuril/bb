@@ -66,12 +66,12 @@ export function Hero() {
             Mumbai · Google &amp; Meta Ads specialists
           </div>
 
-          <h1 className="mt-6 text-[2.6rem] font-extrabold sm:text-6xl lg:text-[4.15rem]">
-            The performance marketing agency in Mumbai that{" "}
-            <span className="highlight-amber">engineers revenue</span>, not just reach.
-          </h1>
+         <h1 className="mt-6 text-[1.9rem] font-extrabold sm:text-[2.8rem] lg:text-[3.2rem]">
+  The performance marketing agency in Mumbai that{" "}
+  <span className="highlight-amber">engineers revenue</span>, not just reach.
+</h1>
 
-          <p className="text-muted-foreground mt-6 max-w-xl text-base leading-relaxed sm:text-lg">
+          <p className="text-muted-foreground mt-6 max-w-xl subtitle">
             Google Ads experts and Meta ads specialists running ROAS-focused campaigns for D2C,
             ecommerce and lead-gen brands. ₹20Cr+ ad spend managed, 4X average ROAS, and reporting
             you can actually read.
@@ -84,7 +84,7 @@ export function Hero() {
               "Creative + media under one roof",
               "No lock-in, monthly rolling",
             ].map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-sm font-medium">
+              <li key={item} className="flex items-start gap-2.5 subtitle font-medium">
                 <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-secondary">
                   <Check className="size-3 text-secondary-foreground" strokeWidth={3} />
                 </span>
@@ -100,11 +100,11 @@ export function Hero() {
                   <Star key={i} className="size-4 fill-secondary text-secondary" />
                 ))}
               </div>
-              <span className="text-muted-foreground text-sm">
+              <span className="text-muted-foreground subtitle">
                 <strong className="text-foreground">5.0</strong> from 150+ clients
               </span>
             </div>
-            <div className="flex items-center gap-2 text-sm">
+            <div className="flex items-center gap-2 subtitle">
               <TrendingUp className="size-4 text-secondary" />
               <span className="text-muted-foreground">
                 <strong className="text-foreground">1000+</strong> projects delivered
@@ -124,7 +124,7 @@ export function Hero() {
         </div>
 
         {/* Lead form */}
-        <div id="audit" className="lg:sticky lg:top-28">
+        <div id="audit" className="lg:sticky lg:top-20">
           <form
             onSubmit={onSubmit}
             className="card-soft animate-rise p-6 shadow-lift sm:p-8"
@@ -132,8 +132,8 @@ export function Hero() {
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <h2 className="font-display text-2xl font-extrabold">Get your free ads audit</h2>
-                <p className="text-muted-foreground mt-1.5 text-sm">
+                <h4 className="title text-black">Get your free ads audit</h4>
+                <p className="text-muted-foreground mt-1.5 subtitle">
                   One page. No sales script. Real numbers.
                 </p>
               </div>
