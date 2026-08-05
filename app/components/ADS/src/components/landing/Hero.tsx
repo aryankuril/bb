@@ -112,15 +112,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative mt-10 hidden lg:block">
-            <img
-              src={heroDashboard.src}
-              alt="Performance marketing dashboard showing ROAS growth, spend and campaign results"
-              width={1200}
-              height={1104}
-              className="border-border aspect-[16/10] w-full max-w-xl rounded-2xl border object-cover object-top shadow-lift"
-            />
-          </div>
+       
         </div>
 
         {/* Lead form */}
