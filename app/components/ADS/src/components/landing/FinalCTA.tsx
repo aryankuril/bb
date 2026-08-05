@@ -4,7 +4,7 @@ import { Reveal } from "@/app/components/ADS/src/components/Reveal";
 export function FinalCTA() {
   return (
     <section className="py-20 md:py-28">
-      <div className="container-x">
+      <div className="container">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-secondary px-7 py-14 text-secondary-foreground sm:px-14 sm:py-20">
             <div
@@ -47,7 +47,7 @@ export function FinalCTA() {
 export function Footer() {
   return (
     <footer className="bg-ink text-background pt-16 pb-10">
-      <div className="container-x">
+      <div className="container">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">

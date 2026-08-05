@@ -16,7 +16,7 @@ export function LogoMarquee() {
   const row = [...brands, ...brands];
   return (
     <section className="border-y bg-sand py-8">
-      <p className="eyebrow container-x mb-6 block">Brands that trust our work</p>
+      <p className="eyebrow container mb-6 block">Brands that trust our work</p>
       <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         <div className="flex w-max animate-marquee items-center gap-12 pr-12 motion-reduce:animate-none">
           {row.map((b, i) => (

@@ -71,7 +71,7 @@ export function SiteNav() {
 
       {open && (
         <div className="bg-background border-b lg:hidden">
-          <div className="container-x flex flex-col gap-1 py-4">
+          <div className="container flex flex-col gap-1 py-4">
             {links.map((l) => (
               <a
                 key={l.href}

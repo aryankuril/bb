@@ -36,7 +36,7 @@ const faqs = [
 export function FAQ() {
   return (
     <section id="faq" className="bg-sand border-y py-20 md:py-28">
-      <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <span className="eyebrow">FAQ</span>
           <h2 className="mt-4 text-4xl font-extrabold sm:text-5xl">

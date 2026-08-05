@@ -50,7 +50,7 @@ export function Testimonials() {
 
   return (
     <section className="py-20 md:py-28">
-      <div className="container-x">
+      <div className="container">
         <Reveal className="grid gap-6 sm:flex sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <span className="eyebrow">Social proof</span>

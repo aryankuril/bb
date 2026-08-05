@@ -13,7 +13,7 @@ const steps = [
 export function Process() {
   return (
     <section id="process" className="bg-ink text-background border-y py-20 md:py-28">
-      <div className="container-x">
+      <div className="container">
         <Reveal className="max-w-3xl">
           <span className="eyebrow text-secondary">Client journey</span>
           <h2 className="mt-4 text-4xl font-extrabold sm:text-5xl">

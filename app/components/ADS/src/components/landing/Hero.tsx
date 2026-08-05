@@ -46,17 +46,17 @@ export function Hero() {
   };
 
   return (
-    <section id="top" className="container py-10 sm:py-[60px] lg:py-20 relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+    <section id="top" className=" relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-40 -right-40 size-[38rem] rounded-full bg-secondary/25 blur-[120px]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-52 -left-40 size-[32rem] rounded-full bg-muted blur-[110px]"
+        className=" py-10 sm:py-[60px] lg:py-20 pointer-events-none absolute -bottom-52 -left-40 size-[32rem] rounded-full bg-muted blur-[110px]"
       />
 
-      <div className="container-x relative grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <div className="container relative grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div className="animate-rise">
           <div className="border-border bg-surface inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold shadow-soft">
             <span className="relative flex size-2">
