@@ -1,2 +1,0 @@
-import { socialProof } from "../data";
-export default function SocialProof() { return <section className="bg-[#f7bf36] px-5 py-7 text-black"><div className="container flex flex-wrap items-center justify-between gap-5"><p className="text-sm font-semibold">{socialProof.line}</p><div className="flex flex-wrap gap-x-7 gap-y-2 text-sm font-medium">{socialProof.logos.map((logo) => <span key={logo}>{logo}</span>)}</div></div></section> }

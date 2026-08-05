@@ -1,2 +1,0 @@
-import { operatingSystem } from "../data"; import { Section } from "../Shared";
-export default function GrowthOperatingSystem() { return <Section id="operating-system" copy={operatingSystem}><div className="mt-12 grid gap-3 md:grid-cols-4">{operatingSystem.steps.map((step, index) => <div key={step} className="rounded-2xl bg-[#e9e6de] p-6"><span className="text-sm text-[#d18a00]">0{index + 1}</span><p className="mt-12 text-lg font-medium leading-6">{step}</p></div>)}</div></Section> }

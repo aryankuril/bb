@@ -8,7 +8,7 @@ import GlobalRain from "./GlobalRain";
 export default function ClientProviders() {
   return (
     <>
-      <GlobalRain />
+      {/* <GlobalRain /> */}
       <AnimatedEffects />
       <AnalyticsWrapper />
     </>

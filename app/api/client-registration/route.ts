@@ -33,6 +33,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const agreementTimestampIST = agreementTimestamp
+  ? new Intl.DateTimeFormat("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+      timeZoneName: "short",
+    }).format(new Date(agreementTimestamp))
+  : "N/A";
+
 
         const formattedServices = services && services.length
   ? services.length === 1
@@ -401,12 +415,12 @@ const htmlTemplate = `
       <p><strong>Phone:</strong> ${phone}</p>
       <p><strong>Website:</strong> ${website || "N/A"}</p>
       <p><strong>Terms Agreed:</strong> Yes (Version ${termsVersion})</p>
-      <p><strong>Agreement Timestamp:</strong> ${agreementTimestamp}</p>
+      <p><strong>Agreement Timestamp:</strong> ${agreementTimestampIST}</p>
     `;
 
     await sendEmail({
       // to: "aryankuril09@gmail.com",
-      to: ["hello@bombayblokes.com", "bdm@bombayblokes.com"],
+      to: ["hello@bombayblokes.com", "bdm@bombayblokes.com" , "siddique@bombayblokes.com"],
       subject: `New Client Registration - ${companyName}`,
       html: teamNotification,
       fromName: "Website Client Registration",

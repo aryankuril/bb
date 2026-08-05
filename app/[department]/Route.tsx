@@ -17,6 +17,7 @@ import AdsFAQSection from "./AdsFAQSection";
 import AdsLandingPage from "../components/ADS";
 import SmoothScroll from "../components/SmoothScroll";
 import { getDepartmentConfig } from "./departmentConfig";
+import PaidMarketingPage from "./PaidMarketingPage";
 
 type RouteProps = {
   department: string;
@@ -51,11 +52,12 @@ const Route = ({
 
         {department === "website-development" ? (
           <AdsLandingPage pageKey="/website-development" />
+        ) : department === "paid-marketing" ? (
+          <PaidMarketingPage />
         ) : (
           <>
             <AdsStatsSection content={config.stats} />
             <AdsLogoSection />
-            {department === "paid-marketing" && <CaseStudies />}
 
             <AboutUs />
             <Problems />

@@ -1,2 +1,0 @@
-import { caseStudies, caseStudiesCopy } from "../data"; import { Section } from "../Shared";
-export default function CaseStudies() { return <Section copy={caseStudiesCopy}><div className="mt-12 grid gap-4 md:grid-cols-3">{caseStudies.cases.map((item) => <article key={item.title} className="rounded-3xl bg-[#e9e6de] p-7"><p className="text-sm font-medium">{item.title}</p><strong className="mt-16 block text-6xl tracking-[-.08em] text-[#d18a00]">{item.stat}</strong><p className="mt-4 text-sm leading-6 opacity-65">{item.body}</p></article>)}</div></Section> }

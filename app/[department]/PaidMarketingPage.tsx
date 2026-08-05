@@ -9,11 +9,9 @@ import { Testimonials } from "@/app/components/ADS/src/components/landing/Testim
 import { FAQ } from "@/app/components/ADS/src/components/landing/FAQ";
 import { FinalCTA, Footer } from "@/app/components/ADS/src/components/landing/FinalCTA";
 
-import "./lovable-compiled.css";
-
 export default function PaidMarketingPage() {
   return (
-    <main className="lovable-page">
+    <main>
       <SiteNav />
       <Hero />
       <LogoMarquee />
