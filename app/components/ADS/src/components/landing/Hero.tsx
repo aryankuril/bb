@@ -46,7 +46,7 @@ export function Hero() {
   };
 
   return (
-    <section id="top" className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+    <section id="top" className="container py-10 sm:py-[60px] lg:py-20 relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-40 -right-40 size-[38rem] rounded-full bg-secondary/25 blur-[120px]"

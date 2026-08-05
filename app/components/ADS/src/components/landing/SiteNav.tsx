@@ -29,7 +29,7 @@ export function SiteNav() {
         scrolled ? "bg-background/85 border-b backdrop-blur-xl" : "border-b border-transparent",
       )}
     >
-      <nav className="container-x flex h-16 items-center justify-between gap-4 md:h-20">
+      <nav className="container flex h-16 items-center justify-between gap-4 md:h-20">
         <a href="#top" className="flex min-w-0 items-center gap-2.5">
           <span className="bg-ink text-background grid size-9 shrink-0 place-items-center rounded-xl font-display text-sm font-bold">
             BB

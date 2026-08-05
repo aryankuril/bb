@@ -1,6 +1,7 @@
-import { BarChart3, IndianRupee, Users, Zap } from "lucide-react";
+ import { BarChart3, IndianRupee, Users, Zap } from "lucide-react";
 import { Reveal } from "@/app/components/ADS/src/components/Reveal";
 import teamOffice from "@/app/components/ADS/src/assets/team-office.jpg";
+import Image from "next/image";
 
 const stats = [
   { icon: BarChart3, value: "1000+", label: "Projects delivered" },
@@ -47,14 +48,13 @@ export function WhyUs() {
         </Reveal>
 
         <Reveal delay={120} className="relative">
-          <img
-            src={teamOffice}
-            alt="Bombay Blokes performance marketing team reviewing campaign dashboards in Mumbai"
-            width={1200}
-            height={900}
-            loading="lazy"
-            className="border-border w-full rounded-3xl border object-cover shadow-lift"
-          />
+         <Image
+  src={teamOffice}
+  alt="Bombay Blokes performance marketing team reviewing campaign dashboards in Mumbai"
+  width={1200}
+  height={900}
+  className="border-border w-full rounded-3xl border object-cover shadow-lift"
+/>
           <div className="card-soft absolute -bottom-6 -left-2 w-56 p-4 sm:left-6 animate-float motion-reduce:animate-none">
             <div className="text-muted-foreground text-xs font-semibold">Live account · 30 days</div>
             <div className="font-display mt-1 text-3xl font-extrabold">6.3X</div>
