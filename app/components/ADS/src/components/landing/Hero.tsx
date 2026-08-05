@@ -3,46 +3,42 @@
 import { useState } from "react";
 import { ArrowRight, Check, Star, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
-import heroDashboard from "@/app/components/ADS/src/assets/hero-dashboard.jpg";
-
-const services = [
-  "Performance Marketing (Google + Meta Ads)",
-  "Google Ads Management",
-  "Social Media Marketing",
-  "Website Development",
-  "SEO",
-];
-
-const budgets = [
-  "₹50,000 – ₹1,00,000",
-  "₹1,00,000 – ₹3,00,000",
-  "₹3,00,000 – ₹5,00,000",
-  "₹5,00,000+",
-];
-
-const challenges = [
-  "Not getting enough leads",
-  "Leads are low quality",
-  "High cost per lead",
-  "Low ROAS",
-  "Sales have plateaued",
-  "Starting from scratch",
-];
-
 export function Hero() {
   const [sending, setSending] = useState(false);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSending(true);
     const form = e.currentTarget;
-    setTimeout(() => {
-      setSending(false);
+    const formData = new FormData(form);
+
+    setSending(true);
+    try {
+      const response = await fetch("/api/ads-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          phone: formData.get("phone"),
+          email: formData.get("email"),
+          brand: formData.get("brand"),
+          source: "paid-marketing-hero",
+        }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || "Unable to send your request.");
+
       form.reset();
       toast.success("Audit request received", {
         description: "A strategist will call you within 24 working hours.",
       });
-    }, 700);
+    } catch (error) {
+      toast.error("Could not send your request", {
+        description: error instanceof Error ? error.message : "Please try again shortly.",
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -160,48 +156,15 @@ export function Hero() {
                 />
               </Field>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Service you need">
-                  <select required name="service" defaultValue="" className={inputCls}>
-                    <option value="" disabled>
-                      Select service
-                    </option>
-                    {services.map((s) => (
-                      <option key={s}>{s}</option>
-                    ))}
-                  </select>
-                </Field>
-                <Field label="Monthly ad budget">
-                  <select required name="budget" defaultValue="" className={inputCls}>
-                    <option value="" disabled>
-                      Select budget
-                    </option>
-                    {budgets.map((b) => (
-                      <option key={b}>{b}</option>
-                    ))}
-                  </select>
-                </Field>
-              </div>
-
-              <Field label="Biggest marketing challenge">
-                <select required name="challenge" defaultValue="" className={inputCls}>
-                  <option value="" disabled>
-                    Select challenge
-                  </option>
-                  {challenges.map((c) => (
-                    <option key={c}>{c}</option>
-                  ))}
-                </select>
-              </Field>
-
-              <Field label="Anything about your growth goals (optional)">
-                <textarea
-                  name="notes"
-                  rows={3}
-                  placeholder="Tell us about your business and targets…"
-                  className={`${inputCls} resize-none`}
+              <Field label="Brand name, website or Instagram link">
+                <input
+                  required
+                  name="brand"
+                  placeholder="Your brand, website or @instagram"
+                  className={inputCls}
                 />
               </Field>
+
             </div>
 
             <button
@@ -213,7 +176,7 @@ export function Hero() {
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </button>
 
-            <p className="text-muted-foreground mt-4 text-center text-xs">
+            <p className="text-muted-foreground mt-4 text-center subtitle">
               We reply within 24 working hours. Your details stay private.
             </p>
           </form>

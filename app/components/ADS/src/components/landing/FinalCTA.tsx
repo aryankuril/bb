@@ -50,7 +50,7 @@ export function FinalCTA() {
 export function Footer() {
   return (
     <footer className="w-full">
-      <div className="mx-auto container py-10 sm:py-15 lg:py-20 mt-3 ">
+      <div className="mx-auto container py-5 mt-3 ">
         {/* Top Section */}
       {/* Top Section */}
 <div className="flex items-center justify-between w-full">
