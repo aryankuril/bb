@@ -14,12 +14,12 @@ export function Process() {
   return (
     <section id="process" className="bg-ink text-background border-y py-20 md:py-28">
       <div className="container">
-        <Reveal className="max-w-3xl">
-          <span className="eyebrow text-secondary">Client journey</span>
-          <h2 className="mt-4 text-4xl font-extrabold sm:text-5xl">
-            Mumbai’s growth-focused performance marketing agency — in seven steps.
+        <Reveal className="max-w-4xl">
+          <span className="eyebrow subtitle">Client journey</span>
+          <h2 className="mt-4 ">
+            Mumbai’s growth-focused performance marketing agency in seven steps.
           </h2>
-          <p className="mt-5 leading-relaxed text-background/70">
+          <p className="mt-5 subtitle text-background/70">
             Trusted by ambitious brands to drive customer acquisition, revenue growth and industry
             leading marketing performance.
           </p>
@@ -29,15 +29,15 @@ export function Process() {
           {steps.map((s, i) => (
             <Reveal as="li" key={s.t} delay={(i % 4) * 80} className="bg-ink">
               <div className="group h-full p-6 transition-colors duration-300 hover:bg-background/5">
-                <span className="font-display text-sm font-extrabold text-secondary">
+                <span className="font-display subtitle text-secondary">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-4 text-lg font-bold">{s.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-background/65">{s.d}</p>
+                <h4 className="mt-4 text-white">{s.t}</h4>
+                <p className="mt-2 subtitle text-background/65">{s.d}</p>
                 <div className="mt-6 h-0.5 w-8 bg-secondary transition-all duration-300 group-hover:w-16" />
               </div>
             </Reveal>
-          ))}
+          ))}   
           <li className="bg-ink">
             <a
               href="#audit"

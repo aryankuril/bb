@@ -53,8 +53,8 @@ export function Testimonials() {
       <div className="container">
         <Reveal className="grid gap-6 sm:flex sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <span className="eyebrow">Social proof</span>
-            <h2 className="mt-4 text-4xl font-extrabold sm:text-5xl">What our clients say</h2>
+            <span className="eyebrow subtitle">Social proof</span>
+            <h2 className="mt-4 ">What our clients say</h2>
           </div>
           <div className="flex gap-2">
             <button
@@ -85,15 +85,15 @@ export function Testimonials() {
               >
                 <div className="flex items-center justify-between">
                   <Quote className="size-7 text-secondary" />
-                  <div className="flex items-center gap-1 text-sm font-bold">
+                  <div className="flex items-center gap-1 subtitle font-bold">
                     5.0
                     <Star className="size-4 fill-secondary text-secondary" />
                   </div>
                 </div>
-                <blockquote className="mt-5 leading-relaxed">“{t.quote}”</blockquote>
+                <blockquote className="mt-5 subtitle">“{t.quote}”</blockquote>
                 <figcaption className="border-border mt-6 border-t pt-5">
-                  <div className="font-bold">{t.name}</div>
-                  <div className="text-muted-foreground text-sm">{t.role}</div>
+                  <div className="font-bold subtitle">{t.name}</div>
+                  <div className="text-muted-foreground subtitle">{t.role}</div>
                 </figcaption>
               </figure>
             ))}

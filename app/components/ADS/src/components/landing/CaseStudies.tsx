@@ -49,12 +49,12 @@ export function CaseStudies() {
   return (
     <section id="case-studies" className="container py-10 sm:py-[60px] lg:py-20">
       <div className="">
-        <Reveal className="max-w-3xl">
-          <span className="eyebrow">Case studies</span>
-          <h2 className="mt-4 text-4xl font-extrabold sm:text-5xl">
+        <Reveal className="max-w-4xl">
+          <span className="eyebrow subtitle">Case studies</span>
+          <h2 className="mt-4 ">
             Proof of delivery, not a portfolio wall.
           </h2>
-          <p className="text-muted-foreground mt-5 leading-relaxed">
+          <p className="text-muted-foreground mt-4 subtitle">
             Three accounts, three different problems, one method. Scroll through the numbers.
           </p>
         </Reveal>
@@ -70,25 +70,25 @@ export function CaseStudies() {
                 <div className="grid lg:grid-cols-2">
                   <div className="p-7 sm:p-10">
                     <div className="flex items-center gap-3">
-                      <span className="font-display text-sm font-extrabold text-secondary">
+                      <span className="font-display subtitle text-secondary">
                         0{i + 1}
                       </span>
-                      <span className="text-muted-foreground text-xs font-semibold tracking-wide uppercase">
+                      <span className="text-muted-foreground subtitle  uppercase">
                         {c.tag}
                       </span>
                     </div>
-                    <h3 className="mt-5 text-2xl font-extrabold sm:text-3xl">{c.title}</h3>
-                    <p className="text-muted-foreground mt-4 text-sm leading-relaxed sm:text-base">
+                    <h4 className="title text-black mt-5">{c.title}</h4>
+                    <p className="text-muted-foreground mt-4 subtitle">
                       {c.copy}
                     </p>
 
                     <dl className="border-border mt-8 grid grid-cols-3 gap-4 border-t pt-6">
                       {c.metrics.map((m) => (
                         <div key={m.l}>
-                          <dt className="text-muted-foreground order-2 mt-1 text-xs">{m.l}</dt>
-                          <dd className="font-display text-2xl font-extrabold sm:text-3xl">
+                          <dt className="text-muted-foreground order-2 mt-1 subtitle">{m.l}</dt>
+                         <h4 className="title text-black">
                             {m.v}
-                          </dd>
+                          </h4>
                         </div>
                       ))}
                     </dl>

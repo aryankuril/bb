@@ -15,11 +15,11 @@ export function WhyUs() {
     <section id="results" className="py-20 md:py-28">
       <div className="container grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
-          <span className="eyebrow">Why Bombay Blokes</span>
-          <h2 className="mt-4 text-4xl font-extrabold sm:text-5xl">
+          <span className="eyebrow subtitle">Why Bombay Blokes</span>
+          <h2 className="mt-4">
             We engineer revenue, not just reach.
           </h2>
-          <p className="text-muted-foreground mt-5 leading-relaxed">
+          <p className="text-muted-foreground mt-4 subtitle">
             From Meta Ads and Google Ads to lead generation, conversion rate optimisation, audience
             targeting and ROAS-focused campaigns — we optimise every touchpoint to turn ad spend
             into measurable business growth, with complete transparency.
@@ -33,7 +33,7 @@ export function WhyUs() {
                   <div className="font-display mt-4 text-3xl font-extrabold sm:text-4xl">
                     {s.value}
                   </div>
-                  <div className="text-muted-foreground mt-1 text-sm">{s.label}</div>
+                  <div className="text-muted-foreground mt-1 subtitle">{s.label}</div>
                 </div>
               </Reveal>
             ))}
@@ -56,8 +56,8 @@ export function WhyUs() {
   className="border-border w-full rounded-3xl border object-cover shadow-lift"
 />
           <div className="card-soft absolute -bottom-6 -left-2 w-56 p-4 sm:left-6 animate-float motion-reduce:animate-none">
-            <div className="text-muted-foreground text-xs font-semibold">Live account · 30 days</div>
-            <div className="font-display mt-1 text-3xl font-extrabold">6.3X</div>
+            <div className="text-muted-foreground text-xs">Live account · 30 days</div>
+            <div className="font-display mt-1 subtitle">6.3X</div>
             <div className="text-muted-foreground text-xs">blended ROAS on Meta + Google</div>
           </div>
         </Reveal>

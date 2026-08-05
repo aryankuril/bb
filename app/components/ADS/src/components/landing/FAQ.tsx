@@ -38,11 +38,11 @@ export function FAQ() {
     <section id="faq" className="bg-sand border-y py-20 md:py-28">
       <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
-          <span className="eyebrow">FAQ</span>
-          <h2 className="mt-4 text-4xl font-extrabold sm:text-5xl">
+          <span className="eyebrow subtitle">FAQ</span>
+          <h2 className="mt-4 ">
             Straight answers before you spend.
           </h2>
-          <p className="text-muted-foreground mt-5 leading-relaxed">
+          <p className="text-muted-foreground mt-5 subtitle">
             Still unsure? Send us your ad account and we will point at the leak for free.
           </p>
         </Reveal>
@@ -51,8 +51,10 @@ export function FAQ() {
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((f, i) => (
               <AccordionItem key={f.q} value={`item-${i}`} className="border-border border-b">
-                <AccordionTrigger className="py-5 text-left text-base font-bold hover:no-underline sm:text-lg">
+                <AccordionTrigger className="py-5 text-left  hover:no-underline ">
+                  <h4>
                   {f.q}
+                  </h4>
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground pb-5 text-sm leading-relaxed">
                   {f.a}

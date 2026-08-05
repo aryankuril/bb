@@ -58,7 +58,7 @@ export function Hero() {
 
       <div className="container relative grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div className="animate-rise">
-          <div className="border-border bg-surface inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold shadow-soft">
+          <div className="border-border bg-surface inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 subtitle font-semibold shadow-soft">
             <span className="relative flex size-2">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-secondary opacity-70" />
               <span className="relative inline-flex size-2 rounded-full bg-secondary" />
