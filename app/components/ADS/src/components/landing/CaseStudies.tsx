@@ -3,6 +3,8 @@ import { Reveal } from "@/app/components/ADS/src/components/Reveal";
 import caseFashion from "@/app/components/ADS/src/assets/case-fashion.jpg";
 import caseD2c from "@/app/components/ADS/src/assets/case-d2c.jpg";
 import caseRealEstate from "@/app/components/ADS/src/assets/case-realestate.jpg";
+import Image from "next/image";
+
 
 const cases = [
   {
@@ -101,14 +103,13 @@ export function CaseStudies() {
                   </div>
 
                   <div className="relative min-h-56 bg-muted lg:min-h-full">
-                    <img
-                      src={c.image}
-                      alt={c.alt}
-                      width={1000}
-                      height={750}
-                      loading="lazy"
-                      className="h-full w-full object-cover"
-                    />
+                    <Image
+  src={c.image}
+  alt={c.alt}
+  width={1000}
+  height={750}
+  className="h-full w-full object-cover"
+/>
                   </div>
                 </div>
               </article>
