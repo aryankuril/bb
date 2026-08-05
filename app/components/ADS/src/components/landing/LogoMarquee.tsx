@@ -28,7 +28,7 @@ const secondRow = logos.slice(10, 20);
 
 export default function LogoMarquee() {
   return (
-    <div className="overflow-hidden space-y-6 border-y bg-sand py-8">
+    <div className="overflow-hidden space-y-6 border-y bg-sand py-10 sm:py-15 lg:py-20">
 
 <div className="w-full flex justify-center mb-8">
   <h2 className="inline-block text-center text-black">

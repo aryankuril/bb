@@ -219,16 +219,7 @@ export function Hero() {
           </form>
         </div>
 
-        <div className="lg:hidden">
-          <img
-            src={heroDashboard.src}
-            alt="Performance marketing dashboard showing ROAS growth, spend and campaign results"
-            width={1200}
-            height={1104}
-            loading="lazy"
-            className="border-border w-full rounded-2xl border object-cover shadow-soft"
-          />
-        </div>
+        
       </div>
     </section>
   );

@@ -47,7 +47,7 @@ const cases = [
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="container py-10 sm:py-[60px] lg:py-20">
+    <section id="case-studies" className="container py-10 sm:py-15 lg:py-20">
       <div className="">
         <Reveal className="max-w-4xl">
           <span className="eyebrow subtitle">Case studies</span>

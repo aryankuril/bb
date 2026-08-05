@@ -12,7 +12,7 @@ const stats = [
 
 export function WhyUs() {
   return (
-    <section id="results" className="py-20 md:py-28">
+    <section id="results" className="py-10 sm:py-15 lg:py-20">
       <div className="container grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <span className="eyebrow subtitle">Why Bombay Blokes</span>

@@ -1,5 +1,6 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight, Quote, Star } from "lucide-react";
 import { Reveal } from "@/app/components/ADS/src/components/Reveal";
@@ -32,11 +33,33 @@ const testimonials = [
 ];
 
 export function Testimonials() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+
+  const autoplay = useRef(
+  Autoplay({
+    delay: 4000,
+    stopOnInteraction: false,
+    stopOnMouseEnter: true,
+  })
+);
+ const [emblaRef, emblaApi] = useEmblaCarousel(
+  {
+    loop: true,
+    align: "start",
+    duration: 30, // smoother slide animation (default is ~25)
+  },
+  [autoplay.current]
+);
   const [selected, setSelected] = useState(0);
 
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+const scrollPrev = useCallback(() => {
+  emblaApi?.scrollPrev();
+  autoplay.current.reset();
+}, [emblaApi]);
+
+const scrollNext = useCallback(() => {
+  emblaApi?.scrollNext();
+  autoplay.current.reset();
+}, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -49,7 +72,7 @@ export function Testimonials() {
   }, [emblaApi]);
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-10 sm:py-15 lg:py-20">
       <div className="container">
         <Reveal className="grid gap-6 sm:flex sm:items-end sm:justify-between">
           <div className="max-w-2xl">
@@ -76,8 +99,8 @@ export function Testimonials() {
           </div>
         </Reveal>
 
-        <div className="mt-10 overflow-hidden" ref={emblaRef}>
-          <div className="flex gap-5">
+        <div className="mt-10 overflow-hidden " ref={emblaRef}>
+          <div className="flex gap-4">
             {testimonials.map((t) => (
               <figure
                 key={t.name}
@@ -106,7 +129,10 @@ export function Testimonials() {
               key={t.name}
               type="button"
               aria-label={`Go to testimonial ${i + 1}`}
-              onClick={() => emblaApi?.scrollTo(i)}
+              onClick={() => {
+  emblaApi?.scrollTo(i);
+  autoplay.current.reset();
+}}
               className={`h-1.5 rounded-full transition-all ${
                 selected === i ? "w-8 bg-secondary" : "bg-border w-3"
               }`}

@@ -12,7 +12,7 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" className="bg-ink text-background border-y py-20 md:py-28">
+    <section id="process" className="bg-ink text-background border-y py-10 sm:py-15 lg:py-20">
       <div className="container">
         <Reveal className="max-w-4xl">
           <span className="eyebrow subtitle">Client journey</span>
@@ -25,7 +25,8 @@ export function Process() {
           </p>
         </Reveal>
 
-        <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl bg-background/15 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl bg-background/15 border
+        border-[var(--color-highlight)]/40 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <Reveal as="li" key={s.t} delay={(i % 4) * 80} className="bg-ink">
               <div className="group h-full p-6 transition-colors duration-300 hover:bg-background/5">

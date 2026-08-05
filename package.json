@@ -60,6 +60,7 @@
     "clsx": "^2.1.1",
     "cookies-next": "^6.1.1",
     "editorjs-html": "^4.0.5",
+    "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "firebase": "^12.5.0",
     "firebase-admin": "^13.6.0",

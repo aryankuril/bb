@@ -47,7 +47,7 @@ export function SiteNav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-muted-foreground hover:text-foreground relative text-sm font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-x-0 after:bg-secondary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
+              className="text-black hover:text-foreground relative subtitle font-medium transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-x-0 after:bg-secondary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
             >
               {l.label}
             </a>

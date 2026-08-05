@@ -7,7 +7,7 @@ import { WhyUs } from "@/app/components/ADS/src/components/landing/WhyUs";
 import { Process } from "@/app/components/ADS/src/components/landing/Process";
 import { Testimonials } from "@/app/components/ADS/src/components/landing/Testimonials";
 import { FAQ } from "@/app/components/ADS/src/components/landing/FAQ";
-import { FinalCTA, Footer } from "@/app/components/ADS/src/components/landing/FinalCTA";
+import { FinalCTA , Footer} from "@/app/components/ADS/src/components/landing/FinalCTA";
 
 import "./lovable-compiled.css";
 
@@ -17,7 +17,7 @@ export default function PaidMarketingPage() {
       <SiteNav />
       <Hero />
       <LogoMarquee />
-      <Services />
+      {/* <Services /> */}
       <CaseStudies />
       <WhyUs />
       <Process />

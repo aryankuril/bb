@@ -35,7 +35,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="bg-sand border-y py-20 md:py-28">
+    <section id="faq" className="bg-sand border-y py-10 sm:py-15 lg:py-20">
       <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <span className="eyebrow subtitle">FAQ</span>
@@ -56,7 +56,7 @@ export function FAQ() {
                   {f.q}
                   </h4>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5 text-sm leading-relaxed">
+                <AccordionContent className="text-muted-foreground pb-5 subtitle leading-relaxed">
                   {f.a}
                 </AccordionContent>
               </AccordionItem>
