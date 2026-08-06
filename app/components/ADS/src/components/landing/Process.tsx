@@ -16,24 +16,23 @@ export function Process() {
       <div className="container">
         <Reveal className="max-w-4xl">
           <span className="eyebrow subtitle">Client journey</span>
-          <h2 className="mt-4 ">
+          <a className="mt-4 heading block">
             Mumbai’s growth-focused performance marketing agency in seven steps.
-          </h2>
+          </a>
           <p className="mt-5 subtitle text-background/70">
             Trusted by ambitious brands to drive customer acquisition, revenue growth and industry
             leading marketing performance.
           </p>
         </Reveal>
 
-        <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl bg-background/15 border
-        border-[var(--color-highlight)]/40 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl bg-background/15  sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <Reveal as="li" key={s.t} delay={(i % 4) * 80} className="bg-ink">
               <div className="group h-full p-6 transition-colors duration-300 hover:bg-background/5">
                 <span className="font-display subtitle text-secondary">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h4 className="mt-4 text-white">{s.t}</h4>
+                <h6 className="mt-4 text-white">{s.t}</h6>
                 <p className="mt-2 subtitle text-background/65">{s.d}</p>
                 <div className="mt-6 h-0.5 w-8 bg-secondary transition-all duration-300 group-hover:w-16" />
               </div>

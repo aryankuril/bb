@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ArrowRight, Check, Star, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
+import heroDashboard from "@/app/components/ADS/src/assets/hero-dashboard.jpg";
+
 export function Hero() {
   const [sending, setSending] = useState(false);
 
@@ -62,11 +64,17 @@ export function Hero() {
             Mumbai · Google &amp; Meta Ads specialists
           </div>
 
-         <h1 className="mt-6 text-[1.9rem] font-extrabold sm:text-[2.8rem] lg:text-[3.2rem]">
+       <span
+  className="mt-6 block text-[1.9rem] font-extrabold sm:text-[2.8rem] lg:text-[3.2rem]"
+  style={{
+    fontFamily: '"Bricolage Grotesque", sans-serif',
+    fontWeight: 800,
+    lineHeight: 1.1,
+  }}
+>
   The performance marketing agency in Mumbai that{" "}
   <span className="highlight-amber">engineers revenue</span>, not just reach.
-</h1>
-
+</span>
           <p className="text-muted-foreground mt-6 max-w-xl subtitle">
             Google Ads experts and Meta ads specialists running ROAS-focused campaigns for D2C,
             ecommerce and lead-gen brands. ₹20Cr+ ad spend managed, 4X average ROAS, and reporting
@@ -108,6 +116,7 @@ export function Hero() {
             </div>
           </div>
 
+
        
         </div>
 
@@ -120,7 +129,7 @@ export function Hero() {
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <h4 className="title text-black">Get your free ads audit</h4>
+               <h6>Get your free ads audit</h6>
                 <p className="text-muted-foreground mt-1.5 subtitle">
                   One page. No sales script. Real numbers.
                 </p>
@@ -182,7 +191,16 @@ export function Hero() {
           </form>
         </div>
 
-        
+         <div className="lg:hidden">
+          <img
+            src={heroDashboard.src}
+            alt="Performance marketing dashboard showing ROAS growth, spend and campaign results"
+            width={1200}
+            height={1104}
+            loading="lazy"
+            className="border-border w-full rounded-2xl border object-cover shadow-soft"
+          />
+        </div>
       </div>
     </section>
   );

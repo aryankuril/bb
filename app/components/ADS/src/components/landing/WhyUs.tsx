@@ -16,9 +16,9 @@ export function WhyUs() {
       <div className="container grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <span className="eyebrow subtitle">Why Bombay Blokes</span>
-          <h2 className="mt-4">
+         <a className=" heading mt-4 block">
             We engineer revenue, not just reach.
-          </h2>
+          </a>
           <p className="text-muted-foreground mt-4 subtitle">
             From Meta Ads and Google Ads to lead generation, conversion rate optimisation, audience
             targeting and ROAS-focused campaigns — we optimise every touchpoint to turn ad spend

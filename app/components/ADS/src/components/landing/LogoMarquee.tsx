@@ -29,11 +29,12 @@ const secondRow = logos.slice(10, 20);
 export default function LogoMarquee() {
   return (
     <div className="overflow-hidden space-y-6 border-y bg-sand py-10 sm:py-15 lg:py-20">
+      <div className="container">
 
-<div className="w-full flex justify-center mb-8">
-  <h2 className="inline-block text-center text-black">
+<div className="w-full mb-8">
+  <a className=" heading">
     Brands That Trust Our Work
-  </h2>
+  </a>
 </div>
 
 
@@ -52,17 +53,8 @@ export default function LogoMarquee() {
       </div>
 
       {/* Row 2 */}
-      <div className="relative overflow-hidden">
-       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
-
-<div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white/90 via-white/40 to-transparent" />
-        <div className="flex animate-marquee-reverse gap-6">
-          {[...secondRow, ...secondRow].map((logo, i) => (
-            <LogoCard logo={logo} key={i} />
-          ))}
-        </div>
-      </div>
-
+      
+    </div>
     </div>
   );
 }

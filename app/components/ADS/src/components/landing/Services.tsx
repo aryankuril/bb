@@ -52,9 +52,9 @@ export function Services() {
       <div className="container">
         <Reveal className="max-w-3xl">
           <span className="eyebrow">What we do</span>
-          <h2 className="mt-4 text-4xl font-extrabold sm:text-5xl">
+          <a className="mt-4 heading block">
             Performance marketing services built for one outcome: profitable growth.
-          </h2>
+          </a>
           <p className="text-muted-foreground mt-5 leading-relaxed">
             Whether you need more leads, better leads, or a lower cost per acquisition, every
             engagement starts with the same thing — a free account audit and a clear number to beat.
@@ -71,7 +71,7 @@ export function Services() {
                   </span>
                   <ArrowUpRight className="text-muted-foreground size-5 shrink-0 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground" />
                 </div>
-                <h3 className="mt-5 text-xl font-bold">{s.title}</h3>
+                <h6 className="mt-5 ">{s.title}</h6>
                 <p className="text-muted-foreground mt-2.5 text-sm leading-relaxed">{s.copy}</p>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {s.points.map((p) => (

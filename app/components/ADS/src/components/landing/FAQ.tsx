@@ -39,9 +39,9 @@ export function FAQ() {
       <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <span className="eyebrow subtitle">FAQ</span>
-          <h2 className="mt-4 ">
+          <a className="mt-4 heading block">
             Straight answers before you spend.
-          </h2>
+          </a>
           <p className="text-muted-foreground mt-5 subtitle">
             Still unsure? Send us your ad account and we will point at the leak for free.
           </p>
@@ -52,9 +52,15 @@ export function FAQ() {
             {faqs.map((f, i) => (
               <AccordionItem key={f.q} value={`item-${i}`} className="border-border border-b">
                 <AccordionTrigger className="py-5 text-left  hover:no-underline ">
-                  <h4>
-                  {f.q}
-                  </h4>
+<span
+  className="block text-[20px] leading-[1.2] sm:text-[24px] lg:text-[25px]"
+  style={{
+    fontFamily: '"Bricolage Grotesque", sans-serif',
+    fontWeight: 800,
+  }}
+>
+  {f.q}
+</span>
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground pb-5 subtitle leading-relaxed">
                   {f.a}

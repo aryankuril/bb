@@ -163,7 +163,7 @@ export async function POST(req: Request) {
     const message = buildEmailBody(payload);
 
     await sendEmail({
-      to: payload.email,
+      to: payload.email as string,
       subject: "Your free ads audit request is received | Bombay Blokes",
       html: buildUserEmail(payload),
       fromName: "Bombay Blokes",

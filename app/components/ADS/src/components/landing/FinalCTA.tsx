@@ -16,9 +16,9 @@ export function FinalCTA() {
             />
             <div className="relative max-w-3xl">
               <span className="eyebrow text-secondary-foreground/70 subtitle">Next step</span>
-              <h2 className="mt-4 ">
+              <a className="mt-4 heading block ">
                 Get a free account audit and the number we think we can move.
-              </h2>
+              </a>
               <p className="mt-5 max-w-xl subtitle">
                 No decks, no jargon. One call with a Google Ads and Meta ads expert who has already
                 looked at your account.

@@ -17,7 +17,7 @@ export default function PaidMarketingPage() {
       <SiteNav />
       <Hero />
       <LogoMarquee />
-      {/* <Services /> */}
+      <Services />
       <CaseStudies />
       <WhyUs />
       <Process />

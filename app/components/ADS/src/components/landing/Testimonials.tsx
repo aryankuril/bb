@@ -41,11 +41,12 @@ export function Testimonials() {
     stopOnMouseEnter: true,
   })
 );
- const [emblaRef, emblaApi] = useEmblaCarousel(
+const [emblaRef, emblaApi] = useEmblaCarousel(
   {
     loop: true,
     align: "start",
-    duration: 30, // smoother slide animation (default is ~25)
+    containScroll: "trimSnaps",
+    duration: 30,
   },
   [autoplay.current]
 );
@@ -77,7 +78,9 @@ const scrollNext = useCallback(() => {
         <Reveal className="grid gap-6 sm:flex sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <span className="eyebrow subtitle">Social proof</span>
-            <h2 className="mt-4 ">What our clients say</h2>
+                     <a className="mt-4 heading block">
+What our clients say
+</a>
           </div>
           <div className="flex gap-2">
             <button
@@ -100,12 +103,12 @@ const scrollNext = useCallback(() => {
         </Reveal>
 
         <div className="mt-10 overflow-hidden " ref={emblaRef}>
-          <div className="flex gap-4">
+         <div className="flex -ml-4">
             {testimonials.map((t) => (
               <figure
                 key={t.name}
-                className="card-soft min-w-0 flex-[0_0_100%] p-7 sm:flex-[0_0_60%] lg:flex-[0_0_38%]"
-              >
+className="card-soft min-w-0 mr-5 flex-[0_0_calc(100%-20px)] p-7 sm:flex-[0_0_calc(60%-20px)] lg:flex-[0_0_calc(38%-20px)]"
+>
                 <div className="flex items-center justify-between">
                   <Quote className="size-7 text-secondary" />
                   <div className="flex items-center gap-1 subtitle font-bold">

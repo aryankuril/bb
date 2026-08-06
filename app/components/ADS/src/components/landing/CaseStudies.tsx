@@ -50,14 +50,16 @@ export function CaseStudies() {
     <section id="case-studies" className="container py-10 sm:py-15 lg:py-20">
       <div className="">
         <Reveal className="max-w-4xl">
-          <span className="eyebrow subtitle">Case studies</span>
-          <h2 className="mt-4 ">
-            Proof of delivery, not a portfolio wall.
-          </h2>
-          <p className="text-muted-foreground mt-4 subtitle">
-            Three accounts, three different problems, one method. Scroll through the numbers.
-          </p>
-        </Reveal>
+  <span className="eyebrow subtitle">Case studies</span>
+
+  <span className="heading mt-4 block">
+    Proof of delivery, not a portfolio wall.
+  </span>
+
+  <p className="text-muted-foreground mt-4 subtitle">
+    Three accounts, three different problems, one method. Scroll through the numbers.
+  </p>
+</Reveal>
 
         <div className="mt-14">
           {cases.map((c, i) => (
@@ -77,7 +79,7 @@ export function CaseStudies() {
                         {c.tag}
                       </span>
                     </div>
-                    <h4 className="title text-black mt-5">{c.title}</h4>
+                    <h6 className=" text-black mt-5">{c.title}</h6>
                     <p className="text-muted-foreground mt-4 subtitle">
                       {c.copy}
                     </p>
@@ -86,9 +88,9 @@ export function CaseStudies() {
                       {c.metrics.map((m) => (
                         <div key={m.l}>
                           <dt className="text-muted-foreground order-2 mt-1 subtitle">{m.l}</dt>
-                         <h4 className="title text-black">
+                         <h6 className="text-black">
                             {m.v}
-                          </h4>
+                          </h6>
                         </div>
                       ))}
                     </dl>
