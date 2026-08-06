@@ -23,6 +23,9 @@ export function Hero() {
           phone: formData.get("phone"),
           email: formData.get("email"),
           brand: formData.get("brand"),
+          budget: formData.get("budget"),
+          challenge: formData.get("challenge"),
+          goals: formData.get("goals"),
           source: "paid-marketing-hero",
         }),
       });
@@ -171,6 +174,42 @@ export function Hero() {
                   name="brand"
                   placeholder="Your brand, website or @instagram"
                   className={inputCls}
+                />
+              </Field>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field label="Monthly ad budget">
+                  <select required name="budget" defaultValue="" className={inputCls}>
+                    <option value="" disabled>
+                      Select budget
+                    </option>
+                    <option>Under ₹50,000</option>
+                    <option>₹50,000 – ₹1 lakh</option>
+                    <option>₹1 lakh – ₹3 lakh</option>
+                    <option>₹3 lakh – ₹5 lakh</option>
+                    <option>₹5 lakh+</option>
+                  </select>
+                </Field>
+                <Field label="Biggest marketing challenge">
+                  <select required name="challenge" defaultValue="" className={inputCls}>
+                    <option value="" disabled>
+                      Select challenge
+                    </option>
+                    <option>Not getting enough leads</option>
+                    <option>High cost per lead</option>
+                    <option>Low ROAS</option>
+                    <option>Scaling campaigns</option>
+                    <option>Not sure where to start</option>
+                  </select>
+                </Field>
+              </div>
+
+              <Field label="Anything about your growth goals (optional)">
+                <textarea
+                  name="goals"
+                  rows={3}
+                  placeholder="Tell us about your business and targets…"
+                  className={`${inputCls} resize-none`}
                 />
               </Field>
 

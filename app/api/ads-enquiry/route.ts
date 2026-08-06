@@ -8,6 +8,9 @@ type EnquiryPayload = {
   brand?: string;
   website?: string;
   instagram?: string;
+  budget?: string;
+  challenge?: string;
+  goals?: string;
   date?: string;
   time?: string;
   source?: string;
@@ -23,6 +26,9 @@ function buildEmailBody(payload: EnquiryPayload) {
     `Brand: ${payload.brand || "-"}`,
     `Website: ${payload.website || "-"}`,
     `Instagram: ${payload.instagram || "-"}`,
+    `Monthly ad budget: ${payload.budget || "-"}`,
+    `Biggest marketing challenge: ${payload.challenge || "-"}`,
+    `Growth goals: ${payload.goals || "-"}`,
     `Date: ${payload.date || "-"}`,
     `Time: ${payload.time || "-"}`,
     `Source: ${payload.source || "landing-page"}`,
@@ -88,6 +94,9 @@ function buildUserEmail(payload: EnquiryPayload) {
                   <tr><td style="padding:5px 0;"><strong>Email</strong></td><td style="padding:5px 0;">${escapeHtml(payload.email || "-")}</td></tr>
                   <tr><td style="padding:5px 0;"><strong>Phone</strong></td><td style="padding:5px 0;">${escapeHtml(payload.phone || "-")}</td></tr>
                   <tr><td style="padding:5px 0; vertical-align:top;"><strong>Brand / link</strong></td><td style="padding:5px 0; word-break:break-word;">${brand}</td></tr>
+                  <tr><td style="padding:5px 0;"><strong>Monthly ad budget</strong></td><td style="padding:5px 0;">${escapeHtml(payload.budget || "-")}</td></tr>
+                  <tr><td style="padding:5px 0; vertical-align:top;"><strong>Marketing challenge</strong></td><td style="padding:5px 0; word-break:break-word;">${escapeHtml(payload.challenge || "-")}</td></tr>
+                  <tr><td style="padding:5px 0; vertical-align:top;"><strong>Growth goals</strong></td><td style="padding:5px 0; word-break:break-word;">${escapeHtml(payload.goals || "-")}</td></tr>
                 </table>
               </td>
             </tr>
@@ -125,6 +134,9 @@ function buildAdminEmail(payload: EnquiryPayload) {
     <p><strong>Phone:</strong> ${escapeHtml(payload.phone || "-")}</p>
     <p><strong>Email:</strong> ${escapeHtml(payload.email || "-")}</p>
     <p><strong>Brand / website / Instagram:</strong> ${escapeHtml(payload.brand || payload.website || payload.instagram || "-")}</p>
+    <p><strong>Monthly ad budget:</strong> ${escapeHtml(payload.budget || "-")}</p>
+    <p><strong>Biggest marketing challenge:</strong> ${escapeHtml(payload.challenge || "-")}</p>
+    <p><strong>Growth goals:</strong> ${escapeHtml(payload.goals || "-")}</p>
     <p><strong>Date:</strong> ${escapeHtml(payload.date || "-")}</p>
     <p><strong>Time:</strong> ${escapeHtml(payload.time || "-")}</p>
     <p><strong>Source:</strong> ${escapeHtml(payload.source || "ads-landing")}</p>
@@ -155,6 +167,9 @@ export async function POST(req: Request) {
       brand: body.brand?.trim() || "",
       website: body.website?.trim() || "",
       instagram: body.instagram?.trim() || "",
+      budget: body.budget?.trim() || "",
+      challenge: body.challenge?.trim() || "",
+      goals: body.goals?.trim() || "",
       date: body.date || now.toLocaleDateString("en-IN", { dateStyle: "medium" }),
       time: body.time || now.toLocaleTimeString("en-IN", { timeStyle: "short" }),
       source: body.source || "ads-landing",
