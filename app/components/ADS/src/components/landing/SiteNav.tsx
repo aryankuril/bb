@@ -65,8 +65,7 @@ export function SiteNav() {
             type="button"
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
-            className="border-border grid size-10 shrink-0 place-items-center rounded-full border lg:hidden"
-          >
+className="grid size-10 shrink-0 place-items-center rounded-full border border-black lg:hidden"          >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
         </div>
