@@ -4,6 +4,8 @@ import { useState } from "react";
 import { ArrowRight, Check, Star, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
 import heroDashboard from "@/app/components/ADS/src/assets/hero-dashboard.jpg";
+import { ChevronDown } from "lucide-react";
+
 
 export function Hero() {
   const [sending, setSending] = useState(false);
@@ -145,17 +147,23 @@ export function Hero() {
             <div className="mt-6 grid gap-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Full name">
-                  <input required name="name" placeholder="Your name" className={inputCls} />
-                </Field>
-                <Field label="Phone / WhatsApp">
-                  <input
-                    required
-                    name="phone"
-                    type="tel"
-                    placeholder="+91 98XXXXXXXX"
-                    className={inputCls}
-                  />
-                </Field>
+  <input
+    required
+    name="name"
+    placeholder="Your name"
+    className={`${inputCls} `}
+  />
+</Field>
+
+<Field label="Phone / WhatsApp">
+  <input
+    required
+    name="phone"
+    type="tel"
+    placeholder="+91 98XXXXXXXX"
+    className={`${inputCls} `}
+  />
+</Field>
               </div>
 
               <Field label="Work email">
@@ -164,8 +172,7 @@ export function Hero() {
                   name="email"
                   type="email"
                   placeholder="you@company.com"
-                  className={inputCls}
-                />
+ className={`${inputCls} `}                />
               </Field>
 
               <Field label="Brand name, website or Instagram link">
@@ -173,36 +180,61 @@ export function Hero() {
                   required
                   name="brand"
                   placeholder="Your brand, website or @instagram"
-                  className={inputCls}
+                  className={`${inputCls} `}
                 />
               </Field>
 
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Monthly ad budget">
-                  <select required name="budget" defaultValue="" className={inputCls}>
-                    <option value="" disabled>
-                      Select budget
-                    </option>
-                    <option>Under ₹50,000</option>
-                    <option>₹50,000 – ₹1 lakh</option>
-                    <option>₹1 lakh – ₹3 lakh</option>
-                    <option>₹3 lakh – ₹5 lakh</option>
-                    <option>₹5 lakh+</option>
-                  </select>
-                </Field>
-                <Field label="Biggest marketing challenge">
-                  <select required name="challenge" defaultValue="" className={inputCls}>
-                    <option value="" disabled>
-                      Select challenge
-                    </option>
-                    <option>Not getting enough leads</option>
-                    <option>High cost per lead</option>
-                    <option>Low ROAS</option>
-                    <option>Scaling campaigns</option>
-                    <option>Not sure where to start</option>
-                  </select>
-                </Field>
-              </div>
+  <Field label="Monthly ad budget">
+    <div className="relative">
+      <select
+        required
+        name="budget"
+        defaultValue=""
+        className={`${inputCls} appearance-none pr-11`}
+      >
+        <option value="" disabled>
+          Select budget
+        </option>
+        <option>Under ₹50,000</option>
+        <option>₹50,000 – ₹1 lakh</option>
+        <option>₹1 lakh – ₹3 lakh</option>
+        <option>₹3 lakh – ₹5 lakh</option>
+        <option>₹5 lakh+</option>
+      </select>
+
+      <ChevronDown
+        className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black"
+        strokeWidth={2}
+      />
+    </div>
+  </Field>
+
+  <Field label="Biggest marketing challenge">
+    <div className="relative">
+      <select
+        required
+        name="challenge"
+        defaultValue=""
+        className={`${inputCls} appearance-none pr-11`}
+      >
+        <option value="" disabled>
+          Select challenge
+        </option>
+        <option>Not getting enough leads</option>
+        <option>High cost per lead</option>
+        <option>Low ROAS</option>
+        <option>Scaling campaigns</option>
+        <option>Not sure where to start</option>
+      </select>
+
+      <ChevronDown
+        className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-black"
+        strokeWidth={2}
+      />
+    </div>
+  </Field>
+</div>
 
               <Field label="Anything about your growth goals (optional)">
                 <textarea
@@ -246,12 +278,11 @@ export function Hero() {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-all placeholder:text-muted-foreground focus:border-secondary focus:ring-4 focus:ring-secondary/20";
-
+  "w-full rounded-xl border border-border bg-background px-4 py-3 outline-none transition-all !placeholder:text-[14px] placeholder:font-normal placeholder:font-[inherit] placeholder:text-muted-foreground focus:border-secondary focus:ring-4 focus:ring-secondary/20";
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="text-muted-foreground mb-1.5 block text-xs font-semibold">{label}</span>
+      <span className="text-muted-foreground mb-1.5 block subtitle">{label}</span>
       {children}
     </label>
   );

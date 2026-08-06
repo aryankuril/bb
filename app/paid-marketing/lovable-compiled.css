@@ -7256,3 +7256,11 @@
     }
   }
 }
+input.subtitle::placeholder,
+textarea.subtitle::placeholder {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  color: inherit !important;
+  opacity: 0.7;
+}
