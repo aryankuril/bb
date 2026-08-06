@@ -38,7 +38,7 @@ export function FAQ() {
     <section id="faq" className="bg-sand border-y py-10 sm:py-15 lg:py-20">
       <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
-          <span className="eyebrow subtitle">FAQ</span>
+          <span className="eyebrow subtitle">FAQs</span>
           <a className="mt-4 heading block">
             Straight answers before you spend.
           </a>

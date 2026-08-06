@@ -103,12 +103,11 @@ What our clients say
         </Reveal>
 
         <div className="mt-10 overflow-hidden " ref={emblaRef}>
-         <div className="flex -ml-4">
-            {testimonials.map((t) => (
+         <div className="flex lg:-ml-4 ml-0">
+             {testimonials.map((t) => (
               <figure
                 key={t.name}
-className="card-soft min-w-0 mr-5 flex-[0_0_calc(100%-20px)] p-7 sm:flex-[0_0_calc(60%-20px)] lg:flex-[0_0_calc(38%-20px)]"
->
+className="card-soft min-w-0 mr-5 flex-[0_0_calc(100%-1px)] p-7 sm:flex-[0_0_calc(60%-20px)] lg:flex-[0_0_calc(38%-20px)]">
                 <div className="flex items-center justify-between">
                   <Quote className="size-7 text-secondary" />
                   <div className="flex items-center gap-1 subtitle font-bold">

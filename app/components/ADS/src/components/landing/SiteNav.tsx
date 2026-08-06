@@ -10,7 +10,7 @@ const links = [
   { label: "Case Studies", href: "#case-studies" },
   { label: "Process", href: "#process" },
   { label: "Results", href: "#results" },
-  { label: "FAQ", href: "#faq" },
+  { label: "FAQs", href: "#faq" },
 ];
 
 export function SiteNav() {
