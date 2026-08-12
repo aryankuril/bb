@@ -1,10 +1,7 @@
 'use client';
-import { Outfit, Poppins } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-const outfit = Outfit({ subsets: ['latin'], weight: ['400', '700', '900'] });
-const poppins = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] });
 
 const webProcess = [
   { num: '01', title: 'Discovery Call', desc: 'Aligning on business goals and requirements.' },
@@ -166,11 +163,11 @@ export default function ProcessCombined() {
                  </div>
 
                  <div className="lg:text-center mt-2 lg:mt-0 bg-white lg:bg-transparent p-5 lg:p-0 rounded-2xl shadow-sm lg:shadow-none border border-[#111111]/5 lg:border-none">
-                   <span className={`block ${outfit.className} text-xl lg:text-lg font-[500] text-black mb-2 flex items-center gap-2 lg:justify-center`}>
+                   <span className="block font-outfit text-xl lg:text-lg font-[500] text-black mb-2 flex items-center gap-2 lg:justify-center">
                      <span className="lg:hidden text-highlight font-[500] text-2xl">{step.num}</span> 
                      {step.title}
                    </span>
-                   <span className={`block ${poppins.className} subtitle text-black`}>{step.desc}</span>
+                   <span className="block subtitle text-black">{step.desc}</span>
                  </div>
                </div>
              ))}
@@ -180,4 +177,3 @@ export default function ProcessCombined() {
     </section>
   );
 }
-

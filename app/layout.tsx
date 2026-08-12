@@ -1,31 +1,15 @@
 
 
 import localFont from "next/font/local";
-import { Poppins } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 import ClientProviders from "./components/ClientProviders";
 import PageLoader from "./components/PageLoader";
 
-import { Bricolage_Grotesque } from "next/font/google";
-
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["800"],
-});
-
 const miso = localFont({
   src: [{ path: "../public/fonts/VAG-Regular2.otf", weight: "400" }],
   variable: "--font-miso",
 });
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  display: "swap",
-  preload: true,
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
-}); 
 
 import type { Metadata } from "next";
 import Script from "next/script";
@@ -53,7 +37,7 @@ export const metadata: Metadata = {
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${miso.variable} ${poppins.variable}`}>
+    <html lang="en" className={miso.variable}>
 <head>
 
 

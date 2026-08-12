@@ -1,9 +1,4 @@
 'use client';
-import { Outfit, Poppins } from 'next/font/google';
-
-const outfit = Outfit({ subsets: ['latin'], weight: ['400', '700', '900'] });
-const poppins = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] });
-
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight, TrendingUp } from 'lucide-react';
@@ -78,26 +73,26 @@ export default function CaseStudies() {
                 <span className="inline-block px-4 py-1.5 bg-black rounded-[20px] subtitle text-highlight uppercase tracking-wider lg:mb-6 mb-3">
                   {cs.industry}
                 </span>
-                <span className={`block ${outfit.className}  text-primary font-outfit font-[500] text-[18px] lg:text-[25px] leading-[1.2em] lg:mb-4 mb-2`}>{cs.brand}</span>
-                <span className={`block ${poppins.className} subtitle text-black max-w-lg`}>{cs.description}</span>
+                <span className="block text-primary font-outfit font-[500] text-[18px] lg:text-[25px] leading-[1.2em] lg:mb-4 mb-2">{cs.brand}</span>
+                <span className="block subtitle text-black max-w-lg">{cs.description}</span>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-6 rounded-[20px]">
                 <div>
-                  <span className={`block ${poppins.className} text-xs font-bold text-primary/40 uppercase mb-1`}>Ad Spend</span>
-                  <span className={`block ${poppins.className}  text-primary text-xl font-[500]`}>{cs.metrics.budget}</span>
+                  <span className="block text-xs font-bold text-primary/40 uppercase mb-1">Ad Spend</span>
+                  <span className="block text-primary text-xl font-[500]">{cs.metrics.budget}</span>
                 </div>
                 <div>
-                  <span className={`block ${poppins.className} text-xs font-bold text-primary/40 uppercase mb-1`}>Results</span>
-                  <span className={`block ${poppins.className} font-[500] text-primary text-xl`}>{cs.metrics.leads}</span>
+                  <span className="block text-xs font-bold text-primary/40 uppercase mb-1">Results</span>
+                  <span className="block font-[500] text-primary text-xl">{cs.metrics.leads}</span>
                 </div>
                 <div>
-                  <span className={`block ${poppins.className} text-xs font-bold text-primary/40 uppercase mb-1`}>ROAS</span>
-                  <span className={`block ${poppins.className} font-[500] text-highlight text-xl`}>{cs.metrics.roas}</span>
+                  <span className="block text-xs font-bold text-primary/40 uppercase mb-1">ROAS</span>
+                  <span className="block font-[500] text-highlight text-xl">{cs.metrics.roas}</span>
                 </div>
                 <div>
-                  <span className={`block ${poppins.className} text-xs font-bold text-primary/40 uppercase mb-1`}>Growth</span>
-                  <span className={`block ${poppins.className} font-[500] text-green-600 text-xl flex items-center gap-1`}>
+                  <span className="block text-xs font-bold text-primary/40 uppercase mb-1">Growth</span>
+                  <span className="block font-[500] text-green-600 text-xl flex items-center gap-1">
                     <TrendingUp className="w-4 h-4" /> {cs.metrics.growth}
                   </span>
                 </div>

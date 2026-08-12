@@ -1,5 +1,4 @@
 'use client';
-import { Outfit, Poppins } from 'next/font/google';
 import { usePathname } from "next/navigation";
 
 const pageContent = {
@@ -202,7 +201,7 @@ const content =
             viewport={{ once: true }}
             className="bg-secondary border border-[#A1A1A1] rounded-[20px] lg:p-8 p-4 md:p-12 w-full lg:w-1/2 relative overflow-hidden group hover:border-highlight/50 transition-colors "
           >
-            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-black mb-8 border-b border-[#A1A1A1] pb-4`}>{content.leftTitle}</span>
+            <span className="block font-outfit font-[500] text-[18px] lg:text-[25px] leading-[1.2] text-black mb-8 border-b border-[#A1A1A1] pb-4">{content.leftTitle}</span>
             <ul className="space-y-6">
               {content.problems.map((prob, i) => (
   <motion.li
@@ -234,7 +233,7 @@ const content =
            >
             <div className="absolute top-0 right-0 w-64 h-64 bg-highlight/5 rounded-[20px] blur-3xl translate-x-1/3 -translate-y-1/3"></div>
             
-            <span className={`block ${outfit.className} font-outfit font-[500]  text-[18px]  lg:text-[25px] leading-[1.2] text-primary mb-8 border-b border-[#A1A1A1] pb-4 relative z-10`}>{content.rightTitle}</span>
+            <span className="block font-outfit font-[500] text-[18px] lg:text-[25px] leading-[1.2] text-primary mb-8 border-b border-[#A1A1A1] pb-4 relative z-10">{content.rightTitle}</span>
             <ul className="space-y-6 relative z-10">
               {content.solutions.map((sol, i) => (
   <motion.li
