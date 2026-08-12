@@ -1,5 +1,6 @@
 'use client';
 import { usePathname } from "next/navigation";
+import { Outfit, Poppins } from 'next/font/google';
 
 const pageContent = {
   "/website-development": {

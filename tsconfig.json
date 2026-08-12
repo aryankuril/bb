@@ -20,6 +20,9 @@
       }
     ],
     "paths": {
+      "@/lib/utils": ["./app/components/ADS/src/lib/utils"],
+      "@/components/ui/*": ["./app/components/ADS/src/components/social-media/ui/*"],
+      "@/hooks/*": ["./app/components/ADS/src/hooks/*"],
       "@/*": ["./*"]
     }
   },
@@ -32,6 +35,7 @@
     "app/components/ADS/src/components/ui/form.tsx",
     "app/components/ADS/src/components/ui/input-otp.tsx",
     "app/components/ADS/src/components/ui/resizable.tsx",
+    "app/components/ADS/src/components/social-media/ui",
     "app/components/ADS/src/router.tsx",
     "app/components/ADS/src/routeTree.gen.ts",
     "app/components/ADS/src/routes",
