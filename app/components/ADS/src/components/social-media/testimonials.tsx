@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Reveal } from "../../hooks/use-reveal";
 import { ArrowLeft, ArrowRight, Quote, Star } from "lucide-react";
 
@@ -24,7 +24,18 @@ const quotes = [
 
 export function Testimonials() {
   const [i, setI] = useState(0);
-  const go = (d: number) => setI((p) => (p + d + quotes.length) % quotes.length);
+
+  const go = (d: number) =>
+    setI((p) => (p + d + quotes.length) % quotes.length);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      go(1);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const q = quotes[i]!;
 
   return (
