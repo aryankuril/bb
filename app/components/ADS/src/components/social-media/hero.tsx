@@ -78,10 +78,19 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-accent/25 blur-[120px]" />
       <div className="container relative mx-auto grid gap-12 px-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-16 lg:px-8">
         <div>
+          
+          
           <span className="inline-flex items-center gap-2 rounded-full border bg-card px-3.5 py-1.5 subtitle font-medium text-black"><Instagram className="h-3.5 w-3.5 text-foreground" />Social media marketing agency in Mumbai</span>
-          <h1 className="mt-6 text-[1.9rem] font-extrabold sm:text-[2.8rem] lg:text-[3.2rem]" style={{ fontFamily: '"Bricolage Grotesque", sans-serif', fontWeight: 800, lineHeight: 1.1 }}>
-            We build social media presence brands are actually <span className="highlight-accent">remembered</span> for.
-          </h1>
+             <span
+  className="mt-6 block text-[1.9rem] font-extrabold sm:text-[2.8rem] lg:text-[3.2rem]"
+  style={{
+    fontFamily: '"Bricolage Grotesque", sans-serif',
+    fontWeight: 800,
+    lineHeight: 1.1,
+  }}
+>
+   We build social media presence brands are actually <span className="highlight-accent">remembered</span> for.
+</span>
           <p className="mt-6 max-w-xl subtitle text-muted-foreground">Bombay Blokes is a social media marketing agency for brands that want strategy, content and creative direction under one roof — a feed that looks premium, posts consistently, and turns followers into customers.</p>
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
             {["Strategy, content & community", "In-house creative studio", "Reporting you can read"].map((item) => <li key={item} className="flex items-center gap-2 subtitle text-foreground/80"><span className="h-1.5 w-1.5 rounded-full bg-accent" />{item}</li>)}
