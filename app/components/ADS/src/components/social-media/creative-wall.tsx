@@ -1,111 +1,215 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { Reveal } from "../../hooks/use-reveal";
-import { ArrowLeft, ArrowRight, Heart, Play } from "lucide-react";
-import c1 from "../../assets/creative-1.jpg";
-import c2 from "../../assets/creative-2.jpg";
-import c3 from "../../assets/creative-3.jpg";
-import c4 from "../../assets/creative-4.jpg";
-import c5 from "../../assets/creative-5.jpg";
-import c6 from "../../assets/creative-6.jpg";
+import { useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
-const creatives = [
+const reels = [
   {
-    src: c1,
-    brand: "Lumé Skincare",
-    type: "Static · Carousel",
-    metric: "12.4% engagement",
-    reelUrl: "PASTE_INSTAGRAM_REEL_LINK_1_HERE",
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/DZuRfSsvEof/?igsh=bWlqMXpucjBmbWsy",
   },
   {
-    src: c2,
-    brand: "Saanjh Label",
-    type: "Reel · Brand film",
-    metric: "1.2M views",
-    reelUrl: "PASTE_INSTAGRAM_REEL_LINK_2_HERE",
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/DZatpOdshm1/?igsh=MWllMmV4dWc2a3Z2MA%3D%3D",
   },
   {
-    src: c3,
-    brand: "Bandra Roasters",
-    type: "Reel · Menu drop",
-    metric: "18k saves",
-    reelUrl: "PASTE_INSTAGRAM_REEL_LINK_3_HERE",
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/DbseI7HMwTi/?igsh=MXN1M3dzYmpmd3BhOQ%3D%3D",
   },
   {
-    src: c4,
-    brand: "Mason Home",
-    type: "Static · Product grid",
-    metric: "3.1x reach lift",
-    reelUrl: "PASTE_INSTAGRAM_REEL_LINK_4_HERE",
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/Db7ys70sYA-/?igsh=ZXRvZjRjZTIybWlq",
   },
   {
-    src: c5,
-    brand: "Aurea Jewels",
-    type: "UGC · Creator edit",
-    metric: "9.8% CTR to site",
-    reelUrl: "PASTE_INSTAGRAM_REEL_LINK_5_HERE",
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/DYT6QN_PWEj/?igsh=ZHNpem9wdjc2NDNt",
   },
   {
-    src: c6,
-    brand: "Forge Athletic",
-    type: "Reel · Community",
-    metric: "42k new followers",
-    reelUrl: "PASTE_INSTAGRAM_REEL_LINK_6_HERE",
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
+  },
+  {
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
+  },
+  {
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
+  },
+  {
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
+  },
+  {
+    video: "/video/reel1.mp4",
+    reelUrl:
+      "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
   },
 ];
 
 export function CreativeWall() {
-  const scroller = useRef<HTMLDivElement>(null);
-  const autoSlide = useRef<NodeJS.Timeout | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const scrollBy = (dir: number) => {
-    const el = scroller.current;
-    if (!el) return;
+  const trackRef = useRef<HTMLDivElement>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
-    el.scrollBy({
-      left: dir * Math.min(el.clientWidth * 0.8, 640),
-      behavior: "smooth",
-    });
+  const animationRef = useRef<number | null>(null);
+  const offsetRef = useRef(0);
+  const slideWidthRef = useRef(276);
+  const setWidthRef = useRef(0);
+
+  const isPausedRef = useRef(false);
+
+  const maxIndex = reels.length - 3;
+
+  const measureSlider = () => {
+    const track = trackRef.current;
+
+    if (!track) return;
+
+    const firstSlide = track.children[0] as HTMLElement;
+
+    if (!firstSlide) return;
+
+    const slideWidth = firstSlide.getBoundingClientRect().width;
+
+    slideWidthRef.current = slideWidth;
+
+    setWidthRef.current = slideWidth * reels.length;
   };
 
-  const startAutoSlide = () => {
-    if (autoSlide.current) {
-      clearInterval(autoSlide.current);
+  const updatePosition = () => {
+    const track = trackRef.current;
+
+    if (!track) return;
+
+    track.style.transform = `translate3d(-${offsetRef.current}px, 0, 0)`;
+  };
+
+  const startContinuousSlider = () => {
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
     }
 
-    autoSlide.current = setInterval(() => {
-      const el = scroller.current;
-      if (!el) return;
+    let lastTime = performance.now();
 
-      const maxScroll = el.scrollWidth - el.clientWidth;
+    const animate = (time: number) => {
+      const delta = time - lastTime;
+      lastTime = time;
 
-      if (el.scrollLeft >= maxScroll - 10) {
-        el.scrollTo({
-          left: 0,
-          behavior: "smooth",
-        });
-      } else {
-        el.scrollBy({
-          left: Math.min(el.clientWidth * 0.8, 640),
-          behavior: "smooth",
-        });
+      if (!isPausedRef.current) {
+        /*
+         * Speed of the continuous slider.
+         * Lower = slower
+         * Higher = faster
+         */
+        const speed = 0.035;
+
+        offsetRef.current += delta * speed;
+
+        /*
+         * When the first set of reels has completely
+         * passed, jump back by exactly one full set.
+         *
+         * Because the reels are duplicated, this
+         * reset is completely invisible.
+         */
+        if (
+          setWidthRef.current > 0 &&
+          offsetRef.current >= setWidthRef.current
+        ) {
+          offsetRef.current -= setWidthRef.current;
+        }
+
+        updatePosition();
+
+        /*
+         * Keep the dots roughly synced with the
+         * reel currently passing through the slider.
+         */
+        if (slideWidthRef.current > 0) {
+          const index =
+            Math.floor(
+              offsetRef.current / slideWidthRef.current
+            ) % reels.length;
+
+          setCurrentIndex(Math.min(index, maxIndex));
+        }
       }
-    }, 4000);
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
   };
 
-  const stopAutoSlide = () => {
-    if (autoSlide.current) {
-      clearInterval(autoSlide.current);
-      autoSlide.current = null;
+  const stopContinuousSlider = () => {
+    isPausedRef.current = true;
+  };
+
+  const resumeContinuousSlider = () => {
+    isPausedRef.current = false;
+  };
+
+  const nextSlide = () => {
+    measureSlider();
+
+    offsetRef.current += slideWidthRef.current;
+
+    if (offsetRef.current >= setWidthRef.current) {
+      offsetRef.current -= setWidthRef.current;
     }
+
+    updatePosition();
+
+    setCurrentIndex((prev) =>
+      prev >= maxIndex ? 0 : prev + 1
+    );
+  };
+
+  const previousSlide = () => {
+    measureSlider();
+
+    offsetRef.current -= slideWidthRef.current;
+
+    if (offsetRef.current < 0) {
+      offsetRef.current += setWidthRef.current;
+    }
+
+    updatePosition();
+
+    setCurrentIndex((prev) =>
+      prev <= 0 ? maxIndex : prev - 1
+    );
   };
 
   useEffect(() => {
-    startAutoSlide();
+    measureSlider();
+
+    const handleResize = () => {
+      measureSlider();
+      updatePosition();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    startContinuousSlider();
 
     return () => {
-      stopAutoSlide();
+      window.removeEventListener("resize", handleResize);
+
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
   }, []);
 
@@ -114,106 +218,121 @@ export function CreativeWall() {
       id="work"
       className="overflow-hidden border-y bg-card py-20 lg:py-28"
     >
-      <div className="container px-5 lg:px-8">
-        <Reveal>
+      <div className="container">
+        {/* Heading */}
+        <div className="px-5 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-              <p className="text-eyebrow">The work</p>
+              <p className="text-eyebrow subtitle">The work</p>
 
-              <h2 className="mt-4 max-w-2xl font-display text-3xl leading-[1.08] font-semibold sm:text-5xl">
+              <a className="mt-4 heading block max-w-5xl">
                 Scroll the feed, not the pitch deck.
-              </h2>
+              </a>
 
-              <p className="mt-5 max-w-xl text-muted-foreground">
+              <p className="mt-5 max-w-xl text-muted-foreground subtitle">
                 A slice of the content we plan, shoot and publish every week
                 for brands across beauty, fashion, food, home and fitness.
               </p>
             </div>
 
+            {/* Arrows */}
             <div className="flex gap-2">
               <button
-                aria-label="Scroll left"
-                onClick={() => {
-                  stopAutoSlide();
-                  scrollBy(-1);
-                  startAutoSlide();
-                }}
-                className="grid h-11 w-11 place-items-center rounded-full border transition-colors hover:bg-secondary"
+                type="button"
+                aria-label="Previous reel"
+                onClick={previousSlide}
+                className="grid h-11 w-11 place-items-center rounded-full border bg-background transition-all duration-300 hover:bg-secondary active:scale-95"
               >
                 <ArrowLeft className="h-4 w-4" />
               </button>
 
               <button
-                aria-label="Scroll right"
-                onClick={() => {
-                  stopAutoSlide();
-                  scrollBy(1);
-                  startAutoSlide();
-                }}
-                className="grid h-11 w-11 place-items-center rounded-full border transition-colors hover:bg-secondary"
+                type="button"
+                aria-label="Next reel"
+                onClick={nextSlide}
+                className="grid h-11 w-11 place-items-center rounded-full border bg-background transition-all duration-300 hover:bg-secondary active:scale-95"
               >
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </div>
-        </Reveal>
-      </div>
+        </div>
 
-      <div
-        ref={scroller}
-        onMouseEnter={stopAutoSlide}
-        onMouseLeave={startAutoSlide}
-        onTouchStart={stopAutoSlide}
-        onTouchEnd={startAutoSlide}
-        className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 lg:px-8"
-      >
-        {creatives.map((c, i) => (
-          <a
-            key={c.brand}
-            href={c.reelUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative w-[68vw] shrink-0 snap-start overflow-hidden rounded-3xl border bg-background sm:w-[300px]"
+        {/* Reel Slider */}
+        <div
+          ref={sliderRef}
+          className="relative mt-10 overflow-hidden"
+          onMouseEnter={stopContinuousSlider}
+          onMouseLeave={resumeContinuousSlider}
+        >
+          <div
+            ref={trackRef}
+            className="flex will-change-transform"
           >
-            <figure>
-              <img
-                src={c.src.src}
-                alt={`${c.brand} social media creative — ${c.type}`}
-                loading="lazy"
-                width={720}
-                height={1080}
-                className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            {[...reels, ...reels].map((reel, index) => (
+              <div
+                key={`${index}-${reel.reelUrl}`}
+                className="
+                  w-[72%]
+                  shrink-0
+                  px-1
+                  sm:w-[48%]
+                  sm:px-1
+                  lg:w-[276px]
+                  lg:px-2
+                "
+              >
+                <a
+                  href={reel.reelUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mx-auto block w-full max-w-[260px]"
+                >
+                  <div className="relative aspect-[9/16] overflow-hidden rounded-[22px] bg-black shadow-sm">
+                    <video
+                      src={reel.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Dots */}
+        <div className="mt-7 flex justify-center gap-2">
+          {Array.from({ length: maxIndex + 1 }).map(
+            (_, index) => (
+              <button
+                key={index}
+                type="button"
+                aria-label={`Go to slide ${index + 1}`}
+                onClick={() => {
+                  measureSlider();
+
+                  offsetRef.current =
+                    index * slideWidthRef.current;
+
+                  updatePosition();
+
+                  setCurrentIndex(index);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  currentIndex === index
+                    ? "w-7 bg-foreground"
+                    : "w-1.5 bg-muted-foreground/30"
+                }`}
               />
-
-              <span className="absolute top-3 right-3 grid h-9 w-9 place-items-center rounded-full bg-background/85 backdrop-blur transition-transform duration-300 group-hover:scale-110">
-                {i % 2 === 0 ? (
-                  <Heart className="h-4 w-4" />
-                ) : (
-                  <Play className="h-4 w-4" />
-                )}
-              </span>
-
-              <figcaption className="p-4">
-                <div className="font-display text-base font-semibold">
-                  {c.brand}
-                </div>
-
-                <div className="mt-0.5 text-xs text-muted-foreground">
-                  {c.type}
-                </div>
-
-                <div className="mt-3 inline-flex rounded-full bg-accent px-2.5 py-1 text-[11px] font-semibold text-accent-foreground">
-                  {c.metric}
-                </div>
-              </figcaption>
-            </figure>
-          </a>
-        ))}
+            )
+          )}
+        </div>
       </div>
-
-      <p className="mx-auto mt-4 max-w-7xl px-5 text-xs text-muted-foreground lg:px-8">
-        Drag or swipe to explore →
-      </p>
     </section>
   );
 }
