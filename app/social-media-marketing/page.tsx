@@ -4,7 +4,6 @@ import { SiteNav } from "@/app/components/ADS/src/components/social-media/site-n
 import { Hero } from "@/app/components/ADS/src/components/social-media/hero";
 import  LogoMarquee  from "@/app/components/ADS/src/components/landing/LogoMarquee";
 import { Services } from "@/app/components/ADS/src/components/social-media/services";
-import { CreativeWall } from "@/app/components/ADS/src/components/social-media/creative-wall";
 import { CaseStudies } from "@/app/components/ADS/src/components/social-media/case-studies";
 import { WhyUs } from "@/app/components/ADS/src/components/social-media/why-us";
 import { Process } from "@/app/components/ADS/src/components/social-media/process";
@@ -21,7 +20,6 @@ const Index = () => {
       <Hero />
       <LogoMarquee />
       <Services />
-      <CreativeWall/>
       <CaseStudies />
       <WhyUs />
       <Process />
