@@ -80,7 +80,7 @@ export function Hero() {
   The performance marketing agency in Mumbai that{" "}
   <span className="highlight-amber">engineers revenue</span>, not just reach.
 </span>
-          <p className="text-muted-foreground mt-6 max-w-xl subtitle">
+          <p className=" subtitle text-muted-foreground mt-6 max-w-xl">
             Google Ads experts and Meta ads specialists running ROAS-focused campaigns for D2C,
             ecommerce and lead-gen brands. ₹20Cr+ ad spend managed, 4X average ROAS, and reporting
             you can actually read.
