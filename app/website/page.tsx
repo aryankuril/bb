@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <AdsLandingPage pageKey="/website-development" />;
+  return <AdsLandingPage pageKey="/website" />;
 }
