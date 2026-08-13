@@ -586,7 +586,7 @@ statCards: [
     },
   },
 
-  "paid-marketing": {
+  "performance-marketing-services": {
     hero: {
       headline: "From clicks",
       highlightText: "to customers.",
