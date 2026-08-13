@@ -123,16 +123,7 @@ const nextConfig: NextConfig = {
         destination: "/services/design-branding",
         permanent: true,
       },
-      {
-        source: "/social-media",
-        destination: "/services/social-media-marketing",
-        permanent: true,
-      },
-      {
-        source: "/performance-marketing",
-        destination: "/services/performance-marketing",
-        permanent: true,
-      },
+     
       {
         source: "/generative-engine-optimization-service-geo",
         destination: "/services/geo-services",
