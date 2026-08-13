@@ -39,7 +39,7 @@ const cardsData: CardData[] = [
     description: "Get a quick quote for custom, responsive websites.",
     image: "/images/calculator/Web-Development.png",
     buttonText: "Get Quote",
-    href: "website-development",
+    href: "website-development-services",
     icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ const cardsData: CardData[] = [
     description: "Know your budget for high-ROI ad campaigns.",
     image: "/images/calculator/Web-Development.png",
     buttonText: "Get Quote",
-    href: "/paid-marketing",
+    href: "/performance-marketing-services",
      icon:  
  (
         <svg
@@ -92,7 +92,7 @@ const cardsData: CardData[] = [
     description: "Get a price for content, strategy, and growth.",
     image: "/images/calculator/Web-Development.png",
     buttonText: "Get Quote",
-    href: "/social-media-marketing",
+    href: "/social-media-management",
      icon:  
  (
         <svg
