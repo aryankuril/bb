@@ -5,52 +5,52 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const reels = [
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(1).MP4",
     reelUrl:
       "https://www.instagram.com/reel/DZuRfSsvEof/?igsh=bWlqMXpucjBmbWsy",
   },
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(2).MP4",
     reelUrl:
-      "https://www.instagram.com/reel/DZatpOdshm1/?igsh=MWllMmV4dWc2a3Z2MA%3D%3D",
+      "https://www.instagram.com/reel/DYFcA2qv3CV/?igsh=MXA5NWZjcGV5Zmdvdw%3D%3D",
   },
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(3).MP4",
     reelUrl:
-      "https://www.instagram.com/reel/DbseI7HMwTi/?igsh=MXN1M3dzYmpmd3BhOQ%3D%3D",
+      "https://www.instagram.com/reel/DYAQRZsMA7z/?igsh=ODh0b3p1dGJ1N282",
   },
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(4).MP4",
     reelUrl:
-      "https://www.instagram.com/reel/Db7ys70sYA-/?igsh=ZXRvZjRjZTIybWlq",
+      "https://www.instagram.com/reel/DXKQ-ZPjCi3/?igsh=Z3Z3NDA0a2xwYzFv",
   },
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(5).MP4",
     reelUrl:
-      "https://www.instagram.com/reel/DYT6QN_PWEj/?igsh=ZHNpem9wdjc2NDNt",
+      "https://www.instagram.com/reel/Db7ys70sYA-/?igsh=enF4bGc2ZTN3bm45",
   },
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(6).MP4",
     reelUrl:
-      "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
+      "https://www.instagram.com/reel/DaiVrops7bs/?igsh=MWs2dDRqeXowaGZ1aw%3D%3D",
   },
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(7).MP4",
     reelUrl:
-      "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
+      "https://www.instagram.com/reel/DYT6QN_PWEj/?igsh=cmswaWM0a3R5ODh6",
   },
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(8).MP4",
     reelUrl:
-      "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
+      "https://www.instagram.com/reel/DZatpOdshm1/?igsh=eXhpdW0wa2I3dGM2",
   },
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(9).MP4",
     reelUrl:
-      "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
+      "https://www.instagram.com/reel/DaVRKrlskrn/?igsh=MWp1N2g0bHZ4cWJiMw%3D%3D",
   },
   {
-    video: "/video/reel1.mp4",
+    video: "/video/reel(10).MP4",
     reelUrl:
       "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
   },
@@ -220,7 +220,7 @@ export function CreativeWall() {
     >
       <div className="container">
         {/* Heading */}
-        <div className="px-5 lg:px-8">
+        <div className="">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="text-eyebrow subtitle">The work</p>
@@ -282,12 +282,7 @@ export function CreativeWall() {
                   lg:px-2
                 "
               >
-                <a
-                  href={reel.reelUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mx-auto block w-full max-w-[260px]"
-                >
+                
                   <div className="relative aspect-[9/16] overflow-hidden rounded-[22px] bg-black shadow-sm">
                     <video
                       src={reel.video}
@@ -299,7 +294,7 @@ export function CreativeWall() {
                       className="h-full w-full object-cover"
                     />
                   </div>
-                </a>
+                
               </div>
             ))}
           </div>

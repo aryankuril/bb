@@ -128,12 +128,17 @@ function buildUserEmail(payload: EnquiryPayload) {
 }
 
 function buildAdminEmail(payload: EnquiryPayload) {
+  const isSocialMediaEnquiry = payload.source === "social-media-hero";
+  const profile = escapeHtml(payload.website || payload.instagram || "-");
+
   return `
     <h3>New Ads Audit Request</h3>
     <p><strong>Name:</strong> ${escapeHtml(payload.name || "-")}</p>
     <p><strong>Phone:</strong> ${escapeHtml(payload.phone || "-")}</p>
     <p><strong>Email:</strong> ${escapeHtml(payload.email || "-")}</p>
-    <p><strong>Brand / website / Instagram:</strong> ${escapeHtml(payload.brand || payload.website || payload.instagram || "-")}</p>
+    ${isSocialMediaEnquiry
+      ? `<p><strong>Instagram / website:</strong> ${profile}</p>`
+      : `<p><strong>Brand / website / Instagram:</strong> ${escapeHtml(payload.brand || payload.website || payload.instagram || "-")}</p>`}
     <p><strong>Monthly ad budget:</strong> ${escapeHtml(payload.budget || "-")}</p>
     <p><strong>Biggest marketing challenge:</strong> ${escapeHtml(payload.challenge || "-")}</p>
     <p><strong>Growth goals:</strong> ${escapeHtml(payload.goals || "-")}</p>
