@@ -255,7 +255,7 @@ const configs: Record<string, DepartmentConfig> = {
     },
   },
 
-  "website-development": {
+  "website-development-services": {
     hero: {
       headline: "Websites that perform,",
       highlightText: "not just impress.",
@@ -419,7 +419,7 @@ statCards: [
     },
   },
 
-  "social-media-marketing": {
+  "social-media-management": {
     hero: {
       headline: "Making Brands",
       highlightText: "Impossible To Ignore.",
