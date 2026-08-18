@@ -1087,7 +1087,7 @@ const progress =
    mb-6 md:mb-6 
   "
           >
-            {isFlipped ? "Book ticket" : "Train details"}
+            Details
           </h2>
 
           {/* Job Details / Flip Card */}
