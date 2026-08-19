@@ -842,16 +842,7 @@ const progress =
       id="second-section"
       className="mx-auto container py-10 sm:py-15 lg:py-20"
     >
-      <h2
-        className="
-      text-center black-text
-      mb-8 md:mb-10
-    "   
-      >
-        This Train’s Departing
-        {/* :{" "}
-        <span className="text-highlight">Open Roles</span> */}
-      </h2>
+     
 
       <div className="bg-[var(--color-primary)] rounded-[20px] grid grid-cols-1 md:grid-cols-2 overflow-hidden relative">
         {/* LEFT – Job List with Accordion */}
