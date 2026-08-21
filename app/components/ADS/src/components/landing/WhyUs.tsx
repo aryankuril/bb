@@ -1,6 +1,6 @@
  import { BarChart3, IndianRupee, Users, Zap } from "lucide-react";
 import { Reveal } from "@/app/components/ADS/src/components/Reveal";
-import teamOffice from "@/app/components/ADS/src/assets/team1.JPG";
+import teamOffice from "@/app/components/ADS/src/assets/team1.jpg";
 import Image from "next/image";
 
 const stats = [
