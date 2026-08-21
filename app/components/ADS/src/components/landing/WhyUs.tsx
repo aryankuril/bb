@@ -10,6 +10,11 @@ const stats = [
   { icon: Zap, value: "4X", label: "Average ROAS" },
 ];
 
+
+
+
+
+
 export function WhyUs() {
   return (
     <section id="results" className="py-10 sm:py-15 lg:py-20">
