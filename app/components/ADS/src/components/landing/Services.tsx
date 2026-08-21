@@ -103,7 +103,7 @@ export function Services() {
                     {s.points.map((point, index) => (
                       <li
                         key={index}
-                        className="text-sm leading-relaxed text-muted-foreground"
+                        className="text-sm leading-relaxed text-black"
                       >
                         {point}
                       </li>

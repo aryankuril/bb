@@ -117,7 +117,7 @@ export function Hero() {
             </div>
           </div>
 
-<div className="hidden lg:grid grid-cols-2 gap-4 sm:gap-5 mt-10">
+<div className="lg:flex hidden sm:grid grid-cols-2 gap-4 sm:gap-5 mt-10">
   <div className="flex h-[120px] w-full items-center justify-center overflow-hidden rounded-2xl border bg-white p-4 shadow-sm sm:h-[150px] sm:p-5">
     <img
       src="/images/Google-Ads-Certified.png"
@@ -134,10 +134,6 @@ export function Hero() {
     />
   </div>
 </div>
-
-
-
-
 
 <a
   href="#audit"

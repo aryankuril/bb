@@ -92,7 +92,7 @@ export function CaseStudies() {
                       </span>
                     </div>
                     <h6 className=" text-black mt-5">{c.title}</h6>
-                    <p className="text-muted-foreground mt-4 subtitle">
+                    <p className="text-black mt-4 subtitle">
                       {c.copy}
                     </p>
 
