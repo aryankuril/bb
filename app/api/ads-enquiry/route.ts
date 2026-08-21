@@ -143,7 +143,6 @@ function buildAdminEmail(payload: EnquiryPayload) {
     <p><strong>Biggest marketing challenge:</strong> ${escapeHtml(payload.challenge || "-")}</p>
     <p><strong>Growth goals:</strong> ${escapeHtml(payload.goals || "-")}</p>
     <p><strong>Date:</strong> ${escapeHtml(payload.date || "-")}</p>
-    <p><strong>Time:</strong> ${escapeHtml(payload.time || "-")}</p>
     <p><strong>Source:</strong> ${escapeHtml(payload.source || "ads-landing")}</p>
   `;
 }
