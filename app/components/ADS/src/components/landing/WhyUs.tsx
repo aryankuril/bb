@@ -1,6 +1,6 @@
  import { BarChart3, IndianRupee, Users, Zap } from "lucide-react";
 import { Reveal } from "@/app/components/ADS/src/components/Reveal";
-import teamOffice from "@/app/components/ADS/src/assets/team1.jpg";
+import teamOffice from "@/app/components/ADS/src/assets/team.jpg";
 import Image from "next/image";
 
 const stats = [
@@ -9,11 +9,6 @@ const stats = [
   { icon: Users, value: "250+", label: "Happy clients" },
   { icon: Zap, value: "4X", label: "Average ROAS" },
 ];
-
-
-
-
-
 
 export function WhyUs() {
   return (
