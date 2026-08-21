@@ -809,3 +809,46 @@ html {
 
 
 
+/* ================================
+   LOGO MARQUEE
+================================ */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Row 1 - faster */
+.animate-marquee {
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+/* Row 2 - slower */
+.animate-marquee-reverse {
+  width: max-content;
+  animation: marquee-reverse 42s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover */
+.group:hover .animate-marquee,
+.group:hover .animate-marquee-reverse {
+  animation-play-state: paused;
+}

@@ -35,10 +35,8 @@ export function Hero() {
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.error || "Unable to send your request.");
 
-      form.reset();
-      toast.success("Audit request received", {
-        description: "A strategist will call you within 24 working hours.",
-      });
+       // Redirect only after successful submission
+  window.location.href = "/thank-you";
     } catch (error) {
       toast.error("Could not send your request", {
         description: error instanceof Error ? error.message : "Please try again shortly.",
@@ -81,15 +79,13 @@ export function Hero() {
   <span className="highlight-amber">engineers revenue</span>, not just reach.
 </span>
           <p className=" subtitle text-muted-foreground mt-6 max-w-xl">
-            Google Ads experts and Meta ads specialists running ROAS-focused campaigns for D2C,
-            ecommerce and lead-gen brands. ₹20Cr+ ad spend managed, 4X average ROAS, and reporting
-            you can actually read.
+           ₹20Cr+ ad spend managed, 4X average ROAS
           </p>
 
           <ul className="mt-7 grid gap-2.5 sm:grid-cols-2">
             {[
               "Free account audit in 48 hours",
-              "Dedicated Google Ads expert",
+              "Google Ads and Meta Ads experts",
               "Creative + media under one roof",
               "No lock-in, monthly rolling",
             ].map((item) => (
@@ -110,7 +106,7 @@ export function Hero() {
                 ))}
               </div>
               <span className="text-muted-foreground subtitle">
-                <strong className="text-foreground">5.0</strong> from 150+ clients
+                <strong className="text-foreground">4.8</strong> from 250+ clients
               </span>
             </div>
             <div className="flex items-center gap-2 subtitle">
@@ -121,8 +117,26 @@ export function Hero() {
             </div>
           </div>
 
+<div className="grid grid-cols-2 gap-4 sm:gap-5 mt-10">
+  <div className="flex h-[120px] w-full items-center justify-center overflow-hidden rounded-2xl border bg-white p-4 shadow-sm sm:h-[150px] sm:p-5">
+    <img
+       src="/images/Google-Ads-Certified.png"
+      alt="Google Ads Certified Partner"
+      className="h-full w-full object-contain"
+    />
+  </div>
 
-       
+  <div className="flex h-[120px] w-full items-center justify-center overflow-hidden rounded-2xl border bg-white p-4 shadow-sm sm:h-[150px] sm:p-5">
+    <img
+      src="/images/meta-partner.webp"
+      alt="Meta Business Partner"
+      className="h-full w-full object-contain"
+    />
+  </div>
+</div>
+
+
+
         </div>
 
         {/* Lead form */}
@@ -134,10 +148,10 @@ export function Hero() {
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-               <h6>Get your free ads audit</h6>
-                <p className="text-muted-foreground mt-1.5 subtitle">
+               <h6>Get your free ads audit in 48 hrs</h6>
+                {/* <p className="text-muted-foreground mt-1.5 subtitle">
                   One page. No sales script. Real numbers.
-                </p>
+                </p> */}
               </div>
               <span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-[0.65rem] font-bold tracking-wide text-secondary-foreground uppercase">
                 Free
@@ -196,11 +210,11 @@ export function Hero() {
         <option value="" disabled>
           Select budget
         </option>
-        <option>Under ₹50,000</option>
-        <option>₹50,000 – ₹1 lakh</option>
+        {/* <option>Under ₹50,000</option> */}
         <option>₹1 lakh – ₹3 lakh</option>
         <option>₹3 lakh – ₹5 lakh</option>
-        <option>₹5 lakh+</option>
+        <option>₹5 lakh – ₹15 lakh</option>
+        <option>₹15 lakh+</option>
       </select>
 
       <ChevronDown

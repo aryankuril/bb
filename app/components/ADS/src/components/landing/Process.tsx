@@ -15,9 +15,9 @@ export function Process() {
     <section id="process" className="bg-ink text-background border-y py-10 sm:py-15 lg:py-20">
       <div className="container">
         <Reveal className="max-w-4xl">
-          <span className="eyebrow subtitle">Client journey</span>
+          <span className="eyebrow subtitle">HOW WE WORK</span>
           <a className="mt-4 heading block">
-            Mumbai’s growth-focused performance marketing agency in seven steps.
+            From Onboarding To Results, In Seven Steps.
           </a>
           <p className="mt-5 subtitle text-background/70">
             Trusted by ambitious brands to drive customer acquisition, revenue growth and industry

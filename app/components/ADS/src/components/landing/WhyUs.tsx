@@ -1,12 +1,12 @@
  import { BarChart3, IndianRupee, Users, Zap } from "lucide-react";
 import { Reveal } from "@/app/components/ADS/src/components/Reveal";
-import teamOffice from "@/app/components/ADS/src/assets/team-office.jpg";
+import teamOffice from "@/app/components/ADS/src/assets/team1.JPG";
 import Image from "next/image";
 
 const stats = [
-  { icon: BarChart3, value: "1000+", label: "Projects delivered" },
-  { icon: IndianRupee, value: "₹20Cr+", label: "Managed ad spend" },
-  { icon: Users, value: "150+", label: "Happy clients" },
+  { icon: BarChart3, value: "₹8Cr+", label: "Revenue delivered" },
+  { icon: IndianRupee, value: "₹200Cr+", label: "Managed ad spend" },
+  { icon: Users, value: "250+", label: "Happy clients" },
   { icon: Zap, value: "4X", label: "Average ROAS" },
 ];
 
@@ -20,9 +20,7 @@ export function WhyUs() {
             We engineer revenue, not just reach.
           </a>
           <p className="text-muted-foreground mt-4 subtitle">
-            From Meta Ads and Google Ads to lead generation, conversion rate optimisation, audience
-            targeting and ROAS-focused campaigns — we optimise every touchpoint to turn ad spend
-            into measurable business growth, with complete transparency.
+           Performance-driven Meta and Google Ads campaigns focused on ROAS, conversions and real business growth.
           </p>
 
           <div className="mt-9 grid grid-cols-2 gap-4">
@@ -55,11 +53,7 @@ export function WhyUs() {
   height={900}
   className="border-border w-full rounded-3xl border object-cover shadow-lift"
 />
-          <div className="card-soft absolute -bottom-6 -left-2 w-56 p-4 sm:left-6 animate-float motion-reduce:animate-none">
-            <div className="text-muted-foreground text-xs">Live account · 30 days</div>
-            <div className="font-display mt-1 subtitle">6.3X</div>
-            <div className="text-muted-foreground text-xs">blended ROAS on Meta + Google</div>
-          </div>
+        
         </Reveal>
       </div>
     </section>

@@ -28,34 +28,44 @@ const secondRow = logos.slice(10, 20);
 
 export default function LogoMarquee() {
   return (
-    <div className="overflow-hidden space-y-6 border-y bg-sand py-10 sm:py-15 lg:py-20">
+    <section className="overflow-hidden border-y bg-sand py-10 sm:py-15 lg:py-20">
       <div className="container">
 
-<div className="w-full mb-8">
-  <a className=" heading">
-    Brands That Trust Our Work
-  </a>
+        {/* Heading */}
+        <div className="mb-8 w-full">
+          <h2 className="heading">
+            Brands That Trust Our Work
+          </h2>
+        </div>
+
+       {/* ROW 1 */}
+<div className="group relative mb-6 overflow-hidden">
+  <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
+
+  <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white/90 via-white/40 to-transparent" />
+
+  <div className="flex w-max gap-6 animate-marquee">
+    {[...firstRow, ...firstRow].map((logo, i) => (
+      <LogoCard logo={logo} key={i} />
+    ))}
+  </div>
 </div>
 
+{/* ROW 2 */}
+<div className="group relative overflow-hidden">
+  <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
 
-       {/* <h6 className="black-text text-center">Brands That Trust The Work</h6> */}
+  <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white/90 via-white/40 to-transparent" />
 
-      {/* Row 1 */}
-     <div className="relative overflow-hidden">
-   <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-white/90 via-white/40 to-transparent" />
+  <div className="flex w-max gap-6 animate-marquee-reverse">
+    {[...secondRow, ...secondRow].map((logo, i) => (
+      <LogoCard logo={logo} key={i} />
+    ))}
+  </div>
+</div>
 
-<div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white/90 via-white/40 to-transparent" />
-        <div className="flex animate-marquee gap-6">
-          {[...firstRow, ...firstRow].map((logo, i) => (
-            <LogoCard logo={logo} key={i} />
-          ))}
-        </div>
       </div>
-
-      {/* Row 2 */}
-      
-    </div>
-    </div>
+    </section>
   );
 }
 
@@ -63,34 +73,33 @@ function LogoCard({ logo }: { logo: string }) {
   return (
     <div
       className="
-      flex-shrink-0
-      flex
-      items-center
-      justify-center
+        flex
+        flex-shrink-0
+        items-center
+        justify-center
+        overflow-hidden
+        rounded-[20px]
+        border
+        border-[#e8e8e8]
+        bg-black
 
-      w-[120px]
-      h-[70px]
+        w-[120px]
+        h-[70px]
 
-      sm:w-[150px]
-      sm:h-[80px]
+        sm:w-[150px]
+        sm:h-[80px]
 
-      md:w-[170px]
-      md:h-[90px]
+        md:w-[170px]
+        md:h-[90px]
 
-      lg:w-[190px]
-      lg:h-[100px]
-
-      rounded-[20px]
-      border
-      border-[#e8e8e8]
-      bg-black
-      overflow-hidden
+        lg:w-[190px]
+        lg:h-[100px]
       "
     >
       <img
         src={logo}
         alt=""
-        className=" object-contain "
+        className="h-full w-full object-contain"
       />
     </div>
   );

@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/app/components/ADS/src/components/Reveal";
-import caseFashion from "@/app/components/ADS/src/assets/case-fashion.jpg";
-import caseD2c from "@/app/components/ADS/src/assets/case-d2c.jpg";
-import caseRealEstate from "@/app/components/ADS/src/assets/case-realestate.jpg";
+import PM1 from "@/app/components/ADS/src/assets/pmlp1.png";
+import PM2 from "@/app/components/ADS/src/assets/pmlp2.png";
+import PM3 from "@/app/components/ADS/src/assets/pmlp4.png";
 import Image from "next/image";
 
 
@@ -11,7 +11,7 @@ const cases = [
     tag: "Fashion · Designer-led D2C",
     title: "“Exclusivity sells. Discounts don’t.”",
     copy: "No marketplace sales. Aspiration and storytelling through the brand website only — with Meta prospecting built around premium buyer signals at a ₹6,000 average order value.",
-    image: caseFashion,
+    image: PM1,
     alt: "Premium designer shirts flatlay for a fashion D2C ecommerce brand",
     metrics: [
       { v: "6.3X", l: "ROAS" },
@@ -23,7 +23,7 @@ const cases = [
     tag: "Beauty · Catalog scaling",
     title: "Catalog ads that scaled without burning CPA",
     copy: "Restructured Advantage+ catalogue campaigns and creative-led prospecting across Meta and Google Shopping, with daily bid adjustment on live ROAS.",
-    image: caseD2c,
+    image: PM1,
     alt: "D2C skincare product range on a light beige studio backdrop",
     metrics: [
       { v: "80%", l: "Higher ROAS" },
@@ -35,7 +35,7 @@ const cases = [
     tag: "Real estate · Lead generation",
     title: "Site visits, not junk form fills",
     copy: "OTP-verified instant forms with conditional intent logic filtered budget and locality before handover — sales stopped chasing tyre-kickers within three weeks.",
-    image: caseRealEstate,
+    image: PM1,
     alt: "Modern Mumbai real estate sales gallery with an architectural model",
     metrics: [
       { v: "3.1X", l: "Qualified leads" },
@@ -110,7 +110,7 @@ export function CaseStudies() {
   alt={c.alt}
   width={1000}
   height={750}
-  className="h-full w-full object-cover"
+  className="h-full w-full object-fit"
 />
                   </div>
                 </div>
