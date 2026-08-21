@@ -52,7 +52,7 @@ export function Services() {
   return (
     <section
       id="services"
-      className="border-y bg-sand py-20 md:py-28"
+      className="border-y bg-sand py-10 sm:py-15 lg:py-15"
     >
       <div className="container">
 

@@ -31,26 +31,17 @@ const solutions = [
 
 export default function Problems() {
   return (
-    <section className="container py-10 sm:py-15 lg:py-20 relative overflow-hidden">
+    <section className="container py-10 sm:py-15 lg:py-15 relative overflow-hidden">
       <div className="relative z-10">
 
         <div className="text-center">
-          <motion.h6
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block text-center font-outfit text-black"
-          >
+            <a className="mt-4 heading block">
             What Happens When Ads Are{" "}
             <span className="text-highlight">
               Managed Incorrectly?
             </span>
-          </motion.h6>
-
-          <p className="lg:mt-4 mt-1 max-w-2xl mx-auto text-black subtitle">
-            Most businesses waste a significant portion of their ad budget
-            because campaigns aren't optimized for performance.
-          </p>
+          </a>
+      
         </div>
 
 <div className="flex flex-col lg:flex-row lg:gap-12 gap-8 items-stretch justify-center lg:mt-10 mt-5">

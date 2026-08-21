@@ -3,12 +3,14 @@ import { Hero } from "@/app/components/ADS/src/components/landing/Hero";
 import  LogoMarquee  from "@/app/components/ADS/src/components/landing/LogoMarquee";
 import { Services } from "@/app/components/ADS/src/components/landing/Services";
 import Problems from "@/app/components/ADS/src/components/landing/Problems";
+import Creativeproblem from "@/app/components/ADS/src/components/landing/Creativeproblem";
 import { CaseStudies } from "@/app/components/ADS/src/components/landing/CaseStudies";
 import { WhyUs } from "@/app/components/ADS/src/components/landing/WhyUs";
 import { Process } from "@/app/components/ADS/src/components/landing/Process";
 import { Testimonials } from "@/app/components/ADS/src/components/landing/Testimonials";
 import { FAQ } from "@/app/components/ADS/src/components/landing/FAQ";
 import { FinalCTA , Footer} from "@/app/components/ADS/src/components/landing/FinalCTA";
+import Mobilecta from "@/app/components/ADS/src/components/landing/Mobilecta";
 
 import "./lovable-compiled.css";
 
@@ -20,6 +22,7 @@ export default function PaidMarketingPage() {
       <LogoMarquee />
       <Services />
       <Problems />
+      <Creativeproblem/>
       <CaseStudies />
       <WhyUs />
       <Process />
@@ -27,6 +30,7 @@ export default function PaidMarketingPage() {
       <FAQ />
       <FinalCTA />
       <Footer />
+      <Mobilecta/>
     </main>
   );
 }

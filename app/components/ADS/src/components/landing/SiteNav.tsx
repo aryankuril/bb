@@ -32,7 +32,7 @@ export function SiteNav() {
       )}
     >
       <nav className="container flex h-16 items-center justify-between gap-4 md:h-20">
-         <Link href="/">
+         <Link href="/paid-marketing">
                 <Image
                   src="/images/bblogo.webp"
                   alt="Bombay Blokes Logo"

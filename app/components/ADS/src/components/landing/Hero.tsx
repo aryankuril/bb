@@ -57,7 +57,7 @@ export function Hero() {
         className=" py-10 sm:py-[60px] lg:py-20 pointer-events-none absolute -bottom-52 -left-40 size-[32rem] rounded-full bg-muted blur-[110px]"
       />
 
-      <div className="container relative grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <div className="container relative grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div className="animate-rise">
           <div className="border-border bg-surface inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 subtitle font-semibold shadow-soft">
             <span className="relative flex size-2">
@@ -117,10 +117,10 @@ export function Hero() {
             </div>
           </div>
 
-<div className="grid grid-cols-2 gap-4 sm:gap-5 mt-10">
+<div className="hidden sm:grid grid-cols-2 gap-4 sm:gap-5 mt-10">
   <div className="flex h-[120px] w-full items-center justify-center overflow-hidden rounded-2xl border bg-white p-4 shadow-sm sm:h-[150px] sm:p-5">
     <img
-       src="/images/Google-Ads-Certified.png"
+      src="/images/Google-Ads-Certified.png"
       alt="Google Ads Certified Partner"
       className="h-full w-full object-contain"
     />
@@ -135,6 +135,13 @@ export function Hero() {
   </div>
 </div>
 
+<a
+  href="#audit"
+  className="lg:hidden group bg-ink text-background mt-5 w-full inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-bold transition-transform hover:-translate-y-0.5"
+>
+  Get free audit
+  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+</a>
 
 
         </div>

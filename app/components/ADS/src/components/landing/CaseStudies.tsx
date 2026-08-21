@@ -8,46 +8,58 @@ import Image from "next/image";
 
 const cases = [
   {
-    tag: "Fashion · Designer-led D2C",
-    title: "“Exclusivity sells. Discounts don’t.”",
-    copy: "No marketplace sales. Aspiration and storytelling through the brand website only — with Meta prospecting built around premium buyer signals at a ₹6,000 average order value.",
+    tag: "Sports · E-commerce",
+    title: "Scale Revenue While Improving ROAS",
+    copy: "Scaled monthly revenue from ₹20L to ₹45L+ while improving ROAS across high-AOV products.",
     image: PM1,
-    alt: "Premium designer shirts flatlay for a fashion D2C ecommerce brand",
+    alt: "Sports e-commerce performance dashboard",
     metrics: [
-      { v: "6.3X", l: "ROAS" },
-      { v: "₹1.5 Cr", l: "Sales generated" },
-      { v: "₹6,000", l: "Avg. order value" },
+      { v: "6.8x → 10.2x", l: "ROAS" },
+      { v: "₹20L → ₹45L+", l: "Monthly Revenue" },
+      { v: "15.87%", l: "Returning Customer Rate" },
     ],
   },
   {
-    tag: "Beauty · Catalog scaling",
-    title: "Catalog ads that scaled without burning CPA",
-    copy: "Restructured Advantage+ catalogue campaigns and creative-led prospecting across Meta and Google Shopping, with daily bid adjustment on live ROAS.",
+    tag: "Textile & Apparel",
+    title: "Scale to 7,000+ Orders Without Increasing CAC",
+    copy: "2-model strategy combining prospecting and retargeting to scale orders while improving ROAS and maintaining efficient acquisition.",
     image: PM1,
-    alt: "D2C skincare product range on a light beige studio backdrop",
+    alt: "Textile and apparel e-commerce performance dashboard",
     metrics: [
-      { v: "80%", l: "Higher ROAS" },
-      { v: "30%", l: "Higher CTR" },
-      { v: "-38%", l: "Cost per purchase" },
+      { v: "1.5x - 3.2x", l: "ROAS" },
+      { v: "3,000 - 7,000+", l: "Orders" },
+      { v: "+101%", l: "Revenue" },
     ],
   },
   {
-    tag: "Real estate · Lead generation",
-    title: "Site visits, not junk form fills",
-    copy: "OTP-verified instant forms with conditional intent logic filtered budget and locality before handover — sales stopped chasing tyre-kickers within three weeks.",
+    tag: "Kids & Stationery",
+    title: "Scale Quarterly Revenue While Maintaining ROAS",
+    copy: "Optimized the checkout and product experience while shifting creative and audience strategy towards high-intent, gifting-led customers.",
     image: PM1,
-    alt: "Modern Mumbai real estate sales gallery with an architectural model",
+    alt: "Kids and stationery e-commerce performance dashboard",
     metrics: [
-      { v: "3.1X", l: "Qualified leads" },
-      { v: "₹412", l: "Cost per lead" },
-      { v: "47%", l: "Site-visit rate" },
+      { v: "+91% - ₹1.51 Cr", l: "Revenue" },
+      { v: "+42%", l: "Orders" },
+      { v: "2x - 4.5x", l: "ROAS" },
+    ],
+  },
+  {
+    tag: "Diamond Course",
+    title: "Increase Conversions While Reducing CPL",
+    copy: "Built demand through YouTube awareness and refined Search campaigns through keyword and audience testing to improve lead quality and conversion efficiency.",
+    image: PM1,
+    alt: "Diamond course marketing performance dashboard",
+    metrics: [
+      { v: "+36%", l: "Conversions" },
+      { v: "-30%", l: "CAC" },
+      { v: "-25%", l: "Junk Leads" },
     ],
   },
 ];
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="container py-10 sm:py-15 lg:py-20">
+    <section id="case-studies" className="container py-10 sm:py-15 lg:py-15">
       <div className="">
         <Reveal className="max-w-4xl">
   <span className="eyebrow subtitle">Case studies</span>

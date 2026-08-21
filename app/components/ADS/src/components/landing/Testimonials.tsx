@@ -8,27 +8,37 @@ import { Reveal } from "@/app/components/ADS/src/components/Reveal";
 const testimonials = [
   {
     quote:
-      "Working with Bombay Blokes has been seamless from day one. Their understanding of digital marketing and ability to execute consistently has helped us achieve our business objectives.",
-    name: "Kaushik Shah",
-    role: "Founder, Retail brand",
+      "From day one, it felt like they were as invested in our success as we were. Great communication, great results, highly recommend.",
+    name: "Super Sox",
+    role: "Client",
   },
+
+ {
+  quote:
+    "Had a great experience working with Bombay Blokes. The team was professional, supportive, and easy to work with throughout the process. Their understanding of our requirements and approach to marketing made the overall experience smooth and effective. Would definitely recommend working with them.",
+  name: "Beco",
+  role: "Client",
+},
+
   {
     quote:
-      "From website development to e-commerce solutions, the team demonstrated exceptional expertise and professionalism. They are a partner that genuinely cares about business growth.",
-    name: "Alex Kriplani",
-    role: "Director, D2C ecommerce",
+      "We've been working with this team for quite some time now, and they've always catered to all our needs on time. They're a solid team and they handle our marketing for us. Always cooperative and genuinely in tune with what's trending. Hoping to go a long way with them!",
+    name: "Pavitra Gandhi",
+    role: "Ekatra",
   },
+
   {
     quote:
-      "Bombay Blokes truly offers some of the best digital services in the industry. From social media marketing to web development, they consistently deliver outstanding results.",
-    name: "Tilika Vispute",
-    role: "Marketing Head",
+      "It's been a pleasure being associated with Bombay Blokes. Their marketing work for our brand has been outstanding, and their creativity combined with prompt execution really sets them apart. We also share an easy, collaborative relationship with their team — communication has never been a hassle. Highly recommend working with them.",
+    name: "Gaurav Bagaria",
+    role: "Chatterbox Labels",
   },
+
   {
     quote:
-      "Our cost per lead dropped in the first month and, more importantly, the leads were people who actually picked up the phone. That is the difference.",
-    name: "Rohan Mehta",
-    role: "Sales Lead, Real estate",
+      "As a brand owner, what I look for in an agency is honesty and results, not just promises. Bombay Blokes delivered both. They understood our business, communicated clearly, and the growth we've seen has been real and consistent.",
+    name: "Pranav Bhimbat",
+    role: "Firstedge",
   },
 ];
 
@@ -73,7 +83,7 @@ const scrollNext = useCallback(() => {
   }, [emblaApi]);
 
   return (
-    <section className="py-10 sm:py-15 lg:py-20">
+    <section className="py-10 sm:py-15 lg:py-15">
       <div className="container">
         <Reveal className="grid gap-6 sm:flex sm:items-end sm:justify-between">
           <div className="max-w-2xl">

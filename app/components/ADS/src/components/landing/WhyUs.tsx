@@ -1,6 +1,6 @@
  import { BarChart3, IndianRupee, Users, Zap } from "lucide-react";
 import { Reveal } from "@/app/components/ADS/src/components/Reveal";
-import teamOffice from "@/app/components/ADS/src/assets/team.jpg";
+import teamOffice from "@/app/components/ADS/src/assets/team1.jpg";
 import Image from "next/image";
 
 const stats = [
@@ -12,7 +12,7 @@ const stats = [
 
 export function WhyUs() {
   return (
-    <section id="results" className="py-10 sm:py-15 lg:py-20">
+    <section id="results" className="py-10 sm:py-15 lg:py-15">
       <div className="container grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <Reveal>
           <span className="eyebrow subtitle">Why Bombay Blokes</span>

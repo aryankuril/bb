@@ -1,56 +1,10 @@
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
-import { Reveal } from "@/app/components/ADS/src/components/Reveal";
 import Image from "next/image";
 import Link from "next/link";
 
-
-export function FinalCTA() {
-  return (
-    <section className="py-10 sm:py-15 lg:py-15">
-      <div className="container">
-        <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-secondary px-7 py-14 text-secondary-foreground sm:px-14 sm:py-20">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -top-24 -right-16 size-80 rounded-full bg-background/25 blur-3xl"
-            />
-            <div className="relative max-w-3xl">
-              <span className="eyebrow text-secondary-foreground/70 subtitle">Next step</span>
-              <a className="mt-4 heading block ">
-                Get a free account audit and the number we think we can move.
-              </a>
-              <p className="mt-5 max-w-xl subtitle">
-                No decks, no jargon. One call with a Google Ads and Meta ads expert who has already
-                looked at your account.
-              </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a
-                  href="#audit"
-                  className="group bg-ink text-background inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-bold transition-transform hover:-translate-y-0.5"
-                >
-                  Get free audit
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                </a>
-                <a
-                  href="tel:+919833037816"
-                  className="border-ink/25 inline-flex items-center gap-2 rounded-full border px-7 py-4 text-sm font-bold transition-colors hover:bg-background/25"
-                >
-                  <Phone className="size-4" />
-                  Talk to a strategist
-                </a>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-export function Footer() {
+export default function Footer() {
   return (
     <footer className="w-full">
-      <div className="mx-auto container py-5 mt-3 ">
+      <div className="mx-auto container py-5 mt-3 lg:mb-0 mb-20">
         {/* Top Section */}
       {/* Top Section */}
 <div className="flex items-center justify-between w-full">
@@ -175,13 +129,15 @@ export function Footer() {
 </div>
 
         {/* Bottom Section */}
-     <div className="body4 lg:mt-6 mt-2 border-t pt-4 lg:pt-1 flex flex-col gap-4 md:flex-row md:justify-center md:items-center black-text text-sm">
-  {/* Copyright */}
-  <p className="text-center mt-2 body4">
-    Copyright ©{new Date().getFullYear()} Bombay Blokes. All rights
-    reserved.
-  </p>
-</div>
+        <div className="body4 lg:mt-6 mt-2 border-t pt-4 lg:pt-1 flex flex-col gap-4 md:flex-row md:justify-between md:items-center black-text text-sm">
+         
+
+          {/* Copyright */}
+          <p className="text-left md:order-1 mt-2 body4">
+            Copyright ©{new Date().getFullYear()} Bombay Blokes. All rights
+            reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );
