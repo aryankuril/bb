@@ -215,8 +215,8 @@ if (googleSheetWebhook) {
     });
 
     await sendEmail({
-       to: "aryankuril09@gmail.com",
-      // to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com" ,"aryankuril09@gmail.com"],
+      //  to: "aryankuril09@gmail.com",
+      to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com" ,"aryankuril09@gmail.com"],
       subject: `New Ads Audit Request - ${payload.name}`,
       html: buildAdminEmail(payload),
       fromName: "Ads Audit Form",
