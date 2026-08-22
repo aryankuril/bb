@@ -179,6 +179,31 @@ export async function POST(req: Request) {
       source: body.source || "ads-landing",
     };
 
+    // Save enquiry to Google Sheet
+const googleSheetWebhook = process.env.GOOGLE_SHEET_WEBHOOK_URL;
+
+if (googleSheetWebhook) {
+  try {
+    const sheetResponse = await fetch(googleSheetWebhook, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!sheetResponse.ok) {
+      console.error(
+        "Google Sheet save failed:",
+        await sheetResponse.text()
+      );
+    }
+  } catch (sheetError) {
+    // Do not break the existing enquiry flow
+    console.error("Google Sheet error:", sheetError);
+  }
+}
+
     const message = buildEmailBody(payload);
 
     await sendEmail({
@@ -190,8 +215,8 @@ export async function POST(req: Request) {
     });
 
     await sendEmail({
-      //  to: "aryankuril09@gmail.com",
-      to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com" ,"aryankuril09@gmail.com"],
+       to: "aryankuril09@gmail.com",
+      // to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com" ,"aryankuril09@gmail.com"],
       subject: `New Ads Audit Request - ${payload.name}`,
       html: buildAdminEmail(payload),
       fromName: "Ads Audit Form",
