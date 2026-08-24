@@ -216,7 +216,7 @@ export function CreativeWall() {
   return (
     <section
       id="work"
-      className="overflow-hidden border-y bg-card py-20 lg:py-28"
+      className="overflow-hidden border-y bg-card py-8 sm:py-8 lg:py-8"
     >
       <div className="container">
         {/* Heading */}
@@ -225,11 +225,11 @@ export function CreativeWall() {
             <div>
               <p className="text-eyebrow subtitle">The work</p>
 
-              <a className="mt-4 heading block max-w-5xl">
+              <a className="mt-3 heading block max-w-5xl">
                 Scroll the feed, not the pitch deck.
               </a>
 
-              <p className="mt-5 max-w-xl text-muted-foreground subtitle">
+              <p className="mt-3 max-w-xl subtitle black-text">
                 A slice of the content we plan, shoot and publish every week
                 for brands across beauty, fashion, food, home and fitness.
               </p>

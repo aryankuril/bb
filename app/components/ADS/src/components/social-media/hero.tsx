@@ -84,7 +84,7 @@ useEffect(() => {
     <section id="top" className="relative overflow-hidden pb-16 pt-28 lg:pb-24 lg:pt-36">
       <div aria-hidden className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-accent/25 blur-[120px]" />
       <div className="container relative mx-auto grid gap-12 px-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-16 lg:px-8">
-        <div>
+        <div className="lg:mt-10 mt-0 ">
           
           
           <span className="inline-flex items-center gap-2 rounded-full border bg-card px-3.5 py-1.5 subtitle font-medium text-black"><Instagram className="h-3.5 w-3.5 text-foreground" />Social media marketing agency in Mumbai</span>
@@ -98,18 +98,18 @@ useEffect(() => {
 >
    We build social media presence brands are actually <span className="highlight-accent">remembered</span> for.
 </span>
-          <p className="mt-6 max-w-xl subtitle text-muted-foreground">Bombay Blokes is a social media marketing agency for brands that want strategy, content and creative direction under one roof a feed that looks premium, posts consistently, and turns followers into customers.</p>
+          {/* <p className="mt-6 max-w-xl subtitle text-muted-foreground">Bombay Blokes is a social media marketing agency for brands that want strategy, content and creative direction under one roof a feed that looks premium, posts consistently, and turns followers into customers.</p> */}
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
-            {["Strategy, content & community", "In-house creative studio", "Reporting you can read"].map((item) => <li key={item} className="flex items-center gap-2 subtitle text-foreground/80"><span className="h-1.5 w-1.5 rounded-full bg-accent" />{item}</li>)}
+            {["Strategy, content & community", "In-house creative studio", "Reporting you can read"].map((item) => <li key={item} className="flex items-center gap-2 subtitle black-text"><span className="h-1.5 w-1.5 rounded-full bg-accent" />{item}</li>)}
           </ul>
           <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 border-t pt-8 sm:grid-cols-4">
-            {[["1000+", "Projects delivered"], ["150+", "Brands partnered"], ["40M+", "Organic views"], ["4.9", "Average rating"]].map(([value, label]) => <div key={label}><div className="font-display text-2xl font-semibold sm:text-3xl">{value}</div><div className="mt-1 subtitle text-muted-foreground">{label}</div></div>)}
+            {[["1000+", "Projects delivered"], ["150+", "Brands partnered"], ["40M+", "Organic views"], ["4.9", "Average rating"]].map(([value, label]) => <div key={label}><div className="font-display text-2xl font-semibold sm:text-3xl">{value}</div><div className="mt-1 subtitle black-text">{label}</div></div>)}
           </div>
-          <img
+          {/* <img
   src={heroShoot.src}
   alt="Social media content shoot"
   className="mt-8 hidden h-64 w-full rounded-2xl object-cover lg:block"
-/>
+/> */}
         </div>
        
 
@@ -149,10 +149,10 @@ useEffect(() => {
             </form>
           </div>
 
-          <div className="mt-4 rounded-3xl border bg-card p-3 shadow-soft">
+          {/* <div className="mt-4 rounded-3xl border bg-card p-3 shadow-soft">
             <div className="flex items-center gap-4"><img src={heroShoot.src} alt="Bombay Blokes social media content shoot for a beauty brand" width={1200} height={1504} className="h-20 w-20 shrink-0 rounded-2xl object-cover sm:h-24 sm:w-24" /><div className="min-w-0"><div className="flex items-center gap-1 text-accent">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="h-3.5 w-3.5 fill-current" />)}</div><p className="mt-1.5 subtitle leading-snug text-foreground/80">“{testimonial.quote}”</p><p className="mt-1 text-xs text-muted-foreground">{testimonial.name} {testimonial.role}</p></div></div>
             {testimonials.length > 1 && <div className="mt-3 flex items-center justify-end gap-2 border-t pt-3"><button type="button" onClick={() => changeTestimonial(-1)} aria-label="Previous testimonial" className="grid h-8 w-8 place-items-center rounded-full border transition-colors hover:bg-secondary"><ArrowLeft className="h-3.5 w-3.5" /></button><div className="flex gap-1" aria-label={`Testimonial ${testimonialIndex + 1} of ${testimonials.length}`}>{testimonials.map((item, index) => <button key={item.name} type="button" onClick={() => setTestimonialIndex(index)} aria-label={`Show testimonial ${index + 1}`} className={`h-1.5 rounded-full transition-all ${index === testimonialIndex ? "w-4 bg-accent" : "w-1.5 bg-border"}`} />)}</div><button type="button" onClick={() => changeTestimonial(1)} aria-label="Next testimonial" className="grid h-8 w-8 place-items-center rounded-full border transition-colors hover:bg-secondary"><ArrowRight className="h-3.5 w-3.5" /></button></div>}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

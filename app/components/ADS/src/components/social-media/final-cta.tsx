@@ -18,8 +18,8 @@ export function FinalCta() {
             <a className="mt-4 heading block ">
               Let's make your brand worth following.
             </a>
-           <p className="mt-5 max-w-xl subtitle">
-              Free social audit: your profiles, your content, three competitors — and the first
+           <p className="mt-5 max-w-xl subtitle black-text">
+              Free social audit: your profiles, your content, three competitors and the first
               three things we'd change.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">

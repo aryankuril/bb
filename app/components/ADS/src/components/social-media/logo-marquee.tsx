@@ -17,7 +17,7 @@ const brands = [
 
 export function LogoMarquee() {
   return (
-    <section className="border-y bg-card py-8">
+    <section className="border-y bg-card py-8 sm:py-8 lg:py-8">
       <Reveal>
         <p className="text-eyebrow px-5 text-center lg:px-8">Brands that trust our work</p>
       </Reveal>

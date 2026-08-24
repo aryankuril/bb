@@ -13,7 +13,7 @@ const points = [
 
 export function WhyUs() {
   return (
-    <section className="border-y bg-card py-20 lg:py-28">
+    <section className="border-y bg-card py-8 sm:py-8 lg:py-8">
       <div className="mx-auto grid container gap-12 px-5 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
         <Reveal>
           <div className="relative">
@@ -25,12 +25,12 @@ export function WhyUs() {
               height={1008}
               className="w-full rounded-3xl object-cover"
             />
-            <div className="absolute -bottom-6 left-4 rounded-2xl border bg-background p-4 shadow-lift sm:left-6 sm:p-5">
+            {/* <div className="absolute -bottom-6 left-4 rounded-2xl border bg-background p-4 shadow-lift sm:left-6 sm:p-5">
               <div className="font-display text-2xl font-semibold sm:text-3xl">120+</div>
               <p className="mt-1 subtitle text-muted-foreground">
                 pieces of content shipped every month
               </p>
-            </div>
+            </div> */}
           </div>
         </Reveal>
 
@@ -39,7 +39,7 @@ export function WhyUs() {
               <a className=" heading mt-4 block">
             A social media agency that behaves like your in-house team.
           </a>
-          <p className="mt-5 text-muted-foreground subtitle">
+          <p className="mt-5 subtitle black-text">
             Most brands don't have a content problem — they have a consistency problem. We take
             ownership of the whole social presence so the brand shows up the same way every single
             week.

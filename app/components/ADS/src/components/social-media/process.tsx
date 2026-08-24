@@ -3,21 +3,39 @@
 import { Reveal } from "../../hooks/use-reveal";
 
 const steps = [
-  ["Audit", "We review your profiles, content history and three competitors to find what's missing."],
-  ["Strategy", "Positioning, content pillars, formats and a posting rhythm per platform."],
-  ["Creative direction", "Moodboards, grid design and a visual language your feed sticks to."],
-  ["Production", "Shoots, reels, motion and design produced in-house, batched monthly."],
-  ["Publish & engage", "Scheduling, captions, hashtags and daily community management."],
-  ["Report & scale", "Monthly readout, what we'll double down on, and where paid can amplify."],
+  [
+    "Audit",
+    "We review your social presence, content history and competitors to understand what’s working, what’s missing and where there’s room to grow.",
+  ],
+  [
+    "Strategy",
+    "We define your positioning, content pillars, formats and platform strategy — built around your audience and goals.",
+  ],
+  [
+    "Creative Direction",
+    "We build the visual language, content formats and creative direction that make your brand recognisable.",
+  ],
+  [
+    "Production",
+    "We turn the strategy into content — from shoots and reels to motion and design, produced in-house.",
+  ],
+  [
+    "Publish & Engage",
+    "We manage calendars, publishing and community — keeping your content consistent and your audience engaged.",
+  ],
+  [
+    "Report & Optimise",
+    "We track what’s working, learn from the data and continuously refine the content, strategy and distribution.",
+  ],
 ];
 
 export function Process() {
   return (
-    <section id="process" className="container px-5 py-20 lg:px-8 lg:py-28">
+    <section id="process" className="container py-8 sm:py-8 lg:py-8">
       <Reveal>
         <p className="text-eyebrow subtitle">How we work</p>
         <a className="mt-4 heading block max-w-5xl">
-          Six steps from a scattered feed to a social presence with a point of view.
+         From A Feed That Exists To A Feed That Matters.
         </a>
       </Reveal>
 

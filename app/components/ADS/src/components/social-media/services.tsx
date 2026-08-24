@@ -14,53 +14,52 @@ import {
 const services = [
   {
     icon: Compass,
-    title: "Social media strategy",
-    body: "Positioning, content pillars, tone of voice and a platform plan built from audience research — not guesswork.",
-    tags: ["Audit", "Content pillars", "Channel plan"],
+    title: "Social Media Strategy",
+    body: "Positioning, content pillars, tone of voice and platform strategy built around your audience, category and goals.",
+    tags: ["Audit", "Content Strategy", "Channel Plan"],
   },
   {
     icon: Camera,
-    title: "Content & creative production",
-    body: "Photo, reels, motion and design produced in-house in Mumbai, art-directed so every post looks like the same brand.",
-    tags: ["Shoots", "Reels", "Design"],
+    title: "Content & Creative Production",
+    body: "From concepts to shoots, reels and design — everything created in-house to give your brand a distinct visual language.",
+    tags: ["Concepts", "Production", "Reels", "Design"],
   },
   {
     icon: CalendarCheck,
-    title: "Social media management",
-    body: "Calendars, scheduling, publishing and platform-native optimisation across Instagram, LinkedIn, YouTube and more.",
-    tags: ["Calendar", "Publishing", "Reporting"],
+    title: "Social Media Management",
+    body: "Content calendars, publishing, optimisation and reporting — keeping your social presence consistent and your content moving.",
+    tags: ["Calendars", "Publishing", "Reporting"],
   },
   {
     icon: MessagesSquare,
-    title: "Community & engagement",
-    body: "DMs, comments and conversation handled daily, so the people who discover you actually get a reply.",
-    tags: ["Moderation", "Response SLA"],
+    title: "Community & Engagement",
+    body: "We manage the conversations around your brand — from comments and DMs to everyday community interactions.",
+    tags: ["Community Management", "Moderation", "Response SLA"],
   },
   {
     icon: Users,
     title: "Influencer & UGC",
-    body: "Creator sourcing, briefs and rights management — a steady supply of authentic content that feels like your customers.",
-    tags: ["Creators", "UGC library"],
+    body: "From creator discovery and briefs to content and rights — building a steady stream of creator-led content for your brand.",
+    tags: ["Creator Sourcing", "UGC", "Rights Management"],
   },
   {
     icon: Megaphone,
-    title: "Paid social amplification",
-    body: "Supporting layer only: we put budget behind the organic content already proving itself, so reach compounds.",
-    tags: ["Boosting", "Retargeting"],
+    title: "Paid Social Amplification",
+    body: "Putting paid behind content that already works — extending its reach, finding new audiences and driving stronger results.",
+    tags: ["Boosting", "Retargeting", "Audience Growth"],
   },
 ];
 
 export function Services() {
   return (
-    <section id="services" className="container px-5 py-20 lg:px-8 lg:py-28">
+    <section id="services" className="container py-8 sm:py-8 lg:py-8">
       <Reveal>
         <p className="text-eyebrow subtitle">What we do</p>
         <a className="mt-4 heading block max-w-5xl">
-          Social media marketing services built around one outcome: a brand worth following.
+         Social Media Services Built Around One Outcome: A Brand Worth Following.
         </a>
-        <p className="mt-5 max-w-2xl text-muted-foreground">
-          Everything from strategy to the last frame of the reel sits with one team — which is why
-          the work stays consistent month after month.
+        <p className="mt-5 max-w-2xl subtitle black-text">
+         Everything from strategy to the last frame of the reel sits with one team keeping your brand consistent, recognisable and moving month after month.
         </p>
       </Reveal>
 
@@ -75,7 +74,7 @@ export function Services() {
                 <ArrowUpRight className="h-4.5 w-4.5 text-muted-foreground transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
               </div>
               <h6 className="mt-6 text-black">{s.title}</h6>
-              <p className="text-muted-foreground mt-2.5 text-sm leading-relaxed">{s.body}</p>
+              <p className=" mt-2.5 subtitle black-text">{s.body}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {s.tags.map((t) => (
                   <li

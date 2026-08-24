@@ -49,16 +49,16 @@ const cases = [
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="container py-10 sm:py-15 lg:py-20">
+    <section id="case-studies" className="container py-8 sm:py-8 lg:py-8">
       <div className="">
         <Reveal className="max-w-4xl">
   <span className="eyebrow subtitle">Case studies</span>
 
-  <span className="heading mt-4 block">
+  <span className="heading mt-3 block">
     Proof of delivery, not a portfolio wall.
   </span>
 
-  <p className="text-muted-foreground mt-4 subtitle">
+  <p className=" mt-3 subtitle black-text">
     Three accounts, three different problems, one method. Scroll through the numbers.
   </p>
 </Reveal>
@@ -82,7 +82,7 @@ export function CaseStudies() {
                       </span>
                     </div>
                     <h6 className=" text-black mt-5">{c.title}</h6>
-                    <p className="text-muted-foreground mt-4 subtitle">
+                    <p className="subtitle black-text mt-4 ">
                       {c.copy}
                     </p>
 

@@ -10,15 +10,29 @@ const quotes = [
     name: "Kaushik Shah",
     role: "Founder, D2C beauty brand",
   },
+
   {
     text: "They took over strategy, shoots and community management and gave us back our week. The feed finally has a personality and our DMs are full of real buyers.",
     name: "Alex Kriplani",
     role: "Marketing Head, home & living",
   },
+
   {
     text: "From social media marketing to creative direction, they consistently deliver work we're proud to publish. Genuinely one of the best social media agencies in Mumbai.",
     name: "Tilika Vispute",
     role: "Co-founder, fashion label",
+  },
+
+  {
+    text: "The team understood our brand from the start and brought a clear strategy to our social presence. The content feels sharper, more consistent and much more aligned with the business.",
+    name: "Rohan Mehta",
+    role: "Founder, consumer brand",
+  },
+
+  {
+    text: "What stood out was how hands-on and consistent the team was. From creative ideas to execution and reporting, everything felt organised and purposeful.",
+    name: "Ananya Kapoor",
+    role: "Brand Manager, lifestyle brand",
   },
 ];
 
@@ -39,7 +53,7 @@ export function Testimonials() {
   const q = quotes[i]!;
 
   return (
-    <section className="border-y bg-card py-20 lg:py-28">
+    <section className="border-y bg-card py-8 sm:py-8 lg:py-8">
       <div className="mx-auto max-w-5xl px-5 text-center lg:px-8">
         <Reveal>
           <p className="text-eyebrow">Client words</p>

@@ -37,14 +37,14 @@ export const faqs = [
 
 export function Faq() {
   return (
-    <section id="faq" className="container px-5 py-20 lg:px-8 lg:py-28">
+    <section id="faq" className="container py-8 sm:py-8 lg:py-8">
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <p className="text-eyebrow subtitle">FAQ</p>
             <a className="mt-4 heading block">
             Straight answers before you spend.
           </a>
-          <p className="mt-5 text-muted-foreground subtitle">
+          <p className="mt-5 subtitle black-text">
             Still unsure? Send us your handle and we'll tell you honestly whether you need an agency
             yet.
           </p>
@@ -55,17 +55,11 @@ export function Faq() {
             {faqs.map((f) => (
               <AccordionItem key={f.q} value={f.q}>
                 <AccordionTrigger className="py-5 text-left  hover:no-underline ">
-<span
-  className="block text-[20px] leading-[1.2] sm:text-[24px] lg:text-[25px]"
-  style={{
-    fontFamily: '"Bricolage Grotesque", sans-serif',
-    fontWeight: 800,
-  }}
->
+<h6 className="block !normal-case">
   {f.q}
-</span>
+</h6>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5 subtitle leading-relaxed">
+                <AccordionContent className=" pb-5 subtitle black-text leading-relaxed">
                   {f.a}
                 </AccordionContent>
               </AccordionItem>
