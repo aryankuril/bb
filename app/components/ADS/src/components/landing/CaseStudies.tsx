@@ -1,8 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/app/components/ADS/src/components/Reveal";
-import PM1 from "@/app/components/ADS/src/assets/pmlp1.png";
-import PM2 from "@/app/components/ADS/src/assets/pmlp2.png";
-import PM3 from "@/app/components/ADS/src/assets/pmlp4.png";
+import PM1 from "@/app/components/ADS/src/assets/pmads1.png";
+import PM2 from "@/app/components/ADS/src/assets/pmads2.png";
+import PM3 from "@/app/components/ADS/src/assets/pmads3.png";
+import PM4 from "@/app/components/ADS/src/assets/pmads4.png";
 import Image from "next/image";
 
 
@@ -14,8 +15,8 @@ const cases = [
     image: PM1,
     alt: "Sports e-commerce performance dashboard",
     metrics: [
-      { v: "6.8x → 10.2x", l: "ROAS" },
-      { v: "₹20L → ₹45L+", l: "Monthly Revenue" },
+      { v: "₹20L - ₹45L+", l: "Scaled Monthly Revenue" },
+      { v: "6.8x - 10.2x", l: "ROAS" },
       { v: "15.87%", l: "Returning Customer Rate" },
     ],
   },
@@ -23,31 +24,31 @@ const cases = [
     tag: "Textile & Apparel",
     title: "Scale to 7,000+ Orders Without Increasing CAC",
     copy: "2-model strategy combining prospecting and retargeting to scale orders while improving ROAS and maintaining efficient acquisition.",
-    image: PM1,
+    image: PM2,
     alt: "Textile and apparel e-commerce performance dashboard",
     metrics: [
+      { v: "+101%", l: "Scaled Monthly Revenue" },
       { v: "1.5x - 3.2x", l: "ROAS" },
       { v: "3,000 - 7,000+", l: "Orders" },
-      { v: "+101%", l: "Revenue" },
     ],
   },
   {
     tag: "Kids & Stationery",
     title: "Scale Quarterly Revenue While Maintaining ROAS",
     copy: "Optimized the checkout and product experience while shifting creative and audience strategy towards high-intent, gifting-led customers.",
-    image: PM1,
+    image: PM3,
     alt: "Kids and stationery e-commerce performance dashboard",
     metrics: [
-      { v: "+91% - ₹1.51 Cr", l: "Revenue" },
-      { v: "+42%", l: "Orders" },
+      { v: "+91% - ₹1.51 Cr", l: "Scaled Monthly Revenue" },
       { v: "2x - 4.5x", l: "ROAS" },
+      { v: "+42%", l: "Orders" },
     ],
   },
   {
     tag: "Diamond Course",
     title: "Increase Conversions While Reducing CPL",
     copy: "Built demand through YouTube awareness and refined Search campaigns through keyword and audience testing to improve lead quality and conversion efficiency.",
-    image: PM1,
+    image: PM4,
     alt: "Diamond course marketing performance dashboard",
     metrics: [
       { v: "+36%", l: "Conversions" },
