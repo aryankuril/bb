@@ -83,12 +83,12 @@ const scrollNext = useCallback(() => {
   }, [emblaApi]);
 
   return (
-    <section className="py-10 sm:py-15 lg:py-15">
+    <section className="py-8 sm:py-8 lg:py-8">
       <div className="container">
         <Reveal className="grid gap-6 sm:flex sm:items-end sm:justify-between">
-          <div className="max-w-2xl">
+          <div className="mx-auto text-center">
             <span className="eyebrow subtitle">Social proof</span>
-                     <a className="mt-4 heading block">
+                     <a className="mt-3 heading block">
 What our clients say
 </a>
           </div>

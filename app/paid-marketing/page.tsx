@@ -20,11 +20,11 @@ export default function PaidMarketingPage() {
       <SiteNav />
       <Hero />
       <LogoMarquee />
-      <Services />
+      <WhyUs />
+      <CaseStudies />
       <Problems />
       <Creativeproblem/>
-      <CaseStudies />
-      <WhyUs />
+      <Services />
       <Process />
       <Testimonials />
       <FAQ />

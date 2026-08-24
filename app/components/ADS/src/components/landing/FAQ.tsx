@@ -31,14 +31,14 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="bg-sand border-y py-10 sm:py-15 lg:py-15">
+    <section id="faq" className="bg-sand border-y py-8 sm:py-8 lg:py-8">
       <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <span className="eyebrow subtitle">FAQs</span>
-          <a className="mt-4 heading block">
+          <a className="mt-3 heading block">
             Straight answers before you spend.
           </a>
-          <p className="text-muted-foreground mt-5 subtitle">
+          <p className="black-text mt-3 subtitle">
             Still unsure? Send us your ad account and we will point at the leak for free.
           </p>
         </Reveal>
@@ -48,14 +48,11 @@ export function FAQ() {
             {faqs.map((f, i) => (
               <AccordionItem key={f.q} value={`item-${i}`} className="border-border border-b">
                 <AccordionTrigger className="py-5 text-left  hover:no-underline ">
-<h6
-  className="block "
-
->
+<h6 className="block !normal-case">
   {f.q}
 </h6>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5 subtitle leading-relaxed">
+                <AccordionContent className="black-text pb-5 subtitle leading-relaxed">
                   {f.a}
                 </AccordionContent>
               </AccordionItem>

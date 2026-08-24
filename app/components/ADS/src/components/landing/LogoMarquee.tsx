@@ -28,11 +28,11 @@ const secondRow = logos.slice(10, 20);
 
 export default function LogoMarquee() {
   return (
-    <section  id="section-3" className="overflow-hidden border-y bg-sand py-10 sm:py-15 lg:py-15">
+    <section  id="section-3" className="overflow-hidden border-y bg-sand py-8 sm:py-8 lg:py-8">
       <div className="container">
 
         {/* Heading */}
-        <div className="mb-8 w-full">
+        <div className="mb-8 w-full mx-auto text-center">
           <h2 className="heading">
             Brands That Trust Our Work
           </h2>

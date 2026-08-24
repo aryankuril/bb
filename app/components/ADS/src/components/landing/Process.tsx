@@ -12,14 +12,14 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" className="bg-ink text-background border-y py-10 sm:py-15 lg:py-15">
+    <section id="process" className="bg-ink text-background border-y py-8 sm:py-8 lg:py-8">
       <div className="container">
-        <Reveal className="max-w-4xl">
+        <Reveal className=" mx-auto text-center">
           <span className="eyebrow subtitle">HOW WE WORK</span>
-          <a className="mt-4 heading block">
+          <a className="mt-3 heading block">
             From Onboarding To Results, In Seven Steps.
           </a>
-          <p className="mt-5 subtitle text-background/70">
+          <p className="mt-3 subtitle text-background/70">
             Trusted by ambitious brands to drive customer acquisition, revenue growth and industry
             leading marketing performance.
           </p>

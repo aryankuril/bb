@@ -58,7 +58,7 @@ export function Hero() {
       />
 
       <div className="container relative grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-        <div className="animate-rise">
+        <div className="animate-rise lg:mt-10 mt-0">
           <div className="border-border bg-surface inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 subtitle font-semibold shadow-soft">
             <span className="relative flex size-2">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-secondary opacity-70" />
@@ -78,7 +78,7 @@ export function Hero() {
   The performance marketing agency in Mumbai that{" "}
   <span className="highlight-amber">engineers revenue</span>, not just reach.
 </span>
-          <p className=" subtitle text-muted-foreground mt-6 max-w-xl">
+          <p className=" subtitle text-black mt-6 max-w-xl">
            ₹20Cr+ ad spend managed, 4X average ROAS
           </p>
 
@@ -117,8 +117,32 @@ export function Hero() {
             </div>
           </div>
 
-<div className="lg:flex hidden sm:grid grid-cols-2 gap-4 sm:gap-5 mt-10">
-  <div className="flex h-[120px] w-full items-center justify-center overflow-hidden rounded-2xl border bg-white p-4 shadow-sm sm:h-[150px] sm:p-5">
+<div className="lg:flex hidden gap-4 sm:gap-5 mt-10">
+  <div
+    className="
+      flex
+      flex-shrink-0
+      items-center
+      justify-center
+      overflow-hidden
+      rounded-[20px]
+      border
+      border-[#e8e8e8]
+      bg-white
+
+      w-[120px]
+      h-[70px]
+
+      sm:w-[150px]
+      sm:h-[80px]
+
+      md:w-[170px]
+      md:h-[90px]
+
+      lg:w-[190px]
+      lg:h-[100px]
+    "
+  >
     <img
       src="/images/Google-Ads-Certified.png"
       alt="Google Ads Certified Partner"
@@ -126,7 +150,31 @@ export function Hero() {
     />
   </div>
 
-  <div className="flex h-[120px] w-full items-center justify-center overflow-hidden rounded-2xl border bg-white p-4 shadow-sm sm:h-[150px] sm:p-5">
+  <div
+    className="
+      flex
+      flex-shrink-0
+      items-center
+      justify-center
+      overflow-hidden
+      rounded-[20px]
+      border
+      border-[#e8e8e8]
+      bg-white
+
+      w-[120px]
+      h-[70px]
+
+      sm:w-[150px]
+      sm:h-[80px]
+
+      md:w-[170px]
+      md:h-[90px]
+
+      lg:w-[190px]
+      lg:h-[100px]
+    "
+  >
     <img
       src="/images/meta-partner.webp"
       alt="Meta Business Partner"

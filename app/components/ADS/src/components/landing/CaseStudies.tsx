@@ -59,16 +59,16 @@ const cases = [
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="container py-10 sm:py-15 lg:py-15">
+    <section id="case-studies" className="container py-8 sm:py-8 lg:py-8">
       <div className="">
-        <Reveal className="max-w-4xl">
+        <Reveal className="max-w-5xl mx-auto text-center">
   <span className="eyebrow subtitle">Case studies</span>
 
-  <span className="heading mt-4 block">
+  <span className="heading mt-3 block">
     Proof of delivery, not a portfolio wall.
   </span>
 
-  <p className="text-muted-foreground mt-4 subtitle">
+  <p className="black-text mt-3 subtitle">
     Three accounts, three different problems, one method. Scroll through the numbers.
   </p>
 </Reveal>
@@ -91,8 +91,8 @@ export function CaseStudies() {
                         {c.tag}
                       </span>
                     </div>
-                    <h6 className=" text-black mt-5">{c.title}</h6>
-                    <p className="text-black mt-4 subtitle">
+                    <h6 className=" black-text mt-5">{c.title}</h6>
+                    <p className="black-text mt-4 subtitle">
                       {c.copy}
                     </p>
 
@@ -100,7 +100,7 @@ export function CaseStudies() {
                       {c.metrics.map((m) => (
                         <div key={m.l}>
                           <dt className="text-muted-foreground order-2 mt-1 subtitle">{m.l}</dt>
-                         <h6 className="text-black">
+                         <h6 className="black-text">
                             {m.v}
                           </h6>
                         </div>

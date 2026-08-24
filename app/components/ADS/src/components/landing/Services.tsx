@@ -52,22 +52,22 @@ export function Services() {
   return (
     <section
       id="services"
-      className="border-y bg-sand py-10 sm:py-15 lg:py-15"
+      className="border-y bg-sand py-8 sm:py-8 lg:py-8"
     >
       <div className="container">
 
-        <Reveal className="max-w-3xl">
+        <Reveal className="max-w-3xl mx-auto text-center">
           <span className="eyebrow">What we do</span>
 
-          <a className="mt-3 block heading">
+          <a className="mt-3 block heading black-text">
             What's included
           </a>
 
-          <h6 className="text-black">
+          <h6 className="black-text">
             One engagement. Four parts. One number.
           </h6>
 
-          <p className="mt-3 leading-relaxed text-muted-foreground">
+          <p className="mt-3 leading-relaxed black-text subtitle">
             Media can't fix ROAS on its own. Neither can creative, or a faster
             site. So they come together.
           </p>
@@ -94,7 +94,7 @@ export function Services() {
                   </div>
 
                   {/* Title */}
-                  <h6 className="mt-5">
+                  <h6 className="mt-5 black-text">
                     {s.title}
                   </h6>
 
@@ -103,7 +103,7 @@ export function Services() {
                     {s.points.map((point, index) => (
                       <li
                         key={index}
-                        className="text-sm leading-relaxed text-black"
+                        className=" subtitle black-text"
                       >
                         {point}
                       </li>
