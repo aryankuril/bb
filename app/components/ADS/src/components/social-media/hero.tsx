@@ -96,7 +96,7 @@ useEffect(() => {
     lineHeight: 1.1,
   }}
 >
-   We build social media presence brands are actually <span className="highlight-accent">remembered</span> for.
+   We build social media presence brands are actually  <span className="highlight-amber">remembered</span> for.
 </span>
           {/* <p className="mt-6 max-w-xl subtitle text-muted-foreground">Bombay Blokes is a social media marketing agency for brands that want strategy, content and creative direction under one roof a feed that looks premium, posts consistently, and turns followers into customers.</p> */}
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">

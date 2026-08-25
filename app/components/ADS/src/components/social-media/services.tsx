@@ -53,15 +53,20 @@ const services = [
 export function Services() {
   return (
     <section id="services" className="container py-8 sm:py-8 lg:py-8">
-      <Reveal>
-        <p className="text-eyebrow subtitle">What we do</p>
-        <a className="mt-4 heading block max-w-5xl">
-         Social Media Services Built Around One Outcome: A Brand Worth Following.
-        </a>
-        <p className="mt-5 max-w-2xl subtitle black-text">
-         Everything from strategy to the last frame of the reel sits with one team keeping your brand consistent, recognisable and moving month after month.
-        </p>
-      </Reveal>
+     <Reveal className="mx-auto text-center">
+  <p className="text-eyebrow subtitle">
+    What we do
+  </p>
+
+  <a className="mx-auto mt-4 block max-w-7xl heading">
+    Social Media Services Built Around One Outcome: A Brand Worth Following.
+  </a>
+
+  <p className="mx-auto mt-5 max-w-2xl subtitle black-text">
+    Everything from strategy to the last frame of the reel sits with one team
+    keeping your brand consistent, recognisable and moving month after month.
+  </p>
+</Reveal>
 
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => (

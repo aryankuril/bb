@@ -11,6 +11,8 @@ import { Process } from "@/app/components/ADS/src/components/social-media/proces
 import { Testimonials } from "@/app/components/ADS/src/components/social-media/testimonials";
 import { Faq } from "@/app/components/ADS/src/components/social-media/faq";
 import { FinalCta, Footer } from "@/app/components/ADS/src/components/social-media/final-cta";
+import Mobilecta from "@/app/components/ADS/src/components/landing/Mobilecta";
+import SectionPopup from "@/app/components/ADS/src/components/landing/SectionPopup";
 
 import "./lovable-compiled.css";
 
@@ -22,13 +24,15 @@ const Index = () => {
       <LogoMarquee />
       <Services />
       <CreativeWall/>
-      <CaseStudies />
+      {/* <CaseStudies /> */}
       <WhyUs />
       <Process />
       <Testimonials />
       <Faq />
       <FinalCta />
       <Footer />
+       <Mobilecta/>
+      <SectionPopup />
     </main>
   );
 }

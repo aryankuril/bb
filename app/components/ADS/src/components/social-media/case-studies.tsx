@@ -51,7 +51,7 @@ export function CaseStudies() {
   return (
     <section id="case-studies" className="container py-8 sm:py-8 lg:py-8">
       <div className="">
-        <Reveal className="max-w-4xl">
+        <Reveal  className="mx-auto text-center">
   <span className="eyebrow subtitle">Case studies</span>
 
   <span className="heading mt-3 block">

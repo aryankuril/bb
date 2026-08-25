@@ -14,7 +14,21 @@ const points = [
 export function WhyUs() {
   return (
     <section className="border-y bg-card py-8 sm:py-8 lg:py-8">
-      <div className="mx-auto grid container gap-12 px-5 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
+   <div className="mx-auto container ">
+       <Reveal  className="mx-auto text-center">
+ <p className="text-eyebrow subtitle">Why Bombay Blokes</p>
+      <a className=" heading mt-3 block">
+            A social media agency that behaves like your in-house team.
+          </a>
+
+ <p className="mx-auto mt-3 max-w-4xl subtitle black-text">
+            Most brands don't have a content problem they have a consistency problem. We take
+            ownership of the whole social presence so the brand shows up the same way every single
+            week.
+          </p>
+</Reveal>
+
+      <div className="mx-auto  mt-10 grid gap-12 px-5 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8"> 
         <Reveal>
           <div className="relative">
             <img
@@ -35,15 +49,7 @@ export function WhyUs() {
         </Reveal>
 
         <Reveal delay={100}>
-          <p className="text-eyebrow subtitle">Why Bombay Blokes</p>
-              <a className=" heading mt-4 block">
-            A social media agency that behaves like your in-house team.
-          </a>
-          <p className="mt-5 subtitle black-text">
-            Most brands don't have a content problem — they have a consistency problem. We take
-            ownership of the whole social presence so the brand shows up the same way every single
-            week.
-          </p>
+         
           <ul className="mt-8 space-y-4">
             {points.map((p) => (
               <li key={p} className="flex gap-3 subtitle leading-relaxed text-foreground/85">
@@ -62,6 +68,7 @@ export function WhyUs() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
         </Reveal>
+      </div>
       </div>
     </section>
   );

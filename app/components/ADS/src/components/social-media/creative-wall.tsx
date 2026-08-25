@@ -15,7 +15,7 @@ const reels = [
       "https://www.instagram.com/reel/DYFcA2qv3CV/?igsh=MXA5NWZjcGV5Zmdvdw%3D%3D",
   },
   {
-    video: "/video/reel(3).MP4",
+    video: "/video/reel(13).MP4",
     reelUrl:
       "https://www.instagram.com/reel/DYAQRZsMA7z/?igsh=ODh0b3p1dGJ1N282",
   },
@@ -45,12 +45,12 @@ const reels = [
       "https://www.instagram.com/reel/DZatpOdshm1/?igsh=eXhpdW0wa2I3dGM2",
   },
   {
-    video: "/video/reel(9).MP4",
+    video: "/video/reel(11).MP4",
     reelUrl:
       "https://www.instagram.com/reel/DaVRKrlskrn/?igsh=MWp1N2g0bHZ4cWJiMw%3D%3D",
   },
   {
-    video: "/video/reel(10).MP4",
+    video: "/video/reel(12).MP4",
     reelUrl:
       "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
   },
@@ -222,20 +222,27 @@ export function CreativeWall() {
         {/* Heading */}
         <div className="">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div>
-              <p className="text-eyebrow subtitle">The work</p>
+            <div className="mx-auto text-center">
+  <p className="text-eyebrow subtitle">
+    The work
+  </p>
 
-              <a className="mt-3 heading block max-w-5xl">
-                Scroll the feed, not the pitch deck.
-              </a>
+  <a className="mx-auto mt-3 block max-w-5xl heading">
+    Scroll the feed, not the pitch deck.
+  </a>
 
-              <p className="mt-3 max-w-xl subtitle black-text">
-                A slice of the content we plan, shoot and publish every week
-                for brands across beauty, fashion, food, home and fitness.
-              </p>
-            </div>
+  <p className="mx-auto mt-3 max-w-xl subtitle black-text">
+    A slice of the content we plan, shoot and publish every week
+    for brands across beauty, fashion, food, home and fitness.
+  </p>
+</div>
 
-            {/* Arrows */}
+           
+          </div>
+        </div>
+
+
+         {/* Arrows */}
             <div className="flex gap-2">
               <button
                 type="button"
@@ -255,8 +262,6 @@ export function CreativeWall() {
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
-          </div>
-        </div>
 
         {/* Reel Slider */}
         <div

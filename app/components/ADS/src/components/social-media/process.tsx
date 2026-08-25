@@ -32,12 +32,15 @@ const steps = [
 export function Process() {
   return (
     <section id="process" className="container py-8 sm:py-8 lg:py-8">
-      <Reveal>
-        <p className="text-eyebrow subtitle">How we work</p>
-        <a className="mt-4 heading block max-w-5xl">
-         From A Feed That Exists To A Feed That Matters.
-        </a>
-      </Reveal>
+     <Reveal className="mx-auto text-center">
+  <p className="text-eyebrow subtitle">
+    How we work
+  </p>
+
+  <a className="mx-auto mt-4 block max-w-5xl heading">
+    From A Feed That Exists To A Feed That Matters.
+  </a>
+</Reveal>
 
       <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border bg-border sm:grid-cols-2 lg:grid-cols-3">
         {steps.map((s, i) => (
