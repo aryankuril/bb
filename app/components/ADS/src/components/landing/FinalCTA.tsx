@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function FinalCTA() {
   return (
-    <section className="py-8 sm:py-8 lg:py-8">
+    <section className="py-6 sm:py-8 lg:py-8">
       <div className="container">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-secondary px-7 py-14 text-secondary-foreground sm:px-14 sm:py-20">

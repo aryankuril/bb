@@ -31,11 +31,11 @@ const solutions = [
 
 export default function Problems() {
   return (
-    <section className="container py-8 sm:py-8 lg:py-8 relative overflow-hidden">
+    <section className="container py-6 sm:py-8 lg:py-8 relative overflow-hidden">
       <div className="relative z-10">
 
         <div className="text-center">
-            <a className="mt-4 heading block black-text">
+            <a className=" heading block black-text">
             What Happens When Ads Are{" "}
             <span className="text-highlight">
               Managed Incorrectly?

@@ -31,7 +31,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="bg-sand border-y py-8 sm:py-8 lg:py-8">
+    <section id="faq" className="bg-sand border-y py-6 sm:py-8 lg:py-8">
       <div className="container grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <span className="eyebrow subtitle">FAQs</span>

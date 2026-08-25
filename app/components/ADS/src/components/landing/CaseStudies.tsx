@@ -60,7 +60,7 @@ const cases = [
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="container py-8 sm:py-8 lg:py-8">
+    <section id="case-studies" className="container py-6 sm:py-8 lg:py-8">
       <div className="">
         <Reveal className="max-w-5xl mx-auto text-center">
   <span className="eyebrow subtitle">Case studies</span>
@@ -83,8 +83,19 @@ export function CaseStudies() {
             >
               <article className="card-soft overflow-hidden shadow-lift">
                 <div className="grid lg:grid-cols-2">
+                                   <div className="relative min-h-56 bg-muted lg:hidden">
+  <Image
+    src={c.image}
+    alt={c.alt}
+    width={1000}
+    height={750}
+    className="h-full w-full object-fit"
+  />
+</div>
                   <div className="p-7 sm:p-10">
+                    
                     <div className="flex items-center gap-3">
+                      
                       <span className="font-display subtitle text-secondary">
                         0{i + 1}
                       </span>
@@ -92,12 +103,12 @@ export function CaseStudies() {
                         {c.tag}
                       </span>
                     </div>
-                    <h6 className=" black-text mt-5">{c.title}</h6>
-                    <p className="black-text mt-4 subtitle">
+                    <h6 className=" black-text lg:mt-5 mt-3">{c.title}</h6>
+                    <p className="black-text lg:mt-4 mt-3 subtitle">
                       {c.copy}
                     </p>
 
-                    <dl className="border-border mt-8 grid grid-cols-3 gap-4 border-t pt-6">
+                    <dl className="border-border lg:mt-8 mt-3 grid grid-cols-3 lg:gap-4 gap-2 border-t lg:pt-6 pt-3">
                       {c.metrics.map((m) => (
                         <div key={m.l}>
                           <dt className="text-muted-foreground order-2 mt-1 subtitle">{m.l}</dt>
@@ -110,22 +121,22 @@ export function CaseStudies() {
 
                     <a
                       href="#audit"
-                      className="group mt-8 inline-flex items-center gap-2 text-sm font-bold"
+                      className="group lg:mt-8 mt-3 inline-flex items-center gap-2 text-sm font-bold"
                     >
                       Get a plan like this
                       <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                     </a>
                   </div>
 
-                  <div className="relative min-h-56 bg-muted lg:min-h-full">
-                    <Image
-  src={c.image}
-  alt={c.alt}
-  width={1000}
-  height={750}
-  className="h-full w-full object-fit"
-/>
-                  </div>
+                 <div className="relative hidden min-h-56 bg-muted lg:block lg:min-h-full">
+  <Image
+    src={c.image}
+    alt={c.alt}
+    width={1000}
+    height={750}
+    className="h-full w-full object-fit"
+  />
+</div>
                 </div>
               </article>
             </div>

@@ -47,7 +47,7 @@ export function Hero() {
   };
 
   return (
-    <section id="top" className=" relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24">
+    <section id="top" className=" relative overflow-hidden  lg:pb-16 md:pb-24 pb-6 md:pt-36 pt-28">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-40 -right-40 size-[38rem] rounded-full bg-secondary/25 blur-[120px]"
@@ -331,16 +331,7 @@ export function Hero() {
           </form>
         </div>
 
-         <div className="lg:hidden">
-          <img
-            src={heroDashboard.src}
-            alt="Performance marketing dashboard showing ROAS growth, spend and campaign results"
-            width={1200}
-            height={1104}
-            loading="lazy"
-            className="border-border w-full rounded-2xl border object-cover shadow-soft"
-          />
-        </div>
+       
       </div>
     </section>
   );

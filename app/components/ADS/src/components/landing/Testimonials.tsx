@@ -83,7 +83,7 @@ const scrollNext = useCallback(() => {
   }, [emblaApi]);
 
   return (
-    <section className="py-8 sm:py-8 lg:py-8">
+    <section className="py-6 sm:py-8 lg:py-8">
       <div className="container">
         <Reveal className="grid gap-6 sm:flex sm:items-end sm:justify-between">
           <div className="mx-auto text-center">
