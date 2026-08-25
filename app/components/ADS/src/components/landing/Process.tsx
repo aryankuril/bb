@@ -14,7 +14,7 @@ export function Process() {
   return (
     <section id="process" className="bg-ink text-background border-y py-6 sm:py-8 lg:py-8">
       <div className="container">
-        <Reveal className=" mx-auto text-center">
+        <Reveal className="   text-center">
           <span className="eyebrow subtitle">HOW WE WORK</span>
           <a className="mt-3 heading block">
             From Onboarding To Results, In Seven Steps.

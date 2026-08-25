@@ -56,7 +56,7 @@ export function Services() {
     >
       <div className="container">
 
-        <Reveal className="max-w-3xl mx-auto text-center">
+        <Reveal className=" text-center">
           <span className="eyebrow">What we do</span>
 
           <a className="mt-3 block heading black-text">
