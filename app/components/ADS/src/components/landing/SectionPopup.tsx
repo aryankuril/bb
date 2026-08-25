@@ -8,7 +8,7 @@ export default function SectionPopup() {
   const popupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const section = document.getElementById("section-3");
+    const section = document.getElementById("results");
 
     if (!section) return;
 
