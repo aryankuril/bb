@@ -108,16 +108,22 @@ export function CaseStudies() {
                       {c.copy}
                     </p>
 
-                    <dl className="border-border lg:mt-8 mt-3 grid grid-cols-3 lg:gap-4 gap-2 border-t lg:pt-6 pt-3">
-                      {c.metrics.map((m) => (
-                        <div key={m.l}>
-                          <dt className="text-muted-foreground order-2 mt-1 subtitle">{m.l}</dt>
-                         <h6 className="black-text">
-                            {m.v}
-                          </h6>
-                        </div>
-                      ))}
-                    </dl>
+                   <dl className="border-border mt-3 grid grid-cols-1 gap-3 border-t pt-3 lg:mt-8 lg:grid-cols-3 lg:gap-4 lg:pt-6">
+  {c.metrics.map((m) => (
+    <div
+      key={m.l}
+      className="grid grid-cols-2 items-center lg:block"
+    >
+      <dt className="text-muted-foreground subtitle">
+        {m.l}
+      </dt>
+
+      <span className="black-text text-right lg:text-left">
+        {m.v}
+      </span>
+    </div>
+  ))}
+</dl>
 
                     <a
                       href="#audit"

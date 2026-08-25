@@ -11,6 +11,7 @@ import { Testimonials } from "@/app/components/ADS/src/components/landing/Testim
 import { FAQ } from "@/app/components/ADS/src/components/landing/FAQ";
 import { FinalCTA , Footer} from "@/app/components/ADS/src/components/landing/FinalCTA";
 import Mobilecta from "@/app/components/ADS/src/components/landing/Mobilecta";
+import SectionPopup from "@/app/components/ADS/src/components/landing/SectionPopup";
 
 import "./lovable-compiled.css";
 
@@ -31,6 +32,7 @@ export default function PaidMarketingPage() {
       <FinalCTA />
       <Footer />
       <Mobilecta/>
+      <SectionPopup />
     </main>
   );
 }

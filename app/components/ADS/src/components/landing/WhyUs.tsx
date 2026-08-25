@@ -12,16 +12,25 @@ const stats = [
 
 export function WhyUs() {
   return (
-    <section id="results" className="py-6 sm:py-8 lg:py-8">
-      <div className="container grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <Reveal>
-          <span className="eyebrow subtitle">Why Bombay Blokes</span>
+    <section id="results" className=" container  py-6 sm:py-8 lg:py-8">
+
+
+        <Reveal className="  text-center">
+
+    <span className="eyebrow subtitle">Why Bombay Blokes</span>
          <a className=" heading mt-3 block">
             We engineer revenue, not just reach.
           </a>
           <p className="black-text mt-3 subtitle">
            Performance-driven Meta and Google Ads campaigns focused on ROAS, conversions and real business growth.
           </p>
+</Reveal>
+
+      <div className="mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+
+        
+        <Reveal >
+      
 
           <div className="mt-9 grid grid-cols-2 gap-4">
             {stats.map((s, i) => (
