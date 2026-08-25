@@ -152,6 +152,10 @@ useEffect(() => {
             </form>
           </div>
 
+
+
+          
+
           {/* <div className="mt-4 rounded-3xl border bg-card p-3 shadow-soft">
             <div className="flex items-center gap-4"><img src={heroShoot.src} alt="Bombay Blokes social media content shoot for a beauty brand" width={1200} height={1504} className="h-20 w-20 shrink-0 rounded-2xl object-cover sm:h-24 sm:w-24" /><div className="min-w-0"><div className="flex items-center gap-1 text-accent">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="h-3.5 w-3.5 fill-current" />)}</div><p className="mt-1.5 subtitle leading-snug text-foreground/80">“{testimonial.quote}”</p><p className="mt-1 text-xs text-muted-foreground">{testimonial.name} {testimonial.role}</p></div></div>
             {testimonials.length > 1 && <div className="mt-3 flex items-center justify-end gap-2 border-t pt-3"><button type="button" onClick={() => changeTestimonial(-1)} aria-label="Previous testimonial" className="grid h-8 w-8 place-items-center rounded-full border transition-colors hover:bg-secondary"><ArrowLeft className="h-3.5 w-3.5" /></button><div className="flex gap-1" aria-label={`Testimonial ${testimonialIndex + 1} of ${testimonials.length}`}>{testimonials.map((item, index) => <button key={item.name} type="button" onClick={() => setTestimonialIndex(index)} aria-label={`Show testimonial ${index + 1}`} className={`h-1.5 rounded-full transition-all ${index === testimonialIndex ? "w-4 bg-accent" : "w-1.5 bg-border"}`} />)}</div><button type="button" onClick={() => changeTestimonial(1)} aria-label="Next testimonial" className="grid h-8 w-8 place-items-center rounded-full border transition-colors hover:bg-secondary"><ArrowRight className="h-3.5 w-3.5" /></button></div>}
