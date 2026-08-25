@@ -118,9 +118,9 @@ export function CaseStudies() {
         {m.l}
       </dt>
 
-      <span className="black-text text-right lg:text-left">
-        {m.v}
-      </span>
+    <span className="black-text text-right text-[18px] lg:text-left lg:text-[25px]">
+  {m.v}
+</span>
     </div>
   ))}
 </dl>
