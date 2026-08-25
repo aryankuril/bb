@@ -326,7 +326,7 @@ export function Hero() {
             </button>
 
             <p className="text-muted-foreground mt-4 text-center subtitle">
-              We reply within 24 working hours. Your details stay private.
+              We reply within 48 working hours. Your details stay private.
             </p>
           </form>
         </div>

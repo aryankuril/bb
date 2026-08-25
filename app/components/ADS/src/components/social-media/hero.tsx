@@ -117,7 +117,10 @@ useEffect(() => {
 
         <div id="audit" className="lg:sticky lg:top-24">
          <div className="rounded-3xl bg-card p-6 shadow-soft sm:p-8">
-            <div className="flex items-start justify-between gap-3"><div className="min-w-0"><h6>Get a free social audit</h6><p className="mt-1.5 subtitle text-muted-foreground">We&apos;ll review your profiles, content and competitors and send back what we&apos;d change first.</p></div><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wide text-secondary-foreground">Free</span></div>
+            <div className="flex items-start justify-between gap-3"><div className="min-w-0">
+               <h6>Get your free ads audit in 48 hrs</h6>
+              {/* <p className="mt-1.5 subtitle text-muted-foreground">We&apos;ll review your profiles, content and competitors and send back what we&apos;d change first.</p> */}
+              </div><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wide text-secondary-foreground">Free</span></div>
             <form onSubmit={onSubmit} className="mt-7 space-y-4" noValidate aria-busy={loading}>
               <Field label="Your name"><input required name="name" placeholder="Aarav Mehta" className={inputClassName} autoComplete="name" disabled={loading} /></Field>
               <div className="grid gap-4 sm:grid-cols-2"><Field label="Work email"><input required type="email" name="email" placeholder="you@brand.com" className={inputClassName} autoComplete="email" disabled={loading} /></Field><Field label="Phone"><input required name="phone" type="tel" inputMode="tel" placeholder="+91 98200 00000" className={inputClassName} autoComplete="tel" disabled={loading} /></Field></div>
@@ -143,7 +146,7 @@ useEffect(() => {
                </div>
               <Field label="Message or requirements"><textarea required name="requirements" rows={3} placeholder="Tell us what you need help with." className="min-h-28 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-accent focus:ring-accent/15 disabled:cursor-not-allowed disabled:opacity-60" disabled={loading} /></Field>
               <button type="submit" disabled={loading} className="group mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-accent-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-70">{loading ? "Sending…" : "Request my free audit"}{!loading && <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />}</button>
-              <p className="text-center text-xs text-muted-foreground">No decks, no spam. A real strategist replies within 24 hours.</p>
+              <p className="text-center text-xs text-muted-foreground">No decks, no spam. A real strategist replies within 48 hours.</p>
               {formError && <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-center text-xs text-red-700">{formError}</p>}
               {formSuccess && <p role="status" className="rounded-lg bg-accent/10 px-3 py-2 text-center text-xs text-foreground">{formSuccess}</p>}
             </form>

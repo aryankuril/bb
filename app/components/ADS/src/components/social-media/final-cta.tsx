@@ -54,7 +54,7 @@ export function Footer() {
 <div className="flex items-center justify-between w-full">
   {/* Logo */}
   <div className="hidden sm:flex justify-start relative">
-    <Link href="/">
+    <Link href="/paid-marketing">
       <Image
         src="/images/bblogo.webp"
         alt="Bombay Blokes Logo"
@@ -173,59 +173,13 @@ export function Footer() {
 </div>
 
         {/* Bottom Section */}
-        <div className="body4 lg:mt-6 mt-2 border-t pt-4 lg:pt-1 flex flex-col gap-4 md:flex-row md:justify-between md:items-center black-text text-sm">
-          {/* Links */}
-          <div className="flex flex-wrap items-start gap-1 md:gap-3 md:order-2">
-            <Link
-              href="/"
- className="black-text transition-colors duration-300 border-r border-gray-400 pr-2 hover:!text-[#FAB31E]"            >
-              Home
-            </Link>
-
-            <Link
-              href="/clients"
- className="black-text transition-colors duration-300 border-r border-gray-400 pr-2 hover:!text-[#FAB31E]"            >
-              Our Clients
-            </Link>
-
-            <Link
-              href="/contactus"
- className="black-text transition-colors duration-300 border-r border-gray-400 pr-2 hover:!text-[#FAB31E]"            >
-              Contact
-            </Link>
-
-            <Link
-              href="/client-registration"
- className="black-text transition-colors duration-300 border-r border-gray-400 pr-2 hover:!text-[#FAB31E]"            >
-              Client Registration
-            </Link>
-
-            <Link
-              href="/blogs"
- className="black-text transition-colors duration-300 border-r border-gray-400 pr-2 hover:!text-[#FAB31E]"            >
-              Blogs
-            </Link>
-
-            <Link
-              href="/privacy"
- className="black-text transition-colors duration-300 border-r border-gray-400 pr-2 hover:!text-[#FAB31E]"            >
-              Privacy Policy
-            </Link>
-
-            <Link
-              href="/terms"
-              className="black-text transition-colors hover:!text-[#FAB31E]"
-            >
-              Terms & Conditions
-            </Link>
-          </div>
-
-          {/* Copyright */}
-          <p className="text-left md:order-1 mt-2 body4">
-            Copyright ©{new Date().getFullYear()} Bombay Blokes. All rights
-            reserved.
-          </p>
-        </div>
+     <div className="body4 lg:mt-6 mt-2 border-t pt-4 lg:pt-1 flex flex-col gap-4 md:flex-row md:justify-center md:items-center black-text text-sm">
+  {/* Copyright */}
+  <p className="text-center mt-2 body4">
+    Copyright ©{new Date().getFullYear()} Bombay Blokes. All rights
+    reserved.
+  </p>
+</div>
       </div>
     </footer>
   );
