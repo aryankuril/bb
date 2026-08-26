@@ -227,7 +227,7 @@ export function CreativeWall() {
     The work
   </p>
 
-  <a className="mx-auto mt-3 block max-w-5xl heading">
+  <a className="mx-auto mt-3 block heading">
     Scroll the feed, not the pitch deck.
   </a>
 
