@@ -236,11 +236,6 @@ useEffect(() => {
   fetchCategories();
 }, [initialCategories.length]);
 
-  const goBack = () => {
-    if (step > 0) setStep((s) => s - 1);
-  };
-
-
   const validateURL = (url: string): boolean => {
     if (!url) return true;
     try {
@@ -524,13 +519,6 @@ useEffect(() => {
 
 
 
-const goNext = () => {
-  if (step < totalSteps - 1) {
-    setStep((s) => s + 1);
-  }
-};
-
-
 
 // useEffect(() => {
 //   if (submitStatus === "success") {
@@ -772,94 +760,6 @@ const categorizeJobs = (): CareerCategoryMap => {
 
 
 
-    const totalSteps = 3;
-  const [step, setStep] = useState(0);
-
-const nextStep = () => {
-  let hasErrors = false;
-
-  // ✅ Clear old errors first
-  setErrors({
-    ticketName: "",
-    email: "",
-    phone: "",
-    cv: "",
-    portfolio: "",
-    message: "",
-    availability: "",
-  });
-
-  if (step === 0) {
-    const nameError = validateField("ticketName", inputValues.ticketName);
-    const emailError = validateField("email", inputValues.email);
-
-    if (nameError) {
-      setErrors((prev) => ({ ...prev, ticketName: nameError }));
-      hasErrors = true;
-    }
-    if (emailError) {
-      setErrors((prev) => ({ ...prev, email: emailError }));
-      hasErrors = true;
-    }
-  }
-
-  if (step === 1) {
-    const phoneError = validateField("phone", inputValues.phone);
-    const cvError = validateField("cv", cvFile);
-
-    if (phoneError) {
-      setErrors((prev) => ({ ...prev, phone: phoneError }));
-      hasErrors = true;
-    }
-
-    if (cvError) {
-      setErrors((prev) => ({ ...prev, cv: cvError }));
-      hasErrors = true;
-    }
-  }
-
-  if (step === 2) {
-    const availabilityError = validateField("availability", selected);
-    const portfolioError = validateField("portfolio", inputValues.portfolio);
-    const messageError = validateField("message", inputValues.message);
-
-    if (availabilityError) {
-      setErrors((prev) => ({ ...prev, availability: availabilityError }));
-      hasErrors = true;
-    }
-
-    if (portfolioError) {
-      setErrors((prev) => ({ ...prev, portfolio: portfolioError }));
-      hasErrors = true;
-    }
-
-     if (messageError) {
-      setErrors((prev) => ({ ...prev, message: messageError }));
-      hasErrors = true;
-    }
-  }
-
- 
-
-  if (hasErrors) return;
-
-  // ✅ Move only if current step is valid
-  if (step < totalSteps - 1) {
-    setStep((s) => s + 1);
-  }
-};
-
-
-  const prevStep = () => {
-    if (step > 0) setStep(step - 1);
-  };
-
-const progress =
-  submitStatus === "success"
-    ? 100
-    : step * 25;
-
-
 
   return (
     <section
@@ -977,51 +877,18 @@ const progress =
               >
 
     <div  className="bg-[#1D1D1D] rounded-xl relative overflow-hidden h-auto">
-      {/* PROGRESS */}
-      <div className="mb-6 mt-10">
-<div className="flex gap-2">
-  {Array.from({ length: totalSteps }).map((_, idx) => {
-const filled = idx < progress / 25;
-
-// ✅ correct logic
-
-    return (
-      <div
-        key={idx}
-        className={`h-2 flex-1 rounded transition-all duration-300 ${
-          filled
-            ? "bg-[var(--color-highlight)]"
-            : "border border-gray-600"
-        }`}
-      />
-    );
-  })}
-</div>
-
-<div className="flex justify-between text-sm text-white mt-2">
-<span>Step {step + 1} of {totalSteps}</span>
-<span className="text-[var(--color-highlight)]">{progress}%</span>
-
-</div>
-
-      </div>
 
       <form onSubmit={handleSubmit} className="relative ">
 
-        {/* STEP 1 */}
-        <div
-          className={`type-step  ${
-            step === 0 ? "type-active" : step > 0 ? "type-hidden-up" : "type-hidden-down"
-          }`}
+        <button
+          type="button"
+          onClick={() => setIsFlipped(false)}
+          className="mb-6 text-[var(--color-highlight)] underline cursor-pointer"
         >
+          ← View Job Description
+        </button>
 
-           <div>
-                {step > 0 && step < 3 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 py-5 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div>
+        <div className="mb-10">
           <h3 className="text-white mb-6">1. Tell Us about you          </h3>
 
         <div className="mb-10" >
@@ -1098,20 +965,7 @@ const filled = idx < progress / 25;
 
         </div>
 
-        {/* STEP 2 */}
-        <div
-          className={`type-step ${
-            step === 1 ? "type-active" : step > 1 ? "type-hidden-up" : "type-hidden-down"
-          }`}
-        >
-
-           <div>
-                {step > 0 && step < 3 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 py-5 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div>
+        <div className="mb-10">
           <h3 className="text-white mb-6">2. Where we can contact you</h3>
 
           <div className="mb-10" >
@@ -1211,26 +1065,7 @@ const filled = idx < progress / 25;
                   </div>
         </div>
 
-        {/* STEP 3 */}
-        <div
-           className={`type-step ${
-    submitStatus === "success"
-      ? "hidden"
-      :      step === 2
-      ? "type-active"
-      : step > 2
-      ? "type-hidden-up"
-      : "type-hidden-down"
-  }`}
-        >
-
-           <div>
-                {step > 0 && step < 3 && (
-                  <button type="button" onClick={goBack} className="text-white opacity-90 py-5 ">
-                    ←   <span className=" underline" > Previous Question </span>
-                  </button>
-                )}
-              </div>
+        <div>
           <h3 className="text-white mb-6">3. Availability</h3>
 
           <div className="flex w-full gap-3 mb-10">
@@ -1326,68 +1161,20 @@ const filled = idx < progress / 25;
 
 
 
-<div
-  className={`flex items-center justify-center transition-all duration-500 py-10 ${
-    submitStatus === "success"
-      ? "opacity-100 translate-y-0"
-      : "opacity-0 translate-y-8 pointer-events-none"
-  }`}
->
-  {submitStatus === "success" && (
-    <div className="flex flex-col items-center justify-center text-center w-full">
-      <h3 className="text-highlight mb-3">Thank you! 🎉</h3>
-      <p className="text-gray-300 max-w-xl">
-        An email from us is on the way, don’t forget to check your inbox
-      </p>
-    </div>
-  )}
-</div>
-
-
-
-
-
         {/* NAV */}
 {/* NAV – hidden on thank you */}
 {submitStatus !== "success" && (
   <div className="relative bottom-0 right-0 left-0 flex justify-end items-center pt-6 ">
 
 
-  {/* Step 1 */}
-  {step === 0 && (
-    <div onClick={nextStep}>
-      <Button
-        text="A step closer"
-        type="button"
-        disabled={isSubmitting}
-        className="white-text cursor-pointer"
-      />
-    </div>
-  )}
-
-  {/* Step 2 */}
-  {step === 1 && (
-    <div onClick={nextStep}>
-      <Button
-        text="Almost there"
-        type="button"
-        disabled={isSubmitting}
-        className="white-text cursor-pointer"
-      />
-    </div>
-  )}
-
-  {/* Step 3 Final submit*/}
-  {step === 2 && (
-    <div>
-      <Button
-        text="Apply Now"
-        type="submit"
-        disabled={isSubmitting}
-        className="white-text cursor-pointer"
-      />
-    </div>
-  )}
+  <div>
+    <Button
+      text="Apply Now"
+      type="submit"
+      disabled={isSubmitting}
+      className="white-text cursor-pointer"
+    />
+  </div>
 
 
 

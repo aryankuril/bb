@@ -5,52 +5,52 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const reels = [
   {
-    video: "/video/reel(1).MP4",
+    video: "/video/reel-1.mp4",
     reelUrl:
       "https://www.instagram.com/reel/DZuRfSsvEof/?igsh=bWlqMXpucjBmbWsy",
   },
   {
-    video: "/video/reel(2).MP4",
+    video: "/video/reel-2.mp4",
     reelUrl:
       "https://www.instagram.com/reel/DYFcA2qv3CV/?igsh=MXA5NWZjcGV5Zmdvdw%3D%3D",
   },
   {
-    video: "/video/reel(17).mp4",
+    video: "/video/reel-17.mp4",
     reelUrl:
       "https://www.instagram.com/reel/DYAQRZsMA7z/?igsh=ODh0b3p1dGJ1N282",
   },
   {
-    video: "/video/reel(4).MP4",
+    video: "/video/reel-4.mp4",
     reelUrl:
       "https://www.instagram.com/reel/DXKQ-ZPjCi3/?igsh=Z3Z3NDA0a2xwYzFv",
   },
   {
-    video: "/video/reel(5).MP4",
+    video: "/video/reel-5.mp4",
     reelUrl:
       "https://www.instagram.com/reel/Db7ys70sYA-/?igsh=enF4bGc2ZTN3bm45",
   },
   {
-    video: "/video/reel(6).MP4",
+    video: "/video/reel-6.mp4",
     reelUrl:
       "https://www.instagram.com/reel/DaiVrops7bs/?igsh=MWs2dDRqeXowaGZ1aw%3D%3D",
   },
   {
-    video: "/video/reel(7).MP4",
+    video: "/video/reel-7.mp4",
     reelUrl:
       "https://www.instagram.com/reel/DYT6QN_PWEj/?igsh=cmswaWM0a3R5ODh6",
   },
   {
-    video: "/video/reel(8).MP4",
+    video: "/video/reel-8.mp4",
     reelUrl:
       "https://www.instagram.com/reel/DZatpOdshm1/?igsh=eXhpdW0wa2I3dGM2",
   },
   {
-    video: "/video/reel(16).mp4",
+    video: "/video/reel-16.mp4",
     reelUrl:
       "https://www.instagram.com/reel/DaVRKrlskrn/?igsh=MWp1N2g0bHZ4cWJiMw%3D%3D",
   },
   {
-    video: "/video/reel(15).mp4",
+    video: "/video/reel-15.mp4",
     reelUrl:
       "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
   },
