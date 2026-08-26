@@ -15,7 +15,7 @@ const reels = [
       "https://www.instagram.com/reel/DYFcA2qv3CV/?igsh=MXA5NWZjcGV5Zmdvdw%3D%3D",
   },
   {
-    video: "/video/reel(17).MP4",
+    video: "/video/reel(17).mp4",
     reelUrl:
       "https://www.instagram.com/reel/DYAQRZsMA7z/?igsh=ODh0b3p1dGJ1N282",
   },
@@ -45,12 +45,12 @@ const reels = [
       "https://www.instagram.com/reel/DZatpOdshm1/?igsh=eXhpdW0wa2I3dGM2",
   },
   {
-    video: "/video/reel(16).MP4",
+    video: "/video/reel(16).mp4",
     reelUrl:
       "https://www.instagram.com/reel/DaVRKrlskrn/?igsh=MWp1N2g0bHZ4cWJiMw%3D%3D",
   },
   {
-    video: "/video/reel(15).MP4",
+    video: "/video/reel(15).mp4",
     reelUrl:
       "https://www.instagram.com/reel/DY17VFbPGKc/?igsh=azRiZGs4cHNlY3gw",
   },
