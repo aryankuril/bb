@@ -24,7 +24,7 @@ const Index = () => {
       <LogoMarquee />
       <Services />
       <CreativeWall/>
-      <CaseStudies />
+      {/* <CaseStudies /> */}
       <WhyUs />
       <Process />
       <Testimonials />
