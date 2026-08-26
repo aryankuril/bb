@@ -55,9 +55,12 @@ export function Faq() {
             {faqs.map((f) => (
               <AccordionItem key={f.q} value={f.q}>
                 <AccordionTrigger className="py-5 text-left  hover:no-underline ">
-<h6 className="block !normal-case">
+<span
+  className="block !normal-case text-[clamp(16px,2vw,22px)]"
+  style={{ fontFamily: "var(--font-bricolage) !important" }}
+>
   {f.q}
-</h6>
+</span>
                 </AccordionTrigger>
                 <AccordionContent className=" pb-5 subtitle black-text leading-relaxed">
                   {f.a}

@@ -54,7 +54,7 @@ export function Footer() {
 <div className="flex items-center justify-between w-full">
   {/* Logo */}
   <div className="hidden sm:flex justify-start relative">
-    <Link href="/paid-marketing">
+    <Link href="/social-media-marketing">
       <Image
         src="/images/bblogo.webp"
         alt="Bombay Blokes Logo"

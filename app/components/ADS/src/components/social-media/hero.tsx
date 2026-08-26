@@ -103,7 +103,7 @@ useEffect(() => {
             {["Strategy, content & community", "In-house creative studio", "Reporting you can read"].map((item) => <li key={item} className="flex items-center gap-2 subtitle black-text"><span className="h-1.5 w-1.5 rounded-full bg-accent" />{item}</li>)}
           </ul>
           <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-6 border-t pt-8 sm:grid-cols-4">
-            {[["1000+", "Projects delivered"], ["150+", "Brands partnered"], ["40M+", "Organic views"], ["4.9", "Average rating"]].map(([value, label]) => <div key={label}><div className="font-display text-2xl font-semibold sm:text-3xl">{value}</div><div className="mt-1 subtitle black-text">{label}</div></div>)}
+            {[ ["150+", "Brands partnered"], ["40M+", "Organic views"], ["4.9", "Average rating"]].map(([value, label]) => <div key={label}><div className="font-display text-2xl font-semibold sm:text-3xl">{value}</div><div className="mt-1 subtitle black-text">{label}</div></div>)}
           </div>
           {/* <img
   src={heroShoot.src}
@@ -118,7 +118,7 @@ useEffect(() => {
         <div id="audit" className="lg:sticky lg:top-24">
          <div className="rounded-3xl bg-card p-6 shadow-soft sm:p-8">
             <div className="flex items-start justify-between gap-3"><div className="min-w-0">
-               <h6>Get your free ads audit in 48 hrs</h6>
+               <h6>Your Social Deserves A Closer Look</h6>
               {/* <p className="mt-1.5 subtitle text-muted-foreground">We&apos;ll review your profiles, content and competitors and send back what we&apos;d change first.</p> */}
               </div><span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-[0.65rem] font-bold uppercase tracking-wide text-secondary-foreground">Free</span></div>
             <form onSubmit={onSubmit} className="mt-7 space-y-4" noValidate aria-busy={loading}>

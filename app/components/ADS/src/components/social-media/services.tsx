@@ -52,7 +52,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="results" className="container py-8 sm:py-8 lg:py-8">
+    <section className="container py-8 sm:py-8 lg:py-8">
      <Reveal className="mx-auto text-center">
   <p className="text-eyebrow subtitle">
     What we do
@@ -68,7 +68,7 @@ export function Services() {
   </p>
 </Reveal>
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div id="results" className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => (
           <Reveal key={s.title} delay={i * 60}>
             <article className="group h-full rounded-3xl border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-7">

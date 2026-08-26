@@ -7,42 +7,43 @@ import caseRealEstate from "@/app/components/ADS/src/assets/case-realestate.jpg"
 import c2 from "../../assets/creative-2.jpg";
 import c1 from "../../assets/creative-1.jpg";
 import c3 from "../../assets/creative-3.jpg";
+import ss from "../../assets/supersox.png";
+import Manba from "../../assets/manbaa.png";
+
 
 const cases = [
   {
-    tag: "Fashion · D2C",
-    title: "A quiet fashion label became a destination feed in 6 months.",
-    copy: "We rebuilt the content system around founder storytelling and studio-shot reels instead of discount posts. Weekly output tripled without losing the premium look.",
+    tag: "Carron Clothing",
+    title: "Product Stories That Turned Store Content Into 90K+ Views.",
+    copy: "Product-led short-form storytelling has worked particularly well for in-store content, showcasing product ideas and the store experience in an engaging way. This approach helped generate 90K+ views in a single month, demonstrating the impact of concise, product-focused storytelling.",
     image: caseFashion,
-    alt: "Saanjh Label fashion content",
+    alt: "Carron Clothing case study",
     metrics: [
-      { v: "+312%", l: "Organic reach" },
-      { v: "1.2M", l: "Reel views" },
-      { v: "42k", l: "New followers" },
+      { v: "90K+", l: "Views" },
+      { v: "90", l: "Engagement" },
+      { v: "160", l: "Profile visits" },
     ],
   },
   {
-    tag: "Beauty · E-commerce",
-    title: "Education-led content turned saves into repeat customers.",
-    copy: "A pillar mix of ingredient explainers, UGC and routine carousels gave the brand a reason to post daily — and gave customers a reason to come back.",
-     image: caseD2c,
-    alt: "Lumé Skincare beauty products",
+    tag: "Manba Finance",
+    title: "From Loans to Life’s Next Big Move.",
+    copy: "A storytelling-led social strategy helped Manba Finance transform financial communication into relatable conversations around mobility, ambition and everyday progress — making the brand more relevant to the people it aims to empower.",
+    image: Manba,
+    alt: "Manba Finance case study",
     metrics: [
-      { v: "12.4%", l: "Engagement rate" },
-      { v: "18k", l: "Monthly saves" },
-      { v: "2.7x", l: "Site sessions from social" },
+      { v: "37%", l: "Views growth" },
+      { v: "20%", l: "Profile visits" },
     ],
   },
   {
-    tag: "F&B · Multi-outlet",
-    title: "Local social that filled tables on weekdays, not just weekends.",
-    copy: "Neighbourhood-first content, creator seeding and a consistent posting rhythm made the café the default recommendation in its area.",
-   image: caseRealEstate,
-    alt: "Bandra Roasters café content",
+    tag: "Supersox",
+    title: "From Functional Socks to a Brand People Want to Wear.",
+    copy: "A content-first social strategy built around culture, storytelling and everyday relevance helped Supersox move beyond product-led communication — making performance socks more relevant, relatable and worth talking about.",
+    image: ss,
+    alt: "Supersox case study",
     metrics: [
-      { v: "+68%", l: "Store-visit taps" },
-      { v: "9.1k", l: "Location tags" },
-      { v: "4.9★", l: "Review average" },
+      { v: "42,992", l: "Interactions" },
+      { v: "12.5%", l: "Monthly follower growth" },
     ],
   },
 ];
@@ -120,7 +121,14 @@ export function CaseStudies() {
             </div>
           ))}
         </div>
+
+
+        
       </div>
+
+
+  
+
     </section>
   );
 }
