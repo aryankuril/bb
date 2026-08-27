@@ -146,7 +146,7 @@ useEffect(() => {
                </div>
               <Field label="Message or requirements"><textarea required name="requirements" rows={3} placeholder="Tell us what you need help with." className="min-h-28 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-accent focus:ring-accent/15 disabled:cursor-not-allowed disabled:opacity-60" disabled={loading} /></Field>
               <button type="submit" disabled={loading} className="group mt-2 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-accent-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-70">{loading ? "Sending…" : "Request my free audit"}{!loading && <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />}</button>
-              <p className="text-center text-xs text-muted-foreground">No decks, no spam. A real strategist replies within 48 hours.</p>
+              <p className="text-center text-xs text-muted-foreground">We reply within 48 working hours. Your details stay private.</p>
               {formError && <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-center text-xs text-red-700">{formError}</p>}
               {formSuccess && <p role="status" className="rounded-lg bg-accent/10 px-3 py-2 text-center text-xs text-foreground">{formSuccess}</p>}
             </form>
