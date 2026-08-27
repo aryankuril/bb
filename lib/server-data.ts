@@ -114,7 +114,8 @@ export type ServerCareer = {
   description: string;
   isImmediate: boolean;
   isFeatured: boolean;
-  postedAt?: { seconds: number };
+  postedAt?: { seconds: number; nanoseconds?: number };
+  updatedAt?: { seconds: number; nanoseconds?: number };
   tag?: string;
   details?: string;
   category: string;
@@ -156,7 +157,6 @@ export async function getCareerCategories(): Promise<ServerCareerCategory[]> {
       name: data.name ?? "",
       slug: data.slug ?? "",
       position: data.position ?? 0,
-      // Don't include createdAt unless you actually need it.
     };
   });
 }
@@ -168,6 +168,7 @@ export async function getPublishedCareers(): Promise<ServerCareer[]> {
     .map((doc) => {
       const data = doc.data();
       const postedAt = toTimestamp(data.postedAt as FirestoreTimestamp | undefined);
+      const updatedAt = toTimestamp(data.updatedAt as FirestoreTimestamp | undefined);
 
       return {
         id: doc.id,
@@ -176,7 +177,8 @@ export async function getPublishedCareers(): Promise<ServerCareer[]> {
         description: data.description ?? "",
         isImmediate: Boolean(data.isImmediate),
         isFeatured: Boolean(data.isFeatured),
-        postedAt: postedAt ? { seconds: postedAt.seconds } : undefined,
+        postedAt: postedAt ? { seconds: postedAt.seconds, nanoseconds: postedAt.nanoseconds } : undefined,
+        updatedAt: updatedAt ? { seconds: updatedAt.seconds, nanoseconds: updatedAt.nanoseconds } : undefined,
         tag: data.isImmediate ? "Immediate" : "",
         details: data.description ?? "",
         category: data.category ?? "",
@@ -188,19 +190,20 @@ export async function getPublishedCareers(): Promise<ServerCareer[]> {
     .map(({ status: _status, scheduledAt: _scheduledAt, ...career }) => career);
 
   careers.sort((a, b) => {
-    if (a.isFeatured && !b.isFeatured) return -1;
-    if (!a.isFeatured && b.isFeatured) return 1;
-    return (b.postedAt?.seconds || 0) - (a.postedAt?.seconds || 0);
+    const aSec = a.updatedAt?.seconds ?? a.postedAt?.seconds ?? 0;
+    const aNano = (a.updatedAt?.seconds !== undefined ? a.updatedAt?.nanoseconds : a.postedAt?.nanoseconds) ?? 0;
+    const aTime = aSec * 1000 + aNano / 1000000;
+
+    const bSec = b.updatedAt?.seconds ?? b.postedAt?.seconds ?? 0;
+    const bNano = (b.updatedAt?.seconds !== undefined ? b.updatedAt?.nanoseconds : b.postedAt?.nanoseconds) ?? 0;
+    const bTime = bSec * 1000 + bNano / 1000000;
+
+    return bTime - aTime;
   });
 
   return careers;
 }
 
-/**
- * Resolves a public career URL to a visible job. Older records used the
- * Firestore document id in URLs, while newer records may use a slug, so
- * support both formats without exposing drafts or scheduled jobs early.
- */
 export async function getPublishedCareerByIdentifier(
   identifier: string
 ): Promise<ServerCareer | null> {

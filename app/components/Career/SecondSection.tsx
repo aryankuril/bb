@@ -119,10 +119,30 @@ const SecondSection = ({
   initialCategories = [],
 }: SecondSectionProps) => {
 const router = useRouter();
-const [jobs, setJobs] = useState<Career[]>(initialJobs);
+const sortedInitialJobs = [...initialJobs].sort((a, b) => {
+  const getTimestampInSeconds = (time: any) => {
+    if (!time) return 0;
+    if (typeof time.toMillis === "function") return time.toMillis() / 1000;
+    if (typeof time.toDate === "function") return time.toDate().getTime() / 1000;
+    if (time.seconds !== undefined && time.seconds !== null) {
+      const ns = time.nanoseconds !== undefined && time.nanoseconds !== null ? time.nanoseconds / 1000000000 : 0;
+      return time.seconds + ns;
+    }
+    const parsed = new Date(time).getTime();
+    return isNaN(parsed) ? 0 : parsed / 1000;
+  };
+  const getEffectiveTime = (job: any) => {
+    const updatedTime = getTimestampInSeconds(job.updatedAt);
+    const postedTime = getTimestampInSeconds(job.postedAt);
+    return Math.max(updatedTime, postedTime);
+  };
+  return getEffectiveTime(b) - getEffectiveTime(a);
+});
+
+const [jobs, setJobs] = useState<Career[]>(sortedInitialJobs);
 const [categories, setCategories] = useState<CareerCategory[]>(initialCategories);
 const [activeJob, setActiveJob] = useState<Career | null>(
-  initialJobs.length > 0 ? initialJobs[0] : null
+  sortedInitialJobs.length > 0 ? sortedInitialJobs[0] : null
 );
 
   const [isFlipped, setIsFlipped] = useState(false);
@@ -322,15 +342,25 @@ const careersData: Career[] = snapshot.docs
   return false;
 });
 
-// ⭐ Featured first
+// ⭐ Sort by effective last updated timestamp
 careersData.sort((a, b) => {
-  if (a.isFeatured && !b.isFeatured) return -1;
-  if (!a.isFeatured && b.isFeatured) return 1;
-
-  // fallback: newest first
-  return (
-    (b.postedAt?.seconds || 0) - (a.postedAt?.seconds || 0)
-  );
+  const getTimestampInSeconds = (time: any) => {
+    if (!time) return 0;
+    if (typeof time.toMillis === "function") return time.toMillis() / 1000;
+    if (typeof time.toDate === "function") return time.toDate().getTime() / 1000;
+    if (time.seconds !== undefined && time.seconds !== null) {
+      const ns = time.nanoseconds !== undefined && time.nanoseconds !== null ? time.nanoseconds / 1000000000 : 0;
+      return time.seconds + ns;
+    }
+    const parsed = new Date(time).getTime();
+    return isNaN(parsed) ? 0 : parsed / 1000;
+  };
+  const getEffectiveTime = (job: any) => {
+    const updatedTime = getTimestampInSeconds(job.updatedAt);
+    const postedTime = getTimestampInSeconds(job.postedAt);
+    return Math.max(updatedTime, postedTime);
+  };
+  return getEffectiveTime(b) - getEffectiveTime(a);
 });
 
 setJobs(careersData);
