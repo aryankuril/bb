@@ -265,7 +265,7 @@ export function Hero() {
         <option value="" disabled>
           Select budget
         </option>
-        {/* <option>Under ₹50,000</option> */}
+        <option>Under ₹1 lakh</option>
         <option>₹1 lakh – ₹3 lakh</option>
         <option>₹3 lakh – ₹5 lakh</option>
         <option>₹5 lakh – ₹15 lakh</option>
