@@ -12,7 +12,9 @@ const cards = [
 ];
 
 const RubberSection = () => {
-  const [showCursor, setShowCursor] = React.useState(false);
+const [showCursor, setShowCursor] = React.useState(false);
+const [hasDragged, setHasDragged] = React.useState(false);
+const [isButtonHovered, setIsButtonHovered] = React.useState(false);
 const rawX = useMotionValue(0);
 const rawY = useMotionValue(0);
 
@@ -49,7 +51,7 @@ const cursorY = useSpring(rawY, {
 
   return (
     <div className="">
-      {showCursor && (
+ {showCursor && !isButtonHovered && (
   <motion.div
     style={{
       x: cursorX,
@@ -71,8 +73,10 @@ const cursorY = useSpring(rawY, {
 
  <section
   className="container w-full lg:h-[100vh] h-full relative cursor-pointer py-10 sm:py-15 lg:py-20 overflow-x-hidden overflow-y-hidden"
-  onMouseEnter={() => setShowCursor(true)}
-  onMouseLeave={() => setShowCursor(false)}
+  onMouseEnter={() => {
+  if (!hasDragged) setShowCursor(true);
+}}
+onMouseLeave={() => setShowCursor(false)}
   onMouseMove={(e) => {
     rawX.set(e.clientX);
 rawY.set(e.clientY);
@@ -125,8 +129,12 @@ rawY.set(e.clientY);
                 }}
                 dragElastic={0.4}
                 whileDrag={{ scale: 1.05 }}
-                dragTransition={{ bounceStiffness: 200, bounceDamping: 15, power: 0.2 }}
-                onDragEnd={resetPosition}
+dragTransition={{ bounceStiffness: 200, bounceDamping: 15, power: 0.2 }}
+onDragStart={() => {
+  setHasDragged(true);
+  setShowCursor(false);
+}}
+onDragEnd={resetPosition}
                 className="w-full h-full rounded-xl"
               >
               <div className="relative w-full h-full rounded-xl overflow-hidden">
@@ -146,9 +154,17 @@ rawY.set(e.clientY);
         })}
       </motion.div>
 
-      <div className="flex items-center justify-center py-10 z-40">
-        <Button href="/join-our-team" text="Join Our Team" className="text-black font-semibold" />
-      </div>
+      <div
+  className="flex items-center justify-center py-10 z-40"
+  onMouseEnter={() => setIsButtonHovered(true)}
+  onMouseLeave={() => setIsButtonHovered(false)}
+>
+  <Button
+    href="/join-our-team"
+    text="Join Our Team"
+    className="text-black font-semibold"
+  />
+</div>
     </section>
     </div>
   );

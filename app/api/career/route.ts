@@ -243,6 +243,15 @@ export async function POST(request: NextRequest) {
       </a>
     </td>
   </tr> 
+   <tr>
+    <td style="padding:4px 0;">
+      <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
+      <a href="https://www.instagram.com/bombay_blokes" 
+         style="color:#F7B21A !important; text-decoration:underline; display:inline-block; font-weight:bold;">
+        Follow us on Instagram
+      </a>
+    </td>
+  </tr> 
 </table>
 
                     </td>
@@ -264,7 +273,7 @@ export async function POST(request: NextRequest) {
                           <td style="padding:6px 0;">• &nbsp; Our team will review your profile carefully.</td>
                         </tr>
                         <tr>
-                          <td style="padding:6px 0;">• &nbsp; Shortlisted candidates will be contacted within 3–5 working days.</td>
+                          <td style="padding:6px 0;">• &nbsp; Shortlisted candidates will be contacted within 5-7 working days.</td>
                         </tr>
                         <tr>
                           <td style="padding:6px 0;">• &nbsp; You may be asked for an interview task or a quick video call.</td>
@@ -278,7 +287,7 @@ export async function POST(request: NextRequest) {
                     <td style="padding-top:14px; padding-bottom:14px;">
                       <div style="border-top:1px dashed #F2CFA0; padding-top:12px;"></div>
 
-                      <p style="margin:12px 0 6px 0; font-size:14px; color:#222222;  text-transform:capitalize;"><strong>If you have any urgent updates regarding your application, feel free to <br/> Reach us at:</strong></p>
+                      <p style="margin:12px 0 6px 0; font-size:14px; color:#222222;  text-transform:capitalize;"><strong>Need to reach us urgently about your application? <br/> Get in touch here:</strong></p>
 
                       <table cellpadding="0" cellspacing="0" border="0" style="font-size:14px; color:#444444;">
                         <tr>
@@ -286,7 +295,7 @@ export async function POST(request: NextRequest) {
                             <span style="font-size:16px;">📞</span>
                           </td>
                           <td style="padding-left:8px; vertical-align:middle;">
-                            <a href="tel:\${phone || '+919819167856'}" style="color:#222222; text-decoration:none;">+91 981-916-7856</a>
+                            <a href="tel:\${phone || '+917738551454'}" style="color:#222222; text-decoration:none;">+91 7738551454</a>
                           </td>
                         </tr>
                         <tr>
@@ -294,7 +303,7 @@ export async function POST(request: NextRequest) {
                             <span style="font-size:16px;">✉️</span>
                           </td>
                           <td style="padding-left:8px; vertical-align:middle;">
-                            <a href="mailto:\${email || 'hello@bombayblokes.com'}" style="color:#222222; text-decoration:none;">hello@bombayblokes.com</a>
+                            <a href="mailto:\${email || 'shweta@bombayblokes.com'}" style="color:#222222; text-decoration:none;">shweta@bombayblokes.com</a>
                           </td>
                         </tr>
                       </table>
