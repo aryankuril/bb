@@ -14,6 +14,7 @@ type EnquiryPayload = {
   date?: string;
   time?: string;
   source?: string;
+  service?: string;
 };
 
 function buildEmailBody(payload: EnquiryPayload) {
@@ -164,20 +165,29 @@ export async function POST(req: Request) {
     }
 
     const now = new Date();
-    const payload: EnquiryPayload = {
-      name: body.name.trim(),
-      phone: body.phone.trim(),
-      email: body.email.trim(),
-      brand: body.brand?.trim() || "",
-      website: body.website?.trim() || "",
-      instagram: body.instagram?.trim() || "",
-      budget: body.budget?.trim() || "",
-      challenge: body.challenge?.trim() || "",
-      goals: body.goals?.trim() || "",
-      date: body.date || now.toLocaleDateString("en-IN", { dateStyle: "medium" }),
-      time: body.time || now.toLocaleTimeString("en-IN", { timeStyle: "short" }),
-      source: body.source || "ads-landing",
-    };
+
+const service =
+  body.source?.toLowerCase().includes("social")
+    ? "social media"
+    : body.source?.toLowerCase().includes("performance")
+      ? "performance marketing"
+      : "";
+
+const payload: EnquiryPayload = {
+  name: body.name.trim(),
+  phone: body.phone.trim(),
+  email: body.email.trim(),
+  brand: body.brand?.trim() || "",
+  website: body.website?.trim() || "",
+  instagram: body.instagram?.trim() || "",
+  budget: body.budget?.trim() || "",
+  challenge: body.challenge?.trim() || "",
+  goals: body.goals?.trim() || "",
+  date: body.date || now.toLocaleDateString("en-IN", { dateStyle: "medium" }),
+  time: body.time || now.toLocaleTimeString("en-IN", { timeStyle: "short" }),
+  source: body.source || "ads-landing",
+  service,
+};
 
     // Save enquiry to Google Sheet
 const googleSheetWebhook = process.env.GOOGLE_SHEET_WEBHOOK_URL;
@@ -208,7 +218,7 @@ if (googleSheetWebhook) {
 
     await sendEmail({
       to: payload.email as string,
-      subject: "Your free ads audit request is received | Bombay Blokes",
+    subject: `Your free ${payload.service} audit request is received | Bombay Blokes`,
       html: buildUserEmail(payload),
       fromName: "Bombay Blokes",
       fromAddress: "hello@bombayblokes.com",
@@ -217,7 +227,7 @@ if (googleSheetWebhook) {
     await sendEmail({
       //  to: "aryankuril09@gmail.com",
       to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com" ,"aryankuril09@gmail.com"],
-      subject: `New Ads Audit Request - ${payload.name}`,
+      subject: `New Lead From - ${payload.name} for ${payload.service}`,
       html: buildAdminEmail(payload),
       fromName: "Ads Audit Form",
       fromAddress: "hello@bombayblokes.com",

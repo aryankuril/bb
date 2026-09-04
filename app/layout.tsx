@@ -12,8 +12,8 @@ const miso = localFont({
 });
 
 import type { Metadata } from "next";
+import SmoothScroll from "./components/SmoothScroll";
 import Script from "next/script";
-
 
 export const metadata: Metadata = {
   title: "Mumbai’s leading Digital Marketing Agency | Bombay Blokes",
@@ -81,7 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   />
 </head>
       <body>
-       <noscript>
+        <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KXDJ77M"
             height="0"
@@ -92,10 +92,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
         </noscript>
+        <SmoothScroll>
           <PageLoader>
             {children}
           </PageLoader>
-
+        </SmoothScroll>
 
         <ClientProviders />
 

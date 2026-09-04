@@ -6,7 +6,7 @@ export default function Mobilecta() {
   const [showCTA, setShowCTA] = useState(false);
 
   useEffect(() => {
-    const section = document.getElementById("section-3");
+    const section = document.getElementById("transformation");
 
     if (!section) return;
 

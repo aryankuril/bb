@@ -15,7 +15,6 @@ import Footer from "./components/Footer";
 import Taxi from "./components/Taxi";
 import MobilePopup from "./components/MobilePopup";
 // import ClientScripts from "./components/ClientScripts";
-import SmoothScroll from "./components/SmoothScroll";  
 
 import type { Metadata } from "next";
 
@@ -43,7 +42,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div>
-       <SmoothScroll>
       {/* <ClientScripts/> */}
       <Taxi/>
       {/* <MobilePopup/> */}
@@ -60,7 +58,6 @@ export default function Home() {
       {/* <Testimonials/> */}
       <SeventhSection/>
       <Footer />
-      </SmoothScroll>
     </div>
     
   );

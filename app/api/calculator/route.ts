@@ -188,11 +188,15 @@ total: safeTotal,
     /* =====================================================
        FORMAT SERVICE NAME
     ===================================================== */
-    const serviceNameTitle = serviceCalculator
-      .trim()
-      .split(" ")
-      .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ");
+   const serviceNameTitle = serviceCalculator
+  .trim()
+  .replace(/[-_]+/g, " ")
+  .replace(/\bservices?\b/gi, "")
+  .replace(/\s+/g, " ")
+  .trim()
+  .split(" ")
+  .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+  .join(" ");
 
     /* =====================================================
        ADMIN DRAFT EMAIL (NO CONTACT DETAILS)
@@ -613,7 +617,7 @@ ${(safeTotal > 0 || safeQuote.length > 0) ? `
           //  to: "aryankuril09@gmail.com",
           
          to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com"],
-        subject: `New Lead From - ${name}`,
+        subject: `New Quotation From - ${name} for ${serviceNameTitle}`,
         html: `
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Phone:</strong> ${phone}</p>
@@ -626,7 +630,7 @@ ${(safeTotal > 0 || safeQuote.length > 0) ? `
           )}</p>
           ${quotationTableHTML(safeQuote, safeTotal)}
         `,
-        fromName: "Form Submission",
+        fromName: "Calculator Form Submission",
         fromAddress: "hello@bombayblokes.com",
         replyTo: email,
       });
