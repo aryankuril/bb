@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { ArrowLeft, ArrowRight, Instagram, Star , ChevronDown } from "lucide-react";
 import heroShoot from "../../assets/hero-shoot.jpg";
@@ -21,6 +22,7 @@ export function Hero() {
   const [formError, setFormError] = useState<string | null>(null);
   const [formSuccess, setFormSuccess] = useState<string | null>(null);
  const [testimonialIndex, setTestimonialIndex] = useState(0);
+ const router = useRouter();
 const testimonial = testimonials[testimonialIndex]!;
 
 useEffect(() => {
@@ -72,7 +74,14 @@ useEffect(() => {
       form.reset();
       setFormSuccess("Thanks your audit request is in. A strategist will be in touch within one business day.");
       toast.success("Audit request received", { description: "A strategist will review your profiles and reply within one business day." });
-    } catch (error) {
+    form.reset();
+
+toast.success("Audit request received", {
+  description: "A strategist will review your profiles and reply within one business day.",
+});
+
+router.push("/thank-you"); 
+} catch (error) {
       const message = error instanceof Error ? error.message : "Unable to send your audit request. Please try again.";
       setFormError(message);
       toast.error("Could not send your request", { description: message });
