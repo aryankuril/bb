@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { FormContent, FormFieldKey } from "../types";
 import Button from "./Button";
+import { getUtmParams } from "@/lib/utm";
 
 type FormValues = Record<FormFieldKey, string>;
 
@@ -89,6 +90,7 @@ export default function LeadForm({
           date: now.toLocaleDateString("en-IN", { dateStyle: "medium" }),
           time: now.toLocaleTimeString("en-IN", { timeStyle: "short" }),
           source: variant,
+          ...getUtmParams(),
         }),
       });
 

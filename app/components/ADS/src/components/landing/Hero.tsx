@@ -5,6 +5,7 @@ import { ArrowRight, Check, Star, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
 import heroDashboard from "@/app/components/ADS/src/assets/hero-dashboard.jpg";
 import { ChevronDown } from "lucide-react";
+import { getUtmParams } from "@/lib/utm";
 
 
 export function Hero() {
@@ -29,6 +30,7 @@ export function Hero() {
           challenge: formData.get("challenge"),
           goals: formData.get("goals"),
           source: "paid-marketing-hero",
+          ...getUtmParams(),
         }),
       });
 
@@ -207,6 +209,11 @@ export function Hero() {
                 {/* <p className="text-muted-foreground mt-1.5 subtitle">
                   One page. No sales script. Real numbers.
                 </p> */}
+
+
+
+
+                
               </div>
               <span className="shrink-0 rounded-full bg-secondary px-3 py-1 text-[0.65rem] font-bold tracking-wide text-secondary-foreground uppercase">
                 Free

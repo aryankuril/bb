@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { ArrowLeft, ArrowRight, Instagram, Star , ChevronDown } from "lucide-react";
 import heroShoot from "../../assets/hero-shoot.jpg";
+import { getUtmParams } from "@/lib/utm";
 
 const services = ["Social media management", "Content & creative production", "Influencer & UGC", "Brand strategy", "Paid social (supporting)"];
 const testimonials = [
@@ -63,7 +64,7 @@ useEffect(() => {
       const response = await fetch("/api/ads-enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, website, instagram, challenge: service, goals: requirements, source: "social-media-hero" }),
+        body: JSON.stringify({ name, email, phone, website, instagram, challenge: service, goals: requirements, source: "social-media-hero", ...getUtmParams() }),
       });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.error || "Unable to send your audit request. Please try again.");
