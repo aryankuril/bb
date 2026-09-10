@@ -143,6 +143,19 @@ function buildUserEmail(payload: EnquiryPayload) {
   `;
 }
 
+function formatTitleCase(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function capitalizeFirstLetter(value: string) {
+  const trimmed = value.trim();
+  return trimmed
+    ? trimmed.charAt(0).toUpperCase() + trimmed.slice(1)
+    : trimmed;
+}
 function buildAdminEmail(payload: EnquiryPayload) {
   const isSocialMediaEnquiry = payload.source === "social-media-hero";
   const profile = escapeHtml(payload.website || payload.instagram || "-");
@@ -157,7 +170,7 @@ function buildAdminEmail(payload: EnquiryPayload) {
 
   return `
     <h3>New Ads Audit Request</h3>
-    <p><strong>Name:</strong> ${escapeHtml(payload.name || "-")}</p>
+ <p><strong>Name:</strong> ${formatTitleCase(payload.name || "-")}</p>
     <p><strong>Phone:</strong> ${escapeHtml(payload.phone || "-")}</p>
     <p><strong>Email:</strong> ${escapeHtml(payload.email || "-")}</p>
     ${isSocialMediaEnquiry
@@ -165,10 +178,10 @@ function buildAdminEmail(payload: EnquiryPayload) {
       : `<p><strong>Brand / website / Instagram:</strong> ${escapeHtml(payload.brand || payload.website || payload.instagram || "-")}</p>`}
     <p><strong>Monthly ad budget:</strong> ${escapeHtml(payload.budget || "-")}</p>
     <p><strong>Biggest marketing challenge:</strong> ${escapeHtml(payload.challenge || "-")}</p>
-    <p><strong>Growth goals:</strong> ${escapeHtml(payload.goals || "-")}</p>
+    <p><strong>Growth goals:</strong> ${capitalizeFirstLetter(payload.goals || "-")}</p>
     <p><strong>Date:</strong> ${escapeHtml(payload.date || "-")}</p>
     <p><strong>Source:</strong> ${escapeHtml(payload.source || "ads-landing")}</p>
-    ${utmLines}
+
   `;
 }
 
@@ -191,11 +204,12 @@ export async function POST(req: Request) {
     const now = new Date();
 
 const service =
-  body.source?.toLowerCase().includes("social")
+  body.service?.trim() ||
+  (body.source?.toLowerCase().includes("social")
     ? "social media"
     : body.source?.toLowerCase().includes("performance")
       ? "performance marketing"
-      : "";
+      : "");
 
   const utm_source = body.utm_source?.trim() || body.utmSource?.trim() || "";
   const utm_medium = body.utm_medium?.trim() || body.utmMedium?.trim() || "";
@@ -260,7 +274,7 @@ if (googleSheetWebhook) {
 
     await sendEmail({
       to: payload.email as string,
-    subject: `Your free ${payload.service} audit request is received | Bombay Blokes`,
+    subject: `Request Received for a Free ${payload.service} | Bombay Blokes`,
       html: buildUserEmail(payload),
       fromName: "Bombay Blokes",
       fromAddress: "hello@bombayblokes.com",
@@ -269,9 +283,9 @@ if (googleSheetWebhook) {
     await sendEmail({
       //  to: "aryankuril09@gmail.com",
       to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com" ,"aryankuril09@gmail.com"],
-      subject: `New Lead From - ${payload.name} for ${payload.service}`,
+     subject: `New Lead From - ${formatTitleCase(payload.name || "-")} for ${formatTitleCase(payload.service || "-")}`,
       html: buildAdminEmail(payload),
-      fromName: "Ads Audit Form",
+      fromName: "BB Forms",
       fromAddress: "hello@bombayblokes.com",
       replyTo: payload.email,
     });

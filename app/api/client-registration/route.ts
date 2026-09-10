@@ -423,7 +423,7 @@ const htmlTemplate = `
       to: ["hello@bombayblokes.com", "bdm@bombayblokes.com" , "siddique@bombayblokes.com","accounts@bombayblokes.com" ],
       subject: `New Client Registration - ${companyName}`,
       html: teamNotification,
-      fromName: "Website Client Registration",
+      fromName: "BB Forms",
       fromAddress: "hello@bombayblokes.com",
       replyTo: email,
     });

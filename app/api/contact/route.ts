@@ -28,6 +28,17 @@ export async function POST(request: NextRequest) {
       createdAt: FieldValue.serverTimestamp(),
     });
 
+    const formatTitleCase = (value: string) =>
+  value
+    .trim()
+    .toLowerCase()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
+const capitalizeFirstLetter = (value: string) =>
+  value
+    ? value.trim().charAt(0).toUpperCase() + value.trim().slice(1)
+    : value;
+
     // ============================
     // FORMAT SERVICES
     // ============================
@@ -388,21 +399,21 @@ export async function POST(request: NextRequest) {
     // SEND EMAIL TO ADMIN TEAM
     // ============================
     const teamNotification = `
-      <h3>New Contact Form Submission</h3>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Company:</strong> ${company || "-"}</p>
-      <p><strong>Services:</strong> ${services?.join(", ") || "None"}</p>
-      <p><strong>Message:</strong> ${message || "No message"}</p>
-    `;
+  <h3>New Contact Form Submission</h3>
+  <p><strong>Name:</strong> ${name ? formatTitleCase(name) : name}</p>
+  <p><strong>Email:</strong> ${email}</p>
+  <p><strong>Phone:</strong> ${phone}</p>
+  <p><strong>Company:</strong> ${company ? formatTitleCase(company) : "-"}</p>
+  <p><strong>Services:</strong> ${services?.join(", ") || "None"}</p>
+  <p><strong>Message:</strong> ${message ? capitalizeFirstLetter(message) : "No message"}</p>
+`;
 
     await sendEmail({
-      //  to: "aryankuril09@gmail.com",
-      to: ["hello@bombayblokes.com", "bdm@bombayblokes.com" , "siddique@bombayblokes.com"],
-      subject: `New Contact Form Submission - ${name}`,
+       to: "aryankuril09@gmail.com",
+      // to: ["hello@bombayblokes.com", "bdm@bombayblokes.com" , "siddique@bombayblokes.com"],
+      subject: `Contact Form Submitted by ${name ? formatTitleCase(name) : name}`,
       html: teamNotification,
-      fromName: "Website Contact Form",
+      fromName: "BB Forms",
       fromAddress: "hello@bombayblokes.com",
       replyTo: email,
     });

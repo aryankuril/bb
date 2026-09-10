@@ -19,6 +19,12 @@ export async function POST(request: NextRequest) {
       availability,
     } = body;
 
+    const formatName = (name: string) =>
+  name
+    .trim()
+    .toLowerCase()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
     if (!ticketName || !email || !phone) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -393,12 +399,12 @@ export async function POST(request: NextRequest) {
     const teamNotification = `
       <h3>New Career Application</h3>
       <p><b>Position:</b> ${jobTitle || "Not specified"}</p>
-      <p><b>Name:</b> ${ticketName}</p>
-      <p><b>Email:</b> ${email}</p>
-      <p><b>Phone:</b> ${phone}</p>
-      <p><b>Portfolio:</b> ${portfolio || "Not provided"}</p>
-      <p><b>Availability:</b> ${availability || "Not specified"}</p>
-      <p><b>Message:</b> ${message || "No message"}</p>
+   <p><b>Name:</b> ${ticketName ? formatName(ticketName) : ticketName}</p>
+<p><b>Email:</b> ${email}</p>
+<p><b>Phone:</b> ${phone}</p>
+<p><b>Portfolio:</b> ${portfolio || "Not provided"}</p>
+<p><b>Availability:</b> ${availability ? availability.charAt(0).toUpperCase() + availability.slice(1) : availability}</p>
+<p><b>Message:</b> ${message ? message.charAt(0).toUpperCase() + message.slice(1) : message}</p>
       ${
         cvUrl
           ? `<p><b>CV:</b> <a href="${cvUrl}" target="_blank">${cvFilename}</a></p>`
@@ -409,9 +415,9 @@ export async function POST(request: NextRequest) {
     await sendEmail({
       // to: "aryankuril09@gmail.com",
       to: "careers@bombayblokes.com",
-      subject: `New Application - ${ticketName} for ${jobTitle}`,
+subject: `Job Application - ${ticketName ? formatName(ticketName) : ticketName} for ${jobTitle}`,
       html: teamNotification,
-      fromName: "Careers Form",
+      fromName: "BB Forms",
       fromAddress: "careers@bombayblokes.com",
       replyTo: email,
     });

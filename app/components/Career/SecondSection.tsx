@@ -1296,7 +1296,7 @@ const groupedCareers = categories.map((cat) => ({
         <h4 className="text-left text-lg white-text mb-5">3. Availability</h4>
 
           <div className="flex w-full gap-3 mb-10">
-            {["immediate", "0-2"].map((opt) => (
+            {["immediate", "0-2 Months"].map((opt) => (
               <button
                 key={opt}
                 type="button"

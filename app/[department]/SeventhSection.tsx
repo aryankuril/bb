@@ -34,13 +34,11 @@ const pageContent = {
   },
 };
 const SeventhSection = () => {
-const pathname = usePathname();
+  const pathname = usePathname();
 
-const pageData =
-  pageContent[pathname as keyof typeof pageContent] ??
-  pageContent["/website-development"];
-
-
+  const pageData =
+    pageContent[pathname as keyof typeof pageContent] ??
+    pageContent["/website-development"];
 
   return (
     <section className="container py-10 sm:py-15 lg:py-20">
@@ -49,61 +47,55 @@ const pageData =
           <div className="text-center space-y-6 sm:space-y-8">
             {/* Image */}
             <Image
- width={1000}
-        height={1000}
-            alt=""
+              width={1000}
+              height={1000}
+              alt=""
               src="/images/BB-web-chai-2.gif"
               className="w-[180px] h-auto sm:w-[240px] sm:h-[160px] md:w-[250px] md:h-auto mx-auto mb-4 sm:mb-8"
             />
 
             {/* Animated Heading */}
             <h2
-  className="
+              className="
     text-center
     flex flex-col sm:flex-row
     justify-center items-center
     gap-2 sm:gap-3
   "
->
-  {pageData.heading.map((word) => (
-    <span key={word} className="animated-word">
-      {word}
-    </span>
-  ))}
-</h2>
+            >
+              {pageData.heading.map((word) => (
+                <span key={word} className="animated-word">
+                  {word}
+                </span>
+              ))}
+            </h2>
 
             {/* Contact Info */}
-       <div className="flex flex-col items-center justify-center gap-4 body3 white-text px-4 lg:p-0">
+            <div className="flex flex-col items-center justify-center gap-4 body3 white-text px-4 lg:p-0">
+              {/* Projects */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:gap-1 text-center sm:text-left">
+                <span>For Projects and Gossip :</span>
 
-  {/* Projects */}
-  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-1 text-center sm:text-left">
-    <span>For Projects and Gossip :</span>
+                <a
+                  href="mailto:hello@bombayblokes.com"
+                  className="text-highlight sm:ml-1"
+                >
+                  hello@bombayblokes.com
+                </a>
 
-    <a
-      href="mailto:hello@bombayblokes.com"
-      className="text-highlight sm:ml-1"
-    >
-      hello@bombayblokes.com
-    </a>
+                <span className="hidden sm:inline"> | </span>
 
-    <span className="hidden sm:inline"> | </span>
-
-    <a
-      href="tel:+919987558189"
-      className="text-highlight"
-    >
-      9987558189
-    </a>
-  </div>
-</div>
-
+                <a href="tel:+919833037816" className="text-highlight">
+                  9833037816
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Yellow Stripe */}
         {/* <div className="absolute right-0 top-0 w-3 sm:w-5 md:w-7 h-full bg-[#FAB31E]"></div> */}
         <div className="absolute right-0 top-0 h-full w-3 sm:w-5 md:w-5  candy-border"></div>
-
       </div>
     </section>
   );
