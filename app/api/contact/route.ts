@@ -29,15 +29,15 @@ export async function POST(request: NextRequest) {
     });
 
     const formatTitleCase = (value: string) =>
-  value
-    .trim()
-    .toLowerCase()
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+      value
+        .trim()
+        .toLowerCase()
+        .replace(/\b\w/g, (char) => char.toUpperCase());
 
-const capitalizeFirstLetter = (value: string) =>
-  value
-    ? value.trim().charAt(0).toUpperCase() + value.trim().slice(1)
-    : value;
+    const capitalizeFirstLetter = (value: string) =>
+      value
+        ? value.trim().charAt(0).toUpperCase() + value.trim().slice(1)
+        : value;
 
     // ============================
     // FORMAT SERVICES
@@ -47,8 +47,8 @@ const capitalizeFirstLetter = (value: string) =>
         ? services.length === 1
           ? services[0]
           : services.slice(0, -1).join(", ") +
-            " & " +
-            services[services.length - 1]
+          " & " +
+          services[services.length - 1]
         : "None";
 
     // ============================
@@ -180,13 +180,13 @@ const capitalizeFirstLetter = (value: string) =>
                             <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
                             <strong>Name:</strong>
                           <span style="color:#555555; margin-left:6px; text-transform: capitalize;">
-  ${name 
-    ? name
-        .toLowerCase()
-        .split(" ")
-        .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ")
-    : ""}
+  ${name
+        ? name
+          .toLowerCase()
+          .split(" ")
+          .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")
+        : ""}
 </span>
 
 
@@ -223,13 +223,12 @@ const capitalizeFirstLetter = (value: string) =>
                              <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
                             <strong>Message:</strong>
                           <span style="color:#555555; margin-left:6px; text-transform: capitalize;">
-  ${
-    (message || "No message")
-      .toLowerCase()
-      .split(" ")
-      .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ")
-  }
+  ${(message || "No message")
+        .toLowerCase()
+        .split(" ")
+        .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")
+      }
 </span>
 
 
@@ -313,7 +312,7 @@ const capitalizeFirstLetter = (value: string) =>
                             <span style="font-size:16px;">📞</span>
                           </td>
                           <td style="padding-left:8px; vertical-align:middle;">
-                            <a href="tel:\${phone || '+919819167856'}" style="color:#222222; text-decoration:none;">+91 981-916-7856</a>
+                            <a href="tel:\${phone || '+919833037816'}" style="color:#222222; text-decoration:none;">+91 9833037816</a>
                           </td>
                         </tr>
                         <tr>
@@ -409,7 +408,7 @@ const capitalizeFirstLetter = (value: string) =>
 `;
 
     await sendEmail({
-       to: "aryankuril09@gmail.com",
+      to: "aryankuril09@gmail.com",
       // to: ["hello@bombayblokes.com", "bdm@bombayblokes.com" , "siddique@bombayblokes.com"],
       subject: `Contact Form Submitted by ${name ? formatTitleCase(name) : name}`,
       html: teamNotification,

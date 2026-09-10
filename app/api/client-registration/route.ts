@@ -34,25 +34,25 @@ export async function POST(request: NextRequest) {
     }
 
     const agreementTimestampIST = agreementTimestamp
-  ? new Intl.DateTimeFormat("en-IN", {
-      timeZone: "Asia/Kolkata",
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true,
-      timeZoneName: "short",
-    }).format(new Date(agreementTimestamp))
-  : "N/A";
+      ? new Intl.DateTimeFormat("en-IN", {
+        timeZone: "Asia/Kolkata",
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+        timeZoneName: "short",
+      }).format(new Date(agreementTimestamp))
+      : "N/A";
 
 
-        const formattedServices = services && services.length
-  ? services.length === 1
-    ? services[0]
-    : services.slice(0, -1).join(", ") + " & " + services[services.length - 1]
-  : "None";
+    const formattedServices = services && services.length
+      ? services.length === 1
+        ? services[0]
+        : services.slice(0, -1).join(", ") + " & " + services[services.length - 1]
+      : "None";
 
     // 🔥 SAVE TO FIRESTORE
     await adminDB.collection("clientApplications").add({
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
       createdAt: FieldValue.serverTimestamp(),
     });
 
-const htmlTemplate = `
+    const htmlTemplate = `
 <!DOCTYPE html>
 <html>
   <head>
@@ -325,7 +325,7 @@ const htmlTemplate = `
                             <span style="font-size:16px;">📞</span>
                           </td>
                           <td style="padding-left:8px; vertical-align:middle;">
-                            <a href="tel:\${phone || '+919819167856'}" style="color:#222222; text-decoration:none;">+91 981-916-7856</a>
+                            <a href="tel:\${phone || '+919833037816'}" style="color:#222222; text-decoration:none;">+91 9833037816</a>
                           </td>
                         </tr>
                         <tr>
@@ -420,7 +420,7 @@ const htmlTemplate = `
 
     await sendEmail({
       // to: "aryankuril09@gmail.com",
-      to: ["hello@bombayblokes.com", "bdm@bombayblokes.com" , "siddique@bombayblokes.com","accounts@bombayblokes.com" ],
+      to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com", "accounts@bombayblokes.com"],
       subject: `New Client Registration - ${companyName}`,
       html: teamNotification,
       fromName: "BB Forms",

@@ -57,15 +57,15 @@ const customFieldsHTML = (fields: SubmittedCustomField[]) => {
     <div style="margin-top:16px;">
       <h3>Additional Details</h3>
       ${fields
-        .map(
-          (field) => `
+      .map(
+        (field) => `
             <p>
               <strong>${escapeHTML(field.label)}:</strong>
               ${escapeHTML(field.value)}
             </p>
           `
-        )
-        .join("")}
+      )
+      .join("")}
     </div>
   `;
 };
@@ -76,21 +76,21 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-   const {
-  name,
-  phone,
-  email,
-  message,
-  quote,
-  total,
-  estimateId,
-  serviceCalculator,
-  finalPrice,
-  customFields,
-} = body;
+    const {
+      name,
+      phone,
+      email,
+      message,
+      quote,
+      total,
+      estimateId,
+      serviceCalculator,
+      finalPrice,
+      customFields,
+    } = body;
 
-const normalizedCustomFields = normalizeCustomFields(customFields);
-const additionalDetailsHTML = customFieldsHTML(normalizedCustomFields);
+    const normalizedCustomFields = normalizeCustomFields(customFields);
+    const additionalDetailsHTML = customFieldsHTML(normalizedCustomFields);
 
     /* =====================================================
        DETECT FINAL SUBMIT
@@ -107,19 +107,19 @@ const additionalDetailsHTML = customFieldsHTML(normalizedCustomFields);
        BASIC VALIDATION (ALLOW DRAFT)
     ===================================================== */
     const safeQuote = Array.isArray(quote) ? quote : [];
-const safeTotal = typeof total === "number" ? total : 0;
+    const safeTotal = typeof total === "number" ? total : 0;
 
-if (!serviceCalculator) {
-  return NextResponse.json(
-    {
-      success: false,
-      message: "Service calculator is required",
-    },
-    {
-      status: 400,
+    if (!serviceCalculator) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Service calculator is required",
+        },
+        {
+          status: 400,
+        }
+      );
     }
-  );
-}
 
     if (isFinalSubmit && !email) {
       return NextResponse.json(
@@ -142,7 +142,7 @@ if (!serviceCalculator) {
         email: email || "N/A",
         message: message || "N/A",
         quote: safeQuote,
-total: safeTotal,
+        total: safeTotal,
         finalPrice,
         serviceCalculator,
         draftEmailSent: false,
@@ -161,7 +161,7 @@ total: safeTotal,
           email: email || "N/A",
           message: message || "N/A",
           quote: safeQuote,
-total: safeTotal,
+          total: safeTotal,
           finalPrice,
           serviceCalculator,
           draftEmailSent: false,
@@ -176,7 +176,7 @@ total: safeTotal,
           email: email || "N/A",
           message: message || "N/A",
           quote: safeQuote,
-total: safeTotal,
+          total: safeTotal,
           finalPrice,
           serviceCalculator,
           updatedAt: new Date(),
@@ -186,28 +186,28 @@ total: safeTotal,
     }
 
     const formatTitleCase = (value: string) =>
-  value
-    .trim()
-    .toLowerCase()
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+      value
+        .trim()
+        .toLowerCase()
+        .replace(/\b\w/g, (char) => char.toUpperCase());
 
     /* =====================================================
        FORMAT SERVICE NAME
     ===================================================== */
-   const serviceNameTitle = serviceCalculator
-  .trim()
-  .replace(/[-_]+/g, " ")
-  .replace(/\bservices?\b/gi, "")
-  .replace(/\s+/g, " ")
-  .trim()
-  .split(" ")
-  .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
-  .join(" ");
+    const serviceNameTitle = serviceCalculator
+      .trim()
+      .replace(/[-_]+/g, " ")
+      .replace(/\bservices?\b/gi, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .split(" ")
+      .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(" ");
 
     /* =====================================================
        ADMIN DRAFT EMAIL (NO CONTACT DETAILS)
     ===================================================== */
-   
+
 
     /* =====================================================
        USER EMAIL (FINAL SUBMIT ONLY)
@@ -365,8 +365,8 @@ total: safeTotal,
 
 
 ${normalizedCustomFields
-  .map(
-    (field) => `
+            .map(
+              (field) => `
       <tr>
         <td style="padding:6px 0;">
           <span style="display:inline-block; width:4px; height:4px; background:#000; border-radius:50%; margin-right:10px;"></span>
@@ -375,8 +375,8 @@ ${normalizedCustomFields
         </td>
       </tr>
     `
-  )
-  .join("")}
+            )
+            .join("")}
 
 </table>
 
@@ -404,20 +404,20 @@ ${(safeTotal > 0 || safeQuote.length > 0) ? `
                       <table width="100%" style="font-size:14px;">
   <tbody>
     ${safeQuote
-      .map((item: { type: string; value: string; price: any; }, index: number) => {
-        const isLast = index === safeQuote.length - 1;
+              .map((item: { type: string; value: string; price: any; }, index: number) => {
+                const isLast = index === safeQuote.length - 1;
 
-        return `
+                return `
           <tr>
            <td style="padding:8px; ${!isLast ? "border-bottom:1px solid #eee;" : ""}">
   ${item.type
-    .split(" ")
-    .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ")} - 
+                    .split(" ")
+                    .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+                    .join(" ")} - 
   ${item.value
-    .split(" ")
-    .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ")}
+                    .split(" ")
+                    .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+                    .join(" ")}
 </td>
 
 
@@ -426,8 +426,8 @@ ${(safeTotal > 0 || safeQuote.length > 0) ? `
             </td>
           </tr>
         `;
-      })
-      .join("")}
+              })
+              .join("")}
   </tbody>
 </table>
 
@@ -457,8 +457,8 @@ ${(safeTotal > 0 || safeQuote.length > 0) ? `
   <tr>
     <td style="padding:6px 0;">
       <td style="padding:8px; text-align:left; font-weight:bold; font-size:20px;">₹${Number(safeTotal).toLocaleString(
-              "en-IN"
-            )}</td>
+                "en-IN"
+              )}</td>
     </td>
   </tr>
 
@@ -549,7 +549,7 @@ ${(safeTotal > 0 || safeQuote.length > 0) ? `
                             <span style="font-size:16px;">📞</span>
                           </td>
                           <td style="padding-left:8px; vertical-align:middle;">
-                            <a href="tel:\${phone || '+919819167856'}" style="color:#222222; text-decoration:none;">+91 981-916-7856</a>
+                            <a href="tel:\${phone || '+919833037816'}" style="color:#222222; text-decoration:none;">+91 9833037816</a>
                           </td>
                         </tr>
                         <tr>
@@ -620,8 +620,8 @@ ${(safeTotal > 0 || safeQuote.length > 0) ? `
     ===================================================== */
     if (isFinalSubmit) {
       await sendEmail({
-          //  to: "aryankuril09@gmail.com",
-           to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com"],
+        //  to: "aryankuril09@gmail.com",
+        to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com"],
         subject: `Quote Generated by ${formatTitleCase(name)} for ${serviceNameTitle}`,
         html: `
           <p><strong>Name:</strong> ${formatTitleCase(name)}</p>
@@ -631,8 +631,8 @@ ${(safeTotal > 0 || safeQuote.length > 0) ? `
           <p><strong>Service:</strong> ${serviceNameTitle}</p>
           ${additionalDetailsHTML}
           <p><strong>Final Price:</strong> ₹${Number(finalPrice).toLocaleString(
-            "en-IN"
-          )}</p>
+          "en-IN"
+        )}</p>
           ${quotationTableHTML(safeQuote, safeTotal)}
         `,
         fromName: "BB Forms",

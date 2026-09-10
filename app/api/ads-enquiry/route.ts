@@ -65,7 +65,7 @@ function escapeHtml(value: string) {
 }
 
 function buildUserEmail(payload: EnquiryPayload) {
-  const name = escapeHtml(payload.name || "there");
+  const name = escapeHtml(formatTitleCase(payload.name || "there"));
   const brand = escapeHtml(payload.brand || payload.website || payload.instagram || "-");
 
   return `
@@ -76,13 +76,25 @@ function buildUserEmail(payload: EnquiryPayload) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bombay Blokes - Ads Audit Request Received</title>
   </head>
-  <body style="margin:0; padding:0; background:#f5f5f5; color:#222222; font-family:Arial, Helvetica, sans-serif;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f5f5f5; padding:24px 12px;">
-      <tr>
-        <td align="center">
-          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background:#ffffff; border:2px solid #fab31e; border-radius:20px 20px 0 0; overflow:hidden;">
-            <tr>
-              <td style="padding:32px 32px 24px; background:#fff9eb;">
+<body style="margin:0; padding:0; background:#ffffff; color:#222222; font-family:Arial, Helvetica, sans-serif; text-align:center;">
+<table
+  role="presentation"
+  width="600"
+  cellpadding="0"
+  cellspacing="0"
+  border="0"
+    align="center"
+  style="
+    width:600px;
+    max-width:600px;
+    background:#ffffff url('https://firebasestorage.googleapis.com/v0/b/bombay-blokes-4c284.firebasestorage.app/o/blogimages%2FEmail-Background.png?alt=media&token=01ed6e19-5b99-4969-bcb3-578c02786d26') top center / cover no-repeat;
+    overflow:hidden;
+  "
+>
+  <tr>
+    <td align="center" >
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background:transparent; border:2px solid #fab31e; border-radius:20px 20px 0 0; overflow:hidden;">            <tr>
+<td style="padding:32px 32px 24px; background:transparent;">
                 <p style="margin:0 0 8px; color:#f7b21a; font-size:26px; font-weight:700; line-height:1.2;">Hey ${name},</p>
                 <h1 style="margin:0; color:#111111; font-size:32px; line-height:1.2;">Bombay Blokes here...</h1>
               </td>
@@ -112,7 +124,7 @@ function buildUserEmail(payload: EnquiryPayload) {
                   <tr><td style="padding:5px 0; vertical-align:top;"><strong>Brand / link</strong></td><td style="padding:5px 0; word-break:break-word;">${brand}</td></tr>
                   <tr><td style="padding:5px 0;"><strong>Monthly ad budget</strong></td><td style="padding:5px 0;">${escapeHtml(payload.budget || "-")}</td></tr>
                   <tr><td style="padding:5px 0; vertical-align:top;"><strong>Marketing challenge</strong></td><td style="padding:5px 0; word-break:break-word;">${escapeHtml(payload.challenge || "-")}</td></tr>
-                  <tr><td style="padding:5px 0; vertical-align:top;"><strong>Growth goals</strong></td><td style="padding:5px 0; word-break:break-word;">${escapeHtml(payload.goals || "-")}</td></tr>
+                  <tr><td style="padding:5px 0; vertical-align:top;"><strong>Growth goals</strong></td><td style="padding:5px 0; word-break:break-word;">${escapeHtml(capitalizeFirstLetter(payload.goals || "-"))}</td></tr>
                 </table>
               </td>
             </tr>
@@ -125,7 +137,7 @@ function buildUserEmail(payload: EnquiryPayload) {
               <td style="padding:0 32px 28px;">
                 <h2 style="margin:0 0 10px; font-size:19px; line-height:1.3;">What happens next?</h2>
                 <p style="margin:0; font-size:14px; line-height:22px; color:#444444;">We'll review your enquiry, identify the biggest opportunities, and reach out to discuss the next steps. If we need anything else before the audit, we'll contact you directly.</p>
-                <p style="margin:20px 0 0; font-size:14px; line-height:22px;"><strong>Need to speak sooner?</strong><br /><a href="tel:+919819167856" style="color:#222222; text-decoration:none;">+91 981-916-7856</a> &nbsp;|&nbsp; <a href="mailto:hello@bombayblokes.com" style="color:#222222; text-decoration:none;">hello@bombayblokes.com</a></p>
+                <p style="margin:20px 0 0; font-size:14px; line-height:22px;"><strong>Need to speak sooner?</strong><br /><a href="tel:+919833037816" style="color:#222222; text-decoration:none;">+91 9833037816</a> &nbsp;|&nbsp; <a href="mailto:hello@bombayblokes.com" style="color:#222222; text-decoration:none;">hello@bombayblokes.com</a></p>
                 <p style="margin:24px 0 0; font-size:14px; line-height:22px;">Warm regards,<br /><strong>Bombay Blokes</strong><br /><a href="https://www.bombayblokes.com" style="color:#222222;">bombayblokes.com</a></p>
               </td>
             </tr>
@@ -203,87 +215,87 @@ export async function POST(req: Request) {
 
     const now = new Date();
 
-const service =
-  body.service?.trim() ||
-  (body.source?.toLowerCase().includes("social")
-    ? "social media"
-    : body.source?.toLowerCase().includes("performance")
-      ? "performance marketing"
-      : "");
+    const service =
+      body.service?.trim() ||
+      (body.source?.toLowerCase().includes("social")
+        ? "social media"
+        : body.source?.toLowerCase().includes("performance")
+          ? "performance marketing"
+          : "");
 
-  const utm_source = body.utm_source?.trim() || body.utmSource?.trim() || "";
-  const utm_medium = body.utm_medium?.trim() || body.utmMedium?.trim() || "";
-  const utm_campaign = body.utm_campaign?.trim() || body.utmCampaign?.trim() || "";
-  const utm_content = body.utm_content?.trim() || body.utmContent?.trim() || "";
-  const utm_term = body.utm_term?.trim() || body.utmTerm?.trim() || "";
+    const utm_source = body.utm_source?.trim() || body.utmSource?.trim() || "";
+    const utm_medium = body.utm_medium?.trim() || body.utmMedium?.trim() || "";
+    const utm_campaign = body.utm_campaign?.trim() || body.utmCampaign?.trim() || "";
+    const utm_content = body.utm_content?.trim() || body.utmContent?.trim() || "";
+    const utm_term = body.utm_term?.trim() || body.utmTerm?.trim() || "";
 
-  const payload: EnquiryPayload = {
-    name: body.name.trim(),
-    phone: body.phone.trim(),
-    email: body.email.trim(),
-    brand: body.brand?.trim() || "",
-    website: body.website?.trim() || "",
-    instagram: body.instagram?.trim() || "",
-    budget: body.budget?.trim() || "",
-    challenge: body.challenge?.trim() || "",
-    goals: body.goals?.trim() || "",
-    date: body.date || now.toLocaleDateString("en-IN", { dateStyle: "medium" }),
-    time: body.time || now.toLocaleTimeString("en-IN", { timeStyle: "short" }),
-    source: body.source || "ads-landing",
-    service,
-    utm_source,
-    utm_medium,
-    utm_campaign,
-    utm_content,
-    utm_term,
-    utmSource: utm_source,
-    utmMedium: utm_medium,
-    utmCampaign: utm_campaign,
-    utmContent: utm_content,
-    utmTerm: utm_term,
-  };
+    const payload: EnquiryPayload = {
+      name: body.name.trim(),
+      phone: body.phone.trim(),
+      email: body.email.trim(),
+      brand: body.brand?.trim() || "",
+      website: body.website?.trim() || "",
+      instagram: body.instagram?.trim() || "",
+      budget: body.budget?.trim() || "",
+      challenge: body.challenge?.trim() || "",
+      goals: body.goals?.trim() || "",
+      date: body.date || now.toLocaleDateString("en-IN", { dateStyle: "medium" }),
+      time: body.time || now.toLocaleTimeString("en-IN", { timeStyle: "short" }),
+      source: body.source || "ads-landing",
+      service,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_content,
+      utm_term,
+      utmSource: utm_source,
+      utmMedium: utm_medium,
+      utmCampaign: utm_campaign,
+      utmContent: utm_content,
+      utmTerm: utm_term,
+    };
 
-  console.log("[ADS ENQUIRY PAYLOAD SENT TO WEBHOOK]:", JSON.stringify(payload, null, 2));
+    console.log("[ADS ENQUIRY PAYLOAD SENT TO WEBHOOK]:", JSON.stringify(payload, null, 2));
 
     // Save enquiry to Google Sheet
-const googleSheetWebhook = process.env.GOOGLE_SHEET_WEBHOOK_URL;
+    const googleSheetWebhook = process.env.GOOGLE_SHEET_WEBHOOK_URL;
 
-if (googleSheetWebhook) {
-  try {
-    const sheetResponse = await fetch(googleSheetWebhook, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    if (googleSheetWebhook) {
+      try {
+        const sheetResponse = await fetch(googleSheetWebhook, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
 
-    if (!sheetResponse.ok) {
-      console.error(
-        "Google Sheet save failed:",
-        await sheetResponse.text()
-      );
+        if (!sheetResponse.ok) {
+          console.error(
+            "Google Sheet save failed:",
+            await sheetResponse.text()
+          );
+        }
+      } catch (sheetError) {
+        // Do not break the existing enquiry flow
+        console.error("Google Sheet error:", sheetError);
+      }
     }
-  } catch (sheetError) {
-    // Do not break the existing enquiry flow
-    console.error("Google Sheet error:", sheetError);
-  }
-}
 
     const message = buildEmailBody(payload);
 
     await sendEmail({
       to: payload.email as string,
-    subject: `Request Received for a Free ${payload.service} | Bombay Blokes`,
+      subject: `Request Received for a Free ${payload.service} | Bombay Blokes`,
       html: buildUserEmail(payload),
       fromName: "Bombay Blokes",
       fromAddress: "hello@bombayblokes.com",
     });
 
     await sendEmail({
-      //  to: "aryankuril09@gmail.com",
+      // to: "aryan@bombayblokes.com",
       to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com" ,"aryankuril09@gmail.com"],
-     subject: `New Lead From - ${formatTitleCase(payload.name || "-")} for ${formatTitleCase(payload.service || "-")}`,
+      subject: `New Lead From - ${formatTitleCase(payload.name || "-")} for ${formatTitleCase(payload.service || "-")}`,
       html: buildAdminEmail(payload),
       fromName: "BB Forms",
       fromAddress: "hello@bombayblokes.com",
