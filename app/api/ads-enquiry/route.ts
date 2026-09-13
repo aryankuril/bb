@@ -219,9 +219,11 @@ export async function POST(req: Request) {
       body.service?.trim() ||
       (body.source?.toLowerCase().includes("social")
         ? "social media"
-        : body.source?.toLowerCase().includes("performance")
-          ? "performance marketing"
-          : "");
+        : body.source?.toLowerCase().includes("paid")
+          ? "paid marketing"
+          : body.source?.toLowerCase().includes("performance")
+            ? "performance marketing"
+            : "");
 
     const utm_source = body.utm_source?.trim() || body.utmSource?.trim() || "";
     const utm_medium = body.utm_medium?.trim() || body.utmMedium?.trim() || "";
@@ -293,8 +295,8 @@ export async function POST(req: Request) {
     });
 
     await sendEmail({
-      // to: "aryan@bombayblokes.com",
-      to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com" ,"aryankuril09@gmail.com"],
+      to: "aryan@bombayblokes.com",
+      // to: ["hello@bombayblokes.com", "bdm@bombayblokes.com", "siddique@bombayblokes.com" ,"aryankuril09@gmail.com"],
       subject: `New Lead From - ${formatTitleCase(payload.name || "-")} for ${formatTitleCase(payload.service || "-")}`,
       html: buildAdminEmail(payload),
       fromName: "BB Forms",
