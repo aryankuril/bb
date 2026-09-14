@@ -172,13 +172,9 @@ function buildAdminEmail(payload: EnquiryPayload) {
   const isSocialMediaEnquiry = payload.source === "social-media-hero";
   const profile = escapeHtml(payload.website || payload.instagram || "-");
 
-  const utmLines = [
-    payload.utm_source ? `<p><strong>UTM Source:</strong> ${escapeHtml(payload.utm_source)}</p>` : "",
-    payload.utm_medium ? `<p><strong>UTM Medium:</strong> ${escapeHtml(payload.utm_medium)}</p>` : "",
-    payload.utm_campaign ? `<p><strong>UTM Campaign:</strong> ${escapeHtml(payload.utm_campaign)}</p>` : "",
-    payload.utm_content ? `<p><strong>UTM Content:</strong> ${escapeHtml(payload.utm_content)}</p>` : "",
-    payload.utm_term ? `<p><strong>UTM Term:</strong> ${escapeHtml(payload.utm_term)}</p>` : "",
-  ].filter(Boolean).join("");
+  const utmTermLine = payload.utm_term
+    ? `<p><strong>UTM Term:</strong> ${escapeHtml(payload.utm_term)}</p>`
+    : "";
 
   return `
     <h3>New Ads Audit Request</h3>
@@ -193,7 +189,7 @@ function buildAdminEmail(payload: EnquiryPayload) {
     <p><strong>Growth goals:</strong> ${capitalizeFirstLetter(payload.goals || "-")}</p>
     <p><strong>Date:</strong> ${escapeHtml(payload.date || "-")}</p>
     <p><strong>Source:</strong> ${escapeHtml(payload.source || "ads-landing")}</p>
-
+    ${utmTermLine}
   `;
 }
 
