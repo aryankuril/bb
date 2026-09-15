@@ -284,7 +284,7 @@ export async function POST(req: Request) {
 
     await sendEmail({
       to: payload.email as string,
-      subject: `Request Received for a Free ${payload.service} | Bombay Blokes`,
+      subject: `Request Received for a Free ${payload.service} Audit | Bombay Blokes`,
       html: buildUserEmail(payload),
       fromName: "Bombay Blokes",
       fromAddress: "hello@bombayblokes.com",
