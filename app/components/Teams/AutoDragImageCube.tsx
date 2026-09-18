@@ -277,6 +277,7 @@ export default function AutoDragImageCube(props: CubeProps) {
         perspective: cubeSize * 4,
         gap: 40,
         padding: 30,
+        marginTop: "-30px",
       }}
     >
       <h1 className="black-text md:text-left w-full mb-15">
